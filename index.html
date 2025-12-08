@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Noetfield – Infrastructure for Trust & Stewardship in the Age of AI</title>
+  <title>Noetfield – Trust & Stewardship</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Noetfield is a governance-first Trust Ledger and AI oversight layer for boards, regulators, and real-economy operators in Canada." />
+  <meta name="description" content="Noetfield – infrastructure for AI trust and stewardship." />
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
@@ -15,21 +15,17 @@
     }
     a { color: inherit; text-decoration: none; }
     .page {
-      max-width: 1040px;
+      max-width: 960px;
       margin: 0 auto;
-      padding: 24px 16px 64px;
+      padding: 24px 16px 48px;
     }
     header {
       display: flex;
-      align-items: center;
       justify-content: space-between;
-      padding: 8px 0 24px;
-      border-bottom: 1px solid rgba(255,255,255,0.06);
-      position: sticky;
-      top: 0;
-      backdrop-filter: blur(12px);
-      background: rgba(5,6,10,0.92);
-      z-index: 10;
+      align-items: center;
+      padding-bottom: 16px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      margin-bottom: 32px;
     }
     .logo {
       font-weight: 600;
@@ -37,199 +33,64 @@
       text-transform: uppercase;
       font-size: 0.9rem;
     }
-    nav {
-      display: flex;
-      gap: 18px;
-      font-size: 0.85rem;
-    }
-    nav a {
-      opacity: 0.7;
-    }
-    nav a:hover {
-      opacity: 1;
-    }
-    .hero {
-      padding: 56px 0 40px;
-      display: grid;
-      grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
-      gap: 40px;
-    }
-    .hero-title {
-      font-size: clamp(2.1rem, 3vw, 2.6rem);
-      font-weight: 550;
-      letter-spacing: -0.03em;
-      margin-bottom: 16px;
-    }
-    .hero-sub {
-      font-size: 0.98rem;
-      color: rgba(245,245,247,0.78);
-      max-width: 32rem;
-      margin-bottom: 24px;
-    }
-    .hero-tags {
-      font-size: 0.78rem;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: rgba(180,185,195,0.9);
+    nav { display: flex; gap: 16px; font-size: 0.85rem; }
+    nav a { opacity: 0.7; }
+    nav a:hover { opacity: 1; }
+
+    h1 {
+      font-size: clamp(2rem, 3vw, 2.4rem);
       margin-bottom: 12px;
+      letter-spacing: -0.03em;
     }
-    .hero-cta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-bottom: 18px;
-    }
-    .btn-primary, .btn-ghost {
-      padding: 9px 18px;
-      border-radius: 999px;
-      font-size: 0.85rem;
-      border: 1px solid transparent;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .btn-primary {
-      background: linear-gradient(120deg, #f5f5f7, #d0d4ff);
-      color: #05060a;
-      font-weight: 500;
-    }
-    .btn-ghost {
-      border-color: rgba(255,255,255,0.18);
-      color: rgba(245,245,247,0.9);
-      background: transparent;
-    }
-    .hero-note {
-      font-size: 0.78rem;
-      color: rgba(180,185,195,0.95);
-    }
-    .hero-card {
-      border-radius: 16px;
-      border: 1px solid rgba(255,255,255,0.06);
-      background: radial-gradient(circle at top left, rgba(120,132,255,0.16), transparent 55%),
-                  radial-gradient(circle at bottom right, rgba(255,255,255,0.06), transparent 55%);
-      padding: 18px 18px 16px;
-      font-size: 0.86rem;
-    }
-    .pill {
-      display: inline-flex;
-      align-items: center;
-      padding: 3px 10px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.16);
-      font-size: 0.7rem;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: rgba(220,225,235,0.9);
-      margin-bottom: 10px;
-    }
-    .hero-card h3 {
-      font-size: 0.95rem;
-      margin-bottom: 8px;
-    }
-    .hero-card p {
-      color: rgba(225,225,230,0.9);
-      margin-bottom: 10px;
-    }
-    .hero-card ul {
-      list-style: none;
-      font-size: 0.8rem;
-      color: rgba(190,195,205,0.96);
-    }
-    .hero-card li::before {
-      content: "• ";
-      color: rgba(208,212,255,0.9);
-    }
-    section {
-      padding: 28px 0;
-      border-top: 1px solid rgba(255,255,255,0.06);
-      margin-top: 12px;
-    }
-    section h2 {
-      font-size: 1.15rem;
-      margin-bottom: 8px;
+    h2 {
+      font-size: 1.2rem;
+      margin: 24px 0 8px;
       letter-spacing: -0.02em;
     }
-    section p {
-      font-size: 0.9rem;
-      color: rgba(210,214,222,0.94);
-      max-width: 44rem;
+    p {
+      font-size: 0.95rem;
+      color: rgba(220,225,235,0.95);
+      margin-bottom: 10px;
+      max-width: 40rem;
     }
-    .kicker {
+    .hero-tag {
       font-size: 0.75rem;
       text-transform: uppercase;
-      letter-spacing: 0.18em;
-      color: rgba(160,165,175,0.9);
-      margin-bottom: 4px;
+      letter-spacing: 0.15em;
+      color: rgba(170,175,185,0.9);
+      margin-bottom: 6px;
     }
-    .cols-3 {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 18px;
-      margin-top: 14px;
-      font-size: 0.86rem;
-    }
-    .cols-3 h3 {
-      font-size: 0.9rem;
-      margin-bottom: 4px;
-    }
-    .cols-3 p {
-      font-size: 0.85rem;
-      color: rgba(195,200,210,0.96);
-    }
-    .cols-2 {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 22px;
-      margin-top: 14px;
-      font-size: 0.86rem;
-    }
-    .badge-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-top: 8px;
-    }
-    .badge {
-      padding: 3px 8px;
+    .btn {
+      display: inline-block;
+      padding: 8px 18px;
       border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.16);
-      font-size: 0.7rem;
-      color: rgba(200,205,215,0.96);
-    }
-    blockquote {
-      border-left: 2px solid rgba(208,212,255,0.7);
-      padding-left: 12px;
-      margin-top: 10px;
+      border: 1px solid rgba(255,255,255,0.25);
       font-size: 0.85rem;
-      color: rgba(215,220,230,0.96);
-    }
-    .contact-card {
       margin-top: 12px;
-      font-size: 0.88rem;
-      color: rgba(210,214,222,0.94);
     }
-    .contact-card a {
-      text-decoration: underline;
-      text-decoration-style: dotted;
+    .btn.primary {
+      background: #f5f5f7;
+      color: #05060a;
+      border-color: transparent;
+      font-weight: 500;
     }
+    .section {
+      padding-top: 24px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      margin-top: 24px;
+    }
+    ul { font-size: 0.9rem; margin-left: 18px; color: rgba(210,215,225,0.95); }
+    li { margin-bottom: 4px; }
     footer {
       border-top: 1px solid rgba(255,255,255,0.06);
-      margin-top: 40px;
-      padding-top: 16px;
-      font-size: 0.76rem;
-      color: rgba(150,155,165,0.96);
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 8px;
+      margin-top: 32px;
+      padding-top: 12px;
+      font-size: 0.75rem;
+      color: rgba(160,165,175,0.95);
     }
     @media (max-width: 768px) {
       header { flex-direction: column; align-items: flex-start; gap: 8px; }
-      nav { flex-wrap: wrap; gap: 10px; }
-      .hero { grid-template-columns: 1fr; }
-      .cols-3 { grid-template-columns: 1fr; }
-      .cols-2 { grid-template-columns: 1fr; }
+      nav { flex-wrap: wrap; }
     }
   </style>
 </head>
@@ -241,196 +102,69 @@
         <a href="#home">Home</a>
         <a href="#trust-brief">Trust Brief</a>
         <a href="#trust-ledger">Trust Ledger</a>
-        <a href="#architecture">Architecture</a>
-        <a href="#board-resources">Board Resources</a>
         <a href="#contact">Contact</a>
       </nav>
     </header>
 
     <main id="home">
-      <section class="hero">
-        <div>
-          <div class="hero-tags">Infrastructure for Trust & Stewardship</div>
-          <h1 class="hero-title">
-            A governance-first Trust Ledger and AI oversight layer for real-economy boards.
-          </h1>
-          <p class="hero-sub">
-            Noetfield helps boards, regulators, and operators turn scattered AI logs and documents
-            into a single, human-readable Trust Ledger – so critical decisions, safeguards, and
-            accountabilities are traceable.
-          </p>
-          <div class="hero-cta">
-            <a href="#contact" class="btn-primary">Request a 6-week Trust Brief</a>
-            <a href="#board-resources" class="btn-ghost">View board resources</a>
-          </div>
-          <div class="hero-note">
-            Built from British Columbia, Canada – designed to sit under existing AI vendors and
-            platforms, not compete with them.
-          </div>
-        </div>
-        <div>
-          <div class="hero-card">
-            <div class="pill">Board-First Pilot</div>
-            <h3>Noetfield Trust Brief – 6 weeks</h3>
-            <p>
-              A focused engagement that maps your highest-impact AI / automation use cases,
-              creates a Trust Ledger snapshot, and delivers a board-ready report.
-            </p>
-            <ul>
-              <li>Inventory of critical AI / automation decisions</li>
-              <li>3–5 Trust Ledger entries your board can actually read</li>
-              <li>Clear roadmap for governance and controls (6–18 months)</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <section id="trust-brief">
-        <div class="kicker">Entry Point</div>
-        <h2>Noetfield Trust Brief – a pragmatic start</h2>
+      <section>
+        <div class="hero-tag">Infrastructure for trust & stewardship</div>
+        <h1>A governance-first Trust Ledger for real-economy boards.</h1>
         <p>
-          Most organisations don’t need another AI strategy deck. They need a time-bound way to
-          see where AI is already shaping decisions, where governance is thin, and what a realistic,
-          board-aligned next step looks like.
+          Noetfield helps boards, regulators, and operators turn scattered AI logs and documents
+          into one, human-readable Trust Ledger – so critical decisions, safeguards, and
+          accountabilities are traceable.
         </p>
-        <div class="cols-3">
-          <div>
-            <h3>Who it’s for</h3>
-            <p>
-              Boards and executives of financial institutions, universities, healthcare providers,
-              utilities, public agencies, and mid-market operators already using AI or advanced analytics.
-            </p>
-          </div>
-          <div>
-            <h3>What you receive</h3>
-            <p>
-              A Trust Ledger snapshot, a concise board-ready report, and a set of pathways for
-              policy, controls, and potential Trust Ledger rollout.
-            </p>
-          </div>
-          <div>
-            <h3>How it works</h3>
-            <p>
-              6 weeks of focused discovery, mapping, and synthesis – with one clear briefing session
-              for leadership and your board or committee.
-            </p>
-          </div>
-        </div>
+        <a class="btn primary" href="#contact">Request a 6-week Trust Brief</a>
       </section>
 
-      <section id="trust-ledger">
-        <div class="kicker">Core Concept</div>
-        <h2>The Trust Ledger – what boards actually need</h2>
+      <section id="trust-brief" class="section">
+        <h2>Noetfield Trust Brief – 6 weeks</h2>
         <p>
-          Technical teams already maintain logs, tickets, and documentation across multiple tools.
-          Boards and regulators need something different: one clear ledger of a few critical decisions,
-          written in human language.
+          A focused, time-bound engagement to map your highest-impact AI/automation use cases and
+          deliver a board-ready overview of risks, safeguards, and options.
         </p>
-        <blockquote>
-          <strong>Example entry:</strong><br>
-          Decision: “Enable AI-based scoring for customer applications.”<br>
-          Who: Head of Risk, Head of Product, Data Science Lead.<br>
-          Data/Models: 5 years of historical applications, gradient-boosting model.<br>
-          Safeguards: human review above a threshold, quarterly bias checks, retention limits.
-        </blockquote>
-        <div class="badge-row">
-          <span class="badge">Decision traceability</span>
-          <span class="badge">Accountability mapping</span>
-          <span class="badge">Regulator-ready evidence</span>
-          <span class="badge">Vendor-neutral layer</span>
-        </div>
+        <ul>
+          <li>Inventory of critical AI / automation decisions</li>
+          <li>3–5 Trust Ledger entries your board can actually read</li>
+          <li>Concise report with pathways for governance and controls</li>
+        </ul>
       </section>
 
-      <section id="architecture">
-        <div class="kicker">System Architecture</div>
-        <h2>An architecture, not just an app</h2>
-        <div class="cols-2">
-          <div>
-            <p>
-              Noetfield is being built as a multi-entity system that separates commercial operations,
-              capital structures, and social mandate – so governance remains neutral and durable over time.
-            </p>
-          </div>
-          <div>
-            <p>
-              The focus for the next 12–18 months is simple: real-economy pilots, a robust Trust Brief
-              offering, and a maturing Trust Ledger that integrates with existing risk and compliance programs.
-            </p>
-          </div>
-        </div>
-        <div class="badge-row">
-          <span class="badge">Board-first design</span>
-          <span class="badge">Canada-based origin</span>
-          <span class="badge">Neutral governance layer</span>
-          <span class="badge">Partner-friendly to AI vendors</span>
-        </div>
-      </section>
-
-      <section id="board-resources">
-        <div class="kicker">For Directors & Committees</div>
-        <h2>Board resources – AI governance in Canada</h2>
+      <section id="trust-ledger" class="section">
+        <h2>The Trust Ledger – simple, traceable history</h2>
         <p>
-          Noetfield is developing a focused resource hub for Canadian boards, audit & risk committees,
-          and governance professionals. Materials are concise, non-technical, and designed to fit into
-          existing duties and structures.
+          Technical teams already keep logs and tickets. Boards and regulators need something
+          different: a short, disciplined record of a few critical decisions in plain language.
         </p>
-        <div class="cols-3">
-          <div>
-            <h3>Board Guide</h3>
-            <p>
-              A short guide on why AI is a board-level issue, how it connects to fiduciary duties,
-              and what “good” oversight can look like.
-            </p>
-          </div>
-          <div>
-            <h3>Trust Ledger Primer</h3>
-            <p>
-              An accessible explanation of the Trust Ledger concept, with sample entries boards can
-              use as a discussion anchor.
-            </p>
-          </div>
-          <div>
-            <h3>Oversight Questions</h3>
-            <p>
-              Practical questions for boards, audit & risk committees, and technology committees to
-              ask management – without needing to be AI experts.
-            </p>
-          </div>
-        </div>
-        <p style="margin-top:10px;font-size:0.85rem;color:rgba(185,190,200,0.96);">
-          If you would like early access to these materials or to host a workshop, you can note this
-          in your message below.
+        <p>
+          Example entry:
+          “Enable AI-based scoring for customer applications. Decision by Head of Risk, Head of
+          Product, Data Science Lead. Data: 5 years of applications. Safeguards: human review above
+          threshold, quarterly bias checks.”
         </p>
       </section>
 
-      <section id="contact">
-        <div class="kicker">Next Steps</div>
-        <h2>Contact & pilot conversations</h2>
+      <section id="contact" class="section">
+        <h2>Contact</h2>
         <p>
-          If you are exploring a Trust Brief, interested in early Trust Ledger pilots, or considering
-          a board / committee workshop, a short introductory conversation is the best next step.
+          For Trust Briefs, early Trust Ledger pilots, or board workshops, a short introductory
+          conversation is the best next step.
         </p>
-        <div class="contact-card">
-          <p>
-            Email: <a href="mailto:founder@noetfield.ca">founder@noetfield.ca</a><br/>
-            Location: British Columbia, Canada<br/>
-          </p>
-          <p style="margin-top:8px;">
-            Please include your role, organisation, and whether you are reaching out as a board member,
-            operator, regulator, or partner.
-          </p>
-        </div>
+        <p>
+          Email: <a href="mailto:founder@noetfield.ca">founder@noetfield.ca</a><br>
+          Location: British Columbia, Canada
+        </p>
       </section>
     </main>
 
     <footer>
-      <div>© <span id="year"></span> Noetfield. Infrastructure for Trust & Stewardship in the Age of AI.</div>
-      <div>Designed as a neutral governance layer – not an AI vendor or fund.</div>
+      © <span id="year"></span> Noetfield – infrastructure for AI trust and stewardship.
     </footer>
   </div>
 
   <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
+    document.getElementById('year').textContent = new Date().getFullYear();
   </script>
 </body>
 </html>

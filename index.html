@@ -11,7 +11,7 @@
     :root {
       --bg: #05060a;
       --bg-soft: #111318;
-      --border-soft: rgba(255,255,255,0.08);
+      --border-soft: rgba(255,255,255,0.10);
       --text-main: #f5f5f7;
       --text-soft: rgba(218,222,235,0.98);
       --text-mute: rgba(150,160,175,0.9);
@@ -80,24 +80,16 @@
 
     main { margin-top: 24px; }
 
-    /* ستون مرکزی برای همه محتوا */
-
+    /* central column for all sections */
     .content {
       max-width: 760px;
       margin: 0 auto;
     }
 
-    /* HERO – دو ستونه دسکتاپ، تک‌ستونه موبایل */
-
+    /* HERO – single column */
     .hero {
       margin-bottom: 40px;
-      display: grid;
-      grid-template-columns: minmax(0, 2.4fr) minmax(0, 1fr);
-      gap: 28px;
-      align-items: center;
     }
-
-    .hero-copy { max-width: 36rem; }
 
     .hero-tag {
       font-size: 0.75rem;
@@ -168,17 +160,6 @@
       transform: translateY(-1px);
     }
 
-    .hero-logo-wrapper {
-      justify-self: flex-end;
-    }
-
-    .hero-logo-wrapper img {
-      display: block;
-      max-width: 180px;   /* لوگو کوچک و سبک در دسکتاپ */
-      width: 100%;
-      height: auto;
-    }
-
     /* Sections */
 
     .section {
@@ -235,7 +216,7 @@
       background: var(--bg-soft);
       border-radius: 12px;
       padding: 12px 14px;
-      border: 1px solid rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.10);
     }
 
     .timeline-step h3 {
@@ -275,7 +256,7 @@
       background: var(--bg-soft);
       border-radius: 12px;
       padding: 12px 14px;
-      border: 1px solid rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.14);
       font-size: 0.9rem;
       margin-top: 10px;
     }
@@ -304,7 +285,7 @@
       background: var(--bg-soft);
       border-radius: 12px;
       padding: 12px 14px;
-      border: 1px solid rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.10);
     }
 
     .audience-card h3 {
@@ -340,7 +321,7 @@
       background: linear-gradient(135deg, #161925 0%, #070810 60%);
       border-radius: 16px;
       padding: 18px 18px 16px;
-      border: 1px solid rgba(255,255,255,0.16);
+      border: 1px solid rgba(255,255,255,0.18);
       margin-top: 14px;
     }
 
@@ -382,16 +363,6 @@
       }
       nav { flex-wrap: wrap; }
       .page { padding-inline: 14px; }
-      .hero {
-        grid-template-columns: minmax(0, 1fr);
-        gap: 18px;
-      }
-      .hero-logo-wrapper {
-        justify-self: flex-start;
-      }
-      .hero-logo-wrapper img {
-        max-width: 120px;
-      }
     }
   </style>
 </head>
@@ -414,34 +385,26 @@
       <div class="content">
         <!-- HERO -->
         <section class="hero">
-          <div class="hero-copy">
-            <div class="hero-tag">Infrastructure for trust & stewardship</div>
-            <div class="hero-eyebrow">AI governance for real-economy boards</div>
-            <h1>A governance-first Trust Ledger for real-economy boards.</h1>
-            <p class="hero-sub">
-              Noetfield helps boards, regulators, and operators turn scattered AI logs and
-              documents into one, human-readable Trust Ledger – so critical decisions,
-              safeguards, and accountabilities are traceable.
-            </p>
-            <div class="hero-cta">
-              <a class="btn primary" href="#trust-brief">Request a 6-week Trust Brief</a>
-              <a
-                class="btn secondary"
-                href="mailto:ceo@noetfield.com?subject=Trust%20Ledger%20sample%20request&body=Please%20share%20the%201-page%20Trust%20Ledger%20sample%20for%20board%20review."
-              >
-                Request the 1-page Ledger sample
-              </a>
-            </div>
-          </div>
-
-          <div class="hero-logo-wrapper">
-            <!-- مسیر را با نام فایل واقعی خودت عوض کن -->
-            <img src="/assets/noetfield-logo-hero.png" alt="Noetfield Trust Ledger symbol" />
+          <div class="hero-tag">Infrastructure for trust & stewardship</div>
+          <div class="hero-eyebrow">AI governance for real-economy boards</div>
+          <h1>A governance-first Trust Ledger for real-economy boards.</h1>
+          <p class="hero-sub">
+            Noetfield helps boards, regulators, and operators turn scattered AI logs and
+            documents into one, human-readable Trust Ledger – so critical decisions,
+            safeguards, and accountabilities are traceable.
+          </p>
+          <div class="hero-cta">
+            <a class="btn primary" href="#trust-brief">Request a 6-week Trust Brief</a>
+            <a
+              class="btn secondary"
+              href="mailto:ceo@noetfield.com?subject=Trust%20Ledger%20sample%20request&body=Please%20share%20the%201-page%20Trust%20Ledger%20sample%20for%20board%20review."
+            >
+              Request the 1-page Ledger sample
+            </a>
           </div>
         </section>
 
-        <!-- باقی سکشن‌ها مثل قبل -->
-
+        <!-- PROBLEM & PRESSURE -->
         <section class="section" aria-labelledby="problem-title">
           <h2 id="problem-title" class="section-title">Why this matters now</h2>
           <p>
@@ -465,6 +428,7 @@
           </div>
         </section>
 
+        <!-- TRUST LEDGER -->
         <section id="trust-ledger" class="section" aria-labelledby="ledger-title">
           <h2 id="ledger-title" class="section-title">
             The Trust Ledger: a short, auditable history of your most critical AI decisions
@@ -519,6 +483,7 @@
           </p>
         </section>
 
+        <!-- TRUST BRIEF -->
         <section id="trust-brief" class="section" aria-labelledby="brief-title">
           <h2 id="brief-title" class="section-title">Noetfield Trust Brief – 6 weeks</h2>
           <p>
@@ -542,6 +507,7 @@
           </div>
         </section>
 
+        <!-- FOR WHOM -->
         <section id="for-whom" class="section" aria-labelledby="forwhom-title">
           <h2 id="forwhom-title" class="section-title">For whom</h2>
           <div class="columns-3">
@@ -572,6 +538,7 @@
           </div>
         </section>
 
+        <!-- GATE -->
         <section id="gate" class="section" aria-labelledby="gate-title">
           <h2 id="gate-title" class="section-title">Gate – early access to the architecture</h2>
           <div class="gate-teaser">
@@ -588,6 +555,7 @@
           </div>
         </section>
 
+        <!-- ABOUT -->
         <section id="about" class="section" aria-labelledby="about-title">
           <h2 id="about-title" class="section-title">About the thesis</h2>
           <div class="about-grid">
@@ -612,6 +580,7 @@
           </div>
         </section>
 
+        <!-- CONTACT -->
         <section id="contact" class="section contact" aria-labelledby="contact-title">
           <h2 id="contact-title" class="section-title">Contact</h2>
           <p>

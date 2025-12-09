@@ -114,7 +114,7 @@
     }
 
     .hero h1 {
-      font-size: clamp(1.9rem, 3vw, 2.3rem);
+      font-size: clamp(1.9rem, 3vw, 2.2rem);
       letter-spacing: -0.04em;
       margin-bottom: 10px;
     }
@@ -147,7 +147,6 @@
       font-size: 0.85rem;
       cursor: pointer;
       transition: background 0.12s ease, color 0.12s ease, border-color 0.12s ease, transform 0.08s ease;
-      white-space: nowrap;
     }
 
     .btn.primary {
@@ -177,35 +176,50 @@
       justify-content: center;
     }
 
-    .hero-image-wrapper {
-      position: relative;
-      max-width: 360px;
+    /* Logo block instead of image */
+
+    .hero-logo-block {
+      background: radial-gradient(circle at top, #1c2135 0%, #05060a 60%);
       border-radius: 18px;
-      overflow: hidden;
-      box-shadow: 0 18px 45px rgba(0,0,0,0.75);
-      background: #000;
-    }
-
-    .hero-image-wrapper img {
-      display: block;
+      border: 1px solid rgba(255,255,255,0.06);
+      padding: 18px 20px 16px;
+      max-width: 320px;
       width: 100%;
-      height: auto;
-      object-fit: cover;
+      text-align: center;
+      box-shadow: 0 18px 45px rgba(0,0,0,0.75);
     }
 
-    .hero-logo-tag {
+    .hero-logo-mark {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.45);
+      margin: 0 auto 10px;
+      position: relative;
+    }
+
+    .hero-logo-mark::before,
+    .hero-logo-mark::after {
+      content: '';
       position: absolute;
-      right: 14px;
-      bottom: 12px;
-      padding: 4px 10px;
-      border-radius: 999px;
-      background: rgba(5,6,10,0.78);
-      border: 1px solid rgba(255,255,255,0.28);
-      font-size: 0.7rem;
+      inset: 14px;
+      border-radius: 50%;
+      border: 1px dashed rgba(255,255,255,0.35);
+    }
+
+    .hero-logo-text {
+      font-size: 1rem;
+      letter-spacing: 0.22em;
       text-transform: uppercase;
-      letter-spacing: 0.18em;
-      color: var(--accent);
-      backdrop-filter: blur(6px);
+      color: #ffffff;
+      margin-bottom: 4px;
+    }
+
+    .hero-logo-sub {
+      font-size: 0.75rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-mute);
     }
 
     /* Sections */
@@ -251,6 +265,34 @@
       color: var(--accent);
     }
 
+    /* Trust Brief timeline */
+
+    .timeline {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-top: 12px;
+    }
+
+    .timeline-step {
+      background: var(--bg-soft);
+      border-radius: 12px;
+      padding: 12px 14px;
+      border: 1px solid rgba(255,255,255,0.03);
+    }
+
+    .timeline-step h3 {
+      font-size: 0.9rem;
+      margin-bottom: 6px;
+      color: var(--text-main);
+    }
+
+    .timeline-step p {
+      font-size: 0.85rem;
+      margin: 0;
+      color: var(--text-soft);
+    }
+
     /* Trust Ledger layout */
 
     .ledger-columns {
@@ -279,7 +321,6 @@
       border: 1px solid rgba(255,255,255,0.06);
       font-size: 0.9rem;
       max-width: 44rem;
-      margin-top: 10px;
     }
 
     .ledger-card h4 {
@@ -291,34 +332,6 @@
     .ledger-card p {
       font-size: 0.88rem;
       margin-bottom: 4px;
-    }
-
-    /* Trust Brief timeline */
-
-    .timeline {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 16px;
-      margin-top: 12px;
-    }
-
-    .timeline-step {
-      background: var(--bg-soft);
-      border-radius: 12px;
-      padding: 12px 14px;
-      border: 1px solid rgba(255,255,255,0.03);
-    }
-
-    .timeline-step h3 {
-      font-size: 0.9rem;
-      margin-bottom: 6px;
-      color: var(--text-main);
-    }
-
-    .timeline-step p {
-      font-size: 0.85rem;
-      margin: 0;
-      color: var(--text-soft);
     }
 
     /* For Whom */
@@ -453,7 +466,7 @@
         <div class="hero-copy">
           <div class="hero-tag">Infrastructure for trust & stewardship</div>
           <div class="hero-eyebrow">AI governance for real-economy boards</div>
-          <h1>Boards do not need every AI log.</h1>
+          <h1>Boards don’t need every AI log.</h1>
           <h2>They need one clear ledger.</h2>
           <p class="hero-sub">
             Noetfield turns scattered AI logs, tickets, and emails into a single,
@@ -462,18 +475,17 @@
           </p>
           <div class="hero-cta">
             <a class="btn primary" href="#trust-brief">Request a 6-week Trust Brief</a>
-            <a class="btn secondary" href="#trust-ledger">See how the Ledger works</a>
             <a class="btn secondary" href="/assets/noetfield-trust-ledger-sample.pdf" target="_blank" rel="noopener">
-              View 1-page Ledger sample (PDF)
+              View a 1-page Trust Ledger sample (PDF)
             </a>
           </div>
         </div>
 
         <div class="hero-visual">
-          <div class="hero-image-wrapper">
-            <!-- update this path to your actual asset -->
-            <img src="/assets/trust-ledger-hero.jpg" alt="Abstract lightning over a structured Trust Ledger card with decision columns." />
-            <div class="hero-logo-tag">Noetfield Trust Ledger</div>
+          <div class="hero-logo-block">
+            <div class="hero-logo-mark"></div>
+            <div class="hero-logo-text">NOETFIELD</div>
+            <div class="hero-logo-sub">AI GOVERNANCE • DIGITAL TRUST</div>
           </div>
         </div>
       </section>
@@ -492,11 +504,11 @@
             governed critical AI decisions, not just that systems were deployed.
           </div>
           <div class="bullet">
-            Technical logs, tickets, and dashboards are unreadable at board level and
-            scattered across multiple systems and teams.
+            Technical logs, tickets, and dashboards are unreadable at board level, and
+            often scattered across multiple systems.
           </div>
           <div class="bullet">
-            Without a short, auditable history of key AI decisions, organisations face
+            Without a short, auditable history of key AI decisions, organisations risk
             unanswerable questions after an incident, investigation, or audit.
           </div>
         </div>
@@ -509,23 +521,23 @@
         </h2>
         <p>
           Technical teams keep detailed logs. The Trust Ledger is something different:
-          a disciplined record of a small number of critical decisions in plain language
-          that can sit in front of the board, auditors, and regulators.
+          a disciplined record of a few critical decisions in plain language that can sit
+          in front of the board, auditors, and regulators.
         </p>
 
         <div class="ledger-columns">
           <div class="ledger-column">
             <h3>Decisions</h3>
             <p>
-              Which AI systems, models, and use cases matter most, and when a change in
-              behaviour, scope, or reliance becomes a board-level decision.
+              Which AI systems, models, and use cases matter most for your organisation,
+              and when a change in behaviour or scope becomes a board-level decision.
             </p>
           </div>
           <div class="ledger-column">
             <h3>Data & safeguards</h3>
             <p>
               What data these systems rely on, how they are controlled, and which
-              safeguards, limits, and monitoring exist in practice – not just in policy.
+              safeguards, limits, and monitoring are in place in practice – not just on paper.
             </p>
           </div>
           <div class="ledger-column">
@@ -540,10 +552,10 @@
         <div class="ledger-card">
           <h4>Example Trust Ledger entry</h4>
           <p><strong>System / use case:</strong> AI-based scoring for retail customer applications.</p>
-          <p><strong>Decision:</strong> Enable AI scoring for applications under 50,000 with defined thresholds for manual review.</p>
+          <p><strong>Decision:</strong> Enable AI scoring for applications under $50,000 with defined thresholds for manual review.</p>
           <p><strong>Data:</strong> 5 years of historical applications and outcomes, refreshed quarterly.</p>
           <p><strong>Safeguards:</strong> Human review above risk threshold, opt-out for sensitive segments, quarterly bias and performance checks.</p>
-          <p><strong>Board touchpoint:</strong> Risk committee briefed in Q2; ledger entry attached to minutes and internal audit file.</p>
+          <p><strong>Board touchpoint:</strong> Risk committee briefed Q2; ledger entry attached to minutes and internal audit file.</p>
         </div>
 
         <p>
@@ -559,14 +571,14 @@
       <section id="trust-brief" class="section" aria-labelledby="brief-title">
         <h2 id="brief-title" class="section-title">Noetfield Trust Brief – 6 weeks</h2>
         <p>
-          A focused, time-bound engagement to map your highest-impact AI and automation
-          use cases and deliver a board-ready view of risks, safeguards, and options –
-          anchored in early Trust Ledger entries.
+          A focused, time-bound engagement to map your highest-impact AI and automation use
+          cases and deliver a board-ready view of risks, safeguards, and options – anchored
+          in early Trust Ledger entries.
         </p>
         <div class="timeline">
           <div class="timeline-step">
             <h3>Weeks 1–2 – Inventory & interviews</h3>
-            <p>Identify critical AI decisions, stakeholders, and existing controls across business, risk, and technology.</p>
+            <p>Identify critical AI decisions, stakeholders, and existing controls across business and risk.</p>
           </div>
           <div class="timeline-step">
             <h3>Weeks 3–4 – Draft the Ledger</h3>
@@ -574,37 +586,37 @@
           </div>
           <div class="timeline-step">
             <h3>Weeks 5–6 – Board-ready view</h3>
-            <p>Deliver a concise report, refine entries with your teams, and outline practical next steps for pilots.</p>
+            <p>Deliver a concise report, refine entries with your teams, and outline practical next steps.</p>
           </div>
         </div>
       </section>
 
       <!-- FOR WHOM -->
       <section id="for-whom" class="section" aria-labelledby="forwhom-title">
-        <h2 id="forwhom-title" class="section-title">Who Noetfield is for</h2>
+        <h2 id="forwhom-title" class="section-title">For whom</h2>
         <div class="columns-3">
           <div class="audience-card">
-            <h3>Boards & committees</h3>
+            <h3>Boards & Committees</h3>
             <ul>
               <li>Clear line of sight from AI projects to fiduciary responsibilities.</li>
-              <li>Readable artefacts that can be attached to minutes and audit packs.</li>
+              <li>Readable artifacts that can be attached to minutes and audit packs.</li>
               <li>Better questions, not bigger decks.</li>
             </ul>
           </div>
           <div class="audience-card">
-            <h3>Executives & operators</h3>
+            <h3>Executives & Operators</h3>
             <ul>
               <li>Structured way to explain complex AI initiatives to non-technical leaders.</li>
-              <li>Shared language across risk, product, compliance, and technology.</li>
-              <li>Fewer ad hoc requests for "one more AI overview slide".</li>
+              <li>Shared language across risk, product, and technology.</li>
+              <li>Fewer ad hoc requests for “one more AI overview slide.”</li>
             </ul>
           </div>
           <div class="audience-card">
-            <h3>Regulators & oversight</h3>
+            <h3>Regulators & Oversight</h3>
             <ul>
               <li>Evidence that critical AI decisions are captured and governed.</li>
-              <li>Traceable link from policy and risk appetite to real decisions and safeguards.</li>
-              <li>A base layer for future reporting, assurance, and supervision.</li>
+              <li>Traceable link from policy to actual decisions and safeguards.</li>
+              <li>A base layer for future reporting and assurance.</li>
             </ul>
           </div>
         </div>
@@ -619,9 +631,9 @@
             who want to help shape the Trust Ledger infrastructure.
           </p>
           <p>
-            Priority is given to boards, executives, and stewards in financial services,
-            critical infrastructure, and other real-economy sectors who are ready to work
-            with live cases, not just slideware.
+            We prioritise boards, executives, and stewards in financial services, critical
+            infrastructure, and other real-economy sectors who are ready to experiment with
+            real cases – not just slideware.
           </p>
           <a class="btn secondary" href="/gate/">Enter Gate</a>
         </div>
@@ -633,20 +645,20 @@
         <div class="about-grid">
           <div>
             <p>
-              Noetfield is being built as a neutral governance layer – not a fund and not an
-              AI vendor – so boards, executives, and regulators can anchor trust in one place.
+              Noetfield is being built as a neutral governance layer – not a fund, not an AI
+              vendor – so boards, executives, and regulators can anchor trust in one place.
             </p>
             <p>
-              The work sits between the mutual model of stewardship (long-horizon asset
+              The work sits between the mutual model of stewardship (think long-horizon asset
               owners) and the public-market scale of major managers. The Trust Ledger is the
-              first wedge: a small, concrete artefact that can scale into a broader system.
+              first wedge: a small, concrete artifact that can scale into a broader system.
             </p>
           </div>
           <div class="about-highlight">
             <p>
               Background spans law, governance, and AI-adjacent systems. The focus is simple:
-              give serious institutions a way to govern AI that matches regulatory pressure
-              and moral responsibility – without drowning them in more noise.
+              give serious institutions a way to govern AI that matches both regulatory
+              pressure and moral responsibility – without drowning them in more noise.
             </p>
           </div>
         </div>
@@ -657,7 +669,7 @@
         <h2 id="contact-title" class="section-title">Contact</h2>
         <p>
           For Trust Briefs, early Trust Ledger pilots, or board workshops, a short
-          introductory conversation is usually the best next step.
+          introductory conversation is the best next step.
         </p>
         <p>
           Email: <a href="mailto:ceo@noetfield.com">ceo@noetfield.com</a><br />

@@ -44,11 +44,38 @@
       gap: 12px;
     }
 
-    .logo {
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .brand-mark {
+      width: 24px;
+      height: 24px;
+      border-radius: 999px;
+      overflow: hidden;
+      background: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .brand-mark img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .brand-wordmark {
       font-weight: 700;
       letter-spacing: 0.22em;
       text-transform: uppercase;
       font-size: 0.9rem;
+    }
+
+    .brand-wordmark span {
       color: var(--accent);
     }
 
@@ -116,7 +143,7 @@
     .hero h1 {
       font-size: clamp(1.9rem, 3vw, 2.2rem);
       letter-spacing: -0.04em;
-      margin-bottom: 10px;
+      margin-bottom: 4px;
     }
 
     .hero h2 {
@@ -178,33 +205,46 @@
 
     .hero-image-wrapper {
       position: relative;
-      max-width: 360px;
+      max-width: 380px;
       border-radius: 18px;
       overflow: hidden;
       box-shadow: 0 18px 45px rgba(0,0,0,0.75);
       background: #000;
     }
 
-    .hero-image-wrapper img {
+    .hero-image-wrapper img.hero-main {
       display: block;
       width: 100%;
       height: auto;
       object-fit: cover;
     }
 
-    .hero-logo-tag {
+    /* لاکاپ لوگو در پایین راست تصویر هیرو */
+    .hero-logo-lockup {
       position: absolute;
-      right: 14px;
-      bottom: 12px;
+      right: 12px;
+      bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
       padding: 4px 10px;
       border-radius: 999px;
       background: rgba(5,6,10,0.78);
-      border: 1px solid rgba(255,255,255,0.28);
-      font-size: 0.7rem;
-      text-transform: uppercase;
-      letter-spacing: 0.18em;
-      color: var(--accent);
+      border: 1px solid rgba(255,255,255,0.32);
       backdrop-filter: blur(6px);
+    }
+
+    .hero-logo-lockup img {
+      height: 16px;
+      width: auto;
+      display: block;
+    }
+
+    .hero-logo-lockup span {
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
     }
 
     /* Sections */
@@ -362,7 +402,20 @@
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
+      align-items: center;
       gap: 8px;
+    }
+
+    .footer-left {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .footer-logo {
+      height: 14px;
+      width: auto;
+      display: block;
     }
 
     @media (max-width: 900px) {
@@ -392,7 +445,15 @@
 <body>
   <div class="page">
     <header>
-      <div class="logo">NOETFIELD</div>
+      <div class="brand">
+        <!-- لوگوی mark دایره‌ای -->
+        <div class="brand-mark">
+          <!-- این مسیر را با فایل واقعی آیکون دایره N عوض کن -->
+          <img src="/assets/noetfield-mark.png" alt="Noetfield mark">
+        </div>
+        <!-- وردمارک متنی -->
+        <div class="brand-wordmark"><span>NOETFIELD</span></div>
+      </div>
       <nav>
         <a href="#home">Home</a>
         <a href="#trust-brief">Trust Brief</a>
@@ -410,8 +471,8 @@
         <div class="hero-copy">
           <div class="hero-tag">Infrastructure for trust & stewardship</div>
           <div class="hero-eyebrow">AI governance for real-economy boards</div>
-          <h1>Boards don’t need every AI log.</h1>
-          <h2>They need one clear ledger.</h2>
+          <h1>Most boards don’t need more AI ideas.</h1>
+          <h2>They need one clear Trust Ledger.</h2>
           <p class="hero-sub">
             Noetfield turns scattered AI logs, tickets, and emails into a single,
             human-readable Trust Ledger – so boards, regulators, and operators share one
@@ -425,9 +486,15 @@
 
         <div class="hero-visual">
           <div class="hero-image-wrapper">
-            <!-- اینجا آدرس تصویر خودت را قرار بده -->
-            <img src="/assets/trust-ledger-hero.jpg" alt="Lightning over a Trust Ledger card with columns for Decision, Who, and Data/Models." />
-            <div class="hero-logo-tag">Noetfield Trust Ledger</div>
+            <!-- اینجا تصویر مربع/اصلی که فرستادی را قرار بده -->
+            <img class="hero-main" src="/assets/noetfield-trust-ledger-square.jpg"
+                 alt="Lightning over a Trust Ledger card with columns for Decision, Who, and Data/Models." />
+            <!-- لاکاپ لوگو در پایین راست تصویر -->
+            <div class="hero-logo-lockup">
+              <!-- همان فایل لاکاپ کامل (دایره + NOETFIELD) -->
+              <img src="/assets/noetfield-logo-lockup.png" alt="Noetfield logo">
+              <span>NOETFIELD</span>
+            </div>
           </div>
         </div>
       </section>
@@ -557,9 +624,9 @@
               vendor – so boards, executives, and regulators can anchor trust in one place.
             </p>
             <p>
-              The work sits between the mutual model of stewardship (think long-horizon asset
-              owners) and the public-market scale of major managers. The Trust Ledger is the
-              first wedge: a small, concrete artifact that can scale into a broader system.
+              The work sits between the mutual model of stewardship and the public-market
+              scale of major managers. The Trust Ledger is the first wedge: a small, concrete
+              artifact that can scale into a broader system.
             </p>
           </div>
           <div class="about-highlight">
@@ -587,7 +654,11 @@
     </main>
 
     <footer>
-      <span>© <span id="year"></span> Noetfield Systems Inc.</span>
+      <div class="footer-left">
+        <!-- می‌توانی همین را با همان لاکاپ اصلی جایگزین کنی -->
+        <img class="footer-logo" src="/assets/noetfield-logo-lockup.png" alt="Noetfield logo">
+        <span>© <span id="year"></span> Noetfield Systems Inc.</span>
+      </div>
       <span>Infrastructure for AI trust and stewardship.</span>
     </footer>
   </div>

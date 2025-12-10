@@ -2,12 +2,42 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>AI Trust Ledger – Board & Regulator Report</title>
+  <title>AI Trust Ledger – Sample Board & Regulator Report | Noetfield</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta
+    name="description"
+    content="Sample AI Trust Ledger report for boards and regulators. One human-readable record of material AI systems, changes, controls, and incidents over a defined period."
+  />
+  <meta name="robots" content="noindex,follow" />
+  <meta name="author" content="Noetfield Systems Inc." />
+  <link rel="canonical" href="https://noetfield.com/trust-ledger/sample-report" />
+  <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+  <meta name="theme-color" content="#050608" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Noetfield" />
+  <meta property="og:title" content="AI Trust Ledger – Sample Board & Regulator Report" />
+  <meta
+    property="og:description"
+    content="Sample AI Trust Ledger report for boards and regulators, showing how material AI systems, changes, controls, and incidents can be surfaced in one record."
+  />
+  <meta property="og:url" content="https://noetfield.com/trust-ledger/sample-report" />
+  <meta property="og:image" content="https://noetfield.com/noetfield-og.png" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="AI Trust Ledger – Sample Board & Regulator Report" />
+  <meta
+    name="twitter:description"
+    content="Sample AI Trust Ledger report for boards and regulators, designed as a human-readable snapshot of AI governance."
+  />
+  <meta name="twitter:image" content="https://noetfield.com/noetfield-og.png" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
   <style>
     :root {
-      --bg: #0b0c10;
-      --bg-alt: #111217;
+      --bg: #050608;
+      --bg-alt: #0b0c10;
       --card-bg: #151826;
       --accent: #4ea8ff;
       --accent-soft: rgba(78, 168, 255, 0.18);
@@ -18,7 +48,7 @@
       --danger: #ff5c5c;
       --warning: #ffb74d;
       --success: #48d597;
-      --font-main: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif;
+      --font-main: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif;
       --radius-lg: 14px;
       --radius-md: 10px;
       --radius-sm: 6px;
@@ -31,23 +61,55 @@
       padding: 0;
     }
 
-    html, body {
-      height: 100%;
-    }
-
     body {
       font-family: var(--font-main);
-      background: radial-gradient(circle at top, #181b2b 0, #05060a 55%, #000000 100%);
+      background-color: var(--bg);
       color: var(--text);
-      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
       padding: 32px 20px 40px;
       display: flex;
-      justify-content: center;
+      flex-direction: column;
+      align-items: center;
     }
 
     .page {
       width: 100%;
       max-width: 960px;
+      display: flex;
+      flex-direction: column;
+      min-height: calc(100vh - 72px);
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 28px;
+    }
+
+    .brand {
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #f7f7f7;
+      text-decoration: none;
+    }
+
+    .tagline {
+      font-size: 13px;
+      color: #a0a4ae;
+    }
+
+    main {
+      width: 100%;
+      flex: 1;
+      display: flex;
+      justify-content: center;
+    }
+
+    .report-card {
+      width: 100%;
       background: linear-gradient(145deg, rgba(15,16,29,0.98), rgba(9,10,18,0.98));
       border-radius: 24px;
       border: 1px solid rgba(255,255,255,0.04);
@@ -56,22 +118,6 @@
       display: flex;
       flex-direction: column;
       gap: 24px;
-    }
-
-    @media print {
-      body {
-        padding: 0;
-        background: #ffffff;
-      }
-      .page {
-        border-radius: 0;
-        border: none;
-        box-shadow: none;
-        max-width: 100%;
-      }
-      .badge-print-only {
-        display: none;
-      }
     }
 
     h1, h2, h3, h4 {
@@ -96,19 +142,26 @@
     }
 
     .org-name {
-      font-size: 15px;
+      font-size: 13px;
       text-transform: uppercase;
       letter-spacing: 0.18em;
       color: var(--muted);
     }
 
     .report-title {
-      font-size: 24px;
-      line-height: 1.2;
+      font-size: 22px;
+      line-height: 1.25;
+    }
+
+    .tagline-report {
+      font-size: 13px;
+      color: var(--muted);
+      max-width: 480px;
+      margin-top: 4px;
     }
 
     .report-meta {
-      font-size: 13px;
+      font-size: 12px;
       color: var(--muted);
       display: flex;
       flex-wrap: wrap;
@@ -152,7 +205,7 @@
       border-radius: 999px;
       background: radial-gradient(circle at top left, rgba(255,255,255,0.12), rgba(255,255,255,0.02));
       border: 1px solid rgba(255,255,255,0.18);
-      font-size: 12px;
+      font-size: 11px;
       text-transform: uppercase;
       letter-spacing: 0.15em;
     }
@@ -179,14 +232,7 @@
     }
 
     .risk-label {
-      opacity: 0.85;
-    }
-
-    .tagline {
-      font-size: 13px;
-      color: var(--muted);
-      max-width: 480px;
-      margin-top: 4px;
+      opacity: 0.9;
     }
 
     .section {
@@ -209,7 +255,7 @@
     }
 
     .section-title {
-      font-size: 15px;
+      font-size: 13px;
       text-transform: uppercase;
       letter-spacing: 0.16em;
       color: var(--muted);
@@ -243,7 +289,7 @@
     }
 
     .summary-title {
-      font-size: 12px;
+      font-size: 11px;
       text-transform: uppercase;
       letter-spacing: 0.16em;
       color: var(--muted);
@@ -263,10 +309,18 @@
       gap: 4px;
     }
 
+    .headline-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 6px;
+      font-size: 13px;
+      color: var(--text);
+    }
+
     .headline-list li::before {
       content: "•";
       color: var(--accent);
-      margin-right: 6px;
+      margin-right: 2px;
     }
 
     table {
@@ -370,7 +424,7 @@
       vertical-align: top;
     }
 
-    .footer {
+    .report-footer {
       margin-top: 4px;
       padding-top: 10px;
       border-top: 1px dashed var(--border);
@@ -381,385 +435,483 @@
       color: var(--muted);
     }
 
-    .footer span {
+    .report-footer span {
       opacity: 0.85;
     }
 
     .mono {
-      font-family: "SF Mono", ui-monospace, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-family: ui-monospace, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
       font-size: 11px;
+    }
+
+    footer {
+      margin-top: 28px;
+      font-size: 11px;
+      color: #737889;
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    footer a {
+      color: #b6bad1;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 900px) {
+      .summary-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .two-col {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .metrics-row {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      body {
+        padding: 24px 16px 32px;
+      }
+
+      header {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 4px;
+      }
+
+      .report-card {
+        padding: 22px 16px 28px;
+        border-radius: 20px;
+      }
+
+      .page-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .page-header-right {
+        align-items: flex-start;
+      }
+
+      .metrics-row {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    @media print {
+      body {
+        padding: 0;
+        background: #ffffff;
+      }
+      header,
+      footer {
+        display: none;
+      }
+      .page {
+        max-width: 100%;
+      }
+      .report-card {
+        border-radius: 0;
+        border: none;
+        box-shadow: none;
+        max-width: 100%;
+      }
     }
   </style>
 </head>
 <body>
   <div class="page">
-    <header class="page-header">
-      <div class="page-header-left">
-        <div class="org-name">{{ORG_NAME}}</div>
-        <h1 class="report-title">AI Trust Ledger – Board & Regulator Report</h1>
-        <p class="tagline">
-          One human-readable record of material AI systems, changes, controls, and incidents for
-          <span class="mono">{{REPORT_PERIOD}}</span>.
-        </p>
-        <div class="report-meta">
-          <span>Prepared by: <span class="mono">{{PREPARED_BY}}</span></span>
-          <span>Contact: <span class="mono">{{CONTACT_NAME}} · {{CONTACT_EMAIL}}</span></span>
-          <span>Version: <span class="mono">{{REPORT_VERSION}}</span></span>
-        </div>
-      </div>
-      <div class="page-header-right">
-        <div class="risk-pill">
-          <span class="risk-indicator risk-mod"></span>
-          <span class="risk-label">Overall AI Risk: {{RISK_LEVEL}}</span>
-        </div>
-        <div class="chip">
-          <span class="chip-dot"></span>
-          TRUST LEDGER SNAPSHOT
-        </div>
-      </div>
+    <header>
+      <a href="/" class="brand">Noetfield</a>
+      <div class="tagline">Trust Ledger for AI governance</div>
     </header>
 
-    <!-- Section B – Executive Summary -->
-    <section class="section">
-      <div class="section-header">
-        <h2 class="section-title">1. Executive Summary</h2>
-        <div class="section-subtitle">Top-level signals for the Board</div>
-      </div>
-      <div class="section-body summary-grid">
-        <div class="summary-block">
-          <div class="summary-title">Headlines</div>
-          <ul class="headline-list">
-            <li>{{HEADLINE_1}}</li>
-            <li>{{HEADLINE_2}}</li>
-            <li>{{HEADLINE_3}}</li>
-          </ul>
-        </div>
-        <div class="summary-block">
-          <div class="summary-title">Board Decisions Requested</div>
-          <ul class="headline-list">
-            <li>{{BOARD_DECISION_1}}</li>
-            <li>{{BOARD_DECISION_2}}</li>
-          </ul>
-          <p class="note">
-            See Section 7 for full list of board actions and recommended decisions.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Section C – AI System Inventory -->
-    <section class="section">
-      <div class="section-header">
-        <h2 class="section-title">2. AI System Inventory Snapshot</h2>
-        <div class="section-subtitle">Material AI systems in scope this period</div>
-      </div>
-      <div class="section-body">
-        <table>
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>System / Use Case</th>
-              <th>Business Owner</th>
-              <th>Model Provider</th>
-              <th>Infra</th>
-              <th>Data Sensitivity</th>
-              <th>Risk Tier</th>
-              <th>Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>S-01</td>
-              <td>Credit Risk Assistant</td>
-              <td>CRO</td>
-              <td>OpenAI GPT-based</td>
-              <td>Nvidia GPUs via {{CLOUD_PROVIDER}}</td>
-              <td>High</td>
-              <td><span class="badge badge-pill">Tier 2</span></td>
-              <td>Production</td>
-            </tr>
-            <tr>
-              <td>S-02</td>
-              <td>Customer Support Triage</td>
-              <td>COO</td>
-              <td>OpenAI + internal</td>
-              <td>Cloud CPU</td>
-              <td>Medium</td>
-              <td><span class="badge">Tier 3</span></td>
-              <td>Pilot</td>
-            </tr>
-            <!-- Add more rows dynamically -->
-          </tbody>
-        </table>
-        <p class="note">
-          Inventory includes systems classified as material under internal AI governance policy
-          {{POLICY_CODE}} for {{REPORT_PERIOD}}.
-        </p>
-      </div>
-    </section>
-
-    <!-- Section D – Significant Changes -->
-    <section class="section">
-      <div class="section-header">
-        <h2 class="section-title">3. Significant Changes This Period</h2>
-        <div class="section-subtitle">New, changed, and decommissioned systems</div>
-      </div>
-      <div class="section-body">
-        <table>
-          <thead>
-            <tr>
-              <th>Change Type</th>
-              <th>System ID</th>
-              <th>Description of Change</th>
-              <th>Rationale</th>
-              <th>Governance Actions</th>
-              <th>Effective Date</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>New</td>
-              <td>S-03</td>
-              <td>AI-based vendor screening introduced for high-risk vendors.</td>
-              <td>Reduce manual review time and increase coverage.</td>
-              <td>Reviewed by AI Governance Committee; approved by Board Risk Committee.</td>
-              <td>2026-01-15</td>
-            </tr>
-            <tr>
-              <td>Decommissioned</td>
-              <td>S-07</td>
-              <td>Legacy NLP classifier decommissioned.</td>
-              <td>Replaced by unified AI stack.</td>
-              <td>Decommission plan approved; logs archived for 7 years.</td>
-              <td>2026-02-03</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
-
-    <!-- Section E – Incidents & Near Misses -->
-    <section class="section">
-      <div class="section-header">
-        <h2 class="section-title">4. Incidents, Exceptions, and Near Misses</h2>
-        <div class="section-subtitle">Material AI-related events during the period</div>
-      </div>
-      <div class="section-body">
-        <table>
-          <thead>
-            <tr>
-              <th>Ref</th>
-              <th>Date</th>
-              <th>System ID</th>
-              <th>Severity</th>
-              <th>Description</th>
-              <th>Root Cause</th>
-              <th>Actions Taken</th>
-              <th>Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>I-01</td>
-              <td>2026-01-07</td>
-              <td>S-01</td>
-              <td><span class="badge badge-risk-high">Medium</span></td>
-              <td>Model suggested non-compliant adjustment to credit terms; caught by human reviewer.</td>
-              <td>Prompt design and missing guardrail.</td>
-              <td>Updated prompts; added additional guardrail; targeted training for reviewers.</td>
-              <td>Closed</td>
-            </tr>
-          </tbody>
-        </table>
-        <p class="note">
-          <strong>Reportable events:</strong> {{REPORTABLE_EVENTS_NOTE}}.
-        </p>
-      </div>
-    </section>
-
-    <!-- Section F – Controls & Testing -->
-    <section class="section">
-      <div class="section-header two-col">
-        <div>
-          <h2 class="section-title">5. Controls & Testing</h2>
-          <div class="section-subtitle">Key controls and their effectiveness</div>
-        </div>
-        <div class="section-subtitle" style="text-align:right;">
-          Mapped to: {{FRAMEWORKS_REFERENCE}} (internal policies, sectoral guidance, etc.)
-        </div>
-      </div>
-      <div class="section-body">
-        <table>
-          <thead>
-            <tr>
-              <th>Control ID</th>
-              <th>Control Description</th>
-              <th>Systems in Scope</th>
-              <th>Owner</th>
-              <th>Testing Frequency</th>
-              <th>Last Test Date</th>
-              <th>Result</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>C-01</td>
-              <td>Human-in-the-loop review for all high-impact decisions.</td>
-              <td>S-01, S-03</td>
-              <td>Risk</td>
-              <td>Each batch</td>
-              <td>2026-02-20</td>
-              <td>Effective</td>
-            </tr>
-            <tr>
-              <td>C-02</td>
-              <td>Prompt/model configuration review before go-live.</td>
-              <td>All Tier 1–2 systems</td>
-              <td>AI Governance</td>
-              <td>Per deployment</td>
-              <td>2026-02-05</td>
-              <td>Minor findings</td>
-            </tr>
-          </tbody>
-        </table>
-        <p class="note">
-          Control gaps identified this period: {{CONTROL_GAPS_SUMMARY}}.
-        </p>
-      </div>
-    </section>
-
-    <!-- Section G – Ecosystem & Technical Views -->
-    <section class="section">
-      <div class="section-header">
-        <h2 class="section-title">6. Ecosystem & Technical Views</h2>
-        <div class="section-subtitle">OpenAI, Nvidia, and Apple-related activity</div>
-      </div>
-      <div class="section-body">
-        <div class="two-col">
-          <div class="summary-block">
-            <div class="summary-title">OpenAI Usage Summary</div>
-            <div class="metrics-row">
-              <div class="metric-card">
-                <div class="metric-label">Total API Calls</div>
-                <div class="metric-value">{{OPENAI_CALLS}}</div>
-                <div class="metric-note">vs prior: {{OPENAI_CALLS_DELTA}}</div>
-              </div>
-              <div class="metric-card">
-                <div class="metric-label">High-Risk Use Cases</div>
-                <div class="metric-value">{{OPENAI_HIGH_RISK_COUNT}}</div>
-                <div class="metric-note">Tier 1–2 systems</div>
-              </div>
-              <div class="metric-card">
-                <div class="metric-label">Incidents</div>
-                <div class="metric-value">{{OPENAI_INCIDENTS}}</div>
-                <div class="metric-note">See Sect. 4</div>
-              </div>
+    <main>
+      <div class="report-card">
+        <header class="page-header">
+          <div class="page-header-left">
+            <div class="org-name">{{ORG_NAME}}</div>
+            <h1 class="report-title">AI Trust Ledger – Board & Regulator Report</h1>
+            <p class="tagline-report">
+              One human-readable record of material AI systems, changes, controls, and incidents for
+              <span class="mono">{{REPORT_PERIOD}}</span>.
+            </p>
+            <div class="report-meta">
+              <span>Prepared by: <span class="mono">{{PREPARED_BY}}</span></span>
+              <span>Contact: <span class="mono">{{CONTACT_NAME}} · {{CONTACT_EMAIL}}</span></span>
+              <span>Version: <span class="mono">{{REPORT_VERSION}}</span></span>
             </div>
+          </div>
+          <div class="page-header-right">
+            <div class="risk-pill">
+              <span class="risk-indicator risk-mod"></span>
+              <span class="risk-label">Overall AI Risk: {{RISK_LEVEL}}</span>
+            </div>
+            <div class="chip">
+              <span class="chip-dot"></span>
+              TRUST LEDGER SNAPSHOT
+            </div>
+          </div>
+        </header>
+
+        <section class="section">
+          <div class="section-header">
+            <h2 class="section-title">1. Executive Summary</h2>
+            <div class="section-subtitle">Top-level signals for the Board</div>
+          </div>
+          <div class="section-body summary-grid">
+            <div class="summary-block">
+              <div class="summary-title">Headlines</div>
+              <ul class="headline-list">
+                <li>{{HEADLINE_1}}</li>
+                <li>{{HEADLINE_2}}</li>
+                <li>{{HEADLINE_3}}</li>
+              </ul>
+            </div>
+            <div class="summary-block">
+              <div class="summary-title">Board Decisions Requested</div>
+              <ul class="headline-list">
+                <li>{{BOARD_DECISION_1}}</li>
+                <li>{{BOARD_DECISION_2}}</li>
+              </ul>
+              <p class="note">
+                See Section 7 for full list of board actions and recommended decisions.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-header">
+            <h2 class="section-title">2. AI System Inventory Snapshot</h2>
+            <div class="section-subtitle">Material AI systems in scope this period</div>
+          </div>
+          <div class="section-body">
+            <table>
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>System / Use Case</th>
+                  <th>Business Owner</th>
+                  <th>Model Provider</th>
+                  <th>Infra</th>
+                  <th>Data Sensitivity</th>
+                  <th>Risk Tier</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>S-01</td>
+                  <td>Credit Risk Assistant</td>
+                  <td>CRO</td>
+                  <td>OpenAI GPT-based</td>
+                  <td>Nvidia GPUs via {{CLOUD_PROVIDER}}</td>
+                  <td>High</td>
+                  <td><span class="badge badge-pill">Tier 2</span></td>
+                  <td>Production</td>
+                </tr>
+                <tr>
+                  <td>S-02</td>
+                  <td>Customer Support Triage</td>
+                  <td>COO</td>
+                  <td>OpenAI + internal</td>
+                  <td>Cloud CPU</td>
+                  <td>Medium</td>
+                  <td><span class="badge">Tier 3</span></td>
+                  <td>Pilot</td>
+                </tr>
+              </tbody>
+            </table>
             <p class="note">
-              OpenAI is used in systems: {{OPENAI_SYSTEMS_LIST}} with safeguards:
-              {{OPENAI_GUARDRAILS_NOTE}}.
+              Inventory includes systems classified as material under internal AI governance policy
+              {{POLICY_CODE}} for {{REPORT_PERIOD}}.
             </p>
           </div>
-          <div class="summary-block">
-            <div class="summary-title">Nvidia-Powered Workloads</div>
-            <div class="metrics-row">
-              <div class="metric-card">
-                <div class="metric-label">GPU Hours</div>
-                <div class="metric-value">{{NVIDIA_GPU_HOURS}}</div>
-                <div class="metric-note">vs prior: {{NVIDIA_GPU_HOURS_DELTA}}</div>
-              </div>
-              <div class="metric-card">
-                <div class="metric-label">New Models Deployed</div>
-                <div class="metric-value">{{NVIDIA_NEW_MODELS}}</div>
-                <div class="metric-note">This period</div>
-              </div>
-              <div class="metric-card">
-                <div class="metric-label">Gov. Reviews</div>
-                <div class="metric-value">{{NVIDIA_REVIEWS}}</div>
-                <div class="metric-note">Completed pre go-live</div>
-              </div>
-            </div>
+        </section>
+
+        <section class="section">
+          <div class="section-header">
+            <h2 class="section-title">3. Significant Changes This Period</h2>
+            <div class="section-subtitle">New, changed, and decommissioned systems</div>
+          </div>
+          <div class="section-body">
+            <table>
+              <thead>
+                <tr>
+                  <th>Change Type</th>
+                  <th>System ID</th>
+                  <th>Description of Change</th>
+                  <th>Rationale</th>
+                  <th>Governance Actions</th>
+                  <th>Effective Date</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>New</td>
+                  <td>S-03</td>
+                  <td>AI-based vendor screening introduced for high-risk vendors.</td>
+                  <td>Reduce manual review time and increase coverage.</td>
+                  <td>Reviewed by AI Governance Committee; approved by Board Risk Committee.</td>
+                  <td>2026-01-15</td>
+                </tr>
+                <tr>
+                  <td>Decommissioned</td>
+                  <td>S-07</td>
+                  <td>Legacy NLP classifier decommissioned.</td>
+                  <td>Replaced by unified AI stack.</td>
+                  <td>Decommission plan approved; logs archived for 7 years.</td>
+                  <td>2026-02-03</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-header">
+            <h2 class="section-title">4. Incidents, Exceptions, and Near Misses</h2>
+            <div class="section-subtitle">Material AI-related events during the period</div>
+          </div>
+          <div class="section-body">
+            <table>
+              <thead>
+                <tr>
+                  <th>Ref</th>
+                  <th>Date</th>
+                  <th>System ID</th>
+                  <th>Severity</th>
+                  <th>Description</th>
+                  <th>Root Cause</th>
+                  <th>Actions Taken</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>I-01</td>
+                  <td>2026-01-07</td>
+                  <td>S-01</td>
+                  <td><span class="badge badge-risk-high">Medium</span></td>
+                  <td>Model suggested non-compliant adjustment to credit terms; caught by human reviewer.</td>
+                  <td>Prompt design and missing guardrail.</td>
+                  <td>Updated prompts; added additional guardrail; targeted training for reviewers.</td>
+                  <td>Closed</td>
+                </tr>
+              </tbody>
+            </table>
             <p class="note">
-              Nvidia-backed workloads in scope: {{NVIDIA_SYSTEMS_LIST}}.
+              <strong>Reportable events:</strong> {{REPORTABLE_EVENTS_NOTE}}.
             </p>
           </div>
-        </div>
+        </section>
 
-        <div class="summary-block" style="margin-top:12px;">
-          <div class="summary-title">Executive Access (Apple Devices)</div>
-          <p class="summary-text">
-            {{APPLE_EXEC_ACCESS_NOTE}}
-          </p>
-          <p class="note">
-            Additional security: {{APPLE_SECURITY_NOTE}}.
-          </p>
-        </div>
-      </div>
-    </section>
+        <section class="section">
+          <div class="section-header two-col">
+            <div>
+              <h2 class="section-title">5. Controls & Testing</h2>
+              <div class="section-subtitle">Key controls and their effectiveness</div>
+            </div>
+            <div class="section-subtitle" style="text-align:right;">
+              Mapped to: {{FRAMEWORKS_REFERENCE}} (internal policies, sectoral guidance, etc.)
+            </div>
+          </div>
+          <div class="section-body">
+            <table>
+              <thead>
+                <tr>
+                  <th>Control ID</th>
+                  <th>Control Description</th>
+                  <th>Systems in Scope</th>
+                  <th>Owner</th>
+                  <th>Testing Frequency</th>
+                  <th>Last Test Date</th>
+                  <th>Result</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>C-01</td>
+                  <td>Human-in-the-loop review for all high-impact decisions.</td>
+                  <td>S-01, S-03</td>
+                  <td>Risk</td>
+                  <td>Each batch</td>
+                  <td>2026-02-20</td>
+                  <td>Effective</td>
+                </tr>
+                <tr>
+                  <td>C-02</td>
+                  <td>Prompt/model configuration review before go-live.</td>
+                  <td>All Tier 1–2 systems</td>
+                  <td>AI Governance</td>
+                  <td>Per deployment</td>
+                  <td>2026-02-05</td>
+                  <td>Minor findings</td>
+                </tr>
+              </tbody>
+            </table>
+            <p class="note">
+              Control gaps identified this period: {{CONTROL_GAPS_SUMMARY}}.
+            </p>
+          </div>
+        </section>
 
-    <!-- Section H – Board Actions & Approvals -->
-    <section class="section">
-      <div class="section-header">
-        <h2 class="section-title">7. Board Actions & Approvals</h2>
-        <div class="section-subtitle">Decisions requested from the Board</div>
-      </div>
-      <div class="section-body">
-        <table class="actions-table">
-          <thead>
-            <tr>
-              <th>Item</th>
-              <th>Description</th>
-              <th>Request</th>
-              <th>Recommended Decision</th>
-              <th>Deadline</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>BA-01</td>
-              <td>Approve deployment of System S-03 (AI vendor screening) into production.</td>
-              <td>Approve / Amend / Reject</td>
-              <td>Approve with conditions noted in Sect. 5.</td>
-              <td>2026-03-10</td>
-            </tr>
-            <tr>
-              <td>BA-02</td>
-              <td>Confirm decommissioning of System S-07 and archival of logs.</td>
-              <td>Confirm</td>
-              <td>Approve</td>
-              <td>2026-03-10</td>
-            </tr>
-          </tbody>
-        </table>
-        <p class="note">
-          Board comments and sign-off, if captured in this ledger, are appended in Annex A.
-        </p>
-      </div>
-    </section>
+        <section class="section">
+          <div class="section-header">
+            <h2 class="section-title">6. Ecosystem & Technical Views</h2>
+            <div class="section-subtitle">OpenAI, Nvidia, and Apple-related activity</div>
+          </div>
+          <div class="section-body">
+            <div class="two-col">
+              <div class="summary-block">
+                <div class="summary-title">OpenAI Usage Summary</div>
+                <div class="metrics-row">
+                  <div class="metric-card">
+                    <div class="metric-label">Total API Calls</div>
+                    <div class="metric-value">{{OPENAI_CALLS}}</div>
+                    <div class="metric-note">vs prior: {{OPENAI_CALLS_DELTA}}</div>
+                  </div>
+                  <div class="metric-card">
+                    <div class="metric-label">High-Risk Use Cases</div>
+                    <div class="metric-value">{{OPENAI_HIGH_RISK_COUNT}}</div>
+                    <div class="metric-note">Tier 1–2 systems</div>
+                  </div>
+                  <div class="metric-card">
+                    <div class="metric-label">Incidents</div>
+                    <div class="metric-value">{{OPENAI_INCIDENTS}}</div>
+                    <div class="metric-note">See Sect. 4</div>
+                  </div>
+                </div>
+                <p class="note">
+                  OpenAI is used in systems: {{OPENAI_SYSTEMS_LIST}} with safeguards:
+                  {{OPENAI_GUARDRAILS_NOTE}}.
+                </p>
+              </div>
+              <div class="summary-block">
+                <div class="summary-title">Nvidia-Powered Workloads</div>
+                <div class="metrics-row">
+                  <div class="metric-card">
+                    <div class="metric-label">GPU Hours</div>
+                    <div class="metric-value">{{NVIDIA_GPU_HOURS}}</div>
+                    <div class="metric-note">vs prior: {{NVIDIA_GPU_HOURS_DELTA}}</div>
+                  </div>
+                  <div class="metric-card">
+                    <div class="metric-label">New Models Deployed</div>
+                    <div class="metric-value">{{NVIDIA_NEW_MODELS}}</div>
+                    <div class="metric-note">This period</div>
+                  </div>
+                  <div class="metric-card">
+                    <div class="metric-label">Gov. Reviews</div>
+                    <div class="metric-value">{{NVIDIA_REVIEWS}}</div>
+                    <div class="metric-note">Completed pre go-live</div>
+                  </div>
+                </div>
+                <p class="note">
+                  Nvidia-backed workloads in scope: {{NVIDIA_SYSTEMS_LIST}}.
+                </p>
+              </div>
+            </div>
 
-    <!-- Section I – Annex (placeholder) -->
-    <section class="section">
-      <div class="section-header">
-        <h2 class="section-title">8. Annex (Optional)</h2>
-        <div class="section-subtitle">System profiles, incident reports, mappings</div>
-      </div>
-      <div class="section-body">
-        <p class="summary-text">
-          Annex sections (not shown here) can include:
-        </p>
-        <ul class="headline-list">
-          <li>Detailed profiles for Tier 1–2 systems.</li>
-          <li>Full incident reports for I-XX entries.</li>
-          <li>Mapping of controls to regulations/standards (e.g., EU AI Act, sectoral rules).</li>
-          <li>Glossary of key AI and governance terms for non-technical directors.</li>
-        </ul>
-      </div>
-    </section>
+            <div class="summary-block" style="margin-top:12px;">
+              <div class="summary-title">Executive Access (Apple Devices)</div>
+              <p class="summary-text">
+                {{APPLE_EXEC_ACCESS_NOTE}}
+              </p>
+              <p class="note">
+                Additional security: {{APPLE_SECURITY_NOTE}}.
+              </p>
+            </div>
+          </div>
+        </section>
 
-    <footer class="footer">
-      <span>Generated by {{LEDGER_SYSTEM_NAME}} · Ledger ID: <span class="mono">{{LEDGER_ID}}</span></span>
-      <span>Time of generation: <span class="mono">{{GENERATION_TIMESTAMP}}</span></span>
+        <section class="section">
+          <div class="section-header">
+            <h2 class="section-title">7. Board Actions & Approvals</h2>
+            <div class="section-subtitle">Decisions requested from the Board</div>
+          </div>
+          <div class="section-body">
+            <table class="actions-table">
+              <thead>
+                <tr>
+                  <th>Item</th>
+                  <th>Description</th>
+                  <th>Request</th>
+                  <th>Recommended Decision</th>
+                  <th>Deadline</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>BA-01</td>
+                  <td>Approve deployment of System S-03 (AI vendor screening) into production.</td>
+                  <td>Approve / Amend / Reject</td>
+                  <td>Approve with conditions noted in Sect. 5.</td>
+                  <td>2026-03-10</td>
+                </tr>
+                <tr>
+                  <td>BA-02</td>
+                  <td>Confirm decommissioning of System S-07 and archival of logs.</td>
+                  <td>Confirm</td>
+                  <td>Approve</td>
+                  <td>2026-03-10</td>
+                </tr>
+              </tbody>
+            </table>
+            <p class="note">
+              Board comments and sign-off, if captured in this ledger, are appended in Annex A.
+            </p>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-header">
+            <h2 class="section-title">8. Annex (Optional)</h2>
+            <div class="section-subtitle">System profiles, incident reports, mappings</div>
+          </div>
+          <div class="section-body">
+            <p class="summary-text">
+              Annex sections (not shown here) can include:
+            </p>
+            <ul class="headline-list">
+              <li>Detailed profiles for Tier 1–2 systems.</li>
+              <li>Full incident reports for I-XX entries.</li>
+              <li>Mapping of controls to regulations/standards (e.g., EU AI Act, sectoral rules).</li>
+              <li>Glossary of key AI and governance terms for non-technical directors.</li>
+            </ul>
+          </div>
+        </section>
+
+        <footer class="report-footer">
+          <span>Generated by {{LEDGER_SYSTEM_NAME}} · Ledger ID: <span class="mono">{{LEDGER_ID}}</span></span>
+          <span>Time of generation: <span class="mono">{{GENERATION_TIMESTAMP}}</span></span>
+        </footer>
+      </div>
+    </main>
+
+    <footer>
+      <div>© <span id="year"></span> Noetfield Systems Inc. All rights reserved.</div>
+      <div>
+        <a href="/trust-brief">Trust Brief</a> ·
+        <a href="/trust-ledger">Trust Ledger</a> ·
+        <a href="/for-whom">For whom</a> ·
+        <a href="/gate">Gate</a> ·
+        <a href="/about">About</a> ·
+        <a href="/contact">Contact</a>
+      </div>
     </footer>
   </div>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>

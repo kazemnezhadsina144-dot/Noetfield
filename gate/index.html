@@ -2,152 +2,338 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Noetfield Gate</title>
+  <title>Noetfield Gate – Early Access to the Trust Ledger Architecture</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <meta
+    name="description"
+    content="Noetfield Gate is an invitation-only access point for board chairs, regulators, and institutional stewards to engage early with the Noetfield Trust Ledger architecture."
+  />
+  <meta name="robots" content="noindex,nofollow" />
+  <meta name="author" content="Noetfield Systems Inc." />
+  <link rel="canonical" href="https://www.noetfield.com/gate/" />
+  <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+  <meta name="theme-color" content="#05060a" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Noetfield" />
+  <meta property="og:title" content="Noetfield Gate – Early Access to the Trust Ledger Architecture" />
+  <meta
+    property="og:description"
+    content="A selectively governed access gate for board chairs, regulators, and institutional stewards into the Noetfield Trust Ledger architecture."
+  />
+  <meta property="og:url" content="https://www.noetfield.com/gate/" />
+  <meta property="og:image" content="https://www.noetfield.com/noetfield-og.png" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Noetfield Gate – Early Access to the Trust Ledger Architecture" />
+  <meta
+    name="twitter:description"
+    content="Invitation-only access for stewards of real-economy systems exposed to AI."
+  />
+  <meta name="twitter:image" content="https://www.noetfield.com/noetfield-og.png" />
+
+  <!-- Schema.org WebPage -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Noetfield Gate",
+    "url": "https://www.noetfield.com/gate/",
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "Noetfield",
+      "url": "https://www.noetfield.com/"
+    },
+    "description": "Noetfield Gate – selectively governed, invitation-only access to the Noetfield Trust Ledger architecture for institutional stewards."
+  }
+  </script>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
 
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #05060a;
+      --bg-soft: #111318;
+      --border-soft: rgba(255,255,255,0.10);
+      --text-main: #f5f5f7;
+      --text-soft: rgba(218,222,235,0.98);
+      --text-mute: rgba(150,160,175,0.9);
+      --accent: #ffffff;
     }
 
     body {
-      font-family: 'Inter', system-ui, -apple-system, sans-serif;
-      background-color: #0E0E0E;
-      color: #FFFFFF;
+      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #141623 0%, var(--bg) 55%);
+      color: var(--text-main);
       min-height: 100vh;
-      padding: 48px 20px 32px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
     }
 
+    a { color: inherit; text-decoration: none; }
+
     .page {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 24px 16px 40px;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* HEADER / NAV – aligned with other pages */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border-soft);
+      margin-bottom: 28px;
+      gap: 12px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-mark {
+      height: 32px;
+      width: 32px;
+      display: block;
+      border-radius: 50%;
+    }
+
+    .logo {
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      font-size: 0.9rem;
+      color: var(--accent);
+    }
+
+    .tagline {
+      font-size: 0.78rem;
+      color: var(--text-mute);
+      margin-top: 2px;
+    }
+
+    nav {
+      display: flex;
+      gap: 18px;
+      font-size: 0.85rem;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      opacity: 0.75;
+      position: relative;
+      padding-bottom: 2px;
+    }
+
+    nav a:hover { opacity: 1; }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 1px;
+      background: var(--accent);
+      transition: width 0.15s ease-out;
+    }
+
+    nav a:hover::after { width: 100%; }
+
+    main {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+    }
+
+    .content {
       width: 100%;
       max-width: 720px;
       text-align: center;
     }
 
-    .logo {
-      font-size: 32px;
-      font-weight: 700;
+    /* HERO MESSAGE */
+    .hero-label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
       letter-spacing: 0.16em;
-      color: #FFD700;
-      margin-bottom: 12px;
+      color: var(--text-mute);
+      margin-bottom: 8px;
     }
 
-    .tagline {
-      font-size: 20px;
-      color: #DDDDDD;
-      margin-bottom: 32px;
+    .hero-title {
+      font-size: 1.6rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
     }
 
-    .message {
-      font-size: 17px;
+    .hero-subtitle {
+      font-size: 0.85rem;
+      color: var(--text-soft);
+      margin-bottom: 24px;
+    }
+
+    .hero-subtitle span {
+      color: #e5e7eb;
+      font-weight: 500;
+    }
+
+    .intro {
+      font-size: 0.95rem;
       line-height: 1.7;
-      color: #EEEEEE;
-      margin: 0 auto 40px;
+      color: var(--text-soft);
+      margin: 0 auto 26px;
+      max-width: 36rem;
     }
 
-    .message p + p {
-      margin-top: 16px;
-    }
+    .intro p + p { margin-top: 14px; }
 
+    /* ACCESS BOX / FORM */
     .access-box {
-      background: radial-gradient(circle at top left, #252525 0%, #151515 50%, #101010 100%);
-      padding: 28px 24px;
+      background: radial-gradient(circle at top left, #25273a 0%, #12131a 52%, #060712 100%);
       border-radius: 16px;
+      padding: 22px 20px 20px;
+      margin: 0 auto 18px;
       max-width: 520px;
-      margin: 0 auto 20px;
-      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.6);
       text-align: left;
+      box-shadow: 0 18px 40px rgba(0,0,0,0.6);
+      border: 1px solid rgba(255,255,255,0.12);
     }
 
     .access-box-header {
       text-align: center;
-      margin-bottom: 20px;
+      margin-bottom: 18px;
     }
 
+    .access-kicker {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--text-mute);
+      margin-bottom: 4px;
+    }
+
+    .access-box-header h1,
     .access-box-header h3 {
-      font-size: 18px;
+      font-size: 1rem;
       font-weight: 600;
-      color: #FFD700;
       margin-bottom: 4px;
     }
 
     .access-box-header p {
-      font-size: 13px;
-      color: #AAAAAA;
+      font-size: 0.8rem;
+      color: var(--text-mute);
     }
 
     .form-group {
       margin-bottom: 14px;
     }
 
+    .form-row {
+      display: grid;
+      grid-template-columns: minmax(0,1fr) minmax(0,1fr);
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+
     .form-label {
       display: block;
-      font-size: 13px;
-      color: #BBBBBB;
-      margin-bottom: 6px;
+      font-size: 0.8rem;
+      color: #d1d5db;
+      margin-bottom: 5px;
     }
 
-    .access-input,
-    .access-textarea,
-    .access-button {
+    .input,
+    .textarea,
+    .select {
       width: 100%;
       font-family: inherit;
-      font-size: 15px;
+      font-size: 0.9rem;
       border-radius: 10px;
-      border: 1px solid #333333;
-    }
-
-    .access-input,
-    .access-textarea {
-      padding: 12px 14px;
-      background-color: #1E1E1E;
-      color: #FFFFFF;
+      border: 1px solid #333641;
+      padding: 10px 12px;
+      background-color: #050814;
+      color: #f9fafb;
       outline: none;
-      -webkit-appearance: none; /* iOS */
+      -webkit-appearance: none;
       transition: border-color 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
     }
 
-    .access-input::placeholder,
-    .access-textarea::placeholder {
-      color: #666666;
+    .input::placeholder,
+    .textarea::placeholder {
+      color: #6b7280;
     }
 
-    .access-textarea {
-      min-height: 96px;
+    .textarea {
+      min-height: 100px;
       resize: vertical;
       line-height: 1.5;
     }
 
-    .access-input:focus,
-    .access-textarea:focus {
-      border-color: #FFD700;
-      box-shadow: 0 0 0 1px rgba(255, 215, 0, 0.35);
-      background-color: #222222;
+    .input:focus,
+    .textarea:focus,
+    .select:focus {
+      border-color: #e5e7eb;
+      box-shadow: 0 0 0 1px rgba(229,231,235,0.4);
+      background-color: #070a18;
+    }
+
+    .helper {
+      font-size: 0.75rem;
+      color: var(--text-mute);
+      margin-top: 4px;
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 8px;
+    }
+
+    .pill-tag {
+      font-size: 0.7rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,253,0.5);
+      padding: 3px 8px;
+      color: #e5e7eb;
+      background: rgba(15,23,42,0.8);
     }
 
     .access-button {
-      margin-top: 4px;
-      padding: 13px 16px;
-      background-color: #FFD700;
-      color: #000000;
+      width: 100%;
+      margin-top: 8px;
+      padding: 11px 16px;
+      border-radius: 999px;
+      border: none;
+      font-family: inherit;
+      font-size: 0.9rem;
       font-weight: 600;
       cursor: pointer;
-      border: none;
-      text-align: center;
+      background: linear-gradient(135deg, #f9fafb, #e5e7eb);
+      color: #020617;
+      box-shadow: 0 10px 28px rgba(15,23,42,0.9);
       transition: transform 0.08s ease, box-shadow 0.12s ease, background-color 0.12s ease;
     }
 
     .access-button:hover {
-      background-color: #F5C700;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.45);
+      background-color: #ffffff;
+      box-shadow: 0 14px 34px rgba(15,23,42,0.95);
       transform: translateY(-1px);
     }
 
@@ -158,114 +344,240 @@
 
     .access-note {
       max-width: 520px;
-      margin: 0 auto 40px;
-      font-size: 12px;
+      margin: 0 auto 36px;
+      font-size: 0.75rem;
       line-height: 1.6;
-      color: #777777;
+      color: var(--text-mute);
       text-align: left;
     }
 
-    .footer {
-      margin-top: auto;
-      font-size: 12px;
-      color: #777777;
-      text-align: center;
-      padding-top: 24px;
+    .access-note strong { color: #e5e7eb; }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border-soft);
+      padding-top: 12px;
+      font-size: 0.75rem;
+      color: var(--text-mute);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 8px;
+      align-items: center;
+      margin-top: 16px;
+    }
+
+    footer a {
+      color: inherit;
+      opacity: 0.85;
+    }
+
+    footer a:hover {
+      opacity: 1;
+      text-decoration: underline;
+    }
+
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      nav { justify-content: flex-start; }
+      .hero-title { font-size: 1.4rem; }
+      .intro { font-size: 0.9rem; }
+      .form-row {
+        grid-template-columns: minmax(0,1fr);
+      }
     }
 
     @media (max-width: 480px) {
-      body {
-        padding: 32px 16px 24px;
-      }
-
-      .logo {
-        font-size: 26px;
-      }
-
-      .tagline {
-        font-size: 18px;
-      }
-
-      .message {
-        font-size: 15px;
-      }
-
-      .access-box {
-        padding: 22px 18px;
-      }
+      .page { padding-inline: 14px; }
+      .access-box { padding-inline: 16px; }
     }
   </style>
 </head>
 <body>
-  <main class="page">
+  <div class="page">
     <header>
-      <div class="logo">NOETFIELD</div>
-      <div class="tagline">Architecting Trust in the Age of AI</div>
+      <div class="brand">
+        <a href="/">
+          <img src="/noetfield-badge.png" alt="Noetfield logo" class="logo-mark" />
+        </a>
+        <div>
+          <div class="logo">NOETFIELD</div>
+          <div class="tagline">Trust Ledger for AI governance</div>
+        </div>
+      </div>
+      <nav>
+        <a href="/">Home</a>
+        <a href="/trust-brief/">Trust Brief</a>
+        <a href="/trust-ledger/">Trust Ledger</a>
+        <a href="/for-whom/">For Whom</a>
+        <a href="/gate/">Gate</a>
+        <a href="/about/">About</a>
+        <a href="/contact/">Contact</a>
+      </nav>
     </header>
 
-    <section class="message">
-      <p>
-        This is not a public invitation. This is a selectively governed access gate
-        for board chairs, regulators, and institutional stewards.
-      </p>
-      <p>
-        If you've received this link directly from us, you're already on the short list.
-      </p>
-    </section>
+    <main>
+      <div class="content">
+        <div class="hero-label">Selective access</div>
+        <h1 class="hero-title">GATE</h1>
+        <div class="hero-subtitle">
+          Gatekeepers of the next order: <span>board chairs, regulators, and institutional stewards</span>
+          responsible for systems exposed to AI.
+        </div>
 
-    <section class="access-box">
-      <div class="access-box-header">
-        <h3>Gate Access Request</h3>
-        <p>Briefly tell us who you are and how you steward systems exposed to AI.</p>
+        <section class="intro">
+          <p>
+            This is not a public invitation. Gate is a selectively governed access point into the emerging
+            Noetfield Trust Ledger architecture – for those who carry fiduciary duties over real-economy
+            systems where AI already moves risk, money, or customers.
+          </p>
+          <p>
+            If you received this link directly, you are already on the short list. A short signal below
+            tells us who you are, which systems you steward, and how you would prefer to engage.
+          </p>
+        </section>
+
+        <section class="access-box">
+          <div class="access-box-header">
+            <div class="access-kicker">Early architecture access</div>
+            <h3>Gate access request</h3>
+            <p>Three short signals: who you are, what you steward, and what you want to explore.</p>
+          </div>
+
+          <form action="https://formspree.io/f/xyzrdrpv" method="POST">
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="name">Full name</label>
+                <input
+                  id="name"
+                  class="input"
+                  type="text"
+                  name="name"
+                  placeholder="Your full name"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="email">Email address</label>
+                <input
+                  id="email"
+                  class="input"
+                  type="email"
+                  name="email"
+                  placeholder="Work email address"
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="role">Primary role</label>
+              <select id="role" name="role" class="select" required>
+                <option value="">Select the closest description</option>
+                <option value="Board chair / director">Board chair / director</option>
+                <option value="Executive (CEO/CRO/CRO/CTO/CAIO)">Executive (CEO / CRO / CFO / CTO / CAIO)</option>
+                <option value="Risk / audit / compliance lead">Risk / audit / compliance lead</option>
+                <option value="Regulator / supervisor">Regulator / supervisor</option>
+                <option value="Capital partner / allocator">Capital partner / allocator</option>
+                <option value="Other steward of real-economy systems">Other steward of real-economy systems</option>
+              </select>
+              <div class="helper">
+                Used only to understand your vantage point into AI governance.
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="systems">
+                Systems you steward that are exposed to AI
+              </label>
+              <textarea
+                id="systems"
+                class="textarea"
+                name="systems"
+                placeholder="E.g. retail credit decisioning in a bank, grid operations, market surveillance, claims adjudication, underwriting, critical infrastructure monitoring."
+                required
+              ></textarea>
+              <div class="helper">
+                Focus on 1–3 areas where AI decisions are already material today.
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="intent">
+                How you would like to engage through Gate
+              </label>
+              <textarea
+                id="intent"
+                class="textarea"
+                name="intent"
+                placeholder="E.g. explore a Trust Brief pilot, review the Trust Ledger format for your board, align on supervisory use, or consider capital / partnership options."
+              ></textarea>
+              <div class="helper">
+                A short paragraph is enough. We respond with a tailored next step (brief call or written outline).
+              </div>
+            </div>
+
+            <div class="form-group">
+              <span class="form-label">Which description fits you best today?</span>
+              <div class="pill-row">
+                <label class="pill-tag">
+                  <input type="checkbox" name="profile" value="Board / committee steward" style="display:none;" />
+                  Board / committee steward
+                </label>
+                <label class="pill-tag">
+                  <input type="checkbox" name="profile" value="Risk / compliance owner" style="display:none;" />
+                  Risk / compliance owner
+                </label>
+                <label class="pill-tag">
+                  <input type="checkbox" name="profile" value="Supervisory / regulatory" style="display:none;" />
+                  Supervisory / regulatory
+                </label>
+                <label class="pill-tag">
+                  <input type="checkbox" name="profile" value="Capital allocator / LP" style="display:none;" />
+                  Capital allocator / LP
+                </label>
+                <label class="pill-tag">
+                  <input type="checkbox" name="profile" value="Technical steward with governance mandate" style="display:none;" />
+                  Technical steward with governance mandate
+                </label>
+              </div>
+            </div>
+
+            <input type="hidden" name="_subject" value="New Noetfield Gate access request" />
+            <input type="text" name="_gotcha" style="display:none" />
+
+            <button type="submit" class="access-button">Request entry</button>
+          </form>
+        </section>
+
+        <div class="access-note">
+          Designed for <strong>board and audit chairs</strong>, <strong>risk and compliance leads</strong>,
+          <strong>regulators and supervisors</strong>, and <strong>capital partners</strong> who care about
+          traceable governance, not just AI scale. If you prefer, you can also reach out directly at
+          <a href="mailto:ceo@noetfield.com?subject=Gate%20access%20inquiry">ceo@noetfield.com</a> with the same signals.
+        </div>
       </div>
+    </main>
 
-      <form action="https://formspree.io/f/xyzrdrpv" method="POST">
-        <div class="form-group">
-          <label class="form-label" for="name">Full name</label>
-          <input
-            id="name"
-            class="access-input"
-            type="text"
-            name="name"
-            placeholder="Your full name"
-            required
-          />
-        </div>
+    <footer>
+      <span>© <span id="year"></span> Noetfield Systems Inc. All rights reserved.</span>
+      <span>
+        <a href="/">Home</a> ·
+        <a href="/trust-brief/">Trust Brief</a> ·
+        <a href="/trust-ledger/">Trust Ledger</a> ·
+        <a href="/for-whom/">For Whom</a> ·
+        <a href="/gate/">Gate</a> ·
+        <a href="/about/">About</a> ·
+        <a href="/contact/">Contact</a>
+      </span>
+    </footer>
+  </div>
 
-        <div class="form-group">
-          <label class="form-label" for="email">Email address</label>
-          <input
-            id="email"
-            class="access-input"
-            type="email"
-            name="email"
-            placeholder="Your email address"
-            required
-          />
-        </div>
-
-        <div class="form-group">
-          <label class="form-label" for="reason">Reason for access / Affiliation</label>
-          <textarea
-            id="reason"
-            class="access-textarea"
-            name="message"
-            placeholder="E.g. board or leadership role, organisation, what you’d like to explore"
-          ></textarea>
-        </div>
-
-        <button type="submit" class="access-button">Request Entry</button>
-      </form>
-    </section>
-
-    <div class="access-note">
-      Designed for board and audit chairs, risk and compliance leads, regulators and supervisors,
-      and capital partners who care about trust, not just scale.
-    </div>
-  </main>
-
-  <footer class="footer">
-    © 2025 Noetfield Systems Inc. • All rights reserved
-  </footer>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>

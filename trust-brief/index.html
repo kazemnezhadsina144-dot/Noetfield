@@ -1,1 +1,654 @@
-placeholder
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Noetfield Trust Brief – 6-week AI Governance Diagnostic</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta
+    name="description"
+    content="The Noetfield Trust Brief is a 6-week, governance-first diagnostic that maps your most material AI use cases and delivers board-ready Trust Ledger entries and options."
+  />
+  <meta name="robots" content="index,follow" />
+  <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background-color: #050608;
+      color: #F7F7F7;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 32px 20px 40px;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page {
+      width: 100%;
+      max-width: 1040px;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 32px;
+      gap: 16px;
+    }
+
+    .brand-wrap {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand-logo {
+      width: 32px;
+      height: 32px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 25% 0, #ffffff 0, #d4e0ff 18%, #818cf8 45%, #1f2937 70%, #020617 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      font-weight: 700;
+      color: #FFFFFF;
+      box-shadow: 0 10px 28px rgba(15, 23, 42, 0.9);
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .brand-name {
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .brand-tagline {
+      font-size: 12px;
+      color: #A0A4AE;
+    }
+
+    nav {
+      display: flex;
+      gap: 18px;
+      font-size: 13px;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      opacity: 0.78;
+      padding-bottom: 2px;
+      border-bottom: 1px solid transparent;
+    }
+
+    nav a:hover {
+      opacity: 1;
+      border-bottom-color: rgba(209, 213, 219, 0.5);
+    }
+
+    nav a.active {
+      opacity: 1;
+      border-bottom-color: rgba(255, 255, 255, 0.78);
+      font-weight: 500;
+    }
+
+    main {
+      width: 100%;
+    }
+
+    .hero {
+      margin-bottom: 32px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 253, 0.35);
+      background: radial-gradient(circle at 0 0, rgba(129, 140, 248, 0.32), transparent 55%);
+      color: #E5E7EB;
+      margin-bottom: 10px;
+    }
+
+    .pill-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #7dd3fc, #a855f7);
+    }
+
+    .hero-kicker {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: #9CA3AF;
+      margin-bottom: 8px;
+    }
+
+    .hero-title {
+      font-size: clamp(26px, 3.2vw, 32px);
+      line-height: 1.15;
+      font-weight: 600;
+      margin-bottom: 14px;
+      letter-spacing: -0.03em;
+    }
+
+    .hero-title span {
+      background: linear-gradient(135deg, #ffffff, #a5b4fc);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-subtitle {
+      font-size: 15px;
+      line-height: 1.6;
+      color: #D0D3DD;
+      max-width: 680px;
+    }
+
+    .hero-cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .btn-primary,
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 9px 18px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: background-color 0.16s ease, border-color 0.16s ease, color 0.16s ease, transform 0.06s ease;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #f9fafb, #e5e7eb);
+      color: #050608;
+      box-shadow: 0 12px 32px rgba(15, 23, 42, 0.85);
+    }
+
+    .btn-primary:hover {
+      background: #FFFFFF;
+      transform: translateY(-1px);
+    }
+
+    .btn-ghost {
+      background: rgba(15, 23, 42, 0.9);
+      border-color: #4B4F5C;
+      color: #E1E3EA;
+    }
+
+    .btn-ghost:hover {
+      background: #111827;
+      border-color: #6C7080;
+    }
+
+    .section {
+      margin-bottom: 28px;
+    }
+
+    .section-kicker {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: #9CA3AF;
+      margin-bottom: 4px;
+    }
+
+    .section-title-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+
+    .section-title {
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    .section-subtitle {
+      font-size: 14px;
+      color: #A0A4AE;
+      margin-bottom: 10px;
+    }
+
+    .section p {
+      font-size: 14px;
+      line-height: 1.7;
+      color: #E1E3EA;
+      margin-bottom: 9px;
+    }
+
+    ul {
+      list-style: none;
+      margin-top: 4px;
+    }
+
+    li {
+      font-size: 14px;
+      line-height: 1.6;
+      color: #E1E3EA;
+      padding-left: 18px;
+      position: relative;
+      margin-bottom: 6px;
+    }
+
+    li::before {
+      content: "•";
+      position: absolute;
+      left: 4px;
+      color: #9CA3FF;
+    }
+
+    .timeline {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-top: 10px;
+    }
+
+    .timeline-step {
+      border-radius: 14px;
+      border: 1px solid #232633;
+      background: #080911;
+      padding: 12px 14px;
+    }
+
+    .timeline-step-title {
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: #F1F2FB;
+    }
+
+    .timeline-step-meta {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #9CA3AF;
+      margin-bottom: 4px;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+      gap: 24px;
+    }
+
+    .panel {
+      border-radius: 14px;
+      border: 1px solid #22252F;
+      background: radial-gradient(circle at top left, #191C2E 0, #0A0B10 52%, #050608 100%);
+      padding: 14px 16px 12px;
+      font-size: 13px;
+    }
+
+    .panel-title {
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .checklist-item {
+      font-size: 13px;
+      color: #D0D3DD;
+      padding-left: 18px;
+      position: relative;
+      margin-bottom: 4px;
+    }
+
+    .checklist-item::before {
+      content: "✓";
+      position: absolute;
+      left: 2px;
+      color: #A5B4FC;
+    }
+
+    .faq-item {
+      margin-bottom: 14px;
+    }
+
+    .faq-q {
+      font-size: 13px;
+      font-weight: 500;
+      color: #F1F2FB;
+      margin-bottom: 3px;
+    }
+
+    .faq-a {
+      font-size: 13px;
+      color: #CACFE4;
+      line-height: 1.6;
+    }
+
+    footer {
+      margin-top: 32px;
+      font-size: 11px;
+      color: #737889;
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    footer a {
+      color: #B6BAD1;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 800px) {
+      body {
+        padding: 24px 16px 32px;
+      }
+
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      nav {
+        justify-content: flex-start;
+      }
+
+      .hero-title {
+        font-size: 24px;
+      }
+
+      .hero-subtitle {
+        max-width: 100%;
+      }
+
+      .two-col {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Noetfield Trust Brief",
+    "provider": {
+      "@type": "Organization",
+      "name": "Noetfield Systems Inc.",
+      "url": "https://noetfield.com/"
+    },
+    "url": "https://noetfield.com/trust-brief",
+    "description": "A 6-week governance-first diagnostic that maps your most material AI use cases and delivers board-ready Trust Ledger entries and options.",
+    "areaServed": {
+      "@type": "Country",
+      "name": "Canada"
+    },
+    "audience": {
+      "@type": "Audience",
+      "audienceType": [
+        "Board of directors",
+        "Risk and audit committee",
+        "Executives"
+      ]
+    }
+  }
+  </script>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <a href="/" class="brand-wrap">
+        <div class="brand-logo">N</div>
+        <div class="brand-text">
+          <div class="brand-name">Noetfield</div>
+          <div class="brand-tagline">Trust Ledger for AI governance</div>
+        </div>
+      </a>
+      <nav>
+        <a href="/">Home</a>
+        <a href="/trust-brief" class="active">Trust Brief</a>
+        <a href="/trust-ledger">Trust Ledger</a>
+        <a href="/gate">Gate</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="pill">
+          <span class="pill-dot"></span>
+          6-week AI governance diagnostic
+        </div>
+        <div class="hero-kicker">Trust Brief</div>
+        <h1 class="hero-title">
+          A <span>6-week brief</span> that turns scattered AI activity into a board-ready picture.
+        </h1>
+        <p class="hero-subtitle">
+          The Noetfield Trust Brief maps where AI is truly material in your organisation, drafts the first Trust Ledger
+          entries, and delivers a concise set of options for boards, executives, and risk leaders – without a year-long programme.
+        </p>
+        <div class="hero-cta-row">
+          <a href="mailto:ceo@noetfield.com?subject=Trust%20Brief%20inquiry" class="btn-primary">Request a Trust Brief call</a>
+          <a href="/trust-ledger" class="btn-ghost">See the Trust Ledger it leads into</a>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-title-row">
+          <div>
+            <div class="section-kicker">What it is</div>
+            <h2 class="section-title">A time-boxed, governance-first AI review</h2>
+          </div>
+        </div>
+        <p>
+          The Trust Brief is not an open-ended consulting engagement. It is a 6-week, time-boxed review that focuses on
+          a small number of AI and automation decisions that actually move risk, money, or customers – and makes them legible
+          to boards and committees.
+        </p>
+        <p>
+          The output is a board-ready report and a set of initial Trust Ledger entries. It gives stewards a concrete starting
+          point for AI governance, without asking them to absorb every model card, dashboard, and ticket.
+        </p>
+      </section>
+
+      <section class="section">
+        <div class="section-title-row">
+          <div>
+            <div class="section-kicker">Phasing</div>
+            <h2 class="section-title">How the 6 weeks unfold</h2>
+          </div>
+        </div>
+        <div class="timeline">
+          <div class="timeline-step">
+            <div class="timeline-step-meta">Weeks 1–2</div>
+            <div class="timeline-step-title">Inventory & interviews</div>
+            <p>
+              Identify AI and automation that is capable of moving money, affecting customers, or triggering regulatory attention.
+              Short, focused interviews across product, risk, and technology – no long workshops.
+            </p>
+          </div>
+          <div class="timeline-step">
+            <div class="timeline-step-meta">Weeks 2–3</div>
+            <div class="timeline-step-title">Materiality & selection</div>
+            <p>
+              Prioritise 3–5 decisions and use cases where governance needs to be explicit at board or committee level.
+              Align on what “material” means in your context.
+            </p>
+          </div>
+          <div class="timeline-step">
+            <div class="timeline-step-meta">Weeks 3–5</div>
+            <div class="timeline-step-title">Draft the first Ledger entries</div>
+            <p>
+              Translate technical artefacts – documentation, dashboards, incidents – into plain-language Trust Ledger entries.
+              Map gaps in safeguards, ownership, and evidence.
+            </p>
+          </div>
+          <div class="timeline-step">
+            <div class="timeline-step-meta">Weeks 5–6</div>
+            <div class="timeline-step-title">Board-ready brief & options</div>
+            <p>
+              Deliver a concise report and walk-through tailored for boards and executives, with options for how to continue:
+              extend the Ledger, update policies, or set new thresholds for AI decisions.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-title-row">
+          <div>
+            <div class="section-kicker">Outcomes</div>
+            <h2 class="section-title">What boards and executives walk away with</h2>
+          </div>
+        </div>
+        <div class="two-col">
+          <div>
+            <p>
+              At the end of the Trust Brief, your organisation has a shared, governance-level view of AI – not a pile of slides.
+              The emphasis is on traceable decisions and accountable roles.
+            </p>
+            <ul>
+              <li>A shortlist of AI and automation use cases that are actually material.</li>
+              <li>Initial Trust Ledger entries for the top 3–5 decisions, ready to attach to board packs and audit files.</li>
+              <li>A map of current safeguards and gaps – from monitoring thresholds to ownership.</li>
+              <li>Practical options for next steps that fit your regulatory and organisational context.</li>
+            </ul>
+          </div>
+          <div class="panel">
+            <div class="panel-title">Board-facing checklist</div>
+            <div class="checklist-item">Can we name our top 3–5 AI decisions that move risk, money, or customers?</div>
+            <div class="checklist-item">Do we know what data and safeguards those systems rely on?</div>
+            <div class="checklist-item">Is ownership for those decisions clearly tied to named roles?</div>
+            <div class="checklist-item">If a regulator asked tomorrow, could we show how those decisions were governed?</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-title-row">
+          <div>
+            <div class="section-kicker">Connection</div>
+            <h2 class="section-title">How the Trust Brief feeds the Trust Ledger</h2>
+          </div>
+        </div>
+        <p>
+          The Trust Brief is the most direct on-ramp into the Noetfield Trust Ledger. Rather than designing governance in the
+          abstract, it starts from real decisions and real artefacts inside your organisation.
+        </p>
+        <ul>
+          <li>Each selected decision produces one or more draft Trust Ledger entries.</li>
+          <li>The report links those entries to existing controls: documentation, monitoring, incidents, and policies.</li>
+          <li>Next steps can focus on extending the Ledger, strengthening safeguards, or sharpening board thresholds for AI.</li>
+        </ul>
+        <p>
+          For a detailed view of the Ledger format itself, see the dedicated page:
+          <a href="/trust-ledger">Noetfield Trust Ledger →</a>
+        </p>
+      </section>
+
+      <section class="section">
+        <div class="section-title-row">
+          <div>
+            <div class="section-kicker">FAQ</div>
+            <h2 class="section-title">FAQ – Trust Brief in practice</h2>
+          </div>
+        </div>
+        <div class="two-col">
+          <div>
+            <div class="faq-item">
+              <div class="faq-q">Who is the Trust Brief for?</div>
+              <div class="faq-a">
+                The Trust Brief is designed for organisations that already have AI or automation in production – especially in
+                financial services, infrastructure, utilities, or other real-economy sectors – and need a governance-level view
+                before regulation or incidents force the issue.
+              </div>
+            </div>
+            <div class="faq-item">
+              <div class="faq-q">How much time does it require from internal teams?</div>
+              <div class="faq-a">
+                Most of the internal load is concentrated in short interviews, document access, and one or two review sessions.
+                The aim is to keep time demands reasonable for senior leaders while still grounding the work in real systems.
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="faq-item">
+              <div class="faq-q">Is this an audit or a certification?</div>
+              <div class="faq-a">
+                No. The Trust Brief is an advisory, diagnostic engagement. It does not produce a formal certification. Instead,
+                it prepares your organisation for audits, supervisory reviews, and internal assurance work by clarifying what
+                matters most and how it is currently governed.
+              </div>
+            </div>
+            <div class="faq-item">
+              <div class="faq-q">What happens after the Trust Brief?</div>
+              <div class="faq-a">
+                Options typically include extending the Trust Ledger to additional decisions, updating AI and risk policies,
+                or designing a lighter-weight reporting rhythm for boards and committees. The next step is tailored to your
+                risk appetite and regulatory environment.
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-title-row">
+          <div>
+            <div class="section-kicker">Next step</div>
+            <h2 class="section-title">Arrange a short scoping call</h2>
+          </div>
+        </div>
+        <p>
+          A 20–30 minute conversation is usually enough to understand your current AI footprint, regulatory pressure,
+          and whether a Trust Brief is the right entry point.
+        </p>
+        <p>
+          Email:
+          <a href="mailto:ceo@noetfield.com?subject=Trust%20Brief%20inquiry">ceo@noetfield.com</a>
+          with a short note on your sector and role, and a few potential time windows.
+        </p>
+      </section>
+    </main>
+
+    <footer>
+      <div>© Noetfield Systems Inc. All rights reserved.</div>
+      <div>
+        <a href="/">Home</a> ·
+        <a href="/trust-brief">Trust Brief</a> ·
+        <a href="/trust-ledger">Trust Ledger</a> ·
+        <a href="/gate">Gate</a>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>

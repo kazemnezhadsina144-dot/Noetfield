@@ -15,7 +15,6 @@
   <link rel="icon" href="/favicon.ico" type="image/x-icon" />
   <meta name="theme-color" content="#05060a" />
 
-  <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Noetfield" />
   <meta property="og:title" content="Noetfield Trust Brief – 6-week AI Governance Diagnostic" />
@@ -26,7 +25,6 @@
   <meta property="og:url" content="https://www.noetfield.com/trust-brief/" />
   <meta property="og:image" content="https://www.noetfield.com/noetfield-og.png" />
 
-  <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Noetfield Trust Brief – 6-week AI Governance Diagnostic" />
   <meta
@@ -35,7 +33,6 @@
   />
   <meta name="twitter:image" content="https://www.noetfield.com/noetfield-og.png" />
 
-  <!-- Schema.org Service -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -63,7 +60,6 @@
   }
   </script>
 
-  <!-- Schema.org WebPage -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -89,113 +85,124 @@
 
     :root {
       --bg: #05060a;
-      --bg-soft: #111318;
+      --bg-soft: #080911;
       --border-soft: rgba(255,255,255,0.10);
       --text-main: #f5f5f7;
-      --text-soft: rgba(218,222,235,0.98);
-      --text-mute: rgba(150,160,175,0.9);
+      --text-soft: #daddef;
+      --text-mute: #9ca3af;
       --accent: #ffffff;
+      --accent-soft: #9ca3ff;
     }
 
     body {
       font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: radial-gradient(circle at top, #141623 0%, var(--bg) 55%);
+      background: radial-gradient(circle at top, #151827 0%, var(--bg) 55%);
       color: var(--text-main);
-      line-height: 1.6;
       min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 32px 20px 40px;
     }
 
     a { color: inherit; text-decoration: none; }
 
     .page {
-      max-width: 1080px;
-      margin: 0 auto;
-      padding: 24px 16px 48px;
+      width: 100%;
+      max-width: 1040px;
+      display: flex;
+      flex-direction: column;
+      min-height: calc(100vh - 72px);
     }
 
-    /* HEADER / NAV – aligned with Home / Trust Ledger */
     header {
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      padding-bottom: 16px;
-      border-bottom: 1px solid var(--border-soft);
+      justify-content: space-between;
       margin-bottom: 32px;
-      gap: 12px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--border-soft);
+      gap: 14px;
     }
 
-    .brand {
+    .brand-wrap {
       display: flex;
       align-items: center;
       gap: 10px;
     }
 
-    .logo-mark {
-      height: 32px;
+    .brand-logo {
       width: 32px;
-      display: block;
-      border-radius: 50%;
-    }
-
-    .logo {
+      height: 32px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 25% 0, #ffffff 0, #d4e0ff 18%, #818cf8 45%, #1f2937 70%, #020617 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
       font-weight: 700;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      font-size: 0.9rem;
-      color: var(--accent);
+      color: #ffffff;
+      box-shadow: 0 10px 28px rgba(15,23,42,0.9);
     }
 
-    .tagline {
-      font-size: 0.78rem;
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .brand-name {
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .brand-tagline {
+      font-size: 12px;
       color: var(--text-mute);
-      margin-top: 2px;
     }
 
     nav {
       display: flex;
       gap: 18px;
-      font-size: 0.85rem;
+      font-size: 13px;
       flex-wrap: wrap;
     }
 
     nav a {
-      opacity: 0.75;
-      position: relative;
+      opacity: 0.78;
       padding-bottom: 2px;
+      border-bottom: 1px solid transparent;
+      position: relative;
     }
 
-    nav a:hover { opacity: 1; }
-
-    nav a::after {
-      content: '';
-      position: absolute;
-      left: 0;
-      bottom: 0;
-      width: 0;
-      height: 1px;
-      background: var(--accent);
-      transition: width 0.15s ease-out;
+    nav a:hover {
+      opacity: 1;
+      border-bottom-color: rgba(209,213,219,0.6);
     }
 
-    nav a:hover::after { width: 100%; }
+    nav a.active {
+      opacity: 1;
+      border-bottom-color: rgba(255,255,255,0.85);
+      font-weight: 500;
+    }
 
-    main { margin-top: 24px; }
+    main { width: 100%; }
 
     .content {
-      max-width: 960px;
-      margin: 0 auto;
+      width: 100%;
     }
 
-    /* HERO */
     .hero {
-      margin-bottom: 32px;
+      margin-bottom: 36px;
     }
 
     .pill {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      font-size: 0.7rem;
+      font-size: 11px;
       padding: 4px 10px;
       border-radius: 999px;
       border: 1px solid rgba(148,163,253,0.35);
@@ -212,7 +219,7 @@
     }
 
     .hero-kicker {
-      font-size: 0.7rem;
+      font-size: 11px;
       text-transform: uppercase;
       letter-spacing: 0.16em;
       color: var(--text-mute);
@@ -220,11 +227,11 @@
     }
 
     .hero-title {
-      font-size: clamp(1.8rem, 3.1vw, 2.1rem);
-      line-height: 1.18;
+      font-size: clamp(26px, 3vw, 30px);
+      line-height: 1.15;
       font-weight: 600;
       margin-bottom: 14px;
-      letter-spacing: -0.03em;
+      letter-spacing: -0.02em;
     }
 
     .hero-title span {
@@ -235,17 +242,17 @@
     }
 
     .hero-subtitle {
-      font-size: 0.95rem;
-      line-height: 1.7;
-      color: var(--text-soft);
-      max-width: 42rem;
+      font-size: 15px;
+      line-height: 1.6;
+      color: #d0d3dd;
+      max-width: 680px;
     }
 
     .hero-cta-row {
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 20px;
+      gap: 12px;
+      margin-top: 22px;
     }
 
     .btn-primary,
@@ -253,52 +260,44 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 8px 18px;
+      padding: 9px 18px;
       border-radius: 999px;
-      font-size: 0.85rem;
+      font-size: 13px;
       font-weight: 500;
       cursor: pointer;
       border: 1px solid transparent;
-      transition:
-        background-color 0.16s ease,
-        border-color 0.16s ease,
-        color 0.16s ease,
-        transform 0.06s ease;
+      transition: background-color 0.16s ease, border-color 0.16s ease, color 0.16s ease, transform 0.06s ease;
       white-space: nowrap;
     }
 
     .btn-primary {
       background: linear-gradient(135deg, #f9fafb, #e5e7eb);
       color: #050608;
-      border-color: #e5e7eb;
-      box-shadow: 0 12px 32px rgba(15,23,42,0.85);
+      box-shadow: 0 12px 32px rgba(15,23,42,0.9);
     }
 
     .btn-primary:hover {
       background: #ffffff;
-      border-color: #ffffff;
       transform: translateY(-1px);
     }
 
     .btn-ghost {
       background: rgba(15,23,42,0.9);
-      border-color: rgba(255,255,255,0.35);
-      color: var(--text-main);
+      border-color: #4b4f5c;
+      color: #e1e3ea;
     }
 
     .btn-ghost:hover {
       background: #111827;
-      border-color: #ffffff;
-      transform: translateY(-1px);
+      border-color: #6c7080;
     }
 
-    /* SECTIONS */
     .section {
-      margin-bottom: 28px;
+      margin-bottom: 30px;
     }
 
     .section-kicker {
-      font-size: 0.7rem;
+      font-size: 11px;
       text-transform: uppercase;
       letter-spacing: 0.16em;
       color: var(--text-mute);
@@ -314,23 +313,24 @@
     }
 
     .section-title {
-      font-size: 1.1rem;
+      font-size: 18px;
       font-weight: 600;
+      margin-bottom: 0;
       letter-spacing: -0.02em;
     }
 
     .section-subtitle {
-      font-size: 0.85rem;
-      color: var(--text-mute);
+      font-size: 14px;
+      color: #a0a4ae;
       margin-bottom: 10px;
     }
 
     .section p {
-      font-size: 0.9rem;
+      font-size: 14px;
       line-height: 1.7;
-      color: var(--text-soft);
+      color: #e1e3ea;
       margin-bottom: 9px;
-      max-width: 44rem;
+      max-width: 720px;
     }
 
     ul {
@@ -339,9 +339,9 @@
     }
 
     li {
-      font-size: 0.9rem;
+      font-size: 14px;
       line-height: 1.6;
-      color: var(--text-soft);
+      color: #e1e3ea;
       padding-left: 18px;
       position: relative;
       margin-bottom: 6px;
@@ -351,63 +351,68 @@
       content: "•";
       position: absolute;
       left: 4px;
-      color: #9ca3ff;
+      color: var(--accent-soft);
     }
 
-    /* TIMELINE */
-    .timeline {
+    .grid-2,
+    .grid-3 {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 16px;
-      margin-top: 10px;
-    }
-
-    .timeline-step {
-      border-radius: 14px;
-      border: 1px solid #232633;
-      background: #080911;
-      padding: 12px 14px;
-    }
-
-    .timeline-step-title {
-      font-size: 0.85rem;
-      font-weight: 600;
-      margin-bottom: 6px;
-      color: #f1f2fb;
-    }
-
-    .timeline-step-meta {
-      font-size: 0.7rem;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: var(--text-mute);
-      margin-bottom: 4px;
-    }
-
-    /* TWO-COL / PANEL / FAQ */
-    .two-col {
-      display: grid;
-      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
       gap: 24px;
     }
 
-    .panel {
-      border-radius: 14px;
-      border: 1px solid #22252f;
-      background: radial-gradient(circle at top left, #191c2e 0, #0a0b10 52%, #050608 100%);
-      padding: 14px 16px 12px;
-      font-size: 0.85rem;
+    .grid-2 {
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
     }
 
-    .panel-title {
-      font-size: 0.85rem;
+    .grid-3 {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .card {
+      border-radius: 16px;
+      border: 1px solid #22252f;
+      background: radial-gradient(circle at top left, #191c2e 0, #0a0b10 52%, #050608 100%);
+      padding: 16px 16px 14px;
+    }
+
+    .card-kicker {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: #9ea2b2;
+      margin-bottom: 6px;
+    }
+
+    .card-title {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .card p {
+      font-size: 13px;
+      line-height: 1.6;
+      color: #daddef;
+      margin-bottom: 6px;
+    }
+
+    .checklist {
+      border-radius: 14px;
+      border: 1px solid #232633;
+      background: var(--bg-soft);
+      padding: 14px 16px 10px;
+    }
+
+    .checklist-title {
+      font-size: 13px;
       font-weight: 600;
       margin-bottom: 6px;
     }
 
     .checklist-item {
-      font-size: 0.85rem;
-      color: #d0d3dd;
+      font-size: 12px;
+      color: #b6bad1;
+      line-height: 1.6;
       padding-left: 18px;
       position: relative;
       margin-bottom: 4px;
@@ -416,8 +421,15 @@
     .checklist-item::before {
       content: "✓";
       position: absolute;
-      left: 2px;
-      color: #a5b4fc;
+      left: 3px;
+      color: var(--accent-soft);
+      font-size: 11px;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: 24px;
     }
 
     .faq-item {
@@ -425,48 +437,53 @@
     }
 
     .faq-q {
-      font-size: 0.8rem;
+      font-size: 13px;
       font-weight: 500;
       color: #f1f2fb;
       margin-bottom: 3px;
     }
 
     .faq-a {
-      font-size: 0.8rem;
+      font-size: 13px;
       color: #cacfe4;
       line-height: 1.6;
     }
 
-    /* FOOTER */
     footer {
-      border-top: 1px solid var(--border-soft);
       margin-top: 32px;
-      padding-top: 12px;
-      font-size: 0.75rem;
-      color: var(--text-mute);
+      font-size: 11px;
+      color: #737889;
       display: flex;
-      flex-wrap: wrap;
       justify-content: space-between;
-      gap: 8px;
+      gap: 12px;
+      flex-wrap: wrap;
       align-items: center;
     }
 
     footer a {
-      color: inherit;
-      opacity: 0.85;
+      color: #b6bad1;
+      text-decoration: none;
     }
 
     footer a:hover {
-      opacity: 1;
       text-decoration: underline;
     }
 
-    @media (max-width: 800px) {
-      .page { padding-inline: 14px; }
+    @media (max-width: 900px) {
+      .grid-3 {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      body {
+        padding: 24px 16px 32px;
+      }
 
       header {
-        flex-direction: column;
         align-items: flex-start;
+        flex-direction: column;
+        gap: 6px;
       }
 
       nav {
@@ -474,14 +491,18 @@
       }
 
       .hero-title {
-        font-size: 1.6rem;
+        font-size: 24px;
       }
 
       .hero-subtitle {
         max-width: 100%;
       }
 
-      .two-col {
+      .grid-2 {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .grid-3 {
         grid-template-columns: minmax(0, 1fr);
       }
     }
@@ -490,18 +511,16 @@
 <body>
   <div class="page">
     <header>
-      <div class="brand">
-        <a href="/">
-          <img src="/noetfield-badge.png" alt="Noetfield logo" class="logo-mark" />
-        </a>
-        <div>
-          <div class="logo">NOETFIELD</div>
-          <div class="tagline">Trust Ledger for AI governance</div>
+      <a href="/" class="brand-wrap">
+        <div class="brand-logo">N</div>
+        <div class="brand-text">
+          <div class="brand-name">Noetfield</div>
+          <div class="brand-tagline">Trust Ledger for AI governance</div>
         </div>
-      </div>
+      </a>
       <nav>
         <a href="/">Home</a>
-        <a href="/trust-brief/">Trust Brief</a>
+        <a href="/trust-brief/" class="active">Trust Brief</a>
         <a href="/trust-ledger/">Trust Ledger</a>
         <a href="/for-whom/">For Whom</a>
         <a href="/gate/">Gate</a>
@@ -512,7 +531,6 @@
 
     <main>
       <div class="content">
-        <!-- HERO -->
         <section class="hero">
           <div class="pill">
             <span class="pill-dot"></span>
@@ -538,7 +556,6 @@
           </div>
         </section>
 
-        <!-- WHAT IT IS -->
         <section class="section">
           <div class="section-title-row">
             <div>
@@ -557,7 +574,6 @@
           </p>
         </section>
 
-        <!-- PHASING -->
         <section class="section">
           <div class="section-title-row">
             <div>
@@ -565,34 +581,34 @@
               <h2 class="section-title">How the 6 weeks unfold</h2>
             </div>
           </div>
-          <div class="timeline">
-            <div class="timeline-step">
-              <div class="timeline-step-meta">Weeks 1–2</div>
-              <div class="timeline-step-title">Inventory &amp; interviews</div>
+          <div class="grid-2">
+            <div class="card">
+              <div class="card-kicker">Weeks 1–2</div>
+              <div class="card-title">Inventory & interviews</div>
               <p>
                 Identify AI and automation that is capable of moving money, affecting customers, or triggering
                 regulatory attention. Short, focused interviews across product, risk, and technology – no long workshops.
               </p>
             </div>
-            <div class="timeline-step">
-              <div class="timeline-step-meta">Weeks 2–3</div>
-              <div class="timeline-step-title">Materiality &amp; selection</div>
+            <div class="card">
+              <div class="card-kicker">Weeks 2–3</div>
+              <div class="card-title">Materiality & selection</div>
               <p>
                 Prioritise 3–5 decisions and use cases where governance needs to be explicit at board or committee level.
                 Align on what “material” means in your context.
               </p>
             </div>
-            <div class="timeline-step">
-              <div class="timeline-step-meta">Weeks 3–5</div>
-              <div class="timeline-step-title">Draft the first Ledger entries</div>
+            <div class="card">
+              <div class="card-kicker">Weeks 3–5</div>
+              <div class="card-title">Draft the first Ledger entries</div>
               <p>
                 Translate technical artefacts – documentation, dashboards, incidents – into plain-language Trust Ledger
                 entries. Map gaps in safeguards, ownership, and evidence.
               </p>
             </div>
-            <div class="timeline-step">
-              <div class="timeline-step-meta">Weeks 5–6</div>
-              <div class="timeline-step-title">Board-ready brief &amp; options</div>
+            <div class="card">
+              <div class="card-kicker">Weeks 5–6</div>
+              <div class="card-title">Board-ready brief & options</div>
               <p>
                 Deliver a concise report and walk-through tailored for boards and executives, with options for how to
                 continue: extend the Ledger, update policies, or set new thresholds for AI decisions.
@@ -601,7 +617,6 @@
           </div>
         </section>
 
-        <!-- OUTCOMES -->
         <section class="section">
           <div class="section-title-row">
             <div>
@@ -627,8 +642,8 @@
                 </li>
               </ul>
             </div>
-            <div class="panel">
-              <div class="panel-title">Board-facing checklist</div>
+            <div class="checklist">
+              <div class="checklist-title">Board-facing checklist</div>
               <div class="checklist-item">Can we name our top 3–5 AI decisions that move risk, money, or customers?</div>
               <div class="checklist-item">Do we know what data and safeguards those systems rely on?</div>
               <div class="checklist-item">Is ownership for those decisions clearly tied to named roles?</div>
@@ -639,7 +654,6 @@
           </div>
         </section>
 
-        <!-- CONNECTION TO TRUST LEDGER -->
         <section class="section">
           <div class="section-title-row">
             <div>
@@ -667,7 +681,6 @@
           </p>
         </section>
 
-        <!-- FAQ -->
         <section class="section">
           <div class="section-title-row">
             <div>
@@ -715,7 +728,6 @@
           </div>
         </section>
 
-        <!-- NEXT STEP -->
         <section class="section">
           <div class="section-title-row">
             <div>
@@ -739,16 +751,16 @@
     </main>
 
     <footer>
-      <span>© <span id="year"></span> Noetfield Systems Inc. All rights reserved.</span>
-      <span>
+      <div>© <span id="year"></span> Noetfield Systems Inc. All rights reserved.</div>
+      <div>
         <a href="/">Home</a> ·
         <a href="/trust-brief/">Trust Brief</a> ·
         <a href="/trust-ledger/">Trust Ledger</a> ·
-        <a href="/for-whom/">For Whom</a> ·
+        <a href="/for-whom/">For whom</a> ·
         <a href="/gate/">Gate</a> ·
         <a href="/about/">About</a> ·
         <a href="/contact/">Contact</a>
-      </span>
+      </div>
     </footer>
   </div>
 

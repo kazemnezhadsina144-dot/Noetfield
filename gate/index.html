@@ -15,7 +15,6 @@
   <link rel="icon" href="/favicon.ico" type="image/x-icon" />
   <meta name="theme-color" content="#05060a" />
 
-  <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Noetfield" />
   <meta property="og:title" content="Noetfield Gate – Early Access to the Trust Ledger Architecture" />
@@ -26,7 +25,6 @@
   <meta property="og:url" content="https://www.noetfield.com/gate/" />
   <meta property="og:image" content="https://www.noetfield.com/noetfield-og.png" />
 
-  <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Noetfield Gate – Early Access to the Trust Ledger Architecture" />
   <meta
@@ -35,7 +33,6 @@
   />
   <meta name="twitter:image" content="https://www.noetfield.com/noetfield-og.png" />
 
-  <!-- Schema.org WebPage -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -87,7 +84,6 @@
       min-height: 100vh;
     }
 
-    /* HEADER / NAV – aligned with other pages */
     header {
       display: flex;
       justify-content: space-between;
@@ -153,6 +149,14 @@
 
     nav a:hover::after { width: 100%; }
 
+    nav a.active {
+      opacity: 1;
+    }
+
+    nav a.active::after {
+      width: 100%;
+    }
+
     main {
       flex: 1;
       display: flex;
@@ -165,7 +169,6 @@
       text-align: center;
     }
 
-    /* HERO MESSAGE */
     .hero-label {
       font-size: 0.7rem;
       text-transform: uppercase;
@@ -203,7 +206,6 @@
 
     .intro p + p { margin-top: 14px; }
 
-    /* ACCESS BOX / FORM */
     .access-box {
       background: radial-gradient(circle at top left, #25273a 0%, #12131a 52%, #060712 100%);
       border-radius: 16px;
@@ -228,7 +230,6 @@
       margin-bottom: 4px;
     }
 
-    .access-box-header h1,
     .access-box-header h3 {
       font-size: 1rem;
       font-weight: 600;
@@ -313,6 +314,7 @@
       padding: 3px 8px;
       color: #e5e7eb;
       background: rgba(15,23,42,0.8);
+      cursor: pointer;
     }
 
     .access-button {
@@ -353,7 +355,6 @@
 
     .access-note strong { color: #e5e7eb; }
 
-    /* FOOTER */
     footer {
       border-top: 1px solid var(--border-soft);
       padding-top: 12px;
@@ -413,7 +414,7 @@
         <a href="/trust-brief/">Trust Brief</a>
         <a href="/trust-ledger/">Trust Ledger</a>
         <a href="/for-whom/">For Whom</a>
-        <a href="/gate/">Gate</a>
+        <a href="/gate/" class="active">Gate</a>
         <a href="/about/">About</a>
         <a href="/contact/">Contact</a>
       </nav>
@@ -478,7 +479,7 @@
               <select id="role" name="role" class="select" required>
                 <option value="">Select the closest description</option>
                 <option value="Board chair / director">Board chair / director</option>
-                <option value="Executive (CEO/CRO/CRO/CTO/CAIO)">Executive (CEO / CRO / CFO / CTO / CAIO)</option>
+                <option value="Executive (CEO / CRO / CFO / CTO / CAIO)">Executive (CEO / CRO / CFO / CTO / CAIO)</option>
                 <option value="Risk / audit / compliance lead">Risk / audit / compliance lead</option>
                 <option value="Regulator / supervisor">Regulator / supervisor</option>
                 <option value="Capital partner / allocator">Capital partner / allocator</option>

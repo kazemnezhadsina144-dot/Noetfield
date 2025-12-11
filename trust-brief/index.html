@@ -293,6 +293,11 @@
       border-color: #6c7080;
     }
 
+    .btn-full {
+      width: 100%;
+      justify-content: center;
+    }
+
     .section {
       margin-bottom: 30px;
     }
@@ -450,6 +455,118 @@
       line-height: 1.6;
     }
 
+    /* ---- Form + FAQ section ---- */
+
+    .form-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+      gap: 24px;
+      align-items: flex-start;
+    }
+
+    .form-card,
+    .faq-card {
+      border-radius: 16px;
+      border: 1px solid #22252f;
+      background: radial-gradient(circle at top left, #191c2e 0, #0a0b10 52%, #050608 100%);
+      padding: 16px 16px 18px;
+    }
+
+    form {
+      width: 100%;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 10px;
+    }
+
+    .form-group-inline {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 10px;
+    }
+
+    label {
+      font-size: 13px;
+      color: var(--text-soft);
+    }
+
+    input[type="text"],
+    input[type="email"],
+    select,
+    textarea {
+      background: #020617;
+      border-radius: 10px;
+      border: 1px solid #272a37;
+      padding: 9px 11px;
+      font-size: 13px;
+      color: var(--text-main);
+      outline: none;
+      width: 100%;
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+      color: #6b7280;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: var(--accent-soft);
+      box-shadow: 0 0 0 1px rgba(129,140,248,0.5);
+    }
+
+    select {
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      background-image: linear-gradient(45deg, transparent 50%, #9ca3af 50%), linear-gradient(135deg, #9ca3af 50%, transparent 50%);
+      background-position: calc(100% - 14px) calc(50% - 3px), calc(100% - 9px) calc(50% - 3px);
+      background-size: 7px 7px, 7px 7px;
+      background-repeat: no-repeat;
+    }
+
+    .helper-text {
+      font-size: 12px;
+      color: var(--text-mute);
+      margin-top: 2px;
+    }
+
+    .licence-options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem 1.5rem;
+      margin-top: 4px;
+    }
+
+    .licence-option {
+      display: flex;
+      align-items: center;
+      font-size: 13px;
+      color: var(--text-soft);
+    }
+
+    .licence-option input[type="radio"] {
+      margin-right: 0.45rem;
+    }
+
+    .consent {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      margin-top: 8px;
+      font-size: 12px;
+      color: var(--text-mute);
+    }
+
+    .consent input[type="checkbox"] {
+      margin-top: 2px;
+    }
+
     footer {
       margin-top: 32px;
       font-size: 11px;
@@ -521,7 +638,22 @@
         justify-content: center;
       }
 
+      .form-layout {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .form-group-inline {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
       footer {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .licence-options {
         flex-direction: column;
         align-items: flex-start;
       }
@@ -553,214 +685,323 @@
       <section class="hero">
         <div class="pill">
           <span class="pill-dot"></span>
-          6-week AI governance diagnostic
+          6-week AI Trust Brief pilot
         </div>
         <div class="hero-kicker">Trust Brief</div>
         <h1 class="hero-title">
-          A <span>6-week brief</span> that turns scattered AI activity into a board-ready picture.
+          A <span>6-week pilot</span> that produces a board-ready AI Trust Brief and Trust Ledger sample.
         </h1>
         <p class="hero-subtitle">
-          The Noetfield Trust Brief maps where AI is truly material in your organisation, drafts the first Trust Ledger
-          entries, and delivers a concise set of options for boards, executives, and risk leaders – without a year-long
-          programme.
+          The Noetfield AI Trust Brief is a focused, 6-week engagement that maps where AI touches your work,
+          highlights key risks and safeguards, and delivers one board-ready Trust Brief plus a sample Trust
+          Ledger page – so AI decisions, responsibilities, and next steps are clear.
         </p>
         <div class="hero-cta-row">
           <a
-            href="mailto:ceo@noetfield.com?subject=Trust%20Brief%20inquiry"
+            href="mailto:ceo@noetfield.com?subject=Trust%20Brief%20pilot%20inquiry"
             class="btn-primary"
           >
-            Request a Trust Brief call
+            Discuss a Trust Brief pilot
           </a>
-          <a href="/trust-ledger/" class="btn-ghost">Understand the Trust Ledger</a>
+          <a href="/trust-ledger/" class="btn-ghost">See how the Trust Ledger works</a>
         </div>
       </section>
 
       <section class="section">
         <div class="section-title-row">
           <div>
-            <div class="section-kicker">What it is</div>
-            <h2 class="section-title">A time-boxed, governance-first AI review</h2>
+            <div class="section-kicker">Who it is for</div>
+            <h2 class="section-title">Boards, executives, and stewards facing AI pressure</h2>
           </div>
         </div>
         <p>
-          The Trust Brief is not an open-ended consulting engagement. It is a 6-week, time-boxed review that focuses on
-          a small number of AI and automation decisions that actually move risk, money, or customers – and makes them
-          legible to boards and committees.
-        </p>
-        <p>
-          The output is a board-ready report and a set of initial Trust Ledger entries. It gives stewards a concrete
-          starting point for AI governance, without asking them to absorb every model card, dashboard, and ticket.
-        </p>
-      </section>
-
-      <section class="section">
-        <div class="section-title-row">
-          <div>
-            <div class="section-kicker">Phasing</div>
-            <h2 class="section-title">How the 6 weeks unfold</h2>
-          </div>
-        </div>
-        <div class="grid-2">
-          <div class="card">
-            <div class="card-kicker">Weeks 1–2</div>
-            <div class="card-title">Inventory & interviews</div>
-            <p>
-              Identify AI and automation that is capable of moving money, affecting customers, or triggering
-              regulatory attention. Short, focused interviews across product, risk, and technology – no long workshops.
-            </p>
-          </div>
-          <div class="card">
-            <div class="card-kicker">Weeks 2–3</div>
-            <div class="card-title">Materiality & selection</div>
-            <p>
-              Prioritise 3–5 decisions and use cases where governance needs to be explicit at board or committee level.
-              Align on what “material” means in your context.
-            </p>
-          </div>
-          <div class="card">
-            <div class="card-kicker">Weeks 3–5</div>
-            <div class="card-title">Draft the first Ledger entries</div>
-            <p>
-              Translate technical artefacts – documentation, dashboards, incidents – into plain-language Trust Ledger
-              entries. Map gaps in safeguards, ownership, and evidence.
-            </p>
-          </div>
-          <div class="card">
-            <div class="card-kicker">Weeks 5–6</div>
-            <div class="card-title">Board-ready brief & options</div>
-            <p>
-              Deliver a concise report and walk-through tailored for boards and executives, with options for how to
-              continue: extend the Ledger, update policies, or set new thresholds for AI decisions.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section class="section">
-        <div class="section-title-row">
-          <div>
-            <div class="section-kicker">Outcomes</div>
-            <h2 class="section-title">What boards and executives walk away with</h2>
-          </div>
-        </div>
-        <div class="two-col">
-          <div>
-            <p>
-              At the end of the Trust Brief, your organisation has a shared, governance-level view of AI – not a pile of
-              slides. The emphasis is on traceable decisions and accountable roles.
-            </p>
-            <ul>
-              <li>A shortlist of AI and automation use cases that are actually material.</li>
-              <li>
-                Initial Trust Ledger entries for the top 3–5 decisions, ready to attach to board packs and
-                audit files.
-              </li>
-              <li>A map of current safeguards and gaps – from monitoring thresholds to ownership.</li>
-              <li>
-                Practical options for next steps that fit your regulatory and organisational context.
-              </li>
-            </ul>
-          </div>
-          <div class="checklist">
-            <div class="checklist-title">Board-facing checklist</div>
-            <div class="checklist-item">Can we name our top 3–5 AI decisions that move risk, money, or customers?</div>
-            <div class="checklist-item">Do we know what data and safeguards those systems rely on?</div>
-            <div class="checklist-item">Is ownership for those decisions clearly tied to named roles?</div>
-            <div class="checklist-item">
-              If a regulator asked tomorrow, could we show how those decisions were governed?
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="section">
-        <div class="section-title-row">
-          <div>
-            <div class="section-kicker">Connection</div>
-            <h2 class="section-title">How the Trust Brief feeds the Trust Ledger</h2>
-          </div>
-        </div>
-        <p>
-          The Trust Brief is the most direct on-ramp into the Noetfield Trust Ledger. Rather than designing governance
-          in the abstract, it starts from real decisions and real artefacts inside your organisation.
+          The Noetfield AI Trust Brief is designed for board chairs, executive directors, CEOs, and risk, audit,
+          or compliance leaders who:
         </p>
         <ul>
-          <li>Each selected decision produces one or more draft Trust Ledger entries.</li>
+          <li>Are already using AI, or planning to use it soon.</li>
+          <li>Feel growing pressure from boards, funders, or regulators to “show control” around AI.</li>
+          <li>Want a clear, independent view of AI risks and safeguards – without a long consulting project.</li>
+        </ul>
+        <p>Typical organisations include:</p>
+        <ul>
+          <li>Credit unions and financial co-operatives</li>
+          <li>Nonprofits and foundations</li>
+          <li>Indigenous and community economic organisations</li>
+          <li>Mid-size companies with emerging AI use</li>
+        </ul>
+      </section>
+
+      <section class="section">
+        <div class="section-title-row">
+          <div>
+            <div class="section-kicker">Outcome</div>
+            <h2 class="section-title">What you receive in 6 weeks</h2>
+          </div>
+        </div>
+        <p>By the end of the pilot, your organisation receives:</p>
+        <ul>
           <li>
-            The report links those entries to existing controls: documentation, monitoring, incidents, and policies.
+            A <strong>board-ready AI Trust Brief</strong> (6–10 pages) in plain language, mapping how AI touches
+            your work, the associated risks, current safeguards, and priority actions.
           </li>
           <li>
-            Next steps can focus on extending the Ledger, strengthening safeguards, or sharpening board thresholds
-            for AI.
+            A <strong>sample Trust Ledger page</strong> (1–2 pages) that shows how critical AI systems and
+            decisions can be documented going forward.
           </li>
         </ul>
+        <p>These give your board, funders, and regulators a clear picture of:</p>
+        <ul>
+          <li>Where AI is used today and where it is planned.</li>
+          <li>Key risks, gaps, and dependencies.</li>
+          <li>Existing safeguards, controls, and accountable roles.</li>
+          <li><strong>5–7 priority actions</strong> for the next 12 months.</li>
+        </ul>
+      </section>
+
+      <section class="section">
+        <div class="section-title-row">
+          <div>
+            <div class="section-kicker">Process</div>
+            <h2 class="section-title">How the 6-week pilot works</h2>
+          </div>
+        </div>
         <p>
-          For a detailed view of the Ledger format itself, see the dedicated page:
-          <a href="/trust-ledger/">Noetfield Trust Ledger →</a>
+          The Trust Brief is intentionally time-boxed. It focuses on a manageable number of AI systems and decisions
+          so that you get a concrete, board-ready outcome in 6 weeks.
+        </p>
+        <ol>
+          <li>
+            <strong>Week 1 – Kickoff and intake</strong><br />
+            60–90 minute kickoff with key stakeholders, agreement on scope and focus, and secure collection of
+            relevant policies, contracts, and AI-related documents.
+          </li>
+          <li>
+            <strong>Weeks 2–3 – Interviews and mapping</strong><br />
+            2–3 structured conversations with people who own or operate AI-related tools, and a first map of AI use,
+            risks, and existing safeguards.
+          </li>
+          <li>
+            <strong>Week 4 – Synthesis and draft Brief</strong><br />
+            Noetfield consolidates findings into a draft AI Trust Brief and a first Trust Ledger sample.
+          </li>
+          <li>
+            <strong>Week 5 – Review and refine</strong><br />
+            Joint review session to validate facts, language, and priorities, aligned with your board and regulatory
+            context.
+          </li>
+          <li>
+            <strong>Week 6 – Final delivery</strong><br />
+            Final AI Trust Brief (PDF) and Trust Ledger sample, with an optional short presentation to leadership
+            or a board delegate. All work can be delivered remotely.
+          </li>
+        </ol>
+      </section>
+
+      <section class="section">
+        <div class="section-title-row">
+          <div>
+            <div class="section-kicker">Pricing</div>
+            <h2 class="section-title">Pilot pricing for early partners</h2>
+          </div>
+        </div>
+        <p>
+          For early partners, the 6-week AI Trust Brief pilot is offered at founding pilot pricing,
+          starting from <strong>CAD 4,800</strong> (plus applicable taxes).
+        </p>
+        <p>
+          Final pricing depends on the number of interviews, systems in scope, and any additional workshops or
+          presentations requested. Pilot partners help shape the standard Trust Brief format for their sector and
+          the future Noetfield Trust Ledger service.
         </p>
       </section>
 
       <section class="section">
         <div class="section-title-row">
           <div>
-            <div class="section-kicker">FAQ</div>
-            <h2 class="section-title">Trust Brief in practice</h2>
+            <div class="section-kicker">Why now</div>
+            <h2 class="section-title">Boards and funders are starting to ask simple questions</h2>
           </div>
         </div>
-        <div class="two-col">
-          <div>
-            <div class="faq-item">
-              <div class="faq-q">Who is the Trust Brief for?</div>
-              <div class="faq-a">
-                The Trust Brief is designed for organisations that already have AI or automation in production –
-                especially in financial services, infrastructure, utilities, or other real-economy sectors – and need
-                a governance-level view before regulation or incidents force the issue.
-              </div>
-            </div>
-            <div class="faq-item">
-              <div class="faq-q">How much time does it require from internal teams?</div>
-              <div class="faq-a">
-                Most of the internal load is concentrated in short interviews, document access, and one or two review
-                sessions. The aim is to keep time demands reasonable for senior leaders while still grounding the work
-                in real systems.
-              </div>
-            </div>
-          </div>
-          <div>
-            <div class="faq-item">
-              <div class="faq-q">Is this an audit or a certification?</div>
-              <div class="faq-a">
-                No. The Trust Brief is an advisory, diagnostic engagement. It does not produce a formal certification.
-                Instead, it prepares your organisation for audits, supervisory reviews, and internal assurance work by
-                clarifying what matters most and how it is currently governed.
-              </div>
-            </div>
-            <div class="faq-item">
-              <div class="faq-q">What happens after the Trust Brief?</div>
-              <div class="faq-a">
-                Options typically include extending the Trust Ledger to additional decisions, updating AI and risk
-                policies, or designing a lighter-weight reporting rhythm for boards and committees. The next step is
-                tailored to your risk appetite and regulatory environment.
-              </div>
-            </div>
-          </div>
-        </div>
+        <p>
+          Across sectors, boards, funders, and regulators are beginning to ask:
+        </p>
+        <ul>
+          <li>Where are we using AI?</li>
+          <li>What could go wrong if it fails or behaves unexpectedly?</li>
+          <li>Who is accountable, and what controls do we have?</li>
+        </ul>
+        <p>
+          Most organisations do not yet have a short, structured document that answers these questions. The Noetfield
+          AI Trust Brief is a focused way to move from ad-hoc conversations to one coherent view of AI risk and
+          governance – without over-building or over-spending.
+        </p>
       </section>
 
+      <!-- Form + FAQ section -->
       <section class="section">
         <div class="section-title-row">
           <div>
             <div class="section-kicker">Next step</div>
+            <h2 class="section-title">Request early access to a Trust Brief pilot</h2>
+          </div>
+        </div>
+        <p>
+          Share a few details about your organisation and interest. You will receive a short follow-up to confirm fit,
+          timing, and scope before any commitment is made.
+        </p>
+
+        <div class="form-layout">
+          <div class="form-card">
+            <!-- TODO: replace action URL with your Formspree or backend endpoint -->
+            <form method="POST" action="https://formspree.io/f/YOUR_FORM_ID">
+              <div class="form-group">
+                <label for="name">Name</label>
+                <input
+                  id="name"
+                  name="name"
+                  type="text"
+                  autocomplete="name"
+                  placeholder="Your full name"
+                  required
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  autocomplete="email"
+                  placeholder="you@example.org"
+                  required
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="org">Organization / Role</label>
+                <input
+                  id="org"
+                  name="organization"
+                  type="text"
+                  placeholder="e.g. Credit union – Board chair"
+                  required
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="company-size">Company size</label>
+                <select id="company-size" name="company_size" required>
+                  <option value="" selected disabled>Select</option>
+                  <option value="1-49">1–49 staff</option>
+                  <option value="50-199">50–199 staff</option>
+                  <option value="200-999">200–999 staff</option>
+                  <option value="1000+">1,000+ staff</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label>Licence interest</label>
+                <div class="licence-options">
+                  <label class="licence-option">
+                    <input type="radio" name="licence_interest" value="standard" required />
+                    <span>Standard</span>
+                  </label>
+                  <label class="licence-option">
+                    <input type="radio" name="licence_interest" value="agency_pro" />
+                    <span>Agency / Pro</span>
+                  </label>
+                  <label class="licence-option">
+                    <input type="radio" name="licence_interest" value="not_sure_yet" />
+                    <span>Not sure yet</span>
+                  </label>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="notes">Context (optional)</label>
+                <textarea
+                  id="notes"
+                  name="context"
+                  rows="3"
+                  placeholder="Any brief context on your AI use, regulatory pressure, or timing."
+                ></textarea>
+                <p class="helper-text">
+                  A short paragraph is enough – this simply helps the first conversation be more focused.
+                </p>
+              </div>
+
+              <label class="consent">
+                <input type="checkbox" name="consent_updates" value="yes" />
+                <span>
+                  I’d like to receive occasional updates about Noetfield’s AI governance work and the Trust Ledger.
+                </span>
+              </label>
+
+              <div style="margin-top: 14px;">
+                <button type="submit" class="btn-primary btn-full">
+                  Request early access
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <div class="faq-card">
+            <div class="section-kicker">FAQ</div>
+            <h3 class="card-title">Using the Trust Brief in practice</h3>
+
+            <div class="faq-item">
+              <div class="faq-q">Who is the AI Trust Brief for?</div>
+              <div class="faq-a">
+                It is designed for B2B teams and mission-driven organisations that already use AI in their work –
+                for example in marketing, analytics, content, or decision support – and now need a credible,
+                structured way to show that AI usage is governed, documented, and aligned with basic risk expectations.
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <div class="faq-q">Does the Trust Brief replace legal or compliance advice?</div>
+              <div class="faq-a">
+                No. The Trust Brief does not provide legal advice and does not replace formal compliance functions.
+                It gives structure, language, and a baseline record that can be reviewed with internal or external
+                counsel, auditors, or regulators.
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <div class="faq-q">How does it connect to the Trust Ledger?</div>
+              <div class="faq-a">
+                The pilot produces a first Trust Ledger sample for one or two material AI systems. This acts as a
+                template for expanding coverage over time or moving into a fuller Noetfield Trust Ledger engagement.
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <div class="faq-q">Can the pilot be delivered remotely?</div>
+              <div class="faq-a">
+                Yes. All interviews, reviews, and briefings can be delivered remotely, with materials shared securely.
+                In-person sessions are possible by separate arrangement where useful.
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-title-row">
+          <div>
+            <div class="section-kicker">Alternative next step</div>
             <h2 class="section-title">Arrange a short scoping call</h2>
           </div>
         </div>
         <p>
           A 20–30 minute conversation is usually enough to understand your current AI footprint, regulatory pressure,
-          and whether a Trust Brief is the right entry point.
+          and whether a Trust Brief pilot is the right entry point.
         </p>
         <p>
           Email
-          <a href="mailto:ceo@noetfield.com?subject=Trust%20Brief%20inquiry">
+          <a href="mailto:ceo@noetfield.com?subject=Trust%20Brief%20pilot%20inquiry">
             ceo@noetfield.com
           </a>
           with a short note on your sector and role, and a few potential time windows.

@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <title>Noetfield Gate – Early Access to the Trust Ledger Architecture</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-
   <meta
     name="description"
     content="Noetfield Gate is an invitation-only access point for board chairs, regulators, and institutional stewards to engage early with the Noetfield Trust Ledger architecture."
@@ -39,12 +38,12 @@
     "@type": "WebPage",
     "name": "Noetfield Gate",
     "url": "https://www.noetfield.com/gate/",
+    "description": "Noetfield Gate – selectively governed, invitation-only access to the Noetfield Trust Ledger architecture for institutional stewards.",
     "isPartOf": {
       "@type": "WebSite",
       "name": "Noetfield",
       "url": "https://www.noetfield.com/"
-    },
-    "description": "Noetfield Gate – selectively governed, invitation-only access to the Noetfield Trust Ledger architecture for institutional stewards."
+    }
   }
   </script>
 
@@ -58,40 +57,44 @@
 
     :root {
       --bg: #05060a;
-      --bg-soft: #111318;
+      --bg-soft: #080911;
       --border-soft: rgba(255,255,255,0.10);
       --text-main: #f5f5f7;
-      --text-soft: rgba(218,222,235,0.98);
-      --text-mute: rgba(150,160,175,0.9);
+      --text-soft: #daddef;
+      --text-mute: #9ca3af;
       --accent: #ffffff;
+      --accent-soft: #9ca3ff;
     }
 
     body {
       font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: radial-gradient(circle at top, #141623 0%, var(--bg) 55%);
+      background: radial-gradient(circle at top, #151827 0%, var(--bg) 55%);
       color: var(--text-main);
       min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 32px 20px 40px;
     }
 
     a { color: inherit; text-decoration: none; }
 
     .page {
-      max-width: 960px;
-      margin: 0 auto;
-      padding: 24px 16px 40px;
+      width: 100%;
+      max-width: 1040px;
       display: flex;
       flex-direction: column;
-      min-height: 100vh;
+      min-height: calc(100vh - 72px);
     }
 
     header {
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      padding-bottom: 16px;
+      justify-content: space-between;
+      margin-bottom: 32px;
+      padding-bottom: 14px;
       border-bottom: 1px solid var(--border-soft);
-      margin-bottom: 28px;
-      gap: 12px;
+      gap: 14px;
     }
 
     .brand-wrap {
@@ -135,15 +138,15 @@
     nav {
       display: flex;
       gap: 18px;
-      font-size: 0.85rem;
+      font-size: 13px;
       flex-wrap: wrap;
     }
 
     nav a {
       opacity: 0.78;
-      position: relative;
       padding-bottom: 2px;
       border-bottom: 1px solid transparent;
+      position: relative;
     }
 
     nav a:hover {
@@ -157,106 +160,155 @@
       font-weight: 500;
     }
 
-    main {
-      flex: 1;
-      display: flex;
-      justify-content: center;
+    main { width: 100%; }
+
+    .hero {
+      margin-bottom: 32px;
     }
 
-    .content {
-      width: 100%;
-      max-width: 720px;
-      text-align: center;
-    }
-
-    .hero-label {
-      font-size: 0.7rem;
+    .hero-kicker {
+      font-size: 11px;
       text-transform: uppercase;
       letter-spacing: 0.16em;
       color: var(--text-mute);
-      margin-bottom: 8px;
-    }
-
-    .hero-title {
-      font-size: 1.6rem;
-      font-weight: 600;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
       margin-bottom: 10px;
     }
 
+    .hero-title {
+      font-size: clamp(26px, 3vw, 30px);
+      line-height: 1.15;
+      font-weight: 600;
+      margin-bottom: 14px;
+      letter-spacing: -0.02em;
+    }
+
+    .hero-title span {
+      background: linear-gradient(135deg, #ffffff, #a5b4fc);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
     .hero-subtitle {
-      font-size: 0.85rem;
-      color: var(--text-soft);
-      margin-bottom: 24px;
+      font-size: 15px;
+      line-height: 1.6;
+      color: #d0d3dd;
+      max-width: 680px;
     }
 
-    .hero-subtitle span {
-      color: #e5e7eb;
+    .hero-cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 22px;
+    }
+
+    .btn-primary,
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 9px 18px;
+      border-radius: 999px;
+      font-size: 13px;
       font-weight: 500;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: background-color 0.16s ease, border-color 0.16s ease, color 0.16s ease, transform 0.06s ease;
+      white-space: nowrap;
     }
 
-    .intro {
-      font-size: 0.95rem;
+    .btn-primary {
+      background: linear-gradient(135deg, #f9fafb, #e5e7eb);
+      color: #050608;
+      box-shadow: 0 12px 32px rgba(15,23,42,0.9);
+    }
+
+    .btn-primary:hover {
+      background: #ffffff;
+      transform: translateY(-1px);
+    }
+
+    .btn-ghost {
+      background: rgba(15,23,42,0.9);
+      border-color: #4b4f5c;
+      color: #e1e3ea;
+    }
+
+    .btn-ghost:hover {
+      background: #111827;
+      border-color: #6c7080;
+    }
+
+    .section {
+      margin-bottom: 30px;
+    }
+
+    .section-title {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .section-subtitle {
+      font-size: 14px;
+      color: #a0a4ae;
+      margin-bottom: 10px;
+    }
+
+    .section p {
+      font-size: 14px;
       line-height: 1.7;
-      color: var(--text-soft);
-      margin: 0 auto 26px;
-      max-width: 36rem;
+      color: #e1e3ea;
+      margin-bottom: 9px;
+      max-width: 720px;
     }
 
-    .intro p + p { margin-top: 14px; }
-
-    .access-box {
-      background: radial-gradient(circle at top left, #25273a 0%, #12131a 52%, #060712 100%);
+    /* Gate card + form (uses same tones as cards in for-whom) */
+    .gate-card {
       border-radius: 16px;
-      padding: 22px 20px 20px;
-      margin: 0 auto 18px;
-      max-width: 520px;
-      text-align: left;
-      box-shadow: 0 18px 40px rgba(0,0,0,0.6);
-      border: 1px solid rgba(255,255,255,0.12);
+      border: 1px solid #22252f;
+      background: radial-gradient(circle at top left, #191c2e 0, #0a0b10 52%, #050608 100%);
+      padding: 18px 18px 16px;
+      max-width: 720px;
     }
 
-    .access-box-header {
-      text-align: center;
-      margin-bottom: 18px;
-    }
-
-    .access-kicker {
-      font-size: 0.7rem;
+    .gate-kicker {
+      font-size: 11px;
       text-transform: uppercase;
-      letter-spacing: 0.16em;
-      color: var(--text-mute);
+      letter-spacing: 0.14em;
+      color: #9ea2b2;
       margin-bottom: 4px;
     }
 
-    .access-box-header h3 {
-      font-size: 1rem;
+    .gate-title {
+      font-size: 15px;
       font-weight: 600;
       margin-bottom: 4px;
     }
 
-    .access-box-header p {
-      font-size: 0.8rem;
-      color: var(--text-mute);
+    .gate-subtitle {
+      font-size: 13px;
+      color: #daddef;
+      margin-bottom: 12px;
+    }
+
+    .form-grid-two {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 12px;
+      margin-bottom: 10px;
     }
 
     .form-group {
-      margin-bottom: 14px;
-    }
-
-    .form-row {
-      display: grid;
-      grid-template-columns: minmax(0,1fr) minmax(0,1fr);
-      gap: 12px;
       margin-bottom: 10px;
     }
 
     .form-label {
       display: block;
-      font-size: 0.8rem;
-      color: #d1d5db;
-      margin-bottom: 5px;
+      font-size: 12px;
+      color: #e1e3ea;
+      margin-bottom: 4px;
     }
 
     .input,
@@ -264,10 +316,10 @@
     .select {
       width: 100%;
       font-family: inherit;
-      font-size: 0.9rem;
+      font-size: 13px;
       border-radius: 10px;
       border: 1px solid #333641;
-      padding: 10px 12px;
+      padding: 9px 11px;
       background-color: #050814;
       color: #f9fafb;
       outline: none;
@@ -281,7 +333,7 @@
     }
 
     .textarea {
-      min-height: 100px;
+      min-height: 96px;
       resize: vertical;
       line-height: 1.5;
     }
@@ -290,52 +342,62 @@
     .textarea:focus,
     .select:focus {
       border-color: #e5e7eb;
-      box-shadow: 0 0 0 1px rgba(229,231,235,0.4);
+      box-shadow: 0 0 0 1px rgba(229,231,235,0.35);
       background-color: #070a18;
     }
 
     .helper {
-      font-size: 0.75rem;
-      color: var(--text-mute);
-      margin-top: 4px;
+      font-size: 11px;
+      color: #9ea2b2;
+      margin-top: 3px;
     }
 
     .pill-row {
       display: flex;
       flex-wrap: wrap;
       gap: 6px;
-      margin-top: 8px;
+      margin-top: 6px;
     }
 
     .pill-tag {
-      font-size: 0.7rem;
+      font-size: 11px;
       border-radius: 999px;
-      border: 1px solid rgba(148,163,253,0.5);
-      padding: 3px 8px;
-      color: #e5e7eb;
-      background: rgba(15,23,42,0.8);
+      border: 1px solid #343848;
+      padding: 4px 9px;
+      color: #d4d7ea;
+      background: rgba(15,23,42,0.85);
       cursor: pointer;
+    }
+
+    .gate-note {
+      margin-top: 10px;
+      font-size: 12px;
+      color: #a0a4ae;
+    }
+
+    .gate-note a {
+      color: #cbd1ff;
     }
 
     .access-button {
       width: 100%;
-      margin-top: 8px;
-      padding: 11px 16px;
+      margin-top: 10px;
+      padding: 9px 16px;
       border-radius: 999px;
       border: none;
       font-family: inherit;
-      font-size: 0.9rem;
-      font-weight: 600;
+      font-size: 13px;
+      font-weight: 500;
       cursor: pointer;
       background: linear-gradient(135deg, #f9fafb, #e5e7eb);
-      color: #020617;
-      box-shadow: 0 10px 28px rgba(15,23,42,0.9);
+      color: #050608;
+      box-shadow: 0 12px 32px rgba(15,23,42,0.9);
       transition: transform 0.08s ease, box-shadow 0.12s ease, background-color 0.12s ease;
     }
 
     .access-button:hover {
       background-color: #ffffff;
-      box-shadow: 0 14px 34px rgba(15,23,42,0.95);
+      box-shadow: 0 16px 36px rgba(15,23,42,0.95);
       transform: translateY(-1px);
     }
 
@@ -344,56 +406,52 @@
       box-shadow: none;
     }
 
-    .access-note {
-      max-width: 520px;
-      margin: 0 auto 36px;
-      font-size: 0.75rem;
-      line-height: 1.6;
-      color: var(--text-mute);
-      text-align: left;
-    }
-
-    .access-note strong { color: #e5e7eb; }
-
     footer {
-      border-top: 1px solid var(--border-soft);
-      padding-top: 12px;
-      font-size: 0.75rem;
-      color: var(--text-mute);
+      margin-top: 32px;
+      font-size: 11px;
+      color: #737889;
       display: flex;
-      flex-wrap: wrap;
       justify-content: space-between;
-      gap: 8px;
+      gap: 12px;
+      flex-wrap: wrap;
       align-items: center;
-      margin-top: 16px;
     }
 
     footer a {
-      color: inherit;
-      opacity: 0.85;
+      color: #b6bad1;
+      text-decoration: none;
     }
 
     footer a:hover {
-      opacity: 1;
       text-decoration: underline;
     }
 
     @media (max-width: 768px) {
-      header {
-        flex-direction: column;
-        align-items: flex-start;
+      body {
+        padding: 24px 16px 32px;
       }
-      nav { justify-content: flex-start; }
-      .hero-title { font-size: 1.4rem; }
-      .intro { font-size: 0.9rem; }
-      .form-row {
-        grid-template-columns: minmax(0,1fr);
-      }
-    }
 
-    @media (max-width: 480px) {
-      .page { padding-inline: 14px; }
-      .access-box { padding-inline: 16px; }
+      header {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 6px;
+      }
+
+      nav {
+        justify-content: flex-start;
+      }
+
+      .hero-title {
+        font-size: 24px;
+      }
+
+      .hero-subtitle {
+        max-width: 100%;
+      }
+
+      .form-grid-two {
+        grid-template-columns: minmax(0, 1fr);
+      }
     }
   </style>
 </head>
@@ -419,35 +477,39 @@
     </header>
 
     <main>
-      <div class="content">
-        <div class="hero-label">Selective access</div>
-        <h1 class="hero-title">GATE</h1>
-        <div class="hero-subtitle">
-          Gatekeepers of the next order: <span>board chairs, regulators, and institutional stewards</span>
-          responsible for systems exposed to AI.
+      <section class="hero">
+        <div class="hero-kicker">Gate</div>
+        <h1 class="hero-title">
+          Gatekeepers of the next order:
+          <span>board chairs, regulators, and institutional stewards</span>.
+        </h1>
+        <p class="hero-subtitle">
+          Gate is a selectively governed access point into the emerging Noetfield Trust Ledger
+          architecture – for those who carry fiduciary duties over real-economy systems where AI
+          already moves risk, money, or customers. If you received this link directly, you are
+          already on the short list.
+        </p>
+        <div class="hero-cta-row">
+          <a href="/trust-ledger/" class="btn-ghost">Review the Trust Ledger pattern</a>
         </div>
+      </section>
 
-        <section class="intro">
-          <p>
-            This is not a public invitation. Gate is a selectively governed access point into the emerging
-            Noetfield Trust Ledger architecture – for those who carry fiduciary duties over real-economy
-            systems where AI already moves risk, money, or customers.
-          </p>
-          <p>
-            If you received this link directly, you are already on the short list. A short signal below
-            tells us who you are, which systems you steward, and how you would prefer to engage.
-          </p>
-        </section>
+      <section class="section">
+        <h2 class="section-title">Request entry to Gate</h2>
+        <p class="section-subtitle">
+          Three short signals: who you are, what you steward, and how you prefer to engage.
+        </p>
 
-        <section class="access-box">
-          <div class="access-box-header">
-            <div class="access-kicker">Early architecture access</div>
-            <h3>Gate access request</h3>
-            <p>Three short signals: who you are, what you steward, and what you want to explore.</p>
+        <div class="gate-card">
+          <div class="gate-kicker">Early architecture access</div>
+          <div class="gate-title">Gate access request</div>
+          <div class="gate-subtitle">
+            Designed for board and audit chairs, executives with accountability for AI-enabled systems,
+            regulators and supervisors, and capital partners focused on stewardship.
           </div>
 
           <form action="https://formspree.io/f/xyzrdrpv" method="POST">
-            <div class="form-row">
+            <div class="form-grid-two">
               <div class="form-group">
                 <label class="form-label" for="name">Full name</label>
                 <input
@@ -550,28 +612,26 @@
 
             <button type="submit" class="access-button">Request entry</button>
           </form>
-        </section>
 
-        <div class="access-note">
-          Designed for <strong>board and audit chairs</strong>, <strong>risk and compliance leads</strong>,
-          <strong>regulators and supervisors</strong>, and <strong>capital partners</strong> who care about
-          traceable governance, not just AI scale. If you prefer, you can also reach out directly at
-          <a href="mailto:ceo@noetfield.com?subject=Gate%20access%20inquiry">ceo@noetfield.com</a> with the same signals.
+          <div class="gate-note">
+            Prefer a direct email? You can also reach out at
+            <a href="mailto:ceo@noetfield.com?subject=Gate%20access%20inquiry">ceo@noetfield.com</a>
+            with the same three signals.
+          </div>
         </div>
-      </div>
+      </section>
     </main>
 
     <footer>
-      <span>© <span id="year"></span> Noetfield Systems Inc. All rights reserved.</span>
-      <span>
-        <a href="/">Home</a> ·
+      <div>© <span id="year"></span> Noetfield Systems Inc. All rights reserved.</div>
+      <div>
         <a href="/trust-brief/">Trust Brief</a> ·
         <a href="/trust-ledger/">Trust Ledger</a> ·
-        <a href="/for-whom/">For Whom</a> ·
+        <a href="/for-whom/">For whom</a> ·
         <a href="/gate/">Gate</a> ·
         <a href="/about/">About</a> ·
         <a href="/contact/">Contact</a>
-      </span>
+      </div>
     </footer>
   </div>
 

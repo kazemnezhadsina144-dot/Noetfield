@@ -177,12 +177,32 @@
       margin-bottom: 36px;
     }
 
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,253,0.35);
+      background: radial-gradient(circle at 0 0, rgba(129,140,248,0.32), transparent 55%);
+      color: #e5e7eb;
+      margin-bottom: 10px;
+    }
+
+    .pill-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #7dd3fc, #a855f7);
+    }
+
     .hero-kicker {
       font-size: 11px;
       text-transform: uppercase;
       letter-spacing: 0.16em;
       color: var(--text-mute);
-      margin-bottom: 10px;
+      margin-bottom: 8px;
     }
 
     .hero-title {
@@ -255,10 +275,27 @@
       margin-bottom: 30px;
     }
 
+    .section-kicker {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--text-mute);
+      margin-bottom: 4px;
+    }
+
+    .section-title-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+
     .section-title {
       font-size: 18px;
       font-weight: 600;
-      margin-bottom: 8px;
+      margin-bottom: 0;
+      letter-spacing: -0.02em;
     }
 
     .section-subtitle {
@@ -476,6 +513,21 @@
       .grid-3 {
         grid-template-columns: minmax(0, 1fr);
       }
+
+      .hero-cta-row {
+        flex-direction: column;
+      }
+
+      .btn-primary,
+      .btn-ghost {
+        width: 100%;
+        justify-content: center;
+      }
+
+      footer {
+        flex-direction: column;
+        align-items: flex-start;
+      }
     }
   </style>
 </head>
@@ -502,6 +554,10 @@
 
     <main>
       <section class="hero">
+        <div class="pill">
+          <span class="pill-dot"></span>
+          Boards, executives, regulators, and internal audit
+        </div>
         <div class="hero-kicker">For whom</div>
         <h1 class="hero-title">
           For the people who must <span>answer for AI</span> – not just build it.
@@ -518,11 +574,16 @@
       </section>
 
       <section class="section">
-        <h2 class="section-title">Who we serve</h2>
+        <div class="section-title-row">
+          <div>
+            <div class="section-kicker">Who we serve</div>
+            <h2 class="section-title">Core roles and committees</h2>
+          </div>
+        </div>
         <p class="section-subtitle">Four core groups, one shared responsibility for AI decisions.</p>
         <div class="grid-3">
           <div class="card">
-            <div class="card-kicker">Boards & committees</div>
+            <div class="card-kicker">Boards &amp; committees</div>
             <div class="card-title">Chairs, directors, and risk/audit committees</div>
             <p>
               For directors who must sign off on strategies, risk appetites, and material AI deployments, but do not
@@ -531,13 +592,13 @@
             </p>
             <div class="tag-row">
               <div class="tag">Board oversight</div>
-              <div class="tag">Risk & audit committees</div>
+              <div class="tag">Risk &amp; audit committees</div>
               <div class="tag">Fiduciary duty</div>
             </div>
           </div>
 
           <div class="card">
-            <div class="card-kicker">Executives & operators</div>
+            <div class="card-kicker">Executives &amp; operators</div>
             <div class="card-title">CROs, COOs, CIOs, CDOs, and AI leads</div>
             <p>
               For executives who own AI-enabled processes and must explain them to boards, supervisors, and customers.
@@ -552,7 +613,7 @@
           </div>
 
           <div class="card">
-            <div class="card-kicker">Regulators & oversight</div>
+            <div class="card-kicker">Regulators &amp; oversight</div>
             <div class="card-title">Supervisors, internal audit, and assurance</div>
             <p>
               For regulators, internal audit, and assurance functions that need evidence of governance – not marketing
@@ -569,7 +630,12 @@
       </section>
 
       <section class="section">
-        <h2 class="section-title">Where Noetfield is most relevant</h2>
+        <div class="section-title-row">
+          <div>
+            <div class="section-kicker">Where it applies</div>
+            <h2 class="section-title">Where Noetfield is most relevant</h2>
+          </div>
+        </div>
         <div class="grid-2">
           <div>
             <p class="section-subtitle">Real-economy sectors</p>
@@ -600,7 +666,12 @@
       </section>
 
       <section class="section">
-        <h2 class="section-title">Use-case snapshots</h2>
+        <div class="section-title-row">
+          <div>
+            <div class="section-kicker">Use cases</div>
+            <h2 class="section-title">Use-case snapshots</h2>
+          </div>
+        </div>
         <p class="section-subtitle">Examples of where a Trust Brief and Trust Ledger make a difference.</p>
         <div class="grid-3">
           <div>
@@ -624,7 +695,7 @@
           </div>
 
           <div>
-            <div class="usecase-label">Markets & trading</div>
+            <div class="usecase-label">Markets &amp; trading</div>
             <div class="usecase-title">Algorithmic execution policies</div>
             <p class="usecase-text">
               Execution algorithms adapt to market conditions. Supervisors ask how limits, kill-switches, and human
@@ -636,7 +707,12 @@
       </section>
 
       <section class="section">
-        <h2 class="section-title">Who Noetfield is not for</h2>
+        <div class="section-title-row">
+          <div>
+            <div class="section-kicker">Fit</div>
+            <h2 class="section-title">Who Noetfield is not for – and what makes a good partner</h2>
+          </div>
+        </div>
         <div class="grid-2">
           <div>
             <p>
@@ -667,7 +743,12 @@
       </section>
 
       <section class="section">
-        <h2 class="section-title">FAQ – fit and expectations</h2>
+        <div class="section-title-row">
+          <div>
+            <div class="section-kicker">FAQ</div>
+            <h2 class="section-title">FAQ – fit and expectations</h2>
+          </div>
+        </div>
         <div class="grid-2">
           <div>
             <div class="faq-item">
@@ -712,7 +793,12 @@
       </section>
 
       <section class="section">
-        <h2 class="section-title">If this sounds like your responsibility, you are the audience.</h2>
+        <div class="section-title-row">
+          <div>
+            <div class="section-kicker">Next steps</div>
+            <h2 class="section-title">If this sounds like your responsibility, you are the audience.</h2>
+          </div>
+        </div>
         <p>
           If you recognise your organisation in these scenarios – pressure from regulators, AI already in material
           decisions, and a gap between technical artefacts and board-level accountability – then the Trust Brief and

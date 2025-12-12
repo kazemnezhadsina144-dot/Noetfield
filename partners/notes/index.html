@@ -284,6 +284,7 @@
       color: #cbd5f5;
       margin-top: 10px;
       line-height: 1.7;
+      max-width: 720px;
     }
 
     .hero-links a {
@@ -552,11 +553,22 @@
       margin-bottom: 12px;
     }
 
+    .form-grid-two {
+      display: grid;
+      grid-template-columns: minmax(0,1fr) minmax(0,1fr);
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
     .form-row {
       display: flex;
       flex-direction: column;
       gap: 4px;
       margin-bottom: 12px;
+    }
+
+    .form-row:last-child {
+      margin-bottom: 0;
     }
 
     .form-row label,
@@ -600,25 +612,33 @@
       box-shadow: 0 0 0 1px rgba(99,102,241,0.45);
     }
 
-    /* cleaner radio group like /partners/ */
     .radio-group {
       display: flex;
       flex-wrap: wrap;
-      gap: 12px;
+      gap: 10px;
       font-size: 12px;
       color: #d4d7eb;
-      margin-top: 4px;
+      margin-top: 2px;
     }
 
     .radio-group label {
       display: inline-flex;
       align-items: center;
       gap: 6px;
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid #303445;
+      background: rgba(15,23,42,0.85);
       cursor: pointer;
+      transition: background-color 0.12s ease, border-color 0.12s ease;
+    }
+
+    .radio-group label:hover {
+      border-color: #6366f1;
+      background: rgba(30,64,175,0.85);
     }
 
     .radio-group input[type="radio"] {
-      margin: 0;
       accent-color: #818cf8;
     }
 
@@ -704,7 +724,8 @@
         font-size: 24px;
       }
 
-      .hero-subtitle {
+      .hero-subtitle,
+      .hero-links {
         max-width: 100%;
       }
 
@@ -727,13 +748,17 @@
         justify-content: center;
       }
 
+      .simple-form {
+        padding: 14px 14px 12px;
+      }
+
+      .form-grid-two {
+        grid-template-columns: minmax(0,1fr);
+      }
+
       footer {
         flex-direction: column;
         align-items: flex-start;
-      }
-
-      .simple-form {
-        padding: 14px 14px 12px;
       }
     }
   </style>
@@ -757,7 +782,7 @@
         <a href="/about/">About</a>
         <a href="/contact/">Contact</a>
         <a href="/playbook/">Playbook</a>
-        <a href="/partners/" class="active" aria-current="page">Partners</a>
+        <a href="/partners/" class="active">Partners</a>
       </nav>
     </header>
 
@@ -780,7 +805,7 @@
           This page sits under the
           <a href="/partners/">Early Capital &amp; Stewardship Partners</a> track and summarises the working structure
           of the Partner Notes. For a broader view of the holding company and capital spine, see the
-          <a href="/structure/">Structure overview</a>.
+          <a href="/partners/structure/">Capital &amp; Valuation Structure sketch</a>.
         </p>
         <div class="hero-cta-row">
           <a href="#request-partner" class="btn-primary">
@@ -991,54 +1016,58 @@
             This short form is for initial context only. It does not constitute an offer, acceptance, or commitment.
           </div>
 
-          <div class="form-row">
-            <label for="name">
-              Name<span class="req">*</span>
-            </label>
-            <input
-              id="name"
-              name="name"
-              type="text"
-              required
-              autocomplete="name"
-              placeholder="Your full name"
-            />
+          <div class="form-grid-two">
+            <div class="form-row">
+              <label for="name">
+                Name<span class="req">*</span>
+              </label>
+              <input
+                id="name"
+                name="name"
+                type="text"
+                required
+                autocomplete="name"
+                placeholder="Your full name"
+              />
+            </div>
+
+            <div class="form-row">
+              <label for="email">
+                Email<span class="req">*</span>
+              </label>
+              <input
+                id="email"
+                name="email"
+                type="email"
+                required
+                autocomplete="email"
+                inputmode="email"
+                placeholder="you@example.com"
+              />
+            </div>
           </div>
 
-          <div class="form-row">
-            <label for="email">
-              Email<span class="req">*</span>
-            </label>
-            <input
-              id="email"
-              name="email"
-              type="email"
-              required
-              autocomplete="email"
-              inputmode="email"
-              placeholder="you@example.com"
-            />
-          </div>
+          <div class="form-grid-two">
+            <div class="form-row">
+              <label for="org">Organization / Role</label>
+              <input
+                id="org"
+                name="org"
+                type="text"
+                autocomplete="organization-title"
+                placeholder="For example: Family office principal, CIO, Partner, etc."
+              />
+            </div>
 
-          <div class="form-row">
-            <label for="org">Organization / Role</label>
-            <input
-              id="org"
-              name="org"
-              type="text"
-              autocomplete="organization"
-              placeholder="For example: Family office principal, CIO, Partner, etc."
-            />
-          </div>
-
-          <div class="form-row">
-            <label for="jurisdiction">Primary jurisdiction</label>
-            <input
-              id="jurisdiction"
-              name="jurisdiction"
-              type="text"
-              placeholder="e.g., Canada (BC), EU, US (NY), GCC"
-            />
+            <div class="form-row">
+              <label for="jurisdiction">Primary jurisdiction</label>
+              <input
+                id="jurisdiction"
+                name="jurisdiction"
+                type="text"
+                placeholder="e.g., Canada (BC), EU, US (NY), GCC"
+              />
+            </div>
           </div>
 
           <div class="form-row">
@@ -1170,7 +1199,7 @@
         <a href="/contact/">Contact</a> ·
         <a href="/playbook/">Playbook</a> ·
         <a href="/partners/">Partners</a> ·
-        <a href="/structure/">Structure</a>
+        <a href="/partners/structure/">Structure</a>
       </div>
     </footer>
   </div>

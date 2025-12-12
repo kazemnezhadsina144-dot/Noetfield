@@ -284,7 +284,6 @@
       color: #cbd5f5;
       margin-top: 10px;
       line-height: 1.7;
-      max-width: 720px;
     }
 
     .hero-links a {
@@ -553,22 +552,11 @@
       margin-bottom: 12px;
     }
 
-    .form-grid-two {
-      display: grid;
-      grid-template-columns: minmax(0,1fr) minmax(0,1fr);
-      gap: 12px;
-      margin-bottom: 12px;
-    }
-
     .form-row {
       display: flex;
       flex-direction: column;
       gap: 4px;
       margin-bottom: 12px;
-    }
-
-    .form-row:last-child {
-      margin-bottom: 0;
     }
 
     .form-row label,
@@ -613,33 +601,40 @@
     }
 
     .radio-group {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      font-size: 12px;
-      color: #d4d7eb;
-      margin-top: 2px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 8px;
+      margin-top: 4px;
     }
 
-    .radio-group label {
-      display: inline-flex;
+    .radio-pill {
+      position: relative;
+      display: flex;
       align-items: center;
-      gap: 6px;
-      padding: 4px 8px;
+    }
+
+    .radio-pill input[type="radio"] {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      cursor: pointer;
+    }
+
+    .radio-pill span {
+      width: 100%;
+      padding: 7px 10px;
       border-radius: 999px;
       border: 1px solid #303445;
-      background: rgba(15,23,42,0.85);
-      cursor: pointer;
-      transition: background-color 0.12s ease, border-color 0.12s ease;
+      background: rgba(15,23,42,0.9);
+      font-size: 12px;
+      color: #d4d7eb;
+      text-align: left;
     }
 
-    .radio-group label:hover {
-      border-color: #6366f1;
-      background: rgba(30,64,175,0.85);
-    }
-
-    .radio-group input[type="radio"] {
-      accent-color: #818cf8;
+    .radio-pill input[type="radio"]:checked + span {
+      border-color: #818cf8;
+      background: radial-gradient(circle at 0 0, rgba(129,140,248,0.4), rgba(15,23,42,0.95));
+      box-shadow: 0 0 0 1px rgba(129,140,248,0.55);
     }
 
     .form-actions {
@@ -724,8 +719,7 @@
         font-size: 24px;
       }
 
-      .hero-subtitle,
-      .hero-links {
+      .hero-subtitle {
         max-width: 100%;
       }
 
@@ -748,17 +742,13 @@
         justify-content: center;
       }
 
-      .simple-form {
-        padding: 14px 14px 12px;
-      }
-
-      .form-grid-two {
-        grid-template-columns: minmax(0,1fr);
-      }
-
       footer {
         flex-direction: column;
         align-items: flex-start;
+      }
+
+      .simple-form {
+        padding: 14px 14px 12px;
       }
     }
   </style>
@@ -782,7 +772,7 @@
         <a href="/about/">About</a>
         <a href="/contact/">Contact</a>
         <a href="/playbook/">Playbook</a>
-        <a href="/partners/" class="active">Partners</a>
+        <a href="/partners/" class="active" aria-current="page">Partners</a>
       </nav>
     </header>
 
@@ -805,7 +795,7 @@
           This page sits under the
           <a href="/partners/">Early Capital &amp; Stewardship Partners</a> track and summarises the working structure
           of the Partner Notes. For a broader view of the holding company and capital spine, see the
-          <a href="/partners/structure/">Capital &amp; Valuation Structure sketch</a>.
+          <a href="/structure/">Structure overview</a>.
         </p>
         <div class="hero-cta-row">
           <a href="#request-partner" class="btn-primary">
@@ -1016,78 +1006,74 @@
             This short form is for initial context only. It does not constitute an offer, acceptance, or commitment.
           </div>
 
-          <div class="form-grid-two">
-            <div class="form-row">
-              <label for="name">
-                Name<span class="req">*</span>
-              </label>
-              <input
-                id="name"
-                name="name"
-                type="text"
-                required
-                autocomplete="name"
-                placeholder="Your full name"
-              />
-            </div>
-
-            <div class="form-row">
-              <label for="email">
-                Email<span class="req">*</span>
-              </label>
-              <input
-                id="email"
-                name="email"
-                type="email"
-                required
-                autocomplete="email"
-                inputmode="email"
-                placeholder="you@example.com"
-              />
-            </div>
+          <div class="form-row">
+            <label for="name">
+              Name<span class="req">*</span>
+            </label>
+            <input
+              id="name"
+              name="name"
+              type="text"
+              required
+              autocomplete="name"
+              placeholder="Your full name"
+            />
           </div>
 
-          <div class="form-grid-two">
-            <div class="form-row">
-              <label for="org">Organization / Role</label>
-              <input
-                id="org"
-                name="org"
-                type="text"
-                autocomplete="organization-title"
-                placeholder="For example: Family office principal, CIO, Partner, etc."
-              />
-            </div>
+          <div class="form-row">
+            <label for="email">
+              Email<span class="req">*</span>
+            </label>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              required
+              autocomplete="email"
+              inputmode="email"
+              placeholder="you@example.com"
+            />
+          </div>
 
-            <div class="form-row">
-              <label for="jurisdiction">Primary jurisdiction</label>
-              <input
-                id="jurisdiction"
-                name="jurisdiction"
-                type="text"
-                placeholder="e.g., Canada (BC), EU, US (NY), GCC"
-              />
-            </div>
+          <div class="form-row">
+            <label for="org">Organization / Role</label>
+            <input
+              id="org"
+              name="org"
+              type="text"
+              autocomplete="organization"
+              placeholder="For example: Family office principal, CIO, Partner, etc."
+            />
+          </div>
+
+          <div class="form-row">
+            <label for="jurisdiction">Primary jurisdiction</label>
+            <input
+              id="jurisdiction"
+              name="jurisdiction"
+              type="text"
+              placeholder="e.g., Canada (BC), EU, US (NY), GCC"
+            />
           </div>
 
           <div class="form-row">
             <span class="label">Indicative partner tier</span>
             <div class="radio-group">
-              <label>
+              <label class="radio-pill">
                 <input type="radio" name="tier" value="50k" />
-                Founding Partner 50k
+                <span>Founding Partner 50k</span>
               </label>
-              <label>
+              <label class="radio-pill">
                 <input type="radio" name="tier" value="100k" />
-                Founding Partner 100k
+                <span>Founding Partner 100k</span>
               </label>
-              <label>
+              <label class="radio-pill">
                 <input type="radio" name="tier" value="250k" />
-                Strategic / Premium 250k
+                <span>Strategic / Premium 250k</span>
               </label>
-              <label>
+              <label class="radio-pill">
                 <input type="radio" name="tier" value="other" />
-                Other / to be discussed
+                <span>Other / to be discussed</span>
               </label>
             </div>
           </div>
@@ -1199,7 +1185,7 @@
         <a href="/contact/">Contact</a> ·
         <a href="/playbook/">Playbook</a> ·
         <a href="/partners/">Partners</a> ·
-        <a href="/partners/structure/">Structure</a>
+        <a href="/structure/">Structure</a>
       </div>
     </footer>
   </div>

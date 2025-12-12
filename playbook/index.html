@@ -117,6 +117,7 @@
 
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
 
     :root {
       --bg: #05060a;
@@ -225,9 +226,7 @@
 
     main { width: 100%; }
 
-    .hero {
-      margin-bottom: 36px;
-    }
+    .hero { margin-bottom: 18px; }
 
     .pill {
       display: inline-flex;
@@ -276,14 +275,14 @@
       font-size: 15px;
       line-height: 1.6;
       color: #d0d3dd;
-      max-width: 680px;
+      max-width: 720px;
     }
 
     .hero-cta-row {
       display: flex;
       flex-wrap: wrap;
       gap: 12px;
-      margin-top: 22px;
+      margin-top: 18px;
     }
 
     .btn-primary,
@@ -307,10 +306,7 @@
       box-shadow: 0 12px 32px rgba(15,23,42,0.9);
     }
 
-    .btn-primary:hover {
-      background: #ffffff;
-      transform: translateY(-1px);
-    }
+    .btn-primary:hover { background: #ffffff; transform: translateY(-1px); }
 
     .btn-ghost {
       background: rgba(15,23,42,0.9);
@@ -318,19 +314,43 @@
       color: #e1e3ea;
     }
 
-    .btn-ghost:hover {
-      background: #111827;
-      border-color: #6c7080;
+    .btn-ghost:hover { background: #111827; border-color: #6c7080; }
+
+    .btn-full { width: 100%; justify-content: center; }
+
+    .toc {
+      border-radius: 14px;
+      border: 1px solid #232633;
+      background: rgba(15,23,42,0.55);
+      padding: 12px 12px 10px;
+      margin: 14px 0 30px;
     }
 
-    .btn-full {
-      width: 100%;
-      justify-content: center;
+    .toc-title {
+      font-size: 12px;
+      color: #cbd0e0;
+      margin-bottom: 8px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
     }
 
-    .section {
-      margin-bottom: 30px;
+    .toc-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
     }
+
+    .chip {
+      font-size: 11px;
+      padding: 3px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,253,0.4);
+      color: #cbd5f5;
+      background: rgba(15,23,42,0.8);
+      white-space: nowrap;
+    }
+
+    .section { margin-bottom: 30px; }
 
     .section-kicker {
       font-size: 11px;
@@ -366,13 +386,10 @@
       line-height: 1.7;
       color: #e1e3ea;
       margin-bottom: 9px;
-      max-width: 720px;
+      max-width: 760px;
     }
 
-    ul {
-      list-style: none;
-      margin-top: 4px;
-    }
+    ul { list-style: none; margin-top: 4px; }
 
     li {
       font-size: 14px;
@@ -390,19 +407,9 @@
       color: var(--accent-soft);
     }
 
-    .grid-2,
-    .grid-3 {
-      display: grid;
-      gap: 24px;
-    }
-
-    .grid-2 {
-      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
-    }
-
-    .grid-3 {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
+    .grid-2, .grid-3 { display: grid; gap: 24px; }
+    .grid-2 { grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); }
+    .grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 
     .card {
       border-radius: 16px;
@@ -410,6 +417,10 @@
       background: radial-gradient(circle at top left, #191c2e 0, #0a0b10 52%, #050608 100%);
       padding: 16px 16px 14px;
     }
+
+    a.card { display: block; }
+    a.card:hover { border-color: rgba(165,180,252,0.55); transform: translateY(-1px); }
+    a.card { transition: transform 0.10s ease, border-color 0.16s ease; }
 
     .card-title {
       font-size: 14px;
@@ -435,19 +446,39 @@
       margin-bottom: 10px;
     }
 
-    .tag-row {
+    .one-sentence {
+      margin-top: 12px;
+      padding: 10px 12px;
+      border-radius: 10px;
+      border: 1px dashed #343848;
+      background: rgba(15,23,42,0.6);
+      font-size: 13px;
+      color: #d4d7eb;
+    }
+
+    .one-sentence strong { font-weight: 600; }
+
+    .badge-row {
       display: flex;
       flex-wrap: wrap;
       gap: 6px;
-      margin-top: 4px;
+      margin-top: 8px;
     }
 
-    .tag {
+    .badge {
       font-size: 11px;
       border-radius: 999px;
       border: 1px solid #343848;
       padding: 3px 8px;
       color: #b6bad1;
+    }
+
+    .layout-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2.4fr);
+      gap: 28px;
+      align-items: flex-start;
+      margin-bottom: 32px;
     }
 
     .checklist {
@@ -486,53 +517,6 @@
       gap: 24px;
     }
 
-    .layout-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 3fr) minmax(0, 2.4fr);
-      gap: 28px;
-      align-items: flex-start;
-      margin-bottom: 32px;
-    }
-
-    .chip {
-      font-size: 11px;
-      padding: 3px 8px;
-      border-radius: 999px;
-      border: 1px solid rgba(148,163,253,0.4);
-      color: #cbd5f5;
-      background: rgba(15,23,42,0.8);
-      white-space: nowrap;
-    }
-
-    .one-sentence {
-      margin-top: 12px;
-      padding: 10px 12px;
-      border-radius: 10px;
-      border: 1px dashed #343848;
-      background: rgba(15,23,42,0.6);
-      font-size: 13px;
-      color: #d4d7eb;
-    }
-
-    .one-sentence strong {
-      font-weight: 600;
-    }
-
-    .badge-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-top: 8px;
-    }
-
-    .badge {
-      font-size: 11px;
-      border-radius: 999px;
-      border: 1px solid #343848;
-      padding: 3px 8px;
-      color: #b6bad1;
-    }
-
     .pricing-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -548,60 +532,25 @@
       padding: 14px 14px 12px;
     }
 
-    .pricing-card h3 {
-      font-size: 14px;
-      font-weight: 600;
-      margin-bottom: 4px;
-    }
+    .pricing-card h3 { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+    .pricing-amount { font-size: 18px; font-weight: 600; margin-bottom: 4px; }
+    .pricing-note { font-size: 12px; color: #c4c8dd; line-height: 1.6; }
 
-    .pricing-amount {
-      font-size: 18px;
-      font-weight: 600;
-      margin-bottom: 4px;
-    }
+    .faq-item { margin-bottom: 14px; }
+    .faq-q { font-size: 13px; font-weight: 500; color: #f1f2fb; margin-bottom: 3px; }
+    .faq-a { font-size: 13px; color: #cacfe4; line-height: 1.6; }
 
-    .pricing-note {
-      font-size: 12px;
-      color: #c4c8dd;
-      line-height: 1.6;
-    }
+    .simple-form { max-width: 460px; margin-top: 10px; }
+    .form-row { margin-bottom: 10px; }
 
-    .faq-item {
-      margin-bottom: 14px;
-    }
-
-    .faq-q {
-      font-size: 13px;
-      font-weight: 500;
-      color: #f1f2fb;
-      margin-bottom: 3px;
-    }
-
-    .faq-a {
-      font-size: 13px;
-      color: #cacfe4;
-      line-height: 1.6;
-    }
-
-    .simple-form {
-      max-width: 460px;
-      margin-top: 10px;
-    }
-
-    .form-row {
-      margin-bottom: 10px;
-    }
-
-    .form-row label,
-    .form-row span.label {
+    .form-row label, .form-row span.label {
       display: block;
       font-size: 12px;
       color: #cbd0e0;
       margin-bottom: 4px;
     }
 
-    .form-row input,
-    .form-row select {
+    .form-row input, .form-row select {
       width: 100%;
       padding: 7px 9px;
       border-radius: 8px;
@@ -611,8 +560,7 @@
       font-size: 13px;
     }
 
-    .form-row input:focus,
-    .form-row select:focus {
+    .form-row input:focus, .form-row select:focus {
       outline: none;
       border-color: #6366f1;
       box-shadow: 0 0 0 1px rgba(99,102,241,0.5);
@@ -653,78 +601,29 @@
       align-items: center;
     }
 
-    footer a {
-      color: #b6bad1;
-      text-decoration: none;
-    }
-
-    footer a:hover {
-      text-decoration: underline;
-    }
+    footer a { color: #b6bad1; text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
 
     @media (max-width: 900px) {
-      .grid-3 {
-        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-      }
-
-      .pricing-grid {
-        grid-template-columns: minmax(0, 1fr);
-      }
+      .grid-3 { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+      .pricing-grid { grid-template-columns: minmax(0, 1fr); }
     }
 
     @media (max-width: 768px) {
-      body {
-        padding: 24px 16px 32px;
-      }
-
-      header {
-        align-items: flex-start;
-        flex-direction: column;
-        gap: 6px;
-      }
-
-      nav {
-        justify-content: flex-start;
-      }
-
-      .hero-title {
-        font-size: 24px;
-      }
-
-      .hero-subtitle {
-        max-width: 100%;
-      }
-
-      .grid-2 {
-        grid-template-columns: minmax(0, 1fr);
-      }
-
-      .grid-3 {
-        grid-template-columns: minmax(0, 1fr);
-      }
-
-      .layout-grid,
-      .two-col {
-        grid-template-columns: minmax(0, 1fr);
-      }
-
-      .hero-cta-row {
-        flex-direction: column;
-      }
-
-      .btn-primary,
-      .btn-ghost {
-        width: 100%;
-        justify-content: center;
-      }
-
-      footer {
-        flex-direction: column;
-        align-items: flex-start;
-      }
+      body { padding: 24px 16px 32px; }
+      header { align-items: flex-start; flex-direction: column; gap: 6px; }
+      nav { justify-content: flex-start; }
+      .hero-title { font-size: 24px; }
+      .hero-subtitle { max-width: 100%; }
+      .grid-2, .grid-3 { grid-template-columns: minmax(0, 1fr); }
+      .layout-grid, .two-col { grid-template-columns: minmax(0, 1fr); }
+      .hero-cta-row { flex-direction: column; }
+      .btn-primary, .btn-ghost { width: 100%; justify-content: center; }
+      footer { flex-direction: column; align-items: flex-start; }
     }
   </style>
 </head>
+
 <body>
   <div class="page">
     <header>
@@ -735,6 +634,7 @@
           <div class="brand-tagline">Trust systems for AI governance</div>
         </div>
       </a>
+
       <nav aria-label="Primary navigation">
         <a href="/">Home</a>
         <a href="/trust-brief/">Trust Brief</a>
@@ -743,12 +643,14 @@
         <a href="/gate/">Gate</a>
         <a href="/about/">About</a>
         <a href="/contact/">Contact</a>
+        <a href="/playbook/#offers">Offers</a>
         <a href="/playbook/" class="active" aria-current="page">Playbook</a>
         <a href="/partners/">Partners</a>
       </nav>
     </header>
 
     <main>
+      <!-- Hero -->
       <section class="hero">
         <div class="pill">
           <span class="pill-dot"></span>
@@ -756,24 +658,102 @@
         </div>
         <div class="hero-kicker">AI Governance &amp; Trust Playbook</div>
         <h1 class="hero-title">
-          Make your <span>AI usage defensible, documented, and board-safe.</span>
+          Make your <span>AI usage defensible, documented, and answer-ready.</span>
         </h1>
         <p class="hero-subtitle">
-          The Noetfield AI Governance &amp; Trust Playbook is a governance-first, 0–90 day pattern for small B2B teams
-          and agencies that already use AI – and now need a clear, regulator-compatible way to show how it is governed,
-          documented, and constrained, in language that boards and enterprise clients can recognise.
+          A governance-first 0–90 day implementation pattern for small B2B teams and agencies that already use AI — and
+          now need a clear, regulator-compatible way to show how it is governed, documented, and constrained in language
+          boards, enterprise clients, and procurement teams can recognise.
         </p>
         <div class="hero-cta-row">
-          <a href="#request-access" class="btn-primary">
-            Request early access as a founding buyer
-          </a>
-          <a href="/trust-brief/" class="btn-ghost">
-            See the board-level Trust Brief track
-          </a>
+          <a href="#request-access" class="btn-primary">Request early access</a>
+          <a href="#offers" class="btn-ghost">Browse rapid offers</a>
+          <a href="/trust-brief/" class="btn-ghost">See the board-level Trust Brief track</a>
         </div>
       </section>
 
-      <section class="layout-grid">
+      <!-- TOC -->
+      <div class="toc" aria-label="Page sections">
+        <div class="toc-title">On this page</div>
+        <div class="toc-row">
+          <a class="chip" href="#offers">Offers</a>
+          <a class="chip" href="#definition">Definition</a>
+          <a class="chip" href="#deliverables">What you get</a>
+          <a class="chip" href="#templates">Templates</a>
+          <a class="chip" href="#fit">Fit</a>
+          <a class="chip" href="#pricing">Pricing</a>
+          <a class="chip" href="#request-access">Request access</a>
+          <a class="chip" href="#faq">FAQ</a>
+        </div>
+      </div>
+
+      <!-- Offers -->
+      <section class="section" id="offers">
+        <div class="section-title-row">
+          <div>
+            <div class="section-kicker">Offers</div>
+            <h2 class="section-title">Rapid governance packs (board-ready, conversion-first)</h2>
+          </div>
+          <div class="chip">4 landing offers</div>
+        </div>
+        <p class="section-subtitle">
+          These offers route qualified leads into deeper Trust Brief and Trust Ledger work.
+        </p>
+
+        <div class="grid-2">
+          <a class="card" href="/eu-ai-act/" aria-label="EU AI Act Readiness Sprint">
+            <div class="card-pill">Readiness sprint</div>
+            <div class="card-title">EU AI Act Readiness Sprint</div>
+            <p>Gap Matrix + Evidence Plan in 10 days. Built for board and regulator questions.</p>
+            <div class="badge-row">
+              <div class="badge">10 days</div>
+              <div class="badge">Evidence-first</div>
+              <div class="badge">Board-ready</div>
+            </div>
+          </a>
+
+          <a class="card" href="/iso-42001/" aria-label="ISO/IEC 42001 Readiness Pack">
+            <div class="card-pill">AIMS pathway</div>
+            <div class="card-title">ISO/IEC 42001 Readiness Pack</div>
+            <p>Scope + controls-to-evidence map + implementation backlog for audit preparation.</p>
+            <div class="badge-row">
+              <div class="badge">2–3 weeks</div>
+              <div class="badge">Audit-oriented</div>
+              <div class="badge">Traceable</div>
+            </div>
+          </a>
+
+          <a class="card" href="/ai-policy/" aria-label="Enterprise AI Policy Sprint">
+            <div class="card-pill">Policy sprint</div>
+            <div class="card-title">Enterprise AI Policy Sprint</div>
+            <p>Board-approvable AI policy + role guardrails + training pack in 2 weeks.</p>
+            <div class="badge-row">
+              <div class="badge">2 weeks</div>
+              <div class="badge">Adoption-ready</div>
+              <div class="badge">Low-friction</div>
+            </div>
+          </a>
+
+          <a class="card" href="/vendor-due-diligence/" aria-label="AI Vendor Due Diligence Kit">
+            <div class="card-pill">Procurement</div>
+            <div class="card-title">AI Vendor Due Diligence Kit</div>
+            <p>Pass/fail gates + scoring rubric + evidence requests + decision memo.</p>
+            <div class="badge-row">
+              <div class="badge">3–5 days</div>
+              <div class="badge">Repeatable</div>
+              <div class="badge">Audit-friendly</div>
+            </div>
+          </a>
+        </div>
+
+        <div class="one-sentence" style="margin-top: 14px;">
+          <strong>Routing logic:</strong> these packs establish a defensible baseline. If deeper governance is required, the default next step is the
+          <a href="/trust-brief/">Trust Brief</a>, then ongoing <a href="/trust-ledger/">Trust Ledger</a> maintenance.
+        </div>
+      </section>
+
+      <!-- Definition + Aside -->
+      <section class="layout-grid" id="definition">
         <div class="section">
           <div class="section-title-row">
             <div>
@@ -782,44 +762,40 @@
             </div>
             <div class="chip">Practical &amp; governance-first</div>
           </div>
+
           <p>
             The Noetfield AI Governance &amp; Trust Playbook is a compact implementation guide that helps small B2B teams
-            and agencies bring order, documentation, and governance to the way they use AI – without standing up a full
-            compliance department or legal function.
+            and agencies bring order, documentation, and governance to the way they use AI — without standing up a full
+            compliance department.
           </p>
           <p>
-            It assumes that AI is already embedded in sales, marketing, delivery, or operations. The Playbook brings
-            structure: which uses are in scope, what risks matter, how decisions are approved, which safeguards apply,
-            and how all of this is captured in a way that boards, investors, and enterprise clients can recognise as
-            credible governance rather than experimentation.
+            It assumes AI is already embedded in sales, marketing, delivery, or operations. The Playbook brings structure:
+            what is in scope, what risks matter, how decisions are approved, which safeguards apply, and how it is captured
+            in a way boards and enterprise clients can recognise as credible governance.
           </p>
           <p>
-            Instead of another generic framework, the Playbook gives you a focused set of moves, templates, and example
-            language to make AI usage visible, owned, and traceable – in a way aligned with Noetfield’s board-level
-            Trust Brief and Trust Ledger pattern, so you can grow into the same governance language over time.
+            The language and templates are designed to remain compatible with Noetfield’s board-level Trust Brief and Trust
+            Ledger pattern, so teams can scale into the same governance vocabulary over time.
           </p>
+
           <div class="one-sentence">
-            <strong>In one sentence:</strong> the Playbook is a structured, 0–90 day plan and template kit that makes your AI usage
-            defensible and documented for clients, boards, and regulators, at the scale of a small B2B team.
+            <strong>In one sentence:</strong> a 0–90 day plan and template kit that makes AI usage defensible and answer-ready for clients, boards, and regulators.
           </div>
         </div>
 
         <aside class="card">
           <div class="card-pill">Inside the Playbook</div>
           <div class="card-title">Core components at a glance</div>
-          <p>
-            The Playbook is organised into a small number of sections. Each comes with prompts and example language you
-            can adapt to your context.
-          </p>
+          <p>Each section includes prompts and example language that can be adapted to a team’s stack.</p>
           <ul>
-            <li>Scope &amp; mandate – what “AI” means in your context and who owns it.</li>
-            <li>AI risk map – legal, reputational, and operational risks tailored to small teams.</li>
-            <li>Use-case intake – vet and approve AI use-cases before deployment.</li>
-            <li>Data &amp; privacy guardrails – what can and cannot be sent to AI tools.</li>
-            <li>Vendor &amp; tool due diligence – how you decide which AI tools are acceptable.</li>
-            <li>Incident &amp; escalation patterns – what happens when something goes wrong.</li>
-            <li>Board/client brief – a short, non-technical explanation of your AI governance.</li>
-            <li>0–90 day roadmap – a realistic implementation sequence.</li>
+            <li>Scope &amp; mandate — what “AI” means and who owns it.</li>
+            <li>AI risk map — legal, reputational, operational risks for small teams.</li>
+            <li>Use-case intake — approve AI use-cases before deployment.</li>
+            <li>Data &amp; privacy guardrails — what can / cannot be sent to tools.</li>
+            <li>Vendor &amp; tool due diligence — acceptable tools and evidence.</li>
+            <li>Incident &amp; escalation — what happens when something goes wrong.</li>
+            <li>Board/client brief — a short non-technical governance explanation.</li>
+            <li>0–90 day roadmap — a realistic sequence for adoption.</li>
           </ul>
           <div class="badge-row">
             <div class="badge">Templates included</div>
@@ -829,7 +805,8 @@
         </aside>
       </section>
 
-      <section class="section">
+      <!-- Deliverables -->
+      <section class="section" id="deliverables">
         <div class="section-title-row">
           <div>
             <div class="section-kicker">What you get</div>
@@ -837,96 +814,81 @@
           </div>
         </div>
         <p class="section-subtitle">
-          Not a theoretical framework – a sequence of moves and documents you can actually implement with a small team.
+          Not theory — a sequence of moves and documents that can be implemented with a small team.
         </p>
         <ul>
-          <li>
-            A step-by-step structure to make AI usage visible, scoped, and explicitly owned – so that it is no longer
-            “just experiments”.
-          </li>
-          <li>
-            A lightweight AI risk map and control set that fits typical B2B SaaS and agency scenarios – marketing,
-            sales assistance, analytics, content, and decision-support.
-          </li>
-          <li>
-            A simple intake and approval pattern for new AI use-cases, including which ones require human, legal, or
-            security review.
-          </li>
-          <li>
-            Starter policies and client-facing language you can adapt into contracts, proposals, or security questionnaires.
-          </li>
-          <li>
-            A short, board/client-ready AI governance brief, aligned with how Noetfield speaks to boards and regulators.
-          </li>
+          <li>A structure to make AI usage visible, scoped, and explicitly owned.</li>
+          <li>A lightweight risk map and control set for typical B2B SaaS/agency scenarios.</li>
+          <li>An intake and approval pattern for new AI use-cases, with escalation rules.</li>
+          <li>Starter policies and client-facing language for proposals and questionnaires.</li>
+          <li>A board/client-ready AI governance brief aligned with Noetfield language.</li>
         </ul>
       </section>
 
-      <section class="section">
+      <!-- Templates -->
+      <section class="section" id="templates">
         <div class="section-title-row">
           <div>
             <div class="section-kicker">Templates</div>
             <h2 class="section-title">Templates that ship with the Playbook</h2>
           </div>
+          <div class="chip">Editable</div>
         </div>
         <p>
-          The Playbook includes editable templates (for example doc and sheet formats) that you can adapt to your stack:
+          Delivered in structured formats that can be adapted to the team’s workflow.
         </p>
         <ul>
-          <li><strong>AI use-case intake form (lite)</strong> – capture purpose, data, model/tool, and risk notes for each use-case.</li>
-          <li><strong>AI risk register for small teams</strong> – a simple way to track key AI-related risks and mitigations.</li>
-          <li><strong>Vendor &amp; tool due diligence checklist</strong> – what to ask before adopting an AI tool or API.</li>
-          <li><strong>Board / client-ready AI governance brief</strong> – a 1–2 page summary of how you govern AI.</li>
-          <li><strong>Simple AI policy v1.0</strong> – an editable starter policy covering acceptable use, data, and human-in-the-loop.</li>
+          <li><strong>AI use-case intake form (lite)</strong> — purpose, data, tool, risks, approval.</li>
+          <li><strong>AI risk register for small teams</strong> — risks, mitigations, ownership.</li>
+          <li><strong>Vendor &amp; tool due diligence checklist</strong> — evidence and controls.</li>
+          <li><strong>Board/client-ready AI governance brief</strong> — 1–2 page explanation.</li>
+          <li><strong>Simple AI policy v1.0</strong> — acceptable use, data, human-in-loop.</li>
         </ul>
-        <p>
-          These are designed to be minimal but credible – something a risk-conscious client or investor can recognise as
-          real governance, not just marketing language or tool lists.
-        </p>
+        <div class="one-sentence">
+          <strong>Goal:</strong> minimal, credible governance artefacts that survive scrutiny.
+        </div>
       </section>
 
-      <section class="section">
+      <!-- Fit -->
+      <section class="section" id="fit">
         <div class="section-title-row">
           <div>
             <div class="section-kicker">Fit</div>
             <h2 class="section-title">Who the Playbook is for</h2>
           </div>
         </div>
+
         <div class="two-col">
           <div>
             <p>Best suited for:</p>
             <ul>
-              <li>B2B SaaS founders and operators using AI in their product or go-to-market.</li>
-              <li>Marketing, analytics, and service agencies using AI with client data.</li>
-              <li>Advisors and small consultancies who want a reusable governance pattern.</li>
+              <li>B2B SaaS founders/operators using AI in product or go-to-market.</li>
+              <li>Agencies using AI with client data (content, analytics, delivery).</li>
+              <li>Advisors/consultancies who want a reusable governance pattern.</li>
             </ul>
+
             <p>Especially relevant when:</p>
             <ul>
-              <li>Enterprise or regulated clients are starting to ask about AI controls and policies.</li>
-              <li>You expect due diligence, security questionnaires, or vendor assessments to mention AI explicitly.</li>
-              <li>There is no full-time compliance officer, but governance questions are already appearing.</li>
+              <li>Enterprise clients ask about AI controls and policies.</li>
+              <li>Security questionnaires and due diligence mention AI explicitly.</li>
+              <li>No full-time compliance officer exists, but governance questions do.</li>
             </ul>
           </div>
+
           <div>
             <div class="checklist">
-              <div class="checklist-title">If you recognise yourself here, the Playbook will help:</div>
-              <div class="checklist-item">
-                “We use AI in a serious way, but our governance is mostly in people’s heads and in scattered docs.”
-              </div>
-              <div class="checklist-item">
-                “We’re not large enough for a full trust / compliance function, but we can’t ignore governance either.”
-              </div>
-              <div class="checklist-item">
-                “We need language and structure that will stand up to scrutiny from clients, investors, and future regulators.”
-              </div>
-              <div class="checklist-item">
-                “We want our current AI usage to be compatible with a future Noetfield Trust Brief / Trust Ledger track.”
-              </div>
+              <div class="checklist-title">If these statements are true, the Playbook fits:</div>
+              <div class="checklist-item">AI governance is scattered across people, docs, and tools.</div>
+              <div class="checklist-item">Scale is too small for a full compliance function — but pressure exists.</div>
+              <div class="checklist-item">Need language that survives client/procurement scrutiny.</div>
+              <div class="checklist-item">Want compatibility with future Trust Brief / Trust Ledger work.</div>
             </div>
           </div>
         </div>
       </section>
 
-      <section class="section">
+      <!-- Pricing -->
+      <section class="section" id="pricing">
         <div class="section-title-row">
           <div>
             <div class="section-kicker">Pricing &amp; access</div>
@@ -934,14 +896,14 @@
           </div>
           <div class="chip">Limited cohort</div>
         </div>
+
         <p>
-          For the initial release, a small group of teams can access the Playbook on founding-buyer terms. This cohort
-          helps refine the details and receives version 1.x updates.
+          Early access is offered to a small group of founding buyers. This cohort helps refine v1.x and receives updates.
         </p>
         <ul>
           <li>Full Playbook (PDF and editable formats).</li>
           <li>All templates listed above.</li>
-          <li>Access to future version 1.x updates.</li>
+          <li>Access to version 1.x updates.</li>
         </ul>
 
         <div class="pricing-grid">
@@ -949,39 +911,42 @@
             <h3>Standard License</h3>
             <p class="pricing-amount">249 CAD</p>
             <p class="pricing-note">
-              For a single team using the Playbook internally, to govern its own AI usage and respond credibly to board,
-              investor, or client questions.
+              For a single team using the Playbook internally to govern AI usage and respond credibly to board/client questions.
             </p>
           </div>
+
           <div class="pricing-card">
             <h3>Agency / Pro License</h3>
             <p class="pricing-amount">749 CAD</p>
             <p class="pricing-note">
-              For agencies or advisors who want to use the Playbook and templates across multiple client engagements, as
-              a standard AI governance pattern in their work.
+              For agencies/advisors who use the Playbook across multiple client engagements as a standard governance pattern.
             </p>
           </div>
         </div>
 
         <p>
-          During the early access phase, payment can be completed via invoice as soon as the business account is live.
-          Licences and materials are issued directly after invoice confirmation.
+          During early access, payment can be completed via invoice. Materials are issued after invoice confirmation.
         </p>
       </section>
 
+      <!-- Request Access -->
       <section class="section" id="request-access">
         <div class="section-title-row">
           <div>
             <div class="section-kicker">Next step</div>
             <h2 class="section-title">Request early access</h2>
           </div>
+          <div class="chip">Email follow-up</div>
         </div>
+
         <p>
-          To request early access as a founding buyer, share a few details below. You will receive a short follow-up and,
-          if there is a fit, the first release of the Playbook and templates with an invoice aligned to the selected licence.
+          Share a few details below. If there is a fit, early access is issued with an invoice aligned to the selected license.
         </p>
 
         <form class="simple-form" method="POST" action="https://formspree.io/f/YOUR_FORM_ID">
+          <input type="hidden" name="page_source" value="/playbook/" />
+          <input type="hidden" name="offer" value="Playbook Early Access" />
+
           <div class="form-row">
             <label for="name">Name</label>
             <input id="name" name="name" type="text" required />
@@ -1011,37 +976,27 @@
           <div class="form-row">
             <span class="label">Licence interest</span>
             <div class="radio-group">
-              <label>
-                <input type="radio" name="license" value="standard" />
-                Standard
-              </label>
-              <label>
-                <input type="radio" name="license" value="agency" />
-                Agency / Pro
-              </label>
-              <label>
-                <input type="radio" name="license" value="unsure" />
-                Not sure yet
-              </label>
+              <label><input type="radio" name="license" value="standard" /> Standard</label>
+              <label><input type="radio" name="license" value="agency" /> Agency / Pro</label>
+              <label><input type="radio" name="license" value="unsure" /> Not sure yet</label>
             </div>
           </div>
 
           <div class="form-row checkbox-row">
             <label>
               <input type="checkbox" name="ready_to_purchase" value="yes" />
-              I am prepared to purchase at this price once the invoice is issued.
+              Prepared to purchase at this price once invoice is issued.
             </label>
           </div>
 
           <div class="form-row">
-            <button type="submit" class="btn-primary btn-full">
-              Request early access
-            </button>
+            <button type="submit" class="btn-primary btn-full">Request early access</button>
           </div>
         </form>
       </section>
 
-      <section class="section">
+      <!-- FAQ -->
+      <section class="section" id="faq">
         <div class="section-title-row">
           <div>
             <div class="section-kicker">FAQ</div>
@@ -1049,62 +1004,50 @@
           </div>
           <div class="chip">Answer-ready</div>
         </div>
+
         <div class="two-col">
           <div>
             <div class="faq-item">
               <div class="faq-q">Who is the AI Governance &amp; Trust Playbook for?</div>
               <div class="faq-a">
-                It is designed for small B2B teams and agencies that already use AI in their work – for example in
-                marketing, sales, analytics, content, or decision support – and now need a credible, structured way to
-                show that AI usage is governed, documented, and aligned with basic risk expectations.
+                For small B2B teams and agencies that already use AI and now need a credible, structured way to show AI is governed and documented.
               </div>
             </div>
 
             <div class="faq-item">
               <div class="faq-q">Does the Playbook replace legal or compliance advice?</div>
               <div class="faq-a">
-                No. The Playbook does not provide legal advice and does not replace formal compliance functions. It gives
-                structure, language, and templates so you can organise your AI governance in a way that is compatible
-                with legal, risk, and audit expectations, and can be reviewed with internal or external counsel.
+                No. It provides structure and templates compatible with legal/risk expectations and can be reviewed with counsel.
               </div>
             </div>
 
             <div class="faq-item">
               <div class="faq-q">How much time does it take to implement?</div>
               <div class="faq-a">
-                The Playbook is structured around a 0–90 day pattern. Many teams can establish a first, credible version
-                of their AI governance layer within 30–45 days by focusing on a small number of high-impact use-cases,
-                then iterate from there.
+                Structured as a 0–90 day pattern. Many teams establish a credible v1 within 30–45 days focused on a small number of high-impact use-cases.
               </div>
             </div>
           </div>
 
           <div>
             <div class="faq-item">
-              <div class="faq-q">How does this relate to the Noetfield Trust Brief and Trust Ledger?</div>
+              <div class="faq-q">How does this relate to the Trust Brief and Trust Ledger?</div>
               <div class="faq-a">
-                The Trust Brief and Trust Ledger focus on board-level AI governance for larger organisations. The
-                Playbook is a parallel track for smaller B2B teams and agencies, using compatible concepts but scoped to
-                your scale. As you grow or face higher regulatory pressure, the same ideas can be extended into a full
-                Trust Brief and Trust Ledger engagement.
+                The Playbook is the small-team track using compatible concepts. Teams can later migrate into Trust Brief and Trust Ledger without starting from zero.
               </div>
             </div>
 
             <div class="faq-item">
               <div class="faq-q">How is the Playbook delivered?</div>
               <div class="faq-a">
-                It is delivered as a structured document (PDF and editable formats) with accompanying templates. You can
-                adapt the language to your context, integrate the templates into your existing tools, and use the brief
-                as part of client, investor, or board communications.
+                As a structured document (PDF + editable formats) with templates that can be integrated into existing tools and client documentation.
               </div>
             </div>
 
             <div class="faq-item">
-              <div class="faq-q">Can we use the Playbook with our own clients?</div>
+              <div class="faq-q">Can we use it with our own clients?</div>
               <div class="faq-a">
-                Yes. The Agency / Pro licence is designed exactly for that: to let agencies and advisors use the Playbook
-                and templates as part of their work with multiple clients, while keeping the underlying governance pattern
-                consistent and recognisable.
+                Yes. The Agency / Pro license is designed for reuse across multiple client engagements.
               </div>
             </div>
           </div>
@@ -1124,6 +1067,7 @@
         <a href="/contact/">Contact</a> ·
         <a href="/playbook/">Playbook</a> ·
         <a href="/partners/">Partners</a> ·
+        
       </div>
     </footer>
   </div>

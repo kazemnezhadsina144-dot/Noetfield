@@ -110,618 +110,466 @@
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-
-    :root {
-      --bg: #05060a;
-      --bg-soft: #080911;
-      --border-soft: rgba(255,255,255,0.10);
-      --text-main: #f5f5f7;
-      --text-soft: #daddef;
-      --text-mute: #9ca3af;
-      --accent: #ffffff;
-      --accent-soft: #9ca3ff;
+    :root{
+      --bg:#05060a;
+      --bg-soft:#080911;
+      --panel:rgba(15,23,42,0.55);
+      --border-soft:rgba(255,255,255,0.10);
+      --border:#232633;
+      --text-main:#f5f5f7;
+      --text-soft:#daddef;
+      --text-mute:#9ca3af;
+      --accent:#ffffff;
+      --accent-soft:#9ca3ff;
+      --focus:#6366f1;
     }
 
-    body {
-      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    body{
+      font-family:'Inter',system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
       background: radial-gradient(circle at top, #151827 0%, var(--bg) 55%);
       color: var(--text-main);
       min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 32px 20px 40px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      padding:32px 20px 40px;
     }
 
     a { color: inherit; text-decoration: none; }
-
-    .page {
-      width: 100%;
-      max-width: 1040px;
-      display: flex;
-      flex-direction: column;
+    .page{
+      width:100%;
+      max-width:1040px;
+      display:flex;
+      flex-direction:column;
       min-height: calc(100vh - 72px);
     }
 
-    header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 32px;
-      padding-bottom: 14px;
-      border-bottom: 1px solid var(--border-soft);
-      gap: 14px;
+    header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      margin-bottom:32px;
+      padding-bottom:14px;
+      border-bottom:1px solid var(--border-soft);
+      gap:14px;
     }
 
-    .brand-wrap {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .brand-logo {
-      width: 32px;
-      height: 32px;
-      border-radius: 999px;
+    .brand-wrap{ display:flex; align-items:center; gap:10px; }
+    .brand-logo{
+      width:32px;height:32px;border-radius:999px;
       background: radial-gradient(circle at 25% 0, #ffffff 0, #d4e0ff 18%, #818cf8 45%, #1f2937 70%, #020617 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 18px;
-      font-weight: 700;
-      color: #ffffff;
-      box-shadow: 0 10px 28px rgba(15,23,42,0.9);
+      display:flex;align-items:center;justify-content:center;
+      font-size:18px;font-weight:700;color:#fff;
+      box-shadow:0 10px 28px rgba(15,23,42,0.9);
     }
+    .brand-text{ display:flex; flex-direction:column; gap:2px; }
+    .brand-name{ font-size:16px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; }
+    .brand-tagline{ font-size:12px; color: var(--text-mute); }
 
-    .brand-text {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
+    nav{ display:flex; gap:18px; font-size:13px; flex-wrap:wrap; }
+    nav a{
+      opacity:0.78; padding-bottom:2px;
+      border-bottom:1px solid transparent;
     }
+    nav a:hover{ opacity:1; border-bottom-color:rgba(209,213,219,0.6); }
+    nav a.active{ opacity:1; border-bottom-color:rgba(255,255,255,0.85); font-weight:500; }
 
-    .brand-name {
-      font-size: 16px;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
+    main{ width:100%; }
 
-    .brand-tagline {
-      font-size: 12px;
-      color: var(--text-mute);
-    }
-
-    nav {
-      display: flex;
-      gap: 18px;
-      font-size: 13px;
-      flex-wrap: wrap;
-    }
-
-    nav a {
-      opacity: 0.78;
-      padding-bottom: 2px;
-      border-bottom: 1px solid transparent;
-      position: relative;
-    }
-
-    nav a:hover {
-      opacity: 1;
-      border-bottom-color: rgba(209,213,219,0.6);
-    }
-
-    nav a.active {
-      opacity: 1;
-      border-bottom-color: rgba(255,255,255,0.85);
-      font-weight: 500;
-    }
-
-    main { width: 100%; }
-
-    .hero { margin-bottom: 18px; }
-
-    .pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 11px;
-      padding: 4px 10px;
-      border-radius: 999px;
-      border: 1px solid rgba(148,163,253,0.35);
+    .hero{ margin-bottom:18px; }
+    .pill{
+      display:inline-flex; align-items:center; gap:8px;
+      font-size:11px; padding:4px 10px; border-radius:999px;
+      border:1px solid rgba(148,163,253,0.35);
       background: radial-gradient(circle at 0 0, rgba(129,140,248,0.32), transparent 55%);
-      color: #e5e7eb;
-      margin-bottom: 10px;
+      color:#e5e7eb; margin-bottom:10px;
     }
-
-    .pill-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 999px;
-      background: linear-gradient(135deg, #7dd3fc, #a855f7);
+    .pill-dot{ width:8px;height:8px;border-radius:999px;background: linear-gradient(135deg, #7dd3fc, #a855f7); }
+    .hero-kicker{
+      font-size:11px; text-transform:uppercase; letter-spacing:0.16em;
+      color: var(--text-mute); margin-bottom:8px;
     }
-
-    .hero-kicker {
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      color: var(--text-mute);
-      margin-bottom: 8px;
-    }
-
-    .hero-title {
+    .hero-title{
       font-size: clamp(26px, 3vw, 30px);
-      line-height: 1.15;
-      font-weight: 600;
-      margin-bottom: 14px;
-      letter-spacing: -0.02em;
+      line-height:1.15; font-weight:600; margin-bottom:14px;
+      letter-spacing:-0.02em;
     }
-
-    .hero-title span {
+    .hero-title span{
       background: linear-gradient(135deg, #ffffff, #a5b4fc);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
+      -webkit-background-clip:text; background-clip:text; color:transparent;
+    }
+    .hero-subtitle{
+      font-size:15px; line-height:1.6;
+      color:#d0d3dd; max-width: 760px;
+    }
+    .hero-cta-row{
+      display:flex; flex-wrap:wrap; gap:12px; margin-top:18px;
     }
 
-    .hero-subtitle {
-      font-size: 15px;
-      line-height: 1.6;
-      color: #d0d3dd;
-      max-width: 720px;
-    }
-
-    .hero-cta-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 18px;
-    }
-
-    .btn-primary,
-    .btn-ghost {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 9px 18px;
-      border-radius: 999px;
-      font-size: 13px;
-      font-weight: 500;
-      cursor: pointer;
-      border: 1px solid transparent;
+    .btn-primary,.btn-ghost{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding:9px 18px; border-radius:999px;
+      font-size:13px; font-weight:500;
+      cursor:pointer; border:1px solid transparent;
       transition: background-color 0.16s ease, border-color 0.16s ease, color 0.16s ease, transform 0.06s ease;
-      white-space: nowrap;
+      white-space:nowrap;
     }
-
-    .btn-primary {
+    .btn-primary{
       background: linear-gradient(135deg, #f9fafb, #e5e7eb);
-      color: #050608;
-      box-shadow: 0 12px 32px rgba(15,23,42,0.9);
+      color:#050608; box-shadow:0 12px 32px rgba(15,23,42,0.9);
     }
-
-    .btn-primary:hover { background: #ffffff; transform: translateY(-1px); }
-
-    .btn-ghost {
+    .btn-primary:hover{ background:#fff; transform: translateY(-1px); }
+    .btn-ghost{
       background: rgba(15,23,42,0.9);
-      border-color: #4b4f5c;
-      color: #e1e3ea;
+      border-color:#4b4f5c;
+      color:#e1e3ea;
+    }
+    .btn-ghost:hover{ background:#111827; border-color:#6c7080; }
+    .btn-full{ width:100%; justify-content:center; }
+
+    .toc{
+      border-radius:14px;
+      border:1px solid var(--border);
+      background: var(--panel);
+      padding:12px 12px 10px;
+      margin:14px 0 18px;
+    }
+    .toc-title{
+      font-size:12px; color:#cbd0e0; margin-bottom:8px;
+      letter-spacing:0.08em; text-transform:uppercase;
+    }
+    .toc-row{ display:flex; flex-wrap:wrap; gap:8px; }
+    .chip{
+      font-size:11px; padding:3px 8px; border-radius:999px;
+      border:1px solid rgba(148,163,253,0.4);
+      color:#cbd5f5; background: rgba(15,23,42,0.8);
+      white-space:nowrap;
+      transition: transform 0.10s ease, border-color 0.16s ease;
+    }
+    .chip:hover{ border-color:rgba(165,180,252,0.65); transform: translateY(-1px); }
+
+    .section{ margin-bottom:30px; }
+    .section-kicker{
+      font-size:11px; text-transform:uppercase; letter-spacing:0.16em;
+      color: var(--text-mute); margin-bottom:4px;
+    }
+    .section-title-row{
+      display:flex; align-items:center; justify-content:space-between;
+      gap:10px; margin-bottom:8px;
+    }
+    .section-title{
+      font-size:18px; font-weight:600; letter-spacing:-0.02em;
+    }
+    .section-subtitle{
+      font-size:14px; color:#a0a4ae; margin-bottom:10px;
+    }
+    .section p{
+      font-size:14px; line-height:1.7; color:#e1e3ea;
+      margin-bottom:9px; max-width: 760px;
     }
 
-    .btn-ghost:hover { background: #111827; border-color: #6c7080; }
-
-    .btn-full { width: 100%; justify-content: center; }
-
-    .toc {
-      border-radius: 14px;
-      border: 1px solid #232633;
-      background: rgba(15,23,42,0.55);
-      padding: 12px 12px 10px;
-      margin: 14px 0 18px;
+    ul{ list-style:none; margin-top:4px; }
+    li{
+      font-size:14px; line-height:1.6; color:#e1e3ea;
+      padding-left:18px; position:relative; margin-bottom:6px;
     }
-
-    .toc-title {
-      font-size: 12px;
-      color: #cbd0e0;
-      margin-bottom: 8px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
-    .toc-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-
-    .chip {
-      font-size: 11px;
-      padding: 3px 8px;
-      border-radius: 999px;
-      border: 1px solid rgba(148,163,253,0.4);
-      color: #cbd5f5;
-      background: rgba(15,23,42,0.8);
-      white-space: nowrap;
-    }
-
-    .chip:hover {
-      border-color: rgba(165,180,252,0.65);
-      transform: translateY(-1px);
-    }
-
-    .section { margin-bottom: 30px; }
-
-    .section-kicker {
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      color: var(--text-mute);
-      margin-bottom: 4px;
-    }
-
-    .section-title-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      margin-bottom: 8px;
-    }
-
-    .section-title {
-      font-size: 18px;
-      font-weight: 600;
-      margin-bottom: 0;
-      letter-spacing: -0.02em;
-    }
-
-    .section-subtitle {
-      font-size: 14px;
-      color: #a0a4ae;
-      margin-bottom: 10px;
-    }
-
-    .section p {
-      font-size: 14px;
-      line-height: 1.7;
-      color: #e1e3ea;
-      margin-bottom: 9px;
-      max-width: 760px;
-    }
-
-    ul { list-style: none; margin-top: 4px; }
-
-    li {
-      font-size: 14px;
-      line-height: 1.6;
-      color: #e1e3ea;
-      padding-left: 18px;
-      position: relative;
-      margin-bottom: 6px;
-    }
-
-    li::before {
-      content: "•";
-      position: absolute;
-      left: 4px;
+    li::before{
+      content:"•"; position:absolute; left:4px;
       color: var(--accent-soft);
     }
 
-    .grid-2, .grid-3 { display: grid; gap: 16px; }
-    .grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    .grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .grid-2,.grid-3{ display:grid; gap:16px; }
+    .grid-2{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .grid-3{ grid-template-columns: repeat(3, minmax(0, 1fr)); }
 
-    .card {
-      border-radius: 16px;
-      border: 1px solid #22252f;
+    .card{
+      border-radius:16px;
+      border:1px solid #22252f;
       background: radial-gradient(circle at top left, #191c2e 0, #0a0b10 52%, #050608 100%);
-      padding: 16px 16px 14px;
+      padding:16px 16px 14px;
+    }
+    a.card{ display:block; transition: transform 0.10s ease, border-color 0.16s ease; }
+    a.card:hover{ border-color: rgba(165,180,252,0.55); transform: translateY(-1px); }
+
+    .card-title{ font-size:14px; font-weight:600; margin-bottom:6px; }
+    .card p{ font-size:13px; line-height:1.6; color:#daddef; margin-bottom:6px; }
+    .card-pill{
+      display:inline-flex; align-items:center;
+      border-radius:999px; border:1px solid #343848;
+      padding:3px 9px; font-size:11px; color:#b6bad1;
+      margin-bottom:10px;
+    }
+    .badge-row{ display:flex; flex-wrap:wrap; gap:6px; margin-top:8px; }
+    .badge{
+      font-size:11px;
+      border-radius:999px;
+      border:1px solid #343848;
+      padding:3px 8px;
+      color:#b6bad1;
     }
 
-    a.card { display: block; }
-    a.card:hover { border-color: rgba(165,180,252,0.55); transform: translateY(-1px); }
-    a.card { transition: transform 0.10s ease, border-color 0.16s ease; }
-
-    .card-title {
-      font-size: 14px;
-      font-weight: 600;
-      margin-bottom: 6px;
-    }
-
-    .card p {
-      font-size: 13px;
-      line-height: 1.6;
-      color: #daddef;
-      margin-bottom: 6px;
-    }
-
-    .card-pill {
-      display: inline-flex;
-      align-items: center;
-      border-radius: 999px;
-      border: 1px solid #343848;
-      padding: 3px 9px;
-      font-size: 11px;
-      color: #b6bad1;
-      margin-bottom: 10px;
-    }
-
-    .one-sentence {
-      margin-top: 12px;
-      padding: 10px 12px;
-      border-radius: 10px;
-      border: 1px dashed #343848;
+    .one-sentence{
+      margin-top:12px;
+      padding:10px 12px;
+      border-radius:10px;
+      border:1px dashed #343848;
       background: rgba(15,23,42,0.6);
-      font-size: 13px;
-      color: #d4d7eb;
+      font-size:13px;
+      color:#d4d7eb;
     }
+    .one-sentence strong{ font-weight:600; }
 
-    .one-sentence strong { font-weight: 600; }
-
-    .badge-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-top: 8px;
-    }
-
-    .badge {
-      font-size: 11px;
-      border-radius: 999px;
-      border: 1px solid #343848;
-      padding: 3px 8px;
-      color: #b6bad1;
-    }
-
-    .layout-grid {
-      display: grid;
+    .layout-grid{
+      display:grid;
       grid-template-columns: minmax(0, 3fr) minmax(0, 2.4fr);
-      gap: 28px;
-      align-items: flex-start;
-      margin-bottom: 32px;
+      gap:28px;
+      align-items:flex-start;
+      margin-bottom:32px;
     }
 
-    .checklist {
-      border-radius: 14px;
-      border: 1px solid #232633;
+    .checklist{
+      border-radius:14px;
+      border:1px solid var(--border);
       background: var(--bg-soft);
-      padding: 14px 16px 10px;
+      padding:14px 16px 10px;
+    }
+    .checklist-title{ font-size:13px; font-weight:600; margin-bottom:6px; }
+    .checklist-item{
+      font-size:12px; color:#b6bad1; line-height:1.6;
+      padding-left:18px; position:relative; margin-bottom:4px;
+    }
+    .checklist-item::before{
+      content:"✓"; position:absolute; left:3px;
+      color: var(--accent-soft); font-size:11px;
     }
 
-    .checklist-title {
-      font-size: 13px;
-      font-weight: 600;
-      margin-bottom: 6px;
-    }
-
-    .checklist-item {
-      font-size: 12px;
-      color: #b6bad1;
-      line-height: 1.6;
-      padding-left: 18px;
-      position: relative;
-      margin-bottom: 4px;
-    }
-
-    .checklist-item::before {
-      content: "✓";
-      position: absolute;
-      left: 3px;
-      color: var(--accent-soft);
-      font-size: 11px;
-    }
-
-    .two-col {
-      display: grid;
+    .two-col{
+      display:grid;
       grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
-      gap: 24px;
+      gap:24px;
     }
 
     /* Pricing cards become links */
-    .pricing-grid {
-      display: grid;
+    .pricing-grid{
+      display:grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 16px;
-      margin-top: 12px;
-      margin-bottom: 8px;
+      gap:16px;
+      margin-top:12px;
+      margin-bottom:8px;
     }
-
-    .pricing-card {
-      border-radius: 14px;
-      border: 1px solid #232633;
+    .pricing-card{
+      border-radius:14px;
+      border:1px solid var(--border);
       background: radial-gradient(circle at top left, #191c2e 0, #0a0b10 52%, #050608 100%);
-      padding: 14px 14px 12px;
-      display: block;
+      padding:14px 14px 12px;
+      display:block;
       transition: transform 0.10s ease, border-color 0.16s ease;
     }
-
-    .pricing-card:hover {
+    .pricing-card:hover{
       border-color: rgba(165,180,252,0.55);
       transform: translateY(-1px);
     }
-
-    .pricing-card h3 { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
-    .pricing-amount { font-size: 18px; font-weight: 600; margin-bottom: 4px; }
-    .pricing-note { font-size: 12px; color: #c4c8dd; line-height: 1.6; }
-    .pricing-linkhint {
-      margin-top: 10px;
-      font-size: 12px;
-      color: #b6bad1;
+    .pricing-card h3{ font-size:14px; font-weight:600; margin-bottom:4px; }
+    .pricing-amount{ font-size:18px; font-weight:600; margin-bottom:4px; }
+    .pricing-note{ font-size:12px; color:#c4c8dd; line-height:1.6; }
+    .pricing-linkhint{
+      margin-top:10px;
+      font-size:12px;
+      color:#b6bad1;
       text-decoration: underline;
       text-decoration-color: rgba(165,180,252,0.35);
       text-underline-offset: 3px;
     }
 
-    .faq-item { margin-bottom: 14px; }
-    .faq-q { font-size: 13px; font-weight: 500; color: #f1f2fb; margin-bottom: 3px; }
-    .faq-a { font-size: 13px; color: #cacfe4; line-height: 1.6; }
+    .faq-item{ margin-bottom:14px; }
+    .faq-q{ font-size:13px; font-weight:500; color:#f1f2fb; margin-bottom:3px; }
+    .faq-a{ font-size:13px; color:#cacfe4; line-height:1.6; }
 
-    /* Upgraded form */
-    .simple-form { max-width: 720px; margin-top: 12px; }
-    .form-grid {
-      display: grid;
+    /* Form (more compact + cleaner) */
+    .form-shell{
+      border-radius:16px;
+      border:1px solid var(--border);
+      background: radial-gradient(circle at top left, rgba(129,140,248,0.12) 0, rgba(15,23,42,0.55) 55%, rgba(5,6,8,0.96) 100%);
+      padding:14px 14px 12px;
+      max-width: 760px;
+    }
+
+    form.simple-form{ margin-top:12px; }
+    .form-grid{
+      display:grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 12px;
-      margin-top: 10px;
+      gap:12px;
+      margin-top:10px;
     }
-    .form-row { margin-bottom: 0; }
-    .form-row.full { grid-column: 1 / -1; }
+    .form-row{ margin-bottom:0; }
+    .form-row.full{ grid-column:1 / -1; }
 
-    .form-row label, .form-row span.label {
-      display: block;
-      font-size: 12px;
-      color: #cbd0e0;
-      margin-bottom: 6px;
-      letter-spacing: 0.02em;
-    }
-
-    .form-row input, .form-row textarea {
-      width: 100%;
-      padding: 10px 10px;
-      border-radius: 10px;
-      border: 1px solid #303445;
-      background: rgba(15,23,42,0.9);
-      color: #e5e7f5;
-      font-size: 13px;
-      outline: none;
+    .form-row label, .form-row span.label{
+      display:block;
+      font-size:12px;
+      color:#cbd0e0;
+      margin-bottom:6px;
+      letter-spacing:0.02em;
     }
 
-    .form-row textarea { min-height: 96px; resize: vertical; }
+    .hint{
+      font-size:11px;
+      color:#9aa0b2;
+      line-height:1.5;
+      margin-top:6px;
+    }
 
-    .form-row input:focus, .form-row textarea:focus {
-      border-color: #6366f1;
+    .form-row input, .form-row textarea, .form-row select{
+      width:100%;
+      padding:10px 10px;
+      border-radius:10px;
+      border:1px solid #303445;
+      background: rgba(15,23,42,0.92);
+      color:#e5e7f5;
+      font-size:13px;
+      outline:none;
+    }
+    .form-row textarea{ min-height: 92px; resize: vertical; }
+
+    .form-row input:focus, .form-row textarea:focus, .form-row select:focus{
+      border-color: var(--focus);
       box-shadow: 0 0 0 1px rgba(99,102,241,0.5);
     }
 
-    .choice-grid {
-      display: grid;
+    .choice-grid{
+      display:grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 10px;
-      margin-top: 6px;
+      gap:10px;
+      margin-top:6px;
+    }
+    .choice-grid.two{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+    .choice-input{
+      position:absolute;
+      opacity:0;
+      pointer-events:none;
     }
 
-    .choice-grid.two {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
-    .choice-input {
-      position: absolute;
-      opacity: 0;
-      pointer-events: none;
-    }
-
-    .choice-card {
-      border-radius: 14px;
-      border: 1px solid #232633;
+    /* Compact selection cards */
+    .choice-card{
+      border-radius:14px;
+      border:1px solid var(--border);
       background: rgba(15,23,42,0.55);
-      padding: 12px 12px 10px;
-      cursor: pointer;
+      padding:10px 10px 9px;
+      cursor:pointer;
       transition: transform 0.10s ease, border-color 0.16s ease, background 0.16s ease;
-      min-height: 86px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      gap: 8px;
+      min-height: 74px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      gap:8px;
     }
-
-    .choice-card:hover {
+    .choice-card:hover{
       border-color: rgba(165,180,252,0.55);
       transform: translateY(-1px);
     }
 
-    .choice-top {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 10px;
+    .choice-top{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:10px;
+    }
+    .choice-title{
+      font-size:13px;
+      font-weight:600;
+      color:#f1f2fb;
+      margin-bottom:2px;
+    }
+    .choice-sub{
+      font-size:12px;
+      color:#b6bad1;
+      line-height:1.5;
+    }
+    .choice-mark{
+      width:18px;height:18px;border-radius:999px;
+      border:1px solid #343848;
+      display:inline-flex; align-items:center; justify-content:center;
+      font-size:12px; color:transparent;
+      flex:0 0 auto; margin-top:1px;
     }
 
-    .choice-title {
-      font-size: 13px;
-      font-weight: 600;
-      color: #f1f2fb;
-      margin-bottom: 2px;
-    }
-
-    .choice-sub {
-      font-size: 12px;
-      color: #b6bad1;
-      line-height: 1.5;
-    }
-
-    .choice-mark {
-      width: 18px;
-      height: 18px;
-      border-radius: 999px;
-      border: 1px solid #343848;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 12px;
-      color: transparent;
-      flex: 0 0 auto;
-      margin-top: 1px;
-    }
-
-    /* checked styles */
-    .choice-input:checked + label.choice-card {
+    .choice-input:checked + label.choice-card{
       border-color: rgba(165,180,252,0.95);
       background: radial-gradient(circle at top left, rgba(129,140,248,0.20) 0, rgba(15,23,42,0.55) 60%, rgba(5,6,8,0.95) 100%);
     }
-    .choice-input:checked + label .choice-mark {
-      color: #050608;
+    .choice-input:checked + label .choice-mark{
+      color:#050608;
       border-color: rgba(165,180,252,0.95);
       background: linear-gradient(135deg, #f9fafb, #e5e7eb);
     }
 
-    .form-actions {
-      margin-top: 12px;
-      display: grid;
+    .form-actions{
+      margin-top:12px;
+      display:grid;
       grid-template-columns: minmax(0, 1fr);
-      gap: 10px;
+      gap:10px;
       max-width: 360px;
     }
 
-    .privacy-note {
-      font-size: 12px;
-      color: #a0a4ae;
-      line-height: 1.6;
+    .checkbox-row{
+      display:flex;
+      align-items:flex-start;
+      gap:10px;
+      cursor:pointer;
+      color:#d4d7eb;
+      font-size:12px;
+      line-height:1.5;
+      user-select:none;
+      padding:8px 10px;
+      border-radius:10px;
+      border:1px solid #2a2d3b;
+      background: rgba(15,23,42,0.55);
+    }
+    .checkbox-row input{ margin-top:2px; }
+
+    .privacy-note{
+      font-size:12px;
+      color:#a0a4ae;
+      line-height:1.6;
       max-width: 760px;
-      margin-top: 10px;
+      margin-top:10px;
     }
 
-    footer {
-      margin-top: 32px;
-      font-size: 11px;
-      color: #737889;
-      display: flex;
-      justify-content: space-between;
-      gap: 12px;
-      flex-wrap: wrap;
-      align-items: center;
+    footer{
+      margin-top:32px;
+      font-size:11px;
+      color:#737889;
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+    footer a{ color:#b6bad1; text-decoration:none; }
+    footer a:hover{ text-decoration: underline; }
+
+    @media (max-width: 900px){
+      .grid-3{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .choice-grid{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .pricing-grid{ grid-template-columns: minmax(0, 1fr); }
     }
 
-    footer a { color: #b6bad1; text-decoration: none; }
-    footer a:hover { text-decoration: underline; }
-
-    @media (max-width: 900px) {
-      .grid-3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .choice-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .pricing-grid { grid-template-columns: minmax(0, 1fr); }
-    }
-
-    @media (max-width: 768px) {
-      body { padding: 24px 16px 32px; }
-      header { align-items: flex-start; flex-direction: column; gap: 6px; }
-      nav { justify-content: flex-start; }
-      .hero-title { font-size: 24px; }
-      .hero-subtitle { max-width: 100%; }
-      .grid-2, .grid-3 { grid-template-columns: minmax(0, 1fr); }
-      .layout-grid, .two-col { grid-template-columns: minmax(0, 1fr); }
-      .hero-cta-row { flex-direction: column; }
-      .btn-primary, .btn-ghost { width: 100%; justify-content: center; }
-      .toc { margin-bottom: 14px; }
-      .form-grid { grid-template-columns: 1fr; }
-      .choice-grid, .choice-grid.two { grid-template-columns: 1fr; }
-      .form-actions { max-width: 100%; }
-      footer { flex-direction: column; align-items: flex-start; }
+    @media (max-width: 768px){
+      body{ padding:24px 16px 32px; }
+      header{ align-items:flex-start; flex-direction:column; gap:6px; }
+      nav{ justify-content:flex-start; }
+      .hero-title{ font-size:24px; }
+      .hero-subtitle{ max-width:100%; }
+      .grid-2,.grid-3{ grid-template-columns: minmax(0, 1fr); }
+      .layout-grid,.two-col{ grid-template-columns: minmax(0, 1fr); }
+      .hero-cta-row{ flex-direction:column; }
+      .btn-primary,.btn-ghost{ width:100%; justify-content:center; }
+      .toc{ margin-bottom:14px; }
+      .form-grid{ grid-template-columns: 1fr; }
+      .choice-grid, .choice-grid.two{ grid-template-columns: 1fr; }
+      .form-actions{ max-width:100%; }
+      footer{ flex-direction:column; align-items:flex-start; }
     }
   </style>
 </head>
@@ -768,7 +616,7 @@
         </p>
         <div class="hero-cta-row">
           <a href="#request-access" class="btn-primary">Request early access</a>
-          <a href="#offers" class="btn-ghost">Browse rapid offers</a>
+          <a href="#offers" class="btn-ghost">Browse playbook offers</a>
           <a href="/trust-brief/" class="btn-ghost">Trust Brief track</a>
         </div>
       </section>
@@ -789,21 +637,21 @@
         </div>
       </div>
 
-      <!-- Offers -->
+      <!-- Offers (FIXED: all under /playbook/...) -->
       <section class="section" id="offers">
         <div class="section-title-row">
           <div>
             <div class="section-kicker">Offers</div>
             <h2 class="section-title">Rapid governance packs (board-ready, conversion-first)</h2>
           </div>
-          <div class="chip">4 landing offers</div>
+          <div class="chip">All under /playbook/</div>
         </div>
         <p class="section-subtitle">
-          These offers route qualified leads into deeper board-level Trust Brief and Trust Ledger work.
+          Each pack is a “fast artifact” offer. Default routing: Playbook pack → board track pages → Trust Brief / Trust Ledger.
         </p>
 
         <div class="grid-2">
-          <a class="card" href="/eu-ai-act/" aria-label="EU AI Act Readiness Sprint">
+          <a class="card" href="/playbook/eu-ai-act/" aria-label="EU AI Act Readiness Sprint">
             <div class="card-pill">Readiness sprint</div>
             <div class="card-title">EU AI Act Readiness Sprint</div>
             <p>Gap Matrix + Evidence Plan in 10 days. Built for board and regulator questions.</p>
@@ -814,7 +662,7 @@
             </div>
           </a>
 
-          <a class="card" href="/iso-42001/" aria-label="ISO/IEC 42001 Readiness Pack">
+          <a class="card" href="/playbook/iso-42001/" aria-label="ISO/IEC 42001 Readiness Pack">
             <div class="card-pill">AIMS pathway</div>
             <div class="card-title">ISO/IEC 42001 Readiness Pack</div>
             <p>Scope + controls-to-evidence map + implementation backlog for audit preparation.</p>
@@ -825,7 +673,7 @@
             </div>
           </a>
 
-          <a class="card" href="/ai-policy/" aria-label="Enterprise AI Policy Sprint">
+          <a class="card" href="/playbook/ai-policy/" aria-label="Enterprise AI Policy Sprint">
             <div class="card-pill">Policy sprint</div>
             <div class="card-title">Enterprise AI Policy Sprint</div>
             <p>Board-approvable AI policy + role guardrails + training pack in 2 weeks.</p>
@@ -836,7 +684,7 @@
             </div>
           </a>
 
-          <a class="card" href="/vendor-due-diligence/" aria-label="AI Vendor Due Diligence Kit">
+          <a class="card" href="/playbook/vendor-due-diligence/" aria-label="AI Vendor Due Diligence Kit">
             <div class="card-pill">Procurement</div>
             <div class="card-title">AI Vendor Due Diligence Kit</div>
             <p>Pass/fail gates + scoring rubric + evidence requests + decision memo.</p>
@@ -850,28 +698,28 @@
 
         <div class="one-sentence" style="margin-top: 14px;">
           <strong>Routing logic:</strong> these packs establish a defensible baseline. Default next steps: the
-          <a href="/board-trust-brief/">Board Trust Brief</a>, the
+          <a href="/playbook/board-trust-brief/">Board Trust Brief</a>, the
           <a href="/trust-brief/">Trust Brief</a>, the
-          <a href="/ledger-schema/">Ledger Schema</a>, then ongoing
+          <a href="/playbook/ledger-schema/">Ledger Schema</a>, then ongoing
           <a href="/trust-ledger/">Trust Ledger</a>.
         </div>
       </section>
 
-      <!-- NEW: Related pages (two new links + trust pages) -->
+      <!-- Related pages (FIXED: playbook sub-pages) -->
       <section class="section" id="related">
         <div class="section-title-row">
           <div>
             <div class="section-kicker">Board-level links</div>
             <h2 class="section-title">Related pages (board track + ledger architecture)</h2>
           </div>
-          <div class="chip">Navigation</div>
+          <div class="chip">Playbook sub-pages</div>
         </div>
         <p class="section-subtitle">
           Use these when the buyer is board-facing, procurement-facing, or needs ledger structure clarity.
         </p>
 
         <div class="grid-3">
-          <a class="card" href="/board-trust-brief/" aria-label="Board Trust Brief page">
+          <a class="card" href="/playbook/board-trust-brief/" aria-label="Board Trust Brief page">
             <div class="card-pill">Board track</div>
             <div class="card-title">Board Trust Brief</div>
             <p>A board-ready brief focused on governance decisions, accountabilities, and defensible language.</p>
@@ -882,7 +730,7 @@
             </div>
           </a>
 
-          <a class="card" href="/ledger-schema/" aria-label="Ledger Schema page">
+          <a class="card" href="/playbook/ledger-schema/" aria-label="Ledger Schema page">
             <div class="card-pill">Architecture</div>
             <div class="card-title">Ledger Schema</div>
             <p>The structure behind Trust Ledger entries: fields, evidence, controls, and traceability.</p>
@@ -928,8 +776,8 @@
             in a way boards and enterprise clients can recognise as credible governance.
           </p>
           <p>
-            The language and templates are designed to remain compatible with Noetfield’s board-level Trust Brief and Trust
-            Ledger pattern, so teams can scale into the same governance vocabulary over time.
+            The language and templates remain compatible with Noetfield’s board-level track and Trust Ledger vocabulary,
+            so teams can scale into the same governance posture over time.
           </p>
 
           <div class="one-sentence">
@@ -948,7 +796,7 @@
             <li>Data &amp; privacy guardrails — what can / cannot be sent to tools.</li>
             <li>Vendor &amp; tool due diligence — acceptable tools and evidence.</li>
             <li>Incident &amp; escalation — what happens when something goes wrong.</li>
-            <li>Board/client brief — a short non-technical governance explanation.</li>
+            <li>Board/client brief — short non-technical governance explanation.</li>
             <li>0–90 day roadmap — a realistic sequence for adoption.</li>
           </ul>
           <div class="badge-row">
@@ -1039,7 +887,7 @@
         </div>
       </section>
 
-      <!-- Pricing (NOW LINKED) -->
+      <!-- Pricing -->
       <section class="section" id="pricing">
         <div class="section-title-row">
           <div>
@@ -1076,12 +924,10 @@
           </a>
         </div>
 
-        <p>
-          During early access, payment can be completed via invoice. Materials are issued after invoice confirmation.
-        </p>
+        <p>During early access, payment can be completed via invoice. Materials are issued after invoice confirmation.</p>
       </section>
 
-      <!-- Request Access (UPGRADED) -->
+      <!-- Request Access (cleaner + compact) -->
       <section class="section" id="request-access">
         <div class="section-title-row">
           <div>
@@ -1091,123 +937,125 @@
           <div class="chip">Structured intake</div>
         </div>
 
-        <p>
-          Share a few details below. If there is a fit, early access is issued with an invoice aligned to the selected license.
-        </p>
+        <p>Share a few details below. If there is a fit, early access is issued with an invoice aligned to the selected license.</p>
 
-        <form class="simple-form" method="POST" action="https://formspree.io/f/YOUR_FORM_ID">
-          <input type="hidden" name="page_source" value="/playbook/" />
-          <input type="hidden" name="offer" value="Playbook Early Access" />
+        <div class="form-shell">
+          <form class="simple-form" method="POST" action="https://formspree.io/f/YOUR_FORM_ID">
+            <input type="hidden" name="page_source" value="/playbook/" />
+            <input type="hidden" name="offer" value="Playbook Early Access" />
 
-          <div class="form-grid" role="group" aria-label="Contact details">
-            <div class="form-row">
-              <label for="name">Name</label>
-              <input id="name" name="name" type="text" placeholder="Full name" required />
-            </div>
+            <div class="form-grid" role="group" aria-label="Contact details">
+              <div class="form-row">
+                <label for="name">Name</label>
+                <input id="name" name="name" type="text" placeholder="Full name" autocomplete="name" required />
+              </div>
 
-            <div class="form-row">
-              <label for="email">Email</label>
-              <input id="email" name="email" type="email" placeholder="name@company.com" required />
-            </div>
+              <div class="form-row">
+                <label for="email">Email</label>
+                <input id="email" name="email" type="email" placeholder="name@company.com" autocomplete="email" required />
+              </div>
 
-            <div class="form-row">
-              <label for="org">Organization / Role</label>
-              <input id="org" name="organization" type="text" placeholder="Company + role" />
-            </div>
+              <div class="form-row">
+                <label for="org">Organization / Role</label>
+                <input id="org" name="organization" type="text" placeholder="Company + role" autocomplete="organization" />
+              </div>
 
-            <div class="form-row">
-              <label for="website">Website (optional)</label>
-              <input id="website" name="website" type="url" placeholder="https://..." />
-            </div>
+              <div class="form-row">
+                <label for="website">Website (optional)</label>
+                <input id="website" name="website" type="url" placeholder="https://..." inputmode="url" />
+              </div>
 
-            <div class="form-row full">
-              <span class="label">Company size</span>
-              <div class="choice-grid" role="radiogroup" aria-label="Company size options">
-                <input class="choice-input" type="radio" id="sz1" name="company_size" value="1-10" required />
-                <label class="choice-card" for="sz1">
-                  <div class="choice-top">
-                    <div>
-                      <div class="choice-title">1–10</div>
-                      <div class="choice-sub">Founder-led / small team</div>
+              <div class="form-row full">
+                <span class="label">Company size</span>
+                <div class="choice-grid" role="radiogroup" aria-label="Company size options">
+                  <input class="choice-input" type="radio" id="sz1" name="company_size" value="1-10" required />
+                  <label class="choice-card" for="sz1">
+                    <div class="choice-top">
+                      <div>
+                        <div class="choice-title">1–10</div>
+                        <div class="choice-sub">Founder-led / small team</div>
+                      </div>
+                      <div class="choice-mark">✓</div>
                     </div>
-                    <div class="choice-mark">✓</div>
-                  </div>
-                </label>
+                  </label>
 
-                <input class="choice-input" type="radio" id="sz2" name="company_size" value="11-50" />
-                <label class="choice-card" for="sz2">
-                  <div class="choice-top">
-                    <div>
-                      <div class="choice-title">11–50</div>
-                      <div class="choice-sub">Growing ops + delivery</div>
+                  <input class="choice-input" type="radio" id="sz2" name="company_size" value="11-50" />
+                  <label class="choice-card" for="sz2">
+                    <div class="choice-top">
+                      <div>
+                        <div class="choice-title">11–50</div>
+                        <div class="choice-sub">Growing ops + delivery</div>
+                      </div>
+                      <div class="choice-mark">✓</div>
                     </div>
-                    <div class="choice-mark">✓</div>
-                  </div>
-                </label>
+                  </label>
 
-                <input class="choice-input" type="radio" id="sz3" name="company_size" value="51-200" />
-                <label class="choice-card" for="sz3">
-                  <div class="choice-top">
-                    <div>
-                      <div class="choice-title">51–200</div>
-                      <div class="choice-sub">Client scrutiny increases</div>
+                  <input class="choice-input" type="radio" id="sz3" name="company_size" value="51-200" />
+                  <label class="choice-card" for="sz3">
+                    <div class="choice-top">
+                      <div>
+                        <div class="choice-title">51–200</div>
+                        <div class="choice-sub">Client scrutiny increases</div>
+                      </div>
+                      <div class="choice-mark">✓</div>
                     </div>
-                    <div class="choice-mark">✓</div>
-                  </div>
+                  </label>
+                </div>
+                <div class="hint">For larger organisations, default routing is the Trust Brief + Trust Ledger track.</div>
+              </div>
+
+              <div class="form-row full">
+                <span class="label">License interest</span>
+                <div class="choice-grid two" role="radiogroup" aria-label="License options">
+                  <input class="choice-input" type="radio" id="lic1" name="license" value="standard" required />
+                  <label class="choice-card" for="lic1">
+                    <div class="choice-top">
+                      <div>
+                        <div class="choice-title">Standard</div>
+                        <div class="choice-sub">Internal use for one team</div>
+                      </div>
+                      <div class="choice-mark">✓</div>
+                    </div>
+                  </label>
+
+                  <input class="choice-input" type="radio" id="lic2" name="license" value="agency-pro" />
+                  <label class="choice-card" for="lic2">
+                    <div class="choice-top">
+                      <div>
+                        <div class="choice-title">Agency / Pro</div>
+                        <div class="choice-sub">Reuse across multiple clients</div>
+                      </div>
+                      <div class="choice-mark">✓</div>
+                    </div>
+                  </label>
+                </div>
+              </div>
+
+              <div class="form-row full">
+                <label for="notes">Primary use-case (optional)</label>
+                <textarea id="notes" name="primary_use_case" placeholder="What AI is used for, and what pressure is showing up (clients, procurement, board, regulator)"></textarea>
+              </div>
+
+              <div class="form-row full">
+                <label class="checkbox-row">
+                  <input type="checkbox" name="ready_to_purchase" value="yes" />
+                  Prepared to purchase at this price once invoice is issued.
                 </label>
               </div>
-            </div>
 
-            <div class="form-row full">
-              <span class="label">License interest</span>
-              <div class="choice-grid two" role="radiogroup" aria-label="License options">
-                <input class="choice-input" type="radio" id="lic1" name="license" value="standard" required />
-                <label class="choice-card" for="lic1">
-                  <div class="choice-top">
-                    <div>
-                      <div class="choice-title">Standard</div>
-                      <div class="choice-sub">Internal use for one team</div>
-                    </div>
-                    <div class="choice-mark">✓</div>
-                  </div>
-                </label>
+              <div class="form-row full">
+                <div class="form-actions">
+                  <button type="submit" class="btn-primary btn-full">Request early access</button>
+                  <a class="btn-ghost btn-full" href="/contact/">Prefer direct contact</a>
+                </div>
 
-                <input class="choice-input" type="radio" id="lic2" name="license" value="agency-pro" />
-                <label class="choice-card" for="lic2">
-                  <div class="choice-top">
-                    <div>
-                      <div class="choice-title">Agency / Pro</div>
-                      <div class="choice-sub">Reuse across multiple clients</div>
-                    </div>
-                    <div class="choice-mark">✓</div>
-                  </div>
-                </label>
+                <div class="privacy-note">
+                  Minimal data only. Used to respond to this request. Delete on request.
+                </div>
               </div>
             </div>
-
-            <div class="form-row full">
-              <label for="notes">Primary use-case (optional)</label>
-              <textarea id="notes" name="primary_use_case" placeholder="What AI is used for, and what pressure is showing up (clients, procurement, board, regulator)"></textarea>
-            </div>
-
-            <div class="form-row full">
-              <label style="display:flex; align-items:center; gap:10px; cursor:pointer; color:#d4d7eb; font-size:12px;">
-                <input type="checkbox" name="ready_to_purchase" value="yes" />
-                Prepared to purchase at this price once invoice is issued.
-              </label>
-            </div>
-
-            <div class="form-row full">
-              <div class="form-actions">
-                <button type="submit" class="btn-primary btn-full">Request early access</button>
-                <a class="btn-ghost btn-full" href="/contact/">Prefer direct contact</a>
-              </div>
-              <div class="privacy-note">
-                Minimal data only. Used to respond to this request. Delete on request.
-              </div>
-            </div>
-          </div>
-        </form>
+          </form>
+        </div>
       </section>
 
       <!-- FAQ -->

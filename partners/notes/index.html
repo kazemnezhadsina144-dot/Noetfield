@@ -600,41 +600,26 @@
       box-shadow: 0 0 0 1px rgba(99,102,241,0.45);
     }
 
+    /* cleaner radio group like /partners/ */
     .radio-group {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 8px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      font-size: 12px;
+      color: #d4d7eb;
       margin-top: 4px;
     }
 
-    .radio-pill {
-      position: relative;
-      display: flex;
+    .radio-group label {
+      display: inline-flex;
       align-items: center;
-    }
-
-    .radio-pill input[type="radio"] {
-      position: absolute;
-      inset: 0;
-      opacity: 0;
+      gap: 6px;
       cursor: pointer;
     }
 
-    .radio-pill span {
-      width: 100%;
-      padding: 7px 10px;
-      border-radius: 999px;
-      border: 1px solid #303445;
-      background: rgba(15,23,42,0.9);
-      font-size: 12px;
-      color: #d4d7eb;
-      text-align: left;
-    }
-
-    .radio-pill input[type="radio"]:checked + span {
-      border-color: #818cf8;
-      background: radial-gradient(circle at 0 0, rgba(129,140,248,0.4), rgba(15,23,42,0.95));
-      box-shadow: 0 0 0 1px rgba(129,140,248,0.55);
+    .radio-group input[type="radio"] {
+      margin: 0;
+      accent-color: #818cf8;
     }
 
     .form-actions {
@@ -1059,21 +1044,21 @@
           <div class="form-row">
             <span class="label">Indicative partner tier</span>
             <div class="radio-group">
-              <label class="radio-pill">
+              <label>
                 <input type="radio" name="tier" value="50k" />
-                <span>Founding Partner 50k</span>
+                Founding Partner 50k
               </label>
-              <label class="radio-pill">
+              <label>
                 <input type="radio" name="tier" value="100k" />
-                <span>Founding Partner 100k</span>
+                Founding Partner 100k
               </label>
-              <label class="radio-pill">
+              <label>
                 <input type="radio" name="tier" value="250k" />
-                <span>Strategic / Premium 250k</span>
+                Strategic / Premium 250k
               </label>
-              <label class="radio-pill">
+              <label>
                 <input type="radio" name="tier" value="other" />
-                <span>Other / to be discussed</span>
+                Other / to be discussed
               </label>
             </div>
           </div>

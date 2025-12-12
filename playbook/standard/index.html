@@ -8,7 +8,7 @@
 
   <meta
     name="description"
-    content="Standard License for the Noetfield AI Governance & Trust Playbook (249 CAD). A governance-first 0–90 day implementation pattern + templates for a single team to make AI usage defensible, documented, and answer-ready."
+    content="Standard License for the Noetfield AI Governance & Trust Playbook (249 CAD). A governance-first 0–90 day implementation pattern + templates for a single team’s internal use."
   />
   <meta name="robots" content="index,follow" />
   <meta name="author" content="Noetfield Systems Inc." />
@@ -27,7 +27,7 @@
   <meta property="og:title" content="Noetfield – Standard License (Playbook)" />
   <meta
     property="og:description"
-    content="Standard License (249 CAD) for one team. Includes the 0–90 day AI governance pattern + editable templates to make AI usage defensible and answer-ready."
+    content="Standard License (249 CAD) for a single team’s internal use. Governance-first 0–90 day pattern + templates to make AI usage defensible, documented, and answer-ready."
   />
   <meta property="og:url" content="https://www.noetfield.com/playbook/standard/" />
   <meta property="og:image" content="https://www.noetfield.com/noetfield-og.png" />
@@ -37,7 +37,7 @@
   <meta name="twitter:title" content="Noetfield – Standard License (Playbook)" />
   <meta
     name="twitter:description"
-    content="Standard License (249 CAD) for one team. Includes the 0–90 day AI governance pattern + editable templates."
+    content="Standard License (249 CAD) for one team (internal). Includes the 0–90 day AI governance pattern + editable templates."
   />
   <meta name="twitter:image" content="https://www.noetfield.com/noetfield-og.png" />
 
@@ -47,7 +47,7 @@
     "@context":"https://schema.org",
     "@type":"Product",
     "name":"Noetfield AI Governance & Trust Playbook – Standard License",
-    "description":"Standard License for a single team. A governance-first 0–90 day AI governance pattern + editable templates to make AI usage defensible, documented, and answer-ready.",
+    "description":"Standard License for a single team’s internal use. Governance-first 0–90 day pattern + editable templates to make AI usage defensible, documented, and answer-ready for clients, boards, and procurement.",
     "brand":{"@type":"Brand","name":"Noetfield"},
     "offers":{
       "@type":"Offer",
@@ -67,6 +67,7 @@
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
+
     :root{
       --bg:#05060a;
       --bg-soft:#080911;
@@ -78,6 +79,8 @@
       --text-mute:#9ca3af;
       --accent-soft:#a5b4fc;
       --focus:#6366f1;
+      --ok:#34d399;
+      --warn:#fbbf24;
     }
 
     body{
@@ -90,8 +93,9 @@
       align-items:center;
       padding:32px 20px 40px;
     }
+
     a { color: inherit; text-decoration: none; }
-    .page{ width:100%; max-width:1040px; display:flex; flex-direction:column; min-height: calc(100vh - 72px); }
+    .page{ width:100%; max-width:1080px; display:flex; flex-direction:column; min-height: calc(100vh - 72px); }
 
     header{
       display:flex; align-items:center; justify-content:space-between;
@@ -109,6 +113,7 @@
     .brand-text{ display:flex; flex-direction:column; gap:2px; }
     .brand-name{ font-size:16px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; }
     .brand-tagline{ font-size:12px; color: var(--text-mute); }
+
     nav{ display:flex; gap:18px; font-size:13px; flex-wrap:wrap; }
     nav a{ opacity:0.78; padding-bottom:2px; border-bottom:1px solid transparent; }
     nav a:hover{ opacity:1; border-bottom-color:rgba(209,213,219,0.6); }
@@ -130,8 +135,8 @@
       color: var(--text-mute); margin-bottom:8px;
     }
     .hero-title{
-      font-size: clamp(26px, 3vw, 32px);
-      line-height:1.15; font-weight:600; margin-bottom:10px;
+      font-size: clamp(26px, 3vw, 34px);
+      line-height:1.12; font-weight:650; margin-bottom:10px;
       letter-spacing:-0.02em;
     }
     .hero-title span{
@@ -139,15 +144,15 @@
       -webkit-background-clip:text; background-clip:text; color:transparent;
     }
     .hero-subtitle{
-      font-size:15px; line-height:1.65; color:#d0d3dd; max-width: 820px;
+      font-size:15px; line-height:1.65; color:#d0d3dd; max-width: 880px;
       margin-bottom: 14px;
     }
 
     .btn-row{ display:flex; flex-wrap:wrap; gap:12px; margin-top: 14px; }
-    .btn-primary,.btn-ghost{
+    .btn-primary,.btn-ghost,.btn-alt{
       display:inline-flex; align-items:center; justify-content:center;
       padding:10px 18px; border-radius:999px;
-      font-size:13px; font-weight:500;
+      font-size:13px; font-weight:550;
       cursor:pointer; border:1px solid transparent;
       transition: background-color 0.16s ease, border-color 0.16s ease, transform 0.06s ease;
       white-space:nowrap;
@@ -162,6 +167,13 @@
       border-color:#4b4f5c; color:#e1e3ea;
     }
     .btn-ghost:hover{ background:#111827; border-color:#6c7080; }
+    .btn-alt{
+      background: rgba(15,23,42,0.55);
+      border-color: rgba(165,180,252,0.35);
+      color:#e8eaf4;
+    }
+    .btn-alt:hover{ border-color: rgba(165,180,252,0.65); transform: translateY(-1px); }
+    .btn-full{ width:100%; }
 
     .toc{
       border-radius:14px; border:1px solid var(--border);
@@ -188,9 +200,9 @@
       font-size:11px; text-transform:uppercase; letter-spacing:0.16em;
       color: var(--text-mute); margin-bottom:4px;
     }
-    .section-title{ font-size:18px; font-weight:600; letter-spacing:-0.02em; margin-bottom:8px; }
-    .section-subtitle{ font-size:14px; color:#a0a4ae; margin-bottom:10px; max-width: 860px; }
-    .section p{ font-size:14px; line-height:1.7; color:#e1e3ea; margin-bottom:9px; max-width: 860px; }
+    .section-title{ font-size:18px; font-weight:650; letter-spacing:-0.02em; margin-bottom:8px; }
+    .section-subtitle{ font-size:14px; color:#a0a4ae; margin-bottom:10px; max-width: 920px; }
+    .section p{ font-size:14px; line-height:1.7; color:#e1e3ea; margin-bottom:9px; max-width: 920px; }
 
     ul{ list-style:none; margin-top:6px; }
     li{
@@ -206,29 +218,35 @@
       background: radial-gradient(circle at top left, #191c2e 0, #0a0b10 52%, #050608 100%);
       padding:16px 16px 14px;
     }
-    .card-title{ font-size:14px; font-weight:600; margin-bottom:6px; }
+    .card-title{ font-size:14px; font-weight:650; margin-bottom:6px; }
     .card p{ font-size:13px; line-height:1.6; color:#daddef; margin-bottom:6px; }
-
+    .card-pill{
+      display:inline-flex; align-items:center; gap:8px;
+      border-radius:999px; border:1px solid #343848;
+      padding:3px 9px; font-size:11px; color:#b6bad1;
+      margin-bottom:10px;
+    }
     .badge-row{ display:flex; flex-wrap:wrap; gap:6px; margin-top:8px; }
     .badge{
       font-size:11px; border-radius:999px; border:1px solid #343848;
       padding:3px 8px; color:#b6bad1;
     }
+    .badge.ok{ border-color: rgba(52,211,153,0.35); color: rgba(167,243,208,0.95); }
+    .badge.warn{ border-color: rgba(251,191,36,0.35); color: rgba(253,230,138,0.95); }
 
-    .two-col{ display:grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap:18px; }
+    .two-col{ display:grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); gap:18px; }
 
     .buy-card{
       border-radius:16px;
       border:1px solid var(--border);
-      background: radial-gradient(circle at top left, rgba(129,140,248,0.18) 0, rgba(15,23,42,0.55) 55%, rgba(5,6,8,0.96) 100%);
+      background: radial-gradient(circle at top left, rgba(129,140,248,0.12) 0, rgba(15,23,42,0.55) 55%, rgba(5,6,8,0.96) 100%);
       padding:16px 16px 14px;
       position: sticky;
       top: 18px;
     }
-    .buy-price{ font-size:22px; font-weight:600; margin:8px 0 4px; }
+    .buy-price{ font-size:22px; font-weight:700; margin:8px 0 4px; }
     .buy-note{ font-size:12px; color:#c4c8dd; line-height:1.6; margin-bottom:10px; }
     .buy-cta{ display:grid; gap:10px; margin-top:10px; }
-    .btn-full{ width:100%; }
 
     .divider{
       height:1px; background: rgba(255,255,255,0.08);
@@ -237,10 +255,18 @@
 
     .fineprint{
       font-size:12px; color:#a0a4ae; line-height:1.7;
-      max-width: 860px;
+      max-width: 920px;
     }
 
-    .faq-q{ font-size:13px; font-weight:600; color:#f1f2fb; margin-bottom:4px; }
+    .pay-grid{ display:grid; gap:10px; }
+    .pay-note{
+      font-size:12px;
+      color:#a0a4ae;
+      line-height:1.6;
+      margin-top:10px;
+    }
+
+    .faq-q{ font-size:13px; font-weight:650; color:#f1f2fb; margin-bottom:4px; }
     .faq-a{ font-size:13px; color:#cacfe4; line-height:1.6; margin-bottom:12px; }
 
     footer{
@@ -267,7 +293,7 @@
       nav{ justify-content:flex-start; }
       .hero-title{ font-size:24px; }
       .btn-row{ flex-direction:column; }
-      .btn-primary,.btn-ghost{ width:100%; }
+      .btn-primary,.btn-ghost,.btn-alt{ width:100%; }
       footer{ flex-direction:column; align-items:flex-start; }
     }
   </style>
@@ -303,17 +329,17 @@
         <div class="pill"><span class="pill-dot"></span>Playbook License</div>
         <div class="hero-kicker">Standard License</div>
         <h1 class="hero-title">
-          Standard License for one team: <span>AI governance that survives scrutiny.</span>
+          A practical AI governance baseline: <span>one team, internal use.</span>
         </h1>
         <p class="hero-subtitle">
-          A single-team license for the Noetfield AI Governance &amp; Trust Playbook. Designed for small B2B teams that already use AI and need
-          a clear, documented, answer-ready governance posture — without building a full compliance department.
+          For founder-led and small B2B teams that already use AI and now need a clear, defensible way to document scope, guardrails,
+          approvals, vendor/tool choices, and incident escalation — in language enterprise clients and procurement can recognise.
         </p>
 
         <div class="btn-row">
-          <a class="btn-primary" href="#buy">Buy with Stripe</a>
+          <a class="btn-primary" href="#buy">Buy (Stripe)</a>
           <a class="btn-ghost" href="/playbook/">Back to Playbook</a>
-          <a class="btn-ghost" href="/trust-brief/">Board-level track</a>
+          <a class="btn-alt" href="/playbook/pro/">See Agency / Pro</a>
         </div>
       </section>
 
@@ -323,39 +349,41 @@
         <div class="toc-row">
           <a class="chip" href="#buy">Purchase</a>
           <a class="chip" href="#included">What’s included</a>
-          <a class="chip" href="#license">License terms</a>
-          <a class="chip" href="#implementation">Implementation</a>
+          <a class="chip" href="#license">License scope</a>
+          <a class="chip" href="#delivery">Delivery</a>
           <a class="chip" href="#faq">FAQ</a>
         </div>
       </div>
 
-      <!-- MAIN + BUY SIDEBAR -->
+      <!-- MAIN + BUY -->
       <section class="two-col" id="buy">
         <div>
           <div class="section">
             <div class="section-kicker">Product</div>
             <h2 class="section-title">AI Governance &amp; Trust Playbook (Standard)</h2>
             <p class="section-subtitle">
-              The practical 0–90 day pattern + templates that make AI usage governable, visible, and defensible in language
-              boards, enterprise clients, and procurement teams recognise.
+              A compact 0–90 day pattern + templates that make AI usage visible, scoped, and answer-ready — without building a full compliance department.
             </p>
 
             <div class="grid-2">
               <div class="card">
-                <div class="card-title">Built for small teams</div>
-                <p>Clear ownership, scope, and controls without enterprise overhead.</p>
+                <div class="card-pill">Internal governance</div>
+                <div class="card-title">Baseline documents you can actually ship</div>
+                <p>Define scope, roles, guardrails, and escalation so AI usage is no longer informal or scattered.</p>
                 <div class="badge-row">
-                  <div class="badge">0–90 days</div>
-                  <div class="badge">Templates</div>
-                  <div class="badge">Client-ready</div>
+                  <div class="badge ok">Low-friction</div>
+                  <div class="badge">Team-ready</div>
+                  <div class="badge">Credible</div>
                 </div>
               </div>
+
               <div class="card">
-                <div class="card-title">Compatible with board track</div>
-                <p>Uses compatible language with Trust Brief and Trust Ledger so scaling does not reset the work.</p>
+                <div class="card-pill">Client pressure</div>
+                <div class="card-title">Better answers for procurement</div>
+                <p>Use templates to respond to common client questions about AI tools, data handling, and controls.</p>
                 <div class="badge-row">
-                  <div class="badge">Board-safe</div>
-                  <div class="badge">Evidence-first</div>
+                  <div class="badge">Questionnaire-ready</div>
+                  <div class="badge">Plain-language</div>
                   <div class="badge">Traceable</div>
                 </div>
               </div>
@@ -364,52 +392,50 @@
             <div class="divider"></div>
 
             <p class="fineprint">
-              Note: The Playbook provides a governance structure, templates, and operational language. It is not legal advice and does not replace formal compliance review.
+              Note: This product is a governance template kit and operational pattern. It is not legal advice. For regulated contexts, review with counsel or internal risk/compliance.
             </p>
           </div>
 
           <section class="section" id="included">
             <div class="section-kicker">What’s included</div>
-            <h2 class="section-title">Deliverables (Standard License)</h2>
+            <h2 class="section-title">Deliverables (Standard)</h2>
             <p class="section-subtitle">
-              Delivered as a structured document (PDF + editable formats) plus a small set of starter templates.
+              Delivered as a structured document (PDF + editable formats) plus templates you adapt to your team.
             </p>
             <ul>
-              <li><strong>0–90 day implementation pattern</strong>: what to do first, then next, then institutionalize.</li>
-              <li><strong>AI scope &amp; mandate</strong>: what “AI usage” means inside the team, and who owns decisions.</li>
-              <li><strong>Use-case intake (lite)</strong>: approve AI use-cases before adoption; escalation triggers included.</li>
-              <li><strong>Data &amp; privacy guardrails</strong>: what data can/cannot be shared with tools; safe defaults.</li>
-              <li><strong>Vendor/tool due diligence (lite)</strong>: a repeatable checklist to validate tools and evidence.</li>
-              <li><strong>Incident &amp; escalation pattern</strong>: what happens when outputs are wrong, harmful, or sensitive.</li>
-              <li><strong>Board/client-ready brief template</strong>: 1–2 pages explaining governance posture in plain language.</li>
-              <li><strong>Starter registers</strong>: a small risk register + AI tool register to keep governance visible.</li>
+              <li><strong>0–90 day implementation pattern</strong> (practical sequencing + checkpoints).</li>
+              <li><strong>AI use-case intake form (lite)</strong> (purpose, tool, data, risks, approval).</li>
+              <li><strong>Data &amp; privacy guardrails</strong> (what can / cannot be shared with AI tools).</li>
+              <li><strong>Tool register v1</strong> (approved tools + owners + allowed use).</li>
+              <li><strong>Risk register v1</strong> (small-team risks + mitigations + ownership).</li>
+              <li><strong>Simple AI policy v1.0</strong> (acceptable use + human-in-loop + incident triggers).</li>
+              <li><strong>1–2 page governance brief template</strong> (client/procurement-facing).</li>
             </ul>
           </section>
 
           <section class="section" id="license">
-            <div class="section-kicker">License terms</div>
-            <h2 class="section-title">Standard License — scope and limits</h2>
-            <p class="section-subtitle">Designed for internal use by one team inside one organization.</p>
+            <div class="section-kicker">License scope</div>
+            <h2 class="section-title">Standard — permitted use (high-level)</h2>
             <ul>
-              <li><strong>Permitted:</strong> internal use by one team within one organization to govern AI usage.</li>
-              <li><strong>Permitted:</strong> adapting templates and language to internal policies and client questionnaires.</li>
-              <li><strong>Not permitted:</strong> reselling, white-labeling, or reusing across multiple client organizations.</li>
-              <li><strong>Upgrade path:</strong> agencies/advisors should use the <a href="/playbook/pro/">Agency / Pro License</a>.</li>
+              <li><strong>Permitted:</strong> use by a single organization/team for internal governance.</li>
+              <li><strong>Permitted:</strong> adapt templates to fit internal workflows and documents.</li>
+              <li><strong>Not permitted:</strong> use across multiple client engagements (use <a href="/playbook/pro/">Agency / Pro</a> instead).</li>
+              <li><strong>Not permitted:</strong> reselling the raw templates as a standalone product.</li>
+              <li><strong>Enterprise addendum:</strong> if a client requires custom terms, route via <a href="/contact/">Contact</a>.</li>
             </ul>
-            <p class="fineprint">
-              If procurement requires custom terms (e.g., enterprise addendum), use <a href="/contact/">Contact</a> for a simple addendum draft.
-            </p>
           </section>
 
-          <section class="section" id="implementation">
-            <div class="section-kicker">Implementation</div>
-            <h2 class="section-title">How teams implement this (typical)</h2>
+          <section class="section" id="delivery">
+            <div class="section-kicker">Delivery</div>
+            <h2 class="section-title">How purchase & delivery works</h2>
             <ul>
-              <li><strong>Week 1:</strong> define scope, owners, and the top 3 AI use-cases in production.</li>
-              <li><strong>Weeks 2–3:</strong> apply guardrails, create tool register + basic risk register, set escalation triggers.</li>
-              <li><strong>Weeks 4–6:</strong> formalize “use-case intake” and publish the client-ready governance brief.</li>
-              <li><strong>Weeks 7–12:</strong> extend to additional use-cases, refine evidence, prep for board/procurement scrutiny.</li>
+              <li>Pay via Stripe checkout.</li>
+              <li>On confirmation, delivery instructions + files are issued via email.</li>
+              <li>If invoicing is required, request an invoice via Contact.</li>
             </ul>
+            <p class="fineprint">
+              Optional (recommended): add Terms/License and Refund Policy pages and link them for purchase readiness.
+            </p>
           </section>
 
           <section class="section" id="faq">
@@ -417,52 +443,60 @@
             <h2 class="section-title">FAQ</h2>
 
             <div class="faq-q">Is this a subscription?</div>
-            <div class="faq-a">No. This is a one-time purchase license for the Playbook (Standard License).</div>
+            <div class="faq-a">No. One-time license purchase (Standard).</div>
 
-            <div class="faq-q">How is it delivered?</div>
-            <div class="faq-a">After payment confirmation, delivery instructions and files are issued via email. If an invoice workflow is required, use the contact option below.</div>
+            <div class="faq-q">Can we use this for client work?</div>
+            <div class="faq-a">No. Standard is internal-only. Use <a href="/playbook/pro/">Agency / Pro</a> for multi-client reuse.</div>
 
-            <div class="faq-q">Will this guarantee compliance with any specific law?</div>
-            <div class="faq-a">No. It provides a governance structure compatible with legal/risk expectations, but legal compliance depends on context and review.</div>
+            <div class="faq-q">Does Stripe support Apple Pay / Google Pay?</div>
+            <div class="faq-a">Often yes, if enabled in Stripe for your region and account. Stripe will show available wallets at checkout.</div>
 
-            <div class="faq-q">Can an agency use Standard for multiple clients?</div>
-            <div class="faq-a">No. Multi-client use should use the <a href="/playbook/pro/">Agency / Pro License</a>.</div>
+            <div class="faq-q">Is this legal advice / guarantees compliance?</div>
+            <div class="faq-a">No. It’s a governance structure and template kit. Compliance depends on context and review.</div>
           </section>
         </div>
 
         <!-- BUY BOX -->
-        <aside class="buy-card" aria-label="Purchase box">
+        <aside class="buy-card" aria-label="Purchase options">
           <div class="section-kicker">Standard License</div>
           <div class="buy-price">249 CAD</div>
           <div class="buy-note">
-            Single team • Internal use • Includes Playbook + templates • One-time purchase
+            One team (internal) • One-time purchase • Fast delivery
           </div>
 
-          <!-- IMPORTANT: Replace STRIPE_PAYMENT_LINK below with your Stripe Payment Link -->
-          <div class="buy-cta">
+          <!-- Replace with your real Stripe Payment Link -->
+          <div class="pay-grid">
             <a
               class="btn-primary btn-full"
-              href="https://buy.stripe.com/YOUR_STRIPE_PAYMENT_LINK"
+              href="https://buy.stripe.com/YOUR_STRIPE_STANDARD_LINK"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Pay with Stripe"
             >
-              Pay with Stripe
+              Pay with Stripe (cards / wallets)
             </a>
 
-            <a class="btn-ghost btn-full" href="/contact/" aria-label="Request invoice">
-              Request invoice instead
+            <a
+              class="btn-ghost btn-full"
+              href="/contact/?subject=Playbook%20Standard%20Invoice%20Request"
+              aria-label="Request invoice"
+            >
+              Request invoice (optional)
             </a>
 
-            <a class="btn-ghost btn-full" href="/playbook/" aria-label="Back to Playbook">
-              Back to Playbook
-            </a>
-          </div>
+            <a class="btn-ghost btn-full" href="/playbook/" aria-label="Back to Playbook">Back to Playbook</a>
 
-          <div class="divider"></div>
+            <div class="divider"></div>
 
-          <div class="fineprint">
-            Stripe link opens in a new tab. Replace <strong>YOUR_STRIPE_PAYMENT_LINK</strong> with your Stripe Payment Link ID.
+            <div class="badge-row">
+              <div class="badge ok">Global cards</div>
+              <div class="badge">Wallets (if enabled)</div>
+              <div class="badge warn">Invoice/PO</div>
+            </div>
+
+            <div class="pay-note">
+              Add only methods that are active on the merchant account. Stripe is the simplest default for Standard.
+            </div>
           </div>
         </aside>
       </section>

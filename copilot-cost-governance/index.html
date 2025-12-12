@@ -11,13 +11,17 @@
   />
   <meta name="robots" content="index,follow" />
   <meta name="author" content="Noetfield Systems Inc." />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
 
+  <!-- Canonical (always with www) -->
   <link rel="canonical" href="https://www.noetfield.com/copilot-cost-governance/" />
 
+  <!-- Favicon / icons -->
   <link rel="icon" href="/noetfield-favicon-512.png" type="image/png" />
   <link rel="apple-touch-icon" href="/noetfield-favicon-512.png" />
   <meta name="theme-color" content="#05060a" />
 
+  <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Noetfield" />
   <meta property="og:title" content="Noetfield – Copilot Cost & Governance Readiness" />
@@ -28,6 +32,7 @@
   <meta property="og:url" content="https://www.noetfield.com/copilot-cost-governance/" />
   <meta property="og:image" content="https://www.noetfield.com/noetfield-og.png" />
 
+  <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Noetfield – Copilot Cost & Governance Readiness" />
   <meta
@@ -36,24 +41,36 @@
   />
   <meta name="twitter:image" content="https://www.noetfield.com/noetfield-og.png" />
 
-  <!-- Article + FAQ -->
+  <!-- Structured data: WebPage + Service -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "Article",
-    "headline": "Noetfield Copilot Cost & Governance Readiness Pack",
-    "description": "A board-ready Copilot cost and governance pack that maps scope, license waste, agent inventory, data exposure, and controls — plus a decision memo and Trust Ledger entries.",
-    "author": { "@type": "Organization", "name": "Noetfield Systems Inc." },
+    "@type": "WebPage",
+    "name": "Noetfield – Copilot Cost & Governance Readiness",
+    "description": "A board-ready Copilot cost and governance pack: scope mapping, license waste, agent inventory, data exposure, and controls — plus a decision memo and Trust Ledger entries.",
+    "url": "https://www.noetfield.com/copilot-cost-governance/",
     "publisher": {
       "@type": "Organization",
       "name": "Noetfield Systems Inc.",
-      "logo": { "@type": "ImageObject", "url": "https://www.noetfield.com/noetfield-og.png" }
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.noetfield.com/noetfield-og.png"
+      }
     },
-    "url": "https://www.noetfield.com/copilot-cost-governance/",
-    "mainEntityOfPage": { "@type": "WebPage", "@id": "https://www.noetfield.com/copilot-cost-governance/" }
+    "mainEntity": {
+      "@type": "Service",
+      "name": "Copilot Cost & Governance Readiness Pack",
+      "provider": {
+        "@type": "Organization",
+        "name": "Noetfield Systems Inc."
+      },
+      "serviceType": "AI governance and board-ready risk/cost documentation",
+      "areaServed": "CA"
+    }
   }
   </script>
 
+  <!-- FAQ -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -64,7 +81,7 @@
         "name": "Who is the Copilot Cost & Governance Readiness pack for?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "The pack is designed for boards, audit and risk committees, CIO/CISO/CRO/COO leaders, and real-economy operators who are rolling out Microsoft Copilot and need a board-ready view of cost, scope, agents, and controls."
+          "text": "Designed for boards, audit and risk committees, CIO/CISO/CRO/COO leaders, and real-economy operators rolling out Microsoft Copilot who need a board-ready view of cost, scope, agents, and controls."
         }
       },
       {
@@ -96,21 +113,19 @@
         "name": "What happens after delivery?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "After delivery, the Copilot entries can be converted into a standing Trust Ledger track with a monthly reporting cadence tied to AI governance and board reporting."
+          "text": "After delivery, Copilot entries can be converted into a standing Trust Ledger track with a monthly reporting cadence tied to AI governance and board reporting."
         }
       }
     ]
   }
   </script>
 
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
-    rel="stylesheet"
-  />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
+
     :root{
       --bg:#05060a;
       --bg-soft:#080911;
@@ -120,9 +135,9 @@
       --text-main:#f5f5f7;
       --text-soft:#daddef;
       --text-mute:#9ca3af;
-      --accent:#ffffff;
-      --accent-soft:#9ca3ff;
+      --accent-soft:#a5b4fc;
       --focus:#6366f1;
+      --shadow: rgba(15,23,42,0.9);
     }
 
     body{
@@ -137,6 +152,21 @@
     }
 
     a { color: inherit; text-decoration: none; }
+    .skip-link{
+      position:absolute;
+      left:-9999px; top:auto;
+      width:1px; height:1px; overflow:hidden;
+    }
+    .skip-link:focus{
+      left: 20px; top: 16px;
+      width:auto; height:auto;
+      padding:10px 12px;
+      border-radius:10px;
+      background:#111827;
+      border:1px solid rgba(255,255,255,0.2);
+      z-index: 9999;
+    }
+
     .page{
       width:100%;
       max-width:1040px;
@@ -161,7 +191,7 @@
       background: radial-gradient(circle at 25% 0, #ffffff 0, #d4e0ff 18%, #818cf8 45%, #1f2937 70%, #020617 100%);
       display:flex;align-items:center;justify-content:center;
       font-size:18px;font-weight:700;color:#fff;
-      box-shadow:0 10px 28px rgba(15,23,42,0.9);
+      box-shadow:0 10px 28px var(--shadow);
     }
     .brand-text{ display:flex; flex-direction:column; gap:2px; }
     .brand-name{ font-size:16px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; }
@@ -217,7 +247,7 @@
     }
     .btn-primary{
       background: linear-gradient(135deg, #f9fafb, #e5e7eb);
-      color:#050608; box-shadow:0 12px 32px rgba(15,23,42,0.9);
+      color:#050608; box-shadow:0 12px 32px var(--shadow);
     }
     .btn-primary:hover{ background:#fff; transform: translateY(-1px); }
     .btn-ghost{
@@ -279,19 +309,13 @@
       color: var(--accent-soft);
     }
 
-    .grid-2,.grid-3{ display:grid; gap:16px; }
-    .grid-2{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    .grid-3{ grid-template-columns: repeat(3, minmax(0, 1fr)); }
-
+    .grid-2{ display:grid; gap:16px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .card{
       border-radius:16px;
       border:1px solid #22252f;
       background: radial-gradient(circle at top left, #191c2e 0, #0a0b10 52%, #050608 100%);
       padding:16px 16px 14px;
     }
-    a.card{ display:block; transition: transform 0.10s ease, border-color 0.16s ease; }
-    a.card:hover{ border-color: rgba(165,180,252,0.55); transform: translateY(-1px); }
-
     .card-title{ font-size:14px; font-weight:600; margin-bottom:6px; }
     .card p{ font-size:13px; line-height:1.6; color:#daddef; margin-bottom:6px; }
     .card-pill{
@@ -372,14 +396,6 @@
     .pricing-card h3{ font-size:14px; font-weight:600; margin-bottom:4px; }
     .pricing-amount{ font-size:18px; font-weight:600; margin-bottom:4px; }
     .pricing-note{ font-size:12px; color:#c4c8dd; line-height:1.6; }
-    .pricing-linkhint{
-      margin-top:10px;
-      font-size:12px;
-      color:#b6bad1;
-      text-decoration: underline;
-      text-decoration-color: rgba(165,180,252,0.35);
-      text-underline-offset: 3px;
-    }
 
     .faq-item{ margin-bottom:14px; }
     .faq-q{ font-size:13px; font-weight:500; color:#f1f2fb; margin-bottom:3px; }
@@ -400,7 +416,6 @@
       gap:12px;
       margin-top:10px;
     }
-    .form-row{ margin-bottom:0; }
     .form-row.full{ grid-column:1 / -1; }
 
     .form-row label, .form-row span.label{
@@ -548,7 +563,6 @@
     footer a:hover{ text-decoration: underline; }
 
     @media (max-width: 900px){
-      .grid-3{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .choice-grid{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .pricing-grid{ grid-template-columns: minmax(0, 1fr); }
     }
@@ -559,11 +573,10 @@
       nav{ justify-content:flex-start; }
       .hero-title{ font-size:24px; }
       .hero-subtitle{ max-width:100%; }
-      .grid-2,.grid-3{ grid-template-columns: minmax(0, 1fr); }
+      .grid-2{ grid-template-columns: minmax(0, 1fr); }
       .layout-grid,.two-col{ grid-template-columns: minmax(0, 1fr); }
       .hero-cta-row{ flex-direction:column; }
       .btn-primary,.btn-ghost{ width:100%; justify-content:center; }
-      .toc{ margin-bottom:14px; }
       .form-grid{ grid-template-columns: 1fr; }
       .choice-grid, .choice-grid.two{ grid-template-columns: 1fr; }
       .form-actions{ max-width:100%; }
@@ -573,38 +586,41 @@
 </head>
 
 <body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
   <div class="page">
     <header>
-      <a href="/" class="brand-wrap">
-        <div class="brand-logo">N</div>
+      <a href="/" class="brand-wrap" aria-label="Noetfield home">
+        <div class="brand-logo" aria-hidden="true">N</div>
         <div class="brand-text">
           <div class="brand-name">Noetfield</div>
           <div class="brand-tagline">Trust systems for AI governance</div>
         </div>
       </a>
 
+      <!-- REQUIRED NAV ORDER: Copilot between Trust Ledger and For Whom -->
       <nav aria-label="Primary navigation">
         <a href="/">Home</a>
         <a href="/trust-brief/">Trust Brief</a>
         <a href="/trust-ledger/">Trust Ledger</a>
+        <a href="/copilot-cost-governance/" class="active" aria-current="page">Copilot</a>
         <a href="/for-whom/">For Whom</a>
         <a href="/gate/">Gate</a>
         <a href="/about/">About</a>
         <a href="/contact/">Contact</a>
         <a href="/playbook/">Playbook</a>
         <a href="/partners/">Partners</a>
-        <a href="/copilot-cost-governance/" class="active" aria-current="page">Copilot</a>
       </nav>
     </header>
 
-    <main>
+    <main id="main">
       <!-- Hero -->
       <section class="hero">
         <div class="pill">
           <span class="pill-dot"></span>
           Copilot cost & governance track
         </div>
-        <div class="hero-kicker">Copilot Cost & Governance Readiness</div>
+        <div class="hero-kicker">Copilot Cost &amp; Governance Readiness</div>
         <h1 class="hero-title">
           Turn <span>Copilot rollout into a board-ready, auditable decision.</span>
         </h1>
@@ -614,7 +630,7 @@
           your board, audit committee, or regulator can read in one sitting.
         </p>
         <div class="hero-cta-row">
-          <a href="#request-assessment" class="btn-primary">Request a Copilot readiness assessment</a>
+          <a href="#request-assessment" class="btn-primary">Request a readiness assessment</a>
           <a href="#process" class="btn-ghost">See how it works</a>
           <a href="/trust-brief/" class="btn-ghost">View the 6-week Trust Brief</a>
         </div>
@@ -646,7 +662,7 @@
         </div>
         <p class="section-subtitle">
           Copilot is not only a license line item. It expands the governance surface: new access patterns,
-          new agents, new content flows, and new failure modes. Without a record, cost and risk simply drift.
+          new agents, new content flows, and new failure modes. Without a record, cost and risk drift quietly.
         </p>
         <ul>
           <li>Clarify Copilot scope (which experiences are in use, by whom, and for what).</li>
@@ -656,8 +672,8 @@
           <li>Produce board-ready artefacts instead of scattered spreadsheets and chats.</li>
         </ul>
         <div class="one-sentence">
-          <strong>Outcome:</strong> you know where Copilot is used, what it costs, what it touches, and which controls exist —
-          in a format that survives audit and board scrutiny.
+          <strong>Outcome:</strong> where Copilot is used, what it costs, what it touches, and which controls exist —
+          documented in a format that survives audit and board scrutiny.
         </div>
       </section>
 
@@ -669,45 +685,42 @@
               <div class="section-kicker">Definition</div>
               <h2 class="section-title">What the Copilot readiness pack is</h2>
             </div>
-            <div class="chip">Board-ready & governance-first</div>
+            <div class="chip">Board-ready</div>
           </div>
 
           <p>
-            The Noetfield Copilot Cost &amp; Governance Readiness pack is a focused engagement that
-            turns a Copilot rollout — or planned rollout — into a documented decision. It brings together
-            cost, scope, agents, data exposure, and controls into a short, auditable record.
+            The Noetfield Copilot Cost &amp; Governance Readiness pack is a focused engagement that turns a Copilot rollout
+            (or planned rollout) into a documented, auditable decision.
           </p>
           <p>
-            It assumes Copilot is either already live in parts of the organisation, or about to be.
-            The pack creates an inventory and governance view: who has what, which agents exist,
-            what data paths matter, and how conditions for “proceed, pause, or scale” are framed.
+            It consolidates cost, scope, agents, data exposure, and controls into a short record the board can approve,
+            the audit committee can track, and risk/security teams can operationalize.
           </p>
           <p>
-            The output is structured so that it can feed directly into Noetfield’s Trust Ledger
-            and into your wider AI governance posture over time.
+            Outputs are structured to feed directly into Noetfield’s Trust Ledger and remain usable as evidence over time.
           </p>
 
           <div class="one-sentence">
-            <strong>In one sentence:</strong> a 2–3 week Copilot-specific diagnostic that produces a cost map,
-            agent inventory, exposure scan, and a board-ready decision memo plus Trust Ledger entries.
+            <strong>In one sentence:</strong> a 2–3 week Copilot diagnostic that produces a cost map, agent inventory,
+            exposure scan, and a board-ready decision memo plus Trust Ledger entries.
           </div>
         </div>
 
-        <aside class="card">
+        <aside class="card" aria-label="At a glance">
           <div class="card-pill">At a glance</div>
           <div class="card-title">Core components inside the pack</div>
-          <p>Each component is delivered in plain language with enough structure to satisfy audit and risk teams.</p>
+          <p>Plain language outputs with enough structure to satisfy audit and risk teams.</p>
           <ul>
             <li>Copilot scope &amp; license context — which SKUs are active, where, and why.</li>
-            <li>License utilization analysis — assigned vs active, waste hotspots, and cleanup ideas.</li>
-            <li>Agent inventory (MVP ledger) — agents, owners, purpose, data scope, and risk tier.</li>
+            <li>License utilization analysis — assigned vs active, waste hotspots, cleanup actions.</li>
+            <li>Agent inventory (MVP ledger) — agents, owners, purpose, data scope, risk tier.</li>
             <li>Oversharing &amp; exposure scan — high-risk content paths and common misconfigurations.</li>
-            <li>Control baseline — policies, lifecycle rules, and accountability assignments.</li>
-            <li>Board decision memo — proceed / pause / limited pilot / scale, with explicit conditions.</li>
+            <li>Control baseline — lifecycle rules, accountability, and reporting cadence.</li>
+            <li>Board decision memo — proceed / pause / limited pilot / scale, with conditions.</li>
           </ul>
           <div class="badge-row">
             <div class="badge">2–3 weeks</div>
-            <div class="badge">Board-ready</div>
+            <div class="badge">Board-readable</div>
             <div class="badge">Trust Ledger-compatible</div>
           </div>
         </aside>
@@ -722,17 +735,14 @@
           </div>
         </div>
         <p class="section-subtitle">
-          The pack is designed to produce a small set of high-leverage artefacts that you can plug into existing
-          governance, not another long slide deck.
+          A small set of high-leverage artefacts you can plug into existing governance (and reuse), not another long slide deck.
         </p>
 
         <div class="grid-2">
           <div class="card">
             <div class="card-pill">Cost &amp; scope</div>
             <div class="card-title">1) Copilot cost map</div>
-            <p>
-              Clarifies Copilot types in use, license SKUs, and where spend can drift if adoption is uneven or ungoverned.
-            </p>
+            <p>Clarifies Copilot types in use, license SKUs, and where spend can drift if adoption is uneven or ungoverned.</p>
             <ul>
               <li>License types vs business units or functions.</li>
               <li>Baseline spend and projected scenarios.</li>
@@ -743,9 +753,7 @@
           <div class="card">
             <div class="card-pill">Utilization</div>
             <div class="card-title">2) License utilization report</div>
-            <p>
-              A short utilization view: assigned vs active usage, adoption blockers, and a practical cleanup plan.
-            </p>
+            <p>A short utilization view: assigned vs active usage, adoption blockers, and a practical cleanup plan.</p>
             <ul>
               <li>Low-usage clusters and patterns.</li>
               <li>Areas where Copilot could replace legacy spend.</li>
@@ -756,11 +764,9 @@
           <div class="card">
             <div class="card-pill">Agent layer</div>
             <div class="card-title">3) Agent inventory (MVP ledger)</div>
-            <p>
-              A first-generation ledger of Copilot agents, with owners, purpose, data scope, and risk tier.
-            </p>
+            <p>A first-generation ledger of Copilot agents, with owners, purpose, data scope, and risk tier.</p>
             <ul>
-              <li>Who created what, and for which process.</li>
+              <li>Who created what, for which process.</li>
               <li>Which sources each agent depends on.</li>
               <li>Flags for high-sensitivity combinations.</li>
             </ul>
@@ -769,9 +775,7 @@
           <div class="card">
             <div class="card-pill">Exposure</div>
             <div class="card-title">4) Oversharing and exposure scan</div>
-            <p>
-              Short risk map of sensitive paths: oversharing, shadow data, and misaligned access patterns.
-            </p>
+            <p>Short risk map of sensitive paths: oversharing, shadow data, and misaligned access patterns.</p>
             <ul>
               <li>High-risk content and teams.</li>
               <li>Common misconfigurations and quick fixes.</li>
@@ -782,9 +786,7 @@
           <div class="card">
             <div class="card-pill">Controls</div>
             <div class="card-title">5) Control baseline</div>
-            <p>
-              A minimal, realistic governance baseline specific to Copilot usage.
-            </p>
+            <p>A minimal, realistic governance baseline specific to Copilot usage.</p>
             <ul>
               <li>Policy hooks and lifecycle rules.</li>
               <li>Reporting cadence and owner assignments.</li>
@@ -795,9 +797,7 @@
           <div class="card">
             <div class="card-pill">Board artefact</div>
             <div class="card-title">6) Board decision memo + Trust Ledger entries</div>
-            <p>
-              A short decision memo plus a small set of Copilot entries ready to drop into Noetfield’s Trust Ledger.
-            </p>
+            <p>A short decision memo plus a set of Copilot entries ready to drop into a Trust Ledger record.</p>
             <ul>
               <li>Proceed / pause / limited pilot / scale framing.</li>
               <li>Explicit conditions and safeguards.</li>
@@ -829,7 +829,7 @@
             <ul>
               <li>Board chair, audit or risk committee.</li>
               <li>CIO, CISO, CRO, COO, or Head of Transformation.</li>
-              <li>Leaders with accountability for AI and digital spend.</li>
+              <li>Leaders accountable for AI and digital spend.</li>
             </ul>
           </div>
 
@@ -838,8 +838,8 @@
               <div class="checklist-title">If these statements are true, the pack fits:</div>
               <div class="checklist-item">Copilot spend is material enough to appear on board agendas.</div>
               <div class="checklist-item">There is no single view of where Copilot is used and by whom.</div>
-              <div class="checklist-item">You need something short, auditable, and understandable by non-technical directors.</div>
-              <div class="checklist-item">You want Copilot entries that can feed into a Trust Ledger over time.</div>
+              <div class="checklist-item">A short, auditable, non-technical board pack is required.</div>
+              <div class="checklist-item">Copilot entries are needed to seed an ongoing Trust Ledger cadence.</div>
             </div>
           </div>
         </div>
@@ -854,19 +854,17 @@
           </div>
         </div>
         <p class="section-subtitle">
-          Designed as a short diagnostic that respects existing tools and workloads. Most work is async and based on
-          artefacts you already have.
+          Designed as a short diagnostic that respects existing tools and workloads. Most work is async and uses artefacts you already have.
         </p>
         <ul>
-          <li><strong>1) Intake (48h)</strong> – licensing context, target groups, existing governance constraints.</li>
-          <li><strong>2) Mapping</strong> – Copilot scope, license allocation, and first agent inventory.</li>
-          <li><strong>3) Analysis</strong> – cost/utilization findings and oversharing/exposure scan.</li>
-          <li><strong>4) Controls</strong> – Copilot-specific control baseline and reporting cadence.</li>
+          <li><strong>1) Intake (48h)</strong> – licensing context, target groups, governance constraints.</li>
+          <li><strong>2) Mapping</strong> – Copilot scope, license allocation, first agent inventory.</li>
+          <li><strong>3) Analysis</strong> – cost/utilization findings and exposure/oversharing scan.</li>
+          <li><strong>4) Controls</strong> – Copilot-specific baseline and reporting cadence.</li>
           <li><strong>5) Board pack</strong> – decision memo plus Copilot Trust Ledger entries.</li>
         </ul>
         <div class="one-sentence">
-          <strong>Default duration:</strong> 2–3 weeks from intake to delivery, assuming access to basic licensing
-          and usage data.
+          <strong>Default duration:</strong> 2–3 weeks from intake to delivery (depending on data availability and scope).
         </div>
       </section>
 
@@ -881,8 +879,7 @@
         </div>
 
         <p>
-          Pricing reflects scale, complexity, and how many business units or regions are in scope. Most organisations fit
-          into one of these ranges.
+          Pricing reflects scale, complexity, and how many business units or regions are in scope.
         </p>
 
         <div class="pricing-grid">
@@ -890,8 +887,7 @@
             <h3>Focused pilot</h3>
             <p class="pricing-amount">CAD 2.5k–4.5k</p>
             <p class="pricing-note">
-              For a limited Copilot rollout (e.g., one function or business unit) where the goal is to establish
-              a first board-ready record and test baseline controls.
+              Limited rollout (one function or business unit). Establish a first board-ready record and baseline controls.
             </p>
           </div>
 
@@ -899,15 +895,13 @@
             <h3>Multi-unit readiness</h3>
             <p class="pricing-amount">CAD 4.5k–7.5k</p>
             <p class="pricing-note">
-              For broader Copilot deployments across multiple functions, requiring more detailed cost analysis,
-              agent mapping, and exposure scanning.
+              Broader deployment across multiple functions/regions. Deeper cost analysis, agent mapping, exposure scanning.
             </p>
           </div>
         </div>
 
         <p>
-          Final pricing is confirmed after intake. Invoices can be issued to the operating entity or holding company
-          as required by your structure.
+          Final pricing is confirmed after intake. Invoicing can be issued to the operating entity or holding company as required.
         </p>
       </section>
 
@@ -922,34 +916,38 @@
         </div>
 
         <p>
-          Share a few details below. If there is a fit, a short scoping call or async exchange is used to
-          confirm scope and pricing, then the engagement starts from an agreed date.
+          Share a few details below. If there is a fit, a short scoping call or async exchange confirms scope and pricing.
         </p>
 
         <div class="form-shell">
-          <form class="simple-form" method="POST" action="https://formspree.io/f/YOUR_FORM_ID">
+          <!-- Uses same Formspree ID pattern as Gate example -->
+          <form class="simple-form" method="POST" action="https://formspree.io/f/xyzrdrpv">
+            <!-- Honeypot -->
+            <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
+
             <input type="hidden" name="page_source" value="/copilot-cost-governance/" />
             <input type="hidden" name="offer" value="Copilot Cost & Governance Readiness" />
+            <input type="hidden" name="_subject" value="Noetfield – Copilot readiness request" />
 
             <div class="form-grid" role="group" aria-label="Contact details">
               <div class="form-row">
-                <label for="name">Name</label>
-                <input id="name" name="name" type="text" placeholder="Full name" autocomplete="name" required />
+                <label for="f_name">Name</label>
+                <input id="f_name" name="name" type="text" placeholder="Full name" autocomplete="name" required />
               </div>
 
               <div class="form-row">
-                <label for="email">Email</label>
-                <input id="email" name="email" type="email" placeholder="name@company.com" autocomplete="email" required />
+                <label for="f_email">Email</label>
+                <input id="f_email" name="email" type="email" placeholder="name@company.com" autocomplete="email" required />
               </div>
 
               <div class="form-row">
-                <label for="org">Organization / Role</label>
-                <input id="org" name="organization" type="text" placeholder="Company + role" autocomplete="organization" />
+                <label for="f_org">Organization / Role</label>
+                <input id="f_org" name="organization" type="text" placeholder="Company + role" autocomplete="organization" />
               </div>
 
               <div class="form-row">
-                <label for="website">Website (optional)</label>
-                <input id="website" name="website" type="url" placeholder="https://..." inputmode="url" />
+                <label for="f_website">Website (optional)</label>
+                <input id="f_website" name="website" type="url" placeholder="https://..." inputmode="url" />
               </div>
 
               <div class="form-row full">
@@ -1018,12 +1016,13 @@
               </div>
 
               <div class="form-row full">
-                <label for="notes">Primary concern or driver</label>
+                <label for="f_notes">Primary concern or driver</label>
                 <textarea
-                  id="notes"
+                  id="f_notes"
                   name="primary_concern"
                   placeholder="Board questions, audit requests, cost justification, risk concerns, upcoming renewal, etc."
                 ></textarea>
+                <div class="hint">Optional, but helps scope quickly.</div>
               </div>
 
               <div class="form-row full">
@@ -1063,24 +1062,24 @@
             <div class="faq-item">
               <div class="faq-q">Who is the Copilot Cost &amp; Governance Readiness pack for?</div>
               <div class="faq-a">
-                For boards, audit and risk committees, CIO/CISO/CRO/COO leaders, and operators who need a credible,
-                structured view of Copilot cost, usage, and governance — not just a license count.
+                Boards, audit/risk committees, and CIO/CISO/CRO/COO leaders who need a credible, structured view of Copilot cost,
+                usage, agents, and controls — not just a license count.
               </div>
             </div>
 
             <div class="faq-item">
               <div class="faq-q">Do you need direct tenant access?</div>
               <div class="faq-a">
-                Not always. Many engagements start from licensing reports, role maps, and policy documents. Where
-                appropriate, outputs can be wired into existing governance tooling without deep technical access.
+                Not always. Many engagements start from licensing reports, role maps, and policy documents. Where appropriate,
+                outputs can be integrated into existing governance tooling without deep technical access.
               </div>
             </div>
 
             <div class="faq-item">
               <div class="faq-q">Is this a replacement for Microsoft or other tooling?</div>
               <div class="faq-a">
-                No. This is a governance and decision layer that sits above Microsoft Copilot and any tooling you
-                already use. It helps boards and regulators interpret what those tools are doing in human language.
+                No. This is a governance and decision layer that sits above Microsoft Copilot and any tooling already used.
+                It helps boards and regulators interpret what those tools are doing in human language.
               </div>
             </div>
           </div>
@@ -1089,24 +1088,21 @@
             <div class="faq-item">
               <div class="faq-q">How long does it take?</div>
               <div class="faq-a">
-                Most organisations complete a credible v1 within 2–3 weeks. Timelines depend on how quickly licensing
-                and usage data can be provided and how many units are in scope.
+                Most organisations complete a credible v1 within 2–3 weeks. Timelines depend on data availability and how many units are in scope.
               </div>
             </div>
 
             <div class="faq-item">
               <div class="faq-q">How does this relate to the Trust Brief and Trust Ledger?</div>
               <div class="faq-a">
-                The Copilot pack is a focused entry point. Its outputs can be used as an early slice of a wider
-                Noetfield Trust Brief engagement, and its entries can seed an ongoing Trust Ledger for AI decisions.
+                The Copilot pack is a focused entry point. Its outputs can feed into a wider Trust Brief, and its entries can seed an ongoing Trust Ledger cadence.
               </div>
             </div>
 
             <div class="faq-item">
               <div class="faq-q">What happens after delivery?</div>
               <div class="faq-a">
-                You can keep the artefacts as a one-time diagnostic, or convert them into a recurring Trust Ledger
-                cadence with regular updates and board reporting aligned to your AI governance strategy.
+                Keep the artefacts as a one-time diagnostic, or convert them into a recurring Trust Ledger track with monthly updates and board reporting.
               </div>
             </div>
           </div>
@@ -1114,19 +1110,21 @@
       </section>
     </main>
 
+    <!-- REQUIRED FOOTER ORDER: Copilot between Trust Ledger and For Whom -->
     <footer>
       <div>© <span id="year"></span> Noetfield Systems Inc. All rights reserved.</div>
       <div>
         <a href="/">Home</a> ·
         <a href="/trust-brief/">Trust Brief</a> ·
         <a href="/trust-ledger/">Trust Ledger</a> ·
+        <a href="/copilot-cost-governance/">Copilot</a> ·
         <a href="/for-whom/">For Whom</a> ·
         <a href="/gate/">Gate</a> ·
         <a href="/about/">About</a> ·
         <a href="/contact/">Contact</a> ·
         <a href="/playbook/">Playbook</a> ·
         <a href="/partners/">Partners</a> ·
-        <a href="/copilot-cost-governance/">Copilot</a>
+        <a href="/structure/">Structure</a>
       </div>
     </footer>
   </div>
@@ -1136,3 +1134,4 @@
   </script>
 </body>
 </html>
+

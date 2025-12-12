@@ -35,29 +35,21 @@
   />
   <meta name="twitter:image" content="https://www.noetfield.com/noetfield-og.png" />
 
+  <!-- Article + FAQ kept -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "Article",
     "headline": "Noetfield AI Governance & Trust Playbook",
     "description": "A governance-first AI Governance & Trust Playbook for small B2B teams and agencies who need board-safe, regulator-compatible AI usage without a full compliance department.",
-    "author": {
-      "@type": "Organization",
-      "name": "Noetfield Systems Inc."
-    },
+    "author": { "@type": "Organization", "name": "Noetfield Systems Inc." },
     "publisher": {
       "@type": "Organization",
       "name": "Noetfield Systems Inc.",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://www.noetfield.com/noetfield-og.png"
-      }
+      "logo": { "@type": "ImageObject", "url": "https://www.noetfield.com/noetfield-og.png" }
     },
     "url": "https://www.noetfield.com/playbook/",
-    "mainEntityOfPage": {
-      "@type": "WebPage",
-      "@id": "https://www.noetfield.com/playbook/"
-    }
+    "mainEntityOfPage": { "@type": "WebPage", "@id": "https://www.noetfield.com/playbook/" }
   }
   </script>
 
@@ -323,7 +315,7 @@
       border: 1px solid #232633;
       background: rgba(15,23,42,0.55);
       padding: 12px 12px 10px;
-      margin: 14px 0 30px;
+      margin: 14px 0 18px;
     }
 
     .toc-title {
@@ -348,6 +340,11 @@
       color: #cbd5f5;
       background: rgba(15,23,42,0.8);
       white-space: nowrap;
+    }
+
+    .chip:hover {
+      border-color: rgba(165,180,252,0.65);
+      transform: translateY(-1px);
     }
 
     .section { margin-bottom: 30px; }
@@ -407,8 +404,8 @@
       color: var(--accent-soft);
     }
 
-    .grid-2, .grid-3 { display: grid; gap: 24px; }
-    .grid-2 { grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); }
+    .grid-2, .grid-3 { display: grid; gap: 16px; }
+    .grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 
     .card {
@@ -517,6 +514,7 @@
       gap: 24px;
     }
 
+    /* Pricing cards become links */
     .pricing-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -530,64 +528,163 @@
       border: 1px solid #232633;
       background: radial-gradient(circle at top left, #191c2e 0, #0a0b10 52%, #050608 100%);
       padding: 14px 14px 12px;
+      display: block;
+      transition: transform 0.10s ease, border-color 0.16s ease;
+    }
+
+    .pricing-card:hover {
+      border-color: rgba(165,180,252,0.55);
+      transform: translateY(-1px);
     }
 
     .pricing-card h3 { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
     .pricing-amount { font-size: 18px; font-weight: 600; margin-bottom: 4px; }
     .pricing-note { font-size: 12px; color: #c4c8dd; line-height: 1.6; }
+    .pricing-linkhint {
+      margin-top: 10px;
+      font-size: 12px;
+      color: #b6bad1;
+      text-decoration: underline;
+      text-decoration-color: rgba(165,180,252,0.35);
+      text-underline-offset: 3px;
+    }
 
     .faq-item { margin-bottom: 14px; }
     .faq-q { font-size: 13px; font-weight: 500; color: #f1f2fb; margin-bottom: 3px; }
     .faq-a { font-size: 13px; color: #cacfe4; line-height: 1.6; }
 
-    .simple-form { max-width: 460px; margin-top: 10px; }
-    .form-row { margin-bottom: 10px; }
+    /* Upgraded form */
+    .simple-form { max-width: 720px; margin-top: 12px; }
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 10px;
+    }
+    .form-row { margin-bottom: 0; }
+    .form-row.full { grid-column: 1 / -1; }
 
     .form-row label, .form-row span.label {
       display: block;
       font-size: 12px;
       color: #cbd0e0;
-      margin-bottom: 4px;
+      margin-bottom: 6px;
+      letter-spacing: 0.02em;
     }
 
-    .form-row input, .form-row select {
+    .form-row input, .form-row textarea {
       width: 100%;
-      padding: 7px 9px;
-      border-radius: 8px;
+      padding: 10px 10px;
+      border-radius: 10px;
       border: 1px solid #303445;
       background: rgba(15,23,42,0.9);
       color: #e5e7f5;
       font-size: 13px;
+      outline: none;
     }
 
-    .form-row input:focus, .form-row select:focus {
-      outline: none;
+    .form-row textarea { min-height: 96px; resize: vertical; }
+
+    .form-row input:focus, .form-row textarea:focus {
       border-color: #6366f1;
       box-shadow: 0 0 0 1px rgba(99,102,241,0.5);
     }
 
-    .radio-group {
-      display: flex;
-      flex-wrap: wrap;
+    .choice-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 10px;
-      font-size: 12px;
-      color: #d4d7eb;
+      margin-top: 6px;
     }
 
-    .radio-group label {
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      cursor: pointer;
+    .choice-grid.two {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
-    .checkbox-row label {
+    .choice-input {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .choice-card {
+      border-radius: 14px;
+      border: 1px solid #232633;
+      background: rgba(15,23,42,0.55);
+      padding: 12px 12px 10px;
+      cursor: pointer;
+      transition: transform 0.10s ease, border-color 0.16s ease, background 0.16s ease;
+      min-height: 86px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .choice-card:hover {
+      border-color: rgba(165,180,252,0.55);
+      transform: translateY(-1px);
+    }
+
+    .choice-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .choice-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: #f1f2fb;
+      margin-bottom: 2px;
+    }
+
+    .choice-sub {
       font-size: 12px;
-      color: #d4d7eb;
+      color: #b6bad1;
+      line-height: 1.5;
+    }
+
+    .choice-mark {
+      width: 18px;
+      height: 18px;
+      border-radius: 999px;
+      border: 1px solid #343848;
       display: inline-flex;
       align-items: center;
-      gap: 6px;
-      cursor: pointer;
+      justify-content: center;
+      font-size: 12px;
+      color: transparent;
+      flex: 0 0 auto;
+      margin-top: 1px;
+    }
+
+    /* checked styles */
+    .choice-input:checked + label.choice-card {
+      border-color: rgba(165,180,252,0.95);
+      background: radial-gradient(circle at top left, rgba(129,140,248,0.20) 0, rgba(15,23,42,0.55) 60%, rgba(5,6,8,0.95) 100%);
+    }
+    .choice-input:checked + label .choice-mark {
+      color: #050608;
+      border-color: rgba(165,180,252,0.95);
+      background: linear-gradient(135deg, #f9fafb, #e5e7eb);
+    }
+
+    .form-actions {
+      margin-top: 12px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 10px;
+      max-width: 360px;
+    }
+
+    .privacy-note {
+      font-size: 12px;
+      color: #a0a4ae;
+      line-height: 1.6;
+      max-width: 760px;
+      margin-top: 10px;
     }
 
     footer {
@@ -605,7 +702,8 @@
     footer a:hover { text-decoration: underline; }
 
     @media (max-width: 900px) {
-      .grid-3 { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+      .grid-3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .choice-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .pricing-grid { grid-template-columns: minmax(0, 1fr); }
     }
 
@@ -619,6 +717,10 @@
       .layout-grid, .two-col { grid-template-columns: minmax(0, 1fr); }
       .hero-cta-row { flex-direction: column; }
       .btn-primary, .btn-ghost { width: 100%; justify-content: center; }
+      .toc { margin-bottom: 14px; }
+      .form-grid { grid-template-columns: 1fr; }
+      .choice-grid, .choice-grid.two { grid-template-columns: 1fr; }
+      .form-actions { max-width: 100%; }
       footer { flex-direction: column; align-items: flex-start; }
     }
   </style>
@@ -667,7 +769,7 @@
         <div class="hero-cta-row">
           <a href="#request-access" class="btn-primary">Request early access</a>
           <a href="#offers" class="btn-ghost">Browse rapid offers</a>
-          <a href="/trust-brief/" class="btn-ghost">See the board-level Trust Brief track</a>
+          <a href="/trust-brief/" class="btn-ghost">Trust Brief track</a>
         </div>
       </section>
 
@@ -676,6 +778,7 @@
         <div class="toc-title">On this page</div>
         <div class="toc-row">
           <a class="chip" href="#offers">Offers</a>
+          <a class="chip" href="#related">Board-level links</a>
           <a class="chip" href="#definition">Definition</a>
           <a class="chip" href="#deliverables">What you get</a>
           <a class="chip" href="#templates">Templates</a>
@@ -696,7 +799,7 @@
           <div class="chip">4 landing offers</div>
         </div>
         <p class="section-subtitle">
-          These offers route qualified leads into deeper Trust Brief and Trust Ledger work.
+          These offers route qualified leads into deeper board-level Trust Brief and Trust Ledger work.
         </p>
 
         <div class="grid-2">
@@ -746,8 +849,60 @@
         </div>
 
         <div class="one-sentence" style="margin-top: 14px;">
-          <strong>Routing logic:</strong> these packs establish a defensible baseline. If deeper governance is required, the default next step is the
-          <a href="/trust-brief/">Trust Brief</a>, then ongoing <a href="/trust-ledger/">Trust Ledger</a> maintenance.
+          <strong>Routing logic:</strong> these packs establish a defensible baseline. Default next steps: the
+          <a href="/board-trust-brief/">Board Trust Brief</a>, the
+          <a href="/trust-brief/">Trust Brief</a>, the
+          <a href="/ledger-schema/">Ledger Schema</a>, then ongoing
+          <a href="/trust-ledger/">Trust Ledger</a>.
+        </div>
+      </section>
+
+      <!-- NEW: Related pages (two new links + trust pages) -->
+      <section class="section" id="related">
+        <div class="section-title-row">
+          <div>
+            <div class="section-kicker">Board-level links</div>
+            <h2 class="section-title">Related pages (board track + ledger architecture)</h2>
+          </div>
+          <div class="chip">Navigation</div>
+        </div>
+        <p class="section-subtitle">
+          Use these when the buyer is board-facing, procurement-facing, or needs ledger structure clarity.
+        </p>
+
+        <div class="grid-3">
+          <a class="card" href="/board-trust-brief/" aria-label="Board Trust Brief page">
+            <div class="card-pill">Board track</div>
+            <div class="card-title">Board Trust Brief</div>
+            <p>A board-ready brief focused on governance decisions, accountabilities, and defensible language.</p>
+            <div class="badge-row">
+              <div class="badge">Board-safe</div>
+              <div class="badge">Plain-language</div>
+              <div class="badge">Decision-ready</div>
+            </div>
+          </a>
+
+          <a class="card" href="/ledger-schema/" aria-label="Ledger Schema page">
+            <div class="card-pill">Architecture</div>
+            <div class="card-title">Ledger Schema</div>
+            <p>The structure behind Trust Ledger entries: fields, evidence, controls, and traceability.</p>
+            <div class="badge-row">
+              <div class="badge">Schema</div>
+              <div class="badge">Evidence model</div>
+              <div class="badge">Audit-friendly</div>
+            </div>
+          </a>
+
+          <a class="card" href="/trust-ledger/" aria-label="Trust Ledger page">
+            <div class="card-pill">Ongoing layer</div>
+            <div class="card-title">Trust Ledger</div>
+            <p>A living record of critical AI decisions, safeguards, and accountability over time.</p>
+            <div class="badge-row">
+              <div class="badge">Traceable</div>
+              <div class="badge">Maintained</div>
+              <div class="badge">Answer-ready</div>
+            </div>
+          </a>
         </div>
       </section>
 
@@ -833,9 +988,7 @@
           </div>
           <div class="chip">Editable</div>
         </div>
-        <p>
-          Delivered in structured formats that can be adapted to the team’s workflow.
-        </p>
+        <p>Delivered in structured formats that can be adapted to the team’s workflow.</p>
         <ul>
           <li><strong>AI use-case intake form (lite)</strong> — purpose, data, tool, risks, approval.</li>
           <li><strong>AI risk register for small teams</strong> — risks, mitigations, ownership.</li>
@@ -886,19 +1039,17 @@
         </div>
       </section>
 
-      <!-- Pricing -->
+      <!-- Pricing (NOW LINKED) -->
       <section class="section" id="pricing">
         <div class="section-title-row">
           <div>
             <div class="section-kicker">Pricing &amp; access</div>
             <h2 class="section-title">Founding buyers &amp; early access terms</h2>
           </div>
-          <div class="chip">Limited cohort</div>
+          <div class="chip">Product pages</div>
         </div>
 
-        <p>
-          Early access is offered to a small group of founding buyers. This cohort helps refine v1.x and receives updates.
-        </p>
+        <p>Early access is offered to a small group of founding buyers. This cohort helps refine v1.x and receives updates.</p>
         <ul>
           <li>Full Playbook (PDF and editable formats).</li>
           <li>All templates listed above.</li>
@@ -906,21 +1057,23 @@
         </ul>
 
         <div class="pricing-grid">
-          <div class="pricing-card">
+          <a class="pricing-card" href="/playbook/standard/" aria-label="Standard License product page">
             <h3>Standard License</h3>
             <p class="pricing-amount">249 CAD</p>
             <p class="pricing-note">
               For a single team using the Playbook internally to govern AI usage and respond credibly to board/client questions.
             </p>
-          </div>
+            <div class="pricing-linkhint">Open full product details</div>
+          </a>
 
-          <div class="pricing-card">
+          <a class="pricing-card" href="/playbook/pro/" aria-label="Agency / Pro License product page">
             <h3>Agency / Pro License</h3>
             <p class="pricing-amount">749 CAD</p>
             <p class="pricing-note">
               For agencies/advisors who use the Playbook across multiple client engagements as a standard governance pattern.
             </p>
-          </div>
+            <div class="pricing-linkhint">Open full product details</div>
+          </a>
         </div>
 
         <p>
@@ -928,14 +1081,14 @@
         </p>
       </section>
 
-      <!-- Request Access -->
+      <!-- Request Access (UPGRADED) -->
       <section class="section" id="request-access">
         <div class="section-title-row">
           <div>
             <div class="section-kicker">Next step</div>
             <h2 class="section-title">Request early access</h2>
           </div>
-          <div class="chip">Email follow-up</div>
+          <div class="chip">Structured intake</div>
         </div>
 
         <p>
@@ -946,50 +1099,113 @@
           <input type="hidden" name="page_source" value="/playbook/" />
           <input type="hidden" name="offer" value="Playbook Early Access" />
 
-          <div class="form-row">
-            <label for="name">Name</label>
-            <input id="name" name="name" type="text" required />
-          </div>
-
-          <div class="form-row">
-            <label for="email">Email</label>
-            <input id="email" name="email" type="email" required />
-          </div>
-
-          <div class="form-row">
-            <label for="org">Organization / Role</label>
-            <input id="org" name="organization" type="text" />
-          </div>
-
-          <div class="form-row">
-            <label for="company-size">Company size</label>
-            <select id="company-size" name="company_size">
-              <option value="">Select</option>
-              <option value="1-10">1–10</option>
-              <option value="11-50">11–50</option>
-              <option value="51-200">51–200</option>
-              <option value="200+">200+</option>
-            </select>
-          </div>
-
-          <div class="form-row">
-            <span class="label">Licence interest</span>
-            <div class="radio-group">
-              <label><input type="radio" name="license" value="standard" /> Standard</label>
-              <label><input type="radio" name="license" value="agency" /> Agency / Pro</label>
-              <label><input type="radio" name="license" value="unsure" /> Not sure yet</label>
+          <div class="form-grid" role="group" aria-label="Contact details">
+            <div class="form-row">
+              <label for="name">Name</label>
+              <input id="name" name="name" type="text" placeholder="Full name" required />
             </div>
-          </div>
 
-          <div class="form-row checkbox-row">
-            <label>
-              <input type="checkbox" name="ready_to_purchase" value="yes" />
-              Prepared to purchase at this price once invoice is issued.
-            </label>
-          </div>
+            <div class="form-row">
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" placeholder="name@company.com" required />
+            </div>
 
-          <div class="form-row">
-            <button type="submit" class="btn-primary btn-full">Request early access</button>
+            <div class="form-row">
+              <label for="org">Organization / Role</label>
+              <input id="org" name="organization" type="text" placeholder="Company + role" />
+            </div>
+
+            <div class="form-row">
+              <label for="website">Website (optional)</label>
+              <input id="website" name="website" type="url" placeholder="https://..." />
+            </div>
+
+            <div class="form-row full">
+              <span class="label">Company size</span>
+              <div class="choice-grid" role="radiogroup" aria-label="Company size options">
+                <input class="choice-input" type="radio" id="sz1" name="company_size" value="1-10" required />
+                <label class="choice-card" for="sz1">
+                  <div class="choice-top">
+                    <div>
+                      <div class="choice-title">1–10</div>
+                      <div class="choice-sub">Founder-led / small team</div>
+                    </div>
+                    <div class="choice-mark">✓</div>
+                  </div>
+                </label>
+
+                <input class="choice-input" type="radio" id="sz2" name="company_size" value="11-50" />
+                <label class="choice-card" for="sz2">
+                  <div class="choice-top">
+                    <div>
+                      <div class="choice-title">11–50</div>
+                      <div class="choice-sub">Growing ops + delivery</div>
+                    </div>
+                    <div class="choice-mark">✓</div>
+                  </div>
+                </label>
+
+                <input class="choice-input" type="radio" id="sz3" name="company_size" value="51-200" />
+                <label class="choice-card" for="sz3">
+                  <div class="choice-top">
+                    <div>
+                      <div class="choice-title">51–200</div>
+                      <div class="choice-sub">Client scrutiny increases</div>
+                    </div>
+                    <div class="choice-mark">✓</div>
+                  </div>
+                </label>
+              </div>
+            </div>
+
+            <div class="form-row full">
+              <span class="label">License interest</span>
+              <div class="choice-grid two" role="radiogroup" aria-label="License options">
+                <input class="choice-input" type="radio" id="lic1" name="license" value="standard" required />
+                <label class="choice-card" for="lic1">
+                  <div class="choice-top">
+                    <div>
+                      <div class="choice-title">Standard</div>
+                      <div class="choice-sub">Internal use for one team</div>
+                    </div>
+                    <div class="choice-mark">✓</div>
+                  </div>
+                </label>
+
+                <input class="choice-input" type="radio" id="lic2" name="license" value="agency-pro" />
+                <label class="choice-card" for="lic2">
+                  <div class="choice-top">
+                    <div>
+                      <div class="choice-title">Agency / Pro</div>
+                      <div class="choice-sub">Reuse across multiple clients</div>
+                    </div>
+                    <div class="choice-mark">✓</div>
+                  </div>
+                </label>
+              </div>
+            </div>
+
+            <div class="form-row full">
+              <label for="notes">Primary use-case (optional)</label>
+              <textarea id="notes" name="primary_use_case" placeholder="What AI is used for, and what pressure is showing up (clients, procurement, board, regulator)"></textarea>
+            </div>
+
+            <div class="form-row full">
+              <label style="display:flex; align-items:center; gap:10px; cursor:pointer; color:#d4d7eb; font-size:12px;">
+                <input type="checkbox" name="ready_to_purchase" value="yes" />
+                Prepared to purchase at this price once invoice is issued.
+              </label>
+            </div>
+
+            <div class="form-row full">
+              <div class="form-actions">
+                <button type="submit" class="btn-primary btn-full">Request early access</button>
+                <a class="btn-ghost btn-full" href="/contact/">Prefer direct contact</a>
+              </div>
+              <div class="privacy-note">
+                Minimal data only. Used to respond to this request. Delete on request.
+              </div>
+            </div>
           </div>
         </form>
       </section>
@@ -1065,8 +1281,7 @@
         <a href="/about/">About</a> ·
         <a href="/contact/">Contact</a> ·
         <a href="/playbook/">Playbook</a> ·
-        <a href="/partners/">Partners</a> ·
-        
+        <a href="/partners/">Partners</a>
       </div>
     </footer>
   </div>

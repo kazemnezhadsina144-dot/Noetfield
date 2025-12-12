@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Noetfield Gate – Selective Access</title>
+  <title>Noetfield Gate – Board-Level Access</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta
     name="description"
-    content="Noetfield Gate is a selectively governed access point for boards, executives, risk and audit leaders seeking direct access to the Noetfield Trust Brief and Trust Ledger in real-economy AI."
+    content="Noetfield Gate is a board-facing access point for leaders responsible for AI risk, audit, compliance, or oversight who want to review the Trust Brief and Trust Ledger."
   />
   <meta name="robots" content="noindex,follow" />
   <meta name="author" content="Noetfield Systems Inc." />
@@ -19,19 +19,19 @@
 
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Noetfield" />
-  <meta property="og:title" content="Noetfield Gate – Selective Access" />
+  <meta property="og:title" content="Noetfield Gate – Board-Level Access" />
   <meta
     property="og:description"
-    content="A selectively governed access gate for boards, executives, risk, audit and supervisory leaders whose mandates involve real-economy AI and who seek access to the Noetfield Trust Brief and Trust Ledger."
+    content="A board-facing access point for leaders accountable for AI risk, audit, compliance, or oversight to review the Trust Brief, Trust Ledger samples, or request a private working session."
   />
   <meta property="og:url" content="https://www.noetfield.com/gate/" />
   <meta property="og:image" content="https://www.noetfield.com/noetfield-og.png" />
 
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Noetfield Gate – Selective Access" />
+  <meta name="twitter:title" content="Noetfield Gate – Board-Level Access" />
   <meta
     name="twitter:description"
-    content="Noetfield Gate is a quiet, selectively governed portal for stewards seeking direct access to the Noetfield Trust Brief and Trust Ledger in real-economy AI."
+    content="Private, board-facing access to the Noetfield Trust Brief and Trust Ledger for AI oversight leaders."
   />
   <meta name="twitter:image" content="https://www.noetfield.com/noetfield-og.png" />
 
@@ -45,10 +45,8 @@
 
     :root {
       --bg: #05060a;
-      --bg-soft: #080911;
       --border-soft: rgba(255,255,255,0.10);
       --text-main: #f5f5f7;
-      --text-soft: #daddef;
       --text-mute: #9ca3af;
       --accent-gold: #ffd700;
     }
@@ -175,6 +173,8 @@
       line-height: 1.7;
       color: #e5e7f0;
       margin: 0 auto 36px;
+      text-align: left;
+      max-width: 640px;
     }
 
     .gate-message p + p {
@@ -302,9 +302,7 @@
     }
 
     @media (max-width: 768px) {
-      body {
-        padding: 24px 16px 32px;
-      }
+      body { padding: 24px 16px 32px; }
 
       header {
         align-items: flex-start;
@@ -312,13 +310,9 @@
         gap: 6px;
       }
 
-      nav {
-        justify-content: flex-start;
-      }
+      nav { justify-content: flex-start; }
 
-      .gate-tagline {
-        font-size: 16px;
-      }
+      .gate-tagline { font-size: 16px; }
 
       footer {
         flex-direction: column;
@@ -353,28 +347,30 @@
     <main>
       <section class="gate-wrap">
         <h1 class="gate-title">NOETFIELD GATE</h1>
-        <div class="gate-tagline">Board-level access to Noetfield’s AI Trust Brief & Trust Ledger.</div>
+        <div class="gate-tagline">Board-level access to Noetfield’s Trust Brief and Trust Ledger.</div>
 
         <div class="gate-message">
           <p>
-            This is not a newsletter sign-up or a marketing funnel. It is a selectively governed access gate
-            for stewards who already carry board-level, risk, audit, or supervisory responsibility where AI
-            moves risk, money, or people.
+            This page is reserved for leaders with accountability for AI risk, audit, compliance, or oversight.
+            This is not a marketing channel.
           </p>
           <p>
-            If this link reached you, someone believes your mandate belongs in that circle. A concise note here
-            tells us what you steward today and what you would like to see first – a Trust Brief pilot,
-            Trust Ledger samples, or a quiet working session around a specific AI governance question.
+            If this page was shared with you, an aligned sponsor believes the work is relevant.
+            A short note below helps route the request: a Trust Brief pilot, Trust Ledger sample outputs,
+            or a private working session on a defined AI governance question.
           </p>
         </div>
 
         <div class="access-box">
           <div class="access-box-header">
             <h3>Access form</h3>
-            <p>Briefly tell us who you are, what you steward, and what you would like to access.</p>
+            <p>Briefly describe your mandate and what you would like to review first.</p>
           </div>
 
           <form action="https://formspree.io/f/xyzrdrpv" method="POST">
+            <!-- Honeypot (spam trap) -->
+            <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
+
             <div class="form-group">
               <label class="form-label" for="name">Full name</label>
               <input
@@ -382,7 +378,7 @@
                 class="access-input"
                 type="text"
                 name="name"
-                placeholder="Your full name"
+                placeholder="Full name"
                 required
               />
             </div>
@@ -406,31 +402,41 @@
                 class="access-input"
                 type="email"
                 name="email"
-                placeholder="Your work email address"
+                placeholder="Work email address"
                 required
               />
             </div>
 
             <div class="form-group">
-              <label class="form-label" for="reason">What would you like to access?</label>
+              <label class="form-label" for="topic">Request type</label>
+              <select id="topic" name="request_type" class="access-input" required>
+                <option value="" disabled selected>Select one</option>
+                <option>Trust Brief (6-week pilot)</option>
+                <option>Trust Ledger sample outputs</option>
+                <option>Private working session</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="reason">What would you like to review first?</label>
               <textarea
                 id="reason"
                 class="access-textarea"
                 name="message"
-                placeholder="E.g. 6-week Trust Brief pilot in retail banking; Trust Ledger samples for an upcoming supervisory review; exploratory discussion on AI oversight for your board."
+                required
+                placeholder="Examples: Trust Brief (6-week pilot); Trust Ledger sample outputs; a private working session on AI oversight for a defined board/supervisory question."
               ></textarea>
             </div>
 
-            <button type="submit" class="access-button">Request entry</button>
+            <button type="submit" class="access-button">Request access</button>
 
             <p style="margin-top:10px;font-size:11px;color:#aaaaaa;">
-              We review Gate requests manually. If there is a fit, we will respond with a short note and
-              1–2 relevant artefacts within a few business days. Your details are used only to respond
-              to this request – no mailing lists, no automated campaigns.
+              Requests are reviewed manually. If there is a fit, a short response follows within 2–3 business days
+              with 1–2 relevant artefacts or next steps. Details are used only to respond to this request — no mailing lists.
             </p>
 
             <p style="margin-top:6px;font-size:11px;color:#888888;">
-              This Gate is not for general job applications or vendor pitches. For those, please use the
+              For general enquiries, job applications, or vendor outreach, use the
               <a href="/contact/" style="color:#d1d5db;text-decoration:underline;">contact page</a>.
             </p>
           </form>
@@ -450,6 +456,7 @@
         <a href="/contact/">Contact</a> ·
         <a href="/playbook/">Playbook</a> ·
         <a href="/partners/">Partners</a> ·
+        <a href="/structure/">Structure</a>
       </div>
     </footer>
   </div>

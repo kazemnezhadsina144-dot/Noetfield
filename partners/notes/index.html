@@ -600,17 +600,24 @@
       box-shadow: 0 0 0 1px rgba(99,102,241,0.45);
     }
 
+    /* --- RADIO GROUP (fixed layout) --- */
+
+    .form-row-tier {          /* فقط ردیف tier */
+      margin-bottom: 18px;
+    }
+
     .radio-group {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 8px;
-      margin-top: 4px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 12px;         /* فاصله افقی/عمودی بیشتر */
+      margin-top: 6px;
     }
 
     .radio-pill {
       position: relative;
       display: flex;
-      align-items: center;
+      align-items: stretch;
+      flex: 1 1 210px;        /* معمولا دو ستونه در دسکتاپ، تک‌ستونه در موبایل */
     }
 
     .radio-pill input[type="radio"] {
@@ -622,12 +629,15 @@
 
     .radio-pill span {
       width: 100%;
-      padding: 7px 10px;
+      min-height: 36px;       /* ارتفاع ثابت، جلوگیری از روی‌هم‌افتادن */
+      padding: 7px 12px;
       border-radius: 999px;
       border: 1px solid #303445;
       background: rgba(15,23,42,0.9);
       font-size: 12px;
       color: #d4d7eb;
+      display: flex;
+      align-items: center;    /* متن وسط عمودی */
       text-align: left;
     }
 
@@ -1056,7 +1066,7 @@
             />
           </div>
 
-          <div class="form-row">
+          <div class="form-row form-row-tier">
             <span class="label">Indicative partner tier</span>
             <div class="radio-group">
               <label class="radio-pill">

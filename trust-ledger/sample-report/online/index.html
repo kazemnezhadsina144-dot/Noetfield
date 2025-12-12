@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Noetfield Trust Ledger – Sample Board Report</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta
+    name="description"
+    content="Sample Noetfield Trust Ledger board report – a one-page, human-readable record of material AI systems, changes, incidents, and board actions."
+  />
+
+  <link rel="icon" href="/noetfield-favicon-512.png" type="image/png" />
+  <link rel="apple-touch-icon" href="/noetfield-favicon-512.png" />
+  <meta name="theme-color" content="#05060a" />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    :root {
+      --bg: #05060a;
+      --bg-alt: #0b0c10;
+      --card-bg: #151826;
+      --accent: #4ea8ff;
+      --accent-soft: rgba(78, 168, 255, 0.18);
+      --text: #f5f5f7;
+      --muted: #a3a7b5;
+      --border: #262938;
+      --border-soft: #1e2231;
+      --danger: #ff5c5c;
+      --warning: #ffb74d;
+      --success: #48d597;
+      --radius-lg: 14px;
+      --radius-md: 10px;
+      --radius-sm: 6px;
+      --shadow-soft: 0 18px 45px rgba(0, 0, 0, 0.62);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html,
+    body {
+      height: 100%;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #181b2b 0, #05060a 55%, #000000 100%);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+      padding: 32px 20px 40px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .page {
+      width: 100%;
+      max-width: 960px;
+      background: linear-gradient(145deg, rgba(15,16,29,0.98), rgba(9,10,18,0.98));
+      border-radius: 24px;
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      box-shadow: var(--shadow-soft);
+      padding: 32px 28px 36px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    @media print {
+      body {
+        padding: 0;
+        background: #ffffff;
+      }
+      .page {
+        border-radius: 0;
+        border: none;
+        box-shadow: none;
+        max-width: 100%;
+      }
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+
+    .page-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      align-items: center;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 20px;
+      margin-bottom: 6px;
+    }
+
+    .page-header-left {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .org-name {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--muted);
+    }
+
+    .report-title {
+      font-size: 24px;
+      line-height: 1.2;
+    }
+
+    .report-title span {
+      background: linear-gradient(135deg, #ffffff, #a5b4fc);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .tagline {
+      font-size: 13px;
+      color: var(--muted);
+      max-width: 520px;
+      margin-top: 4px;
+    }
+
+    .report-meta {
+      font-size: 12px;
+      color: var(--muted);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 16px;
+      margin-top: 4px;
+    }
+
+    .chip {
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.13em;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: var(--muted);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .chip-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--success);
+      box-shadow: 0 0 0 4px rgba(72, 213, 151, 0.15);
+    }
+
+    .page-header-right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 8px;
+    }
+
+    .risk-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.02));
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+    }
+
+    .risk-indicator {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+    }
+
+    .risk-mod {
+      background: var(--warning);
+      box-shadow: 0 0 0 6px rgba(255, 183, 77, 0.22);
+    }
+
+    .risk-label {
+      opacity: 0.9;
+    }
+
+    .mono {
+      font-family: "SF Mono", ui-monospace, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: 11px;
+    }
+
+    .section {
+      border-radius: var(--radius-lg);
+      background: radial-gradient(circle at top left, rgba(78, 168, 255, 0.14), rgba(2, 5, 14, 0.9));
+      padding: 18px 18px 16px;
+      border: 1px solid rgba(255, 255, 255, 0.03);
+    }
+
+    .section + .section {
+      background: linear-gradient(145deg, rgba(10, 12, 22, 0.96), rgba(5, 6, 14, 0.96));
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+
+    .section-title {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--muted);
+    }
+
+    .section-subtitle {
+      font-size: 12px;
+      color: var(--muted);
+      opacity: 0.86;
+    }
+
+    .section-body {
+      font-size: 13px;
+      color: var(--text);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 2fr) minmax(0, 1.5fr);
+      gap: 14px;
+    }
+
+    .summary-block {
+      background: rgba(0, 0, 0, 0.26);
+      border-radius: var(--radius-md);
+      padding: 10px 12px;
+      border: 1px solid var(--border-soft);
+    }
+
+    .summary-title {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .summary-text {
+      font-size: 13px;
+      line-height: 1.5;
+      color: var(--text);
+    }
+
+    .headline-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .headline-list li::before {
+      content: "•";
+      color: var(--accent);
+      margin-right: 6px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+      margin-top: 4px;
+    }
+
+    thead {
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    th,
+    td {
+      border: 1px solid var(--border);
+      padding: 6px 7px;
+      text-align: left;
+    }
+
+    th {
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    tbody tr:nth-child(even) {
+      background: rgba(255, 255, 255, 0.01);
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2px 8px;
+      border-radius: 999px;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      color: var(--muted);
+      background: rgba(0, 0, 0, 0.4);
+    }
+
+    .badge-pill {
+      background: var(--accent-soft);
+      color: #dcecff;
+      border-color: rgba(78, 168, 255, 0.7);
+    }
+
+    .badge-risk-high {
+      background: rgba(255, 92, 92, 0.12);
+      color: #ffd9d9;
+      border-color: rgba(255, 92, 92, 0.7);
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1.2fr);
+      gap: 12px;
+    }
+
+    .note {
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    .metrics-row {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 4px;
+    }
+
+    .metric-card {
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border);
+      padding: 8px 9px;
+      background: rgba(0, 0, 0, 0.38);
+    }
+
+    .metric-label {
+      font-size: 11px;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+
+    .metric-value {
+      font-size: 15px;
+      font-weight: 600;
+    }
+
+    .metric-note {
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    .actions-table td {
+      vertical-align: top;
+    }
+
+    .footer {
+      margin-top: 4px;
+      padding-top: 10px;
+      border-top: 1px dashed var(--border);
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      font-size: 10px;
+      color: var(--muted);
+      flex-wrap: wrap;
+    }
+
+    .footer span {
+      opacity: 0.9;
+    }
+
+    @media (max-width: 768px) {
+      body {
+        padding: 20px 12px 28px;
+      }
+
+      .page {
+        padding: 22px 16px 26px;
+      }
+
+      .page-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .page-header-right {
+        align-items: flex-start;
+      }
+
+      .summary-grid,
+      .two-col {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .metrics-row {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="page-header">
+      <div class="page-header-left">
+        <div class="org-name">Example Institution · Board Risk Committee</div>
+        <h1 class="report-title">
+          <span>Noetfield Trust Ledger</span> – Sample Board Report
+        </h1>
+        <p class="tagline">
+          One human-readable record of material AI systems, changes, controls, incidents, and board actions for
+          <span class="mono">Q1 2026</span>.
+        </p>
+        <div class="report-meta">
+          <span>Prepared by: <span class="mono">AI Governance Function</span></span>
+          <span>Contact: <span class="mono">ai-governance@exampleinstitution.com</span></span>
+          <span>Version: <span class="mono">Sample v1.0</span></span>
+        </div>
+      </div>
+      <div class="page-header-right">
+        <div class="risk-pill">
+          <span class="risk-indicator risk-mod"></span>
+          <span class="risk-label">Overall AI Risk: Moderate</span>
+        </div>
+        <div class="chip">
+          <span class="chip-dot"></span>
+          TRUST LEDGER SNAPSHOT – ILLUSTRATIVE
+        </div>
+      </div>
+    </header>
+
+    <!-- 1. Executive Summary -->
+    <section class="section">
+      <div class="section-header">
+        <h2 class="section-title">1. Executive Summary</h2>
+        <div class="section-subtitle">Top-level signals for the Board</div>
+      </div>
+      <div class="section-body summary-grid">
+        <div class="summary-block">
+          <div class="summary-title">Headlines</div>
+          <ul class="headline-list">
+            <li>
+              AI-driven credit decision assistant (S-01) remains stable; no material deterioration in risk metrics after
+              parameter changes introduced last quarter.
+            </li>
+            <li>
+              New AI vendor-screening system (S-03) is ready for controlled production launch, subject to board
+              approval of the conditions in Section 7.
+            </li>
+            <li>
+              One medium-severity near miss (I-01) was caught by human review; guardrails and reviewer training have
+              been strengthened.
+            </li>
+          </ul>
+        </div>
+        <div class="summary-block">
+          <div class="summary-title">Board decisions requested</div>
+          <ul class="headline-list">
+            <li>
+              Approve deployment of S-03 (AI vendor screening) into production with specified safeguards and monitoring.
+            </li>
+            <li>
+              Confirm decommissioning of legacy classifier S-07 and retention of logs under the AI governance policy.
+            </li>
+          </ul>
+          <p class="note">
+            See Section 7 for the detailed list of requested decisions and recommended responses.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. AI System Inventory -->
+    <section class="section">
+      <div class="section-header">
+        <h2 class="section-title">2. AI System Inventory Snapshot</h2>
+        <div class="section-subtitle">Material AI systems in scope this period</div>
+      </div>
+      <div class="section-body">
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>System / Use Case</th>
+              <th>Business Owner</th>
+              <th>Model / Provider</th>
+              <th>Infra</th>
+              <th>Data Sensitivity</th>
+              <th>Risk Tier</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>S-01</td>
+              <td>Credit decision assistant – retail limits</td>
+              <td>CRO</td>
+              <td>Internal model, supported by frontier API</td>
+              <td>GPU-backed cloud</td>
+              <td>High</td>
+              <td><span class="badge badge-pill">Tier 2</span></td>
+              <td>Production</td>
+            </tr>
+            <tr>
+              <td>S-02</td>
+              <td>Customer support triage – inbound messages</td>
+              <td>COO</td>
+              <td>Hosted LLM with internal guardrails</td>
+              <td>Cloud CPU</td>
+              <td>Medium</td>
+              <td><span class="badge">Tier 3</span></td>
+              <td>Pilot</td>
+            </tr>
+            <tr>
+              <td>S-03</td>
+              <td>Vendor risk screening – high-risk vendors</td>
+              <td>CRO</td>
+              <td>Composite model (internal + third-party)</td>
+              <td>GPU-backed cloud</td>
+              <td>Medium</td>
+              <td><span class="badge badge-pill">Tier 2</span></td>
+              <td>Pre-production</td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="note">
+          Inventory includes systems classified as “material” under the internal AI governance standard
+          <span class="mono">AIG-01</span> for the period <span class="mono">Q1 2026</span>.
+        </p>
+      </div>
+    </section>
+
+    <!-- 3. Significant Changes -->
+    <section class="section">
+      <div class="section-header">
+        <h2 class="section-title">3. Significant Changes This Period</h2>
+        <div class="section-subtitle">New, changed, and decommissioned systems</div>
+      </div>
+      <div class="section-body">
+        <table>
+          <thead>
+            <tr>
+              <th>Change Type</th>
+              <th>System ID</th>
+              <th>Description of Change</th>
+              <th>Rationale</th>
+              <th>Governance Actions</th>
+              <th>Effective Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>New</td>
+              <td>S-03</td>
+              <td>Introduction of AI-based vendor screening for high-risk vendors.</td>
+              <td>Reduce manual review time, increase consistency, and improve coverage.</td>
+              <td>
+                Reviewed by AI Governance Committee; recommended for approval by Board Risk Committee with conditions
+                on monitoring thresholds.
+              </td>
+              <td>2026-01-15</td>
+            </tr>
+            <tr>
+              <td>Parameter change</td>
+              <td>S-01</td>
+              <td>Adjustment to maximum auto-approved credit limit increase from +10% to +15% for low-risk customers.</td>
+              <td>Align limits with peer practice; support growth strategy while keeping risk within board-approved appetite.</td>
+              <td>
+                Impact analysis presented to Risk Committee; change endorsed subject to weekly drift and
+                delinquency monitoring.
+              </td>
+              <td>2026-01-28</td>
+            </tr>
+            <tr>
+              <td>Decommissioned</td>
+              <td>S-07</td>
+              <td>Decommissioning of legacy NLP classifier used in complaints routing.</td>
+              <td>Functionality consolidated into S-02 with stronger monitoring and vendor support.</td>
+              <td>Decommission plan approved; logs archived for 7 years per retention standard AIG-02.</td>
+              <td>2026-02-03</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 4. Incidents & Near Misses -->
+    <section class="section">
+      <div class="section-header">
+        <h2 class="section-title">4. Incidents, Exceptions, and Near Misses</h2>
+        <div class="section-subtitle">Material AI-related events during the period</div>
+      </div>
+      <div class="section-body">
+        <table>
+          <thead>
+            <tr>
+              <th>Ref</th>
+              <th>Date</th>
+              <th>System ID</th>
+              <th>Severity</th>
+              <th>Description</th>
+              <th>Root Cause</th>
+              <th>Actions Taken</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>I-01</td>
+              <td>2026-01-07</td>
+              <td>S-01</td>
+              <td><span class="badge badge-risk-high">Medium</span></td>
+              <td>
+                Model suggested an adjustment to credit terms that would have breached internal affordability guidance;
+                caught by human reviewer before customer impact.
+              </td>
+              <td>Prompt design gap and missing explicit constraint in the configuration.</td>
+              <td>
+                Updated prompts and configuration; added explicit affordability guardrail; delivered targeted training for
+                reviewers; incident template added to playbook.
+              </td>
+              <td>Closed</td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="note">
+          <strong>Regulatory reporting:</strong> No events met the threshold for external notification this period under
+          the current regulatory guidance. The incident I-01 is logged as a board-visible near miss.
+        </p>
+      </div>
+    </section>
+
+    <!-- 5. Controls & Testing -->
+    <section class="section">
+      <div class="section-header two-col">
+        <div>
+          <h2 class="section-title">5. Controls & Testing</h2>
+          <div class="section-subtitle">Key controls and their effectiveness</div>
+        </div>
+        <div class="section-subtitle" style="text-align:right;">
+          Mapped to: internal AI governance standard AIG-01 and sector guidance (illustrative)
+        </div>
+      </div>
+      <div class="section-body">
+        <table>
+          <thead>
+            <tr>
+              <th>Control ID</th>
+              <th>Control Description</th>
+              <th>Systems in Scope</th>
+              <th>Owner</th>
+              <th>Testing Frequency</th>
+              <th>Last Test Date</th>
+              <th>Result</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>C-01</td>
+              <td>Human-in-the-loop review for all high-impact AI credit decisions.</td>
+              <td>S-01</td>
+              <td>Risk</td>
+              <td>Each batch</td>
+              <td>2026-02-20</td>
+              <td>Effective – no unreviewed high-impact decisions identified.</td>
+            </tr>
+            <tr>
+              <td>C-02</td>
+              <td>Pre-deployment configuration and prompt review for Tier 1–2 systems.</td>
+              <td>S-01, S-03</td>
+              <td>AI Governance</td>
+              <td>Per deployment</td>
+              <td>2026-02-05</td>
+              <td>Minor findings – additional documentation required; addressed within the period.</td>
+            </tr>
+            <tr>
+              <td>C-03</td>
+              <td>Quarterly model performance and drift review with challenge from Risk.</td>
+              <td>S-01</td>
+              <td>Model Risk</td>
+              <td>Quarterly</td>
+              <td>2026-02-12</td>
+              <td>Effective – performance within approved tolerance; no recalibration required.</td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="note">
+          Control gaps identified this period: documentation for configuration review (C-02) has been tightened; further
+          work is planned to extend quarterly drift review (C-03) to S-03 after go-live.
+        </p>
+      </div>
+    </section>
+
+    <!-- 6. Ecosystem & Technical Views -->
+    <section class="section">
+      <div class="section-header">
+        <h2 class="section-title">6. Provider & Infrastructure View</h2>
+        <div class="section-subtitle">How external AI providers and infrastructure are used</div>
+      </div>
+      <div class="section-body">
+        <div class="two-col">
+          <div class="summary-block">
+            <div class="summary-title">Frontier / hosted AI services</div>
+            <div class="metrics-row">
+              <div class="metric-card">
+                <div class="metric-label">Total API calls</div>
+                <div class="metric-value">1.8M</div>
+                <div class="metric-note">vs prior quarter: +12%</div>
+              </div>
+              <div class="metric-card">
+                <div class="metric-label">High-risk use cases</div>
+                <div class="metric-value">2</div>
+                <div class="metric-note">S-01, S-03</div>
+              </div>
+              <div class="metric-card">
+                <div class="metric-label">Incidents</div>
+                <div class="metric-value">1</div>
+                <div class="metric-note">See I-01 in Section 4</div>
+              </div>
+            </div>
+            <p class="note">
+              Frontier / hosted AI providers are used in systems S-01, S-02, and S-03 with contractual safeguards,
+              internal guardrails, and pre-deployment reviews. Contracts include data use and audit clauses aligned with
+              internal standard AIG-03.
+            </p>
+          </div>
+          <div class="summary-block">
+            <div class="summary-title">GPU-backed workloads</div>
+            <div class="metrics-row">
+              <div class="metric-card">
+                <div class="metric-label">GPU hours</div>
+                <div class="metric-value">420</div>
+                <div class="metric-note">vs prior quarter: +8%</div>
+              </div>
+              <div class="metric-card">
+                <div class="metric-label">New models deployed</div>
+                <div class="metric-value">1</div>
+                <div class="metric-note">S-03</div>
+              </div>
+              <div class="metric-card">
+                <div class="metric-label">Governance reviews</div>
+                <div class="metric-value">3</div>
+                <div class="metric-note">Completed pre go-live</div>
+              </div>
+            </div>
+            <p class="note">
+              GPU-backed workloads run in a restricted cloud environment with network, identity, and logging controls
+              aligned to the institution’s information security policies.
+            </p>
+          </div>
+        </div>
+
+        <div class="summary-block" style="margin-top:12px;">
+          <div class="summary-title">Executive access & device posture</div>
+          <p class="summary-text">
+            Access to AI systems and the Trust Ledger by board members and senior executives is restricted to managed
+            devices with enforced encryption, strong authentication, and central logging. Any exceptions (for example,
+            temporary access on unmanaged devices) require explicit approval and time-bound controls.
+          </p>
+          <p class="note">
+            Device and access policies are managed under the institution’s core cybersecurity framework; this section
+            is included to give the Board assurance on how AI-related information can be accessed.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. Board Actions & Approvals -->
+    <section class="section">
+      <div class="section-header">
+        <h2 class="section-title">7. Board Actions & Approvals</h2>
+        <div class="section-subtitle">Decisions requested from the Board</div>
+      </div>
+      <div class="section-body">
+        <table class="actions-table">
+          <thead>
+            <tr>
+              <th>Item</th>
+              <th>Description</th>
+              <th>Request</th>
+              <th>Recommended Decision</th>
+              <th>Deadline</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>BA-01</td>
+              <td>
+                Approve deployment of S-03 (AI vendor screening) into production, with the monitoring thresholds and
+                human-review steps outlined in Sections 3 and 5.
+              </td>
+              <td>Approve / Amend / Reject</td>
+              <td>
+                Approve with conditions – quarterly review of false-positive and false-negative rates, and explicit
+                trigger for escalation if thresholds are breached.
+              </td>
+              <td>2026-03-10</td>
+            </tr>
+            <tr>
+              <td>BA-02</td>
+              <td>
+                Confirm decommissioning of S-07 and long-term archival of relevant logs and documentation for audit and
+                supervisory review.
+              </td>
+              <td>Confirm</td>
+              <td>Approve – no remaining business dependency; replacement system S-02 is in place.</td>
+              <td>2026-03-10</td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="note">
+          Board comments and sign-off, if captured in this ledger, can be appended as an annex to this report or
+          recorded directly in the board minutes with references to BA-01 and BA-02.
+        </p>
+      </div>
+    </section>
+
+    <!-- 8. Annex -->
+    <section class="section">
+      <div class="section-header">
+        <h2 class="section-title">8. Annex (Illustrative)</h2>
+        <div class="section-subtitle">System profiles, incident reports, mappings</div>
+      </div>
+      <div class="section-body">
+        <p class="summary-text">
+          In a live deployment, annex sections can include:
+        </p>
+        <ul class="headline-list">
+          <li>Detailed profiles for Tier 1–2 systems (scope, data, safeguards, metrics).</li>
+          <li>Full incident and near-miss reports for entries like I-01.</li>
+          <li>Mapping of AI controls to regulations and standards (for example, AI-specific guidance and sectoral rules).</li>
+          <li>A glossary of key AI and governance terms for non-technical directors.</li>
+        </ul>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <span>
+        Generated as a <span class="mono">Noetfield Trust Ledger</span> sample – for illustration only.
+      </span>
+      <span>
+        Sample Ledger ID: <span class="mono">NTL-SAMPLE-Q1-2026</span>
+      </span>
+    </footer>
+  </div>
+</body>
+</html>

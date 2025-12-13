@@ -5,7 +5,10 @@
   <title>Noetfield – Partners Gate</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <meta name="description" content="Partner track for operators, agencies, and vendors who want to deliver Noetfield governance artefacts (Trust Brief + Trust Ledger) to real organizations — board-first, evidence-ready." />
+  <meta
+    name="description"
+    content="Partner track for operators, agencies, and vendors who want to deliver Noetfield governance artefacts (Trust Brief + Trust Ledger) to real organizations — board-first, evidence-ready."
+  />
   <meta name="robots" content="index,follow" />
   <meta name="author" content="Noetfield Systems Inc." />
   <link rel="canonical" href="https://www.noetfield.com/gate/partners/" />
@@ -18,19 +21,28 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Noetfield" />
   <meta property="og:title" content="Noetfield – Partners Gate" />
-  <meta property="og:description" content="Partner track for delivery, channel, and integration partners — board-first, evidence-ready AI governance artefacts." />
+  <meta
+    property="og:description"
+    content="Partner track for delivery, channel, and integration partners — board-first, evidence-ready AI governance artefacts."
+  />
   <meta property="og:url" content="https://www.noetfield.com/gate/partners/" />
   <meta property="og:image" content="https://www.noetfield.com/noetfield-og.png" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Noetfield – Partners Gate" />
-  <meta name="twitter:description" content="Partner track for delivery, channel, and integration partners — board-first, evidence-ready AI governance artefacts." />
+  <meta
+    name="twitter:description"
+    content="Partner track for delivery, channel, and integration partners — board-first, evidence-ready AI governance artefacts."
+  />
   <meta name="twitter:image" content="https://www.noetfield.com/noetfield-og.png" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
 
   <style>
     :root{
@@ -50,6 +62,7 @@
 
       --navH: 68px;
     }
+
     *{box-sizing:border-box}
     html,body{height:100%}
     body{
@@ -96,7 +109,15 @@
 
     .wrap{max-width:var(--max); margin:0 auto; padding:24px}
 
-    /* Header */
+    /* Accessibility */
+    .skip{
+      position:absolute; left:-999px; top:10px;
+      background:#111118; border:1px solid rgba(255,255,255,.12);
+      color:var(--text); padding:10px 12px; border-radius:12px; z-index:999;
+    }
+    .skip:focus{left:10px}
+
+    /* Header (LOCKED) */
     header{
       position:sticky; top:0; z-index:60;
       backdrop-filter: blur(16px);
@@ -113,8 +134,8 @@
     .brand{
       display:flex; align-items:center; gap:12px;
       flex:0 0 auto;
-      min-width: 240px;
-      max-width: 360px;
+      min-width: 200px;
+      max-width: 380px;
     }
     .brandMark{
       width:36px; height:36px; border-radius:12px;
@@ -168,7 +189,7 @@
     .menu a.statusLink{display:inline-flex; align-items:center; gap:8px;}
     .statusDot{width:7px; height:7px; border-radius:50%; background: var(--ok); box-shadow: 0 0 0 3px var(--okGlow);}
 
-    /* Mobile */
+    /* Mobile nav (LOCKED) */
     .burger{
       display:none; align-items:center; justify-content:center;
       width:42px; height:42px;
@@ -181,7 +202,12 @@
     }
     .burger:hover{border-color:rgba(255,255,255,.18); background:rgba(255,255,255,.06)}
     .burger svg{width:20px; height:20px; opacity:.92}
-    .mobilePanel{border-top:1px solid rgba(255,255,255,.10); background: rgba(8,8,12,.74); backdrop-filter: blur(16px);}
+
+    .mobilePanel{
+      border-top:1px solid rgba(255,255,255,.10);
+      background: rgba(8,8,12,.74);
+      backdrop-filter: blur(16px);
+    }
     .mobileInner{max-width:var(--max); margin:0 auto; padding: 12px 14px 16px;}
     .mobileGrid{display:grid; grid-template-columns:1fr 1fr; gap:10px;}
     .mobileGrid a{
@@ -201,13 +227,7 @@
       background: radial-gradient(220px 90px at 30% 0%, rgba(200,163,73,.22), transparent 60%), rgba(200,163,73,.10);
     }
 
-    /* Accessibility */
-    .skip{
-      position:absolute; left:-999px; top:10px;
-      background:#111118; border:1px solid rgba(255,255,255,.12);
-      color:var(--text); padding:10px 12px; border-radius:12px; z-index:999;
-    }
-    .skip:focus{left:10px}
+    body.navOpen{overflow:hidden;}
 
     /* Hero */
     .hero{padding: 22px 0 18px}
@@ -242,8 +262,7 @@
     }
     .dot{width:8px; height:8px; border-radius:50%; background: rgba(200,163,73,.97); box-shadow: 0 0 0 3px rgba(200,163,73,.18);}
     h1{margin:14px 0 10px; font-size:42px; line-height:1.07; letter-spacing:-0.75px}
-    .lead{margin:0; color:var(--muted); font-size:16px; max-width: 940px}
-
+    .lead{margin:0; color:var(--muted); font-size:16px; max-width: 980px}
     .pillrow{display:flex; flex-wrap:wrap; gap:10px; margin-top:14px}
     .pill{
       display:inline-flex; align-items:center; gap:10px;
@@ -256,7 +275,40 @@
     }
     .pill strong{color:var(--text); font-weight:650}
 
-    /* Sections */
+    /* Buttons / UI */
+    .ctaRow{display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-top:14px}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      gap:10px;
+      padding:12px 14px;
+      border-radius:16px;
+      border:1px solid rgba(200,163,73,.58);
+      background:
+        radial-gradient(260px 110px at 40% 0%, rgba(255,255,255,.11), transparent 62%),
+        linear-gradient(180deg, rgba(200,163,73,.24), rgba(200,163,73,.11));
+      color:var(--text);
+      font-weight:850;
+      font-size:14px;
+      cursor:pointer;
+      transition: border-color .15s ease, transform .06s ease, filter .15s ease;
+      white-space:nowrap;
+    }
+    .btn:hover{border-color:rgba(200,163,73,.85); filter:brightness(1.06)}
+    .btn:active{transform: translateY(1px)}
+    .btn.secondary{
+      border:1px solid rgba(255,255,255,.16);
+      background: rgba(255,255,255,.04);
+      font-weight:700;
+      color: var(--muted);
+    }
+    .btn.ghost{
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.02);
+      font-weight:750;
+      color: var(--text);
+    }
+
+    /* Content grid */
     .grid{
       display:grid;
       grid-template-columns: 1.1fr .9fr;
@@ -297,32 +349,6 @@
       white-space:nowrap;
     }
 
-    .ctaRow{display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-top:14px}
-    .btn{
-      display:inline-flex; align-items:center; justify-content:center;
-      gap:10px;
-      padding:12px 14px;
-      border-radius:16px;
-      border:1px solid rgba(200,163,73,.58);
-      background:
-        radial-gradient(260px 110px at 40% 0%, rgba(255,255,255,.11), transparent 62%),
-        linear-gradient(180deg, rgba(200,163,73,.24), rgba(200,163,73,.11));
-      color:var(--text);
-      font-weight:850;
-      font-size:14px;
-      cursor:pointer;
-      transition: border-color .15s ease, transform .06s ease, filter .15s ease;
-      white-space:nowrap;
-    }
-    .btn:hover{border-color:rgba(200,163,73,.85); filter:brightness(1.06)}
-    .btn:active{transform: translateY(1px)}
-    .btn.secondary{
-      border:1px solid rgba(255,255,255,.16);
-      background: rgba(255,255,255,.04);
-      font-weight:700;
-      color: var(--muted);
-    }
-
     .box{
       margin-top:12px;
       padding:12px 12px;
@@ -334,38 +360,123 @@
       line-height:1.6;
     }
     .box strong{color:var(--text); font-weight:650}
+    .box a{border-bottom:1px solid rgba(255,255,255,.18)}
 
-    /* Footer */
+    .miniGrid{display:grid; grid-template-columns: 1fr 1fr; gap:10px; margin-top:10px;}
+    .mini{
+      border:1px solid rgba(255,255,255,.11);
+      background: rgba(255,255,255,.03);
+      border-radius:16px;
+      padding:12px 12px;
+    }
+    .miniTitle{font-weight:850; letter-spacing:-.2px}
+    .miniMeta{color:var(--muted2); font-size:12px; margin-top:6px; line-height:1.55}
+
+    /* FAQ */
+    .faqWrap{margin: 6px 0 34px;}
+    .faqGrid{display:grid; grid-template-columns: 1.1fr .9fr; gap:18px; margin-top:18px;}
+    .faqList{display:flex; flex-direction:column; gap:10px;}
+    details.faqItem{
+      border:1px solid rgba(255,255,255,.11);
+      background: rgba(255,255,255,.03);
+      border-radius:16px;
+      overflow:hidden;
+    }
+    details.faqItem[open]{background: rgba(255,255,255,.035);}
+    details.faqItem summary{
+      list-style:none;
+      cursor:pointer;
+      padding:14px 14px;
+      display:flex; align-items:center; justify-content:space-between; gap:12px;
+    }
+    details.faqItem summary::-webkit-details-marker{display:none;}
+    .faqQ{font-weight:850; letter-spacing:-.2px;}
+    .faqIcon{
+      width:30px; height:30px; border-radius:12px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.03);
+      display:flex; align-items:center; justify-content:center;
+      color:var(--muted);
+      flex:0 0 auto;
+    }
+    details.faqItem[open] .faqIcon{color:var(--text); border-color:rgba(200,163,73,.38);}
+    .faqA{
+      padding: 0 14px 14px;
+      color: var(--muted);
+      line-height:1.7;
+      font-size: 13px;
+    }
+    .faqA a{border-bottom:1px solid rgba(255,255,255,.18)}
+
+    /* Footer (LOCKED – expanded) */
     footer{
       border-top:1px solid rgba(255,255,255,.10);
-      padding: 18px 0 22px;
-      color:var(--muted2);
       margin-top:34px;
       background: rgba(8,8,12,.35);
       backdrop-filter: blur(10px);
     }
-    .foot{max-width:var(--max); margin:0 auto; padding: 0 16px; display:flex; flex-wrap:wrap; gap:12px 18px; align-items:center; justify-content:space-between}
+    .footerTop{
+      max-width:var(--max);
+      margin:0 auto;
+      padding: 18px 16px 10px;
+      display:grid;
+      grid-template-columns: 1.2fr .8fr .8fr .8fr;
+      gap:14px;
+    }
+    .fcol{
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.02);
+      border-radius:16px;
+      padding:14px 14px;
+    }
     .footBrand{display:flex; align-items:center; gap:10px; color:var(--muted)}
     .footBrand img{width:28px; height:28px; border-radius:10px; border:1px solid rgba(255,255,255,.12); background: rgba(255,255,255,.03)}
     .footBrand:hover{color:var(--text)}
-    .footNav{display:flex; flex-wrap:wrap; gap:10px 12px; align-items:center}
-    .footNav a{
-      color: var(--muted);
+    .fTitle{font-weight:850; letter-spacing:-.2px; margin:0 0 10px; font-size:13px;}
+    .fLinks{display:flex; flex-direction:column; gap:8px;}
+    .fLinks a{
+      color:var(--muted);
       padding:8px 10px;
       border-radius:14px;
       border:1px solid rgba(255,255,255,.10);
       background: rgba(255,255,255,.03);
       font-size:13px;
       transition: background .15s ease, border-color .15s ease, color .15s ease;
-      white-space:nowrap;
     }
-    .footNav a:hover{color:var(--text); border-color:rgba(255,255,255,.16); background:rgba(255,255,255,.05)}
-    .footNav a.active, .footNav a[aria-current="page"]{color: var(--text); border-color: rgba(200,163,73,.40); background: rgba(200,163,73,.10)}
-    .footNav a.statusLink{display:inline-flex; align-items:center; gap:8px}
+    .fLinks a:hover{color:var(--text); border-color:rgba(255,255,255,.16); background:rgba(255,255,255,.05);}
+    .fLinks a.statusLink{display:inline-flex; align-items:center; gap:8px;}
+    .fNote{color:var(--muted2); font-size:12px; line-height:1.65; margin:10px 0 0;}
+    .footerBottom{
+      border-top:1px solid rgba(255,255,255,.10);
+      max-width:var(--max);
+      margin:0 auto;
+      padding: 12px 16px 18px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px 14px;
+      align-items:center;
+      justify-content:space-between;
+      color:var(--muted2);
+    }
+    .footerMiniNav{display:flex; flex-wrap:wrap; gap:10px;}
+    .footerMiniNav a{
+      color:var(--muted);
+      padding:8px 10px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      font-size:13px;
+    }
+    .footerMiniNav a:hover{color:var(--text); border-color:rgba(255,255,255,.16); background:rgba(255,255,255,.05);}
 
     /* Responsive */
     @media (max-width: 1140px){ .menu{display:none} .burger{display:flex} }
-    @media (max-width: 980px){ .grid{grid-template-columns:1fr} }
+    @media (max-width: 980px){
+      .grid{grid-template-columns:1fr}
+      .miniGrid{grid-template-columns:1fr}
+      .faqGrid{grid-template-columns:1fr}
+      .footerTop{grid-template-columns:1fr 1fr;}
+    }
     @media (max-width: 760px){
       :root{--navH: 64px}
       .wrap{padding:16px}
@@ -373,8 +484,11 @@
       .brand .tag{display:none}
       h1{font-size:30px}
       .mobileGrid{grid-template-columns:1fr 1fr}
+      .footerTop{grid-template-columns:1fr;}
     }
-    @media (max-width: 420px){ .mobileGrid{grid-template-columns:1fr} }
+    @media (max-width: 420px){
+      .mobileGrid{grid-template-columns:1fr}
+    }
   </style>
 
   <script type="application/ld+json">
@@ -394,8 +508,9 @@
   <div class="bg" aria-hidden="true"></div>
   <a class="skip" href="#main">Skip to content</a>
 
+  <!-- HEADER (LOCKED) -->
   <header>
-    <div class="nav">
+    <div class="nav" id="top">
       <a class="brand" href="/" aria-label="Noetfield home">
         <img class="brandMark" src="/noetfield-favicon-512.png" alt="Noetfield mark" />
         <div class="brandText">
@@ -445,46 +560,54 @@
   </header>
 
   <main id="main" class="wrap">
+    <!-- HERO -->
     <section class="hero">
       <div class="heroShell">
         <div class="heroInner">
-          <div class="eyebrow"><span class="dot"></span> Partner track • delivery + channel + integration</div>
-          <h1>Build governed AI outcomes — with evidence, not theatre.</h1>
+          <div class="eyebrow"><span class="dot"></span> Partners • delivery + channel + integration</div>
+          <h1>Partner with Noetfield to deliver board-ready AI governance.</h1>
           <p class="lead">
-            The partner track is designed for operators, agencies, and vendors who can deliver or distribute board-ready AI governance artefacts:
-            <strong>Trust Brief</strong> + <strong>Trust Ledger</strong>. Start with a 90-second intake, then complete the lane-specific application.
+            This track is for teams who can <strong>deliver</strong>, <strong>introduce</strong>, or <strong>integrate</strong>
+            evidence-ready governance artefacts — <strong>Trust Brief</strong> + <strong>Trust Ledger</strong> —
+            for organizations where AI influences material decisions.
+            Choose a lane below, or take the 90-second intake and we’ll guide you to the right track.
           </p>
 
           <div class="pillrow" aria-label="Scope highlights">
-            <div class="pill"><strong>Board-first</strong> artefacts</div>
-            <div class="pill"><strong>Evidence discipline</strong></div>
-            <div class="pill"><strong>Clear boundaries</strong></div>
-            <div class="pill"><strong>Repeatable delivery</strong></div>
+            <div class="pill"><strong>Board-first</strong> outputs</div>
+            <div class="pill"><strong>Evidence-ready</strong> delivery</div>
+            <div class="pill"><strong>Clear scope</strong> boundaries</div>
+            <div class="pill"><strong>Repeatable</strong> partner motion</div>
           </div>
 
           <div class="ctaRow" style="margin-top:16px;">
-            <a class="btn" href="/gate/partners/intake/">Start partner intake</a>
-            <a class="btn secondary" href="/gate/">Back to Gate</a>
+            <a class="btn" href="/gate/partners/intake/">Take the 90-second intake</a>
+            <a class="btn ghost" href="#lanes">Browse lanes</a>
+            <a class="btn secondary" href="/contact/">Contact</a>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="grid">
+    <!-- LANES -->
+    <section class="grid" id="lanes">
       <div class="card">
         <div class="hd">
           <h2>Choose your lane</h2>
-          <p>Lane-specific forms are decisive. Pick the track that matches how you create value.</p>
+          <p>Pick the track that matches how you create value. Each lane has a dedicated page.</p>
         </div>
+
         <div class="bd">
           <div class="laneGrid">
             <div class="lane">
               <div class="laneTop">
                 <div>
                   <div class="laneTitle">Delivery partner</div>
-                  <div class="laneMeta">Co-deliver Trust Brief + Ledger entries. Strong writing, process, and proof.</div>
+                  <div class="laneMeta">
+                    Co-deliver Trust Brief + Ledger entries. Strong writing, structured process, and dependable QA.
+                  </div>
                 </div>
-                <a class="btn secondary" href="/gate/partners/intake/?lane=delivery">Continue</a>
+                <a class="btn secondary" href="/gate/partners/delivery/">Continue</a>
               </div>
               <div class="laneK">
                 <span class="k">SLA + QA</span>
@@ -498,9 +621,11 @@
               <div class="laneTop">
                 <div>
                   <div class="laneTitle">Channel / referral partner</div>
-                  <div class="laneMeta">Qualified intros + co-selling motion. You know buyers and can move deals.</div>
+                  <div class="laneMeta">
+                    Qualified introductions + co-selling motion. You know the buyer, and you can move a clean deal.
+                  </div>
                 </div>
-                <a class="btn secondary" href="/gate/partners/intake/?lane=channel">Continue</a>
+                <a class="btn secondary" href="/gate/partners/channel/">Continue</a>
               </div>
               <div class="laneK">
                 <span class="k">Buyer access</span>
@@ -514,9 +639,11 @@
               <div class="laneTop">
                 <div>
                   <div class="laneTitle">Integration / security partner</div>
-                  <div class="laneMeta">Connect identity, logs, data, and controls so evidence trails stay intact.</div>
+                  <div class="laneMeta">
+                    Connect identity, logs, and controls so governance artefacts remain auditable and defensible.
+                  </div>
                 </div>
-                <a class="btn secondary" href="/gate/partners/intake/?lane=integration">Continue</a>
+                <a class="btn secondary" href="/gate/partners/integration/">Continue</a>
               </div>
               <div class="laneK">
                 <span class="k">Entra / SSO</span>
@@ -528,76 +655,237 @@
           </div>
 
           <div class="box">
-            <strong>Guardrail:</strong> no confidential client data in any form. Use links only (sanitized/public).
+            <strong>How to share info:</strong> start with a short overview and public links. If we proceed,
+            we’ll move into a secure workspace for deeper technical or sensitive details.
+          </div>
+
+          <div class="miniGrid" aria-label="Not sure which lane">
+            <div class="mini">
+              <div class="miniTitle">Not sure which lane fits?</div>
+              <div class="miniMeta">
+                Take a 90-second intake — we’ll route you to the most relevant partner track.
+              </div>
+            </div>
+            <div class="mini" style="display:flex; align-items:center; justify-content:flex-end; gap:10px;">
+              <a class="btn" href="/gate/partners/intake/">Start intake →</a>
+            </div>
           </div>
         </div>
       </div>
 
       <aside class="card">
         <div class="hd">
-          <h2>Fit criteria</h2>
-          <p>What we optimize for.</p>
+          <h2>What happens next</h2>
+          <p>A calm, board-ready partner flow.</p>
         </div>
         <div class="bd">
-          <div class="box"><strong>Yes:</strong> board-ready writing, governance discipline, evidence-first thinking.</div>
-          <div class="box"><strong>Yes:</strong> repeatable delivery operations, QA, defined scope boundaries.</div>
-          <div class="box"><strong>No:</strong> hype-first AI bundles, generic chatbot dev shops, “magic automation” claims.</div>
+          <div class="box"><strong>1) Choose a lane</strong> (or take intake if unsure).</div>
+          <div class="box"><strong>2) Apply</strong> with proof of delivery capability.</div>
+          <div class="box"><strong>3) Alignment</strong> on standards, scope, and partner motion.</div>
+          <div class="box"><strong>4) Onboarding</strong> with templates + QA checkpoints.</div>
 
           <div class="box" style="margin-top:14px;">
             <strong>Useful links:</strong><br/>
-            <a href="/trust-brief/" style="border-bottom:1px solid rgba(255,255,255,.18)">Trust Brief</a> ·
-            <a href="/trust-ledger/" style="border-bottom:1px solid rgba(255,255,255,.18)">Trust Ledger</a> ·
-            <a href="/status/" style="border-bottom:1px solid rgba(255,255,255,.18)">Status</a>
+            <a href="/trust-brief/">Trust Brief</a> ·
+            <a href="/trust-ledger/">Trust Ledger</a> ·
+            <a href="/status/">Status</a>
           </div>
         </div>
       </aside>
     </section>
 
-    <footer>
-      <div class="foot">
-        <a class="footBrand" href="/" aria-label="Noetfield home">
-          <img src="/noetfield-favicon-512.png" alt="Noetfield mark" />
-          <span>© <span id="y"></span> Noetfield Systems Inc.</span>
-        </a>
+    <!-- FAQ -->
+    <section class="faqWrap">
+      <div class="heroShell">
+        <div class="heroInner">
+          <div class="eyebrow"><span class="dot"></span> FAQ • quick clarity</div>
+          <h2 style="margin:12px 0 6px; font-size:22px; letter-spacing:-.3px;">Frequently asked questions</h2>
+          <p class="lead" style="max-width: 980px;">
+            If you’re unsure which partner lane fits, start with the <a href="/gate/partners/intake/">90-second intake</a>.
+          </p>
+        </div>
+      </div>
 
-        <div class="footNav" aria-label="Footer navigation">
+      <div class="faqGrid">
+        <div class="card">
+          <div class="hd">
+            <h2>Partner flow</h2>
+            <p>What to expect when you apply.</p>
+          </div>
+          <div class="bd">
+            <div class="faqList">
+              <details class="faqItem">
+                <summary>
+                  <span class="faqQ">Do I have to pick a lane right away?</span>
+                  <span class="faqIcon">+</span>
+                </summary>
+                <div class="faqA">
+                  No. If you’re not sure, take the <a href="/gate/partners/intake/">90-second intake</a> — it routes you to the right track.
+                </div>
+              </details>
+
+              <details class="faqItem">
+                <summary>
+                  <span class="faqQ">How is “Delivery” different from “Channel”?</span>
+                  <span class="faqIcon">+</span>
+                </summary>
+                <div class="faqA">
+                  Delivery partners co-deliver Trust Brief + Ledger entries. Channel partners bring qualified intros and support a clean co-selling motion.
+                </div>
+              </details>
+
+              <details class="faqItem">
+                <summary>
+                  <span class="faqQ">What do you need in the first step?</span>
+                  <span class="faqIcon">+</span>
+                </summary>
+                <div class="faqA">
+                  A brief overview and links. If we proceed, we move deeper details into a secure workspace.
+                </div>
+              </details>
+
+              <details class="faqItem">
+                <summary>
+                  <span class="faqQ">How fast do you respond?</span>
+                  <span class="faqIcon">+</span>
+                </summary>
+                <div class="faqA">
+                  We confirm next steps after review. You can also check <a href="/status/">Status</a> for operating cadence.
+                </div>
+              </details>
+            </div>
+          </div>
+        </div>
+
+        <aside class="card">
+          <div class="hd">
+            <h2>Standards</h2>
+            <p>How we keep outputs board-ready.</p>
+          </div>
+          <div class="bd">
+            <div class="box"><strong>We optimize for:</strong> evidence discipline, clarity, and repeatable delivery.</div>
+            <div class="box"><strong>We avoid:</strong> hype-first bundles and vague “magic automation” claims.</div>
+            <div class="box"><strong>Need to talk scope?</strong> Use <a href="/contact/">Contact</a>.</div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER (LOCKED) -->
+  <footer>
+    <div class="footerTop">
+      <div class="fcol">
+        <a class="footBrand" href="/" aria-label="Noetfield home" style="gap:10px; margin-bottom:8px;">
+          <img src="/noetfield-favicon-512.png" alt="Noetfield mark" />
+          <span style="font-weight:850; color:var(--text);">Noetfield</span>
+        </a>
+        <div class="fNote">
+          Trust and stewardship in AI — board-first governance artefacts designed to be evidence-ready and defensible.
+        </div>
+        <div class="ctaRow" style="margin-top:12px;">
+          <a class="btn secondary" href="/gate/">Gate</a>
+          <a class="btn secondary" href="/contact/">Contact</a>
+        </div>
+      </div>
+
+      <div class="fcol">
+        <div class="fTitle">Core</div>
+        <div class="fLinks">
           <a href="/trust-ledger/">Trust Ledger</a>
           <a href="/trust-brief/">Trust Brief</a>
           <a href="/playbook/">Playbook</a>
           <a href="/copilot-cost-governance/">Copilot</a>
           <a href="/for-whom/">For Whom</a>
-          <a href="/gate/">Gate</a>
+        </div>
+      </div>
+
+      <div class="fcol">
+        <div class="fTitle">Gate</div>
+        <div class="fLinks">
+          <a href="/gate/">Gate Home</a>
+          <a href="/gate/partners/">Partners</a>
           <a href="/portal/">Portal</a>
           <a class="statusLink" href="/status/"><span class="statusDot" aria-hidden="true"></span>Status</a>
           <a href="/feedback/">Feedback</a>
-          <a href="/contact/">Contact</a>
-          <a href="/privacy/">Privacy</a>
-          <a href="/terms/">Terms</a>
         </div>
       </div>
-    </footer>
-  </main>
+
+      <div class="fcol">
+        <div class="fTitle">Legal</div>
+        <div class="fLinks">
+          <a href="/privacy/">Privacy</a>
+          <a href="/terms/">Terms</a>
+          <a href="/contact/">Contact</a>
+        </div>
+        <div class="fNote">
+          Start lightweight. If deeper access is required, we move into a secure workspace.
+        </div>
+      </div>
+    </div>
+
+    <div class="footerBottom">
+      <div>© <span id="y"></span> Noetfield Systems Inc.</div>
+      <div class="footerMiniNav" aria-label="Footer mini navigation">
+        <a href="/gate/partners/intake/">Partner intake</a>
+        <a href="/status/">Status</a>
+        <a href="/privacy/">Privacy</a>
+        <a href="/contact/">Contact</a>
+      </div>
+    </div>
+  </footer>
 
   <script>
+    // year
     document.getElementById("y").textContent = new Date().getFullYear();
 
+    // mobile menu (LOCKED): open/close, esc, click outside, close on link click
     (function () {
       var burger = document.getElementById("burger");
       var panel = document.getElementById("mobilePanel");
       if (!burger || !panel) return;
+
+      function openMenu(){
+        burger.setAttribute("aria-expanded","true");
+        panel.hidden = false;
+        document.body.classList.add("navOpen");
+      }
+      function closeMenu(){
+        burger.setAttribute("aria-expanded","false");
+        panel.hidden = true;
+        document.body.classList.remove("navOpen");
+      }
+      function isOpen(){
+        return burger.getAttribute("aria-expanded") === "true";
+      }
+
       burger.addEventListener("click", function () {
-        var isOpen = burger.getAttribute("aria-expanded") === "true";
-        burger.setAttribute("aria-expanded", String(!isOpen));
-        panel.hidden = isOpen;
+        if (isOpen()) closeMenu(); else openMenu();
       });
+
       document.addEventListener("keydown", function (e) {
-        if (e.key === "Escape" && burger.getAttribute("aria-expanded") === "true") {
-          burger.setAttribute("aria-expanded", "false");
-          panel.hidden = true;
-        }
+        if (e.key === "Escape" && isOpen()) closeMenu();
+      });
+
+      document.addEventListener("click", function(e){
+        if (!isOpen()) return;
+        var withinHeader = !!e.target.closest("header");
+        if (!withinHeader) closeMenu();
+      });
+
+      panel.addEventListener("click", function(e){
+        var a = e.target.closest("a");
+        if (a) closeMenu();
+      });
+
+      // close menu if resized to desktop
+      window.addEventListener("resize", function(){
+        if (window.innerWidth > 1140 && isOpen()) closeMenu();
       });
     })();
 
+    // active tabs (LOCKED): header + footer + mobile
     (function () {
       function normPath(p) {
         if (!p) return "/";
@@ -616,6 +904,17 @@
           (target !== "/" && (current === target || current.startsWith(target + "/")));
         if (isActive) { a.classList.add("active"); a.setAttribute("aria-current", "page"); }
         else { a.classList.remove("active"); a.removeAttribute("aria-current"); }
+      });
+    })();
+
+    // FAQ icon toggle (+ / −)
+    (function(){
+      document.querySelectorAll("details.faqItem").forEach(function(d){
+        d.addEventListener("toggle", function(){
+          var icon = d.querySelector(".faqIcon");
+          if (!icon) return;
+          icon.textContent = d.open ? "−" : "+";
+        });
       });
     })();
   </script>

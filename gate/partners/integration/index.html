@@ -8,11 +8,13 @@
   <meta name="description" content="Integration / Security Partner application for Noetfield. Connect identity, logs, DLP, and controls so evidence trails remain intact for board-ready AI governance artefacts." />
   <meta name="robots" content="index,follow" />
   <meta name="author" content="Noetfield Systems Inc." />
+  <meta name="theme-color" content="#07070b" />
+  <meta name="color-scheme" content="dark" />
+
   <link rel="canonical" href="https://www.noetfield.com/gate/partners/apply-integration/" />
 
   <link rel="icon" href="/noetfield-favicon-512.png" type="image/png" />
   <link rel="apple-touch-icon" href="/noetfield-favicon-512.png" />
-  <meta name="theme-color" content="#07070b" />
 
   <!-- OG -->
   <meta property="og:type" content="website" />
@@ -38,6 +40,7 @@
       --text:#eff0f7; --muted:#b9bbcf; --muted2:#8e91ad;
       --gold:#c8a349;
       --ok:#2de38a; --okGlow: rgba(45,227,138,.18);
+      --err:#ff5a5a; --errGlow: rgba(255,90,90,.16);
 
       --radius:18px; --max:1120px;
       --shadow: 0 28px 80px rgba(0,0,0,.62);
@@ -45,6 +48,7 @@
       --focus: 0 0 0 4px rgba(200,163,73,.18);
       --navH: 68px;
     }
+
     *{box-sizing:border-box}
     html,body{height:100%}
     body{
@@ -56,6 +60,7 @@
       -webkit-font-smoothing: antialiased;
       text-rendering: optimizeLegibility;
     }
+
     a{color:inherit; text-decoration:none}
     a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible{
       outline:none; box-shadow: var(--focus);
@@ -104,10 +109,28 @@
       gap:14px;
       min-height: var(--navH);
     }
-    .brand{display:flex; align-items:center; gap:12px; flex:0 0 auto; min-width:240px; max-width:360px;}
-    .brandMark{width:36px; height:36px; border-radius:12px; box-shadow:0 12px 26px rgba(0,0,0,.55); border:1px solid rgba(255,255,255,.12); display:block;}
+
+    .brand{
+      display:flex; align-items:center; gap:12px;
+      flex:0 0 auto;
+      min-width: 180px;
+      max-width: 380px;
+    }
+    .brandMark{
+      width:36px; height:36px;
+      border-radius:12px;
+      box-shadow:0 12px 26px rgba(0,0,0,.55);
+      border:1px solid rgba(255,255,255,.12);
+      display:block;
+    }
+    .brandText{min-width:0}
     .brand .name{font-weight:800; letter-spacing:.10px; line-height:1.05; font-size:15px;}
-    .brand .tag{font-size:10.5px; color:var(--muted2); margin-top:3px; letter-spacing:.28em; text-transform:uppercase; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:320px; opacity:.95;}
+    .brand .tag{
+      font-size:10.5px; color:var(--muted2);
+      margin-top:3px; letter-spacing:.28em; text-transform:uppercase;
+      white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+      max-width: 320px; opacity:.95;
+    }
 
     .menu{display:flex; align-items:center; justify-content:flex-end; gap:12px; flex:1 1 auto; min-width:0;}
     .menuPrimary, .menuActions{display:flex; align-items:center; gap:8px; min-width:0; flex-wrap:nowrap;}
@@ -156,6 +179,7 @@
     }
     .burger:hover{border-color:rgba(255,255,255,.18); background:rgba(255,255,255,.06)}
     .burger svg{width:20px; height:20px; opacity:.92}
+
     .mobilePanel{border-top:1px solid rgba(255,255,255,.10); background: rgba(8,8,12,.74); backdrop-filter: blur(16px);}
     .mobileInner{max-width:var(--max); margin:0 auto; padding: 12px 14px 16px;}
     .mobileGrid{display:grid; grid-template-columns:1fr 1fr; gap:10px;}
@@ -231,9 +255,10 @@
 
     .grid{
       display:grid;
-      grid-template-columns: 1.15fr .85fr;
+      grid-template-columns: minmax(0,1.15fr) minmax(0,.85fr);
       gap:18px;
       margin: 18px 0 34px;
+      align-items:start;
     }
     .card{
       border-radius:var(--radius);
@@ -241,6 +266,7 @@
       background: linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.022));
       box-shadow: var(--shadow2);
       overflow:hidden;
+      min-width: 0;
     }
     .card .hd{padding:18px 18px 0}
     .card h2{margin:0 0 8px; font-size:18px; letter-spacing:-0.2px}
@@ -254,9 +280,14 @@
       border-radius:16px;
       border:1px solid rgba(255,255,255,.10);
       background: rgba(255,255,255,.03);
+      min-width:0;
     }
     .ridLabel{font-size:11px; letter-spacing:.28em; text-transform:uppercase; color:var(--muted2)}
-    .ridValue{font-weight:700; color:var(--text); font-size:13px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:560px}
+    .ridValue{
+      font-weight:700; color:var(--text); font-size:13px;
+      white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+      max-width:560px;
+    }
     .ridActions{display:flex; gap:8px; align-items:center; flex-wrap:wrap}
     .miniBtn{
       font-size:13px;
@@ -267,9 +298,11 @@
       cursor:pointer;
       display:inline-flex; align-items:center; justify-content:center; gap:8px;
       color: var(--text);
+      user-select:none;
     }
     .miniBtn.primary{border-color: rgba(200,163,73,.38); background: rgba(200,163,73,.10)}
     .miniBtn:hover{border-color:rgba(255,255,255,.22); background:rgba(255,255,255,.06)}
+    .miniBtn:active{transform: translateY(1px)}
 
     .section{
       border:1px solid rgba(255,255,255,.10);
@@ -350,6 +383,8 @@
       font-size:12px;
       line-height:1.55;
     }
+    .msg.ok{border-color: rgba(45,227,138,.25); background: rgba(45,227,138,.06); color: var(--text);}
+    .msg.err{border-color: rgba(255,90,90,.25); background: rgba(255,90,90,.06); color: var(--text);}
 
     .box{
       margin-top:12px;
@@ -371,7 +406,11 @@
       background: rgba(8,8,12,.35);
       backdrop-filter: blur(10px);
     }
-    .foot{max-width:var(--max); margin:0 auto; padding: 0 16px; display:flex; flex-wrap:wrap; gap:12px 18px; align-items:center; justify-content:space-between}
+    .foot{
+      max-width:var(--max); margin:0 auto; padding: 0 16px;
+      display:flex; flex-wrap:wrap; gap:12px 18px;
+      align-items:center; justify-content:space-between
+    }
     .footBrand{display:flex; align-items:center; gap:10px; color:var(--muted)}
     .footBrand img{width:28px; height:28px; border-radius:10px; border:1px solid rgba(255,255,255,.12); background: rgba(255,255,255,.03)}
     .footNav{display:flex; flex-wrap:wrap; gap:10px 12px; align-items:center}
@@ -389,8 +428,18 @@
     .footNav a.active, .footNav a[aria-current="page"]{color: var(--text); border-color: rgba(200,163,73,.40); background: rgba(200,163,73,.10)}
     .footNav a.statusLink{display:inline-flex; align-items:center; gap:8px}
 
-    @media (max-width: 1140px){ .menu{display:none} .burger{display:flex} }
-    @media (max-width: 980px){ .grid{grid-template-columns:1fr} .ridValue{max-width:100%} }
+    @media (prefers-reduced-motion: reduce){
+      *{scroll-behavior:auto !important; transition:none !important; animation:none !important;}
+    }
+
+    @media (max-width: 1140px){
+      .menu{display:none}
+      .burger{display:flex}
+    }
+    @media (max-width: 980px){
+      .grid{grid-template-columns:1fr}
+      .ridValue{max-width:100%}
+    }
     @media (max-width: 760px){
       :root{--navH: 64px}
       .wrap{padding:16px}
@@ -400,8 +449,13 @@
       .mobileGrid{grid-template-columns:1fr 1fr}
       .form{grid-template-columns:1fr}
       .ridBar{flex-direction:column; align-items:flex-start}
+      .ridActions{width:100%}
+      .ridActions .miniBtn{flex:1 1 auto}
     }
-    @media (max-width: 420px){ .mobileGrid{grid-template-columns:1fr} }
+    @media (max-width: 420px){
+      .mobileGrid{grid-template-columns:1fr}
+      .actions .btn{flex:1 1 auto}
+    }
   </style>
 
   <script type="application/ld+json">
@@ -447,7 +501,7 @@
         </div>
       </nav>
 
-      <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="mobilePanel">
+      <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="mobilePanel" type="button">
         <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
           <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
         </svg>
@@ -499,7 +553,7 @@
           <p>Designed to be decisive. Request ID is attached automatically.</p>
 
           <div class="ridBar" aria-label="Request ID bar">
-            <div>
+            <div style="min-width:0">
               <div class="ridLabel">Request ID</div>
               <div class="ridValue" id="ridText">—</div>
             </div>
@@ -525,6 +579,7 @@
             <input type="hidden" id="request_id" name="request_id" value="" />
             <input type="hidden" id="lane" name="lane" value="integration" />
 
+            <!-- Honeypot -->
             <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true" />
 
             <!-- A -->
@@ -540,7 +595,7 @@
 
                 <div>
                   <label for="email">Work email</label>
-                  <input id="email" name="email" type="email" autocomplete="email" placeholder="name@company.com" required />
+                  <input id="email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="name@company.com" required />
                 </div>
 
                 <div>
@@ -748,8 +803,7 @@
 
             <div class="box">
               <strong>What happens next:</strong> if you pass technical fit + evidence discipline, we define the control baseline,
-              integration patterns, and delivery package for first implementations.
-              Your <strong>Request ID</strong> is the tracking key.
+              integration patterns, and delivery package for first implementations. Your <strong>Request ID</strong> is the tracking key.
             </div>
           </form>
         </div>
@@ -803,21 +857,39 @@
   <script>
     document.getElementById("y").textContent = new Date().getFullYear();
 
-    // Mobile menu
+    // Mobile menu (close on link click + ESC + outside click)
     (function () {
       var burger = document.getElementById("burger");
       var panel = document.getElementById("mobilePanel");
       if (!burger || !panel) return;
+
+      function closeMenu() {
+        burger.setAttribute("aria-expanded", "false");
+        panel.hidden = true;
+      }
+      function openMenu() {
+        burger.setAttribute("aria-expanded", "true");
+        panel.hidden = false;
+      }
+
       burger.addEventListener("click", function () {
         var isOpen = burger.getAttribute("aria-expanded") === "true";
-        burger.setAttribute("aria-expanded", String(!isOpen));
-        panel.hidden = isOpen;
+        if (isOpen) closeMenu(); else openMenu();
       });
+
+      panel.addEventListener("click", function (e) {
+        var a = e.target && e.target.closest ? e.target.closest("a") : null;
+        if (a) closeMenu();
+      });
+
       document.addEventListener("keydown", function (e) {
-        if (e.key === "Escape" && burger.getAttribute("aria-expanded") === "true") {
-          burger.setAttribute("aria-expanded", "false");
-          panel.hidden = true;
-        }
+        if (e.key === "Escape" && burger.getAttribute("aria-expanded") === "true") closeMenu();
+      });
+
+      document.addEventListener("click", function (e) {
+        if (burger.getAttribute("aria-expanded") !== "true") return;
+        var isInsideHeader = e.target.closest && (e.target.closest("header") || e.target.closest("#mobilePanel"));
+        if (!isInsideHeader) closeMenu();
       });
     })();
 
@@ -884,21 +956,20 @@
         if (!msg) return;
         msg.style.display = "block";
         msg.textContent = text;
-
-        if (kind === "ok") {
-          msg.style.borderColor = "rgba(45,227,138,.25)";
-          msg.style.background = "rgba(45,227,138,.06)";
-        } else if (kind === "err") {
-          msg.style.borderColor = "rgba(255,90,90,.25)";
-          msg.style.background = "rgba(255,90,90,.06)";
-        } else {
-          msg.style.borderColor = "rgba(255,255,255,.12)";
-          msg.style.background = "rgba(255,255,255,.03)";
-        }
+        msg.classList.remove("ok","err");
+        if (kind === "ok") msg.classList.add("ok");
+        if (kind === "err") msg.classList.add("err");
       }
 
       form.addEventListener("submit", async function (e) {
         e.preventDefault();
+
+        // native validation UI (works even with novalidate)
+        if (!form.checkValidity()) {
+          form.reportValidity();
+          setMsg("Please complete the required fields.", "err");
+          return;
+        }
 
         var action = form.getAttribute("action");
         if (!action || action.indexOf("REPLACE_ME") !== -1) {

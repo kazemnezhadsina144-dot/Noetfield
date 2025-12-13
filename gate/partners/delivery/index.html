@@ -2,20 +2,17 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Noetfield – Partner Delivery (Operating Standard)</title>
+  <title>Noetfield – Delivery Partner (Partners Gate)</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta
     name="description"
-    content="Noetfield Partner Delivery Standard: handoffs, deal hygiene, SLA, artefact delivery, and routing. Request ID based tracking for Partners."
+    content="Delivery Partner lane for Noetfield. Co-deliver Trust Brief + Trust Ledger entries with board-ready writing, evidence discipline, and repeatable delivery operations."
   />
   <meta name="robots" content="index,follow" />
   <meta name="author" content="Noetfield Systems Inc." />
-
-  <!-- Canonical (always with www) -->
   <link rel="canonical" href="https://www.noetfield.com/gate/partners/delivery/" />
 
-  <!-- Favicon / icons -->
   <link rel="icon" href="/noetfield-favicon-512.png" type="image/png" />
   <link rel="apple-touch-icon" href="/noetfield-favicon-512.png" />
   <meta name="theme-color" content="#07070b" />
@@ -23,276 +20,37 @@
   <!-- OG -->
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Noetfield" />
-  <meta property="og:title" content="Noetfield – Partner Delivery (Operating Standard)" />
-  <meta property="og:description" content="Partner Delivery Standard: handoffs, deal hygiene, SLA, artefact delivery, and routing. Request ID tracking." />
+  <meta property="og:title" content="Noetfield – Delivery Partner (Partners Gate)" />
+  <meta
+    property="og:description"
+    content="Delivery Partner lane: board-ready writing, evidence capture, QA discipline, repeatable operations."
+  />
   <meta property="og:url" content="https://www.noetfield.com/gate/partners/delivery/" />
   <meta property="og:image" content="https://www.noetfield.com/noetfield-og.png" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Noetfield – Partner Delivery (Operating Standard)" />
-  <meta name="twitter:description" content="Partner Delivery Standard: handoffs, deal hygiene, SLA, artefact delivery, and routing. Request ID tracking." />
+  <meta name="twitter:title" content="Noetfield – Delivery Partner (Partners Gate)" />
+  <meta
+    name="twitter:description"
+    content="Delivery Partner lane: board-ready writing, evidence capture, QA discipline, repeatable operations."
+  />
   <meta name="twitter:image" content="https://www.noetfield.com/noetfield-og.png" />
 
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
 
+  <!-- LOCKED SHELL -->
+  <link rel="stylesheet" href="/assets/noetfield-shell.css" />
+  <script src="/assets/noetfield-shell.js" defer></script>
+
+  <!-- Page-specific styles ONLY (Delivery lane) -->
   <style>
-    /* Noetfield Shell + Partners Delivery Page */
-    /* Version: locked-2025.12.13+partners-delivery+floating-feedback+portal-tab-fix */
-
-    :root{
-      --bg0:#07070b; --bg1:#0b0b14;
-
-      --panel: rgba(255,255,255,.055);
-      --panel2: rgba(255,255,255,.038);
-
-      --text:#eff0f7; --muted:#b9bbcf; --muted2:#8e91ad;
-      --line: rgba(255,255,255,.11);
-
-      --gold:#c8a349;
-      --ok:#2de38a; --okGlow: rgba(45,227,138,.18);
-
-      --radius:18px; --max:1120px;
-      --shadow: 0 28px 80px rgba(0,0,0,.62);
-      --shadow2: 0 14px 50px rgba(0,0,0,.50);
-      --focus: 0 0 0 4px rgba(200,163,73,.18);
-
-      --navH: 68px;
-    }
-
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      color: var(--text);
-      background: linear-gradient(180deg, var(--bg0), var(--bg1));
-      overflow-x:hidden;
-      -webkit-font-smoothing: antialiased;
-      text-rendering: optimizeLegibility;
-    }
-
-    a{color:inherit; text-decoration:none}
-    a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible{
-      outline:none;
-      box-shadow: var(--focus);
-      border-color: rgba(200,163,73,.58) !important;
-    }
-    [hidden]{display:none !important;}
-
-    /* Optional background element: <div class="bg" aria-hidden="true"></div> */
-    .bg{
-      position:fixed; inset:0; z-index:-3; pointer-events:none;
-      background:
-        radial-gradient(1400px 820px at 10% -10%, rgba(200,163,73,.20), transparent 58%),
-        radial-gradient(1200px 820px at 100% 0%, rgba(122,167,255,.12), transparent 60%),
-        radial-gradient(900px 700px at 55% 22%, rgba(255,255,255,.05), transparent 62%),
-        linear-gradient(180deg, var(--bg0), var(--bg1));
-      filter: saturate(1.05);
-    }
-    .bg::before{
-      content:""; position:absolute; inset:0;
-      background:
-        linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
-      background-size: 54px 54px;
-      opacity:.055;
-      mask-image: radial-gradient(70% 60% at 50% 8%, black 55%, transparent 100%);
-    }
-    .bg::after{
-      content:""; position:absolute; inset:-90px;
-      background:
-        radial-gradient(1100px 760px at 50% 8%, transparent 55%, rgba(0,0,0,.58) 100%),
-        radial-gradient(1000px 900px at 50% 110%, rgba(0,0,0,.68), transparent 62%);
-      opacity:.92;
-    }
-
-    .wrap{max-width:var(--max); margin:0 auto; padding:24px}
-
-    /* Skip link */
-    .skip{
-      position:absolute; left:-999px; top:10px;
-      background:#111118;
-      border:1px solid rgba(255,255,255,.12);
-      color:var(--text);
-      padding:10px 12px;
-      border-radius:12px;
-      z-index:999;
-    }
-    .skip:focus{left:10px}
-
-    /* ===== Header ===== */
-    header{
-      position:sticky; top:0; z-index:60;
-      backdrop-filter: blur(16px);
-      background: rgba(8,8,12,.62);
-      border-bottom: 1px solid rgba(255,255,255,.10);
-    }
-
-    .nav{
-      max-width:var(--max); margin:0 auto;
-      padding: 10px 16px;
-      display:flex; align-items:center; justify-content:space-between;
-      gap:14px;
-      min-height: var(--navH);
-    }
-
-    .brand{
-      display:flex; align-items:center; gap:12px;
-      flex:0 0 auto;
-      min-width: 240px;
-      max-width: 360px;
-    }
-    .brandMark{
-      width:36px; height:36px; border-radius:12px;
-      box-shadow: 0 12px 26px rgba(0,0,0,.55);
-      border:1px solid rgba(255,255,255,.12);
-      display:block;
-      flex:0 0 auto;
-    }
-    .brandText{min-width:0}
-    .brand .name{
-      font-weight:800; letter-spacing:.10px;
-      line-height:1.05; font-size:15px;
-    }
-    .brand .tag{
-      font-size:10.5px; color:var(--muted2); margin-top:3px;
-      letter-spacing:.28em; text-transform:uppercase;
-      white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
-      max-width:320px; opacity:.95;
-    }
-
-    .menu{
-      display:flex; align-items:center; justify-content:flex-end;
-      gap:12px;
-      flex:1 1 auto; min-width:0;
-    }
-    .menuPrimary, .menuActions{
-      display:flex; align-items:center;
-      gap:8px;
-      min-width:0;
-      flex-wrap:nowrap;
-    }
-    .menuPrimary{flex:1 1 auto; justify-content:center; overflow:hidden;}
-    .menuActions{flex:0 0 auto; justify-content:flex-end;}
-
-    .menu a{
-      color:var(--muted);
-      padding:8px 10px;
-      border-radius:14px;
-      border:1px solid transparent;
-      background: transparent;
-      transition: background .15s ease, border-color .15s ease, color .15s ease, transform .06s ease;
-      white-space:nowrap;
-      font-size:12.75px;
-      line-height:1;
-    }
-    .menu a:hover{
-      color:var(--text);
-      border-color:rgba(255,255,255,.10);
-      background:rgba(255,255,255,.045);
-    }
-    .menu a:active{transform: translateY(1px)}
-    .menu a.active, .menu a[aria-current="page"]{
-      color:var(--text);
-      border-color:rgba(200,163,73,.38);
-      background:
-        radial-gradient(240px 90px at 50% 0%, rgba(255,255,255,.10), transparent 60%),
-        linear-gradient(180deg, rgba(200,163,73,.22), rgba(200,163,73,.10));
-    }
-
-    /* ✅ FIX: Portal (pilltab) must NOT be muted */
-    .menu a.pilltab{
-      color: var(--text);
-      border:1px solid rgba(255,255,255,.14);
-      background: rgba(255,255,255,.03);
-    }
-    .menu a.pilltab:hover{
-      border-color:rgba(255,255,255,.18);
-      background:rgba(255,255,255,.06);
-    }
-
-    .menu a.login{
-      border:1px solid rgba(200,163,73,.58);
-      background:
-        radial-gradient(220px 90px at 40% 0%, rgba(255,255,255,.11), transparent 62%),
-        linear-gradient(180deg, rgba(200,163,73,.22), rgba(200,163,73,.10));
-      color: var(--text);
-      font-weight:750;
-      padding:8px 11px;
-    }
-
-    /* Status link (header + mobile + footer mini nav) */
-    .menu a.statusLink,
-    .mobileGrid a.statusLink,
-    .footerMiniNav a.statusLink{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-    }
-    .statusDot{
-      width:7px; height:7px;
-      border-radius:50%;
-      background: var(--ok);
-      box-shadow: 0 0 0 3px var(--okGlow);
-    }
-
-    /* Mobile menu */
-    .burger{
-      display:none; align-items:center; justify-content:center;
-      width:42px; height:42px;
-      border-radius:14px;
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.04);
-      cursor:pointer;
-      transition: background .15s ease, border-color .15s ease;
-      flex:0 0 auto;
-    }
-    .burger:hover{
-      border-color:rgba(255,255,255,.18);
-      background:rgba(255,255,255,.06);
-    }
-    .burger svg{width:20px; height:20px; opacity:.92}
-
-    .mobilePanel{
-      border-top:1px solid rgba(255,255,255,.10);
-      background: rgba(8,8,12,.74);
-      backdrop-filter: blur(16px);
-    }
-    .mobileInner{max-width:var(--max); margin:0 auto; padding:12px 14px 16px;}
-    .mobileGrid{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:10px;
-    }
-    .mobileGrid a{
-      padding:12px 12px;
-      border-radius:16px;
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.04);
-      color: var(--text);
-      font-size:14px;
-      transition: background .15s ease, border-color .15s ease, color .15s ease;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      text-align:center;
-      gap:8px;
-    }
-    .mobileGrid a:hover{
-      border-color:rgba(255,255,255,.18);
-      background:rgba(255,255,255,.06);
-    }
-    .mobileGrid a.active, .mobileGrid a[aria-current="page"]{
-      border-color: rgba(200,163,73,.42);
-      background:
-        radial-gradient(220px 90px at 30% 0%, rgba(200,163,73,.22), transparent 60%),
-        rgba(200,163,73,.10);
-    }
-
-    /* ===== Page (Delivery) ===== */
     .hero{padding: 22px 0 14px}
     .heroShell{
       position:relative;
@@ -314,6 +72,7 @@
       mask-image: linear-gradient(180deg, black 0%, black 58%, transparent 96%);
     }
     .heroInner{padding: 24px 22px}
+
     .eyebrow{
       display:inline-flex; gap:10px; align-items:center;
       color:var(--muted);
@@ -323,7 +82,12 @@
       border:1px solid rgba(255,255,255,.13);
       background: rgba(255,255,255,.035);
     }
-    .dot{width:8px; height:8px; border-radius:50%; background: rgba(200,163,73,.97); box-shadow: 0 0 0 3px rgba(200,163,73,.18);}
+    .dot{
+      width:8px; height:8px; border-radius:50%;
+      background: rgba(200,163,73,.97);
+      box-shadow: 0 0 0 3px rgba(200,163,73,.18);
+    }
+
     h1{margin:14px 0 10px; font-size:40px; line-height:1.07; letter-spacing:-0.75px}
     .lead{margin:0; color:var(--muted); font-size:16px; max-width: 980px}
 
@@ -388,33 +152,69 @@
       padding:14px;
       margin-top:12px;
     }
-    .sectionTitle{font-weight:900; letter-spacing:-.2px; margin:0 0 6px; font-size:14px;}
-    .sectionDesc{margin:0 0 12px; color:var(--muted2); font-size:12.5px; line-height:1.55;}
+    .sectionTitle{
+      font-weight:900;
+      letter-spacing:-.2px;
+      margin:0 0 6px;
+      font-size:14px;
+    }
+    .sectionDesc{
+      margin:0 0 12px;
+      color:var(--muted2);
+      font-size:12.5px;
+      line-height:1.55;
+    }
 
-    .list{margin:0; padding-left:18px; color:var(--muted); font-size:13px; line-height:1.65}
-    .list li{margin:6px 0}
-    .kpiRow{display:grid; grid-template-columns:1fr 1fr; gap:10px}
-    .kpi{
-      border-radius:16px;
+    label{display:block; font-size:12px; color:var(--muted2); margin:0 0 6px}
+    input, select, textarea{
+      width:100%;
+      background: rgba(10,10,16,.55);
+      border: 1px solid rgba(255,255,255,.14);
+      color: var(--text);
+      padding: 12px 12px;
+      border-radius: 14px;
+      font-family:inherit;
+      font-size:14px;
+      transition: border-color .15s ease, box-shadow .15s ease, background .15s ease;
+    }
+    input::placeholder, textarea::placeholder{color: rgba(185,187,207,.55)}
+    textarea{min-height:110px; resize:vertical}
+    input:focus, select:focus, textarea:focus{box-shadow: var(--focus); background: rgba(12,12,18,.62)}
+
+    .form{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:12px;
+    }
+    .full{grid-column: 1 / -1}
+
+    .check{
+      display:flex; gap:10px; align-items:flex-start;
+      padding:12px 12px;
+      border-radius:14px;
       border:1px solid rgba(255,255,255,.10);
       background: rgba(255,255,255,.03);
-      padding:12px;
-      color:var(--muted);
-      font-size:13px;
-      line-height:1.5;
+      margin-top:10px;
     }
-    .kpi strong{color:var(--text)}
+    .check input{width:auto; margin-top:3px}
+    .check span{color:var(--muted); font-size:13px; line-height:1.45}
+    .check small{display:block; color:var(--muted2); font-size:12px; margin-top:6px}
+    .check a{border-bottom:1px solid rgba(255,255,255,.18)}
 
-    .note{
+    .actions{display:flex; gap:12px; flex-wrap:wrap; align-items:center; margin-top:12px}
+
+    .msg{
+      display:none;
       margin-top:12px;
       padding:12px 12px;
       border-radius:14px;
-      border:1px dashed rgba(255,255,255,.16);
-      background: rgba(255,255,255,.02);
-      color: var(--muted2);
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.03);
+      color: var(--muted);
       font-size:12px;
-      line-height:1.6;
+      line-height:1.55;
     }
+
     .box{
       margin-top:12px;
       padding:12px 12px;
@@ -426,216 +226,28 @@
       line-height:1.6;
     }
     .box strong{color:var(--text); font-weight:800}
-    .hr{height:1px; background: rgba(255,255,255,.10); margin:12px 0}
+    .box a{border-bottom:1px solid rgba(255,255,255,.18)}
 
-    .actions{display:flex; gap:12px; flex-wrap:wrap; align-items:center; margin-top:12px}
-    .btn{
-      display:inline-flex; align-items:center; justify-content:center;
-      gap:10px;
-      padding:12px 14px;
-      border-radius:16px;
-      border:1px solid rgba(200,163,73,.58);
-      background:
-        radial-gradient(260px 110px at 40% 0%, rgba(255,255,255,.11), transparent 62%),
-        linear-gradient(180deg, rgba(200,163,73,.24), rgba(200,163,73,.11));
-      color:var(--text);
-      font-weight:900;
-      font-size:14px;
-      cursor:pointer;
-      transition: border-color .15s ease, transform .06s ease, filter .15s ease;
-      white-space:nowrap;
-    }
-    .btn:hover{border-color:rgba(200,163,73,.85); filter:brightness(1.06)}
-    .btn:active{transform: translateY(1px)}
-    .btn.secondary{
-      border:1px solid rgba(255,255,255,.16);
-      background: rgba(255,255,255,.04);
-      font-weight:800;
-      color: var(--text);
-    }
-
-    /* ===== Footer (LOCKED – 4-column + bottom right rail) ===== */
-    footer{
-      border-top:1px solid rgba(255,255,255,.10);
-      margin-top:34px;
-      background: rgba(8,8,12,.35);
-      backdrop-filter: blur(10px);
-      color:var(--muted2);
-    }
-
-    .footerTop{
-      max-width:var(--max);
-      margin:0 auto;
-      padding: 18px 16px 10px;
-      display:grid;
-      grid-template-columns: 1.2fr .8fr .8fr .8fr;
-      gap:14px;
-    }
-    .fcol{
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.02);
-      border-radius:16px;
-      padding:14px 14px;
-    }
-
-    .footBrand{display:flex; align-items:center; gap:10px; color:var(--muted)}
-    .footBrand img{
-      width:28px; height:28px; border-radius:10px;
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.03);
-    }
-    .footBrand:hover{color:var(--text)}
-
-    .fTitle{
-      font-weight:850;
-      letter-spacing:-.2px;
-      margin:0 0 10px;
-      font-size:13px;
-    }
-    .fLinks{display:flex; flex-direction:column; gap:8px;}
-    .fLinks a{
-      color:var(--muted);
-      padding:8px 10px;
-      border-radius:14px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.03);
-      font-size:13px;
-      transition: background .15s ease, border-color .15s ease, color .15s ease;
-      display:flex; align-items:center;
-    }
-    .fLinks a:hover{
-      color:var(--text);
-      border-color:rgba(255,255,255,.16);
-      background:rgba(255,255,255,.05);
-    }
-    /* NOTE: footerTop box-links must NOT show active state; JS will not target them. */
-    .fNote{
-      color:var(--muted2);
-      font-size:12px;
-      line-height:1.65;
-      margin:10px 0 0;
-    }
-
-    .footerBottom{
-      border-top:1px solid rgba(255,255,255,.10);
-      max-width:var(--max);
-      margin:0 auto;
-      padding: 12px 16px 18px;
-      display:flex;
-      flex-wrap:wrap;
-      gap:12px 14px;
-      align-items:center;
-      justify-content:space-between;
-      color:var(--muted2);
-    }
-
-    /* Bottom-right rail (ONLY this rail gets active state) */
-    .footerMiniNav{display:flex; flex-wrap:wrap; gap:10px; align-items:center}
-    .footerMiniNav a{
-      color:var(--text);
-      padding:8px 10px;
-      border-radius:14px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.03);
-      font-size:13px;
-      transition: background .15s ease, border-color .15s ease, color .15s ease, filter .15s ease;
-    }
-    .footerMiniNav a:hover{
-      border-color:rgba(255,255,255,.16);
-      background:rgba(255,255,255,.05);
-    }
-    .footerMiniNav a.active, .footerMiniNav a[aria-current="page"]{
-      border-color: rgba(200,163,73,.40);
-      background: rgba(200,163,73,.10);
-    }
-
-    /* ✅ Partner intake as gold CTA (kept) */
-    .footerMiniNav a.partnerIntakeLink{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      font-weight:850;
-      border:1px solid rgba(200,163,73,.58);
-      background:
-        radial-gradient(220px 90px at 40% 0%, rgba(255,255,255,.10), transparent 62%),
-        linear-gradient(180deg, rgba(200,163,73,.22), rgba(200,163,73,.10));
-      color: var(--text);
-    }
-    .footerMiniNav a.partnerIntakeLink:hover{
-      border-color:rgba(200,163,73,.85);
-      filter: brightness(1.06);
-    }
-    .goldDot{
-      width:8px; height:8px;
-      border-radius:50%;
-      background: var(--gold);
-      box-shadow: 0 0 0 3px rgba(200,163,73,.18);
-    }
-
-    /* ✅ Feedback is NOT in footer anymore (floating only) */
-    .feedbackTab{
-      position:fixed;
-      right:16px;
-      bottom:16px;
-      z-index:80;
-      padding:10px 12px;
-      border-radius:16px;
-      border:1px solid rgba(255,255,255,.14);
-      background: rgba(8,8,12,.62);
-      backdrop-filter: blur(14px);
-      color: var(--text);
-      font-size:13px;
-      display:inline-flex; gap:8px; align-items:center;
-      transition: background .15s ease, border-color .15s ease, transform .06s ease, filter .15s ease;
-    }
-    .feedbackTab:hover{
-      border-color: rgba(200,163,73,.55);
-      background: rgba(200,163,73,.10);
-      filter: brightness(1.05);
-    }
-    .feedbackTab:active{transform: translateY(1px)}
-    .feedbackTab .spark{
-      width:8px; height:8px; border-radius:50%;
-      background: rgba(200,163,73,.95);
-      box-shadow: 0 0 0 3px rgba(200,163,73,.16);
-    }
-
-    /* Responsive locks */
-    @media (max-width: 1140px){
-      .menu{display:none}
-      .burger{display:flex}
-    }
     @media (max-width: 980px){
       .grid{grid-template-columns:1fr}
       .ridValue{max-width:100%}
-      .kpiRow{grid-template-columns:1fr}
-      .footerTop{grid-template-columns:1fr 1fr;}
     }
     @media (max-width: 760px){
-      :root{--navH: 64px}
-      .wrap{padding:16px}
-      .nav{padding:10px 14px}
-      .brand .tag{display:none}
       h1{font-size:30px}
-      .mobileGrid{grid-template-columns:1fr 1fr}
+      .form{grid-template-columns:1fr}
       .ridBar{flex-direction:column; align-items:flex-start}
-      .footerTop{grid-template-columns:1fr;}
-      .feedbackTab{display:none}
-    }
-    @media (max-width: 420px){
-      .mobileGrid{grid-template-columns:1fr}
     }
   </style>
 
   <script type="application/ld+json">
   {
-    "@context":"https://schema.org",
-    "@type":"WebPage",
-    "name":"Noetfield Partner Delivery — Operating Standard",
-    "url":"https://www.noetfield.com/gate/partners/delivery/",
-    "description":"Partner Delivery Standard: handoffs, deal hygiene, SLA, artefact delivery, and routing. Request ID tracking.",
-    "isPartOf":{"@type":"WebSite","name":"Noetfield","url":"https://www.noetfield.com/"},
-    "publisher":{"@type":"Organization","name":"Noetfield Systems Inc."}
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Noetfield — Delivery Partner (Partners Gate)",
+    "url": "https://www.noetfield.com/gate/partners/delivery/",
+    "description": "Delivery Partner lane for Noetfield. Co-deliver Trust Brief + Trust Ledger entries with board-ready writing, evidence discipline, and repeatable delivery operations.",
+    "isPartOf": {"@type":"WebSite","name":"Noetfield","url":"https://www.noetfield.com/"},
+    "publisher": {"@type":"Organization","name":"Noetfield Systems Inc."}
   }
   </script>
 </head>
@@ -644,6 +256,7 @@
   <div class="bg" aria-hidden="true"></div>
   <a class="skip" href="#main">Skip to content</a>
 
+  <!-- HEADER (LOCKED SHELL MARKUP) -->
   <header>
     <div class="nav">
       <a class="brand" href="/" aria-label="Noetfield home">
@@ -665,7 +278,7 @@
         <div class="menuActions" aria-label="App actions">
           <a class="pilltab" href="/gate/">Gate</a>
           <a class="pilltab" href="/portal/">Portal</a>
-          <a class="pilltab statusLink" href="/status/"><span class="statusDot" aria-hidden="true"></span>Status</a>
+          <a class="pilltab" href="/platform/">Platform</a>
           <a class="login" href="/portal/login/">Login</a>
         </div>
       </nav>
@@ -687,7 +300,7 @@
           <a href="/for-whom/">For Whom</a>
           <a href="/gate/">Gate</a>
           <a href="/portal/">Portal</a>
-          <a class="statusLink" href="/status/"><span class="statusDot" aria-hidden="true"></span>Status</a>
+          <a href="/platform/">Platform</a>
           <a href="/portal/login/">Login</a>
         </div>
       </div>
@@ -695,32 +308,33 @@
   </header>
 
   <main id="main" class="wrap">
+    <!-- HERO -->
     <section class="hero">
       <div class="heroShell">
         <div class="heroInner">
-          <div class="eyebrow"><span class="dot"></span> Partners • Delivery Standard • Request ID tracking</div>
-          <h1>Partner delivery and handoff standard.</h1>
+          <div class="eyebrow"><span class="dot"></span> Partners • Delivery lane • application</div>
+          <h1>Delivery partner application.</h1>
           <p class="lead">
-            This page defines the operating standard for partner-driven deals: qualification hygiene, handoff artifacts,
-            delivery sequencing, and SLAs. All routing and tracking uses a single <strong>Request ID (RID)</strong>.
+            This lane is for teams who can co-deliver <strong>Trust Brief</strong> + <strong>Trust Ledger entries</strong> with board-grade writing,
+            disciplined evidence capture, and repeatable ops. Links only (public or sanitized) — no confidential uploads.
           </p>
 
           <div class="metaRow" aria-label="Scope highlights">
-            <div class="pill"><strong>Deal hygiene</strong></div>
-            <div class="pill"><strong>Clean handoffs</strong></div>
-            <div class="pill"><strong>SLA</strong></div>
-            <div class="pill"><strong>RID tracking</strong></div>
+            <div class="pill"><strong>Board-ready</strong> writing</div>
+            <div class="pill"><strong>Evidence discipline</strong></div>
+            <div class="pill"><strong>QA + SLA</strong> mindset</div>
+            <div class="pill"><strong>Repeatable</strong> delivery</div>
           </div>
         </div>
       </div>
     </section>
 
     <section class="grid">
-      <!-- Main lane -->
+      <!-- FORM -->
       <div class="card">
         <div class="hd">
-          <h2>Tracking key</h2>
-          <p>Use one RID across intro → discovery → pilot → delivery. It anchors status updates and routing.</p>
+          <h2>Application</h2>
+          <p>Designed to be decisive. Request ID is attached automatically.</p>
 
           <div class="ridBar" aria-label="Request ID bar">
             <div>
@@ -735,29 +349,466 @@
         </div>
 
         <div class="bd">
-          <div class="section">
-            <div class="sectionTitle">1) What partners deliver (minimum)</div>
-            <p class="sectionDesc">A “good deal” starts with discipline. Minimum bar for any partner-driven intro:</p>
-            <ul class="list">
-              <li><strong>Buyer fit:</strong> AI is used in material decisions (ops, finance, safety, compliance, HR, procurement).</li>
-              <li><strong>Sponsor:</strong> an exec sponsor exists (or can be introduced within 7 days).</li>
-              <li><strong>Scope:</strong> 1–3 material AI use cases (named, not vague).</li>
-              <li><strong>Timeline:</strong> decision window stated (even if “unknown”, state why).</li>
-              <li><strong>Budget posture:</strong> clear willingness to pay for governance artefacts (not “free consulting”).</li>
-              <li><strong>Evidence discipline:</strong> buyer accepts documentation and auditability as part of the work.</li>
-            </ul>
+          <form id="nfApplyDeliveryForm"
+                action="https://formspree.io/f/REPLACE_ME"
+                method="POST"
+                novalidate>
+
+            <!-- metadata -->
+            <input type="hidden" name="page_source" value="/gate/partners/delivery/" />
+            <input type="hidden" name="source" value="gate-partners-delivery" />
+            <input type="hidden" name="application_type" value="partner-delivery" />
+            <input type="hidden" name="site" value="noetfield.com" />
+            <input type="hidden" name="_subject" value="Noetfield Gate — Partner application (Delivery)" />
+
+            <input type="hidden" id="request_id" name="request_id" value="" />
+            <input type="hidden" id="lane" name="lane" value="delivery" />
+
+            <!-- honeypot -->
+            <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true" />
+
+            <!-- A -->
+            <div class="section">
+              <div class="sectionTitle">A) Identity & operating context</div>
+              <p class="sectionDesc">Who you are, what you do, and where you operate. Keep it crisp.</p>
+
+              <div class="form">
+                <div>
+                  <label for="fullName">Full name</label>
+                  <input id="fullName" name="fullName" type="text" autocomplete="name" placeholder="First + last" required />
+                </div>
+
+                <div>
+                  <label for="email">Work email</label>
+                  <input id="email" name="email" type="email" autocomplete="email" placeholder="name@company.com" required />
+                </div>
+
+                <div>
+                  <label for="org">Company / studio</label>
+                  <input id="org" name="org" type="text" autocomplete="organization" placeholder="Legal name (or brand)" required />
+                </div>
+
+                <div>
+                  <label for="role">Your role</label>
+                  <select id="role" name="role" required>
+                    <option value="" disabled selected>Select one</option>
+                    <option>Founder / Owner</option>
+                    <option>Partner / Director</option>
+                    <option>Head of Delivery</option>
+                    <option>Consultant</option>
+                    <option>Writer / Analyst</option>
+                    <option>Other</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label for="geo">Primary geography</label>
+                  <input id="geo" name="geo" type="text" placeholder="e.g., Canada (BC/ON), US (WA/CA), EU" required />
+                </div>
+
+                <div>
+                  <label for="timezone">Timezone</label>
+                  <input id="timezone" name="timezone" type="text" placeholder="e.g., America/Vancouver" required />
+                </div>
+
+                <div class="full">
+                  <label for="oneLiner">Your delivery one-liner (what you enable)</label>
+                  <textarea id="oneLiner" name="oneLiner" placeholder="Example: We turn AI usage into board-ready artefacts with evidence trails and a repeatable governance process." required></textarea>
+                </div>
+              </div>
+            </div>
+
+            <!-- B -->
+            <div class="section">
+              <div class="sectionTitle">B) Capability & fit</div>
+              <p class="sectionDesc">This lane requires board-grade writing and evidence discipline. Be specific.</p>
+
+              <div class="form">
+                <div>
+                  <label for="writingStrength">Board-ready writing strength</label>
+                  <select id="writingStrength" name="writingStrength" required>
+                    <option value="" disabled selected>Select one</option>
+                    <option>Exceptional (executive memos / board papers are core)</option>
+                    <option>Strong (senior stakeholder writing is frequent)</option>
+                    <option>Developing (we can improve with templates)</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label for="evidenceMaturity">Evidence maturity</label>
+                  <select id="evidenceMaturity" name="evidenceMaturity" required>
+                    <option value="" disabled selected>Select one</option>
+                    <option>We run evidence-first processes (logs, trails, approvals)</option>
+                    <option>We can implement evidence discipline quickly</option>
+                    <option>We need guidance (templates + checklists)</option>
+                  </select>
+                </div>
+
+                <div class="full">
+                  <label for="govExperience">Governance / risk / compliance exposure</label>
+                  <textarea id="govExperience" name="govExperience" placeholder="Closest work: policy, risk registers, audits, ISO/SOC2, vendor risk, privacy, security, regulated environments, etc." required></textarea>
+                </div>
+
+                <div class="full">
+                  <label for="bestWork">Best proof (links only)</label>
+                  <textarea id="bestWork" name="bestWork" placeholder="Paste 1–5 links to public or sanitized samples. Do NOT upload confidential files." required></textarea>
+                </div>
+
+                <div class="full">
+                  <label for="industries">Industries you can deliver into (top 3–5)</label>
+                  <textarea id="industries" name="industries" placeholder="Example: municipalities, construction, finance, healthcare, education, energy, logistics" required></textarea>
+                </div>
+              </div>
+            </div>
+
+            <!-- C -->
+            <div class="section">
+              <div class="sectionTitle">C) Delivery operations</div>
+              <p class="sectionDesc">We optimize for repeatability: process, QA, handoffs, predictable timelines.</p>
+
+              <div class="form">
+                <div>
+                  <label for="capacity">Capacity (next 30–60 days)</label>
+                  <select id="capacity" name="capacity" required>
+                    <option value="" disabled selected>Select one</option>
+                    <option>1 pilot / month</option>
+                    <option>2–3 pilots / month</option>
+                    <option>4+ pilots / month</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label for="turnaround">Typical turnaround comfort</label>
+                  <select id="turnaround" name="turnaround" required>
+                    <option value="" disabled selected>Select one</option>
+                    <option>Fast (1–2 weeks for scoped deliverables)</option>
+                    <option>Standard (2–4 weeks)</option>
+                    <option>Longer (4–8 weeks)</option>
+                  </select>
+                </div>
+
+                <div class="full">
+                  <label for="process">Your delivery process (5–10 bullets)</label>
+                  <textarea id="process" name="process" placeholder="Example: intake → map AI use-cases → collect evidence → draft ledger entries → board memo options → QA → sign-off → handoff." required></textarea>
+                </div>
+
+                <div class="full">
+                  <label for="qa">Quality assurance approach</label>
+                  <textarea id="qa" name="qa" placeholder="How you review accuracy, clarity, risk language, consistency (peer review, checklists, red-team, versioning, etc.)." required></textarea>
+                </div>
+
+                <div class="full">
+                  <label for="tools">Tools you use (docs, PM, versioning)</label>
+                  <textarea id="tools" name="tools" placeholder="Example: Google Docs / Word, Notion, Jira, Linear, Git, Confluence, Slack, Teams, etc." required></textarea>
+                </div>
+              </div>
+            </div>
+
+            <!-- D -->
+            <div class="section">
+              <div class="sectionTitle">D) Commercial & scope discipline</div>
+              <p class="sectionDesc">We prefer clean boundaries and predictable commercial terms.</p>
+
+              <div class="form">
+                <div>
+                  <label for="rateMode">Preferred commercial model</label>
+                  <select id="rateMode" name="rateMode" required>
+                    <option value="" disabled selected>Select one</option>
+                    <option>Fixed-fee per pilot</option>
+                    <option>Retainer</option>
+                    <option>Hourly / day-rate</option>
+                    <option>Hybrid (fixed + variable)</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label for="range">Typical price range (CAD/USD)</label>
+                  <input id="range" name="range" type="text" placeholder="Example: $3k–$10k / pilot (or your reality)" required />
+                </div>
+
+                <div class="full">
+                  <label for="scopeBoundaries">Scope boundaries you enforce</label>
+                  <textarea id="scopeBoundaries" name="scopeBoundaries" placeholder="What you do NOT do (model training, “AI magic automation”, custom dev beyond governance artefacts, handling raw confidential data, etc.)." required></textarea>
+                </div>
+
+                <div class="full">
+                  <label for="handoff">Handoff package (what the client receives)</label>
+                  <textarea id="handoff" name="handoff" placeholder="Example: 6–10 page Trust Brief, ledger entries, evidence index, board decision memo options, next-step controls." required></textarea>
+                </div>
+              </div>
+            </div>
+
+            <!-- E -->
+            <div class="section">
+              <div class="sectionTitle">E) Risk, conflicts, and guardrails</div>
+              <p class="sectionDesc">This is a governed channel. Keep it clean.</p>
+
+              <div class="form">
+                <div class="full">
+                  <label for="conflicts">Conflicts of interest (if any)</label>
+                  <textarea id="conflicts" name="conflicts" placeholder="Any direct conflicts (vendors you represent, competing offers, exclusivities) — disclose cleanly." required></textarea>
+                </div>
+
+                <div class="full">
+                  <label for="dataHandling">Data handling position</label>
+                  <textarea id="dataHandling" name="dataHandling" placeholder="Confirm: no confidential data via forms; links only; sanitized samples; secure channels later if needed." required></textarea>
+                </div>
+              </div>
+
+              <div class="check">
+                <input type="checkbox" name="non_confidential_ack" value="yes" required />
+                <span>
+                  I confirm this application is <strong>non-confidential</strong>. Links only (public or sanitized). No client names, credentials, internal security details, or private documents.
+                  <small>Privacy: <a href="/privacy/">/privacy/</a></small>
+                </span>
+              </div>
+
+              <div class="check">
+                <input type="checkbox" name="truthful_ack" value="yes" required />
+                <span>
+                  I confirm the information provided is accurate to the best of my knowledge.
+                  <small>We use this to decide routing, not for marketing spam.</small>
+                </span>
+              </div>
+            </div>
+
+            <div class="actions">
+              <button class="btn" id="submitBtn" type="submit">Submit application</button>
+              <a class="btn secondary" id="backToIntake" href="/gate/partners/intake/">Back to intake</a>
+              <a class="btn secondary" href="/gate/partners/">Back to Partners</a>
+            </div>
+
+            <div id="msg" class="msg" role="status" aria-live="polite"></div>
+
+            <div class="box">
+              <strong>What happens next:</strong> your application is reviewed for fit. If accepted, we align scope, QA checkpoints, and delivery boundaries and proceed with a first pilot motion.
+              Your <strong>Request ID</strong> is the tracking key.
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- ASIDE -->
+      <aside class="card">
+        <div class="hd">
+          <h2>Decision criteria</h2>
+          <p>What makes a “yes” easy.</p>
+        </div>
+        <div class="bd">
+          <div class="box"><strong>Yes:</strong> board-grade writing samples; clean, structured, non-hype language.</div>
+          <div class="box"><strong>Yes:</strong> evidence discipline + operational QA mindset.</div>
+          <div class="box"><strong>Yes:</strong> repeatable delivery process + clear scope boundaries.</div>
+          <div class="box"><strong>No:</strong> generic AI bundles, dev shops, “magic automation” claims.</div>
+
+          <div class="box" style="margin-top:14px;">
+            <strong>Useful:</strong><br/>
+            <a href="/trust-brief/">Trust Brief</a> ·
+            <a href="/trust-ledger/">Trust Ledger</a> ·
+            <a href="/gate/partners/">Partners Gate</a>
           </div>
+        </div>
+      </aside>
+    </section>
+  </main>
 
-          <div class="section">
-            <div class="sectionTitle">2) Handoff package (partner → Noetfield)</div>
-            <p class="sectionDesc">Send these as a single message or doc. No confidential documents in forms.</p>
-            <ul class="list">
-              <li><strong>RID:</strong> include the RID in subject line and first sentence.</li>
-              <li><strong>Intro note:</strong> why this buyer, why now (2–6 sentences).</li>
-              <li><strong>Buyer roles:</strong> names optional; roles required (COO/CFO/CIO/Compliance Lead, etc.).</li>
-              <li><strong>Use case sketch:</strong> what the AI does, where it touches material outcomes.</li>
-              <li><strong>Risks:</strong> any known compliance/regulatory/board sensitivities.</li>
-              <li><strong>Next action:</strong> propose a single next step (discovery call, memo review, pilot proposal).</li>
-            </ul>
+  <!-- FOOTER (LOCKED SHELL MARKUP) -->
+  <footer>
+    <div class="footerTop">
+      <!-- Brand -->
+      <div class="fcol">
+        <a class="footBrand" href="/" aria-label="Noetfield home">
+          <img src="/noetfield-favicon-512.png" alt="Noetfield mark" />
+          <span style="font-weight:850; color:var(--text);">Noetfield</span>
+        </a>
+        <div class="fNote">
+          Trust and stewardship in AI — board-first governance artefacts designed to be evidence-ready and defensible.
+        </div>
+        <div class="ctaRow" style="margin-top:12px;">
+          <a class="btn secondary" href="/gate/">Gate</a>
+          <a class="btn secondary" href="/platform/">Platform</a>
+        </div>
+      </div>
 
-            <div class="box
+      <!-- Core -->
+      <div class="fcol">
+        <div class="fTitle">Core</div>
+        <div class="fLinks">
+          <a href="/trust-ledger/">Trust Ledger</a>
+          <a href="/trust-brief/">Trust Brief</a>
+          <a href="/playbook/">Playbook</a>
+          <a href="/copilot-cost-governance/">Copilot</a>
+          <a href="/for-whom/">For Whom</a>
+        </div>
+      </div>
+
+      <!-- Gate -->
+      <div class="fcol">
+        <div class="fTitle">Gate</div>
+        <div class="fLinks">
+          <a href="/gate/">Gate Home</a>
+          <a href="/gate/partners/">Partners</a>
+          <a href="/gate/offers/">Offers</a>
+          <a href="/portal/">Portal</a>
+          <a href="/platform/">Platform</a>
+        </div>
+      </div>
+
+      <!-- Legal -->
+      <div class="fcol">
+        <div class="fTitle">Legal</div>
+        <div class="fLinks">
+          <a href="/privacy/">Privacy</a>
+          <a href="/terms/">Terms</a>
+          <a href="/cookies/">Cookies</a>
+          <a href="/accessibility/">Accessibility</a>
+          <a href="/policies/">Policies</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footerBottom">
+      <div>© <span id="y"></span> Noetfield Systems Inc.</div>
+
+      <div class="footerMiniNav" aria-label="Footer mini navigation">
+        <a class="statusLink" href="/status/"><span class="statusDot" aria-hidden="true"></span>Status</a>
+        <a href="/faq/">FAQ</a>
+        <a href="/sitemap.xml">Sitemap</a>
+
+        <a class="partnerIntakeLink" href="/gate/partners/intake/">
+          <span class="goldDot" aria-hidden="true"></span>Partner intake
+        </a>
+
+        <a href="/feedback/">Feedback</a>
+        <a href="/contact/">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Page-only JS: RID + submit redirect -->
+  <script>
+    (function(){
+      var y = document.getElementById("y");
+      if (y) y.textContent = new Date().getFullYear();
+    })();
+
+    // RID (?rid=...) + storage + buttons
+    (function () {
+      var ridInput = document.getElementById("request_id");
+      var ridText = document.getElementById("ridText");
+      var openStatusBtn = document.getElementById("openStatusBtn");
+      var backToIntake = document.getElementById("backToIntake");
+      var copyBtn = document.getElementById("copyRidBtn");
+
+      function genRID(){
+        function rand4(){ return Math.floor(Math.random() * 10000).toString().padStart(4,"0"); }
+        var d = new Date();
+        var stamp =
+          d.getUTCFullYear().toString() +
+          String(d.getUTCMonth()+1).padStart(2,"0") +
+          String(d.getUTCDate()).padStart(2,"0") + "-" +
+          String(d.getUTCHours()).padStart(2,"0") +
+          String(d.getUTCMinutes()).padStart(2,"0") +
+          String(d.getUTCSeconds()).padStart(2,"0");
+        return "NF-P-" + stamp + "-" + rand4();
+      }
+
+      var params = new URLSearchParams(window.location.search || "");
+      var rid = (params.get("rid") || "").trim();
+
+      if (!rid) {
+        try { rid = localStorage.getItem("nf_partner_rid") || ""; } catch(e){}
+      }
+      if (!rid) rid = genRID();
+
+      if (ridInput) ridInput.value = rid;
+      if (ridText) ridText.textContent = rid;
+
+      try { localStorage.setItem("nf_partner_rid", rid); } catch(e){}
+      try { localStorage.setItem("nf_partner_lane", "delivery"); } catch(e){}
+
+      if (openStatusBtn) openStatusBtn.href = "/status/?rid=" + encodeURIComponent(rid);
+      if (backToIntake) backToIntake.href = "/gate/partners/intake/?rid=" + encodeURIComponent(rid) + "&lane=delivery";
+
+      if (copyBtn) {
+        copyBtn.addEventListener("click", async function(){
+          try{
+            await navigator.clipboard.writeText(rid);
+            copyBtn.textContent = "Copied";
+            setTimeout(function(){ copyBtn.textContent = "Copy"; }, 1200);
+          } catch(e){
+            copyBtn.textContent = "Copy failed";
+            setTimeout(function(){ copyBtn.textContent = "Copy"; }, 1200);
+          }
+        });
+      }
+    })();
+
+    // Submit via fetch -> /thanks/?rid=...
+    (function () {
+      var form = document.getElementById("nfApplyDeliveryForm");
+      if (!form) return;
+
+      var msg = document.getElementById("msg");
+      var btn = document.getElementById("submitBtn");
+      var ridInput = document.getElementById("request_id");
+
+      function setMsg(text, kind){
+        if (!msg) return;
+        msg.style.display = "block";
+        msg.textContent = text;
+
+        if (kind === "ok") {
+          msg.style.borderColor = "rgba(45,227,138,.25)";
+          msg.style.background = "rgba(45,227,138,.06)";
+        } else if (kind === "err") {
+          msg.style.borderColor = "rgba(255,90,90,.25)";
+          msg.style.background = "rgba(255,90,90,.06)";
+        } else {
+          msg.style.borderColor = "rgba(255,255,255,.12)";
+          msg.style.background = "rgba(255,255,255,.03)";
+        }
+      }
+
+      form.addEventListener("submit", async function (e) {
+        e.preventDefault();
+
+        var action = form.getAttribute("action") || "";
+        if (!action || action.indexOf("REPLACE_ME") !== -1) {
+          setMsg("Form endpoint is missing. Replace Formspree action URL.", "err");
+          return;
+        }
+
+        var rid = (ridInput && ridInput.value) ? ridInput.value : "";
+
+        if (btn) {
+          btn.disabled = true;
+          btn.dataset.label = btn.textContent;
+          btn.textContent = "Submitting…";
+        }
+        setMsg("Submitting application…", "info");
+
+        try{
+          var fd = new FormData(form);
+          var res = await fetch(action, { method:"POST", body: fd, headers: { "Accept":"application/json" } });
+
+          if (!res.ok) {
+            setMsg("Submission failed. Please try again.", "err");
+            if (btn) { btn.disabled = false; btn.textContent = btn.dataset.label || "Submit application"; }
+            return;
+          }
+
+          setMsg("Submitted. Redirecting…", "ok");
+          try { localStorage.setItem("nf_partner_last_submitted_rid", rid); } catch(e){}
+
+          var url = "/thanks/?rid=" + encodeURIComponent(rid) + "&track=partners&lane=delivery";
+          window.location.assign(url);
+
+        } catch(err){
+          setMsg("Network error. Please check your connection and try again.", "err");
+          if (btn) { btn.disabled = false; btn.textContent = btn.dataset.label || "Submit application"; }
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

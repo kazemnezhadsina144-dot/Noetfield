@@ -1,5 +1,5 @@
 /* Noetfield Shell (Burger + Active Links + Footer Year) */
-/* Version: locked-2025.12.13+gate-intake+faq */
+/* Version: locked-2025.12.13+gate-intake+faq+offers */
 
 (function () {
   "use strict";
@@ -14,7 +14,7 @@
   function toInternalPath(href) {
     if (!href) return null;
 
-    // normalize absolute URL to path if same-origin
+    // Normalize absolute URL to path if same-origin
     if (href.startsWith("http")) {
       try {
         var u = new URL(href, window.location.origin);
@@ -25,7 +25,7 @@
       }
     }
 
-    // only style internal absolute-path links
+    // Only style internal absolute-path links
     if (!href.startsWith("/")) return null;
     return href;
   }
@@ -38,7 +38,10 @@
   function setActiveLinks() {
     var current = normPath(window.location.pathname);
 
-    // Footer active state ONLY on footer mini nav (prevents box links from turning gold)
+    // Active state ONLY for:
+    // - Top header nav
+    // - Mobile panel links
+    // - Footer mini nav (NOT footer box links)
     var selectors = [
       'nav[aria-label="Primary navigation"] a',
       "#mobilePanel a",
@@ -109,7 +112,7 @@
       }
     });
 
-    // Close when clicking outside the header region
+    // Close when clicking outside header
     document.addEventListener("click", function (e) {
       if (burger.getAttribute("aria-expanded") !== "true") return;
       var withinHeader = !!(e.target && e.target.closest && e.target.closest("header"));

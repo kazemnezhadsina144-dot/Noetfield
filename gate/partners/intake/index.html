@@ -5,7 +5,7 @@
   <title>Noetfield – Partner Intake (Routing)</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <meta name="description" content="90-second partner intake for routing to the correct application lane (delivery, channel, integration). Non-confidential only." />
+  <meta name="description" content="90-second partner intake for Noetfield. Create a Request ID, submit non-confidential basics, and route to a lane-specific partner application: Delivery, Channel, or Integration." />
   <meta name="robots" content="index,follow" />
   <meta name="author" content="Noetfield Systems Inc." />
   <link rel="canonical" href="https://www.noetfield.com/gate/partners/intake/" />
@@ -14,16 +14,18 @@
   <link rel="apple-touch-icon" href="/noetfield-favicon-512.png" />
   <meta name="theme-color" content="#07070b" />
 
+  <!-- OG -->
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Noetfield" />
   <meta property="og:title" content="Noetfield – Partner Intake (Routing)" />
-  <meta property="og:description" content="90-second partner intake to route to the correct lane application. Non-confidential only." />
+  <meta property="og:description" content="Submit non-confidential basics and route to a lane-specific partner application: Delivery, Channel, or Integration." />
   <meta property="og:url" content="https://www.noetfield.com/gate/partners/intake/" />
   <meta property="og:image" content="https://www.noetfield.com/noetfield-og.png" />
 
+  <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Noetfield – Partner Intake (Routing)" />
-  <meta name="twitter:description" content="90-second partner intake to route to the correct lane application. Non-confidential only." />
+  <meta name="twitter:description" content="Submit non-confidential basics and route to a lane-specific partner application: Delivery, Channel, or Integration." />
   <meta name="twitter:image" content="https://www.noetfield.com/noetfield-og.png" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -115,7 +117,7 @@
       max-width: 320px;
     }
 
-    /* Desktop menu (NO feedback in header) */
+    /* Desktop menu */
     .menu{display:flex; align-items:center; gap:12px; flex:1 1 auto}
     .menuPrimary, .menuActions{display:flex; align-items:center; gap:8px; flex-wrap:nowrap}
     .menuPrimary{flex:1 1 auto; justify-content:center; overflow:hidden}
@@ -213,7 +215,7 @@
     h1{margin:14px 0 10px; font-size:40px; line-height:1.07; letter-spacing:-0.75px}
     .lead{margin:0; color:var(--muted); font-size:16px; max-width: 920px}
 
-    .grid{display:grid; grid-template-columns: 1.1fr .9fr; gap:18px; margin: 18px 0 34px}
+    .grid{display:grid; grid-template-columns: 1.15fr .85fr; gap:18px; margin: 18px 0 34px}
     .card{
       border-radius:var(--radius);
       border:1px solid rgba(255,255,255,.11);
@@ -262,7 +264,6 @@
       font-size:14px;
     }
     textarea{min-height:110px; resize:vertical}
-
     .actions{display:flex; gap:12px; align-items:center; margin-top:12px; flex-wrap:wrap}
     .btn{
       display:inline-flex; align-items:center; justify-content:center;
@@ -323,11 +324,6 @@
       font-size:13px;
       white-space:nowrap;
     }
-    .footNav a.active, .footNav a[aria-current="page"]{
-      color: var(--text);
-      border-color: rgba(200,163,73,.40);
-      background: rgba(200,163,73,.10);
-    }
     .statusLink{display:inline-flex; align-items:center; gap:8px}
 
     @media (max-width: 1140px){ .menu{display:none} .burger{display:flex} }
@@ -348,9 +344,9 @@
   {
     "@context": "https://schema.org",
     "@type": "WebPage",
-    "name": "Noetfield Partner Intake",
+    "name": "Noetfield Partner Intake (Routing)",
     "url": "https://www.noetfield.com/gate/partners/intake/",
-    "description": "90-second partner intake for routing to the correct application lane (delivery, channel, integration). Non-confidential only.",
+    "description": "90-second partner intake for Noetfield. Create a Request ID, submit non-confidential basics, and route to a lane-specific partner application: Delivery, Channel, or Integration.",
     "isPartOf": {"@type":"WebSite","name":"Noetfield","url":"https://www.noetfield.com/"},
     "publisher": {"@type":"Organization","name":"Noetfield Systems Inc."}
   }
@@ -414,11 +410,11 @@
     <section class="hero">
       <div class="heroShell">
         <div class="heroInner">
-          <div class="eyebrow"><span class="dot"></span> 90-second intake • request routing • lane selection</div>
-          <h1>Partner Intake (Routing)</h1>
+          <div class="eyebrow"><span class="dot"></span> 90-second intake • Request ID • lane routing</div>
+          <h1>Partner intake (routing).</h1>
           <p class="lead">
-            This is a short, decisive intake that creates a <strong>Request ID</strong> and routes you to the correct lane-specific application.
-            Submit <strong>non-confidential</strong> info only.
+            Submit non-confidential basics. You will be routed to a lane-specific, decisive application:
+            <strong>Delivery</strong>, <strong>Channel</strong>, or <strong>Integration</strong>.
           </p>
         </div>
       </div>
@@ -427,8 +423,8 @@
     <section class="grid">
       <div class="card">
         <div class="hd">
-          <h2>Intake form</h2>
-          <p>Choose a lane. We’ll route you to the full application.</p>
+          <h2>Intake</h2>
+          <p>Short, clean, reviewable. Links only. No confidential data.</p>
 
           <div class="ridBar" aria-label="Request ID bar">
             <div>
@@ -443,17 +439,12 @@
         </div>
 
         <div class="bd">
-          <!-- IMPORTANT:
-               Replace YOUR_FORM_ID with your real Formspree endpoint.
-               Intake posts data (optional), then routes to the lane-specific apply page with ?rid=.
-          -->
           <form id="nfPartnerIntakeForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" novalidate>
             <input type="hidden" name="page_source" value="/gate/partners/intake/" />
             <input type="hidden" name="source" value="gate-partners-intake" />
             <input type="hidden" name="site" value="noetfield.com" />
-            <input type="hidden" name="_subject" value="Noetfield Gate — Partner intake (routing)" />
+            <input type="hidden" name="_subject" value="Noetfield Gate — Partner Intake (Routing)" />
             <input type="hidden" id="request_id" name="request_id" value="" />
-            <input type="hidden" id="route_to" name="route_to" value="" />
             <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true" />
 
             <div class="form">
@@ -477,29 +468,19 @@
                 <input id="website" name="website" type="url" placeholder="https://…" />
               </div>
 
-              <div>
+              <div class="full">
                 <label for="lane">Lane (routing)</label>
                 <select id="lane" name="lane" required>
                   <option value="" disabled selected>Select one</option>
-                  <option value="delivery">Delivery partner (subcontract)</option>
+                  <option value="delivery">Delivery partner</option>
                   <option value="channel">Channel / referral partner</option>
                   <option value="integration">Integration / security partner</option>
                 </select>
               </div>
 
-              <div>
-                <label for="coverage">Coverage (geo / sector)</label>
-                <input id="coverage" name="coverage" type="text" placeholder="e.g., Canada (BC/ON) — mid-market finance" />
-              </div>
-
               <div class="full">
-                <label for="oneLine">One-line positioning (non-confidential)</label>
-                <textarea id="oneLine" name="oneLine" placeholder="Example: We deliver board-ready AI governance packs for Microsoft 365 Copilot with evidence capture and QA." required></textarea>
-              </div>
-
-              <div class="full">
-                <label for="proof">Proof links (optional)</label>
-                <input id="proof" name="proof" type="text" placeholder="Case studies, writing samples, sanitized reports (links only)" />
+                <label for="fit">One-line fit (non-confidential)</label>
+                <input id="fit" name="fit" type="text" placeholder="Example: M365/Copilot governance for BC mid-market; board memo + controls delivery." required />
               </div>
 
               <div class="full">
@@ -516,34 +497,32 @@
             </div>
 
             <div class="actions">
-              <button class="btn" id="submitBtn" type="submit">Continue to Full Application</button>
+              <button class="btn" id="submitBtn" type="submit">Submit intake & route</button>
               <a class="btn secondary" href="/gate/partners/">Back to Partners</a>
             </div>
 
             <div id="formMsg" class="formMsg" role="status" aria-live="polite"></div>
           </form>
-
-          <div class="box">
-            <strong>Routing result:</strong> after submission you’ll be sent to one of these:
-            <span style="display:block; margin-top:6px;">
-              <span style="color:var(--text)">/gate/partners/apply-delivery/?rid=…</span><br/>
-              <span style="color:var(--text)">/gate/partners/apply-channel/?rid=…</span><br/>
-              <span style="color:var(--text)">/gate/partners/apply-integration/?rid=…</span>
-            </span>
-          </div>
         </div>
       </div>
 
       <aside class="card">
         <div class="hd">
-          <h2>What “routing” means</h2>
-          <p>Why this intake exists.</p>
+          <h2>What happens next</h2>
+          <p>Fast routing, then a decisive lane form.</p>
         </div>
         <div class="bd">
-          <div class="box"><strong>Request routing</strong> = we create a Request ID, capture minimal info, and route you to the correct lane-specific form.</div>
-          <div class="box"><strong>Full application</strong> = the lane-specific form with decisive questions (delivery vs channel vs integration).</div>
-          <div class="box"><strong>Guardrails</strong>: no confidential data, no customer internals, links only for proof.</div>
-          <div class="box"><strong>Tip</strong>: choose the lane that matches your monetization path and operational responsibility.</div>
+          <div class="box"><strong>1) Submit intake.</strong> You receive a Request ID.</div>
+          <div class="box"><strong>2) Auto-route.</strong> You land on the lane page (Delivery / Channel / Integration).</div>
+          <div class="box"><strong>3) Complete lane form.</strong> Longer, decisive, proof-based.</div>
+          <div class="box"><strong>4) Review.</strong> If aligned, we propose safer channels + scoped pilot.</div>
+
+          <div class="box" style="margin-top:14px;">
+            <strong>Direct lanes:</strong><br/>
+            <a href="/gate/partners/delivery/" style="border-bottom:1px solid rgba(255,255,255,.18)">Delivery</a> ·
+            <a href="/gate/partners/channel/" style="border-bottom:1px solid rgba(255,255,255,.18)">Channel</a> ·
+            <a href="/gate/partners/integration/" style="border-bottom:1px solid rgba(255,255,255,.18)">Integration</a>
+          </div>
         </div>
       </aside>
     </section>
@@ -592,12 +571,16 @@
       });
     })();
 
+    // RID: from URL ?rid=, else localStorage, else generate (and persist)
     (function () {
       var ridInput = document.getElementById("request_id");
       var ridText = document.getElementById("ridText");
       var openStatusBtn = document.getElementById("openStatusBtn");
       if (!ridInput || !ridText) return;
 
+      function getParam(name){
+        try { return new URLSearchParams(window.location.search).get(name) || ""; } catch(e){ return ""; }
+      }
       function rand4() { return Math.floor(Math.random() * 10000).toString().padStart(4, "0"); }
       function genRID(){
         var d = new Date();
@@ -611,14 +594,14 @@
         return "NF-PI-" + stamp + "-" + rand4();
       }
 
-      var rid = "";
-      try { rid = localStorage.getItem("nf_last_partner_rid") || ""; } catch(e){}
+      var rid = getParam("rid");
+      if (!rid) { try { rid = localStorage.getItem("nf_partner_rid") || ""; } catch(e){} }
       if (!rid) rid = genRID();
 
       ridInput.value = rid;
       ridText.textContent = rid;
 
-      try { localStorage.setItem("nf_last_partner_rid", rid); } catch(e){}
+      try { localStorage.setItem("nf_partner_rid", rid); } catch(e){}
       if (openStatusBtn) openStatusBtn.href = "/status/?rid=" + encodeURIComponent(rid);
 
       var copyBtn = document.getElementById("copyRidBtn");
@@ -631,17 +614,20 @@
           } catch(e){}
         });
       }
+
+      // Append RID to internal links on this page
+      var links = document.querySelectorAll('a[href^="/"]');
+      links.forEach(function(a){
+        var href = a.getAttribute("href") || "";
+        if (!href.startsWith("/")) return;
+        if (href.startsWith("/status/")) return; // already handled
+        if (href.indexOf("?") !== -1) return; // leave existing queries
+        if (!rid) return;
+        a.setAttribute("href", href + "?rid=" + encodeURIComponent(rid));
+      });
     })();
 
-    (function () {
-      // Prefill lane from URL (?lane=delivery/channel/integration)
-      var laneSel = document.getElementById("lane");
-      if (!laneSel) return;
-      var p = new URLSearchParams(window.location.search);
-      var lane = (p.get("lane") || "").toLowerCase();
-      if (lane === "delivery" || lane === "channel" || lane === "integration") laneSel.value = lane;
-    })();
-
+    // Form submit + routing
     (function () {
       var form = document.getElementById("nfPartnerIntakeForm");
       if (!form) return;
@@ -649,15 +635,6 @@
       var msg = document.getElementById("formMsg");
       var btn = document.getElementById("submitBtn");
       var ridInput = document.getElementById("request_id");
-      var laneSel = document.getElementById("lane");
-      var routeTo = document.getElementById("route_to");
-
-      function laneToUrl(lane){
-        if (lane === "delivery") return "/gate/partners/apply-delivery/";
-        if (lane === "channel") return "/gate/partners/apply-channel/";
-        if (lane === "integration") return "/gate/partners/apply-integration/";
-        return "/gate/partners/";
-      }
 
       function setMsg(text, kind){
         if (!msg) return;
@@ -675,47 +652,57 @@
         }
       }
 
+      function routeByLane(lane, rid){
+        lane = (lane || "").toLowerCase();
+        var target = "/gate/partners/";
+        if (lane === "delivery") target = "/gate/partners/delivery/";
+        if (lane === "channel") target = "/gate/partners/channel/";
+        if (lane === "integration") target = "/gate/partners/integration/";
+        var url = target;
+        if (rid) url += "?rid=" + encodeURIComponent(rid);
+        window.location.assign(url);
+      }
+
       form.addEventListener("submit", async function (e) {
         e.preventDefault();
-
-        var lane = laneSel ? (laneSel.value || "") : "";
-        if (!lane) { setMsg("Please select a lane to continue.", "err"); return; }
+        var action = form.getAttribute("action");
+        if (!action || action.indexOf("YOUR_FORM_ID") !== -1) {
+          setMsg("Form endpoint is missing. Replace the Formspree action URL with your real Form ID.", "err");
+          return;
+        }
 
         var rid = (ridInput && ridInput.value) ? ridInput.value : "";
-        var nextBase = laneToUrl(lane);
-        var next = nextBase + (rid ? ("?rid=" + encodeURIComponent(rid)) : "");
-        if (routeTo) routeTo.value = nextBase;
-
-        // Optional: if Formspree is not set, still route (no data capture).
-        var action = form.getAttribute("action") || "";
-        var endpointMissing = (!action || action.indexOf("YOUR_FORM_ID") !== -1);
+        var lane = "";
+        try { lane = (new FormData(form).get("lane") || ""); } catch(e){}
 
         btn.disabled = true;
         btn.dataset.label = btn.textContent;
-        btn.textContent = "Routing…";
-        setMsg(endpointMissing ? "Routing to full application…" : "Submitting intake and routing…", "info");
+        btn.textContent = "Sending…";
+        setMsg("Sending your intake…", "info");
 
         try {
-          if (!endpointMissing) {
-            var fd = new FormData(form);
-            var res = await fetch(action, { method: "POST", body: fd, headers: { "Accept": "application/json" } });
-            if (!res.ok) throw new Error("submit_failed");
-          }
-          setMsg("Continuing…", "ok");
-          window.location.assign(next);
-        } catch (err) {
-          setMsg("Submission failed. Routing anyway. If this repeats, try again or use a different network.", "err");
-          setTimeout(function(){ window.location.assign(next); }, 600);
-        } finally {
-          // If routing is blocked by popup blockers (it shouldn't), restore button.
-          setTimeout(function(){
+          var fd = new FormData(form);
+          var res = await fetch(action, { method: "POST", body: fd, headers: { "Accept": "application/json" } });
+
+          if (!res.ok) {
+            setMsg("Submission failed. Please try again.", "err");
             btn.disabled = false;
-            btn.textContent = btn.dataset.label || "Continue to Full Application";
-          }, 2500);
+            btn.textContent = btn.dataset.label || "Submit intake & route";
+            return;
+          }
+
+          setMsg("Submitted. Routing…", "ok");
+          routeByLane(lane, rid);
+
+        } catch (err) {
+          setMsg("Network error. Please check your connection and try again.", "err");
+          btn.disabled = false;
+          btn.textContent = btn.dataset.label || "Submit intake & route";
         }
       });
     })();
 
+    // Active state
     (function () {
       function normPath(p) {
         if (!p) return "/";

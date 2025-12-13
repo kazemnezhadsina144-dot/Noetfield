@@ -21,14 +21,15 @@
   <meta name="theme-color" content="#0b0b0f" />
 
   <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Noetfield" />
   <meta property="og:title" content="Noetfield Gate – Board-Ready AI Governance Entry" />
   <meta
     property="og:description"
     content="Request board-ready governance artefacts and the right intake pathway (Client, Partner, Investor, Advisory)."
   />
   <meta property="og:url" content="https://www.noetfield.com/gate/" />
-  <meta property="og:type" content="website" />
-  <meta property="og:image" content="https://www.noetfield.com/og-noetfield.png" />
+  <meta property="og:image" content="https://www.noetfield.com/noetfield-og.png" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
@@ -37,7 +38,7 @@
     name="twitter:description"
     content="Request board-ready governance artefacts and the right intake pathway (Client, Partner, Investor, Advisory)."
   />
-  <meta name="twitter:image" content="https://www.noetfield.com/og-noetfield.png" />
+  <meta name="twitter:image" content="https://www.noetfield.com/noetfield-og.png" />
 
   <!-- Font -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -54,11 +55,12 @@
       --muted2:#8b8ba0;
       --line:rgba(255,255,255,.10);
       --gold:#c8a349;
-      --gold2:#a98a3c;
       --radius:16px;
       --max:1080px;
       --shadow: 0 18px 40px rgba(0,0,0,.45);
+      --focus: 0 0 0 4px rgba(200,163,73,.18);
     }
+
     *{box-sizing:border-box}
     html,body{height:100%}
     body{
@@ -71,28 +73,50 @@
       color:var(--text);
       line-height:1.55;
     }
+
     a{color:inherit; text-decoration:none}
+    a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible{
+      outline:none;
+      box-shadow: var(--focus);
+      border-color: rgba(200,163,73,.55) !important;
+    }
+
+    .skip{
+      position:absolute; left:-999px; top:10px;
+      background:#111118; border:1px solid rgba(255,255,255,.12);
+      color:var(--text); padding:10px 12px; border-radius:12px;
+      z-index:999;
+    }
+    .skip:focus{left:10px}
+
     .wrap{max-width:var(--max); margin:0 auto; padding:24px}
+
     header{
       position:sticky; top:0; z-index:50;
       backdrop-filter: blur(10px);
-      background: rgba(11,11,15,.70);
+      background: rgba(11,11,15,.72);
       border-bottom:1px solid var(--line);
     }
+
     .nav{
       display:flex; align-items:center; justify-content:space-between;
       gap:16px;
       padding:14px 24px;
       max-width:var(--max); margin:0 auto;
     }
+
     .brand{
-      display:flex; align-items:center; gap:12px; min-width:220px;
+      display:flex; align-items:center; gap:12px;
+      min-width:220px;
     }
     .brand img{width:34px; height:34px; border-radius:10px}
     .brand .name{font-weight:650; letter-spacing:.2px}
     .brand .tag{font-size:12px; color:var(--muted2); margin-top:2px}
+
     .menu{
-      display:flex; flex-wrap:wrap; gap:10px 14px; justify-content:flex-end;
+      display:flex; flex-wrap:wrap;
+      gap:10px 14px;
+      justify-content:flex-end;
       font-size:13px;
     }
     .menu a{
@@ -100,9 +124,15 @@
       padding:8px 10px;
       border-radius:10px;
       border:1px solid transparent;
+      transition: background .15s ease, border-color .15s ease, color .15s ease;
     }
-    .menu a:hover{color:var(--text); border-color:rgba(255,255,255,.08); background:rgba(255,255,255,.03)}
-    .menu a.active{
+    .menu a:hover{
+      color:var(--text);
+      border-color:rgba(255,255,255,.08);
+      background:rgba(255,255,255,.03)
+    }
+    .menu a.active,
+    .menu a[aria-current="page"]{
       color:var(--text);
       border-color:rgba(200,163,73,.30);
       background:rgba(200,163,73,.08);
@@ -130,35 +160,7 @@
       font-size:16px;
       max-width:820px;
     }
-    .grid{
-      display:grid;
-      grid-template-columns: 1.15fr .85fr;
-      gap:18px;
-      margin:26px 0 34px;
-    }
-    @media (max-width: 980px){
-      .grid{grid-template-columns:1fr}
-      h1{font-size:34px}
-      .brand{min-width:auto}
-      .menu{justify-content:flex-start}
-    }
-    .card{
-      background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.02));
-      border:1px solid var(--line);
-      border-radius:var(--radius);
-      box-shadow:var(--shadow);
-      overflow:hidden;
-    }
-    .card .hd{
-      padding:18px 18px 0;
-    }
-    .card h2{
-      margin:0 0 8px;
-      font-size:18px;
-      letter-spacing:-0.2px;
-    }
-    .card p{margin:0 0 12px; color:var(--muted)}
-    .card .bd{padding:18px}
+
     .pillrow{display:flex; flex-wrap:wrap; gap:10px; margin-top:12px}
     .pill{
       display:inline-flex; align-items:center; gap:10px;
@@ -170,6 +172,37 @@
       font-size:13px;
     }
     .pill strong{color:var(--text); font-weight:600}
+
+    .grid{
+      display:grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap:18px;
+      margin:26px 0 34px;
+    }
+
+    @media (max-width: 980px){
+      .grid{grid-template-columns:1fr}
+      h1{font-size:34px}
+      .brand{min-width:auto}
+      .menu{justify-content:flex-start}
+    }
+
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.02));
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+    .card .hd{padding:18px 18px 0}
+    .card h2{
+      margin:0 0 8px;
+      font-size:18px;
+      letter-spacing:-0.2px;
+    }
+    .card p{margin:0 0 12px; color:var(--muted)}
+    .card .bd{padding:18px}
+
     .tracks{
       display:grid;
       grid-template-columns:1fr;
@@ -193,8 +226,10 @@
       background:rgba(200,163,73,.08);
       padding:9px 12px;
       border-radius:12px;
+      transition: background .15s ease, border-color .15s ease;
     }
     .track .cta:hover{border-color:rgba(200,163,73,.55); background:rgba(200,163,73,.12)}
+
     .form{
       display:grid;
       grid-template-columns:1fr 1fr;
@@ -202,12 +237,14 @@
       margin-top:12px;
     }
     .form .full{grid-column:1 / -1}
+
     label{
       display:block;
       font-size:12px;
       color:var(--muted2);
       margin:0 0 6px;
     }
+
     input, select, textarea{
       width:100%;
       background: rgba(255,255,255,.03);
@@ -218,9 +255,10 @@
       outline:none;
       font-family:inherit;
       font-size:14px;
+      transition: border-color .15s ease, box-shadow .15s ease;
     }
     textarea{min-height:110px; resize:vertical}
-    input:focus, select:focus, textarea:focus{border-color:rgba(200,163,73,.45); box-shadow:0 0 0 4px rgba(200,163,73,.10)}
+
     .actions{
       display:flex; gap:12px; align-items:center; justify-content:flex-start;
       margin-top:12px;
@@ -236,13 +274,17 @@
       font-weight:650;
       font-size:14px;
       cursor:pointer;
+      transition: border-color .15s ease, transform .06s ease;
     }
     .btn:hover{border-color:rgba(200,163,73,.70)}
+    .btn:active{transform: translateY(1px)}
+
     .note{
       font-size:12px;
       color:var(--muted2);
       margin-top:10px;
     }
+
     .links{
       display:flex; flex-wrap:wrap; gap:10px 14px;
       margin-top:16px;
@@ -254,6 +296,7 @@
       padding-bottom:2px;
     }
     .links a:hover{color:var(--text); border-bottom-color:rgba(200,163,73,.55)}
+
     footer{
       border-top:1px solid var(--line);
       padding:22px 0;
@@ -280,12 +323,18 @@
       "@type": "WebSite",
       "name": "Noetfield",
       "url": "https://www.noetfield.com/"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Noetfield Systems Inc."
     }
   }
   </script>
 </head>
 
 <body>
+  <a class="skip" href="#main">Skip to content</a>
+
   <header>
     <div class="nav">
       <a class="brand" href="/" aria-label="Noetfield home">
@@ -296,20 +345,21 @@
         </div>
       </a>
 
+      <!-- Header order (as requested) -->
       <nav class="menu" aria-label="Primary navigation">
-        <a href="/trust-brief/">Trust Brief</a>
         <a href="/trust-ledger/">Trust Ledger</a>
+        <a href="/trust-brief/">Trust Brief</a>
         <a href="/playbook/">Playbook</a>
         <a href="/copilot-cost-governance/">Copilot</a>
-        <a href="/for-whom/">For whom</a>
+        <a href="/for-whom/">For Whom</a>
         <a href="/partners/">Partners</a>
-        <a class="active" href="/gate/">Gate</a>
+        <a href="/gate/">Gate</a>
         <a href="/contact/">Contact</a>
       </nav>
     </div>
   </header>
 
-  <main class="wrap">
+  <main id="main" class="wrap">
     <section class="hero">
       <div class="eyebrow"><span class="dot"></span> Governed entry point • board-ready artefacts • human review</div>
       <h1>Board-ready AI governance starts here.</h1>
@@ -339,8 +389,9 @@
         </div>
 
         <div class="bd">
-          <!-- NOTE: Replace action with your form endpoint (Formspree/Tally/etc.) -->
+          <!-- Replace action with your endpoint (Formspree/Tally/etc.) -->
           <form action="#" method="post">
+            <input type="hidden" name="page_source" value="/gate/" />
             <input type="hidden" name="source" value="gate-board" />
 
             <div class="form">
@@ -377,12 +428,18 @@
 
               <div>
                 <label for="jurisdiction">Country / province / state</label>
-                <input id="jurisdiction" name="jurisdiction" type="text" placeholder="e.g., Canada – BC" />
+                <input
+                  id="jurisdiction"
+                  name="jurisdiction"
+                  type="text"
+                  placeholder="e.g., Canada — BC"
+                  autocomplete="address-level1"
+                />
               </div>
 
               <div>
                 <label for="referral">Referral (optional)</label>
-                <input id="referral" name="referral" type="text" placeholder="Name or source" />
+                <input id="referral" name="referral" type="text" placeholder="Name or source" autocomplete="off" />
               </div>
 
               <div class="full">
@@ -423,14 +480,14 @@
 
             <div class="note">
               Privacy & security: do not submit confidential, customer, or security-sensitive details here. If we proceed,
-              we’ll propose a safer channel for deeper materials. Submissions are used only to respond and triage.
+              a safer channel will be proposed for deeper materials. Submissions are used only to respond and triage.
             </div>
           </form>
 
           <div class="links" aria-label="Core links">
-            <a href="/trust-brief/">Trust Brief</a>
             <a href="/trust-ledger/">Trust Ledger</a>
-            <a href="/copilot-cost-governance/">Copilot Cost & Governance</a>
+            <a href="/trust-brief/">Trust Brief</a>
+            <a href="/copilot-cost-governance/">Copilot Cost &amp; Governance</a>
             <a href="/playbook/">AI Governance Playbook</a>
           </div>
         </div>
@@ -476,7 +533,7 @@
 
           <div class="links" aria-label="Policy links" style="margin-top:16px;">
             <a href="/privacy/">Privacy</a>
-            <a href="/contact/">Contact</a>
+            <a href="/terms/">Terms</a>
           </div>
         </div>
       </aside>
@@ -485,19 +542,58 @@
     <footer>
       <div class="foot">
         <div>© <span id="y"></span> Noetfield Systems Inc.</div>
-        <div class="mini">
+        <div class="mini" aria-label="Footer navigation">
+          <a href="/">Home</a>
           <a href="/trust-ledger/">Trust Ledger</a>
           <a href="/trust-brief/">Trust Brief</a>
+          <a href="/playbook/">Playbook</a>
           <a href="/copilot-cost-governance/">Copilot</a>
+          <a href="/for-whom/">For Whom</a>
+          <a href="/partners/">Partners</a>
           <a href="/gate/">Gate</a>
           <a href="/contact/">Contact</a>
+          <a href="/privacy/">Privacy</a>
+          <a href="/terms/">Terms</a>
         </div>
       </div>
     </footer>
   </main>
 
   <script>
+    // Year
     document.getElementById("y").textContent = new Date().getFullYear();
+
+    // Auto-active for header + footer links
+    (function () {
+      function normPath(p) {
+        if (!p) return "/";
+        p = p.split("?")[0].split("#")[0];
+        if (p.length > 1 && p.endsWith("/")) p = p.slice(0, -1);
+        return p.toLowerCase();
+      }
+
+      var current = normPath(window.location.pathname);
+      var links = document.querySelectorAll('nav[aria-label="Primary navigation"] a, footer a');
+
+      links.forEach(function (a) {
+        var href = a.getAttribute("href") || "";
+        if (!href.startsWith("/")) return;
+
+        var target = normPath(href);
+
+        var isActive =
+          (target === "/" && current === "/") ||
+          (target !== "/" && (current === target || current.startsWith(target + "/")));
+
+        if (isActive) {
+          a.classList.add("active");
+          a.setAttribute("aria-current", "page");
+        } else {
+          a.classList.remove("active");
+          a.removeAttribute("aria-current");
+        }
+      });
+    })();
   </script>
 </body>
 </html>

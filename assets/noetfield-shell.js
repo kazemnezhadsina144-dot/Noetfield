@@ -1,8 +1,11 @@
-/* Noetfield Shell (Burger + Active Links + Footer Year) */
-/* Version: locked-2025.12.13+gate-intake+faq+offers */
+/* Noetfield Shell (Inject Header/Footer + Burger + Active Links + Footer Year) */
+/* Version: locked-2025.12.13+inject-partials */
 
 (function () {
   "use strict";
+
+  var SHELL_VERSION = "2025.12.13";
+  var PARTIALS_BASE = "/assets/partials";
 
   function normPath(p) {
     if (!p) return "/";
@@ -14,7 +17,6 @@
   function toInternalPath(href) {
     if (!href) return null;
 
-    // Normalize absolute URL to path if same-origin
     if (href.startsWith("http")) {
       try {
         var u = new URL(href, window.location.origin);
@@ -25,28 +27,22 @@
       }
     }
 
-    // Only style internal absolute-path links
     if (!href.startsWith("/")) return null;
     return href;
   }
 
   function setYear() {
-    
+    var y = document.getElementById("y");
     if (y) y.textContent = String(new Date().getFullYear());
   }
 
   function setActiveLinks() {
     var current = normPath(window.location.pathname);
 
-    // Active state ONLY for:
-    // - Header primary nav links
-    // - Mobile panel links
-    // - Footer mini nav links
-    // (NOT footerTop box links)
     var selectors = [
-      'nav[aria-label="Primary navigation"] a',
-      "#mobilePanel a",
-      "footer .footerMiniNav a"
+      '#nfHeader nav[aria-label="Primary navigation"] a',
+      "#nfHeader #mobilePanel a",
+      "#nfFooter .footerMiniNav a"
     ].join(", ");
 
     var links = document.querySelectorAll(selectors);
@@ -91,7 +87,6 @@
       else openPanel();
     }
 
-    // Initial safety
     burger.setAttribute("aria-expanded", "false");
     panel.hidden = true;
     document.body.classList.remove("navOpen");
@@ -101,27 +96,23 @@
       toggle();
     });
 
-    // Close on Esc
     document.addEventListener("keydown", function (e) {
       if (e.key === "Escape" && burger.getAttribute("aria-expanded") === "true") {
         closePanel();
       }
     });
 
-    // Close when clicking outside header
     document.addEventListener("click", function (e) {
       if (burger.getAttribute("aria-expanded") !== "true") return;
-      var withinHeader = !!(e.target && e.target.closest && e.target.closest("header"));
+      var withinHeader = !!(e.target && e.target.closest && e.target.closest("#nfHeader"));
       if (!withinHeader) closePanel();
     });
 
-    // Close after clicking a mobile link
     panel.addEventListener("click", function (e) {
       var a = e.target && e.target.closest ? e.target.closest("a") : null;
       if (a) closePanel();
     });
 
-    // Close on resize back to desktop width
     window.addEventListener("resize", function () {
       if (window.innerWidth > 1140 && burger.getAttribute("aria-expanded") === "true") {
         closePanel();
@@ -129,16 +120,11 @@
     });
   }
 
-  /* ===== Floating Feedback Tab (match /gate/partners/channel/) ===== */
   function ensureFeedbackTab() {
-    // Don’t duplicate on the Feedback page itself
     var p = normPath(window.location.pathname);
     if (p === "/feedback" || p.startsWith("/feedback/")) return;
-
-    // If the page already has it (like channel), leave it alone
     if (document.querySelector(".feedbackTab")) return;
 
-    // Inject the exact markup used on channel pages
     var a = document.createElement("a");
     a.className = "feedbackTab";
     a.href = "/feedback/";
@@ -150,19 +136,46 @@
 
     a.appendChild(spark);
     a.appendChild(document.createTextNode("Feedback"));
-
     document.body.appendChild(a);
   }
 
-  function boot() {
+  async function injectOne(targetId, partialName) {
+    var el = document.getElementById(targetId);
+    if (!el) return;
+
+    // اگر صفحه قدیمی است و داخلش markup دارد، دست نزن
+    var hasMarkup = el.children && el.children.length > 0;
+    if (hasMarkup) return;
+
+    var url = PARTIALS_BASE + "/" + partialName + "?v=" + encodeURIComponent(SHELL_VERSION);
+
+    try {
+      var res = await fetch(url, { credentials: "same-origin" });
+      if (!res.ok) return;
+      var html = await res.text();
+      el.innerHTML = html;
+    } catch (e) {
+      // silent fail (static pages should still render content)
+    }
+  }
+
+  async function injectShell() {
+    await injectOne("nfHeader", "header.html");
+    await injectOne("nfFooter", "footer.html");
+  }
+
+  async function boot() {
+    await injectShell();
+
+    // after injection
     setYear();
     setActiveLinks();
     initBurger();
-    ensureFeedbackTab(); // <-- added (no other behavior changed)
+    ensureFeedbackTab();
   }
 
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", boot);
+    document.addEventListener("DOMContentLoaded", function () { boot(); });
   } else {
     boot();
   }

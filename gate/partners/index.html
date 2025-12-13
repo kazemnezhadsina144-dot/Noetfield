@@ -51,7 +51,6 @@
 
   <!-- Page-specific styles ONLY (Partners Gate) -->
   <style>
-    /* Page layout */
     .hero{padding: 22px 0 18px}
     .heroShell{
       position:relative;
@@ -105,7 +104,6 @@
     }
     .pill strong{color:var(--text); font-weight:650}
 
-    /* Buttons */
     .ctaRow{display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-top:14px}
     .btn{
       display:inline-flex; align-items:center; justify-content:center;
@@ -138,7 +136,6 @@
       color: var(--text);
     }
 
-    /* Cards / grid */
     .grid{
       display:grid;
       grid-template-columns: 1.1fr .9fr;
@@ -202,7 +199,6 @@
     .miniTitle{font-weight:850; letter-spacing:-.2px}
     .miniMeta{color:var(--muted2); font-size:12px; margin-top:6px; line-height:1.55}
 
-    /* FAQ */
     .faqWrap{margin: 6px 0 34px;}
     .faqGrid{display:grid; grid-template-columns: 1.1fr .9fr; gap:18px; margin-top:18px;}
     .faqList{display:flex; flex-direction:column; gap:10px;}
@@ -239,15 +235,12 @@
     }
     .faqA a{border-bottom:1px solid rgba(255,255,255,.18)}
 
-    /* Responsive */
     @media (max-width: 980px){
       .grid{grid-template-columns:1fr}
       .miniGrid{grid-template-columns:1fr}
       .faqGrid{grid-template-columns:1fr}
     }
-    @media (max-width: 760px){
-      h1{font-size:30px}
-    }
+    @media (max-width: 760px){ h1{font-size:30px} }
   </style>
 
   <script type="application/ld+json">
@@ -343,7 +336,7 @@
           <div class="ctaRow" style="margin-top:16px;">
             <a class="btn" href="/gate/partners/intake/">Take the 90-second intake</a>
             <a class="btn ghost" href="#lanes">Browse lanes</a>
-            <a class="btn secondary" href="/gate/">Back</a>
+            <a class="btn secondary" href="/gate/" aria-label="Back to Gate">Back</a>
           </div>
         </div>
       </div>
@@ -448,21 +441,20 @@
             <strong>Useful links:</strong><br/>
             <a href="/trust-brief/">Trust Brief</a> ·
             <a href="/trust-ledger/">Trust Ledger</a> ·
-            <a href="/faq/">FAQ</a> ·
             <a href="/status/">Status</a>
           </div>
         </div>
       </aside>
     </section>
 
-    <!-- FAQ -->
+    <!-- FAQ (kept lightweight; full list lives on /faq/) -->
     <section class="faqWrap">
       <div class="heroShell">
         <div class="heroInner">
           <div class="eyebrow"><span class="dot"></span> FAQ • quick clarity</div>
           <h2 style="margin:12px 0 6px; font-size:22px; letter-spacing:-.3px;">Frequently asked questions</h2>
           <p class="lead" style="max-width: 980px;">
-            If you want the full set, see the dedicated <a href="/faq/">FAQ page</a>. If you’re ready, start with the <a href="/gate/partners/intake/">90-second intake</a>.
+            For the full set, see <a href="/faq/">FAQ</a>. If you’re ready, start with the <a href="/gate/partners/intake/">90-second intake</a>.
           </p>
         </div>
       </div>
@@ -479,7 +471,7 @@
               <details class="faqItem">
                 <summary>
                   <span class="faqQ">Do I have to pick a lane right away?</span>
-                  <span class="faqIcon">+</span>
+                  <span class="faqIcon" aria-hidden="true">+</span>
                 </summary>
                 <div class="faqA">
                   No. If you’re not sure, take the <a href="/gate/partners/intake/">90-second intake</a> — it routes you to the right track.
@@ -489,7 +481,7 @@
               <details class="faqItem">
                 <summary>
                   <span class="faqQ">How is “Delivery” different from “Channel”?</span>
-                  <span class="faqIcon">+</span>
+                  <span class="faqIcon" aria-hidden="true">+</span>
                 </summary>
                 <div class="faqA">
                   Delivery partners co-deliver Trust Brief + Ledger entries. Channel partners bring qualified introductions and support a clean co-selling motion.
@@ -499,7 +491,7 @@
               <details class="faqItem">
                 <summary>
                   <span class="faqQ">What do you need in the first step?</span>
-                  <span class="faqIcon">+</span>
+                  <span class="faqIcon" aria-hidden="true">+</span>
                 </summary>
                 <div class="faqA">
                   A brief overview and links are enough. If we proceed, deeper details move into a secure workspace.
@@ -509,7 +501,7 @@
               <details class="faqItem">
                 <summary>
                   <span class="faqQ">How fast do you respond?</span>
-                  <span class="faqIcon">+</span>
+                  <span class="faqIcon" aria-hidden="true">+</span>
                 </summary>
                 <div class="faqA">
                   We confirm next steps after review. You can also check <a href="/status/">Status</a> for operating cadence.
@@ -534,7 +526,7 @@
     </section>
   </main>
 
-  <!-- FOOTER (LOCKED MARKUP – aligned with latest shell rules) -->
+  <!-- FOOTER (LOCKED MARKUP – Gate box shows Offers, not FAQ) -->
   <footer>
     <div class="footerTop">
       <!-- Brand -->
@@ -570,9 +562,9 @@
         <div class="fLinks">
           <a href="/gate/">Gate Home</a>
           <a href="/gate/partners/">Partners</a>
+          <a href="/gate/offers/">Offers</a>
           <a href="/portal/">Portal</a>
           <a href="/platform/">Platform</a>
-          <a href="/faq/">FAQ</a>
         </div>
       </div>
 
@@ -592,7 +584,7 @@
     <div class="footerBottom">
       <div>© <span id="y"></span> Noetfield Systems Inc.</div>
 
-      <!-- Bottom-right rail -->
+      <!-- Bottom-right rail (FAQ lives here; not duplicated in Gate box) -->
       <div class="footerMiniNav" aria-label="Footer mini navigation">
         <a class="statusLink" href="/status/"><span class="statusDot" aria-hidden="true"></span>Status</a>
         <a href="/faq/">FAQ</a>

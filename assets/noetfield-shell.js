@@ -1,5 +1,5 @@
 /* Noetfield Shell (Burger + Active Links + Footer Year) */
-/* Version: locked-2025.12.13 */
+/* Version: locked-2025.12.13-final */
 
 (function () {
   "use strict";
@@ -11,6 +11,33 @@
     return p.toLowerCase();
   }
 
+  function toInternalPath(href) {
+    if (!href) return null;
+
+    // ignore anchors, mailto, tel, and JS pseudo-links
+    if (
+      href.startsWith("#") ||
+      href.startsWith("mailto:") ||
+      href.startsWith("tel:") ||
+      href.startsWith("javascript:")
+    ) return null;
+
+    // normalize absolute URL -> internal path (only if same-origin)
+    if (href.startsWith("http://") || href.startsWith("https://")) {
+      try {
+        var u = new URL(href, window.location.origin);
+        if (u.origin !== window.location.origin) return null;
+        return u.pathname || "/";
+      } catch (e) {
+        return null;
+      }
+    }
+
+    // only style internal absolute-path links
+    if (!href.startsWith("/")) return null;
+    return href;
+  }
+
   function setYear() {
     var y = document.getElementById("y");
     if (y) y.textContent = String(new Date().getFullYear());
@@ -19,33 +46,30 @@
   function setActiveLinks() {
     var current = normPath(window.location.pathname);
 
+    // IMPORTANT:
+    // - Header: all primary nav links
+    // - Mobile: all mobile panel links
+    // - Footer: ONLY footer mini nav links (prevents box links from turning gold)
     var selectors = [
       'nav[aria-label="Primary navigation"] a',
       "#mobilePanel a",
-      "footer a"
+      "footer .footerMiniNav a"
     ].join(", ");
 
     var links = document.querySelectorAll(selectors);
+
     links.forEach(function (a) {
-      // allow both absolute and relative; only style internal links
-      var href = a.getAttribute("href") || "";
+      var hrefRaw = a.getAttribute("href") || "";
+      var href = toInternalPath(hrefRaw);
       if (!href) return;
 
-      // normalize absolute URL to path if same-origin
-      if (href.startsWith("http")) {
-        try {
-          var u = new URL(href, window.location.origin);
-          if (u.origin !== window.location.origin) return;
-          href = u.pathname || "/";
-        } catch (e) { return; }
-      }
-
-      if (!href.startsWith("/")) return;
-
       var target = normPath(href);
+
+      // Active when exact match OR current is nested under target
+      // Example: /gate/partners/ should keep /gate/ active too.
       var isActive =
         (target === "/" && current === "/") ||
-        (target !== "/" && (current === target || current.startsWith(target + "/")));
+        (target !== "/" && (current === target || current.indexOf(target + "/") === 0));
 
       if (isActive) {
         a.classList.add("active");
@@ -67,26 +91,23 @@
       panel.hidden = false;
       document.body.classList.add("navOpen");
     }
+
     function closePanel() {
       burger.setAttribute("aria-expanded", "false");
       panel.hidden = true;
       document.body.classList.remove("navOpen");
     }
+
     function toggle() {
       var isOpen = burger.getAttribute("aria-expanded") === "true";
       if (isOpen) closePanel();
       else openPanel();
     }
 
-    // Initial safety
-    if (burger.getAttribute("aria-expanded") !== "true") {
-      panel.hidden = true;
-      burger.setAttribute("aria-expanded", "false");
-      document.body.classList.remove("navOpen");
-    } else {
-      panel.hidden = false;
-      document.body.classList.add("navOpen");
-    }
+    // Initial safety state
+    panel.hidden = true;
+    burger.setAttribute("aria-expanded", "false");
+    document.body.classList.remove("navOpen");
 
     burger.addEventListener("click", function (e) {
       e.preventDefault();

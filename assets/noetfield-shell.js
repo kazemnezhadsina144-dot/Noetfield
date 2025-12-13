@@ -1,5 +1,5 @@
 /* Noetfield Shell (Burger + Active Links + Footer Year) */
-/* Version: locked-2025.12.13-final */
+/* Version: locked-2025.12.13+gate-intake+faq */
 
 (function () {
   "use strict";
@@ -14,16 +14,8 @@
   function toInternalPath(href) {
     if (!href) return null;
 
-    // ignore anchors, mailto, tel, and JS pseudo-links
-    if (
-      href.startsWith("#") ||
-      href.startsWith("mailto:") ||
-      href.startsWith("tel:") ||
-      href.startsWith("javascript:")
-    ) return null;
-
-    // normalize absolute URL -> internal path (only if same-origin)
-    if (href.startsWith("http://") || href.startsWith("https://")) {
+    // normalize absolute URL to path if same-origin
+    if (href.startsWith("http")) {
       try {
         var u = new URL(href, window.location.origin);
         if (u.origin !== window.location.origin) return null;
@@ -46,10 +38,7 @@
   function setActiveLinks() {
     var current = normPath(window.location.pathname);
 
-    // IMPORTANT:
-    // - Header: all primary nav links
-    // - Mobile: all mobile panel links
-    // - Footer: ONLY footer mini nav links (prevents box links from turning gold)
+    // Footer active state ONLY on footer mini nav (prevents box links from turning gold)
     var selectors = [
       'nav[aria-label="Primary navigation"] a',
       "#mobilePanel a",
@@ -57,19 +46,15 @@
     ].join(", ");
 
     var links = document.querySelectorAll(selectors);
-
     links.forEach(function (a) {
       var hrefRaw = a.getAttribute("href") || "";
       var href = toInternalPath(hrefRaw);
       if (!href) return;
 
       var target = normPath(href);
-
-      // Active when exact match OR current is nested under target
-      // Example: /gate/partners/ should keep /gate/ active too.
       var isActive =
         (target === "/" && current === "/") ||
-        (target !== "/" && (current === target || current.indexOf(target + "/") === 0));
+        (target !== "/" && (current === target || current.startsWith(target + "/")));
 
       if (isActive) {
         a.classList.add("active");
@@ -91,23 +76,26 @@
       panel.hidden = false;
       document.body.classList.add("navOpen");
     }
-
     function closePanel() {
       burger.setAttribute("aria-expanded", "false");
       panel.hidden = true;
       document.body.classList.remove("navOpen");
     }
-
     function toggle() {
       var isOpen = burger.getAttribute("aria-expanded") === "true";
       if (isOpen) closePanel();
       else openPanel();
     }
 
-    // Initial safety state
-    panel.hidden = true;
-    burger.setAttribute("aria-expanded", "false");
-    document.body.classList.remove("navOpen");
+    // Initial safety
+    if (burger.getAttribute("aria-expanded") !== "true") {
+      panel.hidden = true;
+      burger.setAttribute("aria-expanded", "false");
+      document.body.classList.remove("navOpen");
+    } else {
+      panel.hidden = false;
+      document.body.classList.add("navOpen");
+    }
 
     burger.addEventListener("click", function (e) {
       e.preventDefault();

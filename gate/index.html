@@ -5,10 +5,7 @@
   <title>Noetfield – Gate (Board-Ready AI Governance Entry)</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <meta
-    name="description"
-    content="A governed entry point for board-ready AI governance artefacts and intakes: Trust Ledger samples, Trust Brief pilot one-pager, and board decision memo templates."
-  />
+  <meta name="description" content="A governed entry point for board-ready AI governance artefacts and intakes: Trust Ledger samples, Trust Brief pilot one-pager, and board decision memo templates." />
   <meta name="robots" content="index,follow" />
   <meta name="author" content="Noetfield Systems Inc." />
   <link rel="canonical" href="https://www.noetfield.com/gate/" />
@@ -21,10 +18,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Noetfield" />
   <meta property="og:title" content="Noetfield Gate – Board-Ready AI Governance Entry" />
-  <meta
-    property="og:description"
-    content="Request board-ready governance artefacts and the right intake pathway (Client, Partner, Investor, Research)."
-  />
+  <meta property="og:description" content="Request board-ready governance artefacts and the right intake pathway (Client, Partner, Investor, Research)." />
   <meta property="og:url" content="https://www.noetfield.com/gate/" />
   <meta property="og:image" content="https://www.noetfield.com/noetfield-og.png" />
 
@@ -52,7 +46,6 @@
 
       --gold:#c8a349;
       --gold2:#a98a3c;
-
       --ice:#7aa7ff;
 
       --radius:18px;
@@ -86,6 +79,7 @@
 
     [hidden]{display:none !important;}
 
+    /* Premium background */
     .bg{
       position:fixed; inset:0;
       z-index:-3; pointer-events:none;
@@ -117,6 +111,7 @@
 
     .wrap{max-width:var(--max); margin:0 auto; padding:24px}
 
+    /* Header */
     header{
       position:sticky; top:0; z-index:60;
       backdrop-filter: blur(16px);
@@ -143,11 +138,13 @@
     .brand .name{font-weight:720; letter-spacing:.15px}
     .brand .tag{font-size:12px; color:var(--muted2); margin-top:2px}
 
+    /* Desktop nav */
     .menu{
       display:flex; flex-wrap:wrap;
       gap:10px 10px;
       justify-content:flex-end;
       font-size:13px;
+      margin-left:auto;
     }
     .menu a{
       color:var(--muted);
@@ -172,6 +169,40 @@
         linear-gradient(180deg, rgba(200,163,73,.22), rgba(200,163,73,.10));
     }
 
+    /* Right CTA stack (App-like) */
+    .ctaRow{
+      display:flex; align-items:center; gap:10px;
+      margin-left:12px;
+    }
+    .cta{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding:10px 12px;
+      border-radius:14px;
+      font-size:13px;
+      font-weight:700;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.04);
+      color: var(--text);
+      transition: filter .15s ease, border-color .15s ease, background .15s ease, transform .06s ease;
+      white-space:nowrap;
+    }
+    .cta:hover{border-color:rgba(255,255,255,.20); background:rgba(255,255,255,.06)}
+    .cta:active{transform: translateY(1px)}
+
+    .cta.primary{
+      border:1px solid rgba(200,163,73,.62);
+      background:
+        radial-gradient(260px 110px at 40% 0%, rgba(255,255,255,.11), transparent 62%),
+        linear-gradient(180deg, rgba(200,163,73,.24), rgba(200,163,73,.11));
+    }
+    .cta.primary:hover{border-color:rgba(200,163,73,.90); filter:brightness(1.06)}
+    .cta.secondary{
+      border:1px solid rgba(255,255,255,.16);
+      background: rgba(255,255,255,.04);
+      font-weight:650;
+    }
+
+    /* Mobile */
     .burger{
       display:none;
       align-items:center; justify-content:center;
@@ -195,6 +226,33 @@
       margin:0 auto;
       padding: 12px 14px 16px;
     }
+
+    .mobileTopCtas{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:10px;
+      margin-bottom:10px;
+    }
+    .mobileTopCtas a{
+      padding:12px 12px;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04);
+      color: var(--muted);
+      font-size:14px;
+      font-weight:700;
+      text-align:center;
+      transition: background .15s ease, border-color .15s ease, color .15s ease;
+    }
+    .mobileTopCtas a.primary{
+      color:var(--text);
+      border-color: rgba(200,163,73,.42);
+      background:
+        radial-gradient(220px 90px at 30% 0%, rgba(200,163,73,.22), transparent 60%),
+        rgba(200,163,73,.10);
+    }
+    .mobileTopCtas a:hover{color:var(--text); border-color:rgba(255,255,255,.18); background:rgba(255,255,255,.06)}
+
     .mobileGrid{
       display:grid;
       grid-template-columns:1fr 1fr;
@@ -218,6 +276,7 @@
         radial-gradient(220px 90px at 30% 0%, rgba(200,163,73,.22), transparent 60%),
         rgba(200,163,73,.10);
     }
+
     .mobileNote{
       margin-top:12px;
       color:var(--muted2);
@@ -235,6 +294,7 @@
     }
     .chip b{color:var(--text); font-weight:650}
 
+    /* Hero */
     .hero{padding: 22px 0 18px}
     .heroShell{
       position:relative;
@@ -299,6 +359,7 @@
     }
     .pill strong{color:var(--text); font-weight:650}
 
+    /* Grid */
     .grid{
       display:grid;
       grid-template-columns: 1.2fr .8fr;
@@ -382,6 +443,14 @@
     }
     .links a:hover{color:var(--text); border-bottom-color:rgba(200,163,73,.55)}
 
+    .sectionLabel{
+      margin-top:16px;
+      font-size:12px;
+      color: var(--muted2);
+      letter-spacing: .25px;
+      text-transform: uppercase;
+    }
+
     .tracks{display:grid; grid-template-columns:1fr; gap:10px; margin-top:10px}
     .track{
       padding:14px 14px;
@@ -415,6 +484,7 @@
       line-height:1.55;
     }
 
+    /* Footer */
     footer{
       border-top:1px solid rgba(255,255,255,.10);
       padding: 18px 0 22px;
@@ -450,8 +520,13 @@
       background: rgba(200,163,73,.10);
     }
 
+    /* Responsive */
     @media (max-width: 980px){
       .grid{grid-template-columns:1fr}
+    }
+    @media (max-width: 860px){
+      .menu{display:none}
+      .burger{display:flex}
     }
     @media (max-width: 760px){
       :root{--navH: 62px}
@@ -459,8 +534,6 @@
       .nav{padding:10px 14px}
       .brand img{width:36px; height:36px}
       .brand .tag{display:none}
-      .menu{display:none}
-      .burger{display:flex}
       .heroInner{padding:20px 16px}
       h1{font-size:30px}
       .lead{font-size:15px}
@@ -468,11 +541,14 @@
       .mobileGrid{grid-template-columns:1fr 1fr}
       .foot{padding:0 14px}
       .footNav a{font-size:12.5px}
+      .ctaRow{display:none}
     }
     @media (max-width: 420px){
       .mobileGrid{grid-template-columns:1fr}
+      .mobileTopCtas{grid-template-columns:1fr}
     }
 
+    /* Accessibility helper */
     .skip{
       position:absolute; left:-999px; top:10px;
       background:#111118; border:1px solid rgba(255,255,255,.12);
@@ -516,16 +592,21 @@
         </div>
       </a>
 
-      <!-- Partners REMOVED from header -->
+      <!-- Contact removed; Status added; Gate moved to primary CTA -->
       <nav class="menu" aria-label="Primary navigation">
         <a href="/trust-ledger/">Trust Ledger</a>
         <a href="/trust-brief/">Trust Brief</a>
         <a href="/playbook/">Playbook</a>
         <a href="/copilot-cost-governance/">Copilot</a>
         <a href="/for-whom/">For Whom</a>
-        <a href="/gate/">Gate</a>
-        <a href="/contact/">Contact</a>
+        <a href="/status/">Status</a>
       </nav>
+
+      <!-- App-like CTA stack -->
+      <div class="ctaRow" aria-label="Primary actions">
+        <a class="cta primary" href="/gate/">Gate</a>
+        <a class="cta secondary" href="/portal/">Portal</a>
+      </div>
 
       <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="mobilePanel">
         <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -534,23 +615,26 @@
       </button>
     </div>
 
-    <!-- Partners REMOVED from mobile -->
     <div class="mobilePanel" id="mobilePanel" hidden>
       <div class="mobileInner">
+        <div class="mobileTopCtas">
+          <a class="primary" href="/gate/">Gate</a>
+          <a href="/portal/">Portal</a>
+        </div>
+
         <div class="mobileGrid" aria-label="Mobile navigation">
           <a href="/trust-ledger/">Trust Ledger</a>
           <a href="/trust-brief/">Trust Brief</a>
           <a href="/playbook/">Playbook</a>
           <a href="/copilot-cost-governance/">Copilot</a>
           <a href="/for-whom/">For Whom</a>
-          <a href="/gate/">Gate</a>
-          <a href="/contact/">Contact</a>
+          <a href="/status/">Status</a>
         </div>
 
         <div class="mobileNote">
-          <span class="chip"><b>Board-ready</b> entry</span>
+          <span class="chip"><b>Non-confidential</b> intake</span>
           <span class="chip">Human review</span>
-          <span class="chip">Non-confidential</span>
+          <span class="chip">Secure channel after fit</span>
         </div>
       </div>
     </div>
@@ -578,6 +662,7 @@
     </section>
 
     <section class="grid">
+      <!-- Left: Board/Client intake -->
       <div class="card">
         <div class="hd">
           <h2>Primary track: Board / Client intake</h2>
@@ -721,7 +806,8 @@
 
             <div class="actions">
               <button class="btn" type="submit">Request Board Review</button>
-              <a class="btn secondary" href="/contact/">Prefer direct contact</a>
+              <a class="btn secondary" href="/status/">Response windows</a>
+              <a class="btn secondary" href="/portal/">Portal</a>
             </div>
 
             <div class="note" id="privacyNote">
@@ -739,6 +825,7 @@
         </div>
       </div>
 
+      <!-- Right: Additional tracks + Resources -->
       <aside class="card">
         <div class="hd">
           <h2>Additional tracks</h2>
@@ -747,21 +834,20 @@
 
         <div class="bd">
           <div class="tracks">
-            <!-- Partners ONLY HERE (Gate-only visibility) -->
             <div class="track">
               <div>
-                <div class="t">Partners</div>
+                <div class="t">Partners (Gate-only)</div>
                 <div class="d">Channel, joint delivery, distribution, and delivery standards.</div>
               </div>
-              <a class="cta" href="/partners/">View</a>
+              <a class="cta" href="/gate/partners/">Open</a>
             </div>
 
             <div class="track">
               <div>
-                <div class="t">Partner / Channel intake</div>
-                <div class="d">Consultancies, GRC firms, MSP/MSSP, joint delivery, distribution.</div>
+                <div class="t">Partner intake</div>
+                <div class="d">Consultancies, GRC firms, MSP/MSSP, and joint delivery.</div>
               </div>
-              <a class="cta" href="/gate/partner/">Partner</a>
+              <a class="cta" href="/gate/partners/intake/">Start</a>
             </div>
 
             <div class="track">
@@ -769,22 +855,50 @@
                 <div class="t">Investor (referral-only)</div>
                 <div class="d">Fit assessment for aligned strategic backers. No public solicitation.</div>
               </div>
-              <a class="cta" href="/gate/investor/">Investor</a>
+              <a class="cta" href="/gate/investor/">Open</a>
             </div>
 
             <div class="track">
               <div>
                 <div class="t">Research (institutions / programs)</div>
-                <div class="d">Async-first collaboration for governance artefacts, benchmarks, or applied research.</div>
+                <div class="d">Applied governance artefacts, benchmarks, or academic collaboration.</div>
               </div>
-              <a class="cta" href="/gate/research/">Research</a>
+              <a class="cta" href="/gate/research/">Open</a>
+            </div>
+          </div>
+
+          <div class="sectionLabel">Resources</div>
+
+          <div class="tracks">
+            <div class="track">
+              <div>
+                <div class="t">FAQ</div>
+                <div class="d">What this is, who it is for, and how routing works.</div>
+              </div>
+              <a class="cta" href="/faq/">View</a>
+            </div>
+
+            <div class="track">
+              <div>
+                <div class="t">Playbook</div>
+                <div class="d">0–90 day governance-first operating pattern for AI usage.</div>
+              </div>
+              <a class="cta" href="/playbook/">Open</a>
+            </div>
+
+            <div class="track">
+              <div>
+                <div class="t">Status</div>
+                <div class="d">Response windows, service posture, and updates log.</div>
+              </div>
+              <a class="cta" href="/status/">Open</a>
             </div>
           </div>
 
           <div class="fineprint">
             Not sure which track fits? Use the Board/Client intake and add one line in “Referral / context”.
             <br /><br />
-            This Gate is designed for decision-makers and accountable roles. It is not a general support channel.
+            This Gate is designed for accountable roles. It is not a general support channel.
           </div>
 
           <div class="links" aria-label="Policy links" style="margin-top:16px;">
@@ -799,7 +913,6 @@
       <div class="foot">
         <div>© <span id="y"></span> Noetfield Systems Inc.</div>
 
-        <!-- Partners REMOVED from footer -->
         <div class="footNav" aria-label="Footer navigation">
           <a href="/">Home</a>
           <a href="/trust-ledger/">Trust Ledger</a>
@@ -807,8 +920,9 @@
           <a href="/playbook/">Playbook</a>
           <a href="/copilot-cost-governance/">Copilot</a>
           <a href="/for-whom/">For Whom</a>
+          <a href="/status/">Status</a>
           <a href="/gate/">Gate</a>
-          <a href="/contact/">Contact</a>
+          <a href="/portal/">Portal</a>
           <a href="/privacy/">Privacy</a>
           <a href="/terms/">Terms</a>
         </div>
@@ -817,8 +931,10 @@
   </main>
 
   <script>
+    // Year
     document.getElementById("y").textContent = new Date().getFullYear();
 
+    // Mobile menu toggle
     (function () {
       var burger = document.getElementById("burger");
       var panel = document.getElementById("mobilePanel");
@@ -830,6 +946,7 @@
         panel.hidden = isOpen;
       });
 
+      // close on ESC
       document.addEventListener("keydown", function (e) {
         if (e.key === "Escape" && burger.getAttribute("aria-expanded") === "true") {
           burger.setAttribute("aria-expanded", "false");
@@ -838,6 +955,7 @@
       });
     })();
 
+    // Auto-active (menu + footer + mobile + ctas)
     (function () {
       function normPath(p) {
         if (!p) return "/";
@@ -846,7 +964,7 @@
         return p.toLowerCase();
       }
       var current = normPath(window.location.pathname);
-      var links = document.querySelectorAll('nav[aria-label="Primary navigation"] a, footer a, #mobilePanel a');
+      var links = document.querySelectorAll('nav[aria-label="Primary navigation"] a, footer a, #mobilePanel a, .ctaRow a');
 
       links.forEach(function (a) {
         var href = a.getAttribute("href") || "";

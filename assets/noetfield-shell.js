@@ -1,5 +1,5 @@
 /* Noetfield Shell (Burger + Active Links + Footer Year) */
-/* Version: locked-2025.12.13+gate-intake+faq+offers+floating-feedback */
+/* Version: locked-2025.12.13+gate-intake+faq+offers */
 
 (function () {
   "use strict";
@@ -19,7 +19,7 @@
         var u = new URL(href, window.location.origin);
         if (u.origin !== window.location.origin) return null;
         return u.pathname || "/";
-      } catch (_) {
+      } catch (e) {
         return null;
       }
     }
@@ -37,7 +37,7 @@
     var current = normPath(window.location.pathname);
 
     // Active state ONLY for:
-    // - Header primary navigation
+    // - Header primary nav links
     // - Mobile panel links
     // - Footer mini nav links
     // (NOT footerTop box links)
@@ -48,13 +48,13 @@
     ].join(", ");
 
     var links = document.querySelectorAll(selectors);
+
     links.forEach(function (a) {
       var hrefRaw = a.getAttribute("href") || "";
       var href = toInternalPath(hrefRaw);
       if (!href) return;
 
       var target = normPath(href);
-
       var isActive =
         (target === "/" && current === "/") ||
         (target !== "/" && (current === target || current.startsWith(target + "/")));
@@ -79,11 +79,13 @@
       panel.hidden = false;
       document.body.classList.add("navOpen");
     }
+
     function closePanel() {
       burger.setAttribute("aria-expanded", "false");
       panel.hidden = true;
       document.body.classList.remove("navOpen");
     }
+
     function toggle() {
       var isOpen = burger.getAttribute("aria-expanded") === "true";
       if (isOpen) closePanel();
@@ -105,17 +107,20 @@
       }
     });
 
+    // Close when clicking outside header
     document.addEventListener("click", function (e) {
       if (burger.getAttribute("aria-expanded") !== "true") return;
       var withinHeader = !!(e.target && e.target.closest && e.target.closest("header"));
       if (!withinHeader) closePanel();
     });
 
+    // Close after clicking a mobile link
     panel.addEventListener("click", function (e) {
       var a = e.target && e.target.closest ? e.target.closest("a") : null;
       if (a) closePanel();
     });
 
+    // Close on resize back to desktop
     window.addEventListener("resize", function () {
       if (window.innerWidth > 1140 && burger.getAttribute("aria-expanded") === "true") {
         closePanel();

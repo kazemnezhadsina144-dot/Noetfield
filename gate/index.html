@@ -11,27 +11,35 @@
   />
   <meta name="robots" content="index,follow" />
   <meta name="author" content="Noetfield Systems Inc." />
+
+  <!-- Canonical (always with www) -->
   <link rel="canonical" href="https://www.noetfield.com/gate/" />
 
-  <link rel="icon" href="/noetfield-favicon-512.png" type="image/png" />
-  <link rel="apple-touch-icon" href="/noetfield-favicon-512.png" />
-  <meta name="theme-color" content="#07070b" />
+  <!-- Icons -->
+  <link rel="icon" href="/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/noetfield-mark-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/noetfield-mark-16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <meta name="theme-color" content="#0b0b0f" />
 
-  <!-- OG -->
-  <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="Noetfield" />
+  <!-- Open Graph -->
   <meta property="og:title" content="Noetfield Gate – Board-Ready AI Governance Entry" />
   <meta
     property="og:description"
     content="Request board-ready governance artefacts and the right intake pathway (Client, Partner, Investor, Advisory)."
   />
   <meta property="og:url" content="https://www.noetfield.com/gate/" />
+  <meta property="og:type" content="website" />
   <meta property="og:image" content="https://www.noetfield.com/noetfield-og.png" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Noetfield Gate – Board-Ready AI Governance Entry" />
-  <meta name="twitter:description" content="Request board-ready governance artefacts and the right intake pathway (Client, Partner, Investor, Advisory)." />
+  <meta
+    name="twitter:description"
+    content="Request board-ready governance artefacts and the right intake pathway (Client, Partner, Investor, Advisory)."
+  />
   <meta name="twitter:image" content="https://www.noetfield.com/noetfield-og.png" />
 
   <!-- Font -->
@@ -41,287 +49,220 @@
 
   <style>
     :root{
-      --bg0:#07070b;
-      --bg1:#0b0b14;
-      --panel: rgba(255,255,255,.055);
-      --panel2: rgba(255,255,255,.038);
-      --text:#eff0f7;
-      --muted:#b9bbcf;
-      --muted2:#8e91ad;
-      --line: rgba(255,255,255,.11);
-
-      /* “Swiss-minimal gold” */
+      --bg:#07070b;
+      --bg2:#0b0b12;
+      --panel: rgba(255,255,255,.04);
+      --panel2: rgba(255,255,255,.03);
+      --text:#f2f2f6;
+      --muted:#b7b7c6;
+      --muted2:#8e8ea5;
+      --line:rgba(255,255,255,.10);
       --gold:#c8a349;
       --gold2:#a98a3c;
-
-      /* Cool accent for “bank-grade” contrast */
-      --ice:#7aa7ff;
-
       --radius:18px;
       --max:1120px;
-
-      --shadow: 0 28px 80px rgba(0,0,0,.62);
-      --shadow2: 0 14px 50px rgba(0,0,0,.50);
-      --focus: 0 0 0 4px rgba(200,163,73,.18);
-
-      --navH: 66px;
+      --shadow: 0 24px 60px rgba(0,0,0,.55);
+      --shadow2: 0 14px 40px rgba(0,0,0,.40);
     }
 
     *{box-sizing:border-box}
     html,body{height:100%}
-
     body{
       margin:0;
-      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      color: var(--text);
-      background: linear-gradient(180deg, var(--bg0), var(--bg1));
+      font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color:var(--text);
+      line-height:1.55;
+
+      /* Premium “mesh + grid + glow” background */
+      background:
+        radial-gradient(1000px 700px at 18% -10%, rgba(200,163,73,.18), transparent 60%),
+        radial-gradient(900px 600px at 95% 5%, rgba(120,110,255,.14), transparent 60%),
+        radial-gradient(800px 520px at 50% 30%, rgba(200,163,73,.06), transparent 55%),
+        linear-gradient(180deg, var(--bg), var(--bg2));
+
+      position:relative;
       overflow-x:hidden;
-      -webkit-font-smoothing: antialiased;
-      text-rendering: optimizeLegibility;
+    }
+
+    /* Subtle grid overlay */
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      background-image:
+        linear-gradient(to right, rgba(255,255,255,.06) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255,255,255,.06) 1px, transparent 1px);
+      background-size: 64px 64px;
+      opacity:.06;
+      mix-blend-mode: overlay;
+    }
+
+    /* Soft noise (CSS-only) */
+    body::after{
+      content:"";
+      position:fixed;
+      inset:-20%;
+      pointer-events:none;
+      background:
+        repeating-conic-gradient(from 0deg, rgba(255,255,255,.02) 0 4deg, transparent 4deg 8deg);
+      opacity:.03;
+      filter: blur(2px);
+      transform: rotate(6deg);
     }
 
     a{color:inherit; text-decoration:none}
-    a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible{
-      outline:none;
-      box-shadow: var(--focus);
-      border-color: rgba(200,163,73,.58) !important;
-    }
-
-    /* Premium background: aurora + grid + vignette (clean, not “halos”) */
-    .bg{
-      position:fixed; inset:0;
-      z-index:-3; pointer-events:none;
-      background:
-        radial-gradient(1400px 820px at 10% -10%, rgba(200,163,73,.20), transparent 58%),
-        radial-gradient(1200px 820px at 100% 0%, rgba(122,167,255,.12), transparent 60%),
-        radial-gradient(900px 700px at 55% 22%, rgba(255,255,255,.05), transparent 62%),
-        linear-gradient(180deg, var(--bg0), var(--bg1));
-      filter: saturate(1.05);
-    }
-    .bg::before{
-      content:"";
-      position:absolute; inset:0;
-      background:
-        linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
-      background-size: 54px 54px;
-      opacity:.055;
-      mask-image: radial-gradient(70% 60% at 50% 8%, black 55%, transparent 100%);
-    }
-    .bg::after{
-      content:"";
-      position:absolute; inset:-90px;
-      background:
-        radial-gradient(1100px 760px at 50% 8%, transparent 55%, rgba(0,0,0,.58) 100%),
-        radial-gradient(1000px 900px at 50% 110%, rgba(0,0,0,.68), transparent 62%);
-      opacity:.92;
-    }
 
     .wrap{max-width:var(--max); margin:0 auto; padding:24px}
-
-    /* Header */
     header{
-      position:sticky; top:0; z-index:60;
-      backdrop-filter: blur(16px);
-      background: rgba(8,8,12,.60);
-      border-bottom: 1px solid rgba(255,255,255,.10);
+      position:sticky; top:0; z-index:50;
+      backdrop-filter: blur(14px);
+      background: rgba(7,7,11,.70);
+      border-bottom:1px solid rgba(255,255,255,.10);
     }
+
     .nav{
-      max-width:var(--max); margin:0 auto;
-      padding: 12px 18px;
+      max-width:var(--max);
+      margin:0 auto;
       display:flex; align-items:center; justify-content:space-between;
       gap:14px;
-      min-height: var(--navH);
+      padding:14px 18px;
     }
 
     .brand{
       display:flex; align-items:center; gap:12px;
-      min-width: 220px;
+      min-width:220px;
     }
     .brand img{
-      width:38px; height:38px; border-radius:12px;
-      box-shadow: 0 12px 26px rgba(0,0,0,.55);
-      border:1px solid rgba(255,255,255,.12);
+      width:34px; height:34px;
+      border-radius:12px;
+      box-shadow: 0 10px 22px rgba(0,0,0,.35);
     }
-    .brand .name{font-weight:720; letter-spacing:.15px}
+    .brand .name{font-weight:700; letter-spacing:.2px}
     .brand .tag{font-size:12px; color:var(--muted2); margin-top:2px}
 
-    /* Desktop nav pills */
     .menu{
-      display:flex; flex-wrap:wrap;
-      gap:10px 10px;
+      display:flex; flex-wrap:wrap; gap:8px 10px;
       justify-content:flex-end;
       font-size:13px;
+      align-items:center;
     }
     .menu a{
-      color:var(--muted);
-      padding:9px 11px;
-      border-radius:14px;
+      color:rgba(255,255,255,.72);
+      padding:8px 10px;
+      border-radius:12px;
       border:1px solid transparent;
-      background: transparent;
-      transition: background .15s ease, border-color .15s ease, color .15s ease, transform .06s ease;
+      background:transparent;
+      transition: all .18s ease;
       white-space:nowrap;
     }
     .menu a:hover{
       color:var(--text);
       border-color:rgba(255,255,255,.10);
-      background:rgba(255,255,255,.045);
+      background:rgba(255,255,255,.04);
     }
-    .menu a.active,
-    .menu a[aria-current="page"]{
+    .menu a.active{
       color:var(--text);
-      border-color:rgba(200,163,73,.38);
-      background:
-        radial-gradient(240px 90px at 50% 0%, rgba(255,255,255,.10), transparent 60%),
-        linear-gradient(180deg, rgba(200,163,73,.22), rgba(200,163,73,.10));
+      border-color:rgba(200,163,73,.35);
+      background: linear-gradient(180deg, rgba(200,163,73,.16), rgba(200,163,73,.08));
+      box-shadow: 0 10px 26px rgba(200,163,73,.10);
     }
 
-    /* Mobile: collapsible menu */
-    .burger{
+    /* Mobile nav */
+    .navbtn{
       display:none;
       align-items:center; justify-content:center;
-      width:42px; height:42px;
+      width:44px; height:44px;
       border-radius:14px;
       border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.04);
+      background:rgba(255,255,255,.04);
+      color:var(--text);
       cursor:pointer;
-      transition: background .15s ease, border-color .15s ease;
     }
-    .burger:hover{border-color:rgba(255,255,255,.18); background:rgba(255,255,255,.06)}
-    .burger svg{width:20px; height:20px; opacity:.92}
-
-    .mobilePanel{
+    .navbtn:active{transform: translateY(1px)}
+    .navpanel{
       display:none;
       border-top:1px solid rgba(255,255,255,.10);
-      background: rgba(8,8,12,.72);
-      backdrop-filter: blur(16px);
+      background: rgba(7,7,11,.78);
     }
-    .mobileInner{
+    .navpanel .stack{
       max-width:var(--max);
       margin:0 auto;
-      padding: 12px 14px 16px;
-    }
-    .mobileGrid{
+      padding:12px 18px 18px;
       display:grid;
-      grid-template-columns:1fr 1fr;
+      grid-template-columns: 1fr 1fr;
       gap:10px;
     }
-    .mobileGrid a{
+    .navpanel a{
       padding:12px 12px;
-      border-radius:16px;
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.04);
-      color: var(--muted);
-      font-size:14px;
-      transition: background .15s ease, border-color .15s ease, color .15s ease;
-    }
-    .mobileGrid a:hover{color:var(--text); border-color:rgba(255,255,255,.18); background:rgba(255,255,255,.06)}
-    .mobileGrid a.active,
-    .mobileGrid a[aria-current="page"]{
-      color: var(--text);
-      border-color: rgba(200,163,73,.42);
-      background:
-        radial-gradient(220px 90px at 30% 0%, rgba(200,163,73,.22), transparent 60%),
-        rgba(200,163,73,.10);
-    }
-    .mobileNote{
-      margin-top:12px;
-      color:var(--muted2);
-      font-size:12px;
-      display:flex; gap:8px; align-items:center;
-    }
-    .chip{
-      display:inline-flex; align-items:center; gap:8px;
-      padding:7px 10px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.12);
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.10);
       background: rgba(255,255,255,.03);
-      color: var(--muted2);
+      color:rgba(255,255,255,.80);
     }
-    .chip b{color:var(--text); font-weight:650}
+    .navpanel a.active{
+      border-color:rgba(200,163,73,.35);
+      background: rgba(200,163,73,.10);
+      color:var(--text);
+    }
 
-    /* Hero */
-    .hero{padding: 22px 0 18px}
-    .heroShell{
-      position:relative;
-      border-radius: calc(var(--radius) + 8px);
-      border: 1px solid rgba(255,255,255,.11);
-      background:
-        radial-gradient(1000px 420px at 18% 0%, rgba(200,163,73,.18), transparent 60%),
-        radial-gradient(1000px 420px at 90% 10%, rgba(122,167,255,.10), transparent 62%),
-        linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.022));
-      box-shadow: var(--shadow);
-      overflow:hidden;
-    }
-    .heroShell::before{
-      content:"";
-      position:absolute; inset:-1px;
-      background: linear-gradient(120deg,
-        rgba(200,163,73,.26),
-        transparent 30%,
-        rgba(255,255,255,.08) 68%,
-        transparent
-      );
-      opacity:.44;
-      pointer-events:none;
-      mask-image: linear-gradient(180deg, black 0%, black 58%, transparent 96%);
-    }
-    .heroInner{padding: 26px 22px}
+    .hero{padding:44px 0 14px}
     .eyebrow{
       display:inline-flex; gap:10px; align-items:center;
-      color:var(--muted);
+      color:rgba(255,255,255,.78);
       font-size:13px;
-      padding:9px 12px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.03);
+      padding:8px 12px;
       border-radius:999px;
-      border:1px solid rgba(255,255,255,.13);
-      background: rgba(255,255,255,.035);
     }
     .dot{
       width:8px; height:8px; border-radius:50%;
-      background: rgba(200,163,73,.97);
-      box-shadow: 0 0 0 3px rgba(200,163,73,.18);
+      background: rgba(200,163,73,.92);
+      box-shadow: 0 0 0 6px rgba(200,163,73,.10);
     }
+
     h1{
       margin:14px 0 10px;
-      font-size:42px;
-      line-height:1.07;
-      letter-spacing:-0.75px;
+      font-size:44px;
+      line-height:1.06;
+      letter-spacing:-0.7px;
     }
     .lead{
-      margin:0;
-      color:var(--muted);
+      color:rgba(255,255,255,.74);
       font-size:16px;
-      max-width: 900px;
+      max-width:860px;
     }
+
     .pillrow{display:flex; flex-wrap:wrap; gap:10px; margin-top:14px}
     .pill{
       display:inline-flex; align-items:center; gap:10px;
       padding:9px 12px;
       border-radius:999px;
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.03);
-      color:var(--muted);
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.03);
+      color:rgba(255,255,255,.72);
       font-size:13px;
     }
     .pill strong{color:var(--text); font-weight:650}
 
-    /* Grid */
     .grid{
       display:grid;
-      grid-template-columns: 1.2fr .8fr;
+      grid-template-columns: 1.15fr .85fr;
       gap:18px;
-      margin: 18px 0 34px;
+      margin:24px 0 34px;
     }
+
     .card{
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      border:1px solid rgba(255,255,255,.10);
       border-radius:var(--radius);
-      border:1px solid rgba(255,255,255,.11);
-      background: linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.022));
-      box-shadow: var(--shadow2);
+      box-shadow:var(--shadow);
       overflow:hidden;
     }
     .card .hd{padding:18px 18px 0}
     .card h2{margin:0 0 8px; font-size:18px; letter-spacing:-0.2px}
-    .card p{margin:0 0 12px; color:var(--muted)}
+    .card p{margin:0 0 12px; color:rgba(255,255,255,.70)}
     .card .bd{padding:18px}
 
     .form{
@@ -332,11 +273,15 @@
     }
     .form .full{grid-column:1 / -1}
 
-    label{display:block; font-size:12px; color:var(--muted2); margin:0 0 6px}
-
+    label{
+      display:block;
+      font-size:12px;
+      color:rgba(255,255,255,.60);
+      margin:0 0 6px;
+    }
     input, select, textarea{
       width:100%;
-      background: rgba(10,10,16,.55);
+      background: rgba(0,0,0,.18);
       border: 1px solid rgba(255,255,255,.14);
       color: var(--text);
       padding: 12px 12px;
@@ -344,137 +289,118 @@
       outline:none;
       font-family:inherit;
       font-size:14px;
-      transition: border-color .15s ease, box-shadow .15s ease, background .15s ease;
+      transition: box-shadow .18s ease, border-color .18s ease;
     }
-    input::placeholder, textarea::placeholder{color: rgba(185,187,207,.55)}
-    textarea{min-height:110px; resize:vertical}
-    input:focus, select:focus, textarea:focus{box-shadow: var(--focus); background: rgba(12,12,18,.62)}
+    textarea{min-height:120px; resize:vertical}
+    input:focus, select:focus, textarea:focus{
+      border-color:rgba(200,163,73,.55);
+      box-shadow:0 0 0 4px rgba(200,163,73,.12);
+    }
 
-    .actions{display:flex; gap:12px; align-items:center; justify-content:flex-start; margin-top:12px}
+    .actions{
+      display:flex; gap:12px; align-items:center; justify-content:flex-start;
+      margin-top:12px;
+    }
     .btn{
       display:inline-flex; align-items:center; justify-content:center;
       gap:10px;
       padding:12px 14px;
-      border-radius:16px;
-      border:1px solid rgba(200,163,73,.58);
+      border-radius:14px;
+      border:1px solid rgba(200,163,73,.55);
       background:
-        radial-gradient(260px 110px at 40% 0%, rgba(255,255,255,.11), transparent 62%),
-        linear-gradient(180deg, rgba(200,163,73,.24), rgba(200,163,73,.11));
+        linear-gradient(180deg, rgba(200,163,73,.22), rgba(200,163,73,.12));
       color:var(--text);
-      font-weight:720;
+      font-weight:700;
       font-size:14px;
       cursor:pointer;
-      transition: border-color .15s ease, transform .06s ease, filter .15s ease;
+      box-shadow: var(--shadow2);
+      transition: transform .12s ease, border-color .18s ease, background .18s ease;
     }
-    .btn:hover{border-color:rgba(200,163,73,.85); filter:brightness(1.06)}
+    .btn:hover{
+      border-color:rgba(200,163,73,.80);
+      background: linear-gradient(180deg, rgba(200,163,73,.26), rgba(200,163,73,.14));
+    }
     .btn:active{transform: translateY(1px)}
 
-    .note{font-size:12px; color:var(--muted2); margin-top:10px}
+    .note{
+      font-size:12px;
+      color:rgba(255,255,255,.58);
+      margin-top:10px;
+    }
 
     .links{
       display:flex; flex-wrap:wrap; gap:10px 14px;
       margin-top:16px;
       font-size:13px;
-      color:var(--muted);
+      color:rgba(255,255,255,.70);
     }
     .links a{
-      border-bottom:1px solid rgba(255,255,255,.16);
+      border-bottom:1px solid rgba(255,255,255,.18);
       padding-bottom:2px;
     }
-    .links a:hover{color:var(--text); border-bottom-color:rgba(200,163,73,.55)}
+    .links a:hover{color:var(--text); border-bottom-color:rgba(200,163,73,.60)}
 
     .tracks{display:grid; grid-template-columns:1fr; gap:10px; margin-top:10px}
     .track{
       padding:14px 14px;
       border-radius:16px;
       border:1px solid rgba(255,255,255,.12);
-      background: rgba(10,10,14,.35);
+      background: rgba(0,0,0,.14);
       display:flex; align-items:flex-start; justify-content:space-between; gap:14px;
     }
     .track .t{font-weight:750}
-    .track .d{color:var(--muted); font-size:13px; margin-top:4px}
+    .track .d{color:rgba(255,255,255,.68); font-size:13px; margin-top:4px}
     .track .cta{
       white-space:nowrap;
       font-size:13px;
       color:var(--text);
       border:1px solid rgba(200,163,73,.38);
-      background: rgba(200,163,73,.10);
+      background:rgba(200,163,73,.10);
       padding:9px 12px;
       border-radius:14px;
-      transition: background .15s ease, border-color .15s ease;
+      transition: all .18s ease;
     }
-    .track .cta:hover{border-color:rgba(200,163,73,.70); background:rgba(200,163,73,.14)}
+    .track .cta:hover{
+      border-color:rgba(200,163,73,.70);
+      background:rgba(200,163,73,.14);
+    }
 
-    /* Footer */
     footer{
       border-top:1px solid rgba(255,255,255,.10);
-      padding: 18px 0 22px;
-      color:var(--muted2);
-      margin-top:34px;
-      background: rgba(8,8,12,.35);
-      backdrop-filter: blur(10px);
+      padding:22px 0;
+      color:rgba(255,255,255,.60);
+      margin-top:36px;
     }
     .foot{
-      max-width:var(--max); margin:0 auto;
-      padding: 0 18px;
-      display:flex; flex-wrap:wrap; gap:12px 18px;
+      max-width:var(--max);
+      margin:0 auto;
+      padding:0 18px;
+      display:flex; flex-wrap:wrap;
+      gap:10px 18px;
       align-items:center; justify-content:space-between;
     }
+    .foot .mini a{color:rgba(255,255,255,.70); margin-right:12px}
+    .foot .mini a:hover{color:var(--text)}
+    .foot .legal a{color:rgba(255,255,255,.58); margin-left:12px}
+    .foot .legal a:hover{color:var(--text)}
 
-    .footNav{
-      display:flex; flex-wrap:wrap;
-      gap:10px 12px;
-      align-items:center;
-    }
-    .footNav a{
-      color: var(--muted);
-      padding:8px 10px;
-      border-radius:14px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.03);
-      font-size:13px;
-      transition: background .15s ease, border-color .15s ease, color .15s ease;
-    }
-    .footNav a:hover{color:var(--text); border-color:rgba(255,255,255,.16); background:rgba(255,255,255,.05)}
-    .footNav a.active, .footNav a[aria-current="page"]{
-      color: var(--text);
-      border-color: rgba(200,163,73,.40);
-      background: rgba(200,163,73,.10);
-    }
-
-    /* Responsive */
     @media (max-width: 980px){
+      h1{font-size:36px}
       .grid{grid-template-columns:1fr}
     }
-    @media (max-width: 760px){
-      :root{--navH: 62px}
-      .wrap{padding:16px}
-      .nav{padding:10px 14px}
-      .brand img{width:36px; height:36px}
-      .brand .tag{display:none}
+    @media (max-width: 820px){
       .menu{display:none}
-      .burger{display:flex}
-      .heroInner{padding:20px 16px}
-      h1{font-size:30px}
-      .lead{font-size:15px}
+      .navbtn{display:inline-flex}
+      .navpanel.open{display:block}
+      .navpanel .stack{grid-template-columns:1fr}
+    }
+    @media (max-width: 520px){
+      .wrap{padding:18px}
+      .nav{padding:12px 14px}
+      h1{font-size:32px}
+      .brand .tag{display:none}
       .form{grid-template-columns:1fr}
-      .mobilePanel{display:block}
-      .mobileGrid{grid-template-columns:1fr 1fr}
-      .foot{padding:0 14px}
-      .footNav a{font-size:12.5px}
     }
-    @media (max-width: 420px){
-      .mobileGrid{grid-template-columns:1fr}
-    }
-
-    /* Accessibility helper */
-    .skip{
-      position:absolute; left:-999px; top:10px;
-      background:#111118; border:1px solid rgba(255,255,255,.12);
-      color:var(--text); padding:10px 12px; border-radius:12px;
-      z-index:999;
-    }
-    .skip:focus{left:10px}
   </style>
 
   <script type="application/ld+json">
@@ -488,23 +414,16 @@
       "@type": "WebSite",
       "name": "Noetfield",
       "url": "https://www.noetfield.com/"
-    },
-    "publisher": {
-      "@type": "Organization",
-      "name": "Noetfield Systems Inc."
     }
   }
   </script>
 </head>
 
 <body>
-  <div class="bg" aria-hidden="true"></div>
-  <a class="skip" href="#main">Skip to content</a>
-
   <header>
     <div class="nav">
       <a class="brand" href="/" aria-label="Noetfield home">
-        <img src="/noetfield-favicon-512.png" alt="Noetfield mark" />
+        <img src="/noetfield-mark-32.png" alt="Noetfield mark" />
         <div>
           <div class="name">Noetfield</div>
           <div class="tag">Trust & Stewardship in the Age of AI</div>
@@ -522,53 +441,39 @@
         <a href="/contact/">Contact</a>
       </nav>
 
-      <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="mobilePanel">
-        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-        </svg>
+      <button class="navbtn" id="navBtn" aria-label="Open menu" aria-expanded="false" aria-controls="navPanel">
+        ☰
       </button>
     </div>
 
-    <div class="mobilePanel" id="mobilePanel" hidden>
-      <div class="mobileInner">
-        <div class="mobileGrid" aria-label="Mobile navigation">
-          <a href="/trust-ledger/">Trust Ledger</a>
-          <a href="/trust-brief/">Trust Brief</a>
-          <a href="/playbook/">Playbook</a>
-          <a href="/copilot-cost-governance/">Copilot</a>
-          <a href="/for-whom/">For Whom</a>
-          <a href="/partners/">Partners</a>
-          <a href="/gate/">Gate</a>
-          <a href="/contact/">Contact</a>
-        </div>
-
-        <div class="mobileNote">
-          <span class="chip"><b>Board-ready</b> entry</span>
-          <span class="chip">Human review</span>
-          <span class="chip">Non-confidential</span>
-        </div>
+    <div class="navpanel" id="navPanel">
+      <div class="stack" aria-label="Mobile navigation">
+        <a href="/trust-ledger/">Trust Ledger</a>
+        <a href="/trust-brief/">Trust Brief</a>
+        <a href="/playbook/">Playbook</a>
+        <a href="/copilot-cost-governance/">Copilot</a>
+        <a href="/for-whom/">For Whom</a>
+        <a href="/partners/">Partners</a>
+        <a href="/gate/">Gate</a>
+        <a href="/contact/">Contact</a>
       </div>
     </div>
   </header>
 
-  <main id="main" class="wrap">
+  <main class="wrap">
     <section class="hero">
-      <div class="heroShell">
-        <div class="heroInner">
-          <div class="eyebrow"><span class="dot"></span> Governed entry point • board-ready artefacts • human review</div>
-          <h1>Board-ready AI governance starts here.</h1>
-          <p class="lead">
-            Noetfield supports accountable roles (board, audit, risk, legal, security, public oversight) with governance-first
-            artefacts for AI systems that influence material decisions. Access is request-based and reviewed.
-          </p>
+      <div class="eyebrow"><span class="dot"></span> Governed entry • board-ready artefacts • human review</div>
+      <h1>Board-ready AI governance starts here.</h1>
+      <p class="lead">
+        Noetfield supports accountable roles (board, audit, risk, legal, security, public oversight) with governance-first
+        artefacts for AI systems that influence material decisions. Access is request-based and reviewed.
+      </p>
 
-          <div class="pillrow" aria-label="Scope highlights">
-            <div class="pill"><strong>Materiality</strong> & decision controls</div>
-            <div class="pill"><strong>Accountability</strong> mapping</div>
-            <div class="pill"><strong>Evidence-ready</strong> records</div>
-            <div class="pill"><strong>Copilot / Agents</strong> inventory & exposure</div>
-          </div>
-        </div>
+      <div class="pillrow" aria-label="Scope highlights">
+        <div class="pill"><strong>Materiality</strong> & decision controls</div>
+        <div class="pill"><strong>Accountability</strong> mapping</div>
+        <div class="pill"><strong>Evidence-ready</strong> records</div>
+        <div class="pill"><strong>Copilot / Agents</strong> inventory & exposure</div>
       </div>
     </section>
 
@@ -579,14 +484,13 @@
           <h2>Primary track: Board / Client intake</h2>
           <p>
             Request board-ready artefacts or the right intake pathway for your organization.
-            Please keep submissions high-level and non-confidential.
+            Keep submissions high-level and non-confidential.
           </p>
         </div>
 
         <div class="bd">
-          <!-- Replace action with your endpoint -->
+          <!-- Replace action with your endpoint (Formspree/Tally/etc.) -->
           <form action="#" method="post">
-            <input type="hidden" name="page_source" value="/gate/" />
             <input type="hidden" name="source" value="gate-board" />
 
             <div class="form">
@@ -634,7 +538,7 @@
 
               <div>
                 <label for="referral">Referral (optional)</label>
-                <input id="referral" name="referral" type="text" placeholder="Name or source" autocomplete="off" />
+                <input id="referral" name="referral" type="text" placeholder="Name or source" />
               </div>
 
               <div class="full">
@@ -675,14 +579,14 @@
 
             <div class="note">
               Privacy & security: do not submit confidential, customer, or security-sensitive details here. If we proceed,
-              a safer channel will be proposed for deeper materials. Submissions are used only to respond and triage.
+              we’ll propose a safer channel for deeper materials. Submissions are used only to respond and triage.
             </div>
           </form>
 
           <div class="links" aria-label="Core links">
-            <a href="/trust-ledger/">Trust Ledger</a>
             <a href="/trust-brief/">Trust Brief</a>
-            <a href="/copilot-cost-governance/">Copilot Cost &amp; Governance</a>
+            <a href="/trust-ledger/">Trust Ledger</a>
+            <a href="/copilot-cost-governance/">Copilot Cost & Governance</a>
             <a href="/playbook/">AI Governance Playbook</a>
           </div>
         </div>
@@ -692,7 +596,7 @@
       <aside class="card">
         <div class="hd">
           <h2>Additional tracks</h2>
-          <p>Use these when your request is specifically partner-, investor-, or advisory-oriented.</p>
+          <p>Use these when your request is partner-, investor-, or advisory-oriented.</p>
         </div>
 
         <div class="bd">
@@ -737,17 +641,14 @@
     <footer>
       <div class="foot">
         <div>© <span id="y"></span> Noetfield Systems Inc.</div>
-
-        <div class="footNav" aria-label="Footer navigation">
-          <a href="/">Home</a>
+        <div class="mini">
           <a href="/trust-ledger/">Trust Ledger</a>
           <a href="/trust-brief/">Trust Brief</a>
-          <a href="/playbook/">Playbook</a>
           <a href="/copilot-cost-governance/">Copilot</a>
-          <a href="/for-whom/">For Whom</a>
-          <a href="/partners/">Partners</a>
           <a href="/gate/">Gate</a>
           <a href="/contact/">Contact</a>
+        </div>
+        <div class="legal">
           <a href="/privacy/">Privacy</a>
           <a href="/terms/">Terms</a>
         </div>
@@ -756,58 +657,41 @@
   </main>
 
   <script>
-    // Year
+    // Footer year
     document.getElementById("y").textContent = new Date().getFullYear();
 
     // Mobile menu toggle
-    (function () {
-      var burger = document.getElementById("burger");
-      var panel = document.getElementById("mobilePanel");
-      if (!burger || !panel) return;
+    const btn = document.getElementById("navBtn");
+    const panel = document.getElementById("navPanel");
+    btn.addEventListener("click", () => {
+      const isOpen = panel.classList.toggle("open");
+      btn.setAttribute("aria-expanded", String(isOpen));
+      btn.textContent = isOpen ? "✕" : "☰";
+    });
 
-      burger.addEventListener("click", function () {
-        var isOpen = burger.getAttribute("aria-expanded") === "true";
-        burger.setAttribute("aria-expanded", String(!isOpen));
-        panel.hidden = isOpen;
-      });
+    // Auto-active nav (desktop + mobile)
+    (function(){
+      const norm = (p) => (p || "/").replace(/\/+$/, "") || "/";
+      const here = norm(window.location.pathname);
 
-      // close on ESC
-      document.addEventListener("keydown", function (e) {
-        if (e.key === "Escape" && burger.getAttribute("aria-expanded") === "true") {
-          burger.setAttribute("aria-expanded", "false");
-          panel.hidden = true;
-        }
-      });
-    })();
+      const markActive = (root) => {
+        const links = root.querySelectorAll('a[href^="/"]');
+        links.forEach(a => a.classList.remove("active"));
 
-    // Auto-active (header + footer + mobile)
-    (function () {
-      function normPath(p) {
-        if (!p) return "/";
-        p = p.split("?")[0].split("#")[0];
-        if (p.length > 1 && p.endsWith("/")) p = p.slice(0, -1);
-        return p.toLowerCase();
-      }
-      var current = normPath(window.location.pathname);
-      var links = document.querySelectorAll('nav[aria-label="Primary navigation"] a, footer a, #mobilePanel a');
+        links.forEach(a => {
+          const href = a.getAttribute("href");
+          if (!href) return;
+          const h = norm(href);
 
-      links.forEach(function (a) {
-        var href = a.getAttribute("href") || "";
-        if (!href.startsWith("/")) return;
-        var target = normPath(href);
+          if (h === "/" && here === "/") a.classList.add("active");
+          else if (h !== "/" && (here === h || here.startsWith(h + "/"))) a.classList.add("active");
+        });
+      };
 
-        var isActive =
-          (target === "/" && current === "/") ||
-          (target !== "/" && (current === target || current.startsWith(target + "/")));
-
-        if (isActive) {
-          a.classList.add("active");
-          a.setAttribute("aria-current", "page");
-        } else {
-          a.classList.remove("active");
-          a.removeAttribute("aria-current");
-        }
-      });
+      const desktop = document.querySelector("nav.menu");
+      const mobile = document.querySelector("#navPanel .stack");
+      if (desktop) markActive(desktop);
+      if (mobile) markActive(mobile);
     })();
   </script>
 </body>

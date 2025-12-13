@@ -14,6 +14,7 @@
   function toInternalPath(href) {
     if (!href) return null;
 
+    // Normalize absolute URL to path if same-origin
     if (href.startsWith("http")) {
       try {
         var u = new URL(href, window.location.origin);
@@ -24,6 +25,7 @@
       }
     }
 
+    // Only style internal absolute-path links
     if (!href.startsWith("/")) return null;
     return href;
   }
@@ -48,7 +50,6 @@
     ].join(", ");
 
     var links = document.querySelectorAll(selectors);
-
     links.forEach(function (a) {
       var hrefRaw = a.getAttribute("href") || "";
       var href = toInternalPath(hrefRaw);
@@ -79,19 +80,18 @@
       panel.hidden = false;
       document.body.classList.add("navOpen");
     }
-
     function closePanel() {
       burger.setAttribute("aria-expanded", "false");
       panel.hidden = true;
       document.body.classList.remove("navOpen");
     }
-
     function toggle() {
       var isOpen = burger.getAttribute("aria-expanded") === "true";
       if (isOpen) closePanel();
       else openPanel();
     }
 
+    // Initial safety
     burger.setAttribute("aria-expanded", "false");
     panel.hidden = true;
     document.body.classList.remove("navOpen");
@@ -101,6 +101,7 @@
       toggle();
     });
 
+    // Close on Esc
     document.addEventListener("keydown", function (e) {
       if (e.key === "Escape" && burger.getAttribute("aria-expanded") === "true") {
         closePanel();
@@ -120,7 +121,7 @@
       if (a) closePanel();
     });
 
-    // Close on resize back to desktop
+    // Close on resize back to desktop width
     window.addEventListener("resize", function () {
       if (window.innerWidth > 1140 && burger.getAttribute("aria-expanded") === "true") {
         closePanel();

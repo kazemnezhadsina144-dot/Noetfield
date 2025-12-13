@@ -2,17 +2,18 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Noetfield – Gate (Board-Ready AI Governance Entry)</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <meta
-    name="description"
-    content="A governed entry point for board-ready AI governance artefacts and intakes: Trust Ledger samples, Trust Brief pilot one-pager, and board decision memo templates."
-  />
+  <title>Noetfield – Gate (Board-Ready AI Governance Entry)</title>
+  <meta name="description" content="A governed entry point for board-ready AI governance artefacts and intakes: Trust Ledger samples, Trust Brief pilot one-pager, and board decision memo templates." />
   <meta name="robots" content="index,follow" />
   <meta name="author" content="Noetfield Systems Inc." />
+  <meta name="color-scheme" content="dark" />
+
+  <!-- Canonical (always www) -->
   <link rel="canonical" href="https://www.noetfield.com/gate/" />
 
+  <!-- Icons -->
   <link rel="icon" href="/noetfield-favicon-512.png" type="image/png" />
   <link rel="apple-touch-icon" href="/noetfield-favicon-512.png" />
   <meta name="theme-color" content="#07070b" />
@@ -21,10 +22,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Noetfield" />
   <meta property="og:title" content="Noetfield Gate – Board-Ready AI Governance Entry" />
-  <meta
-    property="og:description"
-    content="Request board-ready governance artefacts and the right intake pathway (Client, Partner, Investor, Research)."
-  />
+  <meta property="og:description" content="Request board-ready governance artefacts and the right intake pathway (Client, Partner, Investor, Research)." />
   <meta property="og:url" content="https://www.noetfield.com/gate/" />
   <meta property="og:image" content="https://www.noetfield.com/noetfield-og.png" />
 
@@ -44,20 +42,16 @@
       --bg0:#07070b;
       --bg1:#0b0b14;
       --panel: rgba(255,255,255,.055);
-      --panel2: rgba(255,255,255,.038);
+      --panel2: rgba(255,255,255,.035);
       --text:#eff0f7;
       --muted:#b9bbcf;
       --muted2:#8e91ad;
       --line: rgba(255,255,255,.11);
 
       --gold:#c8a349;
-      --gold2:#a98a3c;
-
       --ok:#2de38a;
       --okGlow: rgba(45,227,138,.18);
-
       --danger:#ff5a5a;
-      --dangerGlow: rgba(255,90,90,.18);
 
       --radius:18px;
       --max:1120px;
@@ -82,14 +76,24 @@
     }
 
     a{color:inherit; text-decoration:none}
+    [hidden]{display:none !important}
+
     a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible{
       outline:none;
       box-shadow: var(--focus);
       border-color: rgba(200,163,73,.58) !important;
     }
-    [hidden]{display:none !important;}
 
-    /* Premium background */
+    /* Skip link */
+    .skip{
+      position:absolute; left:-999px; top:10px;
+      background:#111118; border:1px solid rgba(255,255,255,.12);
+      color:var(--text); padding:10px 12px; border-radius:12px;
+      z-index:999;
+    }
+    .skip:focus{left:10px}
+
+    /* Background */
     .bg{
       position:fixed; inset:0;
       z-index:-3; pointer-events:none;
@@ -129,48 +133,43 @@
       border-bottom: 1px solid rgba(255,255,255,.10);
     }
     .nav{
-      max-width:var(--max); margin:0 auto;
-      padding: 10px 16px;
-      display:flex; align-items:center; justify-content:space-between;
-      gap:14px;
+      max-width:var(--max);
+      margin:0 auto;
+      padding: 10px 14px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
       min-height: var(--navH);
     }
 
-    /* Brand (fixed to avoid overlap) */
     .brand{
       display:flex; align-items:center; gap:12px;
       flex:0 0 auto;
-      min-width: 240px;
-      max-width: 360px;
+      min-width: 220px;
+      max-width: 300px;
     }
     .brandMark{
       width:36px; height:36px; border-radius:12px;
       box-shadow: 0 12px 26px rgba(0,0,0,.55);
       border:1px solid rgba(255,255,255,.12);
-      display:block;
       flex:0 0 auto;
     }
     .brandText{min-width:0}
-    .brand .name{
-      font-weight:800;
-      letter-spacing:.10px;
-      line-height:1.05;
-      font-size: 15px;
-    }
+    .brand .name{font-weight:800; letter-spacing:.10px; line-height:1.05; font-size:14px}
     .brand .tag{
-      font-size:10.5px;
-      color:var(--muted2);
       margin-top:3px;
-      letter-spacing:.28em;
+      font-size:10px;
+      letter-spacing:.26em;
       text-transform:uppercase;
+      color:var(--muted2);
       white-space:nowrap;
       overflow:hidden;
       text-overflow:ellipsis;
-      max-width: 320px;
-      opacity:.95;
+      opacity:.92;
     }
 
-    /* Menu: tuned to never collide */
+    /* Desktop nav */
     .menu{
       display:flex;
       align-items:center;
@@ -189,12 +188,9 @@
     .menuPrimary{
       flex:1 1 auto;
       justify-content:center;
-      overflow:hidden;
+      overflow: visible; /* IMPORTANT: never clip tabs */
     }
-    .menuActions{
-      flex:0 0 auto;
-      justify-content:flex-end;
-    }
+    .menuActions{flex:0 0 auto; justify-content:flex-end}
 
     .menu a{
       color:var(--muted);
@@ -204,7 +200,7 @@
       background: transparent;
       transition: background .15s ease, border-color .15s ease, color .15s ease, transform .06s ease;
       white-space:nowrap;
-      font-size:12.75px;
+      font-size:12.5px;
       line-height:1;
     }
     .menu a:hover{
@@ -221,8 +217,6 @@
         radial-gradient(240px 90px at 50% 0%, rgba(255,255,255,.10), transparent 60%),
         linear-gradient(180deg, rgba(200,163,73,.22), rgba(200,163,73,.10));
     }
-
-    /* App-like tabs */
     .menu a.pilltab{
       border:1px solid rgba(255,255,255,.14);
       background: rgba(255,255,255,.03);
@@ -236,28 +230,17 @@
       font-weight:750;
       padding:8px 11px;
     }
-    .menu a.login:hover{
-      border-color: rgba(200,163,73,.85);
-      background:
-        radial-gradient(220px 90px at 40% 0%, rgba(255,255,255,.13), transparent 62%),
-        linear-gradient(180deg, rgba(200,163,73,.26), rgba(200,163,73,.12));
-    }
 
     /* Status dot */
-    .menu a.statusLink, .mobileGrid a.statusLink, .footNav a.statusLink{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-    }
+    .statusLink{display:inline-flex; align-items:center; gap:8px}
     .statusDot{
-      width:7px; height:7px;
-      border-radius:50%;
+      width:7px; height:7px; border-radius:50%;
       background: var(--ok);
       box-shadow: 0 0 0 3px var(--okGlow);
       flex:0 0 auto;
     }
 
-    /* Mobile */
+    /* Burger */
     .burger{
       display:none;
       align-items:center; justify-content:center;
@@ -272,6 +255,7 @@
     .burger:hover{border-color:rgba(255,255,255,.18); background:rgba(255,255,255,.06)}
     .burger svg{width:20px; height:20px; opacity:.92}
 
+    /* Mobile panel */
     .mobilePanel{
       border-top:1px solid rgba(255,255,255,.10);
       background: rgba(8,8,12,.74);
@@ -392,7 +376,7 @@
     }
     .pill strong{color:var(--text); font-weight:650}
 
-    /* Grid */
+    /* Grid / cards */
     .grid{
       display:grid;
       grid-template-columns: 1.2fr .8fr;
@@ -411,7 +395,7 @@
     .card p{margin:0 0 12px; color:var(--muted)}
     .card .bd{padding:18px}
 
-    /* Request bar (RID + actions) */
+    /* RID bar */
     .ridBar{
       margin-top:12px;
       display:flex;
@@ -423,12 +407,7 @@
       border:1px solid rgba(255,255,255,.10);
       background: rgba(255,255,255,.03);
     }
-    .ridLeft{
-      min-width:0;
-      display:flex;
-      flex-direction:column;
-      gap:4px;
-    }
+    .ridLeft{min-width:0; display:flex; flex-direction:column; gap:4px}
     .ridLabel{
       font-size:11px;
       letter-spacing:.28em;
@@ -444,14 +423,7 @@
       white-space:nowrap;
       max-width: 520px;
     }
-    .ridActions{
-      display:flex;
-      gap:8px;
-      align-items:center;
-      flex-wrap:wrap;
-      justify-content:flex-end;
-      flex:0 0 auto;
-    }
+    .ridActions{display:flex; gap:8px; align-items:center; flex-wrap:wrap; justify-content:flex-end; flex:0 0 auto}
     .miniBtn{
       white-space:nowrap;
       font-size:13px;
@@ -523,21 +495,21 @@
     }
     .btn:hover{border-color:rgba(200,163,73,.85); filter:brightness(1.06)}
     .btn:active{transform: translateY(1px)}
-    .btn:disabled{
-      opacity:.65;
-      cursor:not-allowed;
-      filter:none;
-    }
+    .btn:disabled{opacity:.65; cursor:not-allowed; filter:none}
     .btn.secondary{
       border:1px solid rgba(255,255,255,.16);
       background: rgba(255,255,255,.04);
       font-weight:650;
     }
 
-    .note{font-size:12px; color:var(--muted2); margin-top:10px; line-height:1.55}
+    .note{
+      font-size:12px;
+      color:var(--muted2);
+      margin-top:10px;
+      line-height:1.55
+    }
     .note strong{color:var(--text); font-weight:650}
 
-    /* Form message */
     .formMsg{
       margin-top:12px;
       padding:12px 12px;
@@ -556,12 +528,10 @@
       font-size:13px;
       color:var(--muted);
     }
-    .links a{
-      border-bottom:1px solid rgba(255,255,255,.16);
-      padding-bottom:2px;
-    }
+    .links a{border-bottom:1px solid rgba(255,255,255,.16); padding-bottom:2px}
     .links a:hover{color:var(--text); border-bottom-color:rgba(200,163,73,.55)}
 
+    /* Tracks */
     .tracks{display:grid; grid-template-columns:1fr; gap:10px; margin-top:10px}
     .track{
       padding:14px 14px;
@@ -573,13 +543,7 @@
     .track .t{font-weight:800}
     .track .d{color:var(--muted); font-size:13px; margin-top:4px}
 
-    .trackActions{
-      display:flex;
-      gap:8px;
-      align-items:center;
-      flex-wrap:wrap;
-      justify-content:flex-end;
-    }
+    .trackActions{display:flex; gap:8px; align-items:center; flex-wrap:wrap; justify-content:flex-end}
     .cta{
       white-space:nowrap;
       font-size:13px;
@@ -633,11 +597,7 @@
       text-transform:uppercase;
       opacity:.95;
     }
-    .resourceGrid{
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-    }
+    .resourceGrid{display:flex; flex-wrap:wrap; gap:10px}
     .resourceGrid a{
       display:inline-flex;
       align-items:center;
@@ -667,25 +627,18 @@
     }
     .foot{
       max-width:var(--max); margin:0 auto;
-      padding: 0 16px;
+      padding: 0 14px;
       display:flex; flex-wrap:wrap; gap:12px 18px;
       align-items:center; justify-content:space-between;
     }
-    .footBrand{
-      display:flex; align-items:center; gap:10px;
-      color:var(--muted);
-    }
+    .footBrand{display:flex; align-items:center; gap:10px; color:var(--muted)}
     .footBrand img{
       width:28px; height:28px; border-radius:10px;
       border:1px solid rgba(255,255,255,.12);
       background: rgba(255,255,255,.03);
     }
     .footBrand:hover{color:var(--text)}
-    .footNav{
-      display:flex; flex-wrap:wrap;
-      gap:10px 12px;
-      align-items:center;
-    }
+    .footNav{display:flex; flex-wrap:wrap; gap:10px 12px; align-items:center}
     .footNav a{
       color: var(--muted);
       padding:8px 10px;
@@ -703,17 +656,14 @@
       background: rgba(200,163,73,.10);
     }
 
-    /* Responsive: collapse header earlier to avoid overlap on laptops */
-    @media (max-width: 1220px){
-      .brand{min-width: 220px; max-width: 300px}
-      .brand .tag{max-width: 260px}
-      .menu a{font-size:12.25px; padding:8px 9px}
-      .menuPrimary{justify-content:flex-start}
-    }
-    @media (max-width: 1140px){
+    /* ===== Laptop-safe: collapse earlier to burger so tabs never cut ===== */
+    @media (max-width: 1480px){
       .menu{display:none}
       .burger{display:flex}
+      .brand .tag{display:none}
+      .brand{max-width:280px}
     }
+
     @media (max-width: 980px){
       .grid{grid-template-columns:1fr}
       .ridValue{max-width: 100%}
@@ -721,32 +671,22 @@
     @media (max-width: 760px){
       :root{--navH: 64px}
       .wrap{padding:16px}
-      .nav{padding:10px 14px}
       .brandMark{width:34px; height:34px}
-      .brand{min-width: 0; max-width: 100%}
-      .brand .tag{display:none}
       .heroInner{padding:20px 16px}
       h1{font-size:30px}
       .lead{font-size:15px}
       .form{grid-template-columns:1fr}
-      .mobileGrid{grid-template-columns:1fr 1fr}
-      .foot{padding:0 14px}
-      .footNav a{font-size:12.5px}
       .ridBar{flex-direction:column; align-items:flex-start}
       .ridActions{justify-content:flex-start}
+      .mobileGrid{grid-template-columns:1fr 1fr}
     }
     @media (max-width: 420px){
       .mobileGrid{grid-template-columns:1fr}
     }
 
-    /* Accessibility helper */
-    .skip{
-      position:absolute; left:-999px; top:10px;
-      background:#111118; border:1px solid rgba(255,255,255,.12);
-      color:var(--text); padding:10px 12px; border-radius:12px;
-      z-index:999;
+    @media (prefers-reduced-motion: reduce){
+      *{transition:none !important; scroll-behavior:auto !important}
     }
-    .skip:focus{left:10px}
   </style>
 
   <script type="application/ld+json">
@@ -783,7 +723,7 @@
         </div>
       </a>
 
-      <!-- Desktop nav: 5 core tabs + app actions -->
+      <!-- Desktop nav (shown only on very wide screens) -->
       <nav class="menu" aria-label="Primary navigation">
         <div class="menuPrimary" aria-label="Core">
           <a href="/trust-ledger/">Trust Ledger</a>
@@ -807,7 +747,7 @@
       </button>
     </div>
 
-    <!-- Mobile panel -->
+    <!-- Mobile panel (primary for laptop + phone) -->
     <div class="mobilePanel" id="mobilePanel" hidden>
       <div class="mobileInner">
         <div class="mobileGrid" aria-label="Mobile navigation">
@@ -862,7 +802,7 @@
             Please keep submissions high-level and non-confidential.
           </p>
 
-          <!-- Request ID Bar -->
+          <!-- Request ID bar -->
           <div class="ridBar" aria-label="Request ID bar">
             <div class="ridLeft">
               <div class="ridLabel">Request ID</div>
@@ -876,6 +816,7 @@
         </div>
 
         <div class="bd">
+          <!-- IMPORTANT: replace Formspree endpoint below -->
           <form
             id="nfGateForm"
             action="https://formspree.io/f/xyzrdrpv"
@@ -887,11 +828,13 @@
             <input type="hidden" name="site" value="noetfield.com" />
             <input type="hidden" name="_subject" value="Noetfield Gate — Board/Client intake" />
 
-            <!-- Request ID for Status tracking -->
+            <!-- Request ID -->
             <input type="hidden" id="request_id" name="request_id" value="" />
 
             <!-- Honeypot -->
-            <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true" />
+            <div style="position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden;" aria-hidden="true">
+              <label>Leave this empty<input type="text" name="_gotcha" tabindex="-1" autocomplete="off" /></label>
+            </div>
 
             <div class="form">
               <div>
@@ -1020,7 +963,7 @@
 
             <div id="formMsg" class="formMsg" role="status" aria-live="polite"></div>
 
-            <div class="note" id="privacyNote">
+            <div class="note">
               <strong>Privacy &amp; security:</strong> do not submit confidential, customer, or security-sensitive details here.
               This intake is used only to respond and route your request. If we proceed, we will propose a safer channel.
               <br /><br />
@@ -1134,23 +1077,35 @@
     // Year
     document.getElementById("y").textContent = new Date().getFullYear();
 
-    // Mobile menu toggle
+    // Mobile menu toggle + close on outside click
     (function () {
       var burger = document.getElementById("burger");
       var panel = document.getElementById("mobilePanel");
       if (!burger || !panel) return;
 
+      function openPanel() {
+        burger.setAttribute("aria-expanded", "true");
+        panel.hidden = false;
+      }
+      function closePanel() {
+        burger.setAttribute("aria-expanded", "false");
+        panel.hidden = true;
+      }
+
       burger.addEventListener("click", function () {
         var isOpen = burger.getAttribute("aria-expanded") === "true";
-        burger.setAttribute("aria-expanded", String(!isOpen));
-        panel.hidden = isOpen;
+        if (isOpen) closePanel(); else openPanel();
       });
 
       document.addEventListener("keydown", function (e) {
-        if (e.key === "Escape" && burger.getAttribute("aria-expanded") === "true") {
-          burger.setAttribute("aria-expanded", "false");
-          panel.hidden = true;
-        }
+        if (e.key === "Escape" && burger.getAttribute("aria-expanded") === "true") closePanel();
+      });
+
+      document.addEventListener("click", function (e) {
+        var isOpen = burger.getAttribute("aria-expanded") === "true";
+        if (!isOpen) return;
+        if (panel.contains(e.target) || burger.contains(e.target)) return;
+        closePanel();
       });
     })();
 
@@ -1182,15 +1137,10 @@
       ridInput.value = rid;
       ridText.textContent = rid;
 
-      // Keep last RID
       try { localStorage.setItem("nf_last_rid", rid); } catch(e){}
 
-      // Status deep-link (optional)
-      if (openStatusBtn) {
-        openStatusBtn.href = "/status/?rid=" + encodeURIComponent(rid);
-      }
+      if (openStatusBtn) openStatusBtn.href = "/status/?rid=" + encodeURIComponent(rid);
 
-      // Copy button
       var copyBtn = document.getElementById("copyRidBtn");
       if (copyBtn) {
         copyBtn.addEventListener("click", async function(){
@@ -1199,7 +1149,6 @@
             copyBtn.textContent = "Copied";
             setTimeout(function(){ copyBtn.textContent = "Copy"; }, 1200);
           } catch(e){
-            // Fallback
             var ta = document.createElement("textarea");
             ta.value = rid;
             document.body.appendChild(ta);
@@ -1242,6 +1191,12 @@
       form.addEventListener("submit", async function (e) {
         e.preventDefault();
 
+        // Keep native validation UX
+        if (!form.checkValidity()) {
+          form.reportValidity();
+          return;
+        }
+
         var action = form.getAttribute("action");
         if (!action) {
           setMsg("Form endpoint is missing. Please set the form action to your Formspree URL.", "err");
@@ -1281,7 +1236,6 @@
 
           setMsg("Submitted successfully. Redirecting…", "ok");
 
-          // Save last submitted RID (useful for Status page)
           try { localStorage.setItem("nf_last_submitted_rid", rid); } catch(e){}
 
           var url = "/thanks/";
@@ -1295,7 +1249,7 @@
       });
     })();
 
-    // Auto-active (header + footer + mobile)
+    // Auto-active (mobile + footer + desktop)
     (function () {
       function normPath(p) {
         if (!p) return "/";

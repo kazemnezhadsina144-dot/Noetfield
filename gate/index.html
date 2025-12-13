@@ -1,1283 +1,528 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-  <title>Noetfield – Gate (Board-Ready AI Governance Entry)</title>
-  <meta name="description" content="A governed entry point for board-ready AI governance artefacts and intakes: Trust Ledger samples, Trust Brief pilot one-pager, and board decision memo templates." />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="robots" content="index,follow" />
   <meta name="author" content="Noetfield Systems Inc." />
-  <meta name="color-scheme" content="dark" />
+
+  <title>Noetfield – Partner Notes (Invitation-Only)</title>
+  <meta
+    name="description"
+    content="Invitation-only Partner Notes for aligned backers: governance-first updates, milestones, and access paths."
+  />
 
   <!-- Canonical (always www) -->
-  <link rel="canonical" href="https://www.noetfield.com/gate/" />
+  <link rel="canonical" href="https://www.noetfield.com/partners/notes/" />
 
   <!-- Icons -->
-  <link rel="icon" href="/noetfield-favicon-512.png" type="image/png" />
-  <link rel="apple-touch-icon" href="/noetfield-favicon-512.png" />
-  <meta name="theme-color" content="#07070b" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <meta name="theme-color" content="#0b0b0e" />
 
-  <!-- OG -->
+  <!-- Open Graph -->
   <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="Noetfield" />
-  <meta property="og:title" content="Noetfield Gate – Board-Ready AI Governance Entry" />
-  <meta property="og:description" content="Request board-ready governance artefacts and the right intake pathway (Client, Partner, Investor, Research)." />
-  <meta property="og:url" content="https://www.noetfield.com/gate/" />
-  <meta property="og:image" content="https://www.noetfield.com/noetfield-og.png" />
+  <meta property="og:title" content="Noetfield – Partner Notes (Invitation-Only)" />
+  <meta property="og:description" content="Invitation-only Partner Notes: governance-first updates and access paths." />
+  <meta property="og:url" content="https://www.noetfield.com/partners/notes/" />
+  <meta property="og:image" content="https://www.noetfield.com/og/partners-notes.png" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Noetfield Gate – Board-Ready AI Governance Entry" />
-  <meta name="twitter:description" content="Request board-ready governance artefacts and the right intake pathway (Client, Partner, Investor, Research)." />
-  <meta name="twitter:image" content="https://www.noetfield.com/noetfield-og.png" />
+  <meta name="twitter:title" content="Noetfield – Partner Notes (Invitation-Only)" />
+  <meta name="twitter:description" content="Invitation-only Partner Notes: governance-first updates and access paths." />
+  <meta name="twitter:image" content="https://www.noetfield.com/og/partners-notes.png" />
 
-  <!-- Font -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <!-- Organization JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Organization",
+    "name":"Noetfield Systems Inc.",
+    "url":"https://www.noetfield.com/",
+    "logo":"https://www.noetfield.com/assets/noetfield-mark.png"
+  }
+  </script>
+
+  <!-- Page JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"WebPage",
+    "name":"Partner Notes (Invitation-Only)",
+    "url":"https://www.noetfield.com/partners/notes/",
+    "isPartOf":{"@type":"WebSite","name":"Noetfield","url":"https://www.noetfield.com/"}
+  }
+  </script>
 
   <style>
     :root{
-      --bg0:#07070b;
-      --bg1:#0b0b14;
-      --panel: rgba(255,255,255,.055);
-      --panel2: rgba(255,255,255,.035);
-      --text:#eff0f7;
-      --muted:#b9bbcf;
-      --muted2:#8e91ad;
-      --line: rgba(255,255,255,.11);
-
-      --gold:#c8a349;
-      --ok:#2de38a;
-      --okGlow: rgba(45,227,138,.18);
-      --danger:#ff5a5a;
-
-      --radius:18px;
+      --bg:#0b0b0e;
+      --card:#101016;
+      --text:#f2f3f5;
+      --muted:#b9bcc6;
+      --border:rgba(255,255,255,.10);
+      --shadow:0 16px 40px rgba(0,0,0,.45);
+      --accent:#c9a46a; /* gold */
       --max:1120px;
-
-      --shadow: 0 28px 80px rgba(0,0,0,.62);
-      --shadow2: 0 14px 50px rgba(0,0,0,.50);
-      --focus: 0 0 0 4px rgba(200,163,73,.18);
-
-      --navH: 68px;
+      --r:16px;
+      --pad:24px;
     }
 
     *{box-sizing:border-box}
     html,body{height:100%}
     body{
       margin:0;
-      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      color: var(--text);
-      background: linear-gradient(180deg, var(--bg0), var(--bg1));
-      overflow-x:hidden;
-      -webkit-font-smoothing: antialiased;
-      text-rendering: optimizeLegibility;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      background:
+        radial-gradient(900px 420px at 20% 0%, rgba(201,164,106,.12), transparent 60%),
+        radial-gradient(900px 420px at 80% 0%, rgba(201,164,106,.08), transparent 60%),
+        var(--bg);
+      color:var(--text);
+      line-height:1.55;
     }
 
     a{color:inherit; text-decoration:none}
-    [hidden]{display:none !important}
+    a:hover{opacity:.95}
 
-    a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible{
-      outline:none;
-      box-shadow: var(--focus);
-      border-color: rgba(200,163,73,.58) !important;
+    .wrap{max-width:var(--max); margin:0 auto; padding:0 var(--pad)}
+    .sr-only{
+      position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden;
+      clip:rect(0,0,0,0); white-space:nowrap; border:0;
     }
-
-    /* Skip link */
-    .skip{
-      position:absolute; left:-999px; top:10px;
-      background:#111118; border:1px solid rgba(255,255,255,.12);
-      color:var(--text); padding:10px 12px; border-radius:12px;
-      z-index:999;
-    }
-    .skip:focus{left:10px}
-
-    /* Background */
-    .bg{
-      position:fixed; inset:0;
-      z-index:-3; pointer-events:none;
-      background:
-        radial-gradient(1400px 820px at 10% -10%, rgba(200,163,73,.20), transparent 58%),
-        radial-gradient(1200px 820px at 100% 0%, rgba(122,167,255,.12), transparent 60%),
-        radial-gradient(900px 700px at 55% 22%, rgba(255,255,255,.05), transparent 62%),
-        linear-gradient(180deg, var(--bg0), var(--bg1));
-      filter: saturate(1.05);
-    }
-    .bg::before{
-      content:"";
-      position:absolute; inset:0;
-      background:
-        linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
-      background-size: 54px 54px;
-      opacity:.055;
-      mask-image: radial-gradient(70% 60% at 50% 8%, black 55%, transparent 100%);
-    }
-    .bg::after{
-      content:"";
-      position:absolute; inset:-90px;
-      background:
-        radial-gradient(1100px 760px at 50% 8%, transparent 55%, rgba(0,0,0,.58) 100%),
-        radial-gradient(1000px 900px at 50% 110%, rgba(0,0,0,.68), transparent 62%);
-      opacity:.92;
-    }
-
-    .wrap{max-width:var(--max); margin:0 auto; padding:24px}
 
     /* Header */
     header{
-      position:sticky; top:0; z-index:60;
-      backdrop-filter: blur(16px);
-      background: rgba(8,8,12,.62);
-      border-bottom: 1px solid rgba(255,255,255,.10);
+      position:sticky; top:0; z-index:50;
+      backdrop-filter:saturate(140%) blur(10px);
+      background:rgba(11,11,14,.72);
+      border-bottom:1px solid var(--border);
     }
-    .nav{
-      max-width:var(--max);
-      margin:0 auto;
-      padding: 10px 14px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      min-height: var(--navH);
+    .head{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:14px 0;
+      gap:16px;
     }
-
     .brand{
-      display:flex; align-items:center; gap:12px;
+      display:flex; align-items:center; gap:10px;
+      min-width: 210px;
+    }
+    .mark{
+      width:34px; height:34px; border-radius:10px;
+      border:1px solid rgba(201,164,106,.35);
+      background: radial-gradient(20px 20px at 30% 30%, rgba(201,164,106,.35), rgba(201,164,106,.08));
+      display:grid; place-items:center;
+      box-shadow: 0 10px 26px rgba(0,0,0,.35);
       flex:0 0 auto;
-      min-width: 220px;
-      max-width: 300px;
     }
-    .brandMark{
-      width:36px; height:36px; border-radius:12px;
-      box-shadow: 0 12px 26px rgba(0,0,0,.55);
-      border:1px solid rgba(255,255,255,.12);
-      flex:0 0 auto;
-    }
-    .brandText{min-width:0}
-    .brand .name{font-weight:800; letter-spacing:.10px; line-height:1.05; font-size:14px}
-    .brand .tag{
-      margin-top:3px;
-      font-size:10px;
-      letter-spacing:.26em;
-      text-transform:uppercase;
-      color:var(--muted2);
-      white-space:nowrap;
-      overflow:hidden;
-      text-overflow:ellipsis;
-      opacity:.92;
-    }
+    .mark svg{width:18px; height:18px}
+    .brand b{font-size:14px; letter-spacing:.16em; text-transform:uppercase}
+    .brand span{display:block; font-size:12px; color:var(--muted); letter-spacing:.02em}
 
-    /* Desktop nav */
-    .menu{
-      display:flex;
-      align-items:center;
-      justify-content:flex-end;
-      gap:12px;
-      flex:1 1 auto;
-      min-width:0;
+    nav{
+      display:flex; align-items:center; gap:18px;
     }
-    .menuPrimary, .menuActions{
-      display:flex;
-      align-items:center;
-      gap:8px;
-      min-width:0;
-      flex-wrap:nowrap;
-    }
-    .menuPrimary{
-      flex:1 1 auto;
-      justify-content:center;
-      overflow: visible; /* IMPORTANT: never clip tabs */
-    }
-    .menuActions{flex:0 0 auto; justify-content:flex-end}
-
-    .menu a{
-      color:var(--muted);
-      padding:8px 10px;
-      border-radius:14px;
+    nav a{
+      font-size:13px; color:var(--muted);
+      padding:8px 10px; border-radius:10px;
       border:1px solid transparent;
-      background: transparent;
-      transition: background .15s ease, border-color .15s ease, color .15s ease, transform .06s ease;
-      white-space:nowrap;
-      font-size:12.5px;
-      line-height:1;
     }
-    .menu a:hover{
-      color:var(--text);
-      border-color:rgba(255,255,255,.10);
-      background:rgba(255,255,255,.045);
+    nav a:hover{color:var(--text); border-color:rgba(255,255,255,.10); background:rgba(255,255,255,.04)}
+    .cta{
+      display:flex; align-items:center; gap:10px;
     }
-    .menu a:active{transform: translateY(1px)}
-    .menu a.active,
-    .menu a[aria-current="page"]{
-      color:var(--text);
-      border-color:rgba(200,163,73,.38);
-      background:
-        radial-gradient(240px 90px at 50% 0%, rgba(255,255,255,.10), transparent 60%),
-        linear-gradient(180deg, rgba(200,163,73,.22), rgba(200,163,73,.10));
-    }
-    .menu a.pilltab{
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center; gap:10px;
+      border-radius:14px;
+      padding:10px 14px;
       border:1px solid rgba(255,255,255,.14);
-      background: rgba(255,255,255,.03);
+      background:rgba(255,255,255,.04);
+      color:var(--text);
+      font-size:13px;
+      cursor:pointer;
+      transition:transform .15s ease, background .15s ease, border-color .15s ease;
+      white-space:nowrap;
     }
-    .menu a.login{
-      border:1px solid rgba(200,163,73,.58);
-      background:
-        radial-gradient(220px 90px at 40% 0%, rgba(255,255,255,.11), transparent 62%),
-        linear-gradient(180deg, rgba(200,163,73,.22), rgba(200,163,73,.10));
-      color: var(--text);
-      font-weight:750;
-      padding:8px 11px;
+    .btn:hover{transform:translateY(-1px); background:rgba(255,255,255,.06); border-color:rgba(255,255,255,.20)}
+    .btn.primary{
+      border-color:rgba(201,164,106,.45);
+      background:linear-gradient(180deg, rgba(201,164,106,.18), rgba(201,164,106,.08));
     }
-
-    /* Status dot */
-    .statusLink{display:inline-flex; align-items:center; gap:8px}
-    .statusDot{
-      width:7px; height:7px; border-radius:50%;
-      background: var(--ok);
-      box-shadow: 0 0 0 3px var(--okGlow);
-      flex:0 0 auto;
-    }
-
-    /* Burger */
     .burger{
       display:none;
-      align-items:center; justify-content:center;
-      width:42px; height:42px;
+      width:44px; height:40px;
       border-radius:14px;
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.04);
+      color:var(--text);
       cursor:pointer;
-      transition: background .15s ease, border-color .15s ease;
-      flex:0 0 auto;
     }
-    .burger:hover{border-color:rgba(255,255,255,.18); background:rgba(255,255,255,.06)}
-    .burger svg{width:20px; height:20px; opacity:.92}
-
-    /* Mobile panel */
-    .mobilePanel{
-      border-top:1px solid rgba(255,255,255,.10);
-      background: rgba(8,8,12,.74);
-      backdrop-filter: blur(16px);
-    }
-    .mobileInner{
-      max-width:var(--max);
-      margin:0 auto;
-      padding: 12px 14px 16px;
-    }
-    .mobileGrid{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:10px;
-    }
-    .mobileGrid a{
-      padding:12px 12px;
-      border-radius:16px;
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.04);
-      color: var(--muted);
-      font-size:14px;
-      transition: background .15s ease, border-color .15s ease, color .15s ease;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      gap:8px;
-      text-align:center;
-    }
-    .mobileGrid a:hover{color:var(--text); border-color:rgba(255,255,255,.18); background:rgba(255,255,255,.06)}
-    .mobileGrid a.active,
-    .mobileGrid a[aria-current="page"]{
-      color: var(--text);
-      border-color: rgba(200,163,73,.42);
-      background:
-        radial-gradient(220px 90px at 30% 0%, rgba(200,163,73,.22), transparent 60%),
-        rgba(200,163,73,.10);
-    }
-    .mobileNote{
-      margin-top:12px;
-      color:var(--muted2);
-      font-size:12px;
-      display:flex; gap:8px; align-items:center;
-      flex-wrap:wrap;
-    }
-    .chip{
-      display:inline-flex; align-items:center; gap:8px;
-      padding:7px 10px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.03);
-      color: var(--muted2);
-    }
-    .chip b{color:var(--text); font-weight:650}
 
     /* Hero */
-    .hero{padding: 22px 0 18px}
-    .heroShell{
-      position:relative;
-      border-radius: calc(var(--radius) + 8px);
-      border: 1px solid rgba(255,255,255,.11);
-      background:
-        radial-gradient(1000px 420px at 18% 0%, rgba(200,163,73,.18), transparent 60%),
-        radial-gradient(1000px 420px at 90% 10%, rgba(122,167,255,.10), transparent 62%),
-        linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.022));
-      box-shadow: var(--shadow);
-      overflow:hidden;
-    }
-    .heroShell::before{
-      content:"";
-      position:absolute; inset:-1px;
-      background: linear-gradient(120deg,
-        rgba(200,163,73,.26),
-        transparent 30%,
-        rgba(255,255,255,.08) 68%,
-        transparent
-      );
-      opacity:.44;
-      pointer-events:none;
-      mask-image: linear-gradient(180deg, black 0%, black 58%, transparent 96%);
-    }
-    .heroInner{padding: 24px 22px}
-    .eyebrow{
-      display:inline-flex; gap:10px; align-items:center;
-      color:var(--muted);
-      font-size:13px;
-      padding:9px 12px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.13);
-      background: rgba(255,255,255,.035);
-    }
-    .dot{
-      width:8px; height:8px; border-radius:50%;
-      background: rgba(200,163,73,.97);
-      box-shadow: 0 0 0 3px rgba(200,163,73,.18);
-    }
-    h1{
-      margin:14px 0 10px;
-      font-size:42px;
-      line-height:1.07;
-      letter-spacing:-0.75px;
-    }
-    .lead{
-      margin:0;
-      color:var(--muted);
-      font-size:16px;
-      max-width: 920px;
-    }
-    .pillrow{display:flex; flex-wrap:wrap; gap:10px; margin-top:14px}
-    .pill{
-      display:inline-flex; align-items:center; gap:10px;
-      padding:9px 12px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.03);
-      color:var(--muted);
-      font-size:13px;
-    }
-    .pill strong{color:var(--text); font-weight:650}
-
-    /* Grid / cards */
-    .grid{
+    main{padding:34px 0 70px}
+    .hero{
       display:grid;
-      grid-template-columns: 1.2fr .8fr;
-      gap:18px;
-      margin: 18px 0 34px;
+      grid-template-columns: 1.25fr .75fr;
+      gap:22px;
+      align-items:stretch;
+      margin-top:14px;
     }
     .card{
-      border-radius:var(--radius);
-      border:1px solid rgba(255,255,255,.11);
-      background: linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.022));
-      box-shadow: var(--shadow2);
-      overflow:hidden;
+      background:rgba(16,16,22,.72);
+      border:1px solid var(--border);
+      border-radius:var(--r);
+      box-shadow:var(--shadow);
     }
-    .card .hd{padding:18px 18px 0}
-    .card h2{margin:0 0 8px; font-size:18px; letter-spacing:-0.2px}
-    .card p{margin:0 0 12px; color:var(--muted)}
-    .card .bd{padding:18px}
-
-    /* RID bar */
-    .ridBar{
-      margin-top:12px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:10px;
-      padding:12px 12px;
-      border-radius:16px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.03);
-    }
-    .ridLeft{min-width:0; display:flex; flex-direction:column; gap:4px}
-    .ridLabel{
-      font-size:11px;
-      letter-spacing:.28em;
+    .hero .left{padding:26px}
+    .kicker{
+      display:inline-flex; align-items:center; gap:10px;
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid rgba(201,164,106,.26);
+      background:rgba(201,164,106,.08);
+      color:rgba(255,255,255,.92);
+      font-size:12px;
+      letter-spacing:.10em;
       text-transform:uppercase;
-      color:var(--muted2);
     }
-    .ridValue{
-      font-weight:700;
-      color:var(--text);
-      font-size:13px;
-      overflow:hidden;
-      text-overflow:ellipsis;
-      white-space:nowrap;
-      max-width: 520px;
+    h1{
+      margin:14px 0 8px;
+      font-size:34px;
+      line-height:1.12;
+      letter-spacing:-.02em;
     }
-    .ridActions{display:flex; gap:8px; align-items:center; flex-wrap:wrap; justify-content:flex-end; flex:0 0 auto}
-    .miniBtn{
-      white-space:nowrap;
-      font-size:13px;
-      color:var(--text);
-      border:1px solid rgba(255,255,255,.14);
-      background: rgba(255,255,255,.04);
-      padding:9px 12px;
-      border-radius:14px;
-      cursor:pointer;
-      transition: background .15s ease, border-color .15s ease, transform .06s ease;
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:8px;
-    }
-    .miniBtn:hover{border-color:rgba(255,255,255,.22); background:rgba(255,255,255,.06)}
-    .miniBtn:active{transform: translateY(1px)}
-    .miniBtn.primary{
-      border-color: rgba(200,163,73,.38);
-      background: rgba(200,163,73,.10);
-    }
-    .miniBtn.primary:hover{
-      border-color: rgba(200,163,73,.70);
-      background: rgba(200,163,73,.14);
-    }
-
-    /* Form */
-    .form{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:12px;
-      margin-top:12px;
-    }
-    .form .full{grid-column:1 / -1}
-
-    label{display:block; font-size:12px; color:var(--muted2); margin:0 0 6px}
-
-    input, select, textarea{
-      width:100%;
-      background: rgba(10,10,16,.55);
-      border: 1px solid rgba(255,255,255,.14);
-      color: var(--text);
-      padding: 12px 12px;
-      border-radius: 14px;
-      outline:none;
-      font-family:inherit;
-      font-size:14px;
-      transition: border-color .15s ease, box-shadow .15s ease, background .15s ease;
-    }
-    input::placeholder, textarea::placeholder{color: rgba(185,187,207,.55)}
-    textarea{min-height:110px; resize:vertical}
-    input:focus, select:focus, textarea:focus{box-shadow: var(--focus); background: rgba(12,12,18,.62)}
-
-    .actions{display:flex; gap:12px; align-items:center; justify-content:flex-start; margin-top:12px; flex-wrap:wrap}
-    .btn{
-      display:inline-flex; align-items:center; justify-content:center;
-      gap:10px;
-      padding:12px 14px;
-      border-radius:16px;
-      border:1px solid rgba(200,163,73,.58);
-      background:
-        radial-gradient(260px 110px at 40% 0%, rgba(255,255,255,.11), transparent 62%),
-        linear-gradient(180deg, rgba(200,163,73,.24), rgba(200,163,73,.11));
-      color:var(--text);
-      font-weight:800;
-      font-size:14px;
-      cursor:pointer;
-      transition: border-color .15s ease, transform .06s ease, filter .15s ease;
-    }
-    .btn:hover{border-color:rgba(200,163,73,.85); filter:brightness(1.06)}
-    .btn:active{transform: translateY(1px)}
-    .btn:disabled{opacity:.65; cursor:not-allowed; filter:none}
-    .btn.secondary{
-      border:1px solid rgba(255,255,255,.16);
-      background: rgba(255,255,255,.04);
-      font-weight:650;
-    }
-
-    .note{
-      font-size:12px;
-      color:var(--muted2);
-      margin-top:10px;
-      line-height:1.55
-    }
-    .note strong{color:var(--text); font-weight:650}
-
-    .formMsg{
-      margin-top:12px;
-      padding:12px 12px;
-      border-radius:14px;
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.03);
-      color: var(--muted);
-      font-size:12px;
-      line-height:1.55;
-      display:none;
-    }
-
-    .links{
-      display:flex; flex-wrap:wrap; gap:10px 14px;
-      margin-top:16px;
-      font-size:13px;
+    .sub{
+      margin:0;
       color:var(--muted);
+      font-size:15px;
+      max-width:62ch;
     }
-    .links a{border-bottom:1px solid rgba(255,255,255,.16); padding-bottom:2px}
-    .links a:hover{color:var(--text); border-bottom-color:rgba(200,163,73,.55)}
-
-    /* Tracks */
-    .tracks{display:grid; grid-template-columns:1fr; gap:10px; margin-top:10px}
-    .track{
-      padding:14px 14px;
-      border-radius:16px;
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(10,10,14,.35);
-      display:flex; align-items:flex-start; justify-content:space-between; gap:14px;
+    .bullets{
+      margin:18px 0 0;
+      padding:0;
+      list-style:none;
+      display:grid;
+      gap:10px;
     }
-    .track .t{font-weight:800}
-    .track .d{color:var(--muted); font-size:13px; margin-top:4px}
-
-    .trackActions{display:flex; gap:8px; align-items:center; flex-wrap:wrap; justify-content:flex-end}
-    .cta{
-      white-space:nowrap;
-      font-size:13px;
-      color:var(--text);
-      border:1px solid rgba(200,163,73,.38);
-      background: rgba(200,163,73,.10);
-      padding:9px 12px;
-      border-radius:14px;
-      transition: background .15s ease, border-color .15s ease;
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:8px;
+    .bullets li{
+      display:flex; gap:10px; align-items:flex-start;
+      color:rgba(255,255,255,.92);
+      font-size:14px;
     }
-    .cta:hover{border-color:rgba(200,163,73,.70); background:rgba(200,163,73,.14)}
-    .cta.secondary{
-      border:1px solid rgba(255,255,255,.16);
-      background: rgba(255,255,255,.04);
-      color: var(--muted);
+    .dot{
+      width:10px; height:10px; margin-top:6px;
+      border-radius:999px;
+      background:rgba(201,164,106,.85);
+      box-shadow:0 0 0 4px rgba(201,164,106,.12);
+      flex:0 0 auto;
     }
-    .cta.secondary:hover{
-      color: var(--text);
-      border-color: rgba(255,255,255,.22);
-      background: rgba(255,255,255,.06);
+    .heroActions{
+      display:flex; flex-wrap:wrap; gap:10px;
+      margin-top:18px;
     }
 
-    .fineprint{
-      margin-top:14px;
-      padding:12px 12px;
-      border-radius:14px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.03);
-      color: var(--muted2);
-      font-size:12px;
-      line-height:1.55;
+    /* Right panel */
+    .hero .right{padding:22px}
+    .panelTitle{
+      margin:0 0 8px; font-size:14px; letter-spacing:.08em; text-transform:uppercase;
+      color:rgba(255,255,255,.90);
     }
-
-    .resourceBox{
-      margin-top:14px;
-      padding:12px 12px;
-      border-radius:14px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.03);
+    .panelText{
+      margin:0 0 14px; font-size:13px; color:var(--muted);
     }
-    .resourceTitle{
-      font-weight:800;
-      font-size:12px;
-      color: var(--text);
-      margin: 0 0 8px;
-      letter-spacing: .2px;
-      text-transform:uppercase;
-      opacity:.95;
+    .panelRow{
+      display:flex; gap:10px; flex-wrap:wrap;
+      margin-top:12px;
     }
-    .resourceGrid{display:flex; flex-wrap:wrap; gap:10px}
-    .resourceGrid a{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
+    .pill{
+      display:inline-flex; align-items:center; gap:8px;
       padding:9px 10px;
       border-radius:999px;
       border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.03);
-      color: var(--muted);
-      font-size:13px;
-      transition: background .15s ease, border-color .15s ease, color .15s ease;
+      background:rgba(255,255,255,.03);
+      font-size:12px;
+      color:rgba(255,255,255,.90);
     }
-    .resourceGrid a:hover{
-      color: var(--text);
-      border-color: rgba(255,255,255,.18);
-      background: rgba(255,255,255,.05);
+    .pill i{
+      width:7px; height:7px; border-radius:999px; background:rgba(255,255,255,.45);
+      display:inline-block;
+    }
+
+    /* Sections */
+    .section{
+      margin-top:22px;
+      padding:22px;
+    }
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:14px;
+    }
+    .mini{
+      padding:16px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.03);
+      min-height:120px;
+    }
+    .mini h3{
+      margin:0 0 6px;
+      font-size:14px;
+      letter-spacing:.02em;
+    }
+    .mini p{
+      margin:0;
+      color:var(--muted);
+      font-size:13px;
+    }
+
+    /* Form */
+    form{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:12px;
+      margin-top:14px;
+    }
+    label{display:block; font-size:12px; color:var(--muted); margin:0 0 6px}
+    input, textarea, select{
+      width:100%;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(0,0,0,.20);
+      color:var(--text);
+      padding:12px 12px;
+      outline:none;
+      font-size:14px;
+    }
+    input:focus, textarea:focus, select:focus{
+      border-color:rgba(201,164,106,.55);
+      box-shadow:0 0 0 4px rgba(201,164,106,.12);
+    }
+    textarea{min-height:120px; resize:vertical}
+    .full{grid-column:1 / -1}
+    .hint{
+      margin:10px 0 0;
+      color:var(--muted);
+      font-size:12px;
     }
 
     /* Footer */
     footer{
-      border-top:1px solid rgba(255,255,255,.10);
-      padding: 18px 0 22px;
-      color:var(--muted2);
-      margin-top:34px;
-      background: rgba(8,8,12,.35);
-      backdrop-filter: blur(10px);
+      border-top:1px solid var(--border);
+      padding:22px 0;
+      color:var(--muted);
+      font-size:12px;
     }
     .foot{
-      max-width:var(--max); margin:0 auto;
-      padding: 0 14px;
-      display:flex; flex-wrap:wrap; gap:12px 18px;
-      align-items:center; justify-content:space-between;
+      display:flex; align-items:center; justify-content:space-between;
+      gap:12px; flex-wrap:wrap;
     }
-    .footBrand{display:flex; align-items:center; gap:10px; color:var(--muted)}
-    .footBrand img{
-      width:28px; height:28px; border-radius:10px;
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.03);
-    }
-    .footBrand:hover{color:var(--text)}
-    .footNav{display:flex; flex-wrap:wrap; gap:10px 12px; align-items:center}
-    .footNav a{
-      color: var(--muted);
-      padding:8px 10px;
-      border-radius:14px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.03);
-      font-size:13px;
-      transition: background .15s ease, border-color .15s ease, color .15s ease;
-      white-space:nowrap;
-    }
-    .footNav a:hover{color:var(--text); border-color:rgba(255,255,255,.16); background:rgba(255,255,255,.05)}
-    .footNav a.active, .footNav a[aria-current="page"]{
-      color: var(--text);
-      border-color: rgba(200,163,73,.40);
-      background: rgba(200,163,73,.10);
-    }
+    .foot a{color:var(--muted)}
+    .foot a:hover{color:var(--text)}
 
-    /* ===== Laptop-safe: collapse earlier to burger so tabs never cut ===== */
-    @media (max-width: 1480px){
-      .menu{display:none}
-      .burger{display:flex}
-      .brand .tag{display:none}
-      .brand{max-width:280px}
-    }
-
-    @media (max-width: 980px){
+    /* Mobile */
+    @media (max-width: 960px){
+      .hero{grid-template-columns:1fr}
       .grid{grid-template-columns:1fr}
-      .ridValue{max-width: 100%}
-    }
-    @media (max-width: 760px){
-      :root{--navH: 64px}
-      .wrap{padding:16px}
-      .brandMark{width:34px; height:34px}
-      .heroInner{padding:20px 16px}
-      h1{font-size:30px}
-      .lead{font-size:15px}
-      .form{grid-template-columns:1fr}
-      .ridBar{flex-direction:column; align-items:flex-start}
-      .ridActions{justify-content:flex-start}
-      .mobileGrid{grid-template-columns:1fr 1fr}
-    }
-    @media (max-width: 420px){
-      .mobileGrid{grid-template-columns:1fr}
-    }
-
-    @media (prefers-reduced-motion: reduce){
-      *{transition:none !important; scroll-behavior:auto !important}
+      form{grid-template-columns:1fr}
+      .brand{min-width:auto}
+      nav{display:none}
+      .burger{display:inline-flex; align-items:center; justify-content:center}
+      header[data-open="true"] nav{
+        display:flex;
+        flex-direction:column;
+        align-items:stretch;
+        gap:8px;
+        padding:0 0 14px;
+      }
+      header[data-open="true"] nav a{padding:10px 12px}
+      header[data-open="true"] .head{align-items:flex-start}
     }
   </style>
-
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebPage",
-    "name": "Noetfield Gate",
-    "url": "https://www.noetfield.com/gate/",
-    "description": "A governed entry point for board-ready AI governance artefacts and intakes.",
-    "isPartOf": {
-      "@type": "WebSite",
-      "name": "Noetfield",
-      "url": "https://www.noetfield.com/"
-    },
-    "publisher": {
-      "@type": "Organization",
-      "name": "Noetfield Systems Inc."
-    }
-  }
-  </script>
 </head>
 
 <body>
-  <div class="bg" aria-hidden="true"></div>
-  <a class="skip" href="#main">Skip to content</a>
+  <header id="top" data-open="false">
+    <div class="wrap">
+      <div class="head">
+        <a class="brand" href="/" aria-label="Noetfield home">
+          <span class="mark" aria-hidden="true">
+            <!-- simple mark -->
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M6 12h12" stroke="rgba(201,164,106,.95)" stroke-width="2" stroke-linecap="round"/>
+              <path d="M12 6v12" stroke="rgba(201,164,106,.75)" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </span>
+          <span>
+            <b>Noetfield</b>
+            <span>Trust &amp; Stewardship Infrastructure</span>
+          </span>
+        </a>
 
-  <header>
-    <div class="nav">
-      <a class="brand" href="/" aria-label="Noetfield home">
-        <img class="brandMark" src="/noetfield-favicon-512.png" alt="Noetfield mark" />
-        <div class="brandText">
-          <div class="name">Noetfield</div>
-          <div class="tag">Trust &amp; Stewardship in the Age of AI</div>
-        </div>
-      </a>
+        <button class="burger" type="button" aria-label="Menu" aria-controls="nav" aria-expanded="false" id="burger">
+          ☰
+        </button>
 
-      <!-- Desktop nav (shown only on very wide screens) -->
-      <nav class="menu" aria-label="Primary navigation">
-        <div class="menuPrimary" aria-label="Core">
-          <a href="/trust-ledger/">Trust Ledger</a>
+        <nav id="nav" aria-label="Primary">
           <a href="/trust-brief/">Trust Brief</a>
-          <a href="/playbook/">Playbook</a>
-          <a href="/copilot-cost-governance/">Copilot</a>
-          <a href="/for-whom/">For Whom</a>
-        </div>
-        <div class="menuActions" aria-label="App actions">
-          <a class="pilltab" href="/gate/">Gate</a>
-          <a class="pilltab" href="/portal/">Portal</a>
-          <a class="pilltab statusLink" href="/status/"><span class="statusDot" aria-hidden="true"></span>Status</a>
-          <a class="login" href="/portal/login/">Login</a>
-        </div>
-      </nav>
-
-      <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="mobilePanel">
-        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-        </svg>
-      </button>
-    </div>
-
-    <!-- Mobile panel (primary for laptop + phone) -->
-    <div class="mobilePanel" id="mobilePanel" hidden>
-      <div class="mobileInner">
-        <div class="mobileGrid" aria-label="Mobile navigation">
           <a href="/trust-ledger/">Trust Ledger</a>
-          <a href="/trust-brief/">Trust Brief</a>
-          <a href="/playbook/">Playbook</a>
-          <a href="/copilot-cost-governance/">Copilot</a>
-          <a href="/for-whom/">For Whom</a>
           <a href="/gate/">Gate</a>
-          <a href="/portal/">Portal</a>
-          <a class="statusLink" href="/status/"><span class="statusDot" aria-hidden="true"></span>Status</a>
-          <a href="/portal/login/">Login</a>
-        </div>
+          <a href="/contact/">Contact</a>
+        </nav>
 
-        <div class="mobileNote">
-          <span class="chip"><b>Board-ready</b> entry</span>
-          <span class="chip">Human review</span>
-          <span class="chip">Non-confidential</span>
+        <div class="cta">
+          <!-- Replace with real Stripe Payment Link if needed -->
+          <a class="btn primary" href="https://buy.stripe.com/YOUR_PAYMENT_LINK" target="_blank" rel="noopener">
+            Request Access
+          </a>
         </div>
       </div>
     </div>
   </header>
 
-  <main id="main" class="wrap">
-    <section class="hero">
-      <div class="heroShell">
-        <div class="heroInner">
-          <div class="eyebrow"><span class="dot"></span> Governed entry point • board-ready artefacts • human review</div>
-          <h1>Board-ready AI governance starts here.</h1>
-          <p class="lead">
-            Noetfield supports accountable roles (board, audit, risk, legal, security, public oversight) with governance-first artefacts
-            for AI systems that influence material decisions. Access is request-based and reviewed.
+  <main>
+    <div class="wrap">
+      <section class="hero">
+        <div class="card left">
+          <span class="kicker">Invitation-only</span>
+          <h1>Partner Notes</h1>
+          <p class="sub">
+            A compact channel for governance-first updates, milestones, and access paths for a small group of aligned backers.
           </p>
 
-          <div class="pillrow" aria-label="Scope highlights">
-            <div class="pill"><strong>Materiality</strong> &amp; decision controls</div>
-            <div class="pill"><strong>Accountability</strong> mapping</div>
-            <div class="pill"><strong>Evidence-ready</strong> records</div>
-            <div class="pill"><strong>Status</strong> tracking via Request ID</div>
-          </div>
-        </div>
-      </div>
-    </section>
+          <ul class="bullets" aria-label="What it includes">
+            <li><span class="dot" aria-hidden="true"></span><span>Board-ready milestones: what changed, why it matters, what is next.</span></li>
+            <li><span class="dot" aria-hidden="true"></span><span>Artifacts-first: deliverables, templates, and proof-of-work snapshots.</span></li>
+            <li><span class="dot" aria-hidden="true"></span><span>Clear paths: pilot entry (Trust Brief), product entry (Trust Ledger), partner entry (Gate).</span></li>
+          </ul>
 
-    <section class="grid">
-      <!-- Left: Intake -->
-      <div class="card">
-        <div class="hd">
-          <h2>Primary track: Board / Client intake</h2>
-          <p>
-            Request board-ready artefacts or the right intake pathway for your organization.
-            Please keep submissions high-level and non-confidential.
+          <div class="heroActions">
+            <a class="btn primary" href="#apply">Apply for access</a>
+            <a class="btn" href="/gate/">View Gate</a>
+            <a class="btn" href="/partners/">Partner overview</a>
+          </div>
+
+          <p class="hint">
+            Payment link above is optional. If access is free, remove the Stripe button and keep only the form.
+          </p>
+        </div>
+
+        <aside class="card right" aria-label="Quick details">
+          <h2 class="panelTitle">Operating constraints</h2>
+          <p class="panelText">
+            No public distribution. No mass list. Access decisions are manual and recorded.
           </p>
 
-          <!-- Request ID bar -->
-          <div class="ridBar" aria-label="Request ID bar">
-            <div class="ridLeft">
-              <div class="ridLabel">Request ID</div>
-              <div class="ridValue" id="ridText">—</div>
-            </div>
-            <div class="ridActions">
-              <button class="miniBtn" type="button" id="copyRidBtn">Copy</button>
-              <a class="miniBtn primary" id="openStatusBtn" href="/status/">Open Status</a>
-            </div>
+          <div class="panelRow">
+            <span class="pill"><i></i> Small cohort</span>
+            <span class="pill"><i></i> Governance-first</span>
+            <span class="pill"><i></i> Artifact-led</span>
+            <span class="pill"><i></i> NDA as needed</span>
+          </div>
+
+          <div class="panelRow" style="margin-top:14px">
+            <a class="btn" href="/trust-brief/">6-week Trust Brief</a>
+            <a class="btn" href="/trust-ledger/">Trust Ledger</a>
+          </div>
+        </aside>
+      </section>
+
+      <section class="card section" aria-label="What you receive">
+        <div class="grid">
+          <div class="mini">
+            <h3>Notes cadence</h3>
+            <p>Monthly or milestone-triggered, with a short summary and a proof bundle reference.</p>
+          </div>
+          <div class="mini">
+            <h3>Decision log</h3>
+            <p>What changed in scope, policy, controls, or roadmap — written for executives.</p>
+          </div>
+          <div class="mini">
+            <h3>Access paths</h3>
+            <p>Clear next step: Trust Brief, Trust Ledger, or partner track (Gate).</p>
           </div>
         </div>
+      </section>
 
-        <div class="bd">
-          <!-- IMPORTANT: replace Formspree endpoint below -->
-          <form
-            id="nfGateForm"
-            action="https://formspree.io/f/xyzrdrpv"
-            method="POST"
-            novalidate
-          >
-            <input type="hidden" name="page_source" value="/gate/" />
-            <input type="hidden" name="source" value="gate-board" />
-            <input type="hidden" name="site" value="noetfield.com" />
-            <input type="hidden" name="_subject" value="Noetfield Gate — Board/Client intake" />
+      <section class="card section" id="apply" aria-label="Apply">
+        <h2 class="panelTitle">Access request</h2>
+        <p class="panelText">
+          Use the form to request access. Replace the Formspree endpoint with the real one.
+        </p>
 
-            <!-- Request ID -->
-            <input type="hidden" id="request_id" name="request_id" value="" />
+        <!-- Replace action with your Formspree endpoint -->
+        <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" autocomplete="on">
+          <!-- Honeypot (anti-spam) -->
+          <input class="sr-only" type="text" name="_gotcha" tabindex="-1" autocomplete="off" />
 
-            <!-- Honeypot -->
-            <div style="position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden;" aria-hidden="true">
-              <label>Leave this empty<input type="text" name="_gotcha" tabindex="-1" autocomplete="off" /></label>
-            </div>
-
-            <div class="form">
-              <div>
-                <label for="fullName">Full name</label>
-                <input id="fullName" name="fullName" type="text" autocomplete="name" placeholder="First + last" required />
-              </div>
-
-              <div>
-                <label for="email">Work email</label>
-                <input id="email" name="email" type="email" autocomplete="email" placeholder="name@company.com" required />
-              </div>
-
-              <div>
-                <label for="role">Role / mandate</label>
-                <select id="role" name="role" required>
-                  <option value="" disabled selected>Select one</option>
-                  <option>Board / Director</option>
-                  <option>Audit</option>
-                  <option>Risk</option>
-                  <option>Legal / Privacy</option>
-                  <option>Security</option>
-                  <option>Regulator / Public oversight</option>
-                  <option>Procurement / Vendor risk</option>
-                  <option>IT / CIO / CTO</option>
-                  <option>Other</option>
-                </select>
-              </div>
-
-              <div>
-                <label for="organization">Organization</label>
-                <input id="organization" name="organization" type="text" autocomplete="organization" placeholder="Organization name" required />
-              </div>
-
-              <div>
-                <label for="jurisdiction">Country / province / state</label>
-                <input id="jurisdiction" name="jurisdiction" type="text" placeholder="e.g., Canada — BC" autocomplete="address-level1" />
-              </div>
-
-              <div>
-                <label for="industry">Industry (optional)</label>
-                <select id="industry" name="industry">
-                  <option value="" selected>—</option>
-                  <option>Financial services</option>
-                  <option>Insurance</option>
-                  <option>Public sector</option>
-                  <option>Healthcare</option>
-                  <option>Energy / Utilities</option>
-                  <option>Telecom</option>
-                  <option>Education</option>
-                  <option>Technology / SaaS</option>
-                  <option>Manufacturing</option>
-                  <option>Other</option>
-                </select>
-              </div>
-
-              <div class="full">
-                <label for="requestType">What would you like to see first?</label>
-                <select id="requestType" name="requestType" required>
-                  <option value="" disabled selected>Select one</option>
-                  <option>Trust Ledger sample (1–2 entries)</option>
-                  <option>Trust Brief pilot one-pager (6 weeks)</option>
-                  <option>Board Decision Memo template</option>
-                </select>
-              </div>
-
-              <div class="full">
-                <label for="accountableFor">In one sentence, what are you accountable for? (non-confidential)</label>
-                <input
-                  id="accountableFor"
-                  name="accountableFor"
-                  type="text"
-                  placeholder="Example: I oversee audit & risk for a mid-market financial services group."
-                  required
-                />
-              </div>
-
-              <div class="full">
-                <label for="topConcern">Highest-level AI governance concern right now (non-confidential)</label>
-                <textarea
-                  id="topConcern"
-                  name="topConcern"
-                  placeholder="Example: Copilot adoption without inventory, controls, or auditability."
-                  required
-                ></textarea>
-              </div>
-
-              <div class="full">
-                <label for="timeline">Timing (optional)</label>
-                <select id="timeline" name="timeline">
-                  <option value="" selected>—</option>
-                  <option>Immediate (0–2 weeks)</option>
-                  <option>Near-term (2–6 weeks)</option>
-                  <option>This quarter</option>
-                  <option>Exploratory</option>
-                </select>
-              </div>
-
-              <div class="full">
-                <label for="referral">Referral / context (optional)</label>
-                <input id="referral" name="referral" type="text" placeholder="Name or source (if applicable)" autocomplete="off" />
-              </div>
-
-              <div class="full">
-                <label style="display:flex; gap:10px; align-items:flex-start;">
-                  <input
-                    type="checkbox"
-                    name="non_confidential_ack"
-                    value="yes"
-                    required
-                    style="width:auto; margin-top:3px;"
-                  />
-                  <span style="color: var(--muted); font-size:13px; line-height:1.45;">
-                    I understand this intake is for <strong>high-level, non-confidential</strong> routing. If we proceed, Noetfield will propose a safer channel (e.g., NDA / secure exchange).
-                    <span style="display:block; margin-top:6px; font-size:12px; color: var(--muted2);">
-                      See: <a href="/privacy/" style="border-bottom:1px solid rgba(255,255,255,.18)">Privacy</a>
-                    </span>
-                  </span>
-                </label>
-              </div>
-            </div>
-
-            <div class="actions">
-              <button class="btn" id="submitBtn" type="submit">Request Board Review</button>
-              <a class="btn secondary" id="checkStatusBtn" href="/status/">Check request status</a>
-            </div>
-
-            <div id="formMsg" class="formMsg" role="status" aria-live="polite"></div>
-
-            <div class="note">
-              <strong>Privacy &amp; security:</strong> do not submit confidential, customer, or security-sensitive details here.
-              This intake is used only to respond and route your request. If we proceed, we will propose a safer channel.
-              <br /><br />
-              <strong>What happens next:</strong> human review within <strong>1–2 business days</strong>. If aligned, you’ll receive a reply with the safest next-step channel and the right artefact pack.
-            </div>
-          </form>
-
-          <div class="links" aria-label="Core links">
-            <a href="/trust-ledger/">Trust Ledger</a>
-            <a href="/trust-brief/">Trust Brief</a>
-            <a href="/playbook/">Playbook</a>
-            <a href="/copilot-cost-governance/">Copilot</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Right: Tracks -->
-      <aside class="card">
-        <div class="hd">
-          <h2>Additional tracks</h2>
-          <p>Use these only when your request is clearly partner-, investor-, or research-oriented.</p>
-        </div>
-
-        <div class="bd">
-          <div class="tracks">
-            <div class="track">
-              <div>
-                <div class="t">Partners</div>
-                <div class="d">Program, delivery standards, joint engagements, and channel fit.</div>
-              </div>
-              <div class="trackActions">
-                <a class="cta secondary" href="/gate/partners/">View</a>
-                <a class="cta" href="/gate/partners/apply/">Apply</a>
-              </div>
-            </div>
-
-            <div class="track">
-              <div>
-                <div class="t">Investor (referral-only)</div>
-                <div class="d">Fit assessment for aligned strategic backers. No public solicitation.</div>
-              </div>
-              <div class="trackActions">
-                <a class="cta" href="/gate/investor/">Open</a>
-              </div>
-            </div>
-
-            <div class="track">
-              <div>
-                <div class="t">Research (institutions / programs)</div>
-                <div class="d">Collaboration on governance artefacts, benchmarks, or applied research.</div>
-              </div>
-              <div class="trackActions">
-                <a class="cta" href="/gate/research/">Open</a>
-              </div>
-            </div>
+          <div>
+            <label for="name">Full name</label>
+            <input id="name" name="name" type="text" required />
           </div>
 
-          <div class="resourceBox" aria-label="Key resources">
-            <div class="resourceTitle">Key resources</div>
-            <div class="resourceGrid">
-              <a href="/trust-ledger/">Trust Ledger</a>
-              <a href="/trust-brief/">Trust Brief</a>
-              <a href="/playbook/">Playbook</a>
-              <a href="/faq/">FAQ</a>
-              <a href="/copilot-cost-governance/">Copilot</a>
-              <a href="/status/">Status</a>
-              <a href="/portal/">Portal</a>
-            </div>
+          <div>
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" required />
           </div>
 
-          <div class="fineprint">
-            Not sure which track fits? Use the Board/Client intake and add one line in “Referral / context”.
-            <br /><br />
-            This Gate is designed for decision-makers and accountable roles. It is not a general support channel.
+          <div>
+            <label for="org">Organization</label>
+            <input id="org" name="organization" type="text" />
           </div>
 
-          <div class="links" aria-label="Policy links" style="margin-top:16px;">
-            <a href="/privacy/">Privacy</a>
-            <a href="/terms/">Terms</a>
+          <div>
+            <label for="role">Role</label>
+            <input id="role" name="role" type="text" />
           </div>
-        </div>
-      </aside>
-    </section>
 
-    <footer>
-      <div class="foot">
-        <!-- Footer: no Home link. Logo/brand links home. -->
-        <a class="footBrand" href="/" aria-label="Noetfield home">
-          <img src="/noetfield-favicon-512.png" alt="Noetfield mark" />
-          <span>© <span id="y"></span> Noetfield Systems Inc.</span>
-        </a>
+          <div class="full">
+            <label for="why">Reason for access (1–3 lines)</label>
+            <textarea id="why" name="reason" maxlength="800" required></textarea>
+          </div>
 
-        <div class="footNav" aria-label="Footer navigation">
-          <a href="/trust-ledger/">Trust Ledger</a>
-          <a href="/trust-brief/">Trust Brief</a>
-          <a href="/playbook/">Playbook</a>
-          <a href="/copilot-cost-governance/">Copilot</a>
-          <a href="/for-whom/">For Whom</a>
-          <a href="/gate/">Gate</a>
-          <a href="/portal/">Portal</a>
-          <a class="statusLink" href="/status/"><span class="statusDot" aria-hidden="true"></span>Status</a>
-          <a href="/feedback/">Feedback</a>
-          <a href="/privacy/">Privacy</a>
-          <a href="/terms/">Terms</a>
-        </div>
-      </div>
-    </footer>
+          <div class="full" style="display:flex; gap:10px; flex-wrap:wrap; align-items:center">
+            <button class="btn primary" type="submit">Submit request</button>
+            <span class="hint">After submit: redirect can be set in Formspree to /thanks/?rid=...</span>
+          </div>
+        </form>
+
+        <p class="hint">
+          Optional: add a privacy link in the form footer: <a href="/privacy/">/privacy/</a>
+        </p>
+      </section>
+    </div>
   </main>
 
+  <footer>
+    <div class="wrap">
+      <div class="foot">
+        <span>© <span id="y"></span> Noetfield Systems Inc.</span>
+        <span style="display:flex; gap:12px; flex-wrap:wrap">
+          <a href="/privacy/">Privacy</a>
+          <a href="/terms/">Terms</a>
+          <a href="#top">Top</a>
+        </span>
+      </div>
+    </div>
+  </footer>
+
   <script>
-    // Year
+    // Footer year
     document.getElementById("y").textContent = new Date().getFullYear();
 
-    // Mobile menu toggle + close on outside click
-    (function () {
-      var burger = document.getElementById("burger");
-      var panel = document.getElementById("mobilePanel");
-      if (!burger || !panel) return;
+    // Mobile nav toggle (safe + minimal)
+    const header = document.querySelector("header");
+    const burger = document.getElementById("burger");
+    const nav = document.getElementById("nav");
 
-      function openPanel() {
-        burger.setAttribute("aria-expanded", "true");
-        panel.hidden = false;
-      }
-      function closePanel() {
-        burger.setAttribute("aria-expanded", "false");
-        panel.hidden = true;
-      }
-
-      burger.addEventListener("click", function () {
-        var isOpen = burger.getAttribute("aria-expanded") === "true";
-        if (isOpen) closePanel(); else openPanel();
-      });
-
-      document.addEventListener("keydown", function (e) {
-        if (e.key === "Escape" && burger.getAttribute("aria-expanded") === "true") closePanel();
-      });
-
-      document.addEventListener("click", function (e) {
-        var isOpen = burger.getAttribute("aria-expanded") === "true";
-        if (!isOpen) return;
-        if (panel.contains(e.target) || burger.contains(e.target)) return;
-        closePanel();
-      });
-    })();
-
-    // Request ID (generate once, persist)
-    (function () {
-      var ridInput = document.getElementById("request_id");
-      var ridText = document.getElementById("ridText");
-      var openStatusBtn = document.getElementById("openStatusBtn");
-      if (!ridInput || !ridText) return;
-
-      function rand4() { return Math.floor(Math.random() * 10000).toString().padStart(4, "0"); }
-
-      function genRID(){
-        var d = new Date();
-        var stamp = d.getUTCFullYear().toString()
-          + String(d.getUTCMonth()+1).padStart(2,"0")
-          + String(d.getUTCDate()).padStart(2,"0")
-          + "-"
-          + String(d.getUTCHours()).padStart(2,"0")
-          + String(d.getUTCMinutes()).padStart(2,"0")
-          + String(d.getUTCSeconds()).padStart(2,"0");
-        return "NF-" + stamp + "-" + rand4();
-      }
-
-      var existing = "";
-      try { existing = localStorage.getItem("nf_last_rid") || ""; } catch(e){}
-
-      var rid = existing || genRID();
-      ridInput.value = rid;
-      ridText.textContent = rid;
-
-      try { localStorage.setItem("nf_last_rid", rid); } catch(e){}
-
-      if (openStatusBtn) openStatusBtn.href = "/status/?rid=" + encodeURIComponent(rid);
-
-      var copyBtn = document.getElementById("copyRidBtn");
-      if (copyBtn) {
-        copyBtn.addEventListener("click", async function(){
-          try{
-            await navigator.clipboard.writeText(rid);
-            copyBtn.textContent = "Copied";
-            setTimeout(function(){ copyBtn.textContent = "Copy"; }, 1200);
-          } catch(e){
-            var ta = document.createElement("textarea");
-            ta.value = rid;
-            document.body.appendChild(ta);
-            ta.select();
-            try { document.execCommand("copy"); } catch(_){}
-            document.body.removeChild(ta);
-            copyBtn.textContent = "Copied";
-            setTimeout(function(){ copyBtn.textContent = "Copy"; }, 1200);
-          }
-        });
-      }
-    })();
-
-    // AJAX submit to Formspree (no Formspree page), then redirect to /thanks/?rid=...
-    (function () {
-      var form = document.getElementById("nfGateForm");
-      if (!form) return;
-
-      var msg = document.getElementById("formMsg");
-      var btn = document.getElementById("submitBtn");
-      var ridInput = document.getElementById("request_id");
-
-      function setMsg(text, kind){
-        if (!msg) return;
-        msg.style.display = "block";
-        msg.textContent = text;
-
-        if (kind === "ok") {
-          msg.style.borderColor = "rgba(45,227,138,.25)";
-          msg.style.background = "rgba(45,227,138,.06)";
-        } else if (kind === "err") {
-          msg.style.borderColor = "rgba(255,90,90,.25)";
-          msg.style.background = "rgba(255,90,90,.06)";
-        } else {
-          msg.style.borderColor = "rgba(255,255,255,.12)";
-          msg.style.background = "rgba(255,255,255,.03)";
-        }
-      }
-
-      form.addEventListener("submit", async function (e) {
-        e.preventDefault();
-
-        // Keep native validation UX
-        if (!form.checkValidity()) {
-          form.reportValidity();
-          return;
-        }
-
-        var action = form.getAttribute("action");
-        if (!action) {
-          setMsg("Form endpoint is missing. Please set the form action to your Formspree URL.", "err");
-          return;
-        }
-
-        var rid = (ridInput && ridInput.value) ? ridInput.value : "";
-
-        if (btn) {
-          btn.disabled = true;
-          btn.dataset.label = btn.textContent;
-          btn.textContent = "Sending…";
-        }
-        setMsg("Sending your request…", "info");
-
-        try {
-          var fd = new FormData(form);
-
-          var res = await fetch(action, {
-            method: "POST",
-            body: fd,
-            headers: { "Accept": "application/json" }
-          });
-
-          var data = null;
-          try { data = await res.json(); } catch (_) {}
-
-          if (!res.ok) {
-            var errText = "Submission failed. Please try again.";
-            if (data && data.errors && data.errors.length) {
-              errText = data.errors.map(function(x){ return x.message || "Error"; }).join(" ");
-            }
-            setMsg(errText, "err");
-            if (btn) { btn.disabled = false; btn.textContent = btn.dataset.label || "Request Board Review"; }
-            return;
-          }
-
-          setMsg("Submitted successfully. Redirecting…", "ok");
-
-          try { localStorage.setItem("nf_last_submitted_rid", rid); } catch(e){}
-
-          var url = "/thanks/";
-          if (rid) url += "?rid=" + encodeURIComponent(rid);
-          window.location.assign(url);
-
-        } catch (err) {
-          setMsg("Network error. Please check your connection and try again.", "err");
-          if (btn) { btn.disabled = false; btn.textContent = btn.dataset.label || "Request Board Review"; }
-        }
-      });
-    })();
-
-    // Auto-active (mobile + footer + desktop)
-    (function () {
-      function normPath(p) {
-        if (!p) return "/";
-        p = p.split("?")[0].split("#")[0];
-        if (p.length > 1 && p.endsWith("/")) p = p.slice(0, -1);
-        return p.toLowerCase();
-      }
-      var current = normPath(window.location.pathname);
-      var links = document.querySelectorAll('nav[aria-label="Primary navigation"] a, footer a, #mobilePanel a');
-
-      links.forEach(function (a) {
-        var href = a.getAttribute("href") || "";
-        if (!href.startsWith("/")) return;
-        var target = normPath(href);
-
-        var isActive =
-          (target === "/" && current === "/") ||
-          (target !== "/" && (current === target || current.startsWith(target + "/")));
-
-        if (isActive) {
-          a.classList.add("active");
-          a.setAttribute("aria-current", "page");
-        } else {
-          a.classList.remove("active");
-          a.removeAttribute("aria-current");
-        }
-      });
-    })();
+    burger.addEventListener("click", () => {
+      const open = header.getAttribute("data-open") === "true";
+      header.setAttribute("data-open", String(!open));
+      burger.setAttribute("aria-expanded", String(!open));
+      nav.style.display = (!open) ? "flex" : "";
+    });
   </script>
 </body>
 </html>

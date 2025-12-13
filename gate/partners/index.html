@@ -105,7 +105,9 @@
     .pill strong{color:var(--text); font-weight:650}
 
     .ctaRow{display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-top:14px}
-    .btn{
+
+    /* Buttons (scoped: avoid clashing with shell buttons) */
+    .pgBtn{
       display:inline-flex; align-items:center; justify-content:center;
       gap:10px;
       padding:12px 14px;
@@ -121,15 +123,15 @@
       transition: border-color .15s ease, transform .06s ease, filter .15s ease;
       white-space:nowrap;
     }
-    .btn:hover{border-color:rgba(200,163,73,.85); filter:brightness(1.06)}
-    .btn:active{transform: translateY(1px)}
-    .btn.secondary{
+    .pgBtn:hover{border-color:rgba(200,163,73,.85); filter:brightness(1.06)}
+    .pgBtn:active{transform: translateY(1px)}
+    .pgBtn.secondary{
       border:1px solid rgba(255,255,255,.16);
       background: rgba(255,255,255,.04);
       font-weight:700;
       color: var(--muted);
     }
-    .btn.ghost{
+    .pgBtn.ghost{
       border:1px solid rgba(255,255,255,.14);
       background: rgba(255,255,255,.02);
       font-weight:750;
@@ -279,10 +281,12 @@
           <a href="/copilot-cost-governance/">Copilot</a>
           <a href="/for-whom/">For Whom</a>
         </div>
+
+        <!-- IMPORTANT: Status is in header actions (replaces Platform) -->
         <div class="menuActions" aria-label="App actions">
           <a class="pilltab" href="/gate/">Gate</a>
           <a class="pilltab" href="/portal/">Portal</a>
-          <a class="pilltab" href="/platform/">Platform</a>
+          <a class="pilltab statusLink" href="/status/"><span class="statusDot" aria-hidden="true"></span>Status</a>
           <a class="login" href="/portal/login/">Login</a>
         </div>
       </nav>
@@ -304,7 +308,7 @@
           <a href="/for-whom/">For Whom</a>
           <a href="/gate/">Gate</a>
           <a href="/portal/">Portal</a>
-          <a href="/platform/">Platform</a>
+          <a class="statusLink" href="/status/"><span class="statusDot" aria-hidden="true"></span>Status</a>
           <a href="/portal/login/">Login</a>
         </div>
       </div>
@@ -334,9 +338,9 @@
           </div>
 
           <div class="ctaRow" style="margin-top:16px;">
-            <a class="btn" href="/gate/partners/intake/">Take the 90-second intake</a>
-            <a class="btn ghost" href="#lanes">Browse lanes</a>
-            <a class="btn secondary" href="/gate/" aria-label="Back to Gate">Back</a>
+            <a class="pgBtn" href="/gate/partners/intake/">Take the 90-second intake</a>
+            <a class="pgBtn ghost" href="#lanes">Browse lanes</a>
+            <a class="pgBtn secondary" href="/gate/" aria-label="Back to Gate">Back</a>
           </div>
         </div>
       </div>
@@ -360,7 +364,7 @@
                     Co-deliver Trust Brief + Ledger entries. Strong writing, structured process, and dependable QA.
                   </div>
                 </div>
-                <a class="btn secondary" href="/gate/partners/delivery/">Continue</a>
+                <a class="pgBtn secondary" href="/gate/partners/delivery/">Continue</a>
               </div>
               <div class="laneK">
                 <span class="k">SLA + QA</span>
@@ -378,7 +382,7 @@
                     Qualified introductions + clean co-selling motion. You know the buyer, and you can move a tidy deal.
                   </div>
                 </div>
-                <a class="btn secondary" href="/gate/partners/channel/">Continue</a>
+                <a class="pgBtn secondary" href="/gate/partners/channel/">Continue</a>
               </div>
               <div class="laneK">
                 <span class="k">Buyer access</span>
@@ -396,7 +400,7 @@
                     Connect identity, logs, and controls so governance artefacts remain auditable and defensible.
                   </div>
                 </div>
-                <a class="btn secondary" href="/gate/partners/integration/">Continue</a>
+                <a class="pgBtn secondary" href="/gate/partners/integration/">Continue</a>
               </div>
               <div class="laneK">
                 <span class="k">Entra / SSO</span>
@@ -420,7 +424,7 @@
               </div>
             </div>
             <div class="mini" style="display:flex; align-items:center; justify-content:flex-end; gap:10px;">
-              <a class="btn" href="/gate/partners/intake/">Start intake →</a>
+              <a class="pgBtn" href="/gate/partners/intake/">Start intake →</a>
             </div>
           </div>
         </div>
@@ -447,7 +451,7 @@
       </aside>
     </section>
 
-    <!-- FAQ (kept lightweight; full list lives on /faq/) -->
+    <!-- FAQ -->
     <section class="faqWrap">
       <div class="heroShell">
         <div class="heroInner">
@@ -526,7 +530,7 @@
     </section>
   </main>
 
-  <!-- FOOTER (LOCKED MARKUP – Gate box shows Offers, not FAQ) -->
+  <!-- FOOTER (LOCKED MARKUP) -->
   <footer>
     <div class="footerTop">
       <!-- Brand -->
@@ -538,6 +542,8 @@
         <div class="fNote">
           Trust and stewardship in AI — board-first governance artefacts designed to be evidence-ready and defensible.
         </div>
+
+        <!-- Use shell buttons here (not pgBtn) -->
         <div class="ctaRow" style="margin-top:12px;">
           <a class="btn secondary" href="/gate/">Gate</a>
           <a class="btn secondary" href="/platform/">Platform</a>
@@ -584,7 +590,7 @@
     <div class="footerBottom">
       <div>© <span id="y"></span> Noetfield Systems Inc.</div>
 
-      <!-- Bottom-right rail (FAQ lives here; not duplicated in Gate box) -->
+      <!-- Bottom-right rail -->
       <div class="footerMiniNav" aria-label="Footer mini navigation">
         <a class="statusLink" href="/status/"><span class="statusDot" aria-hidden="true"></span>Status</a>
         <a href="/faq/">FAQ</a>

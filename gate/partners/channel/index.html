@@ -184,6 +184,7 @@
     .check input{width:auto; margin-top:3px}
     .check span{color:var(--muted); font-size:13px; line-height:1.45}
     .check small{display:block; color:var(--muted2); font-size:12px; margin-top:6px}
+    .check a{border-bottom:1px solid rgba(255,255,255,.18)}
 
     .actions{display:flex; gap:12px; flex-wrap:wrap; align-items:center; margin-top:12px}
 
@@ -250,7 +251,7 @@
   <div class="bg" aria-hidden="true"></div>
   <a class="skip" href="#main">Skip to content</a>
 
-  <!-- HEADER (EXACTLY aligned to /gate/partners/) -->
+  <!-- HEADER (aligned to /gate/partners/) -->
   <header>
     <div class="nav">
       <a class="brand" href="/" aria-label="Noetfield home">
@@ -531,17 +532,21 @@
               </div>
 
               <div class="check">
-                <input type="checkbox" name="non_confidential_ack" value="yes" required />
+                <input id="nonConfAck" type="checkbox" name="non_confidential_ack" value="yes" required />
                 <span>
-                  I confirm this application is <strong>non-confidential</strong>. No client names/credentials/private docs in this form.
-                  <small>Privacy: <a href="/privacy/" style="border-bottom:1px solid rgba(255,255,255,.18)">/privacy/</a></small>
+                  <label for="nonConfAck" style="display:inline; font-size:13px; color:var(--muted); margin:0">
+                    I confirm this application is <strong>non-confidential</strong>. No client names/credentials/private docs in this form.
+                  </label>
+                  <small>Privacy: <a href="/privacy/">/privacy/</a></small>
                 </span>
               </div>
 
               <div class="check">
-                <input type="checkbox" name="truthful_ack" value="yes" required />
+                <input id="truthAck" type="checkbox" name="truthful_ack" value="yes" required />
                 <span>
-                  I confirm the information provided is accurate to the best of my knowledge.
+                  <label for="truthAck" style="display:inline; font-size:13px; color:var(--muted); margin:0">
+                    I confirm the information provided is accurate to the best of my knowledge.
+                  </label>
                   <small>We use this to decide routing, not for marketing spam.</small>
                 </span>
               </div>
@@ -590,10 +595,7 @@
     </section>
   </main>
 
-  <!-- FOOTER (EXACTLY aligned to /gate/partners/):
-       - Left CTA row is Gate + Platform (NOT Portal)
-       - Copyright line has no year span
-  -->
+  <!-- FOOTER (aligned to shell) -->
   <footer>
     <div class="footerTop">
       <div class="fcol">
@@ -607,7 +609,7 @@
 
         <div class="ctaRow" style="margin-top:12px;">
           <a class="btn secondary" href="/gate/">Gate</a>
-          <a class="btn secondary" href="/platform/">Platform</a>
+          <a class="btn secondary" href="/portal/">Portal</a>
         </div>
       </div>
 
@@ -646,7 +648,7 @@
     </div>
 
     <div class="footerBottom">
-      <div>© Noetfield Systems Inc.</div>
+      <div>© <span id="y"></span> Noetfield Systems Inc.</div>
 
       <div class="footerMiniNav" aria-label="Footer mini navigation">
         <a class="statusLink" href="/status/"><span class="statusDot" aria-hidden="true"></span>Status</a>
@@ -662,12 +664,6 @@
       </div>
     </div>
   </footer>
-
-  <!-- Floating Feedback Tab (LOCKED) -->
-  <a class="feedbackTab" href="/feedback/" aria-label="Open feedback">
-    <span class="spark" aria-hidden="true"></span>
-    Feedback
-  </a>
 
   <!-- Page-only JS: RID + copy + submit -> /thanks/?rid=... -->
   <script>

@@ -17,6 +17,7 @@
   <link rel="apple-touch-icon" href="/noetfield-favicon-512.png" />
   <meta name="theme-color" content="#07070b" />
 
+  <!-- OG -->
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Noetfield" />
   <meta property="og:title" content="Noetfield – Partners Gate" />
@@ -27,6 +28,7 @@
   <meta property="og:url" content="https://www.noetfield.com/gate/partners/" />
   <meta property="og:image" content="https://www.noetfield.com/noetfield-og.png" />
 
+  <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Noetfield – Partners Gate" />
   <meta
@@ -35,6 +37,7 @@
   />
   <meta name="twitter:image" content="https://www.noetfield.com/noetfield-og.png" />
 
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
@@ -42,9 +45,11 @@
     rel="stylesheet"
   />
 
+  <!-- LOCKED SHELL -->
   <link rel="stylesheet" href="/assets/noetfield-shell.css" />
   <script src="/assets/noetfield-shell.js" defer></script>
 
+  <!-- Page-specific styles ONLY (Partners Gate) -->
   <style>
     .hero{padding: 22px 0 18px}
     .heroShell{
@@ -232,44 +237,10 @@
     }
     .faqA a{border-bottom:1px solid rgba(255,255,255,.18)}
 
-    /* --- ADDED FEEDBACK STYLES (EXACT COPY) --- */
-    .floatingFeedback {
-      position: fixed;
-      right: 0;
-      top: 62%;
-      z-index: 999;
-      transform: rotate(-90deg) translateX(50%);
-      transform-origin: right bottom;
-    }
-    .floatingFeedback a {
-      display: block;
-      padding: 8px 16px;
-      background: rgba(255, 255, 255, 0.04);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      border-bottom: none;
-      border-radius: 8px 8px 0 0;
-      color: var(--muted);
-      font-size: 13px;
-      font-weight: 700;
-      text-decoration: none;
-      letter-spacing: -0.1px;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    .floatingFeedback a:hover {
-      background: rgba(200, 163, 73, 0.12);
-      color: var(--text);
-      padding-bottom: 14px; /* Animation effect */
-      border-color: rgba(200, 163, 73, 0.3);
-    }
-    /* ------------------------------------------ */
-
     @media (max-width: 980px){
       .grid{grid-template-columns:1fr}
       .miniGrid{grid-template-columns:1fr}
       .faqGrid{grid-template-columns:1fr}
-      .floatingFeedback { display: none; } /* Hidden on mobile like original */
     }
     @media (max-width: 760px){ h1{font-size:30px} }
   </style>
@@ -288,13 +259,10 @@
 </head>
 
 <body>
-  <div class="floatingFeedback">
-    <a href="/feedback/">Feedback</a>
-  </div>
-
   <div class="bg" aria-hidden="true"></div>
   <a class="skip" href="#main">Skip to content</a>
 
+  <!-- HEADER (LOCKED SHELL MARKUP) -->
   <header>
     <div class="nav">
       <a class="brand" href="/" aria-label="Noetfield home">
@@ -314,6 +282,7 @@
           <a href="/for-whom/">For Whom</a>
         </div>
 
+        <!-- IMPORTANT: Status is in header actions (replaces Platform) -->
         <div class="menuActions" aria-label="App actions">
           <a class="pilltab" href="/gate/">Gate</a>
           <a class="pilltab" href="/portal/">Portal</a>
@@ -347,6 +316,7 @@
   </header>
 
   <main id="main" class="wrap">
+    <!-- HERO -->
     <section class="hero">
       <div class="heroShell">
         <div class="heroInner">
@@ -376,6 +346,7 @@
       </div>
     </section>
 
+    <!-- LANES -->
     <section class="grid" id="lanes">
       <div class="card">
         <div class="hd">
@@ -480,6 +451,7 @@
       </aside>
     </section>
 
+    <!-- FAQ -->
     <section class="faqWrap">
       <div class="heroShell">
         <div class="heroInner">
@@ -558,8 +530,10 @@
     </section>
   </main>
 
+  <!-- FOOTER (LOCKED MARKUP) -->
   <footer>
     <div class="footerTop">
+      <!-- Brand -->
       <div class="fcol">
         <a class="footBrand" href="/" aria-label="Noetfield home">
           <img src="/noetfield-favicon-512.png" alt="Noetfield mark" />
@@ -569,12 +543,14 @@
           Trust and stewardship in AI — board-first governance artefacts designed to be evidence-ready and defensible.
         </div>
 
+        <!-- Use shell buttons here (not pgBtn) -->
         <div class="ctaRow" style="margin-top:12px;">
           <a class="btn secondary" href="/gate/">Gate</a>
           <a class="btn secondary" href="/platform/">Platform</a>
         </div>
       </div>
 
+      <!-- Core -->
       <div class="fcol">
         <div class="fTitle">Core</div>
         <div class="fLinks">
@@ -586,6 +562,7 @@
         </div>
       </div>
 
+      <!-- Gate -->
       <div class="fcol">
         <div class="fTitle">Gate</div>
         <div class="fLinks">
@@ -597,6 +574,7 @@
         </div>
       </div>
 
+      <!-- Legal -->
       <div class="fcol">
         <div class="fTitle">Legal</div>
         <div class="fLinks">
@@ -612,6 +590,7 @@
     <div class="footerBottom">
       <div>© <span id="y"></span> Noetfield Systems Inc.</div>
 
+      <!-- Bottom-right rail -->
       <div class="footerMiniNav" aria-label="Footer mini navigation">
         <a class="statusLink" href="/status/"><span class="statusDot" aria-hidden="true"></span>Status</a>
         <a href="/faq/">FAQ</a>
@@ -627,6 +606,13 @@
     </div>
   </footer>
 
+  <!-- ✅ ONE-LINE ADD: Floating Feedback (copied from /channel behavior) -->
+  <a class="feedbackTab" href="/feedback/" aria-label="Open feedback">
+    <span class="spark" aria-hidden="true"></span>
+    Feedback
+  </a>
+
+  <!-- Page-only JS: FAQ icon (+ / −) -->
   <script>
     (function(){
       document.querySelectorAll("details.faqItem").forEach(function(d){
@@ -640,4 +626,3 @@
   </script>
 </body>
 </html>
-

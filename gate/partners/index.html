@@ -2,13 +2,16 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Noetfield – Gate Partners (Delivery & Channel Fit)</title>
+  <title>Noetfield – Request Received</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <meta name="description" content="Partner with Noetfield to deliver board-ready AI governance artefacts and Trust Ledger standards. Program overview, delivery expectations, and fit criteria." />
+  <meta
+    name="description"
+    content="Your Noetfield Gate request has been received. Save your Request ID to track status and next steps."
+  />
   <meta name="robots" content="index,follow" />
   <meta name="author" content="Noetfield Systems Inc." />
-  <link rel="canonical" href="https://www.noetfield.com/gate/partners/" />
+  <link rel="canonical" href="https://www.noetfield.com/thanks/" />
 
   <link rel="icon" href="/noetfield-favicon-512.png" type="image/png" />
   <link rel="apple-touch-icon" href="/noetfield-favicon-512.png" />
@@ -17,15 +20,21 @@
   <!-- OG -->
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Noetfield" />
-  <meta property="og:title" content="Noetfield Gate Partners – Delivery & Channel Fit" />
-  <meta property="og:description" content="Program overview for partners who can deliver board-ready AI governance outcomes and evidence-ready artefacts." />
-  <meta property="og:url" content="https://www.noetfield.com/gate/partners/" />
+  <meta property="og:title" content="Noetfield – Request Received" />
+  <meta
+    property="og:description"
+    content="Your request has been received. Save your Request ID and check status for next steps."
+  />
+  <meta property="og:url" content="https://www.noetfield.com/thanks/" />
   <meta property="og:image" content="https://www.noetfield.com/noetfield-og.png" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Noetfield Gate Partners – Delivery & Channel Fit" />
-  <meta name="twitter:description" content="Program overview for partners who can deliver board-ready AI governance outcomes and evidence-ready artefacts." />
+  <meta name="twitter:title" content="Noetfield – Request Received" />
+  <meta
+    name="twitter:description"
+    content="Your request has been received. Save your Request ID and check status for next steps."
+  />
   <meta name="twitter:image" content="https://www.noetfield.com/noetfield-og.png" />
 
   <!-- Font -->
@@ -35,16 +44,34 @@
 
   <style>
     :root{
-      --bg0:#07070b; --bg1:#0b0b14;
-      --text:#eff0f7; --muted:#b9bbcf; --muted2:#8e91ad;
+      --bg0:#07070b;
+      --bg1:#0b0b14;
+      --panel: rgba(255,255,255,.055);
+      --panel2: rgba(255,255,255,.038);
+      --text:#eff0f7;
+      --muted:#b9bbcf;
+      --muted2:#8e91ad;
+      --line: rgba(255,255,255,.11);
+
       --gold:#c8a349;
-      --ok:#2de38a; --okGlow: rgba(45,227,138,.18);
-      --radius:18px; --max:1120px;
+      --gold2:#a98a3c;
+
+      --ok:#2de38a;
+      --okGlow: rgba(45,227,138,.18);
+
+      --danger:#ff5a5a;
+      --dangerGlow: rgba(255,90,90,.18);
+
+      --radius:18px;
+      --max:1120px;
+
       --shadow: 0 28px 80px rgba(0,0,0,.62);
       --shadow2: 0 14px 50px rgba(0,0,0,.50);
       --focus: 0 0 0 4px rgba(200,163,73,.18);
+
       --navH: 68px;
     }
+
     *{box-sizing:border-box}
     html,body{height:100%}
     body{
@@ -56,23 +83,29 @@
       -webkit-font-smoothing: antialiased;
       text-rendering: optimizeLegibility;
     }
+
     a{color:inherit; text-decoration:none}
-    a:focus-visible, button:focus-visible{
-      outline:none; box-shadow: var(--focus);
+    a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible{
+      outline:none;
+      box-shadow: var(--focus);
       border-color: rgba(200,163,73,.58) !important;
     }
     [hidden]{display:none !important;}
 
+    /* Premium background */
     .bg{
-      position:fixed; inset:0; z-index:-3; pointer-events:none;
+      position:fixed; inset:0;
+      z-index:-3; pointer-events:none;
       background:
         radial-gradient(1400px 820px at 10% -10%, rgba(200,163,73,.20), transparent 58%),
         radial-gradient(1200px 820px at 100% 0%, rgba(122,167,255,.12), transparent 60%),
         radial-gradient(900px 700px at 55% 22%, rgba(255,255,255,.05), transparent 62%),
         linear-gradient(180deg, var(--bg0), var(--bg1));
+      filter: saturate(1.05);
     }
     .bg::before{
-      content:""; position:absolute; inset:0;
+      content:"";
+      position:absolute; inset:0;
       background:
         linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px),
         linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
@@ -81,7 +114,8 @@
       mask-image: radial-gradient(70% 60% at 50% 8%, black 55%, transparent 100%);
     }
     .bg::after{
-      content:""; position:absolute; inset:-90px;
+      content:"";
+      position:absolute; inset:-90px;
       background:
         radial-gradient(1100px 760px at 50% 8%, transparent 55%, rgba(0,0,0,.58) 100%),
         radial-gradient(1000px 900px at 50% 110%, rgba(0,0,0,.68), transparent 62%);
@@ -90,6 +124,7 @@
 
     .wrap{max-width:var(--max); margin:0 auto; padding:24px}
 
+    /* Header */
     header{
       position:sticky; top:0; z-index:60;
       backdrop-filter: blur(16px);
@@ -100,49 +135,94 @@
       max-width:var(--max); margin:0 auto;
       padding: 10px 16px;
       display:flex; align-items:center; justify-content:space-between;
-      gap:14px; min-height: var(--navH);
-    }
-    .brand{display:flex; align-items:center; gap:12px; min-width:240px}
-    .brandMark{
-      width:36px; height:36px; border-radius:12px;
-      border:1px solid rgba(255,255,255,.12);
-      box-shadow: 0 12px 26px rgba(0,0,0,.55);
-    }
-    .brand .name{font-weight:800; font-size:15px; line-height:1.05}
-    .brand .tag{
-      font-size:10.5px; color:var(--muted2);
-      margin-top:3px; letter-spacing:.28em;
-      text-transform:uppercase;
-      white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
-      max-width: 320px;
+      gap:14px;
+      min-height: var(--navH);
     }
 
-    /* Desktop menu (NO feedback in header) */
-    .menu{display:flex; align-items:center; gap:12px; flex:1 1 auto}
-    .menuPrimary, .menuActions{display:flex; align-items:center; gap:8px; flex-wrap:nowrap}
-    .menuPrimary{flex:1 1 auto; justify-content:center; overflow:hidden}
-    .menuActions{flex:0 0 auto; justify-content:flex-end}
+    .brand{
+      display:flex; align-items:center; gap:12px;
+      flex:0 0 auto;
+      min-width: 240px;
+      max-width: 360px;
+    }
+    .brandMark{
+      width:36px; height:36px; border-radius:12px;
+      box-shadow: 0 12px 26px rgba(0,0,0,.55);
+      border:1px solid rgba(255,255,255,.12);
+      display:block;
+      flex:0 0 auto;
+    }
+    .brandText{min-width:0}
+    .brand .name{
+      font-weight:800;
+      letter-spacing:.10px;
+      line-height:1.05;
+      font-size: 15px;
+    }
+    .brand .tag{
+      font-size:10.5px;
+      color:var(--muted2);
+      margin-top:3px;
+      letter-spacing:.28em;
+      text-transform:uppercase;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      max-width: 320px;
+      opacity:.95;
+    }
+
+    .menu{
+      display:flex;
+      align-items:center;
+      justify-content:flex-end;
+      gap:12px;
+      flex:1 1 auto;
+      min-width:0;
+    }
+    .menuPrimary, .menuActions{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      min-width:0;
+      flex-wrap:nowrap;
+    }
+    .menuPrimary{
+      flex:1 1 auto;
+      justify-content:center;
+      overflow:hidden;
+    }
+    .menuActions{
+      flex:0 0 auto;
+      justify-content:flex-end;
+    }
 
     .menu a{
       color:var(--muted);
       padding:8px 10px;
       border-radius:14px;
       border:1px solid transparent;
-      transition: background .15s ease, border-color .15s ease, color .15s ease;
-      white-space:nowrap; font-size:12.75px; line-height:1;
+      background: transparent;
+      transition: background .15s ease, border-color .15s ease, color .15s ease, transform .06s ease;
+      white-space:nowrap;
+      font-size:12.75px;
+      line-height:1;
     }
     .menu a:hover{
       color:var(--text);
       border-color:rgba(255,255,255,.10);
       background:rgba(255,255,255,.045);
     }
-    .menu a.active, .menu a[aria-current="page"]{
+    .menu a:active{transform: translateY(1px)}
+    .menu a.active,
+    .menu a[aria-current="page"]{
       color:var(--text);
       border-color:rgba(200,163,73,.38);
       background:
         radial-gradient(240px 90px at 50% 0%, rgba(255,255,255,.10), transparent 60%),
         linear-gradient(180deg, rgba(200,163,73,.22), rgba(200,163,73,.10));
     }
+
     .menu a.pilltab{
       border:1px solid rgba(255,255,255,.14);
       background: rgba(255,255,255,.03);
@@ -156,30 +236,55 @@
       font-weight:750;
       padding:8px 11px;
     }
-    .menu a.statusLink{display:inline-flex; align-items:center; gap:8px}
-    .statusDot{
-      width:7px; height:7px; border-radius:50%;
-      background: var(--ok);
-      box-shadow: 0 0 0 3px var(--okGlow);
+    .menu a.login:hover{
+      border-color: rgba(200,163,73,.85);
+      background:
+        radial-gradient(220px 90px at 40% 0%, rgba(255,255,255,.13), transparent 62%),
+        linear-gradient(180deg, rgba(200,163,73,.26), rgba(200,163,73,.12));
     }
 
-    /* Mobile */
+    .menu a.statusLink, .mobileGrid a.statusLink, .footNav a.statusLink{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+    }
+    .statusDot{
+      width:7px; height:7px;
+      border-radius:50%;
+      background: var(--ok);
+      box-shadow: 0 0 0 3px var(--okGlow);
+      flex:0 0 auto;
+    }
+
     .burger{
       display:none;
+      align-items:center; justify-content:center;
       width:42px; height:42px;
       border-radius:14px;
       border:1px solid rgba(255,255,255,.12);
       background: rgba(255,255,255,.04);
       cursor:pointer;
+      transition: background .15s ease, border-color .15s ease;
+      flex:0 0 auto;
     }
+    .burger:hover{border-color:rgba(255,255,255,.18); background:rgba(255,255,255,.06)}
     .burger svg{width:20px; height:20px; opacity:.92}
+
     .mobilePanel{
       border-top:1px solid rgba(255,255,255,.10);
       background: rgba(8,8,12,.74);
       backdrop-filter: blur(16px);
     }
-    .mobileInner{max-width:var(--max); margin:0 auto; padding: 12px 14px 16px}
-    .mobileGrid{display:grid; grid-template-columns:1fr 1fr; gap:10px}
+    .mobileInner{
+      max-width:var(--max);
+      margin:0 auto;
+      padding: 12px 14px 16px;
+    }
+    .mobileGrid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:10px;
+    }
     .mobileGrid a{
       padding:12px 12px;
       border-radius:16px;
@@ -187,20 +292,52 @@
       background: rgba(255,255,255,.04);
       color: var(--muted);
       font-size:14px;
-      display:flex; align-items:center; justify-content:center; gap:8px;
+      transition: background .15s ease, border-color .15s ease, color .15s ease;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
       text-align:center;
     }
-    .mobileGrid a.active, .mobileGrid a[aria-current="page"]{
+    .mobileGrid a:hover{color:var(--text); border-color:rgba(255,255,255,.18); background:rgba(255,255,255,.06)}
+    .mobileGrid a.active,
+    .mobileGrid a[aria-current="page"]{
       color: var(--text);
       border-color: rgba(200,163,73,.42);
       background:
         radial-gradient(220px 90px at 30% 0%, rgba(200,163,73,.22), transparent 60%),
         rgba(200,163,73,.10);
     }
+    .mobileNote{
+      margin-top:12px;
+      color:var(--muted2);
+      font-size:12px;
+      display:flex; gap:8px; align-items:center;
+      flex-wrap:wrap;
+    }
+    .chip{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:7px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.03);
+      color: var(--muted2);
+    }
+    .chip b{color:var(--text); font-weight:650}
 
-    /* Hero + content */
+    /* Accessibility helper */
+    .skip{
+      position:absolute; left:-999px; top:10px;
+      background:#111118; border:1px solid rgba(255,255,255,.12);
+      color:var(--text); padding:10px 12px; border-radius:12px;
+      z-index:999;
+    }
+    .skip:focus{left:10px}
+
+    /* Hero */
     .hero{padding: 22px 0 12px}
     .heroShell{
+      position:relative;
       border-radius: calc(var(--radius) + 8px);
       border: 1px solid rgba(255,255,255,.11);
       background:
@@ -209,6 +346,19 @@
         linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.022));
       box-shadow: var(--shadow);
       overflow:hidden;
+    }
+    .heroShell::before{
+      content:"";
+      position:absolute; inset:-1px;
+      background: linear-gradient(120deg,
+        rgba(200,163,73,.26),
+        transparent 30%,
+        rgba(255,255,255,.08) 68%,
+        transparent
+      );
+      opacity:.44;
+      pointer-events:none;
+      mask-image: linear-gradient(180deg, black 0%, black 58%, transparent 96%);
     }
     .heroInner{padding: 24px 22px}
     .eyebrow{
@@ -222,23 +372,23 @@
     }
     .dot{
       width:8px; height:8px; border-radius:50%;
-      background: rgba(200,163,73,.97);
-      box-shadow: 0 0 0 3px rgba(200,163,73,.18);
+      background: rgba(45,227,138,.95);
+      box-shadow: 0 0 0 3px rgba(45,227,138,.18);
     }
-    h1{margin:14px 0 10px; font-size:40px; line-height:1.07; letter-spacing:-0.75px}
-    .lead{margin:0; color:var(--muted); font-size:16px; max-width: 920px}
-
-    .subtabs{display:flex; flex-wrap:wrap; gap:10px; margin-top:14px}
-    .subtabs a{
-      padding:10px 12px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.03);
-      color: var(--muted);
-      font-size:13px;
+    h1{
+      margin:14px 0 10px;
+      font-size:40px;
+      line-height:1.07;
+      letter-spacing:-0.75px;
     }
-    .subtabs a.active{color: var(--text); border-color: rgba(200,163,73,.40); background: rgba(200,163,73,.10)}
+    .lead{
+      margin:0;
+      color:var(--muted);
+      font-size:16px;
+      max-width: 920px;
+    }
 
+    /* Grid + cards */
     .grid{
       display:grid;
       grid-template-columns: 1.15fr .85fr;
@@ -253,296 +403,4 @@
       overflow:hidden;
     }
     .card .hd{padding:18px 18px 0}
-    .card h2{margin:0 0 8px; font-size:18px}
-    .card p{margin:0 0 12px; color:var(--muted)}
-    .card .bd{padding:18px}
-    .list{margin: 8px 0 0; padding: 0 0 0 18px; color: var(--muted); line-height: 1.7; font-size: 14px}
-    .list li{margin: 6px 0}
-
-    .btn{
-      display:inline-flex; align-items:center; justify-content:center;
-      gap:10px; padding:12px 14px;
-      border-radius:16px;
-      border:1px solid rgba(200,163,73,.58);
-      background:
-        radial-gradient(260px 110px at 40% 0%, rgba(255,255,255,.11), transparent 62%),
-        linear-gradient(180deg, rgba(200,163,73,.24), rgba(200,163,73,.11));
-      color:var(--text); font-weight:800; font-size:14px;
-    }
-    .btn.secondary{
-      border:1px solid rgba(255,255,255,.16);
-      background: rgba(255,255,255,.04);
-      font-weight:650;
-      color: var(--muted);
-    }
-    .box{
-      margin-top:14px;
-      padding:12px 12px;
-      border-radius:14px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.03);
-      color: var(--muted2);
-      font-size:12px;
-      line-height:1.6;
-    }
-    .box strong{color:var(--text); font-weight:650}
-
-    footer{
-      border-top:1px solid rgba(255,255,255,.10);
-      padding: 18px 0 22px;
-      color:var(--muted2);
-      margin-top:34px;
-      background: rgba(8,8,12,.35);
-      backdrop-filter: blur(10px);
-    }
-    .foot{max-width:var(--max); margin:0 auto; padding: 0 16px; display:flex; flex-wrap:wrap; gap:12px 18px; align-items:center; justify-content:space-between}
-    .footBrand{display:flex; align-items:center; gap:10px; color:var(--muted)}
-    .footBrand img{width:28px; height:28px; border-radius:10px; border:1px solid rgba(255,255,255,.12); background: rgba(255,255,255,.03)}
-    .footNav{display:flex; flex-wrap:wrap; gap:10px 12px; align-items:center}
-    .footNav a{
-      color: var(--muted);
-      padding:8px 10px;
-      border-radius:14px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.03);
-      font-size:13px;
-      white-space:nowrap;
-    }
-    .footNav a.active, .footNav a[aria-current="page"]{
-      color: var(--text);
-      border-color: rgba(200,163,73,.40);
-      background: rgba(200,163,73,.10);
-    }
-    .statusLink{display:inline-flex; align-items:center; gap:8px}
-
-    @media (max-width: 1140px){ .menu{display:none} .burger{display:flex} }
-    @media (max-width: 980px){ .grid{grid-template-columns:1fr} }
-    @media (max-width: 760px){
-      :root{--navH: 64px}
-      .wrap{padding:16px}
-      .brand .tag{display:none}
-      h1{font-size:30px}
-      .mobileGrid{grid-template-columns:1fr 1fr}
-    }
-    @media (max-width: 420px){ .mobileGrid{grid-template-columns:1fr} }
-  </style>
-
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebPage",
-    "name": "Noetfield Gate Partners",
-    "url": "https://www.noetfield.com/gate/partners/",
-    "description": "Partner program overview for delivery and channel fit aligned to board-ready AI governance artefacts.",
-    "isPartOf": { "@type": "WebSite", "name": "Noetfield", "url": "https://www.noetfield.com/" },
-    "publisher": { "@type": "Organization", "name": "Noetfield Systems Inc." }
-  }
-  </script>
-</head>
-
-<body>
-  <div class="bg" aria-hidden="true"></div>
-
-  <header>
-    <div class="nav">
-      <a class="brand" href="/" aria-label="Noetfield home">
-        <img class="brandMark" src="/noetfield-favicon-512.png" alt="Noetfield mark" />
-        <div>
-          <div class="name">Noetfield</div>
-          <div class="tag">Trust and Stewardship in AI</div>
-        </div>
-      </a>
-
-      <!-- Desktop nav: core tabs + app actions (NO feedback in header) -->
-      <nav class="menu" aria-label="Primary navigation">
-        <div class="menuPrimary" aria-label="Core">
-          <a href="/trust-ledger/">Trust Ledger</a>
-          <a href="/trust-brief/">Trust Brief</a>
-          <a href="/playbook/">Playbook</a>
-          <a href="/copilot-cost-governance/">Copilot</a>
-          <a href="/for-whom/">For Whom</a>
-        </div>
-        <div class="menuActions" aria-label="App actions">
-          <a class="pilltab" href="/gate/">Gate</a>
-          <a class="pilltab" href="/portal/">Portal</a>
-          <a class="pilltab statusLink" href="/status/"><span class="statusDot" aria-hidden="true"></span>Status</a>
-          <a class="login" href="/portal/login/">Login</a>
-        </div>
-      </nav>
-
-      <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="mobilePanel">
-        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-        </svg>
-      </button>
-    </div>
-
-    <!-- Mobile panel -->
-    <div class="mobilePanel" id="mobilePanel" hidden>
-      <div class="mobileInner">
-        <div class="mobileGrid" aria-label="Mobile navigation">
-          <a href="/trust-ledger/">Trust Ledger</a>
-          <a href="/trust-brief/">Trust Brief</a>
-          <a href="/playbook/">Playbook</a>
-          <a href="/copilot-cost-governance/">Copilot</a>
-          <a href="/for-whom/">For Whom</a>
-          <a href="/gate/">Gate</a>
-          <a href="/portal/">Portal</a>
-          <a class="statusLink" href="/status/"><span class="statusDot" aria-hidden="true"></span>Status</a>
-          <a href="/portal/login/">Login</a>
-        </div>
-      </div>
-    </div>
-  </header>
-
-  <main class="wrap">
-    <section class="hero">
-      <div class="heroShell">
-        <div class="heroInner">
-          <div class="eyebrow"><span class="dot"></span> Gate track • partners • delivery standards • joint engagements</div>
-          <h1>Partners: deliver board-ready outcomes.</h1>
-          <p class="lead">
-            The Noetfield partner track is for firms and independents who can deliver governance-first artefacts
-            with evidence-quality discipline.
-          </p>
-
-          <div class="subtabs" aria-label="Gate tracks">
-            <a href="/gate/">Board / Client</a>
-            <a class="active" href="/gate/partners/">Partners</a>
-            <a href="/gate/investor/">Investor</a>
-            <a href="/gate/research/">Research</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="grid">
-      <div class="card">
-        <div class="hd">
-          <h2>What this partner track is (and is not)</h2>
-          <p>Use this track when the goal is joint delivery, channel fit, or governed co-selling.</p>
-        </div>
-        <div class="bd">
-          <ul class="list">
-            <li><strong>Purpose:</strong> scale Trust Brief + Trust Ledger delivery through aligned operators.</li>
-            <li><strong>Outputs:</strong> board-ready artefacts; plain-language memos; evidence pointers; routing.</li>
-            <li><strong>Fit:</strong> security, privacy, risk, audit, M365/Copilot governance, vendor risk, policy writing.</li>
-            <li><strong>Not fit:</strong> generic “AI consulting,” chatbot builds, marketing automation, or hype-first bundles.</li>
-          </ul>
-
-          <div class="box">
-            <strong>Delivery bar:</strong> write as if a board, regulator, or audit committee will read it. Start non-confidential; move to safer channels after alignment.
-          </div>
-
-          <h2 style="margin-top:16px">Minimum expectations</h2>
-          <ul class="list">
-            <li>Operate inside client governance constraints (audit/risk/legal/security).</li>
-            <li>Evidence capture discipline (“what exists vs what is claimed”).</li>
-            <li>Clean comms: crisp, non-technical, decision-grade writing.</li>
-            <li>Respect boundaries: no public solicitation via this track.</li>
-          </ul>
-
-          <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:12px">
-            <a class="btn" href="/gate/partners/apply/">Apply to Partner Track</a>
-            <a class="btn secondary" href="/gate/">Back to Gate</a>
-          </div>
-        </div>
-      </div>
-
-      <aside class="card">
-        <div class="hd">
-          <h2>How joint work typically runs</h2>
-          <p>Simple, controlled, artefact-driven.</p>
-        </div>
-        <div class="bd">
-          <ul class="list">
-            <li><strong>Step 1:</strong> intake (capabilities, coverage, proof).</li>
-            <li><strong>Step 2:</strong> standards alignment (templates, language, evidence fields).</li>
-            <li><strong>Step 3:</strong> first joint pilot (Trust Brief delivery or Ledger build).</li>
-            <li><strong>Step 4:</strong> repeat and scale.</li>
-          </ul>
-
-          <div class="box">
-            <strong>Commercial model:</strong> referral, rev-share, or subcontracting depending on lane — only after fit is validated.
-          </div>
-
-          <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:14px">
-            <a class="btn" href="/gate/partners/apply/">Apply</a>
-            <a class="btn secondary" href="/contact/">Contact</a>
-          </div>
-        </div>
-      </aside>
-    </section>
-
-    <footer>
-      <div class="foot">
-        <a class="footBrand" href="/" aria-label="Noetfield home">
-          <img src="/noetfield-favicon-512.png" alt="Noetfield mark" />
-          <span>© <span id="y"></span> Noetfield Systems Inc.</span>
-        </a>
-        <div class="footNav" aria-label="Footer navigation">
-          <a href="/trust-ledger/">Trust Ledger</a>
-          <a href="/trust-brief/">Trust Brief</a>
-          <a href="/playbook/">Playbook</a>
-          <a href="/copilot-cost-governance/">Copilot</a>
-          <a href="/for-whom/">For Whom</a>
-          <a href="/gate/">Gate</a>
-          <a href="/portal/">Portal</a>
-          <a class="statusLink" href="/status/"><span class="statusDot" aria-hidden="true"></span>Status</a>
-          <a href="/feedback/">Feedback</a>
-          <a href="/privacy/">Privacy</a>
-          <a href="/terms/">Terms</a>
-        </div>
-      </div>
-    </footer>
-  </main>
-
-  <script>
-    document.getElementById("y").textContent = new Date().getFullYear();
-
-    (function () {
-      var burger = document.getElementById("burger");
-      var panel = document.getElementById("mobilePanel");
-      if (!burger || !panel) return;
-      burger.addEventListener("click", function () {
-        var isOpen = burger.getAttribute("aria-expanded") === "true";
-        burger.setAttribute("aria-expanded", String(!isOpen));
-        panel.hidden = isOpen;
-      });
-      document.addEventListener("keydown", function (e) {
-        if (e.key === "Escape" && burger.getAttribute("aria-expanded") === "true") {
-          burger.setAttribute("aria-expanded", "false");
-          panel.hidden = true;
-        }
-      });
-    })();
-
-    (function () {
-      function normPath(p) {
-        if (!p) return "/";
-        p = p.split("?")[0].split("#")[0];
-        if (p.length > 1 && p.endsWith("/")) p = p.slice(0, -1);
-        return p.toLowerCase();
-      }
-      var current = normPath(window.location.pathname);
-      var links = document.querySelectorAll('nav[aria-label="Primary navigation"] a, footer a, #mobilePanel a');
-
-      links.forEach(function (a) {
-        var href = a.getAttribute("href") || "";
-        if (!href.startsWith("/")) return;
-        var target = normPath(href);
-        var isActive =
-          (target === "/" && current === "/") ||
-          (target !== "/" && (current === target || current.startsWith(target + "/")));
-        if (isActive) {
-          a.classList.add("active");
-          a.setAttribute("aria-current", "page");
-        } else {
-          a.classList.remove("active");
-          a.removeAttribute("aria-current");
-        }
-      });
-    })();
-  </script>
-</body>
-</html>
+    .card h2{margin:0 0 8px; font-size:18px;

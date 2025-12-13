@@ -20,11 +20,6 @@
   --focus: 0 0 0 4px rgba(200,163,73,.18);
 
   --navH: 68px;
-
-  /* Header actions normalization (Gate / Portal / Status / Login) */
-  --actionBg: rgba(255,255,255,.035);
-  --actionBorder: rgba(255,255,255,.14);
-  --actionText: var(--text);
 }
 
 *{box-sizing:border-box}
@@ -87,6 +82,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   z-index:999;
 }
 .skip:focus{left:10px}
+
 
 /* ===== Header ===== */
 header{
@@ -169,22 +165,11 @@ header{
     linear-gradient(180deg, rgba(200,163,73,.22), rgba(200,163,73,.10));
 }
 
-/* ===== ACTIONS NORMALIZATION (fix Portal being dim) ===== */
-.menuActions a{
-  color: var(--actionText);
-  border: 1px solid var(--actionBorder);
-  background: var(--actionBg);
+.menu a.pilltab{
+  border:1px solid rgba(255,255,255,.14);
+  background: rgba(255,255,255,.03);
 }
-.menuActions a:hover{
-  color: var(--text);
-  border-color: rgba(255,255,255,.18);
-  background: rgba(255,255,255,.055);
-}
-.menuActions a.pilltab{ /* keep for markup compatibility */
-  border: 1px solid var(--actionBorder);
-  background: var(--actionBg);
-}
-/* Login remains premium gold CTA */
+
 .menu a.login{
   border:1px solid rgba(200,163,73,.58);
   background:
@@ -195,7 +180,7 @@ header{
   padding:8px 11px;
 }
 
-/* Status link */
+/* Status link (header + mobile + footer mini nav) */
 .menu a.statusLink,
 .mobileGrid a.statusLink,
 .footerMiniNav a.statusLink{
@@ -264,6 +249,7 @@ header{
     rgba(200,163,73,.10);
 }
 
+
 /* ===== Footer (LOCKED – 4-column + bottom right rail) ===== */
 footer{
   border-top:1px solid rgba(255,255,255,.10);
@@ -318,6 +304,8 @@ footer{
   border-color:rgba(255,255,255,.16);
   background:rgba(255,255,255,.05);
 }
+
+/* NOTE: footer box-links must NOT show active state; JS will not target them. */
 .fNote{
   color:var(--muted2);
   font-size:12px;

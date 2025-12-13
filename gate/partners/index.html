@@ -37,6 +37,7 @@
   />
   <meta name="twitter:image" content="https://www.noetfield.com/noetfield-og.png" />
 
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
@@ -44,192 +45,13 @@
     rel="stylesheet"
   />
 
+  <!-- LOCKED SHELL -->
+  <link rel="stylesheet" href="/assets/noetfield-shell.css" />
+  <script src="/assets/noetfield-shell.js" defer></script>
+
+  <!-- Page-specific styles ONLY (Partners Gate) -->
   <style>
-    :root{
-      --bg0:#07070b; --bg1:#0b0b14;
-      --panel: rgba(255,255,255,.055);
-      --panel2: rgba(255,255,255,.038);
-      --text:#eff0f7; --muted:#b9bbcf; --muted2:#8e91ad;
-      --line: rgba(255,255,255,.11);
-
-      --gold:#c8a349;
-      --ok:#2de38a; --okGlow: rgba(45,227,138,.18);
-
-      --radius:18px; --max:1120px;
-      --shadow: 0 28px 80px rgba(0,0,0,.62);
-      --shadow2: 0 14px 50px rgba(0,0,0,.50);
-      --focus: 0 0 0 4px rgba(200,163,73,.18);
-
-      --navH: 68px;
-    }
-
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      color: var(--text);
-      background: linear-gradient(180deg, var(--bg0), var(--bg1));
-      overflow-x:hidden;
-      -webkit-font-smoothing: antialiased;
-      text-rendering: optimizeLegibility;
-    }
-    a{color:inherit; text-decoration:none}
-    a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible{
-      outline:none; box-shadow: var(--focus);
-      border-color: rgba(200,163,73,.58) !important;
-    }
-    [hidden]{display:none !important;}
-
-    .bg{
-      position:fixed; inset:0; z-index:-3; pointer-events:none;
-      background:
-        radial-gradient(1400px 820px at 10% -10%, rgba(200,163,73,.20), transparent 58%),
-        radial-gradient(1200px 820px at 100% 0%, rgba(122,167,255,.12), transparent 60%),
-        radial-gradient(900px 700px at 55% 22%, rgba(255,255,255,.05), transparent 62%),
-        linear-gradient(180deg, var(--bg0), var(--bg1));
-      filter: saturate(1.05);
-    }
-    .bg::before{
-      content:""; position:absolute; inset:0;
-      background:
-        linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
-      background-size: 54px 54px;
-      opacity:.055;
-      mask-image: radial-gradient(70% 60% at 50% 8%, black 55%, transparent 100%);
-    }
-    .bg::after{
-      content:""; position:absolute; inset:-90px;
-      background:
-        radial-gradient(1100px 760px at 50% 8%, transparent 55%, rgba(0,0,0,.58) 100%),
-        radial-gradient(1000px 900px at 50% 110%, rgba(0,0,0,.68), transparent 62%);
-      opacity:.92;
-    }
-
-    .wrap{max-width:var(--max); margin:0 auto; padding:24px}
-
-    /* Accessibility */
-    .skip{
-      position:absolute; left:-999px; top:10px;
-      background:#111118; border:1px solid rgba(255,255,255,.12);
-      color:var(--text); padding:10px 12px; border-radius:12px; z-index:999;
-    }
-    .skip:focus{left:10px}
-
-    /* Header (LOCKED) */
-    header{
-      position:sticky; top:0; z-index:60;
-      backdrop-filter: blur(16px);
-      background: rgba(8,8,12,.62);
-      border-bottom: 1px solid rgba(255,255,255,.10);
-    }
-    .nav{
-      max-width:var(--max); margin:0 auto;
-      padding: 10px 16px;
-      display:flex; align-items:center; justify-content:space-between;
-      gap:14px;
-      min-height: var(--navH);
-    }
-    .brand{
-      display:flex; align-items:center; gap:12px;
-      flex:0 0 auto;
-      min-width: 200px;
-      max-width: 380px;
-    }
-    .brandMark{
-      width:36px; height:36px; border-radius:12px;
-      box-shadow: 0 12px 26px rgba(0,0,0,.55);
-      border:1px solid rgba(255,255,255,.12);
-      display:block;
-      flex:0 0 auto;
-    }
-    .brandText{min-width:0}
-    .brand .name{font-weight:800; letter-spacing:.10px; line-height:1.05; font-size: 15px;}
-    .brand .tag{
-      font-size:10.5px; color:var(--muted2); margin-top:3px;
-      letter-spacing:.28em; text-transform:uppercase;
-      white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
-      max-width: 320px; opacity:.95;
-    }
-
-    .menu{display:flex; align-items:center; justify-content:flex-end; gap:12px; flex:1 1 auto; min-width:0;}
-    .menuPrimary, .menuActions{display:flex; align-items:center; gap:8px; min-width:0; flex-wrap:nowrap;}
-    .menuPrimary{flex:1 1 auto; justify-content:center; overflow:hidden;}
-    .menuActions{flex:0 0 auto; justify-content:flex-end;}
-
-    .menu a{
-      color:var(--muted);
-      padding:8px 10px;
-      border-radius:14px;
-      border:1px solid transparent;
-      background: transparent;
-      transition: background .15s ease, border-color .15s ease, color .15s ease, transform .06s ease;
-      white-space:nowrap; font-size:12.75px; line-height:1;
-    }
-    .menu a:hover{color:var(--text); border-color:rgba(255,255,255,.10); background:rgba(255,255,255,.045);}
-    .menu a:active{transform: translateY(1px)}
-    .menu a.active, .menu a[aria-current="page"]{
-      color:var(--text);
-      border-color:rgba(200,163,73,.38);
-      background:
-        radial-gradient(240px 90px at 50% 0%, rgba(255,255,255,.10), transparent 60%),
-        linear-gradient(180deg, rgba(200,163,73,.22), rgba(200,163,73,.10));
-    }
-    .menu a.pilltab{border:1px solid rgba(255,255,255,.14); background: rgba(255,255,255,.03);}
-    .menu a.login{
-      border:1px solid rgba(200,163,73,.58);
-      background:
-        radial-gradient(220px 90px at 40% 0%, rgba(255,255,255,.11), transparent 62%),
-        linear-gradient(180deg, rgba(200,163,73,.22), rgba(200,163,73,.10));
-      color: var(--text);
-      font-weight:750;
-      padding:8px 11px;
-    }
-    .menu a.statusLink{display:inline-flex; align-items:center; gap:8px;}
-    .statusDot{width:7px; height:7px; border-radius:50%; background: var(--ok); box-shadow: 0 0 0 3px var(--okGlow);}
-
-    /* Mobile nav (LOCKED) */
-    .burger{
-      display:none; align-items:center; justify-content:center;
-      width:42px; height:42px;
-      border-radius:14px;
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.04);
-      cursor:pointer;
-      transition: background .15s ease, border-color .15s ease;
-      flex:0 0 auto;
-    }
-    .burger:hover{border-color:rgba(255,255,255,.18); background:rgba(255,255,255,.06)}
-    .burger svg{width:20px; height:20px; opacity:.92}
-
-    .mobilePanel{
-      border-top:1px solid rgba(255,255,255,.10);
-      background: rgba(8,8,12,.74);
-      backdrop-filter: blur(16px);
-    }
-    .mobileInner{max-width:var(--max); margin:0 auto; padding: 12px 14px 16px;}
-    .mobileGrid{display:grid; grid-template-columns:1fr 1fr; gap:10px;}
-    .mobileGrid a{
-      padding:12px 12px; border-radius:16px;
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.04);
-      color: var(--muted);
-      font-size:14px;
-      transition: background .15s ease, border-color .15s ease, color .15s ease;
-      display:flex; align-items:center; justify-content:center; gap:8px;
-      text-align:center;
-    }
-    .mobileGrid a:hover{color:var(--text); border-color:rgba(255,255,255,.18); background:rgba(255,255,255,.06)}
-    .mobileGrid a.active, .mobileGrid a[aria-current="page"]{
-      color: var(--text);
-      border-color: rgba(200,163,73,.42);
-      background: radial-gradient(220px 90px at 30% 0%, rgba(200,163,73,.22), transparent 60%), rgba(200,163,73,.10);
-    }
-
-    body.navOpen{overflow:hidden;}
-
-    /* Hero */
+    /* Page layout */
     .hero{padding: 22px 0 18px}
     .heroShell{
       position:relative;
@@ -260,9 +82,14 @@
       border:1px solid rgba(255,255,255,.13);
       background: rgba(255,255,255,.035);
     }
-    .dot{width:8px; height:8px; border-radius:50%; background: rgba(200,163,73,.97); box-shadow: 0 0 0 3px rgba(200,163,73,.18);}
+    .dot{
+      width:8px; height:8px; border-radius:50%;
+      background: rgba(200,163,73,.97);
+      box-shadow: 0 0 0 3px rgba(200,163,73,.18);
+    }
     h1{margin:14px 0 10px; font-size:42px; line-height:1.07; letter-spacing:-0.75px}
     .lead{margin:0; color:var(--muted); font-size:16px; max-width: 980px}
+    .lead a{border-bottom:1px solid rgba(255,255,255,.18)}
     .pillrow{display:flex; flex-wrap:wrap; gap:10px; margin-top:14px}
     .pill{
       display:inline-flex; align-items:center; gap:10px;
@@ -275,7 +102,7 @@
     }
     .pill strong{color:var(--text); font-weight:650}
 
-    /* Buttons / UI */
+    /* Buttons */
     .ctaRow{display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-top:14px}
     .btn{
       display:inline-flex; align-items:center; justify-content:center;
@@ -308,7 +135,7 @@
       color: var(--text);
     }
 
-    /* Content grid */
+    /* Cards / grid */
     .grid{
       display:grid;
       grid-template-columns: 1.1fr .9fr;
@@ -398,6 +225,7 @@
       display:flex; align-items:center; justify-content:center;
       color:var(--muted);
       flex:0 0 auto;
+      user-select:none;
     }
     details.faqItem[open] .faqIcon{color:var(--text); border-color:rgba(200,163,73,.38);}
     .faqA{
@@ -408,86 +236,14 @@
     }
     .faqA a{border-bottom:1px solid rgba(255,255,255,.18)}
 
-    /* Footer (LOCKED – expanded) */
-    footer{
-      border-top:1px solid rgba(255,255,255,.10);
-      margin-top:34px;
-      background: rgba(8,8,12,.35);
-      backdrop-filter: blur(10px);
-    }
-    .footerTop{
-      max-width:var(--max);
-      margin:0 auto;
-      padding: 18px 16px 10px;
-      display:grid;
-      grid-template-columns: 1.2fr .8fr .8fr .8fr;
-      gap:14px;
-    }
-    .fcol{
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.02);
-      border-radius:16px;
-      padding:14px 14px;
-    }
-    .footBrand{display:flex; align-items:center; gap:10px; color:var(--muted)}
-    .footBrand img{width:28px; height:28px; border-radius:10px; border:1px solid rgba(255,255,255,.12); background: rgba(255,255,255,.03)}
-    .footBrand:hover{color:var(--text)}
-    .fTitle{font-weight:850; letter-spacing:-.2px; margin:0 0 10px; font-size:13px;}
-    .fLinks{display:flex; flex-direction:column; gap:8px;}
-    .fLinks a{
-      color:var(--muted);
-      padding:8px 10px;
-      border-radius:14px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.03);
-      font-size:13px;
-      transition: background .15s ease, border-color .15s ease, color .15s ease;
-    }
-    .fLinks a:hover{color:var(--text); border-color:rgba(255,255,255,.16); background:rgba(255,255,255,.05);}
-    .fLinks a.statusLink{display:inline-flex; align-items:center; gap:8px;}
-    .fNote{color:var(--muted2); font-size:12px; line-height:1.65; margin:10px 0 0;}
-    .footerBottom{
-      border-top:1px solid rgba(255,255,255,.10);
-      max-width:var(--max);
-      margin:0 auto;
-      padding: 12px 16px 18px;
-      display:flex;
-      flex-wrap:wrap;
-      gap:12px 14px;
-      align-items:center;
-      justify-content:space-between;
-      color:var(--muted2);
-    }
-    .footerMiniNav{display:flex; flex-wrap:wrap; gap:10px;}
-    .footerMiniNav a{
-      color:var(--muted);
-      padding:8px 10px;
-      border-radius:14px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.03);
-      font-size:13px;
-    }
-    .footerMiniNav a:hover{color:var(--text); border-color:rgba(255,255,255,.16); background:rgba(255,255,255,.05);}
-
     /* Responsive */
-    @media (max-width: 1140px){ .menu{display:none} .burger{display:flex} }
     @media (max-width: 980px){
       .grid{grid-template-columns:1fr}
       .miniGrid{grid-template-columns:1fr}
       .faqGrid{grid-template-columns:1fr}
-      .footerTop{grid-template-columns:1fr 1fr;}
     }
     @media (max-width: 760px){
-      :root{--navH: 64px}
-      .wrap{padding:16px}
-      .nav{padding:10px 14px}
-      .brand .tag{display:none}
       h1{font-size:30px}
-      .mobileGrid{grid-template-columns:1fr 1fr}
-      .footerTop{grid-template-columns:1fr;}
-    }
-    @media (max-width: 420px){
-      .mobileGrid{grid-template-columns:1fr}
     }
   </style>
 
@@ -508,9 +264,9 @@
   <div class="bg" aria-hidden="true"></div>
   <a class="skip" href="#main">Skip to content</a>
 
-  <!-- HEADER (LOCKED) -->
+  <!-- HEADER (LOCKED SHELL MARKUP) -->
   <header>
-    <div class="nav" id="top">
+    <div class="nav">
       <a class="brand" href="/" aria-label="Noetfield home">
         <img class="brandMark" src="/noetfield-favicon-512.png" alt="Noetfield mark" />
         <div class="brandText">
@@ -566,11 +322,12 @@
         <div class="heroInner">
           <div class="eyebrow"><span class="dot"></span> Partners • delivery + channel + integration</div>
           <h1>Partner with Noetfield to deliver board-ready AI governance.</h1>
+
           <p class="lead">
             This track is for teams who can <strong>deliver</strong>, <strong>introduce</strong>, or <strong>integrate</strong>
             evidence-ready governance artefacts — <strong>Trust Brief</strong> + <strong>Trust Ledger</strong> —
             for organizations where AI influences material decisions.
-            Choose a lane below, or take the 90-second intake and we’ll guide you to the right track.
+            Choose a lane below, or take the <a href="/gate/partners/intake/">90-second intake</a> and we’ll route you.
           </p>
 
           <div class="pillrow" aria-label="Scope highlights">
@@ -712,6 +469,7 @@
             <h2>Partner flow</h2>
             <p>What to expect when you apply.</p>
           </div>
+
           <div class="bd">
             <div class="faqList">
               <details class="faqItem">
@@ -730,7 +488,7 @@
                   <span class="faqIcon">+</span>
                 </summary>
                 <div class="faqA">
-                  Delivery partners co-deliver Trust Brief + Ledger entries. Channel partners bring qualified intros and support a clean co-selling motion.
+                  Delivery partners co-deliver Trust Brief + Ledger entries. Channel partners bring qualified introductions and support a clean co-selling motion.
                 </div>
               </details>
 
@@ -740,7 +498,7 @@
                   <span class="faqIcon">+</span>
                 </summary>
                 <div class="faqA">
-                  A brief overview and links. If we proceed, we move deeper details into a secure workspace.
+                  A brief overview and links are enough. If we proceed, we move deeper details into a secure workspace.
                 </div>
               </details>
 
@@ -770,18 +528,18 @@
         </aside>
       </div>
     </section>
-
   </main>
 
-  <!-- FOOTER (LOCKED) -->
+  <!-- FOOTER (LOCKED MARKUP) -->
   <footer>
-    <div class="footerTop">
-      <div class="fcol">
-        <a class="footBrand" href="/" aria-label="Noetfield home" style="gap:10px; margin-bottom:8px;">
-          <img src="/noetfield-favicon-512.png" alt="Noetfield mark" />
+    <div class="footerTop" style="max-width:var(--max); margin:0 auto; padding: 18px 16px 10px; display:grid; grid-template-columns: 1.2fr .8fr .8fr .8fr; gap:14px;">
+      <!-- Brand -->
+      <div class="fcol" style="border:1px solid rgba(255,255,255,.10); background: rgba(255,255,255,.02); border-radius:16px; padding:14px 14px;">
+        <a class="footBrand" href="/" aria-label="Noetfield home" style="display:flex; align-items:center; gap:10px; color:var(--muted); text-decoration:none; margin-bottom:8px;">
+          <img src="/noetfield-favicon-512.png" alt="Noetfield mark" style="width:28px; height:28px; border-radius:10px; border:1px solid rgba(255,255,255,.12); background: rgba(255,255,255,.03);" />
           <span style="font-weight:850; color:var(--text);">Noetfield</span>
         </a>
-        <div class="fNote">
+        <div style="color:var(--muted2); font-size:12px; line-height:1.65; margin-top:8px;">
           Trust and stewardship in AI — board-first governance artefacts designed to be evidence-ready and defensible.
         </div>
         <div class="ctaRow" style="margin-top:12px;">
@@ -790,124 +548,59 @@
         </div>
       </div>
 
-      <div class="fcol">
-        <div class="fTitle">Core</div>
-        <div class="fLinks">
-          <a href="/trust-ledger/">Trust Ledger</a>
-          <a href="/trust-brief/">Trust Brief</a>
-          <a href="/playbook/">Playbook</a>
-          <a href="/copilot-cost-governance/">Copilot</a>
-          <a href="/for-whom/">For Whom</a>
+      <!-- Core -->
+      <div class="fcol" style="border:1px solid rgba(255,255,255,.10); background: rgba(255,255,255,.02); border-radius:16px; padding:14px 14px;">
+        <div style="font-weight:850; letter-spacing:-.2px; margin:0 0 10px; font-size:13px;">Core</div>
+        <div style="display:flex; flex-direction:column; gap:8px;">
+          <a href="/trust-ledger/" style="color:var(--muted); padding:8px 10px; border-radius:14px; border:1px solid rgba(255,255,255,.10); background: rgba(255,255,255,.03); font-size:13px;">Trust Ledger</a>
+          <a href="/trust-brief/" style="color:var(--muted); padding:8px 10px; border-radius:14px; border:1px solid rgba(255,255,255,.10); background: rgba(255,255,255,.03); font-size:13px;">Trust Brief</a>
+          <a href="/playbook/" style="color:var(--muted); padding:8px 10px; border-radius:14px; border:1px solid rgba(255,255,255,.10); background: rgba(255,255,255,.03); font-size:13px;">Playbook</a>
+          <a href="/copilot-cost-governance/" style="color:var(--muted); padding:8px 10px; border-radius:14px; border:1px solid rgba(255,255,255,.10); background: rgba(255,255,255,.03); font-size:13px;">Copilot</a>
+          <a href="/for-whom/" style="color:var(--muted); padding:8px 10px; border-radius:14px; border:1px solid rgba(255,255,255,.10); background: rgba(255,255,255,.03); font-size:13px;">For Whom</a>
         </div>
       </div>
 
-      <div class="fcol">
-        <div class="fTitle">Gate</div>
-        <div class="fLinks">
-          <a href="/gate/">Gate Home</a>
-          <a href="/gate/partners/">Partners</a>
-          <a href="/portal/">Portal</a>
-          <a class="statusLink" href="/status/"><span class="statusDot" aria-hidden="true"></span>Status</a>
-          <a href="/feedback/">Feedback</a>
+      <!-- Gate -->
+      <div class="fcol" style="border:1px solid rgba(255,255,255,.10); background: rgba(255,255,255,.02); border-radius:16px; padding:14px 14px;">
+        <div style="font-weight:850; letter-spacing:-.2px; margin:0 0 10px; font-size:13px;">Gate</div>
+        <div style="display:flex; flex-direction:column; gap:8px;">
+          <a href="/gate/" style="color:var(--muted); padding:8px 10px; border-radius:14px; border:1px solid rgba(255,255,255,.10); background: rgba(255,255,255,.03); font-size:13px;">Gate Home</a>
+          <a href="/gate/partners/" style="color:var(--muted); padding:8px 10px; border-radius:14px; border:1px solid rgba(255,255,255,.10); background: rgba(255,255,255,.03); font-size:13px;">Partners</a>
+          <a href="/portal/" style="color:var(--muted); padding:8px 10px; border-radius:14px; border:1px solid rgba(255,255,255,.10); background: rgba(255,255,255,.03); font-size:13px;">Portal</a>
+          <a class="statusLink" href="/status/" style="display:inline-flex; align-items:center; gap:8px; color:var(--muted); padding:8px 10px; border-radius:14px; border:1px solid rgba(255,255,255,.10); background: rgba(255,255,255,.03); font-size:13px;">
+            <span class="statusDot" aria-hidden="true"></span>Status
+          </a>
+          <a href="/feedback/" style="color:var(--muted); padding:8px 10px; border-radius:14px; border:1px solid rgba(255,255,255,.10); background: rgba(255,255,255,.03); font-size:13px;">Feedback</a>
         </div>
       </div>
 
-      <div class="fcol">
-        <div class="fTitle">Legal</div>
-        <div class="fLinks">
-          <a href="/privacy/">Privacy</a>
-          <a href="/terms/">Terms</a>
-          <a href="/contact/">Contact</a>
-        </div>
-        <div class="fNote">
-          Start lightweight. If deeper access is required, we move into a secure workspace.
+      <!-- Legal (5 links, sentence removed) -->
+      <div class="fcol" style="border:1px solid rgba(255,255,255,.10); background: rgba(255,255,255,.02); border-radius:16px; padding:14px 14px;">
+        <div style="font-weight:850; letter-spacing:-.2px; margin:0 0 10px; font-size:13px;">Legal</div>
+        <div style="display:flex; flex-direction:column; gap:8px;">
+          <a href="/privacy/" style="color:var(--muted); padding:8px 10px; border-radius:14px; border:1px solid rgba(255,255,255,.10); background: rgba(255,255,255,.03); font-size:13px;">Privacy</a>
+          <a href="/terms/" style="color:var(--muted); padding:8px 10px; border-radius:14px; border:1px solid rgba(255,255,255,.10); background: rgba(255,255,255,.03); font-size:13px;">Terms</a>
+          <a href="/cookies/" style="color:var(--muted); padding:8px 10px; border-radius:14px; border:1px solid rgba(255,255,255,.10); background: rgba(255,255,255,.03); font-size:13px;">Cookies</a>
+          <a href="/accessibility/" style="color:var(--muted); padding:8px 10px; border-radius:14px; border:1px solid rgba(255,255,255,.10); background: rgba(255,255,255,.03); font-size:13px;">Accessibility</a>
+          <a href="/contact/" style="color:var(--muted); padding:8px 10px; border-radius:14px; border:1px solid rgba(255,255,255,.10); background: rgba(255,255,255,.03); font-size:13px;">Contact</a>
         </div>
       </div>
     </div>
 
-    <div class="footerBottom">
+    <div class="footerBottom" style="border-top:1px solid rgba(255,255,255,.10); max-width:var(--max); margin:0 auto; padding: 12px 16px 18px; display:flex; flex-wrap:wrap; gap:12px 14px; align-items:center; justify-content:space-between; color:var(--muted2);">
       <div>© <span id="y"></span> Noetfield Systems Inc.</div>
-      <div class="footerMiniNav" aria-label="Footer mini navigation">
-        <a href="/gate/partners/intake/">Partner intake</a>
-        <a href="/status/">Status</a>
-        <a href="/privacy/">Privacy</a>
-        <a href="/contact/">Contact</a>
+
+      <div class="footerMiniNav" aria-label="Footer mini navigation" style="display:flex; flex-wrap:wrap; gap:10px;">
+        <a href="/gate/partners/intake/" style="color:var(--muted); padding:8px 10px; border-radius:14px; border:1px solid rgba(255,255,255,.10); background: rgba(255,255,255,.03); font-size:13px;">Partner intake</a>
+        <a href="/status/" style="color:var(--muted); padding:8px 10px; border-radius:14px; border:1px solid rgba(255,255,255,.10); background: rgba(255,255,255,.03); font-size:13px;">Status</a>
+        <a href="/privacy/" style="color:var(--muted); padding:8px 10px; border-radius:14px; border:1px solid rgba(255,255,255,.10); background: rgba(255,255,255,.03); font-size:13px;">Privacy</a>
+        <a href="/contact/" style="color:var(--muted); padding:8px 10px; border-radius:14px; border:1px solid rgba(255,255,255,.10); background: rgba(255,255,255,.03); font-size:13px;">Contact</a>
       </div>
     </div>
   </footer>
 
+  <!-- Page-only JS: FAQ icon (+ / −) -->
   <script>
-    // year
-    document.getElementById("y").textContent = new Date().getFullYear();
-
-    // mobile menu (LOCKED): open/close, esc, click outside, close on link click
-    (function () {
-      var burger = document.getElementById("burger");
-      var panel = document.getElementById("mobilePanel");
-      if (!burger || !panel) return;
-
-      function openMenu(){
-        burger.setAttribute("aria-expanded","true");
-        panel.hidden = false;
-        document.body.classList.add("navOpen");
-      }
-      function closeMenu(){
-        burger.setAttribute("aria-expanded","false");
-        panel.hidden = true;
-        document.body.classList.remove("navOpen");
-      }
-      function isOpen(){
-        return burger.getAttribute("aria-expanded") === "true";
-      }
-
-      burger.addEventListener("click", function () {
-        if (isOpen()) closeMenu(); else openMenu();
-      });
-
-      document.addEventListener("keydown", function (e) {
-        if (e.key === "Escape" && isOpen()) closeMenu();
-      });
-
-      document.addEventListener("click", function(e){
-        if (!isOpen()) return;
-        var withinHeader = !!e.target.closest("header");
-        if (!withinHeader) closeMenu();
-      });
-
-      panel.addEventListener("click", function(e){
-        var a = e.target.closest("a");
-        if (a) closeMenu();
-      });
-
-      // close menu if resized to desktop
-      window.addEventListener("resize", function(){
-        if (window.innerWidth > 1140 && isOpen()) closeMenu();
-      });
-    })();
-
-    // active tabs (LOCKED): header + footer + mobile
-    (function () {
-      function normPath(p) {
-        if (!p) return "/";
-        p = p.split("?")[0].split("#")[0];
-        if (p.length > 1 && p.endsWith("/")) p = p.slice(0, -1);
-        return p.toLowerCase();
-      }
-      var current = normPath(window.location.pathname);
-      var links = document.querySelectorAll('nav[aria-label="Primary navigation"] a, footer a, #mobilePanel a');
-      links.forEach(function (a) {
-        var href = a.getAttribute("href") || "";
-        if (!href.startsWith("/")) return;
-        var target = normPath(href);
-        var isActive =
-          (target === "/" && current === "/") ||
-          (target !== "/" && (current === target || current.startsWith(target + "/")));
-        if (isActive) { a.classList.add("active"); a.setAttribute("aria-current", "page"); }
-        else { a.classList.remove("active"); a.removeAttribute("aria-current"); }
-      });
-    })();
-
-    // FAQ icon toggle (+ / −)
     (function(){
       document.querySelectorAll("details.faqItem").forEach(function(d){
         d.addEventListener("toggle", function(){

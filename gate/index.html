@@ -11,12 +11,11 @@
   />
   <meta name="robots" content="index,follow" />
   <meta name="author" content="Noetfield Systems Inc." />
-
   <link rel="canonical" href="https://www.noetfield.com/gate/" />
 
   <link rel="icon" href="/noetfield-favicon-512.png" type="image/png" />
   <link rel="apple-touch-icon" href="/noetfield-favicon-512.png" />
-  <meta name="theme-color" content="#07070a" />
+  <meta name="theme-color" content="#07070b" />
 
   <!-- OG -->
   <meta property="og:type" content="website" />
@@ -42,24 +41,30 @@
 
   <style>
     :root{
-      --bg0:#07070a;
-      --bg1:#0a0a10;
+      --bg0:#07070b;
+      --bg1:#0b0b14;
       --panel: rgba(255,255,255,.055);
-      --panel2: rgba(255,255,255,.035);
-      --text:#ececf4;
-      --muted:#b9b9c8;
-      --muted2:#8f90a6;
-      --line: rgba(255,255,255,.10);
+      --panel2: rgba(255,255,255,.038);
+      --text:#eff0f7;
+      --muted:#b9bbcf;
+      --muted2:#8e91ad;
+      --line: rgba(255,255,255,.11);
 
+      /* “Swiss-minimal gold” */
       --gold:#c8a349;
       --gold2:#a98a3c;
+
+      /* Cool accent for “bank-grade” contrast */
+      --ice:#7aa7ff;
 
       --radius:18px;
       --max:1120px;
 
-      --shadow: 0 24px 70px rgba(0,0,0,.55);
-      --shadow2: 0 12px 40px rgba(0,0,0,.45);
+      --shadow: 0 28px 80px rgba(0,0,0,.62);
+      --shadow2: 0 14px 50px rgba(0,0,0,.50);
       --focus: 0 0 0 4px rgba(200,163,73,.18);
+
+      --navH: 66px;
     }
 
     *{box-sizing:border-box}
@@ -69,160 +74,224 @@
       margin:0;
       font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
       color: var(--text);
-      background: radial-gradient(1200px 700px at 10% 0%, rgba(255,255,255,.05), transparent 55%),
-                  radial-gradient(900px 600px at 90% 10%, rgba(255,255,255,.04), transparent 55%),
-                  linear-gradient(180deg, var(--bg0), var(--bg1));
+      background: linear-gradient(180deg, var(--bg0), var(--bg1));
       overflow-x:hidden;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
     }
 
     a{color:inherit; text-decoration:none}
     a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible{
       outline:none;
       box-shadow: var(--focus);
-      border-color: rgba(200,163,73,.55) !important;
+      border-color: rgba(200,163,73,.58) !important;
     }
 
-    /* High-end background (no “soft halos”) */
+    /* Premium background: aurora + grid + vignette (clean, not “halos”) */
     .bg{
-      position:fixed;
-      inset:0;
-      z-index:-2;
-      pointer-events:none;
+      position:fixed; inset:0;
+      z-index:-3; pointer-events:none;
       background:
-        radial-gradient(900px 500px at 20% -10%, rgba(200,163,73,.18), transparent 55%),
-        radial-gradient(800px 600px at 85% 0%, rgba(200,163,73,.12), transparent 58%),
-        linear-gradient(180deg, rgba(255,255,255,.02), transparent 20%),
+        radial-gradient(1400px 820px at 10% -10%, rgba(200,163,73,.20), transparent 58%),
+        radial-gradient(1200px 820px at 100% 0%, rgba(122,167,255,.12), transparent 60%),
+        radial-gradient(900px 700px at 55% 22%, rgba(255,255,255,.05), transparent 62%),
         linear-gradient(180deg, var(--bg0), var(--bg1));
+      filter: saturate(1.05);
     }
-    /* subtle grid + vignette */
     .bg::before{
       content:"";
       position:absolute; inset:0;
       background:
         linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px),
         linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
-      background-size: 52px 52px;
-      opacity:.05;
-      mask-image: radial-gradient(70% 60% at 50% 10%, black 55%, transparent 100%);
+      background-size: 54px 54px;
+      opacity:.055;
+      mask-image: radial-gradient(70% 60% at 50% 8%, black 55%, transparent 100%);
     }
     .bg::after{
       content:"";
-      position:absolute; inset:-80px;
+      position:absolute; inset:-90px;
       background:
-        radial-gradient(1100px 700px at 50% 10%, transparent 55%, rgba(0,0,0,.55) 100%),
-        radial-gradient(900px 800px at 50% 100%, rgba(0,0,0,.65), transparent 60%);
-      opacity:.85;
+        radial-gradient(1100px 760px at 50% 8%, transparent 55%, rgba(0,0,0,.58) 100%),
+        radial-gradient(1000px 900px at 50% 110%, rgba(0,0,0,.68), transparent 62%);
+      opacity:.92;
     }
 
     .wrap{max-width:var(--max); margin:0 auto; padding:24px}
 
+    /* Header */
     header{
-      position:sticky; top:0; z-index:50;
-      backdrop-filter: blur(14px);
-      background: rgba(8,8,12,.62);
+      position:sticky; top:0; z-index:60;
+      backdrop-filter: blur(16px);
+      background: rgba(8,8,12,.60);
       border-bottom: 1px solid rgba(255,255,255,.10);
     }
     .nav{
-      display:flex; align-items:center; justify-content:space-between;
-      gap:16px;
-      padding:14px 24px;
       max-width:var(--max); margin:0 auto;
+      padding: 12px 18px;
+      display:flex; align-items:center; justify-content:space-between;
+      gap:14px;
+      min-height: var(--navH);
     }
+
     .brand{
       display:flex; align-items:center; gap:12px;
-      min-width:240px;
+      min-width: 220px;
     }
     .brand img{
-      width:36px; height:36px; border-radius:12px;
-      box-shadow: 0 10px 24px rgba(0,0,0,.45);
-      border:1px solid rgba(255,255,255,.10);
+      width:38px; height:38px; border-radius:12px;
+      box-shadow: 0 12px 26px rgba(0,0,0,.55);
+      border:1px solid rgba(255,255,255,.12);
     }
-    .brand .name{font-weight:680; letter-spacing:.2px}
+    .brand .name{font-weight:720; letter-spacing:.15px}
     .brand .tag{font-size:12px; color:var(--muted2); margin-top:2px}
 
+    /* Desktop nav pills */
     .menu{
       display:flex; flex-wrap:wrap;
-      gap:10px 14px;
+      gap:10px 10px;
       justify-content:flex-end;
       font-size:13px;
     }
     .menu a{
       color:var(--muted);
-      padding:8px 10px;
-      border-radius:12px;
+      padding:9px 11px;
+      border-radius:14px;
       border:1px solid transparent;
-      transition: background .15s ease, border-color .15s ease, color .15s ease;
+      background: transparent;
+      transition: background .15s ease, border-color .15s ease, color .15s ease, transform .06s ease;
+      white-space:nowrap;
     }
     .menu a:hover{
       color:var(--text);
-      border-color:rgba(255,255,255,.09);
-      background:rgba(255,255,255,.04);
+      border-color:rgba(255,255,255,.10);
+      background:rgba(255,255,255,.045);
     }
     .menu a.active,
     .menu a[aria-current="page"]{
       color:var(--text);
-      border-color:rgba(200,163,73,.35);
-      background: linear-gradient(180deg, rgba(200,163,73,.18), rgba(200,163,73,.08));
-    }
-
-    @media (max-width: 980px){
-      .brand{min-width:auto}
-      .menu{justify-content:flex-start}
-    }
-
-    /* HERO — elevated */
-    .hero{
-      padding:54px 0 18px;
-      position:relative;
-    }
-    .heroShell{
-      border-radius: calc(var(--radius) + 6px);
-      border: 1px solid rgba(255,255,255,.10);
+      border-color:rgba(200,163,73,.38);
       background:
-        radial-gradient(900px 360px at 30% 0%, rgba(200,163,73,.14), transparent 55%),
-        radial-gradient(900px 360px at 80% 10%, rgba(255,255,255,.05), transparent 60%),
-        linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.025));
+        radial-gradient(240px 90px at 50% 0%, rgba(255,255,255,.10), transparent 60%),
+        linear-gradient(180deg, rgba(200,163,73,.22), rgba(200,163,73,.10));
+    }
+
+    /* Mobile: collapsible menu */
+    .burger{
+      display:none;
+      align-items:center; justify-content:center;
+      width:42px; height:42px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04);
+      cursor:pointer;
+      transition: background .15s ease, border-color .15s ease;
+    }
+    .burger:hover{border-color:rgba(255,255,255,.18); background:rgba(255,255,255,.06)}
+    .burger svg{width:20px; height:20px; opacity:.92}
+
+    .mobilePanel{
+      display:none;
+      border-top:1px solid rgba(255,255,255,.10);
+      background: rgba(8,8,12,.72);
+      backdrop-filter: blur(16px);
+    }
+    .mobileInner{
+      max-width:var(--max);
+      margin:0 auto;
+      padding: 12px 14px 16px;
+    }
+    .mobileGrid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:10px;
+    }
+    .mobileGrid a{
+      padding:12px 12px;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04);
+      color: var(--muted);
+      font-size:14px;
+      transition: background .15s ease, border-color .15s ease, color .15s ease;
+    }
+    .mobileGrid a:hover{color:var(--text); border-color:rgba(255,255,255,.18); background:rgba(255,255,255,.06)}
+    .mobileGrid a.active,
+    .mobileGrid a[aria-current="page"]{
+      color: var(--text);
+      border-color: rgba(200,163,73,.42);
+      background:
+        radial-gradient(220px 90px at 30% 0%, rgba(200,163,73,.22), transparent 60%),
+        rgba(200,163,73,.10);
+    }
+    .mobileNote{
+      margin-top:12px;
+      color:var(--muted2);
+      font-size:12px;
+      display:flex; gap:8px; align-items:center;
+    }
+    .chip{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:7px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.03);
+      color: var(--muted2);
+    }
+    .chip b{color:var(--text); font-weight:650}
+
+    /* Hero */
+    .hero{padding: 22px 0 18px}
+    .heroShell{
+      position:relative;
+      border-radius: calc(var(--radius) + 8px);
+      border: 1px solid rgba(255,255,255,.11);
+      background:
+        radial-gradient(1000px 420px at 18% 0%, rgba(200,163,73,.18), transparent 60%),
+        radial-gradient(1000px 420px at 90% 10%, rgba(122,167,255,.10), transparent 62%),
+        linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.022));
       box-shadow: var(--shadow);
       overflow:hidden;
     }
     .heroShell::before{
       content:"";
-      position:absolute;
-      inset:-1px;
-      border-radius: calc(var(--radius) + 6px);
-      background: linear-gradient(120deg, rgba(200,163,73,.22), transparent 35%, rgba(255,255,255,.08) 70%, transparent);
-      opacity:.45;
-      mask-image: linear-gradient(180deg, black 0%, black 55%, transparent 95%);
+      position:absolute; inset:-1px;
+      background: linear-gradient(120deg,
+        rgba(200,163,73,.26),
+        transparent 30%,
+        rgba(255,255,255,.08) 68%,
+        transparent
+      );
+      opacity:.44;
       pointer-events:none;
+      mask-image: linear-gradient(180deg, black 0%, black 58%, transparent 96%);
     }
-    .heroInner{padding:26px 22px}
-
+    .heroInner{padding: 26px 22px}
     .eyebrow{
       display:inline-flex; gap:10px; align-items:center;
       color:var(--muted);
       font-size:13px;
-      padding:8px 12px;
+      padding:9px 12px;
       border-radius:999px;
-      border:1px solid rgba(255,255,255,.12);
+      border:1px solid rgba(255,255,255,.13);
       background: rgba(255,255,255,.035);
     }
     .dot{
       width:8px; height:8px; border-radius:50%;
-      background: rgba(200,163,73,.95);
+      background: rgba(200,163,73,.97);
       box-shadow: 0 0 0 3px rgba(200,163,73,.18);
     }
-
     h1{
       margin:14px 0 10px;
       font-size:42px;
-      line-height:1.08;
-      letter-spacing:-0.7px;
+      line-height:1.07;
+      letter-spacing:-0.75px;
     }
     .lead{
+      margin:0;
       color:var(--muted);
       font-size:16px;
-      max-width:860px;
-      margin:0;
+      max-width: 900px;
     }
     .pillrow{display:flex; flex-wrap:wrap; gap:10px; margin-top:14px}
     .pill{
@@ -234,37 +303,24 @@
       color:var(--muted);
       font-size:13px;
     }
-    .pill strong{color:var(--text); font-weight:600}
+    .pill strong{color:var(--text); font-weight:650}
 
-    @media (max-width: 980px){
-      h1{font-size:34px}
-      .heroInner{padding:22px 18px}
-    }
-
-    /* CONTENT GRID */
+    /* Grid */
     .grid{
       display:grid;
       grid-template-columns: 1.2fr .8fr;
       gap:18px;
-      margin:18px 0 34px;
+      margin: 18px 0 34px;
     }
-    @media (max-width: 980px){
-      .grid{grid-template-columns:1fr}
-    }
-
     .card{
       border-radius:var(--radius);
-      border:1px solid rgba(255,255,255,.10);
-      background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.025));
+      border:1px solid rgba(255,255,255,.11);
+      background: linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.022));
       box-shadow: var(--shadow2);
       overflow:hidden;
     }
     .card .hd{padding:18px 18px 0}
-    .card h2{
-      margin:0 0 8px;
-      font-size:18px;
-      letter-spacing:-0.2px;
-    }
+    .card h2{margin:0 0 8px; font-size:18px; letter-spacing:-0.2px}
     .card p{margin:0 0 12px; color:var(--muted)}
     .card .bd{padding:18px}
 
@@ -276,57 +332,44 @@
     }
     .form .full{grid-column:1 / -1}
 
-    label{
-      display:block;
-      font-size:12px;
-      color:var(--muted2);
-      margin:0 0 6px;
-    }
+    label{display:block; font-size:12px; color:var(--muted2); margin:0 0 6px}
+
     input, select, textarea{
       width:100%;
-      background: rgba(12,12,18,.55);
+      background: rgba(10,10,16,.55);
       border: 1px solid rgba(255,255,255,.14);
       color: var(--text);
       padding: 12px 12px;
-      border-radius: 12px;
+      border-radius: 14px;
       outline:none;
       font-family:inherit;
       font-size:14px;
-      transition: border-color .15s ease, box-shadow .15s ease;
+      transition: border-color .15s ease, box-shadow .15s ease, background .15s ease;
     }
+    input::placeholder, textarea::placeholder{color: rgba(185,187,207,.55)}
     textarea{min-height:110px; resize:vertical}
-    input::placeholder, textarea::placeholder{color: rgba(185,185,200,.55)}
+    input:focus, select:focus, textarea:focus{box-shadow: var(--focus); background: rgba(12,12,18,.62)}
 
-    .actions{
-      display:flex; gap:12px; align-items:center; justify-content:flex-start;
-      margin-top:12px;
-    }
+    .actions{display:flex; gap:12px; align-items:center; justify-content:flex-start; margin-top:12px}
     .btn{
       display:inline-flex; align-items:center; justify-content:center;
       gap:10px;
       padding:12px 14px;
-      border-radius:14px;
-      border:1px solid rgba(200,163,73,.55);
+      border-radius:16px;
+      border:1px solid rgba(200,163,73,.58);
       background:
-        radial-gradient(300px 120px at 50% 0%, rgba(255,255,255,.10), transparent 60%),
-        linear-gradient(180deg, rgba(200,163,73,.22), rgba(200,163,73,.10));
+        radial-gradient(260px 110px at 40% 0%, rgba(255,255,255,.11), transparent 62%),
+        linear-gradient(180deg, rgba(200,163,73,.24), rgba(200,163,73,.11));
       color:var(--text);
-      font-weight:680;
+      font-weight:720;
       font-size:14px;
       cursor:pointer;
       transition: border-color .15s ease, transform .06s ease, filter .15s ease;
     }
-    .btn:hover{
-      border-color:rgba(200,163,73,.80);
-      filter: brightness(1.06);
-    }
+    .btn:hover{border-color:rgba(200,163,73,.85); filter:brightness(1.06)}
     .btn:active{transform: translateY(1px)}
 
-    .note{
-      font-size:12px;
-      color:var(--muted2);
-      margin-top:10px;
-    }
+    .note{font-size:12px; color:var(--muted2); margin-top:10px}
 
     .links{
       display:flex; flex-wrap:wrap; gap:10px 14px;
@@ -340,13 +383,7 @@
     }
     .links a:hover{color:var(--text); border-bottom-color:rgba(200,163,73,.55)}
 
-    /* Right column tracks */
-    .tracks{
-      display:grid;
-      grid-template-columns:1fr;
-      gap:10px;
-      margin-top:10px;
-    }
+    .tracks{display:grid; grid-template-columns:1fr; gap:10px; margin-top:10px}
     .track{
       padding:14px 14px;
       border-radius:16px;
@@ -354,33 +391,81 @@
       background: rgba(10,10,14,.35);
       display:flex; align-items:flex-start; justify-content:space-between; gap:14px;
     }
-    .track .t{font-weight:700}
+    .track .t{font-weight:750}
     .track .d{color:var(--muted); font-size:13px; margin-top:4px}
     .track .cta{
       white-space:nowrap;
       font-size:13px;
       color:var(--text);
-      border:1px solid rgba(200,163,73,.35);
+      border:1px solid rgba(200,163,73,.38);
       background: rgba(200,163,73,.10);
       padding:9px 12px;
       border-radius:14px;
       transition: background .15s ease, border-color .15s ease;
     }
-    .track .cta:hover{border-color:rgba(200,163,73,.62); background:rgba(200,163,73,.14)}
+    .track .cta:hover{border-color:rgba(200,163,73,.70); background:rgba(200,163,73,.14)}
 
+    /* Footer */
     footer{
       border-top:1px solid rgba(255,255,255,.10);
-      padding:22px 0;
+      padding: 18px 0 22px;
       color:var(--muted2);
-      margin-top:36px;
+      margin-top:34px;
+      background: rgba(8,8,12,.35);
+      backdrop-filter: blur(10px);
     }
     .foot{
+      max-width:var(--max); margin:0 auto;
+      padding: 0 18px;
       display:flex; flex-wrap:wrap; gap:12px 18px;
       align-items:center; justify-content:space-between;
-      max-width:var(--max); margin:0 auto; padding:0 24px;
     }
-    .foot .mini a{color:var(--muted); margin-right:12px}
-    .foot .mini a:hover{color:var(--text)}
+
+    .footNav{
+      display:flex; flex-wrap:wrap;
+      gap:10px 12px;
+      align-items:center;
+    }
+    .footNav a{
+      color: var(--muted);
+      padding:8px 10px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      font-size:13px;
+      transition: background .15s ease, border-color .15s ease, color .15s ease;
+    }
+    .footNav a:hover{color:var(--text); border-color:rgba(255,255,255,.16); background:rgba(255,255,255,.05)}
+    .footNav a.active, .footNav a[aria-current="page"]{
+      color: var(--text);
+      border-color: rgba(200,163,73,.40);
+      background: rgba(200,163,73,.10);
+    }
+
+    /* Responsive */
+    @media (max-width: 980px){
+      .grid{grid-template-columns:1fr}
+    }
+    @media (max-width: 760px){
+      :root{--navH: 62px}
+      .wrap{padding:16px}
+      .nav{padding:10px 14px}
+      .brand img{width:36px; height:36px}
+      .brand .tag{display:none}
+      .menu{display:none}
+      .burger{display:flex}
+      .heroInner{padding:20px 16px}
+      h1{font-size:30px}
+      .lead{font-size:15px}
+      .form{grid-template-columns:1fr}
+      .mobilePanel{display:block}
+      .mobileGrid{grid-template-columns:1fr 1fr}
+      .foot{padding:0 14px}
+      .footNav a{font-size:12.5px}
+    }
+    @media (max-width: 420px){
+      .mobileGrid{grid-template-columns:1fr}
+    }
 
     /* Accessibility helper */
     .skip{
@@ -436,6 +521,33 @@
         <a href="/gate/">Gate</a>
         <a href="/contact/">Contact</a>
       </nav>
+
+      <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="mobilePanel">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>
+
+    <div class="mobilePanel" id="mobilePanel" hidden>
+      <div class="mobileInner">
+        <div class="mobileGrid" aria-label="Mobile navigation">
+          <a href="/trust-ledger/">Trust Ledger</a>
+          <a href="/trust-brief/">Trust Brief</a>
+          <a href="/playbook/">Playbook</a>
+          <a href="/copilot-cost-governance/">Copilot</a>
+          <a href="/for-whom/">For Whom</a>
+          <a href="/partners/">Partners</a>
+          <a href="/gate/">Gate</a>
+          <a href="/contact/">Contact</a>
+        </div>
+
+        <div class="mobileNote">
+          <span class="chip"><b>Board-ready</b> entry</span>
+          <span class="chip">Human review</span>
+          <span class="chip">Non-confidential</span>
+        </div>
+      </div>
     </div>
   </header>
 
@@ -448,7 +560,6 @@
           <p class="lead">
             Noetfield supports accountable roles (board, audit, risk, legal, security, public oversight) with governance-first
             artefacts for AI systems that influence material decisions. Access is request-based and reviewed.
-            We respond from an <strong>@noetfield.com</strong> address.
           </p>
 
           <div class="pillrow" aria-label="Scope highlights">
@@ -473,7 +584,7 @@
         </div>
 
         <div class="bd">
-          <!-- Replace action with your endpoint (Formspree/Tally/etc.) -->
+          <!-- Replace action with your endpoint -->
           <form action="#" method="post">
             <input type="hidden" name="page_source" value="/gate/" />
             <input type="hidden" name="source" value="gate-board" />
@@ -626,7 +737,8 @@
     <footer>
       <div class="foot">
         <div>© <span id="y"></span> Noetfield Systems Inc.</div>
-        <div class="mini" aria-label="Footer navigation">
+
+        <div class="footNav" aria-label="Footer navigation">
           <a href="/">Home</a>
           <a href="/trust-ledger/">Trust Ledger</a>
           <a href="/trust-brief/">Trust Brief</a>
@@ -647,7 +759,28 @@
     // Year
     document.getElementById("y").textContent = new Date().getFullYear();
 
-    // Auto-active (header + footer)
+    // Mobile menu toggle
+    (function () {
+      var burger = document.getElementById("burger");
+      var panel = document.getElementById("mobilePanel");
+      if (!burger || !panel) return;
+
+      burger.addEventListener("click", function () {
+        var isOpen = burger.getAttribute("aria-expanded") === "true";
+        burger.setAttribute("aria-expanded", String(!isOpen));
+        panel.hidden = isOpen;
+      });
+
+      // close on ESC
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape" && burger.getAttribute("aria-expanded") === "true") {
+          burger.setAttribute("aria-expanded", "false");
+          panel.hidden = true;
+        }
+      });
+    })();
+
+    // Auto-active (header + footer + mobile)
     (function () {
       function normPath(p) {
         if (!p) return "/";
@@ -656,7 +789,7 @@
         return p.toLowerCase();
       }
       var current = normPath(window.location.pathname);
-      var links = document.querySelectorAll('nav[aria-label="Primary navigation"] a, footer a');
+      var links = document.querySelectorAll('nav[aria-label="Primary navigation"] a, footer a, #mobilePanel a');
 
       links.forEach(function (a) {
         var href = a.getAttribute("href") || "";

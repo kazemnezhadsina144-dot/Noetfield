@@ -372,48 +372,36 @@ footer{
   box-shadow: 0 0 0 3px rgba(200,163,73,.18);
 }
 
-/* Floating Feedback pill (bottom-right) */
-.feedbackFab{
-  position: fixed;
-  right: 18px;
-  bottom: 18px;
-  z-index: 9999;
-
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-
-  padding: 10px 14px;
-  border-radius: 999px;
-
-  border: 1px solid rgba(255,255,255,.16);
-  background: rgba(12,12,16,.28);
-  backdrop-filter: blur(10px);
-
+/* ===== Floating Feedback Tab (match /gate/partners/channel/) ===== */
+/* Usage: <a class="feedbackTab" href="/feedback/"><span class="spark"></span>Feedback</a> */
+.feedbackTab{
+  position:fixed;
+  right:16px;
+  bottom:16px;
+  z-index:80;
+  padding:10px 12px;
+  border-radius:16px;
+  border:1px solid rgba(255,255,255,.14);
+  background: rgba(8,8,12,.62);
+  backdrop-filter: blur(14px);
   color: var(--muted);
-  font-size: 13px;
-  font-weight: 750;
-
-  box-shadow: 0 10px 28px rgba(0,0,0,.32);
+  font-size:13px;
+  display:inline-flex;
+  gap:8px;
+  align-items:center;
+  transition: background .15s ease, border-color .15s ease, color .15s ease, transform .06s ease;
 }
-
-.feedbackFab::before{
-  content:"";
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: rgba(255,255,255,.22);
-  box-shadow: 0 0 0 2px rgba(255,255,255,.08);
+.feedbackTab:hover{
+  color:var(--text);
+  border-color: rgba(200,163,73,.38);
+  background: rgba(200,163,73,.10);
 }
-
-.feedbackFab:hover{
-  border-color: rgba(200,163,73,.45);
-  color: var(--text);
-}
-
-.feedbackFab:focus-visible{
-  outline: 2px solid rgba(200,163,73,.65);
-  outline-offset: 3px;
+.feedbackTab:active{transform: translateY(1px)}
+.feedbackTab .spark{
+  width:8px; height:8px;
+  border-radius:50%;
+  background: rgba(200,163,73,.95);
+  box-shadow: 0 0 0 3px rgba(200,163,73,.16);
 }
 
 /* Responsive locks */
@@ -431,6 +419,9 @@ footer{
   .brand .tag{display:none}
   .mobileGrid{grid-template-columns:1fr 1fr}
   .footerTop{grid-template-columns:1fr;}
+
+  /* Match channel behavior: hide floating feedback on small screens */
+  .feedbackTab{display:none}
 }
 @media (max-width: 420px){
   .mobileGrid{grid-template-columns:1fr}

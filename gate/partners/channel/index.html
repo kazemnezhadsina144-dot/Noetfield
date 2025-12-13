@@ -5,24 +5,27 @@
   <title>Noetfield – Apply (Channel / Referral Partner)</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- Basic meta -->
-  <meta name="description" content="Channel / Referral Partner application for Noetfield. Bring qualified buyers, run clean deal hygiene, and co-sell board-ready AI governance artefacts (Trust Brief + Trust Ledger)." />
+  <meta
+    name="description"
+    content="Channel / Referral Partner application for Noetfield. Bring qualified buyers, run clean deal hygiene, and co-sell board-ready AI governance artefacts (Trust Brief + Trust Ledger)."
+  />
   <meta name="robots" content="index,follow" />
   <meta name="author" content="Noetfield Systems Inc." />
-  <meta name="referrer" content="strict-origin-when-cross-origin" />
-  <link rel="canonical" href="https://www.noetfield.com/gate/partners/apply-channel/" />
 
-  <!-- Icons -->
+  <!-- Canonical (always with www) -->
+  <link rel="canonical" href="https://www.noetfield.com/gate/partners/channel/" />
+
+  <!-- Favicon / icons -->
   <link rel="icon" href="/noetfield-favicon-512.png" type="image/png" />
   <link rel="apple-touch-icon" href="/noetfield-favicon-512.png" />
   <meta name="theme-color" content="#07070b" />
 
-  <!-- Open Graph -->
+  <!-- OG -->
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Noetfield" />
   <meta property="og:title" content="Noetfield – Apply (Channel / Referral Partner)" />
   <meta property="og:description" content="Channel / Referral Partner application. Qualified intros, co-sell motion, and clean deal hygiene." />
-  <meta property="og:url" content="https://www.noetfield.com/gate/partners/apply-channel/" />
+  <meta property="og:url" content="https://www.noetfield.com/gate/partners/channel/" />
   <meta property="og:image" content="https://www.noetfield.com/noetfield-og.png" />
 
   <!-- Twitter -->
@@ -31,13 +34,12 @@
   <meta name="twitter:description" content="Channel / Referral Partner application. Qualified intros, co-sell motion, and clean deal hygiene." />
   <meta name="twitter:image" content="https://www.noetfield.com/noetfield-og.png" />
 
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
   <style>
-    /* Locked Gate visual system */
+    /* Noetfield Gate UI (locked) — header/footer + form lane pages */
     :root{
       --bg0:#07070b; --bg1:#0b0b14;
       --text:#eff0f7; --muted:#b9bbcf; --muted2:#8e91ad;
@@ -367,8 +369,17 @@
       line-height:1.6;
     }
     .box strong{color:var(--text); font-weight:800}
-    .box a{border-bottom:1px solid rgba(255,255,255,.18)}
-    .box a:hover{border-bottom-color: rgba(200,163,73,.70)}
+
+    .note{
+      margin-top:12px;
+      padding:12px 12px;
+      border-radius:14px;
+      border:1px dashed rgba(255,255,255,.16);
+      background: rgba(255,255,255,.02);
+      color: var(--muted2);
+      font-size:12px;
+      line-height:1.6;
+    }
 
     footer{
       border-top:1px solid rgba(255,255,255,.10);
@@ -396,6 +407,30 @@
     .footNav a.active, .footNav a[aria-current="page"]{color: var(--text); border-color: rgba(200,163,73,.40); background: rgba(200,163,73,.10)}
     .footNav a.statusLink{display:inline-flex; align-items:center; gap:8px}
 
+    /* Optional floating feedback tab (NOT in header) */
+    .feedbackTab{
+      position:fixed;
+      right:16px;
+      bottom:16px;
+      z-index:80;
+      padding:10px 12px;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(8,8,12,.62);
+      backdrop-filter: blur(14px);
+      color: var(--muted);
+      font-size:13px;
+      display:inline-flex; gap:8px; align-items:center;
+      transition: background .15s ease, border-color .15s ease, color .15s ease, transform .06s ease;
+    }
+    .feedbackTab:hover{color:var(--text); border-color: rgba(200,163,73,.38); background: rgba(200,163,73,.10)}
+    .feedbackTab:active{transform: translateY(1px)}
+    .feedbackTab .spark{
+      width:8px; height:8px; border-radius:50%;
+      background: rgba(200,163,73,.95);
+      box-shadow: 0 0 0 3px rgba(200,163,73,.16);
+    }
+
     @media (max-width: 1140px){ .menu{display:none} .burger{display:flex} }
     @media (max-width: 980px){ .grid{grid-template-columns:1fr} .ridValue{max-width:100%} }
     @media (max-width: 760px){
@@ -407,6 +442,7 @@
       .mobileGrid{grid-template-columns:1fr 1fr}
       .form{grid-template-columns:1fr}
       .ridBar{flex-direction:column; align-items:flex-start}
+      .feedbackTab{display:none}
     }
     @media (max-width: 420px){ .mobileGrid{grid-template-columns:1fr} }
   </style>
@@ -416,7 +452,7 @@
     "@context": "https://schema.org",
     "@type": "WebPage",
     "name": "Noetfield Apply — Channel / Referral Partner",
-    "url": "https://www.noetfield.com/gate/partners/apply-channel/",
+    "url": "https://www.noetfield.com/gate/partners/channel/",
     "description": "Channel / Referral Partner application for Noetfield. Bring qualified buyers, run clean deal hygiene, and co-sell board-ready AI governance artefacts.",
     "isPartOf": {"@type":"WebSite","name":"Noetfield","url":"https://www.noetfield.com/"},
     "publisher": {"@type":"Organization","name":"Noetfield Systems Inc."}
@@ -480,8 +516,8 @@
 
   <main id="main" class="wrap">
     <noscript>
-      <div class="box">
-        <strong>Note:</strong> JavaScript is required to generate and attach a Request ID and to route to <strong>/thanks/</strong> after submit.
+      <div class="note">
+        <strong>Note:</strong> JavaScript is required to generate and attach a Request ID and to route to <code>/thanks/</code> after submit.
       </div>
     </noscript>
 
@@ -529,8 +565,9 @@
                 method="POST"
                 novalidate>
 
-            <input type="hidden" name="page_source" value="/gate/partners/apply-channel/" />
-            <input type="hidden" name="source" value="gate-partners-apply-channel" />
+            <!-- Tracking -->
+            <input type="hidden" name="page_source" value="/gate/partners/channel/" />
+            <input type="hidden" name="source" value="gate-partners-channel" />
             <input type="hidden" name="application_type" value="partner-channel" />
             <input type="hidden" name="site" value="noetfield.com" />
             <input type="hidden" name="_subject" value="Noetfield Gate — Partner application (Channel/Referral)" />
@@ -709,7 +746,7 @@
                 <input type="checkbox" name="non_confidential_ack" value="yes" required />
                 <span>
                   I confirm this application is <strong>non-confidential</strong>. No client names/credentials/private docs in this form.
-                  <small>Privacy: <a href="/privacy/">/privacy/</a></small>
+                  <small>Privacy: <a href="/privacy/" style="border-bottom:1px solid rgba(255,255,255,.18)">/privacy/</a></small>
                 </span>
               </div>
 
@@ -724,15 +761,20 @@
 
             <div class="actions">
               <button class="btn" id="submitBtn" type="submit">Submit application</button>
-              <a class="btn secondary" id="backToIntake" href="/gate/partners/intake/">Back to intake</a>
+              <a class="btn secondary" id="backToApply" href="/gate/partners/apply/">Back to apply</a>
               <a class="btn secondary" href="/gate/partners/">Back to Partners</a>
             </div>
 
             <div id="msg" class="msg" role="status" aria-live="polite"></div>
 
             <div class="box">
-              <strong>What happens next (SLA):</strong> if you pass qualification quality + buyer access, we reply within <strong>2–5 business days</strong> to define the co-sell motion, handoffs, and commercial terms for a first pilot close.
-              Your <strong>Request ID</strong> is the tracking key.
+              <strong>What happens next (SLA):</strong>
+              if you pass qualification quality + buyer access, we reply within <strong>2–5 business days</strong> to define the co-sell motion,
+              handoffs, and commercial terms for a first pilot close. Your <strong>Request ID</strong> is the tracking key.
+            </div>
+
+            <div class="note">
+              <strong>Tip:</strong> Save your Request ID. You can check routing updates via <a href="/status/" style="border-bottom:1px solid rgba(255,255,255,.18)">/status/</a>.
             </div>
           </form>
         </div>
@@ -751,9 +793,9 @@
 
           <div class="box" style="margin-top:14px;">
             <strong>Useful:</strong><br/>
-            <a href="/trust-brief/">Trust Brief</a> ·
-            <a href="/trust-ledger/">Trust Ledger</a> ·
-            <a href="/gate/partners/">Partners Gate</a>
+            <a href="/trust-brief/" style="border-bottom:1px solid rgba(255,255,255,.18)">Trust Brief</a> ·
+            <a href="/trust-ledger/" style="border-bottom:1px solid rgba(255,255,255,.18)">Trust Ledger</a> ·
+            <a href="/gate/partners/" style="border-bottom:1px solid rgba(255,255,255,.18)">Partners Gate</a>
           </div>
         </div>
       </aside>
@@ -761,6 +803,7 @@
 
     <footer>
       <div class="foot">
+        <!-- Footer logo links home (no separate Home link) -->
         <a class="footBrand" href="/" aria-label="Noetfield home">
           <img src="/noetfield-favicon-512.png" alt="Noetfield mark" />
           <span>© <span id="y"></span> Noetfield Systems Inc.</span>
@@ -784,7 +827,14 @@
     </footer>
   </main>
 
+  <!-- Optional floating feedback button (NOT in header) -->
+  <a class="feedbackTab" href="/feedback/" aria-label="Open feedback">
+    <span class="spark" aria-hidden="true"></span>
+    Feedback
+  </a>
+
   <script>
+    // Footer year
     document.getElementById("y").textContent = new Date().getFullYear();
 
     // Mobile menu
@@ -812,7 +862,7 @@
       var ridInput = document.getElementById("request_id");
       var ridText = document.getElementById("ridText");
       var openStatusBtn = document.getElementById("openStatusBtn");
-      var backToIntake = document.getElementById("backToIntake");
+      var backToApply = document.getElementById("backToApply");
 
       function genRID(){
         function rand4(){ return Math.floor(Math.random() * 10000).toString().padStart(4,"0"); }
@@ -830,17 +880,22 @@
       var params = new URLSearchParams(window.location.search || "");
       var rid = (params.get("rid") || "").trim();
 
+      // Backward-compatible storage keys (partner + gate)
       if (!rid) { try { rid = localStorage.getItem("nf_partner_rid") || ""; } catch(e){} }
+      if (!rid) { try { rid = localStorage.getItem("nf_gate_rid") || ""; } catch(e){} }
       if (!rid) rid = genRID();
 
       if (ridInput) ridInput.value = rid;
       if (ridText) ridText.textContent = rid;
 
       try { localStorage.setItem("nf_partner_rid", rid); } catch(e){}
+      try { localStorage.setItem("nf_gate_rid", rid); } catch(e){}
+      try { localStorage.setItem("nf_gate_track", "partners"); } catch(e){}
       try { localStorage.setItem("nf_partner_lane", "channel"); } catch(e){}
+      try { localStorage.setItem("nf_gate_lane", "channel"); } catch(e){}
 
       if (openStatusBtn) openStatusBtn.href = "/status/?rid=" + encodeURIComponent(rid);
-      if (backToIntake) backToIntake.href = "/gate/partners/intake/?rid=" + encodeURIComponent(rid) + "&lane=channel";
+      if (backToApply) backToApply.href = "/gate/partners/apply/?rid=" + encodeURIComponent(rid) + "&lane=channel";
 
       var copyBtn = document.getElementById("copyRidBtn");
       if (copyBtn) {
@@ -850,8 +905,22 @@
             copyBtn.textContent = "Copied";
             setTimeout(function(){ copyBtn.textContent = "Copy"; }, 1200);
           } catch(e){
-            copyBtn.textContent = "Copy failed";
-            setTimeout(function(){ copyBtn.textContent = "Copy"; }, 1200);
+            // Fallback
+            try{
+              var ta = document.createElement("textarea");
+              ta.value = rid;
+              ta.style.position = "fixed";
+              ta.style.left = "-9999px";
+              document.body.appendChild(ta);
+              ta.select();
+              document.execCommand("copy");
+              document.body.removeChild(ta);
+              copyBtn.textContent = "Copied";
+              setTimeout(function(){ copyBtn.textContent = "Copy"; }, 1200);
+            } catch(_) {
+              copyBtn.textContent = "Copy failed";
+              setTimeout(function(){ copyBtn.textContent = "Copy"; }, 1200);
+            }
           }
         });
       }
@@ -883,25 +952,25 @@
         }
       }
 
+      function firstInvalidEl(){
+        return form.querySelector(":invalid");
+      }
+
       form.addEventListener("submit", async function (e) {
         e.preventDefault();
+
+        // HTML validation (fast)
+        var bad = firstInvalidEl();
+        if (bad && typeof form.reportValidity === "function") {
+          form.reportValidity();
+          setMsg("Please complete the required fields.", "err");
+          return;
+        }
 
         var action = form.getAttribute("action");
         if (!action || action.indexOf("REPLACE_ME") !== -1) {
           setMsg("Form endpoint is missing. Replace Formspree action URL.", "err");
           return;
-        }
-
-        // Minimal client-side required check (keeps UX clean even with novalidate)
-        var missing = form.querySelectorAll("[required]");
-        for (var i=0; i<missing.length; i++){
-          var el = missing[i];
-          if (el.type === "checkbox" && !el.checked) { el.focus(); setMsg("Please confirm the required acknowledgements.", "err"); return; }
-          if ((el.type === "text" || el.tagName === "TEXTAREA" || el.tagName === "SELECT" || el.type === "email") && !String(el.value || "").trim()){
-            el.focus();
-            setMsg("Please complete all required fields.", "err");
-            return;
-          }
         }
 
         var rid = (ridInput && ridInput.value) ? ridInput.value : "";
@@ -925,6 +994,7 @@
 
           setMsg("Submitted. Redirecting…", "ok");
           try { localStorage.setItem("nf_partner_last_submitted_rid", rid); } catch(e){}
+          try { localStorage.setItem("nf_gate_last_submitted_rid", rid); } catch(e){}
 
           var url = "/thanks/?rid=" + encodeURIComponent(rid) + "&track=partners&lane=channel";
           window.location.assign(url);
@@ -936,7 +1006,7 @@
       });
     })();
 
-    // Active link highlight
+    // Active link highlight (header + footer + mobile)
     (function () {
       function normPath(p) {
         if (!p) return "/";

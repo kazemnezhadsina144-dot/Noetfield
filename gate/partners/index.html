@@ -2,52 +2,682 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Noetfield Gate – Partners (Capital & Stewardship)</title>
+  <title>Noetfield – Gate Partners (Program & Joint Delivery)</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- Basic meta -->
   <meta
     name="description"
-    content="Noetfield Gate Partners: an invitation-only track for capital and stewardship partners aligned with governance-first AI Trust Ledger and Trust Brief pilots for real-economy institutions."
+    content="Noetfield Gate Partners: program standards, joint delivery pathways, and partner intake for Trust Brief and Trust Ledger engagements."
   />
   <meta name="robots" content="index,follow" />
   <meta name="author" content="Noetfield Systems Inc." />
-
-  <!-- Canonical (always with www) -->
   <link rel="canonical" href="https://www.noetfield.com/gate/partners/" />
 
-  <!-- Favicon / icons -->
   <link rel="icon" href="/noetfield-favicon-512.png" type="image/png" />
   <link rel="apple-touch-icon" href="/noetfield-favicon-512.png" />
-  <meta name="theme-color" content="#05060a" />
+  <meta name="theme-color" content="#07070b" />
 
-  <!-- Social -->
+  <!-- OG -->
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Noetfield" />
-  <meta property="og:title" content="Noetfield Gate – Partners (Capital & Stewardship)" />
+  <meta property="og:title" content="Noetfield Gate – Partners" />
   <meta
     property="og:description"
-    content="Invitation-only partners track for early capital and governance-aligned stewardship supporting Noetfield Trust Ledger and Trust Brief pilots."
+    content="Partner program, delivery standards, and partner intake for board-ready AI governance artefacts."
   />
   <meta property="og:url" content="https://www.noetfield.com/gate/partners/" />
   <meta property="og:image" content="https://www.noetfield.com/noetfield-og.png" />
 
+  <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Noetfield Gate – Partners (Capital & Stewardship)" />
-  <meta
-    name="twitter:description"
-    content="A selective partners track: capital spine + governance-first pilots for Trust Ledger and Trust Brief."
-  />
+  <meta name="twitter:title" content="Noetfield Gate – Partners" />
+  <meta name="twitter:description" content="Partner program, delivery standards, and partner intake for board-ready AI governance artefacts." />
   <meta name="twitter:image" content="https://www.noetfield.com/noetfield-og.png" />
 
-  <!-- Schema: WebPage -->
+  <!-- Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    :root{
+      --bg0:#07070b;
+      --bg1:#0b0b14;
+      --panel: rgba(255,255,255,.055);
+      --panel2: rgba(255,255,255,.038);
+      --text:#eff0f7;
+      --muted:#b9bbcf;
+      --muted2:#8e91ad;
+      --line: rgba(255,255,255,.11);
+
+      --gold:#c8a349;
+      --gold2:#a98a3c;
+
+      --ok:#2de38a;
+      --okGlow: rgba(45,227,138,.18);
+
+      --danger:#ff5a5a;
+      --dangerGlow: rgba(255,90,90,.18);
+
+      --radius:18px;
+      --max:1120px;
+
+      --shadow: 0 28px 80px rgba(0,0,0,.62);
+      --shadow2: 0 14px 50px rgba(0,0,0,.50);
+      --focus: 0 0 0 4px rgba(200,163,73,.18);
+
+      --navH: 68px;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color: var(--text);
+      background: linear-gradient(180deg, var(--bg0), var(--bg1));
+      overflow-x:hidden;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    a{color:inherit; text-decoration:none}
+    a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible{
+      outline:none;
+      box-shadow: var(--focus);
+      border-color: rgba(200,163,73,.58) !important;
+    }
+    [hidden]{display:none !important;}
+
+    /* Premium background */
+    .bg{
+      position:fixed; inset:0;
+      z-index:-3; pointer-events:none;
+      background:
+        radial-gradient(1400px 820px at 10% -10%, rgba(200,163,73,.20), transparent 58%),
+        radial-gradient(1200px 820px at 100% 0%, rgba(122,167,255,.12), transparent 60%),
+        radial-gradient(900px 700px at 55% 22%, rgba(255,255,255,.05), transparent 62%),
+        linear-gradient(180deg, var(--bg0), var(--bg1));
+      filter: saturate(1.05);
+    }
+    .bg::before{
+      content:"";
+      position:absolute; inset:0;
+      background:
+        linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
+      background-size: 54px 54px;
+      opacity:.055;
+      mask-image: radial-gradient(70% 60% at 50% 8%, black 55%, transparent 100%);
+    }
+    .bg::after{
+      content:"";
+      position:absolute; inset:-90px;
+      background:
+        radial-gradient(1100px 760px at 50% 8%, transparent 55%, rgba(0,0,0,.58) 100%),
+        radial-gradient(1000px 900px at 50% 110%, rgba(0,0,0,.68), transparent 62%);
+      opacity:.92;
+    }
+
+    .wrap{max-width:var(--max); margin:0 auto; padding:24px}
+
+    /* Header */
+    header{
+      position:sticky; top:0; z-index:60;
+      backdrop-filter: blur(16px);
+      background: rgba(8,8,12,.62);
+      border-bottom: 1px solid rgba(255,255,255,.10);
+    }
+    .nav{
+      max-width:var(--max); margin:0 auto;
+      padding: 10px 16px;
+      display:flex; align-items:center; justify-content:space-between;
+      gap:14px;
+      min-height: var(--navH);
+    }
+
+    /* Brand (fixed to avoid overlap) */
+    .brand{
+      display:flex; align-items:center; gap:12px;
+      flex:0 0 auto;
+      min-width: 240px;
+      max-width: 360px;
+    }
+    .brandMark{
+      width:36px; height:36px; border-radius:12px;
+      box-shadow: 0 12px 26px rgba(0,0,0,.55);
+      border:1px solid rgba(255,255,255,.12);
+      display:block;
+      flex:0 0 auto;
+    }
+    .brandText{min-width:0}
+    .brand .name{
+      font-weight:800;
+      letter-spacing:.10px;
+      line-height:1.05;
+      font-size: 15px;
+    }
+    .brand .tag{
+      font-size:10.5px;
+      color:var(--muted2);
+      margin-top:3px;
+      letter-spacing:.28em;
+      text-transform:uppercase;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      max-width: 320px;
+      opacity:.95;
+    }
+
+    /* Menu */
+    .menu{
+      display:flex;
+      align-items:center;
+      justify-content:flex-end;
+      gap:12px;
+      flex:1 1 auto;
+      min-width:0;
+    }
+    .menuPrimary, .menuActions{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      min-width:0;
+      flex-wrap:nowrap;
+    }
+    .menuPrimary{
+      flex:1 1 auto;
+      justify-content:center;
+      overflow:hidden;
+    }
+    .menuActions{
+      flex:0 0 auto;
+      justify-content:flex-end;
+    }
+
+    .menu a{
+      color:var(--muted);
+      padding:8px 10px;
+      border-radius:14px;
+      border:1px solid transparent;
+      background: transparent;
+      transition: background .15s ease, border-color .15s ease, color .15s ease, transform .06s ease;
+      white-space:nowrap;
+      font-size:12.75px;
+      line-height:1;
+    }
+    .menu a:hover{
+      color:var(--text);
+      border-color:rgba(255,255,255,.10);
+      background:rgba(255,255,255,.045);
+    }
+    .menu a:active{transform: translateY(1px)}
+    .menu a.active,
+    .menu a[aria-current="page"]{
+      color:var(--text);
+      border-color:rgba(200,163,73,.38);
+      background:
+        radial-gradient(240px 90px at 50% 0%, rgba(255,255,255,.10), transparent 60%),
+        linear-gradient(180deg, rgba(200,163,73,.22), rgba(200,163,73,.10));
+    }
+
+    .menu a.pilltab{
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.03);
+    }
+    .menu a.login{
+      border:1px solid rgba(200,163,73,.58);
+      background:
+        radial-gradient(220px 90px at 40% 0%, rgba(255,255,255,.11), transparent 62%),
+        linear-gradient(180deg, rgba(200,163,73,.22), rgba(200,163,73,.10));
+      color: var(--text);
+      font-weight:750;
+      padding:8px 11px;
+    }
+    .menu a.login:hover{
+      border-color: rgba(200,163,73,.85);
+      background:
+        radial-gradient(220px 90px at 40% 0%, rgba(255,255,255,.13), transparent 62%),
+        linear-gradient(180deg, rgba(200,163,73,.26), rgba(200,163,73,.12));
+    }
+
+    .menu a.statusLink, .mobileGrid a.statusLink, .footNav a.statusLink{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+    }
+    .statusDot{
+      width:7px; height:7px;
+      border-radius:50%;
+      background: var(--ok);
+      box-shadow: 0 0 0 3px var(--okGlow);
+      flex:0 0 auto;
+    }
+
+    /* Mobile */
+    .burger{
+      display:none;
+      align-items:center; justify-content:center;
+      width:42px; height:42px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04);
+      cursor:pointer;
+      transition: background .15s ease, border-color .15s ease;
+      flex:0 0 auto;
+    }
+    .burger:hover{border-color:rgba(255,255,255,.18); background:rgba(255,255,255,.06)}
+    .burger svg{width:20px; height:20px; opacity:.92}
+
+    .mobilePanel{
+      border-top:1px solid rgba(255,255,255,.10);
+      background: rgba(8,8,12,.74);
+      backdrop-filter: blur(16px);
+    }
+    .mobileInner{
+      max-width:var(--max);
+      margin:0 auto;
+      padding: 12px 14px 16px;
+    }
+    .mobileGrid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:10px;
+    }
+    .mobileGrid a{
+      padding:12px 12px;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04);
+      color: var(--muted);
+      font-size:14px;
+      transition: background .15s ease, border-color .15s ease, color .15s ease;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      text-align:center;
+    }
+    .mobileGrid a:hover{color:var(--text); border-color:rgba(255,255,255,.18); background:rgba(255,255,255,.06)}
+    .mobileGrid a.active,
+    .mobileGrid a[aria-current="page"]{
+      color: var(--text);
+      border-color: rgba(200,163,73,.42);
+      background:
+        radial-gradient(220px 90px at 30% 0%, rgba(200,163,73,.22), transparent 60%),
+        rgba(200,163,73,.10);
+    }
+    .mobileNote{
+      margin-top:12px;
+      color:var(--muted2);
+      font-size:12px;
+      display:flex; gap:8px; align-items:center;
+      flex-wrap:wrap;
+    }
+    .chip{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:7px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.03);
+      color: var(--muted2);
+    }
+    .chip b{color:var(--text); font-weight:650}
+
+    /* Hero */
+    .hero{padding: 22px 0 18px}
+    .heroShell{
+      position:relative;
+      border-radius: calc(var(--radius) + 8px);
+      border: 1px solid rgba(255,255,255,.11);
+      background:
+        radial-gradient(1000px 420px at 18% 0%, rgba(200,163,73,.18), transparent 60%),
+        radial-gradient(1000px 420px at 90% 10%, rgba(122,167,255,.10), transparent 62%),
+        linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.022));
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .heroShell::before{
+      content:"";
+      position:absolute; inset:-1px;
+      background: linear-gradient(120deg,
+        rgba(200,163,73,.26),
+        transparent 30%,
+        rgba(255,255,255,.08) 68%,
+        transparent
+      );
+      opacity:.44;
+      pointer-events:none;
+      mask-image: linear-gradient(180deg, black 0%, black 58%, transparent 96%);
+    }
+    .heroInner{padding: 24px 22px}
+    .eyebrow{
+      display:inline-flex; gap:10px; align-items:center;
+      color:var(--muted);
+      font-size:13px;
+      padding:9px 12px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.13);
+      background: rgba(255,255,255,.035);
+    }
+    .dot{
+      width:8px; height:8px; border-radius:50%;
+      background: rgba(200,163,73,.97);
+      box-shadow: 0 0 0 3px rgba(200,163,73,.18);
+    }
+    h1{
+      margin:14px 0 10px;
+      font-size:42px;
+      line-height:1.07;
+      letter-spacing:-0.75px;
+    }
+    .lead{
+      margin:0;
+      color:var(--muted);
+      font-size:16px;
+      max-width: 920px;
+    }
+    .pillrow{display:flex; flex-wrap:wrap; gap:10px; margin-top:14px}
+    .pill{
+      display:inline-flex; align-items:center; gap:10px;
+      padding:9px 12px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.03);
+      color:var(--muted);
+      font-size:13px;
+    }
+    .pill strong{color:var(--text); font-weight:650}
+
+    /* Grid */
+    .grid{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap:18px;
+      margin: 18px 0 34px;
+    }
+    .card{
+      border-radius:var(--radius);
+      border:1px solid rgba(255,255,255,.11);
+      background: linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.022));
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+    }
+    .card .hd{padding:18px 18px 0}
+    .card h2{margin:0 0 8px; font-size:18px; letter-spacing:-0.2px}
+    .card p{margin:0 0 12px; color:var(--muted)}
+    .card .bd{padding:18px}
+
+    /* Request bar */
+    .ridBar{
+      margin-top:12px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      padding:12px 12px;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+    }
+    .ridLeft{
+      min-width:0;
+      display:flex;
+      flex-direction:column;
+      gap:4px;
+    }
+    .ridLabel{
+      font-size:11px;
+      letter-spacing:.28em;
+      text-transform:uppercase;
+      color:var(--muted2);
+    }
+    .ridValue{
+      font-weight:700;
+      color:var(--text);
+      font-size:13px;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      white-space:nowrap;
+      max-width: 520px;
+    }
+    .ridActions{
+      display:flex;
+      gap:8px;
+      align-items:center;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+      flex:0 0 auto;
+    }
+    .miniBtn{
+      white-space:nowrap;
+      font-size:13px;
+      color:var(--text);
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.04);
+      padding:9px 12px;
+      border-radius:14px;
+      cursor:pointer;
+      transition: background .15s ease, border-color .15s ease, transform .06s ease;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+    }
+    .miniBtn:hover{border-color:rgba(255,255,255,.22); background:rgba(255,255,255,.06)}
+    .miniBtn:active{transform: translateY(1px)}
+    .miniBtn.primary{
+      border-color: rgba(200,163,73,.38);
+      background: rgba(200,163,73,.10);
+    }
+    .miniBtn.primary:hover{
+      border-color: rgba(200,163,73,.70);
+      background: rgba(200,163,73,.14);
+    }
+
+    .tracks{display:grid; grid-template-columns:1fr; gap:10px; margin-top:10px}
+    .track{
+      padding:14px 14px;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(10,10,14,.35);
+      display:flex; align-items:flex-start; justify-content:space-between; gap:14px;
+    }
+    .track .t{font-weight:800}
+    .track .d{color:var(--muted); font-size:13px; margin-top:4px}
+    .trackActions{
+      display:flex;
+      gap:8px;
+      align-items:center;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+    .cta{
+      white-space:nowrap;
+      font-size:13px;
+      color:var(--text);
+      border:1px solid rgba(200,163,73,.38);
+      background: rgba(200,163,73,.10);
+      padding:9px 12px;
+      border-radius:14px;
+      transition: background .15s ease, border-color .15s ease;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+    }
+    .cta:hover{border-color:rgba(200,163,73,.70); background:rgba(200,163,73,.14)}
+    .cta.secondary{
+      border:1px solid rgba(255,255,255,.16);
+      background: rgba(255,255,255,.04);
+      color: var(--muted);
+    }
+    .cta.secondary:hover{
+      color: var(--text);
+      border-color: rgba(255,255,255,.22);
+      background: rgba(255,255,255,.06);
+    }
+
+    .resourceBox{
+      margin-top:14px;
+      padding:12px 12px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+    }
+    .resourceTitle{
+      font-weight:800;
+      font-size:12px;
+      color: var(--text);
+      margin: 0 0 8px;
+      letter-spacing: .2px;
+      text-transform:uppercase;
+      opacity:.95;
+    }
+    .resourceGrid{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+    }
+    .resourceGrid a{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:9px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.03);
+      color: var(--muted);
+      font-size:13px;
+      transition: background .15s ease, border-color .15s ease, color .15s ease;
+    }
+    .resourceGrid a:hover{
+      color: var(--text);
+      border-color: rgba(255,255,255,.18);
+      background: rgba(255,255,255,.05);
+    }
+
+    .links{
+      display:flex; flex-wrap:wrap; gap:10px 14px;
+      margin-top:16px;
+      font-size:13px;
+      color:var(--muted);
+    }
+    .links a{
+      border-bottom:1px solid rgba(255,255,255,.16);
+      padding-bottom:2px;
+    }
+    .links a:hover{color:var(--text); border-bottom-color:rgba(200,163,73,.55)}
+
+    .fineprint{
+      margin-top:14px;
+      padding:12px 12px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      color: var(--muted2);
+      font-size:12px;
+      line-height:1.55;
+    }
+
+    /* Footer */
+    footer{
+      border-top:1px solid rgba(255,255,255,.10);
+      padding: 18px 0 22px;
+      color:var(--muted2);
+      margin-top:34px;
+      background: rgba(8,8,12,.35);
+      backdrop-filter: blur(10px);
+    }
+    .foot{
+      max-width:var(--max); margin:0 auto;
+      padding: 0 16px;
+      display:flex; flex-wrap:wrap; gap:12px 18px;
+      align-items:center; justify-content:space-between;
+    }
+    .footBrand{
+      display:flex; align-items:center; gap:10px;
+      color:var(--muted);
+    }
+    .footBrand img{
+      width:28px; height:28px; border-radius:10px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.03);
+    }
+    .footBrand:hover{color:var(--text)}
+    .footNav{
+      display:flex; flex-wrap:wrap;
+      gap:10px 12px;
+      align-items:center;
+    }
+    .footNav a{
+      color: var(--muted);
+      padding:8px 10px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      font-size:13px;
+      transition: background .15s ease, border-color .15s ease, color .15s ease;
+      white-space:nowrap;
+    }
+    .footNav a:hover{color:var(--text); border-color:rgba(255,255,255,.16); background:rgba(255,255,255,.05)}
+    .footNav a.active, .footNav a[aria-current="page"]{
+      color: var(--text);
+      border-color: rgba(200,163,73,.40);
+      background: rgba(200,163,73,.10);
+    }
+
+    @media (max-width: 1220px){
+      .brand{min-width: 220px; max-width: 300px}
+      .brand .tag{max-width: 260px}
+      .menu a{font-size:12.25px; padding:8px 9px}
+      .menuPrimary{justify-content:flex-start}
+    }
+    @media (max-width: 1140px){
+      .menu{display:none}
+      .burger{display:flex}
+    }
+    @media (max-width: 980px){
+      .grid{grid-template-columns:1fr}
+      .ridValue{max-width: 100%}
+    }
+    @media (max-width: 760px){
+      :root{--navH: 64px}
+      .wrap{padding:16px}
+      .nav{padding:10px 14px}
+      .brandMark{width:34px; height:34px}
+      .brand{min-width: 0; max-width: 100%}
+      .brand .tag{display:none}
+      .heroInner{padding:20px 16px}
+      h1{font-size:30px}
+      .lead{font-size:15px}
+      .mobileGrid{grid-template-columns:1fr 1fr}
+      .foot{padding:0 14px}
+      .footNav a{font-size:12.5px}
+      .ridBar{flex-direction:column; align-items:flex-start}
+      .ridActions{justify-content:flex-start}
+    }
+    @media (max-width: 420px){
+      .mobileGrid{grid-template-columns:1fr}
+    }
+
+    .skip{
+      position:absolute; left:-999px; top:10px;
+      background:#111118; border:1px solid rgba(255,255,255,.12);
+      color:var(--text); padding:10px 12px; border-radius:12px;
+      z-index:999;
+    }
+    .skip:focus{left:10px}
+  </style>
+
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "WebPage",
-    "name": "Noetfield Gate – Partners (Capital & Stewardship)",
-    "description": "Invitation-only partners track for early capital and governance-aligned stewardship supporting Noetfield Trust Ledger and Trust Brief pilots.",
+    "name": "Noetfield Gate – Partners",
     "url": "https://www.noetfield.com/gate/partners/",
+    "description": "Partner program standards, joint delivery pathways, and partner intake for Trust Brief and Trust Ledger engagements.",
     "isPartOf": {
       "@type": "WebSite",
       "name": "Noetfield",
@@ -55,956 +685,341 @@
     },
     "publisher": {
       "@type": "Organization",
-      "name": "Noetfield Systems Inc.",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://www.noetfield.com/noetfield-og.png"
-      }
+      "name": "Noetfield Systems Inc."
     }
   }
   </script>
-
-  <!-- Schema: FAQ -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "Is this a public offering of securities?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "No. This page is for high-level information and discussion only. It is not an offer to sell or a solicitation to buy any securities. Any participation would occur only via applicable exemptions and final executed legal documentation."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "What is the capital flow in the partners track?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Illustratively: partner capital is provided to a dedicated capital spine entity via a high-risk instrument (e.g., a convertible note/loan), and then deployed into Noetfield Systems Inc. via structured intercompany arrangements to fund pilots, productization, and governance infrastructure."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "What is the risk profile?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "High-risk and illiquid. There may be no liquidity event, no repayment, and no return. Prospective partners should be prepared for the possibility of total loss and seek independent professional advice."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Who is this designed for?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Sophisticated individuals, family offices, and early-stage funds (or comparable qualified participants) aligned with governance-first AI trust infrastructure and able to participate under applicable securities-law exemptions."
-        }
-      }
-    ]
-  }
-  </script>
-
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
-    rel="stylesheet"
-  />
-
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root{
-      --bg:#05060a;
-      --bg-soft:#080911;
-      --border-soft:rgba(255,255,255,0.10);
-      --text-main:#f5f5f7;
-      --text-soft:#daddef;
-      --text-mute:#9ca3af;
-      --accent:#ffffff;
-      --accent-soft:#9ca3ff;
-      --gold:#d6b35f;
-    }
-
-    body{
-      font-family:'Inter',system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-      background: radial-gradient(circle at top, #151827 0%, var(--bg) 55%);
-      color: var(--text-main);
-      min-height: 100vh;
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      padding: 32px 20px 40px;
-    }
-
-    a{ color: inherit; text-decoration:none; }
-    main{ width: 100%; }
-
-    .page{
-      width:100%;
-      max-width:1040px;
-      display:flex;
-      flex-direction:column;
-      min-height: calc(100vh - 72px);
-    }
-
-    header{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      margin-bottom:32px;
-      padding-bottom:14px;
-      border-bottom:1px solid var(--border-soft);
-      gap:14px;
-    }
-
-    .brand-wrap{ display:flex; align-items:center; gap:10px; }
-    .brand-logo{
-      width:32px; height:32px; border-radius:999px;
-      background: radial-gradient(circle at 25% 0, #ffffff 0, #f3e7c8 16%, var(--gold) 40%, #1f2937 72%, #020617 100%);
-      display:flex; align-items:center; justify-content:center;
-      font-size:18px; font-weight:700; color:#0b0c10;
-      box-shadow: 0 10px 28px rgba(15,23,42,0.9);
-    }
-    .brand-text{ display:flex; flex-direction:column; gap:2px; }
-    .brand-name{
-      font-size:16px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase;
-    }
-    .brand-tagline{ font-size:12px; color: var(--text-mute); }
-
-    nav{
-      display:flex; gap:18px; font-size:13px; flex-wrap:wrap;
-    }
-    nav a{
-      opacity:0.78;
-      padding-bottom:2px;
-      border-bottom:1px solid transparent;
-      position:relative;
-    }
-    nav a:hover{ opacity:1; border-bottom-color: rgba(209,213,219,0.6); }
-    nav a.active{
-      opacity:1;
-      border-bottom-color: rgba(255,255,255,0.85);
-      font-weight:500;
-    }
-
-    .hero{ margin-bottom: 26px; }
-    .pill{
-      display:inline-flex; align-items:center; gap:8px;
-      font-size:11px; padding:4px 10px; border-radius:999px;
-      border:1px solid rgba(148,163,253,0.35);
-      background: radial-gradient(circle at 0 0, rgba(129,140,248,0.32), transparent 55%);
-      color:#e5e7eb;
-      margin-bottom:10px;
-    }
-    .pill-dot{
-      width:8px; height:8px; border-radius:999px;
-      background: linear-gradient(135deg, #7dd3fc, #a855f7);
-    }
-    .hero-kicker{
-      font-size:11px; text-transform:uppercase; letter-spacing:0.16em;
-      color: var(--text-mute); margin-bottom: 8px;
-    }
-    .hero-title{
-      font-size: clamp(26px, 3vw, 30px);
-      line-height: 1.15;
-      font-weight: 600;
-      margin-bottom: 14px;
-      letter-spacing: -0.02em;
-    }
-    .hero-title span{
-      background: linear-gradient(135deg, #ffffff, #a5b4fc);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
-    .hero-subtitle{
-      font-size: 15px;
-      line-height: 1.6;
-      color: #d0d3dd;
-      max-width: 760px;
-    }
-    .hero-cta-row{
-      display:flex; flex-wrap:wrap; gap:12px; margin-top: 18px;
-    }
-
-    .btn-primary,.btn-ghost{
-      display:inline-flex; align-items:center; justify-content:center;
-      padding: 9px 18px; border-radius: 999px;
-      font-size: 13px; font-weight: 500;
-      cursor:pointer;
-      border: 1px solid transparent;
-      transition: background-color .16s ease, border-color .16s ease, color .16s ease, transform .06s ease;
-      white-space: nowrap;
-    }
-    .btn-primary{
-      background: linear-gradient(135deg, #f9fafb, #e5e7eb);
-      color: #050608;
-      box-shadow: 0 12px 32px rgba(15,23,42,0.9);
-    }
-    .btn-primary:hover{ background:#ffffff; transform: translateY(-1px); }
-    .btn-ghost{
-      background: rgba(15,23,42,0.9);
-      border-color:#4b4f5c;
-      color:#e1e3ea;
-    }
-    .btn-ghost:hover{ background:#111827; border-color:#6c7080; }
-
-    .section{ margin-bottom: 30px; }
-    .section-kicker{
-      font-size:11px; text-transform:uppercase; letter-spacing:0.16em;
-      color: var(--text-mute);
-      margin-bottom: 4px;
-    }
-    .section-title-row{
-      display:flex; align-items:center; justify-content:space-between;
-      gap:10px; margin-bottom: 8px;
-    }
-    .section-title{
-      font-size: 18px; font-weight: 600;
-    }
-    .section-subtitle{
-      font-size: 14px; color: #a0a4ae; margin-bottom: 10px;
-    }
-
-    p{
-      font-size: 14px;
-      line-height: 1.7;
-      color: #e1e3ea;
-      margin-bottom: 9px;
-    }
-
-    ul{ list-style:none; margin-top:4px; }
-    li{
-      font-size:14px; line-height:1.6; color:#e1e3ea;
-      padding-left:18px; position:relative; margin-bottom:6px;
-    }
-    li::before{
-      content:"•"; position:absolute; left:4px; color: var(--accent-soft);
-    }
-
-    .chip{
-      font-size:11px; padding:3px 8px; border-radius:999px;
-      border:1px solid rgba(148,163,253,0.4);
-      color:#cbd5f5;
-      background: rgba(15,23,42,0.8);
-      white-space:nowrap;
-    }
-
-    .layout-grid{
-      display:grid;
-      grid-template-columns: minmax(0, 3fr) minmax(0, 2.4fr);
-      gap: 28px;
-      align-items:flex-start;
-      margin-bottom: 24px;
-    }
-
-    .card{
-      border-radius: 16px;
-      border: 1px solid #22252f;
-      background: radial-gradient(circle at top left, #191c2e 0, #0a0b10 52%, #050608 100%);
-      padding: 16px 16px 14px;
-    }
-    .card-kicker{
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      color: #9ea2b2;
-      margin-bottom: 6px;
-    }
-    .card-title{
-      font-size: 14px;
-      font-weight: 600;
-      margin-bottom: 6px;
-    }
-    .card p{
-      font-size: 13px;
-      line-height: 1.6;
-      color: #daddef;
-      margin-bottom: 6px;
-    }
-
-    .badge-row{ display:flex; flex-wrap:wrap; gap:6px; margin-top:8px; }
-    .badge{
-      font-size:11px; border-radius:999px;
-      border:1px solid #343848;
-      padding:3px 8px; color:#b6bad1;
-    }
-
-    .one-sentence{
-      margin-top: 12px;
-      padding: 10px 12px;
-      border-radius: 10px;
-      border: 1px dashed #343848;
-      background: rgba(15,23,42,0.6);
-      font-size: 13px;
-      color: #d4d7eb;
-    }
-    .one-sentence strong{ font-weight:600; }
-
-    .grid-3{
-      display:grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 14px;
-    }
-
-    .link-inline{
-      font-size:13px;
-      color:#cbd5f5;
-      text-decoration: underline;
-      text-decoration-thickness: 1px;
-      text-underline-offset: 3px;
-    }
-
-    .subnav{
-      margin: 14px 0 24px;
-      border: 1px solid #232633;
-      background: rgba(8,9,17,0.55);
-      border-radius: 16px;
-      padding: 14px;
-    }
-    .subnav-title{
-      display:flex; align-items:center; justify-content:space-between;
-      gap:10px; margin-bottom:10px;
-    }
-    .subnav-title strong{ font-size: 13px; font-weight: 600; color:#f1f2fb; }
-    .subnav-note{ font-size: 12px; color:#9ca3b8; line-height:1.6; }
-
-    .subnav-grid{
-      display:grid;
-      grid-template-columns: repeat(3, minmax(0,1fr));
-      gap: 10px;
-      margin-top: 10px;
-    }
-
-    .subnav-item{
-      border-radius: 14px;
-      border: 1px solid #2a2d3a;
-      background: radial-gradient(circle at top left, rgba(25,28,46,0.75) 0, rgba(10,11,16,0.75) 52%, rgba(5,6,8,0.9) 100%);
-      padding: 12px 12px 10px;
-      transition: transform .08s ease, border-color .16s ease, background-color .16s ease;
-      min-height: 86px;
-    }
-    .subnav-item:hover{
-      transform: translateY(-1px);
-      border-color: rgba(148,163,253,0.45);
-    }
-    .subnav-k{ font-size: 11px; letter-spacing: 0.14em; text-transform:uppercase; color:#9ea2b2; margin-bottom:6px; }
-    .subnav-h{ font-size: 13px; font-weight: 600; margin-bottom: 6px; }
-    .subnav-p{ font-size: 12px; color:#c9cde0; line-height:1.55; }
-
-    .checklist{
-      border-radius:14px;
-      border:1px solid #232633;
-      background: var(--bg-soft);
-      padding: 14px 16px 10px;
-    }
-    .checklist-title{
-      font-size: 13px;
-      font-weight: 600;
-      margin-bottom: 6px;
-    }
-    .checklist-item{
-      font-size: 12px;
-      color: #b6bad1;
-      line-height: 1.6;
-      padding-left: 18px;
-      position: relative;
-      margin-bottom: 4px;
-    }
-    .checklist-item::before{
-      content:"✓";
-      position:absolute;
-      left: 3px;
-      color: var(--accent-soft);
-      font-size: 11px;
-    }
-
-    .two-col{
-      display:grid;
-      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
-      gap: 24px;
-    }
-
-    .simple-form{ max-width: 520px; margin-top: 10px; }
-    .form-row{ margin-bottom: 10px; }
-    .form-row label, .form-row span.label{
-      display:block; font-size:12px; color:#cbd0e0; margin-bottom:4px;
-    }
-    .form-row input, .form-row select, .form-row textarea{
-      width:100%;
-      padding: 8px 10px;
-      border-radius: 10px;
-      border: 1px solid #303445;
-      background: rgba(15,23,42,0.9);
-      color: #e5e7f5;
-      font-size: 13px;
-    }
-    .form-row textarea{ min-height: 90px; resize: vertical; }
-    .form-row input:focus, .form-row select:focus, .form-row textarea:focus{
-      outline:none;
-      border-color:#6366f1;
-      box-shadow: 0 0 0 1px rgba(99,102,241,0.5);
-    }
-
-    .radio-group{
-      display:flex; flex-wrap:wrap; gap:10px;
-      font-size:12px; color:#d4d7eb;
-    }
-    .radio-group label{
-      display:inline-flex; align-items:center; gap:6px;
-      cursor:pointer;
-      padding: 6px 10px;
-      border-radius: 999px;
-      border: 1px solid #2f3342;
-      background: rgba(15,23,42,0.65);
-    }
-    .radio-group input{ accent-color: #8b93ff; }
-
-    .rid-box{
-      margin-top: 10px;
-      border-radius: 12px;
-      border: 1px dashed #343848;
-      background: rgba(15,23,42,0.55);
-      padding: 10px 12px;
-      font-size: 12px;
-      color: #cfd5ea;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:10px;
-      flex-wrap:wrap;
-    }
-    .rid{
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-      letter-spacing: 0.02em;
-      color: #f1f2fb;
-    }
-    .rid-copy{
-      border: 1px solid #343848;
-      background: rgba(2,6,23,0.35);
-      color: #e7eaf6;
-      padding: 6px 10px;
-      border-radius: 999px;
-      font-size: 12px;
-      cursor:pointer;
-    }
-    .rid-copy:hover{ border-color: rgba(148,163,253,0.55); }
-
-    .faq-item{ margin-bottom: 14px; }
-    .faq-q{ font-size: 13px; font-weight: 500; color:#f1f2fb; margin-bottom:3px; }
-    .faq-a{ font-size: 13px; color:#cacfe4; line-height:1.6; }
-
-    footer{
-      margin-top: 32px;
-      font-size: 11px;
-      color: #737889;
-      display:flex;
-      justify-content: space-between;
-      gap: 12px;
-      flex-wrap: wrap;
-      align-items:center;
-    }
-    footer a{ color:#b6bad1; }
-    footer a:hover{ text-decoration: underline; }
-
-    @media (max-width: 900px){
-      .grid-3{ grid-template-columns: minmax(0,1fr) minmax(0,1fr); }
-      .subnav-grid{ grid-template-columns: minmax(0,1fr) minmax(0,1fr); }
-    }
-    @media (max-width: 768px){
-      body{ padding: 24px 16px 32px; }
-      header{ align-items:flex-start; flex-direction:column; gap:6px; }
-      nav{ justify-content:flex-start; }
-      .hero-title{ font-size: 24px; }
-      .hero-subtitle{ max-width: 100%; }
-      .layout-grid, .two-col{ grid-template-columns: minmax(0,1fr); }
-      .grid-3, .subnav-grid{ grid-template-columns: minmax(0,1fr); }
-      .hero-cta-row{ flex-direction: column; }
-      .btn-primary, .btn-ghost{ width:100%; justify-content:center; }
-      footer{ flex-direction:column; align-items:flex-start; }
-      .rid-box{ justify-content:flex-start; }
-    }
-  </style>
 </head>
 
 <body>
-  <div class="page">
-    <header>
-      <a href="/" class="brand-wrap" aria-label="Noetfield home">
-        <div class="brand-logo">N</div>
-        <div class="brand-text">
-          <div class="brand-name">Noetfield</div>
-          <div class="brand-tagline">Trust systems for AI governance</div>
+  <div class="bg" aria-hidden="true"></div>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header>
+    <div class="nav">
+      <a class="brand" href="/" aria-label="Noetfield home">
+        <img class="brandMark" src="/noetfield-favicon-512.png" alt="Noetfield mark" />
+        <div class="brandText">
+          <div class="name">Noetfield</div>
+          <div class="tag">Trust and Stewardship in AI</div>
         </div>
       </a>
 
-      <nav aria-label="Primary navigation">
-        <a href="/">Home</a>
-        <a href="/trust-brief/">Trust Brief</a>
-        <a href="/trust-ledger/">Trust Ledger</a>
-        <a href="/for-whom/">For Whom</a>
-        <a href="/gate/" class="active" aria-current="page">Gate</a>
-        <a href="/about/">About</a>
-        <a href="/contact/">Contact</a>
-        <a href="/playbook/">Playbook</a>
+      <nav class="menu" aria-label="Primary navigation">
+        <div class="menuPrimary" aria-label="Core">
+          <a href="/trust-ledger/">Trust Ledger</a>
+          <a href="/trust-brief/">Trust Brief</a>
+          <a href="/playbook/">Playbook</a>
+          <a href="/copilot-cost-governance/">Copilot</a>
+          <a href="/for-whom/">For Whom</a>
+        </div>
+        <div class="menuActions" aria-label="App actions">
+          <a class="pilltab" href="/gate/">Gate</a>
+          <a class="pilltab" href="/portal/">Portal</a>
+          <a class="pilltab statusLink" href="/status/"><span class="statusDot" aria-hidden="true"></span>Status</a>
+          <a class="pilltab" href="/feedback/">Feedback</a>
+          <a class="login" href="/portal/login/">Login</a>
+        </div>
       </nav>
-    </header>
 
-    <main>
-      <!-- Hero -->
-      <section class="hero">
-        <div class="pill">
-          <span class="pill-dot"></span>
-          Gate / Partners
+      <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="mobilePanel">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>
+
+    <div class="mobilePanel" id="mobilePanel" hidden>
+      <div class="mobileInner">
+        <div class="mobileGrid" aria-label="Mobile navigation">
+          <a href="/trust-ledger/">Trust Ledger</a>
+          <a href="/trust-brief/">Trust Brief</a>
+          <a href="/playbook/">Playbook</a>
+          <a href="/copilot-cost-governance/">Copilot</a>
+          <a href="/for-whom/">For Whom</a>
+          <a href="/gate/">Gate</a>
+          <a href="/portal/">Portal</a>
+          <a class="statusLink" href="/status/"><span class="statusDot" aria-hidden="true"></span>Status</a>
+          <a href="/feedback/">Feedback</a>
+          <a href="/portal/login/">Login</a>
         </div>
 
-        <div class="hero-kicker">Invitation-only track</div>
-
-        <h1 class="hero-title">
-          Partners for <span>capital, pilots, and stewardship</span> — governance-first.
-        </h1>
-
-        <p class="hero-subtitle">
-          This is a private partners track for aligned participants supporting Noetfield’s board-first Trust Ledger wedge:
-          a Trust Brief pilot pattern that produces board-ready artifacts and a defensible trust record for AI usage in real-economy institutions.
-        </p>
-
-        <div class="hero-cta-row">
-          <a href="#express-interest" class="btn-primary">Express interest</a>
-          <a href="/trust-ledger/" class="btn-ghost">Review Trust Ledger</a>
+        <div class="mobileNote">
+          <span class="chip"><b>Partners</b> track</span>
+          <span class="chip">Joint delivery</span>
+          <span class="chip">Non-confidential</span>
         </div>
+      </div>
+    </div>
+  </header>
 
-        <div class="subnav" role="navigation" aria-label="Partners subpages">
-          <div class="subnav-title">
-            <strong>Partners subpages</strong>
-            <span class="chip">Clean linking · deploy-ready</span>
-          </div>
-          <div class="subnav-note">
-            Each subpage is a dedicated artifact: structure, notes, investor fit, and case-style references for institutional conversations.
-          </div>
+  <main id="main" class="wrap">
+    <section class="hero">
+      <div class="heroShell">
+        <div class="heroInner">
+          <div class="eyebrow"><span class="dot"></span> Partners • delivery standards • joint engagements • human review</div>
+          <h1>Partners, without cap-table noise.</h1>
+          <p class="lead">
+            This is the controlled Partners track under Gate. Use it to route joint delivery, program collaboration,
+            and aligned referrals for Trust Brief and Trust Ledger engagements. This is not a public solicitation.
+          </p>
 
-          <div class="subnav-grid">
-            <a class="subnav-item" href="/gate/partners/structure/">
-              <div class="subnav-k">Subpage</div>
-              <div class="subnav-h">Structure</div>
-              <div class="subnav-p">Capital spine, entity map, and how early instruments sit alongside future rounds.</div>
-            </a>
-
-            <a class="subnav-item" href="/gate/partners/notes/">
-              <div class="subnav-k">Subpage</div>
-              <div class="subnav-h">Notes</div>
-              <div class="subnav-p">Partner Notes overview: working mechanics, alignment, and governance-first update cadence.</div>
-            </a>
-
-            <a class="subnav-item" href="/gate/partners/investors/">
-              <div class="subnav-k">Subpage</div>
-              <div class="subnav-h">Investors</div>
-              <div class="subnav-p">Fit, eligibility, risk posture, and typical profiles (sophisticated / FO / early funds).</div>
-            </a>
-
-            <a class="subnav-item" href="/gate/partners/case-bank/">
-              <div class="subnav-k">Subpage</div>
-              <div class="subnav-h">Case Bank</div>
-              <div class="subnav-p">Board-style mini-cases: why Trust Ledger is needed, what a Trust Brief produces.</div>
-            </a>
-
-            <a class="subnav-item" href="/gate/partners/diligence/">
-              <div class="subnav-k">Subpage</div>
-              <div class="subnav-h">Diligence</div>
-              <div class="subnav-p">Document checklist, governance posture, and what to expect in a private data room.</div>
-            </a>
-
-            <a class="subnav-item" href="/gate/partners/faq/">
-              <div class="subnav-k">Subpage</div>
-              <div class="subnav-h">FAQ</div>
-              <div class="subnav-p">Compact, answer-ready responses for capital structure, risk, and process.</div>
-            </a>
+          <div class="pillrow" aria-label="Scope highlights">
+            <div class="pill"><strong>Program</strong> standards</div>
+            <div class="pill"><strong>Delivery</strong> quality controls</div>
+            <div class="pill"><strong>Routing</strong> via Request ID</div>
+            <div class="pill"><strong>SLA</strong> 1–2 business days</div>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <!-- Definition + At a glance -->
-      <section class="layout-grid">
-        <div class="section">
-          <div class="section-title-row">
-            <div>
-              <div class="section-kicker">Definition</div>
-              <h2 class="section-title">What this partners track is</h2>
-            </div>
-            <div class="chip">High-risk · non-public</div>
-          </div>
-
+    <section class="grid">
+      <div class="card">
+        <div class="hd">
+          <h2>Partner routing (Request ID)</h2>
           <p>
-            This page is not a fundraising campaign and not a retail product. It is a controlled, invitation-only track for
-            a small number of partners who want to support the early build-out of a governance layer that boards and regulators
-            can actually use.
+            Generate a Request ID for partner routing and status tracking. Keep submissions high-level and non-confidential.
           </p>
 
-          <p>
-            The partners track typically supports three early necessities:
-          </p>
-          <ul>
-            <li><strong>Pilots.</strong> 1–3 Trust Brief pilots producing board-ready artifacts and initial Trust Ledger entries.</li>
-            <li><strong>Productization.</strong> Turning the pilot pattern into a repeatable, sellable operating system.</li>
-            <li><strong>Governance infrastructure.</strong> Legal, policy, security, and audit posture to remain institutional-grade.</li>
-          </ul>
-
-          <div class="one-sentence">
-            <strong>Principle:</strong> capital discipline should match governance discipline — clear structure, clean boundaries, and honest risk disclosure.
-          </div>
-        </div>
-
-        <aside class="card">
-          <div class="card-kicker">At a glance</div>
-          <div class="card-title">How this is typically structured</div>
-
-          <p><strong>Track type.</strong> Private, invitation-only.</p>
-          <p><strong>Instrument.</strong> High-risk instrument (illustrative: convertible note/loan) via a capital spine vehicle.</p>
-          <p><strong>Flow of funds.</strong> Structured intercompany deployment into Noetfield Systems Inc. for pilots + build.</p>
-          <p><strong>Use of proceeds.</strong></p>
-          <ul>
-            <li>Trust Brief & Trust Ledger product build.</li>
-            <li>Early pilots and board-ready reporting.</li>
-            <li>Professional services and compliance posture.</li>
-          </ul>
-
-          <div class="badge-row">
-            <div class="badge">Board-first</div>
-            <div class="badge">VC-compatible</div>
-            <div class="badge">Governance-first</div>
-          </div>
-        </aside>
-      </section>
-
-      <!-- Partner types -->
-      <section class="section">
-        <div class="section-title-row">
-          <div>
-            <div class="section-kicker">Partner modes</div>
-            <h2 class="section-title">Common partner paths</h2>
-          </div>
-          <div class="chip">Pick one primary</div>
-        </div>
-
-        <p class="section-subtitle">
-          Partners are not treated as “audience.” Partners are operators, stewards, or capital allocators who can support an institutional wedge.
-        </p>
-
-        <div class="grid-3">
-          <div class="card">
-            <div class="card-kicker">Path A</div>
-            <div class="card-title">Pilot Partner</div>
-            <p>
-              Provide a real environment for a Trust Brief pilot (with clear scope and controlled risk) to generate
-              board-ready artifacts and first Trust Ledger entries.
-            </p>
-            <div class="badge-row">
-              <div class="badge">Real-economy</div>
-              <div class="badge">Board-ready</div>
-              <div class="badge">Low-hype</div>
+          <div class="ridBar" aria-label="Request ID bar">
+            <div class="ridLeft">
+              <div class="ridLabel">Request ID</div>
+              <div class="ridValue" id="ridText">—</div>
             </div>
-          </div>
-
-          <div class="card">
-            <div class="card-kicker">Path B</div>
-            <div class="card-title">Capital Partner</div>
-            <p>
-              Provide high-risk, illiquid early capital via a structured instrument (subject to eligibility and final documentation)
-              to fund pilots, build-out, and governance posture.
-            </p>
-            <div class="badge-row">
-              <div class="badge">High-risk</div>
-              <div class="badge">Structured</div>
-              <div class="badge">Long horizon</div>
-            </div>
-          </div>
-
-          <div class="card">
-            <div class="card-kicker">Path C</div>
-            <div class="card-title">Distribution / Channel Partner</div>
-            <p>
-              Support introductions to boards and executives, co-sell the Trust Brief wedge, or sponsor early Trust Ledger adoption
-              without forcing premature product claims.
-            </p>
-            <div class="badge-row">
-              <div class="badge">Introductions</div>
-              <div class="badge">Co-sell</div>
-              <div class="badge">Stewardship</div>
+            <div class="ridActions">
+              <button class="miniBtn" type="button" id="copyRidBtn">Copy</button>
+              <a class="miniBtn primary" id="openStatusBtn" href="/status/">Open Status</a>
+              <a class="miniBtn primary" href="/gate/partners/apply/">Apply</a>
             </div>
           </div>
         </div>
-      </section>
 
-      <!-- Process -->
-      <section class="section">
-        <div class="section-title-row">
-          <div>
-            <div class="section-kicker">Process</div>
-            <h2 class="section-title">What happens next</h2>
-          </div>
-          <div class="chip">Asynchronous-first</div>
-        </div>
-
-        <div class="two-col">
-          <div>
-            <p>
-              The partners track is run as a controlled process. If the profile is aligned, the next step is a private exchange
-              of context (asynchronous-first), followed by optional documentation review.
-            </p>
-
-            <ul>
-              <li><strong>Step 1.</strong> Submit interest (below) and receive a Request ID for tracking.</li>
-              <li><strong>Step 2.</strong> Fit screening (mandate, risk posture, eligibility, and partner path).</li>
-              <li><strong>Step 3.</strong> If aligned: NDA + a small, structured packet (structure + notes + diligence checklist).</li>
-              <li><strong>Step 4.</strong> Draft documentation (where applicable) and staged next actions.</li>
-            </ul>
-
-            <div class="one-sentence">
-              <strong>Service posture:</strong> clarity and pace over pressure — no public solicitation, no retail funnel tactics.
-            </div>
-          </div>
-
-          <div class="checklist">
-            <div class="checklist-title">Hard compliance boundaries</div>
-            <div class="checklist-item">No public offering language. No promises, forecasts, or “guaranteed returns.”</div>
-            <div class="checklist-item">Eligibility and exemptions required; final docs govern everything.</div>
-            <div class="checklist-item">High-risk disclosure is explicit; illiquidity assumed.</div>
-            <div class="checklist-item">Independent legal/tax/financial advice encouraged.</div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Legal / compliance notice -->
-      <section class="section">
-        <div class="section-title-row">
-          <div>
-            <div class="section-kicker">Important</div>
-            <h2 class="section-title">Legal and compliance notice</h2>
-          </div>
-          <div class="chip">Non-offer</div>
-        </div>
-
-        <p>
-          This page is provided for general information and discussion only. It does not constitute an offer to sell or a solicitation
-          of an offer to buy any securities, and it is not investment, legal, tax, or other professional advice.
-        </p>
-
-        <ul>
-          <li>Any participation would occur only under applicable securities-law exemptions and only via final executed documentation.</li>
-          <li>Terms (if discussed) are illustrative, non-binding, and subject to change without notice.</li>
-          <li>Prospective partners should obtain independent professional advice in their own jurisdiction.</li>
-          <li>Capital in this track should be considered high-risk and illiquid; total loss is possible.</li>
-        </ul>
-      </section>
-
-      <!-- Express interest -->
-      <section class="section" id="express-interest">
-        <div class="section-title-row">
-          <div>
-            <div class="section-kicker">Next step</div>
-            <h2 class="section-title">Express interest</h2>
-          </div>
-          <div class="chip">No obligation</div>
-        </div>
-
-        <p>
-          Submitting interest does not create any obligation on either side. It simply opens a channel for a private follow-up and,
-          where appropriate, the sharing of a controlled information packet.
-        </p>
-
-        <div class="rid-box" aria-live="polite">
-          <div>
-            <div style="font-size:11px; color:#9ca3b8; letter-spacing:0.14em; text-transform:uppercase; margin-bottom:2px;">Request ID</div>
-            <div class="rid" id="ridText">RID-</div>
-          </div>
-          <button type="button" class="rid-copy" id="copyRidBtn">Copy</button>
-        </div>
-
-        <form class="simple-form" method="post" action="/gate/partners/request/">
-          <input type="hidden" name="rid" id="ridField" value="" />
-          <input type="hidden" name="source" value="gate/partners" />
-
-          <div class="form-row">
-            <label for="name">Name</label>
-            <input id="name" name="name" type="text" autocomplete="name" required />
-          </div>
-
-          <div class="form-row">
-            <label for="email">Email</label>
-            <input id="email" name="email" type="email" autocomplete="email" required />
-          </div>
-
-          <div class="form-row">
-            <label for="org">Organization / Role</label>
-            <input id="org" name="org" type="text" autocomplete="organization-title" />
-          </div>
-
-          <div class="form-row">
-            <span class="label">Primary partner path</span>
-            <div class="radio-group" role="radiogroup" aria-label="Primary partner path">
-              <label><input type="radio" name="path" value="pilot" /> Pilot partner</label>
-              <label><input type="radio" name="path" value="capital" /> Capital partner</label>
-              <label><input type="radio" name="path" value="channel" /> Channel partner</label>
-              <label><input type="radio" name="path" value="unsure" /> Unsure</label>
-            </div>
-          </div>
-
-          <div class="form-row">
-            <span class="label">Indicative ticket size (CAD) — if capital-related</span>
-            <div class="radio-group" role="radiogroup" aria-label="Indicative ticket size">
-              <label><input type="radio" name="ticket" value="25-50" /> 25k–50k</label>
-              <label><input type="radio" name="ticket" value="50-100" /> 50k–100k</label>
-              <label><input type="radio" name="ticket" value="100-250" /> 100k–250k</label>
-              <label><input type="radio" name="ticket" value="250-plus" /> 250k+</label>
-              <label><input type="radio" name="ticket" value="n-a" /> N/A</label>
-            </div>
-          </div>
-
-          <div class="form-row">
-            <label for="profile">Participant profile (for routing)</label>
-            <select id="profile" name="profile">
-              <option value="">Select</option>
-              <option value="individual">Sophisticated individual</option>
-              <option value="family-office">Family office</option>
-              <option value="fund">Fund / GP / institutional</option>
-              <option value="operator">Operator / board member</option>
-              <option value="other">Other</option>
-            </select>
-          </div>
-
-          <div class="form-row">
-            <label for="note">Mandate / context (optional)</label>
-            <textarea id="note" name="note" placeholder="Briefly describe mandate, interest, sector, and what you want to evaluate (optional)"></textarea>
-          </div>
-
-          <div class="form-row">
-            <button type="submit" class="btn-primary">Submit interest</button>
-          </div>
-
-          <p style="font-size:12px; color:#9ca3b8; line-height:1.6; margin-top:8px;">
-            By submitting, acknowledgement is given that this is not a public offer and that any next steps are subject to eligibility, exemptions, and final documentation.
-          </p>
-        </form>
-      </section>
-
-      <!-- FAQ -->
-      <section class="section">
-        <div class="section-title-row">
-          <div>
-            <div class="section-kicker">FAQ</div>
-            <h2 class="section-title">Answer-ready FAQ</h2>
-          </div>
-          <div class="chip">Board-safe</div>
-        </div>
-
-        <div class="two-col">
-          <div>
-            <div class="faq-item">
-              <div class="faq-q">Is this a public offering or crowdfunding page?</div>
-              <div class="faq-a">
-                No. This is a private partners track. Nothing on this page is an offer to sell or a solicitation to buy securities.
-                Any participation would only proceed via applicable exemptions and final executed documentation.
+        <div class="bd">
+          <div class="tracks">
+            <div class="track">
+              <div>
+                <div class="t">Delivery / channel partners</div>
+                <div class="d">Joint delivery, referrals, distribution, operator-level stewardship.</div>
+              </div>
+              <div class="trackActions">
+                <a class="cta secondary" href="/gate/partners/diligence/">Diligence</a>
+                <a class="cta" href="/gate/partners/apply/">Apply</a>
               </div>
             </div>
 
-            <div class="faq-item">
-              <div class="faq-q">Why run partners through a capital spine instead of direct common equity?</div>
-              <div class="faq-a">
-                Early-stage capitalization often benefits from clean operating structures. A capital spine can consolidate early commitments,
-                maintain cleaner cap tables for future institutional rounds, and keep governance and risk disclosures disciplined.
+            <div class="track">
+              <div>
+                <div class="t">Pilot hosts (institutions)</div>
+                <div class="d">A controlled environment for a Trust Brief pilot and Trust Ledger seed entries.</div>
+              </div>
+              <div class="trackActions">
+                <a class="cta secondary" href="/trust-brief/">Trust Brief</a>
+                <a class="cta" href="/gate/partners/apply/">Apply</a>
               </div>
             </div>
 
-            <div class="faq-item">
-              <div class="faq-q">What is the core wedge you are building?</div>
-              <div class="faq-a">
-                A board-first Trust Brief pilot pattern that produces defensible artifacts and seeds a Trust Ledger — a plain-language, auditable record of material AI use, safeguards, and accountability.
+            <div class="track">
+              <div>
+                <div class="t">Aligned backers (referral-only)</div>
+                <div class="d">Strategic backers routed via private process. No public solicitation.</div>
+              </div>
+              <div class="trackActions">
+                <a class="cta" href="/gate/investor/">Investor track</a>
               </div>
             </div>
           </div>
 
-          <div>
-            <div class="faq-item">
-              <div class="faq-q">What is the risk profile?</div>
-              <div class="faq-a">
-                High-risk and illiquid. There may be no liquidity, no repayment, and no return. Total loss is possible. Independent professional advice is encouraged.
-              </div>
-            </div>
+          <div class="fineprint">
+            <strong>What happens next:</strong> partner routing is reviewed within <strong>1–2 business days</strong>.
+            If aligned, Noetfield responds with the safest next-step channel (e.g., NDA / secure exchange) and a controlled pack.
+            <br /><br />
+            <strong>Privacy:</strong> do not submit confidential, customer, or security-sensitive information here.
+            See <a href="/privacy/" style="border-bottom:1px solid rgba(255,255,255,.18)">Privacy</a>.
+          </div>
 
-            <div class="faq-item">
-              <div class="faq-q">What happens after submitting interest?</div>
-              <div class="faq-a">
-                A request is routed using the Request ID, followed by asynchronous fit screening. If aligned, a controlled packet (structure + notes + diligence checklist) may be shared under NDA.
-              </div>
-            </div>
-
-            <div class="faq-item">
-              <div class="faq-q">Where are the details for structure and notes?</div>
-              <div class="faq-a">
-                Use the subpages at the top of this page:
-                <a class="link-inline" href="/gate/partners/structure/">Structure</a> and
-                <a class="link-inline" href="/gate/partners/notes/">Notes</a>.
-              </div>
-            </div>
+          <div class="links" aria-label="Core links">
+            <a href="/gate/">Gate</a>
+            <a href="/trust-ledger/">Trust Ledger</a>
+            <a href="/trust-brief/">Trust Brief</a>
+            <a href="/status/">Status</a>
           </div>
         </div>
-      </section>
-    </main>
+      </div>
+
+      <aside class="card">
+        <div class="hd">
+          <h2>Partner artefact pack</h2>
+          <p>Controlled pages under Partners. Build the track as a clean, board-safe packet.</p>
+        </div>
+
+        <div class="bd">
+          <div class="resourceBox" aria-label="Partners pack">
+            <div class="resourceTitle">Partners pages</div>
+            <div class="resourceGrid">
+              <a href="/gate/partners/apply/">Apply</a>
+              <a href="/gate/partners/diligence/">Diligence</a>
+              <a href="/gate/partners/structure/">Structure</a>
+              <a href="/gate/partners/notes/">Partner Notes</a>
+              <a href="/gate/partners/faq/">FAQ</a>
+              <a href="/gate/partners/case-bank/">Case bank</a>
+            </div>
+          </div>
+
+          <div class="resourceBox" aria-label="Key resources">
+            <div class="resourceTitle">Key resources</div>
+            <div class="resourceGrid">
+              <a href="/playbook/">Playbook</a>
+              <a href="/copilot-cost-governance/">Copilot</a>
+              <a href="/for-whom/">For whom</a>
+              <a href="/status/">Status</a>
+              <a href="/portal/">Portal</a>
+            </div>
+          </div>
+
+          <div class="fineprint">
+            Not sure where you fit? Use <strong>Apply</strong> and keep it non-confidential.
+            Add one line on mandate + joint delivery type. The Request ID is used for routing and status tracking.
+          </div>
+
+          <div class="links" aria-label="Policy links" style="margin-top:16px;">
+            <a href="/privacy/">Privacy</a>
+            <a href="/terms/">Terms</a>
+          </div>
+        </div>
+      </aside>
+    </section>
 
     <footer>
-      <div>© <span id="year"></span> Noetfield Systems Inc. All rights reserved.</div>
-      <div>
-        <a href="/">Home</a> ·
-        <a href="/trust-brief/">Trust Brief</a> ·
-        <a href="/trust-ledger/">Trust Ledger</a> ·
-        <a href="/for-whom/">For Whom</a> ·
-        <a href="/gate/">Gate</a> ·
-        <a href="/about/">About</a> ·
-        <a href="/contact/">Contact</a> ·
-        <a href="/playbook/">Playbook</a>
+      <div class="foot">
+        <a class="footBrand" href="/" aria-label="Noetfield home">
+          <img src="/noetfield-favicon-512.png" alt="Noetfield mark" />
+          <span>© <span id="y"></span> Noetfield Systems Inc.</span>
+        </a>
+
+        <div class="footNav" aria-label="Footer navigation">
+          <a href="/trust-ledger/">Trust Ledger</a>
+          <a href="/trust-brief/">Trust Brief</a>
+          <a href="/playbook/">Playbook</a>
+          <a href="/copilot-cost-governance/">Copilot</a>
+          <a href="/for-whom/">For Whom</a>
+          <a href="/gate/">Gate</a>
+          <a href="/portal/">Portal</a>
+          <a class="statusLink" href="/status/"><span class="statusDot" aria-hidden="true"></span>Status</a>
+          <a href="/feedback/">Feedback</a>
+          <a href="/privacy/">Privacy</a>
+          <a href="/terms/">Terms</a>
+        </div>
       </div>
     </footer>
-  </div>
+  </main>
 
   <script>
-    // Footer year
-    document.getElementById('year').textContent = new Date().getFullYear();
+    // Year
+    document.getElementById("y").textContent = new Date().getFullYear();
 
-    // Request ID: stable per browser (localStorage), used for routing + thank-you pages
-    (function() {
-      const KEY = "noetfield_rid_gate_partners";
-      const existing = localStorage.getItem(KEY);
+    // Mobile menu toggle
+    (function () {
+      var burger = document.getElementById("burger");
+      var panel = document.getElementById("mobilePanel");
+      if (!burger || !panel) return;
 
-      function makeRid() {
-        const t = Date.now().toString(36).toUpperCase();
-        const r = Math.random().toString(36).slice(2, 8).toUpperCase();
-        return `RID-PARTNERS-${t}-${r}`;
+      burger.addEventListener("click", function () {
+        var isOpen = burger.getAttribute("aria-expanded") === "true";
+        burger.setAttribute("aria-expanded", String(!isOpen));
+        panel.hidden = isOpen;
+      });
+
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape" && burger.getAttribute("aria-expanded") === "true") {
+          burger.setAttribute("aria-expanded", "false");
+          panel.hidden = true;
+        }
+      });
+    })();
+
+    // Request ID (generate once, persist)
+    (function () {
+      var ridText = document.getElementById("ridText");
+      var openStatusBtn = document.getElementById("openStatusBtn");
+      if (!ridText) return;
+
+      function rand4() { return Math.floor(Math.random() * 10000).toString().padStart(4, "0"); }
+
+      function genRID(){
+        var d = new Date();
+        var stamp = d.getUTCFullYear().toString()
+          + String(d.getUTCMonth()+1).padStart(2,"0")
+          + String(d.getUTCDate()).padStart(2,"0")
+          + "-"
+          + String(d.getUTCHours()).padStart(2,"0")
+          + String(d.getUTCMinutes()).padStart(2,"0")
+          + String(d.getUTCSeconds()).padStart(2,"0");
+        return "NF-" + stamp + "-" + rand4();
       }
 
-      const rid = existing || makeRid();
-      localStorage.setItem(KEY, rid);
+      var existing = "";
+      try { existing = localStorage.getItem("nf_last_rid") || ""; } catch(e){}
 
-      const ridText = document.getElementById('ridText');
-      const ridField = document.getElementById('ridField');
-      if (ridText) ridText.textContent = rid;
-      if (ridField) ridField.value = rid;
+      var rid = existing || genRID();
+      ridText.textContent = rid;
 
-      const btn = document.getElementById('copyRidBtn');
-      if (btn) {
-        btn.addEventListener('click', async () => {
-          try {
+      try { localStorage.setItem("nf_last_rid", rid); } catch(e){}
+
+      if (openStatusBtn) {
+        openStatusBtn.href = "/status/?rid=" + encodeURIComponent(rid);
+      }
+
+      var copyBtn = document.getElementById("copyRidBtn");
+      if (copyBtn) {
+        copyBtn.addEventListener("click", async function(){
+          try{
             await navigator.clipboard.writeText(rid);
-            btn.textContent = "Copied";
-            setTimeout(() => btn.textContent = "Copy", 1200);
-          } catch (e) {
-            btn.textContent = "Copy failed";
-            setTimeout(() => btn.textContent = "Copy", 1200);
+            copyBtn.textContent = "Copied";
+            setTimeout(function(){ copyBtn.textContent = "Copy"; }, 1200);
+          } catch(e){
+            var ta = document.createElement("textarea");
+            ta.value = rid;
+            document.body.appendChild(ta);
+            ta.select();
+            try { document.execCommand("copy"); } catch(_){}
+            document.body.removeChild(ta);
+            copyBtn.textContent = "Copied";
+            setTimeout(function(){ copyBtn.textContent = "Copy"; }, 1200);
           }
         });
       }
     })();
+
+    // Auto-active
+    (function () {
+      function normPath(p) {
+        if (!p) return "/";
+        p = p.split("?")[0].split("#")[0];
+        if (p.length > 1 && p.endsWith("/")) p = p.slice(0, -1);
+        return p.toLowerCase();
+      }
+      var current = normPath(window.location.pathname);
+      var links = document.querySelectorAll('nav[aria-label="Primary navigation"] a, footer a, #mobilePanel a');
+
+      links.forEach(function (a) {
+        var href = a.getAttribute("href") || "";
+        if (!href.startsWith("/")) return;
+        var target = normPath(href);
+
+        var isActive =
+          (target === "/" && current === "/") ||
+          (target !== "/" && (current === target || current.startsWith(target + "/")));
+
+        if (isActive) {
+          a.classList.add("active");
+          a.setAttribute("aria-current", "page");
+        } else {
+          a.classList.remove("active");
+          a.removeAttribute("aria-current");
+        }
+      });
+    })();
   </script>
 </body>
 </html>
-

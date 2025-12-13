@@ -43,11 +43,14 @@
     :root{
       --bg0:#07070b;
       --bg1:#0b0b14;
+
       --panel: rgba(255,255,255,.055);
       --panel2: rgba(255,255,255,.038);
+
       --text:#eff0f7;
       --muted:#b9bbcf;
       --muted2:#8e91ad;
+
       --line: rgba(255,255,255,.11);
 
       --gold:#c8a349;
@@ -60,9 +63,10 @@
 
       --shadow: 0 28px 80px rgba(0,0,0,.62);
       --shadow2: 0 14px 50px rgba(0,0,0,.50);
+
       --focus: 0 0 0 4px rgba(200,163,73,.18);
 
-      --navH: 66px;
+      --navH: 70px;
     }
 
     *{box-sizing:border-box}
@@ -85,7 +89,7 @@
     }
     [hidden]{display:none !important;}
 
-    /* Premium background */
+    /* Background */
     .bg{
       position:fixed; inset:0;
       z-index:-3; pointer-events:none;
@@ -117,11 +121,11 @@
 
     .wrap{max-width:var(--max); margin:0 auto; padding:24px}
 
-    /* ===== Header (app-grade) ===== */
+    /* ===== Header (5 main tabs + app tabs) ===== */
     header{
       position:sticky; top:0; z-index:60;
       backdrop-filter: blur(16px);
-      background: rgba(8,8,12,.60);
+      background: rgba(8,8,12,.62);
       border-bottom: 1px solid rgba(255,255,255,.10);
     }
     header::after{
@@ -160,7 +164,7 @@
 
     .brand{
       display:flex; align-items:center; gap:12px;
-      min-width: 220px;
+      min-width: 250px;
     }
     .mark{
       width:40px; height:40px;
@@ -175,9 +179,19 @@
       width:38px; height:38px; border-radius:12px;
       filter: saturate(1.05) contrast(1.05);
     }
+
     .brandText{display:flex; flex-direction:column; line-height:1.05}
-    .brand .name{font-weight:780; letter-spacing:.15px}
-    .brand .tag{font-size:12px; color:var(--muted2); margin-top:3px}
+    .brandName{font-weight:800; letter-spacing:.15px}
+
+    /* tagline font tweak requested */
+    .brandTag{
+      font-size:12px;
+      color:var(--muted2);
+      margin-top:3px;
+      letter-spacing:.35px;
+      font-weight:600;
+      text-transform: none;
+    }
 
     .menu{
       display:flex; flex-wrap:wrap;
@@ -186,6 +200,7 @@
       font-size:13px;
       align-items:center;
     }
+
     .menu a{
       color:var(--muted);
       padding:9px 11px;
@@ -210,31 +225,28 @@
         linear-gradient(180deg, rgba(200,163,73,.22), rgba(200,163,73,.10));
     }
 
-    /* App-like CTA tabs */
+    /* App tabs */
     .menu a.pilltab{
       border:1px solid rgba(255,255,255,.14);
       background: rgba(255,255,255,.03);
     }
-
-    /* Gate as main entry */
     .menu a.primary{
-      border-color: rgba(200,163,73,.58);
+      border-color: rgba(200,163,73,.62);
       background:
         radial-gradient(260px 110px at 40% 0%, rgba(255,255,255,.11), transparent 62%),
         linear-gradient(180deg, rgba(200,163,73,.22), rgba(200,163,73,.10));
       color: var(--text);
-      font-weight: 750;
+      font-weight: 760;
     }
-    .menu a.primary:hover{border-color: rgba(200,163,73,.86); filter: brightness(1.06)}
+    .menu a.primary:hover{border-color: rgba(200,163,73,.88); filter: brightness(1.06)}
 
-    /* Login distinct but subordinate to Gate */
     .menu a.login{
       border:1px solid rgba(255,255,255,.18);
       background:
         radial-gradient(220px 90px at 40% 0%, rgba(255,255,255,.08), transparent 62%),
         rgba(255,255,255,.03);
       color: var(--text);
-      font-weight: 720;
+      font-weight: 730;
       padding:9px 12px;
     }
     .menu a.login:hover{
@@ -242,7 +254,6 @@
       background: rgba(255,255,255,.05);
     }
 
-    /* Status operational dot */
     .statusLink{display:inline-flex; align-items:center; gap:8px}
     .statusDot{
       width:8px; height:8px; border-radius:50%;
@@ -297,6 +308,7 @@
         radial-gradient(220px 90px at 30% 0%, rgba(200,163,73,.22), transparent 60%),
         rgba(200,163,73,.10);
     }
+
     .mobileNote{
       margin-top:12px;
       color:var(--muted2);
@@ -554,7 +566,7 @@
       background: rgba(255,255,255,.05);
     }
 
-    /* ===== Footer (upgraded) ===== */
+    /* ===== Footer (remove Home tab, brand links to home, add Feedback) ===== */
     footer{
       border-top:1px solid rgba(255,255,255,.10);
       padding: 18px 0 22px;
@@ -571,9 +583,10 @@
     }
     .footBrand{
       display:flex; align-items:center; gap:12px;
-      min-width: 260px;
+      min-width: 280px;
     }
-    .footBrand .markSm{
+    .footBrandLink{display:flex; align-items:center; gap:12px}
+    .markSm{
       width:34px; height:34px;
       border-radius:12px;
       border:1px solid rgba(255,255,255,.12);
@@ -582,7 +595,7 @@
       display:grid; place-items:center;
       overflow:hidden;
     }
-    .footBrand .markSm img{
+    .markSm img{
       width:32px; height:32px; border-radius:10px;
     }
     .footName{font-weight:800; color:var(--text); letter-spacing:.1px}
@@ -615,12 +628,13 @@
       .grid{grid-template-columns:1fr}
     }
     @media (max-width: 760px){
-      :root{--navH: 62px}
+      :root{--navH: 64px}
       .wrap{padding:16px}
       .nav{padding:10px 14px}
+      .brand{min-width:auto}
       .mark{width:38px; height:38px}
       .mark img{width:36px; height:36px}
-      .brand .tag{display:none}
+      .brandTag{display:none}
       .menu{display:none}
       .burger{display:flex}
       .heroInner{padding:20px 16px}
@@ -667,28 +681,31 @@
 
 <body>
   <div class="bg" aria-hidden="true"></div>
+  <a class="skip" href="#main">Skip to content</a>
 
   <header>
     <div class="topLoad" aria-hidden="true"><span id="topLoadBar"></span></div>
 
     <div class="nav">
+      <!-- Logo links to Home -->
       <a class="brand" href="/" aria-label="Noetfield home">
         <span class="mark" aria-hidden="true">
           <img src="/noetfield-favicon-512.png" alt="" />
         </span>
         <span class="brandText">
-          <span class="name">Noetfield</span>
-          <span class="tag">Trust &amp; Stewardship in the Age of AI</span>
+          <span class="brandName">Noetfield</span>
+          <span class="brandTag">Trust &amp; Stewardship in the Age of AI</span>
         </span>
       </a>
 
-      <!-- Header: Portal (root) + Status + Login (under portal) -->
+      <!-- Header: 5 main tabs only + Gate/Portal/Status/Login -->
       <nav class="menu" aria-label="Primary navigation">
         <a href="/trust-ledger/">Trust Ledger</a>
         <a href="/trust-brief/">Trust Brief</a>
         <a href="/playbook/">Playbook</a>
         <a href="/copilot-cost-governance/">Copilot</a>
         <a href="/for-whom/">For Whom</a>
+
         <a class="primary" href="/gate/">Gate</a>
         <a class="pilltab" href="/portal/">Portal</a>
         <a class="pilltab statusLink" href="/status/"><span class="statusDot" aria-hidden="true"></span>Status</a>
@@ -710,6 +727,7 @@
           <a href="/playbook/">Playbook</a>
           <a href="/copilot-cost-governance/">Copilot</a>
           <a href="/for-whom/">For Whom</a>
+
           <a href="/gate/">Gate</a>
           <a href="/portal/">Portal</a>
           <a href="/status/">Status</a>
@@ -924,7 +942,6 @@
 
         <div class="bd">
           <div class="tracks">
-            <!-- SINGLE Partners entry -->
             <div class="track">
               <div>
                 <div class="t">Partners</div>
@@ -963,11 +980,12 @@
               <a href="/trust-ledger/">Trust Ledger</a>
               <a href="/trust-brief/">Trust Brief</a>
               <a href="/playbook/">Playbook</a>
-              <a href="/faq/">FAQ</a>
               <a href="/copilot-cost-governance/">Copilot</a>
+              <a href="/for-whom/">For Whom</a>
               <a href="/status/">Status</a>
               <a href="/portal/">Portal</a>
               <a href="/portal/login/">Login</a>
+              <a href="/feedback/">Feedback</a>
             </div>
           </div>
 
@@ -987,27 +1005,31 @@
 
     <footer>
       <div class="foot">
-        <div class="footBrand" aria-label="Noetfield footer brand">
+        <!-- Logo links to Home (no Home tab) -->
+        <a class="footBrandLink" href="/" aria-label="Noetfield home">
           <span class="markSm" aria-hidden="true">
             <img src="/noetfield-favicon-512.png" alt="" />
           </span>
           <div>
             <div class="footName">Noetfield</div>
-            <div class="footTag">Governance-first AI trust infrastructure.</div>
+            <div class="footTag">Trust &amp; Stewardship in the Age of AI</div>
           </div>
-        </div>
+        </a>
 
+        <!-- Footer nav: 5 main tabs + Gate/Portal/Status/Login + Feedback (no Home) -->
         <div class="footNav" aria-label="Footer navigation">
-          <a href="/">Home</a>
           <a href="/trust-ledger/">Trust Ledger</a>
           <a href="/trust-brief/">Trust Brief</a>
           <a href="/playbook/">Playbook</a>
           <a href="/copilot-cost-governance/">Copilot</a>
           <a href="/for-whom/">For Whom</a>
+
           <a href="/gate/">Gate</a>
           <a href="/portal/">Portal</a>
           <a href="/status/">Status</a>
           <a href="/portal/login/">Login</a>
+          <a href="/feedback/">Feedback</a>
+
           <a href="/privacy/">Privacy</a>
           <a href="/terms/">Terms</a>
         </div>

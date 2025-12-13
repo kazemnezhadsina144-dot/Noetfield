@@ -1,0 +1,964 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Noetfield – Apply (Integration / Security Partner)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="description" content="Integration / Security Partner application for Noetfield. Connect identity, logs, DLP, and controls so evidence trails remain intact for board-ready AI governance artefacts." />
+  <meta name="robots" content="index,follow" />
+  <meta name="author" content="Noetfield Systems Inc." />
+  <link rel="canonical" href="https://www.noetfield.com/gate/partners/apply-integration/" />
+
+  <link rel="icon" href="/noetfield-favicon-512.png" type="image/png" />
+  <link rel="apple-touch-icon" href="/noetfield-favicon-512.png" />
+  <meta name="theme-color" content="#07070b" />
+
+  <!-- OG -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Noetfield" />
+  <meta property="og:title" content="Noetfield – Apply (Integration / Security Partner)" />
+  <meta property="og:description" content="Integration / Security Partner application. Identity, logs, DLP, controls, and evidence trails." />
+  <meta property="og:url" content="https://www.noetfield.com/gate/partners/apply-integration/" />
+  <meta property="og:image" content="https://www.noetfield.com/noetfield-og.png" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Noetfield – Apply (Integration / Security Partner)" />
+  <meta name="twitter:description" content="Integration / Security Partner application. Identity, logs, DLP, controls, and evidence trails." />
+  <meta name="twitter:image" content="https://www.noetfield.com/noetfield-og.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    :root{
+      --bg0:#07070b; --bg1:#0b0b14;
+      --text:#eff0f7; --muted:#b9bbcf; --muted2:#8e91ad;
+      --gold:#c8a349;
+      --ok:#2de38a; --okGlow: rgba(45,227,138,.18);
+
+      --radius:18px; --max:1120px;
+      --shadow: 0 28px 80px rgba(0,0,0,.62);
+      --shadow2: 0 14px 50px rgba(0,0,0,.50);
+      --focus: 0 0 0 4px rgba(200,163,73,.18);
+      --navH: 68px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color: var(--text);
+      background: linear-gradient(180deg, var(--bg0), var(--bg1));
+      overflow-x:hidden;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+    a{color:inherit; text-decoration:none}
+    a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible{
+      outline:none; box-shadow: var(--focus);
+      border-color: rgba(200,163,73,.58) !important;
+    }
+    [hidden]{display:none !important;}
+
+    .bg{
+      position:fixed; inset:0; z-index:-3; pointer-events:none;
+      background:
+        radial-gradient(1400px 820px at 10% -10%, rgba(200,163,73,.20), transparent 58%),
+        radial-gradient(1200px 820px at 100% 0%, rgba(122,167,255,.12), transparent 60%),
+        radial-gradient(900px 700px at 55% 22%, rgba(255,255,255,.05), transparent 62%),
+        linear-gradient(180deg, var(--bg0), var(--bg1));
+      filter: saturate(1.05);
+    }
+    .bg::before{
+      content:""; position:absolute; inset:0;
+      background:
+        linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
+      background-size: 54px 54px;
+      opacity:.055;
+      mask-image: radial-gradient(70% 60% at 50% 8%, black 55%, transparent 100%);
+    }
+    .bg::after{
+      content:""; position:absolute; inset:-90px;
+      background:
+        radial-gradient(1100px 760px at 50% 8%, transparent 55%, rgba(0,0,0,.58) 100%),
+        radial-gradient(1000px 900px at 50% 110%, rgba(0,0,0,.68), transparent 62%);
+      opacity:.92;
+    }
+
+    .wrap{max-width:var(--max); margin:0 auto; padding:24px}
+
+    header{
+      position:sticky; top:0; z-index:60;
+      backdrop-filter: blur(16px);
+      background: rgba(8,8,12,.62);
+      border-bottom: 1px solid rgba(255,255,255,.10);
+    }
+    .nav{
+      max-width:var(--max); margin:0 auto;
+      padding: 10px 16px;
+      display:flex; align-items:center; justify-content:space-between;
+      gap:14px;
+      min-height: var(--navH);
+    }
+    .brand{display:flex; align-items:center; gap:12px; flex:0 0 auto; min-width:240px; max-width:360px;}
+    .brandMark{width:36px; height:36px; border-radius:12px; box-shadow:0 12px 26px rgba(0,0,0,.55); border:1px solid rgba(255,255,255,.12); display:block;}
+    .brand .name{font-weight:800; letter-spacing:.10px; line-height:1.05; font-size:15px;}
+    .brand .tag{font-size:10.5px; color:var(--muted2); margin-top:3px; letter-spacing:.28em; text-transform:uppercase; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:320px; opacity:.95;}
+
+    .menu{display:flex; align-items:center; justify-content:flex-end; gap:12px; flex:1 1 auto; min-width:0;}
+    .menuPrimary, .menuActions{display:flex; align-items:center; gap:8px; min-width:0; flex-wrap:nowrap;}
+    .menuPrimary{flex:1 1 auto; justify-content:center; overflow:hidden;}
+    .menuActions{flex:0 0 auto; justify-content:flex-end;}
+    .menu a{
+      color:var(--muted);
+      padding:8px 10px;
+      border-radius:14px;
+      border:1px solid transparent;
+      background: transparent;
+      transition: background .15s ease, border-color .15s ease, color .15s ease, transform .06s ease;
+      white-space:nowrap; font-size:12.75px; line-height:1;
+    }
+    .menu a:hover{color:var(--text); border-color:rgba(255,255,255,.10); background:rgba(255,255,255,.045);}
+    .menu a:active{transform: translateY(1px)}
+    .menu a.active, .menu a[aria-current="page"]{
+      color:var(--text);
+      border-color:rgba(200,163,73,.38);
+      background:
+        radial-gradient(240px 90px at 50% 0%, rgba(255,255,255,.10), transparent 60%),
+        linear-gradient(180deg, rgba(200,163,73,.22), rgba(200,163,73,.10));
+    }
+    .menu a.pilltab{border:1px solid rgba(255,255,255,.14); background: rgba(255,255,255,.03);}
+    .menu a.login{
+      border:1px solid rgba(200,163,73,.58);
+      background:
+        radial-gradient(220px 90px at 40% 0%, rgba(255,255,255,.11), transparent 62%),
+        linear-gradient(180deg, rgba(200,163,73,.22), rgba(200,163,73,.10));
+      color: var(--text);
+      font-weight:750;
+      padding:8px 11px;
+    }
+    .menu a.statusLink{display:inline-flex; align-items:center; gap:8px;}
+    .statusDot{width:7px; height:7px; border-radius:50%; background: var(--ok); box-shadow: 0 0 0 3px var(--okGlow);}
+
+    .burger{
+      display:none; align-items:center; justify-content:center;
+      width:42px; height:42px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04);
+      cursor:pointer;
+      transition: background .15s ease, border-color .15s ease;
+      flex:0 0 auto;
+    }
+    .burger:hover{border-color:rgba(255,255,255,.18); background:rgba(255,255,255,.06)}
+    .burger svg{width:20px; height:20px; opacity:.92}
+    .mobilePanel{border-top:1px solid rgba(255,255,255,.10); background: rgba(8,8,12,.74); backdrop-filter: blur(16px);}
+    .mobileInner{max-width:var(--max); margin:0 auto; padding: 12px 14px 16px;}
+    .mobileGrid{display:grid; grid-template-columns:1fr 1fr; gap:10px;}
+    .mobileGrid a{
+      padding:12px 12px; border-radius:16px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04);
+      color: var(--muted);
+      font-size:14px;
+      transition: background .15s ease, border-color .15s ease, color .15s ease;
+      display:flex; align-items:center; justify-content:center; gap:8px;
+      text-align:center;
+    }
+    .mobileGrid a:hover{color:var(--text); border-color:rgba(255,255,255,.18); background:rgba(255,255,255,.06)}
+    .mobileGrid a.active, .mobileGrid a[aria-current="page"]{
+      color: var(--text);
+      border-color: rgba(200,163,73,.42);
+      background: radial-gradient(220px 90px at 30% 0%, rgba(200,163,73,.22), transparent 60%), rgba(200,163,73,.10);
+    }
+
+    .skip{
+      position:absolute; left:-999px; top:10px;
+      background:#111118; border:1px solid rgba(255,255,255,.12);
+      color:var(--text); padding:10px 12px; border-radius:12px; z-index:999;
+    }
+    .skip:focus{left:10px}
+
+    .hero{padding: 22px 0 14px}
+    .heroShell{
+      position:relative;
+      border-radius: calc(var(--radius) + 8px);
+      border: 1px solid rgba(255,255,255,.11);
+      background:
+        radial-gradient(1000px 420px at 18% 0%, rgba(200,163,73,.18), transparent 60%),
+        radial-gradient(1000px 420px at 90% 10%, rgba(122,167,255,.10), transparent 62%),
+        linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.022));
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .heroShell::before{
+      content:"";
+      position:absolute; inset:-1px;
+      background: linear-gradient(120deg, rgba(200,163,73,.26), transparent 30%, rgba(255,255,255,.08) 68%, transparent);
+      opacity:.44;
+      pointer-events:none;
+      mask-image: linear-gradient(180deg, black 0%, black 58%, transparent 96%);
+    }
+    .heroInner{padding: 24px 22px}
+    .eyebrow{
+      display:inline-flex; gap:10px; align-items:center;
+      color:var(--muted);
+      font-size:13px;
+      padding:9px 12px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.13);
+      background: rgba(255,255,255,.035);
+    }
+    .dot{width:8px; height:8px; border-radius:50%; background: rgba(200,163,73,.97); box-shadow: 0 0 0 3px rgba(200,163,73,.18);}
+    h1{margin:14px 0 10px; font-size:40px; line-height:1.07; letter-spacing:-0.75px}
+    .lead{margin:0; color:var(--muted); font-size:16px; max-width: 980px}
+
+    .metaRow{display:flex; flex-wrap:wrap; gap:10px; margin-top:14px}
+    .pill{
+      display:inline-flex; align-items:center; gap:10px;
+      padding:9px 12px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.03);
+      color:var(--muted);
+      font-size:13px;
+    }
+    .pill strong{color:var(--text); font-weight:800}
+
+    .grid{
+      display:grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap:18px;
+      margin: 18px 0 34px;
+    }
+    .card{
+      border-radius:var(--radius);
+      border:1px solid rgba(255,255,255,.11);
+      background: linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.022));
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+    }
+    .card .hd{padding:18px 18px 0}
+    .card h2{margin:0 0 8px; font-size:18px; letter-spacing:-0.2px}
+    .card p{margin:0 0 12px; color:var(--muted)}
+    .card .bd{padding:18px}
+
+    .ridBar{
+      display:flex; align-items:center; justify-content:space-between; gap:10px;
+      margin-top:12px;
+      padding:12px 12px;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+    }
+    .ridLabel{font-size:11px; letter-spacing:.28em; text-transform:uppercase; color:var(--muted2)}
+    .ridValue{font-weight:700; color:var(--text); font-size:13px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:560px}
+    .ridActions{display:flex; gap:8px; align-items:center; flex-wrap:wrap}
+    .miniBtn{
+      font-size:13px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.04);
+      padding:9px 12px;
+      border-radius:14px;
+      cursor:pointer;
+      display:inline-flex; align-items:center; justify-content:center; gap:8px;
+      color: var(--text);
+    }
+    .miniBtn.primary{border-color: rgba(200,163,73,.38); background: rgba(200,163,73,.10)}
+    .miniBtn:hover{border-color:rgba(255,255,255,.22); background:rgba(255,255,255,.06)}
+
+    .section{
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      border-radius:16px;
+      padding:14px;
+      margin-top:12px;
+    }
+    .sectionTitle{font-weight:900; letter-spacing:-.2px; margin:0 0 6px; font-size:14px;}
+    .sectionDesc{margin:0 0 12px; color:var(--muted2); font-size:12.5px; line-height:1.55;}
+
+    label{display:block; font-size:12px; color:var(--muted2); margin:0 0 6px}
+    input, select, textarea{
+      width:100%;
+      background: rgba(10,10,16,.55);
+      border: 1px solid rgba(255,255,255,.14);
+      color: var(--text);
+      padding: 12px 12px;
+      border-radius: 14px;
+      font-family:inherit;
+      font-size:14px;
+      transition: border-color .15s ease, box-shadow .15s ease, background .15s ease;
+    }
+    input::placeholder, textarea::placeholder{color: rgba(185,187,207,.55)}
+    textarea{min-height:110px; resize:vertical}
+    input:focus, select:focus, textarea:focus{box-shadow: var(--focus); background: rgba(12,12,18,.62)}
+
+    .form{display:grid; grid-template-columns: 1fr 1fr; gap:12px;}
+    .full{grid-column: 1 / -1}
+
+    .check{
+      display:flex; gap:10px; align-items:flex-start;
+      padding:12px 12px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      margin-top:10px;
+    }
+    .check input{width:auto; margin-top:3px}
+    .check span{color:var(--muted); font-size:13px; line-height:1.45}
+    .check small{display:block; color:var(--muted2); font-size:12px; margin-top:6px}
+
+    .actions{display:flex; gap:12px; flex-wrap:wrap; align-items:center; margin-top:12px}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      gap:10px;
+      padding:12px 14px;
+      border-radius:16px;
+      border:1px solid rgba(200,163,73,.58);
+      background:
+        radial-gradient(260px 110px at 40% 0%, rgba(255,255,255,.11), transparent 62%),
+        linear-gradient(180deg, rgba(200,163,73,.24), rgba(200,163,73,.11));
+      color:var(--text);
+      font-weight:900;
+      font-size:14px;
+      cursor:pointer;
+      transition: border-color .15s ease, transform .06s ease, filter .15s ease;
+      white-space:nowrap;
+    }
+    .btn:hover{border-color:rgba(200,163,73,.85); filter:brightness(1.06)}
+    .btn:active{transform: translateY(1px)}
+    .btn:disabled{opacity:.65; cursor:not-allowed; filter:none;}
+    .btn.secondary{
+      border:1px solid rgba(255,255,255,.16);
+      background: rgba(255,255,255,.04);
+      font-weight:800;
+      color: var(--muted);
+    }
+
+    .msg{
+      display:none;
+      margin-top:12px;
+      padding:12px 12px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.03);
+      color: var(--muted);
+      font-size:12px;
+      line-height:1.55;
+    }
+
+    .box{
+      margin-top:12px;
+      padding:12px 12px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      color: var(--muted2);
+      font-size:12px;
+      line-height:1.6;
+    }
+    .box strong{color:var(--text); font-weight:800}
+
+    footer{
+      border-top:1px solid rgba(255,255,255,.10);
+      padding: 18px 0 22px;
+      color:var(--muted2);
+      margin-top:34px;
+      background: rgba(8,8,12,.35);
+      backdrop-filter: blur(10px);
+    }
+    .foot{max-width:var(--max); margin:0 auto; padding: 0 16px; display:flex; flex-wrap:wrap; gap:12px 18px; align-items:center; justify-content:space-between}
+    .footBrand{display:flex; align-items:center; gap:10px; color:var(--muted)}
+    .footBrand img{width:28px; height:28px; border-radius:10px; border:1px solid rgba(255,255,255,.12); background: rgba(255,255,255,.03)}
+    .footNav{display:flex; flex-wrap:wrap; gap:10px 12px; align-items:center}
+    .footNav a{
+      color: var(--muted);
+      padding:8px 10px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      font-size:13px;
+      white-space:nowrap;
+      transition: background .15s ease, border-color .15s ease, color .15s ease;
+    }
+    .footNav a:hover{color:var(--text); border-color:rgba(255,255,255,.16); background:rgba(255,255,255,.05)}
+    .footNav a.active, .footNav a[aria-current="page"]{color: var(--text); border-color: rgba(200,163,73,.40); background: rgba(200,163,73,.10)}
+    .footNav a.statusLink{display:inline-flex; align-items:center; gap:8px}
+
+    @media (max-width: 1140px){ .menu{display:none} .burger{display:flex} }
+    @media (max-width: 980px){ .grid{grid-template-columns:1fr} .ridValue{max-width:100%} }
+    @media (max-width: 760px){
+      :root{--navH: 64px}
+      .wrap{padding:16px}
+      .nav{padding:10px 14px}
+      .brand .tag{display:none}
+      h1{font-size:30px}
+      .mobileGrid{grid-template-columns:1fr 1fr}
+      .form{grid-template-columns:1fr}
+      .ridBar{flex-direction:column; align-items:flex-start}
+    }
+    @media (max-width: 420px){ .mobileGrid{grid-template-columns:1fr} }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Noetfield Apply — Integration / Security Partner",
+    "url": "https://www.noetfield.com/gate/partners/apply-integration/",
+    "description": "Integration / Security Partner application for Noetfield. Identity, logs, DLP, controls, and evidence trails for board-ready AI governance artefacts.",
+    "isPartOf": {"@type":"WebSite","name":"Noetfield","url":"https://www.noetfield.com/"},
+    "publisher": {"@type":"Organization","name":"Noetfield Systems Inc."}
+  }
+  </script>
+</head>
+
+<body>
+  <div class="bg" aria-hidden="true"></div>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header>
+    <div class="nav">
+      <a class="brand" href="/" aria-label="Noetfield home">
+        <img class="brandMark" src="/noetfield-favicon-512.png" alt="Noetfield mark" />
+        <div class="brandText">
+          <div class="name">Noetfield</div>
+          <div class="tag">Trust and Stewardship in AI</div>
+        </div>
+      </a>
+
+      <nav class="menu" aria-label="Primary navigation">
+        <div class="menuPrimary" aria-label="Core">
+          <a href="/trust-ledger/">Trust Ledger</a>
+          <a href="/trust-brief/">Trust Brief</a>
+          <a href="/playbook/">Playbook</a>
+          <a href="/copilot-cost-governance/">Copilot</a>
+          <a href="/for-whom/">For Whom</a>
+        </div>
+        <div class="menuActions" aria-label="App actions">
+          <a class="pilltab" href="/gate/">Gate</a>
+          <a class="pilltab" href="/portal/">Portal</a>
+          <a class="pilltab statusLink" href="/status/"><span class="statusDot" aria-hidden="true"></span>Status</a>
+          <a class="login" href="/portal/login/">Login</a>
+        </div>
+      </nav>
+
+      <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="mobilePanel">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>
+
+    <div class="mobilePanel" id="mobilePanel" hidden>
+      <div class="mobileInner">
+        <div class="mobileGrid" aria-label="Mobile navigation">
+          <a href="/trust-ledger/">Trust Ledger</a>
+          <a href="/trust-brief/">Trust Brief</a>
+          <a href="/playbook/">Playbook</a>
+          <a href="/copilot-cost-governance/">Copilot</a>
+          <a href="/for-whom/">For Whom</a>
+          <a href="/gate/">Gate</a>
+          <a href="/portal/">Portal</a>
+          <a class="statusLink" href="/status/"><span class="statusDot" aria-hidden="true"></span>Status</a>
+          <a href="/portal/login/">Login</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" class="wrap">
+    <section class="hero">
+      <div class="heroShell">
+        <div class="heroInner">
+          <div class="eyebrow"><span class="dot"></span> Step 2 of 2 • Integration / security partner application</div>
+          <h1>Integration / security partner application.</h1>
+          <p class="lead">
+            This lane is for teams who can wire up <strong>identity</strong>, <strong>audit logs</strong>, <strong>DLP</strong>, and <strong>controls</strong>
+            so governance artefacts are backed by a reliable evidence trail.
+          </p>
+
+          <div class="metaRow" aria-label="Scope highlights">
+            <div class="pill"><strong>SSO/IdP</strong></div>
+            <div class="pill"><strong>Audit logs</strong></div>
+            <div class="pill"><strong>DLP</strong></div>
+            <div class="pill"><strong>Evidence trail</strong></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="grid">
+      <div class="card">
+        <div class="hd">
+          <h2>Application</h2>
+          <p>Designed to be decisive. Request ID is attached automatically.</p>
+
+          <div class="ridBar" aria-label="Request ID bar">
+            <div>
+              <div class="ridLabel">Request ID</div>
+              <div class="ridValue" id="ridText">—</div>
+            </div>
+            <div class="ridActions">
+              <button class="miniBtn" type="button" id="copyRidBtn">Copy</button>
+              <a class="miniBtn primary" id="openStatusBtn" href="/status/">Open Status</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="bd">
+          <form id="nfApplyIntegrationForm"
+                action="https://formspree.io/f/REPLACE_ME"
+                method="POST"
+                novalidate>
+
+            <input type="hidden" name="page_source" value="/gate/partners/apply-integration/" />
+            <input type="hidden" name="source" value="gate-partners-apply-integration" />
+            <input type="hidden" name="application_type" value="partner-integration" />
+            <input type="hidden" name="site" value="noetfield.com" />
+            <input type="hidden" name="_subject" value="Noetfield Gate — Partner application (Integration/Security)" />
+
+            <input type="hidden" id="request_id" name="request_id" value="" />
+            <input type="hidden" id="lane" name="lane" value="integration" />
+
+            <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true" />
+
+            <!-- A -->
+            <div class="section">
+              <div class="sectionTitle">A) Identity & operating context</div>
+              <p class="sectionDesc">Who you are and what you ship in production (real integrations).</p>
+
+              <div class="form">
+                <div>
+                  <label for="fullName">Full name</label>
+                  <input id="fullName" name="fullName" type="text" autocomplete="name" placeholder="First + last" required />
+                </div>
+
+                <div>
+                  <label for="email">Work email</label>
+                  <input id="email" name="email" type="email" autocomplete="email" placeholder="name@company.com" required />
+                </div>
+
+                <div>
+                  <label for="org">Company / team</label>
+                  <input id="org" name="org" type="text" autocomplete="organization" placeholder="Legal name (or team/brand)" required />
+                </div>
+
+                <div>
+                  <label for="role">Your role</label>
+                  <select id="role" name="role" required>
+                    <option value="" disabled selected>Select one</option>
+                    <option>Founder / Owner</option>
+                    <option>Security architect</option>
+                    <option>Solutions engineer</option>
+                    <option>M365 / Entra / Purview consultant</option>
+                    <option>MSP / MSSP</option>
+                    <option>Other</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label for="geo">Primary geography</label>
+                  <input id="geo" name="geo" type="text" placeholder="e.g., Canada, US, EU" required />
+                </div>
+
+                <div>
+                  <label for="timezone">Timezone</label>
+                  <input id="timezone" name="timezone" type="text" placeholder="e.g., America/Vancouver" required />
+                </div>
+
+                <div class="full">
+                  <label for="oneLiner">One-liner (what you integrate)</label>
+                  <textarea id="oneLiner" name="oneLiner" placeholder="Example: We implement Entra ID SSO + conditional access + audit log pipelines + Purview DLP so governance evidence is defensible." required></textarea>
+                </div>
+              </div>
+            </div>
+
+            <!-- B -->
+            <div class="section">
+              <div class="sectionTitle">B) Your integration surface area</div>
+              <p class="sectionDesc">What systems you can connect and enforce as controls.</p>
+
+              <div class="form">
+                <div class="full">
+                  <label for="stack">Primary stacks you implement (select + detail)</label>
+                  <textarea id="stack" name="stack" placeholder="Examples: Microsoft Entra ID, M365, Purview, Defender, Google Workspace, Okta, AWS, Azure, SIEM (Sentinel/Splunk), etc." required></textarea>
+                </div>
+
+                <div>
+                  <label for="idp">Identity provider expertise</label>
+                  <select id="idp" name="idp" required>
+                    <option value="" disabled selected>Select one</option>
+                    <option>Entra ID (Azure AD)</option>
+                    <option>Okta</option>
+                    <option>Google Identity</option>
+                    <option>Multiple (experienced)</option>
+                    <option>Other</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label for="sso">SSO protocols</label>
+                  <select id="sso" name="sso" required>
+                    <option value="" disabled selected>Select one</option>
+                    <option>SAML</option>
+                    <option>OIDC</option>
+                    <option>SAML + OIDC</option>
+                    <option>Not sure</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label for="logs">Audit log + telemetry</label>
+                  <select id="logs" name="logs" required>
+                    <option value="" disabled selected>Select one</option>
+                    <option>We can export + normalize logs</option>
+                    <option>We can build SIEM pipelines</option>
+                    <option>Basic only</option>
+                    <option>Not our scope</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label for="dlp">DLP / classification</label>
+                  <select id="dlp" name="dlp" required>
+                    <option value="" disabled selected>Select one</option>
+                    <option>Purview / MIP labels</option>
+                    <option>Other DLP tooling</option>
+                    <option>Light experience</option>
+                    <option>Not our scope</option>
+                  </select>
+                </div>
+
+                <div class="full">
+                  <label for="controls">Controls you can enforce (list 8–15)</label>
+                  <textarea id="controls" name="controls" placeholder="Examples: conditional access, MFA, device compliance, app restrictions, data retention, eDiscovery, label enforcement, admin role separation, logging retention, etc." required></textarea>
+                </div>
+              </div>
+            </div>
+
+            <!-- C -->
+            <div class="section">
+              <div class="sectionTitle">C) Evidence trail & governance alignment</div>
+              <p class="sectionDesc">How you ensure the “proof” exists and stays readable for boards/regulators.</p>
+
+              <div class="form">
+                <div class="full">
+                  <label for="evidence">How you produce evidence (artifacts + screenshots + logs + config exports)</label>
+                  <textarea id="evidence" name="evidence" placeholder="Describe your approach: what you capture, how you store it, and how you make it audit-friendly." required></textarea>
+                </div>
+
+                <div class="full">
+                  <label for="runbooks">Runbooks / SOPs you use (links if public)</label>
+                  <textarea id="runbooks" name="runbooks" placeholder="Public docs only. If private, describe the structure (no client data)." required></textarea>
+                </div>
+
+                <div class="full">
+                  <label for="changeControl">Change control + handoff (how you prevent drift)</label>
+                  <textarea id="changeControl" name="changeControl" placeholder="How do you keep controls from drifting? Who owns admin? What gets documented? What is the handoff package?" required></textarea>
+                </div>
+              </div>
+            </div>
+
+            <!-- D -->
+            <div class="section">
+              <div class="sectionTitle">D) Delivery model & capacity</div>
+              <p class="sectionDesc">We need predictable delivery, clean scope, and clear SLAs.</p>
+
+              <div class="form">
+                <div>
+                  <label for="capacity">Capacity (projects/month)</label>
+                  <select id="capacity" name="capacity" required>
+                    <option value="" disabled selected>Select one</option>
+                    <option>1–2</option>
+                    <option>3–5</option>
+                    <option>6–10</option>
+                    <option>10+</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label for="responseSla">Support response SLA</label>
+                  <select id="responseSla" name="responseSla" required>
+                    <option value="" disabled selected>Select one</option>
+                    <option>Same day</option>
+                    <option>24–48h</option>
+                    <option>3–5 business days</option>
+                    <option>Depends</option>
+                  </select>
+                </div>
+
+                <div class="full">
+                  <label for="deliverables">Your standard deliverables (what the client receives)</label>
+                  <textarea id="deliverables" name="deliverables" placeholder="Example: architecture diagram, control list, config exports, log pipeline setup, hardening checklist, acceptance report, etc." required></textarea>
+                </div>
+
+                <div class="full">
+                  <label for="proofLinks">Proof / credibility (links)</label>
+                  <textarea id="proofLinks" name="proofLinks" placeholder="Website, LinkedIn, public case studies, certifications, GitHub, public references (no confidential docs)." required></textarea>
+                </div>
+              </div>
+            </div>
+
+            <!-- E -->
+            <div class="section">
+              <div class="sectionTitle">E) Guardrails</div>
+              <p class="sectionDesc">Keep it clean. No confidential info in forms.</p>
+
+              <div class="form">
+                <div class="full">
+                  <label for="conflicts">Conflicts of interest (if any)</label>
+                  <textarea id="conflicts" name="conflicts" placeholder="Any direct conflicts, exclusivities, or competing offers — disclose cleanly." required></textarea>
+                </div>
+
+                <div class="full">
+                  <label for="notes">Anything else that makes a “yes” easy</label>
+                  <textarea id="notes" name="notes" placeholder="One paragraph: your edge, your reliability, and what you can ship in 30 days." required></textarea>
+                </div>
+              </div>
+
+              <div class="check">
+                <input type="checkbox" name="non_confidential_ack" value="yes" required />
+                <span>
+                  I confirm this application is <strong>non-confidential</strong>. No client names/credentials/private docs in this form.
+                  <small>Privacy: <a href="/privacy/" style="border-bottom:1px solid rgba(255,255,255,.18)">/privacy/</a></small>
+                </span>
+              </div>
+
+              <div class="check">
+                <input type="checkbox" name="truthful_ack" value="yes" required />
+                <span>
+                  I confirm the information provided is accurate to the best of my knowledge.
+                  <small>We use this to decide routing, not for marketing spam.</small>
+                </span>
+              </div>
+            </div>
+
+            <div class="actions">
+              <button class="btn" id="submitBtn" type="submit">Submit application</button>
+              <a class="btn secondary" id="backToIntake" href="/gate/partners/intake/">Back to intake</a>
+              <a class="btn secondary" href="/gate/partners/">Back to Partners</a>
+            </div>
+
+            <div id="msg" class="msg" role="status" aria-live="polite"></div>
+
+            <div class="box">
+              <strong>What happens next:</strong> if you pass technical fit + evidence discipline, we define the control baseline,
+              integration patterns, and delivery package for first implementations.
+              Your <strong>Request ID</strong> is the tracking key.
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <aside class="card">
+        <div class="hd">
+          <h2>Decision criteria</h2>
+          <p>What makes this lane work.</p>
+        </div>
+        <div class="bd">
+          <div class="box"><strong>Yes:</strong> proven IdP/SSO + logs + DLP/control work in production.</div>
+          <div class="box"><strong>Yes:</strong> evidence capture discipline + audit-friendly delivery packs.</div>
+          <div class="box"><strong>No:</strong> “trust me” implementations without configs, exports, or logs.</div>
+
+          <div class="box" style="margin-top:14px;">
+            <strong>Useful:</strong><br/>
+            <a href="/trust-brief/" style="border-bottom:1px solid rgba(255,255,255,.18)">Trust Brief</a> ·
+            <a href="/trust-ledger/" style="border-bottom:1px solid rgba(255,255,255,.18)">Trust Ledger</a> ·
+            <a href="/gate/partners/" style="border-bottom:1px solid rgba(255,255,255,.18)">Partners Gate</a>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <footer>
+      <div class="foot">
+        <a class="footBrand" href="/" aria-label="Noetfield home">
+          <img src="/noetfield-favicon-512.png" alt="Noetfield mark" />
+          <span>© <span id="y"></span> Noetfield Systems Inc.</span>
+        </a>
+
+        <div class="footNav" aria-label="Footer navigation">
+          <a href="/trust-ledger/">Trust Ledger</a>
+          <a href="/trust-brief/">Trust Brief</a>
+          <a href="/playbook/">Playbook</a>
+          <a href="/copilot-cost-governance/">Copilot</a>
+          <a href="/for-whom/">For Whom</a>
+          <a href="/gate/">Gate</a>
+          <a href="/portal/">Portal</a>
+          <a class="statusLink" href="/status/"><span class="statusDot" aria-hidden="true"></span>Status</a>
+          <a href="/feedback/">Feedback</a>
+          <a href="/contact/">Contact</a>
+          <a href="/privacy/">Privacy</a>
+          <a href="/terms/">Terms</a>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+
+    // Mobile menu
+    (function () {
+      var burger = document.getElementById("burger");
+      var panel = document.getElementById("mobilePanel");
+      if (!burger || !panel) return;
+      burger.addEventListener("click", function () {
+        var isOpen = burger.getAttribute("aria-expanded") === "true";
+        burger.setAttribute("aria-expanded", String(!isOpen));
+        panel.hidden = isOpen;
+      });
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape" && burger.getAttribute("aria-expanded") === "true") {
+          burger.setAttribute("aria-expanded", "false");
+          panel.hidden = true;
+        }
+      });
+    })();
+
+    // RID + query parsing (?rid=...&lane=integration)
+    (function () {
+      var ridInput = document.getElementById("request_id");
+      var ridText = document.getElementById("ridText");
+      var openStatusBtn = document.getElementById("openStatusBtn");
+      var backToIntake = document.getElementById("backToIntake");
+
+      function genRID(){
+        function rand4(){ return Math.floor(Math.random() * 10000).toString().padStart(4,"0"); }
+        var d = new Date();
+        var stamp =
+          d.getUTCFullYear().toString() +
+          String(d.getUTCMonth()+1).padStart(2,"0") +
+          String(d.getUTCDate()).padStart(2,"0") + "-" +
+          String(d.getUTCHours()).padStart(2,"0") +
+          String(d.getUTCMinutes()).padStart(2,"0") +
+          String(d.getUTCSeconds()).padStart(2,"0");
+        return "NF-P-" + stamp + "-" + rand4();
+      }
+
+      var params = new URLSearchParams(window.location.search || "");
+      var rid = (params.get("rid") || "").trim();
+
+      if (!rid) { try { rid = localStorage.getItem("nf_partner_rid") || ""; } catch(e){} }
+      if (!rid) rid = genRID();
+
+      if (ridInput) ridInput.value = rid;
+      if (ridText) ridText.textContent = rid;
+
+      try { localStorage.setItem("nf_partner_rid", rid); } catch(e){}
+      try { localStorage.setItem("nf_partner_lane", "integration"); } catch(e){}
+
+      if (openStatusBtn) openStatusBtn.href = "/status/?rid=" + encodeURIComponent(rid);
+      if (backToIntake) backToIntake.href = "/gate/partners/intake/?rid=" + encodeURIComponent(rid) + "&lane=integration";
+
+      var copyBtn = document.getElementById("copyRidBtn");
+      if (copyBtn) {
+        copyBtn.addEventListener("click", async function(){
+          try{
+            await navigator.clipboard.writeText(rid);
+            copyBtn.textContent = "Copied";
+            setTimeout(function(){ copyBtn.textContent = "Copy"; }, 1200);
+          } catch(e){
+            copyBtn.textContent = "Copy failed";
+            setTimeout(function(){ copyBtn.textContent = "Copy"; }, 1200);
+          }
+        });
+      }
+    })();
+
+    // Submit via fetch -> /thanks/?rid=...
+    (function () {
+      var form = document.getElementById("nfApplyIntegrationForm");
+      if (!form) return;
+
+      var msg = document.getElementById("msg");
+      var btn = document.getElementById("submitBtn");
+      var ridInput = document.getElementById("request_id");
+
+      function setMsg(text, kind){
+        if (!msg) return;
+        msg.style.display = "block";
+        msg.textContent = text;
+
+        if (kind === "ok") {
+          msg.style.borderColor = "rgba(45,227,138,.25)";
+          msg.style.background = "rgba(45,227,138,.06)";
+        } else if (kind === "err") {
+          msg.style.borderColor = "rgba(255,90,90,.25)";
+          msg.style.background = "rgba(255,90,90,.06)";
+        } else {
+          msg.style.borderColor = "rgba(255,255,255,.12)";
+          msg.style.background = "rgba(255,255,255,.03)";
+        }
+      }
+
+      form.addEventListener("submit", async function (e) {
+        e.preventDefault();
+
+        var action = form.getAttribute("action");
+        if (!action || action.indexOf("REPLACE_ME") !== -1) {
+          setMsg("Form endpoint is missing. Replace Formspree action URL.", "err");
+          return;
+        }
+
+        var rid = (ridInput && ridInput.value) ? ridInput.value : "";
+
+        if (btn) {
+          btn.disabled = true;
+          btn.dataset.label = btn.textContent;
+          btn.textContent = "Submitting…";
+        }
+        setMsg("Submitting application…", "info");
+
+        try{
+          var fd = new FormData(form);
+          var res = await fetch(action, { method:"POST", body: fd, headers: { "Accept":"application/json" } });
+
+          if (!res.ok) {
+            setMsg("Submission failed. Please try again.", "err");
+            if (btn) { btn.disabled = false; btn.textContent = btn.dataset.label || "Submit application"; }
+            return;
+          }
+
+          setMsg("Submitted. Redirecting…", "ok");
+          try { localStorage.setItem("nf_partner_last_submitted_rid", rid); } catch(e){}
+
+          var url = "/thanks/?rid=" + encodeURIComponent(rid) + "&track=partners&lane=integration";
+          window.location.assign(url);
+
+        } catch(err){
+          setMsg("Network error. Please check your connection and try again.", "err");
+          if (btn) { btn.disabled = false; btn.textContent = btn.dataset.label || "Submit application"; }
+        }
+      });
+    })();
+
+    // Active link highlight
+    (function () {
+      function normPath(p) {
+        if (!p) return "/";
+        p = p.split("?")[0].split("#")[0];
+        if (p.length > 1 && p.endsWith("/")) p = p.slice(0, -1);
+        return p.toLowerCase();
+      }
+      var current = normPath(window.location.pathname);
+      var links = document.querySelectorAll('nav[aria-label="Primary navigation"] a, footer a, #mobilePanel a');
+      links.forEach(function (a) {
+        var href = a.getAttribute("href") || "";
+        if (!href.startsWith("/")) return;
+        var target = normPath(href);
+        var isActive =
+          (target === "/" && current === "/") ||
+          (target !== "/" && (current === target || current.startsWith(target + "/")));
+        if (isActive) { a.classList.add("active"); a.setAttribute("aria-current", "page"); }
+        else { a.classList.remove("active"); a.removeAttribute("aria-current"); }
+      });
+    })();
+  </script>
+</body>
+</html>

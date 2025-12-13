@@ -129,10 +129,36 @@
     });
   }
 
+  /* ===== Floating Feedback Tab (match /gate/partners/channel/) ===== */
+  function ensureFeedbackTab() {
+    // Don’t duplicate on the Feedback page itself
+    var p = normPath(window.location.pathname);
+    if (p === "/feedback" || p.startsWith("/feedback/")) return;
+
+    // If the page already has it (like channel), leave it alone
+    if (document.querySelector(".feedbackTab")) return;
+
+    // Inject the exact markup used on channel pages
+    var a = document.createElement("a");
+    a.className = "feedbackTab";
+    a.href = "/feedback/";
+    a.setAttribute("aria-label", "Open feedback");
+
+    var spark = document.createElement("span");
+    spark.className = "spark";
+    spark.setAttribute("aria-hidden", "true");
+
+    a.appendChild(spark);
+    a.appendChild(document.createTextNode("Feedback"));
+
+    document.body.appendChild(a);
+  }
+
   function boot() {
     setYear();
     setActiveLinks();
     initBurger();
+    ensureFeedbackTab(); // <-- added (no other behavior changed)
   }
 
   if (document.readyState === "loading") {

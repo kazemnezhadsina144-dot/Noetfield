@@ -45,7 +45,7 @@
 
   <!-- Page-specific styles ONLY -->
   <style>
-    .hero{padding: 22px 0 14px}
+    .hero{padding:22px 0 14px}
     .heroShell{
       position:relative;
       border-radius: calc(var(--radius) + 8px);
@@ -138,6 +138,7 @@
       color: var(--text);
       transition: border-color .15s ease, background .15s ease, transform .06s ease;
       white-space:nowrap;
+      text-decoration:none;
     }
     .miniBtn:hover{border-color:rgba(255,255,255,.22); background:rgba(255,255,255,.06)}
     .miniBtn:active{transform: translateY(1px)}
@@ -186,33 +187,6 @@
 
     .actions{display:flex; gap:12px; flex-wrap:wrap; align-items:center; margin-top:12px}
 
-    /* Page buttons (avoid clashing with shell .btn) */
-    .pgBtn{
-      display:inline-flex; align-items:center; justify-content:center;
-      gap:10px;
-      padding:12px 14px;
-      border-radius:16px;
-      border:1px solid rgba(200,163,73,.58);
-      background:
-        radial-gradient(260px 110px at 40% 0%, rgba(255,255,255,.11), transparent 62%),
-        linear-gradient(180deg, rgba(200,163,73,.24), rgba(200,163,73,.11));
-      color:var(--text);
-      font-weight:900;
-      font-size:14px;
-      cursor:pointer;
-      transition: border-color .15s ease, transform .06s ease, filter .15s ease;
-      white-space:nowrap;
-    }
-    .pgBtn:hover{border-color:rgba(200,163,73,.85); filter:brightness(1.06)}
-    .pgBtn:active{transform: translateY(1px)}
-    .pgBtn:disabled{opacity:.65; cursor:not-allowed; filter:none;}
-    .pgBtn.secondary{
-      border:1px solid rgba(255,255,255,.16);
-      background: rgba(255,255,255,.04);
-      font-weight:800;
-      color: var(--muted);
-    }
-
     .msg{
       display:none;
       margin-top:12px;
@@ -242,7 +216,7 @@
       border-radius:14px;
       border:1px dashed rgba(255,255,255,.16);
       background: rgba(255,255,255,.02);
-      color: var(--muted2);
+      color:var(--muted2);
       font-size:12px;
       line-height:1.6;
     }
@@ -276,7 +250,7 @@
   <div class="bg" aria-hidden="true"></div>
   <a class="skip" href="#main">Skip to content</a>
 
-  <!-- HEADER (LOCKED SHELL MARKUP — copy from /gate/partners/) -->
+  <!-- HEADER (EXACTLY aligned to /gate/partners/) -->
   <header>
     <div class="nav">
       <a class="brand" href="/" aria-label="Noetfield home">
@@ -574,9 +548,9 @@
             </div>
 
             <div class="actions">
-              <button class="pgBtn" id="submitBtn" type="submit">Submit application</button>
-              <a class="pgBtn secondary" id="backToApply" href="/gate/partners/apply/">Back to apply</a>
-              <a class="pgBtn secondary" href="/gate/partners/">Back to Partners</a>
+              <button class="btn" id="submitBtn" type="submit">Submit application</button>
+              <a class="btn secondary" id="backToApply" href="/gate/partners/apply/">Back to apply</a>
+              <a class="btn secondary" href="/gate/partners/">Back to Partners</a>
             </div>
 
             <div id="msg" class="msg" role="status" aria-live="polite"></div>
@@ -616,7 +590,10 @@
     </section>
   </main>
 
-  <!-- FOOTER (LOCKED MARKUP — copy from /gate/partners/) -->
+  <!-- FOOTER (EXACTLY aligned to /gate/partners/):
+       - Left CTA row is Gate + Platform (NOT Portal)
+       - Copyright line has no year span
+  -->
   <footer>
     <div class="footerTop">
       <div class="fcol">
@@ -630,7 +607,7 @@
 
         <div class="ctaRow" style="margin-top:12px;">
           <a class="btn secondary" href="/gate/">Gate</a>
-          <a class="btn secondary" href="/portal/">Portal</a>
+          <a class="btn secondary" href="/platform/">Platform</a>
         </div>
       </div>
 
@@ -669,7 +646,7 @@
     </div>
 
     <div class="footerBottom">
-      <div>© <span id="y"></span> Noetfield Systems Inc.</div>
+      <div>© Noetfield Systems Inc.</div>
 
       <div class="footerMiniNav" aria-label="Footer mini navigation">
         <a class="statusLink" href="/status/"><span class="statusDot" aria-hidden="true"></span>Status</a>

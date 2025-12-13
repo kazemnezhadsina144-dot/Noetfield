@@ -2,16 +2,13 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Noetfield – Partners Gate (Partner Intake)</title>
+  <title>Noetfield – Partner Apply (Gate)</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <meta
-    name="description"
-    content="Partner intake for aligned operators, agencies, and vendors who want to deliver Noetfield governance artefacts (Trust Brief + Trust Ledger) to real organizations — board-first, evidence-ready."
-  />
+  <meta name="description" content="Apply to the Noetfield partner track. Submit capabilities, coverage, and proof of board-ready delivery for AI governance artefacts." />
   <meta name="robots" content="index,follow" />
   <meta name="author" content="Noetfield Systems Inc." />
-  <link rel="canonical" href="https://www.noetfield.com/gate/partners/" />
+  <link rel="canonical" href="https://www.noetfield.com/gate/partners/apply/" />
 
   <link rel="icon" href="/noetfield-favicon-512.png" type="image/png" />
   <link rel="apple-touch-icon" href="/noetfield-favicon-512.png" />
@@ -20,21 +17,15 @@
   <!-- OG -->
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Noetfield" />
-  <meta property="og:title" content="Noetfield – Partners Gate" />
-  <meta
-    property="og:description"
-    content="Partner intake for aligned operators, agencies, and vendors who want to deliver Noetfield governance artefacts — board-first, evidence-ready."
-  />
-  <meta property="og:url" content="https://www.noetfield.com/gate/partners/" />
+  <meta property="og:title" content="Noetfield – Partner Apply (Gate)" />
+  <meta property="og:description" content="Apply to the partner track for delivery and channel fit aligned to board-ready AI governance artefacts." />
+  <meta property="og:url" content="https://www.noetfield.com/gate/partners/apply/" />
   <meta property="og:image" content="https://www.noetfield.com/noetfield-og.png" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Noetfield – Partners Gate" />
-  <meta
-    name="twitter:description"
-    content="Partner intake for aligned operators, agencies, and vendors who want to deliver Noetfield governance artefacts — board-first, evidence-ready."
-  />
+  <meta name="twitter:title" content="Noetfield – Partner Apply (Gate)" />
+  <meta name="twitter:description" content="Apply to the partner track for delivery and channel fit aligned to board-ready AI governance artefacts." />
   <meta name="twitter:image" content="https://www.noetfield.com/noetfield-og.png" />
 
   <!-- Font -->
@@ -172,6 +163,7 @@
       opacity:.95;
     }
 
+    /* Desktop nav (NO feedback in header) */
     .menu{
       display:flex;
       align-items:center;
@@ -309,34 +301,9 @@
         radial-gradient(220px 90px at 30% 0%, rgba(200,163,73,.22), transparent 60%),
         rgba(200,163,73,.10);
     }
-    .mobileNote{
-      margin-top:12px;
-      color:var(--muted2);
-      font-size:12px;
-      display:flex; gap:8px; align-items:center;
-      flex-wrap:wrap;
-    }
-    .chip{
-      display:inline-flex; align-items:center; gap:8px;
-      padding:7px 10px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.03);
-      color: var(--muted2);
-    }
-    .chip b{color:var(--text); font-weight:650}
-
-    /* Accessibility */
-    .skip{
-      position:absolute; left:-999px; top:10px;
-      background:#111118; border:1px solid rgba(255,255,255,.12);
-      color:var(--text); padding:10px 12px; border-radius:12px;
-      z-index:999;
-    }
-    .skip:focus{left:10px}
 
     /* Hero */
-    .hero{padding: 22px 0 18px}
+    .hero{padding: 22px 0 12px}
     .heroShell{
       position:relative;
       border-radius: calc(var(--radius) + 8px);
@@ -378,7 +345,7 @@
     }
     h1{
       margin:14px 0 10px;
-      font-size:42px;
+      font-size:40px;
       line-height:1.07;
       letter-spacing:-0.75px;
     }
@@ -388,46 +355,41 @@
       font-size:16px;
       max-width: 920px;
     }
-    .pillrow{display:flex; flex-wrap:wrap; gap:10px; margin-top:14px}
-    .pill{
-      display:inline-flex; align-items:center; gap:10px;
-      padding:9px 12px;
+
+    /* Progress */
+    .progressRow{
+      margin-top:14px;
+      display:flex;
+      gap:12px;
+      align-items:center;
+      flex-wrap:wrap;
+    }
+    .progressPill{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:10px 12px;
       border-radius:999px;
       border:1px solid rgba(255,255,255,.12);
       background: rgba(255,255,255,.03);
       color:var(--muted);
       font-size:13px;
     }
-    .pill strong{color:var(--text); font-weight:650}
-
-    .heroActions{
-      margin-top:14px;
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      align-items:center;
+    .bar{
+      width:160px; height:8px;
+      border-radius:999px;
+      background: rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.10);
+      overflow:hidden;
     }
-    .heroBtn{
-      display:inline-flex; align-items:center; justify-content:center;
-      gap:10px;
-      padding:10px 12px;
-      border-radius:16px;
-      border:1px solid rgba(255,255,255,.14);
-      background: rgba(255,255,255,.03);
-      color: var(--text);
-      font-weight:700;
-      font-size:13.5px;
-      transition: background .15s ease, border-color .15s ease, transform .06s ease;
+    .bar > span{
+      display:block;
+      height:100%;
+      width: 0%;
+      background: rgba(200,163,73,.75);
+      box-shadow: 0 0 0 3px rgba(200,163,73,.12);
+      transition: width .2s ease;
     }
-    .heroBtn:hover{border-color:rgba(255,255,255,.22); background:rgba(255,255,255,.05)}
-    .heroBtn:active{transform: translateY(1px)}
-    .heroBtn.primary{
-      border-color: rgba(200,163,73,.58);
-      background:
-        radial-gradient(240px 90px at 40% 0%, rgba(255,255,255,.11), transparent 62%),
-        linear-gradient(180deg, rgba(200,163,73,.20), rgba(200,163,73,.10));
-    }
-    .heroBtn.primary:hover{border-color: rgba(200,163,73,.85)}
 
     /* Grid */
     .grid{
@@ -516,6 +478,23 @@
     }
 
     /* Form */
+    .sectionTitle{
+      margin-top:14px;
+      padding-top:14px;
+      border-top: 1px solid rgba(255,255,255,.10);
+      display:flex; align-items:center; justify-content:space-between; gap:10px;
+    }
+    .sectionTitle h3{
+      margin:0;
+      font-size:14px;
+      letter-spacing:.18px;
+    }
+    .sectionHint{
+      color: var(--muted2);
+      font-size:12px;
+      line-height:1.4;
+    }
+
     .form{
       display:grid;
       grid-template-columns:1fr 1fr;
@@ -525,6 +504,18 @@
     .form .full{grid-column:1 / -1}
 
     label{display:block; font-size:12px; color:var(--muted2); margin:0 0 6px}
+    .help{
+      margin-top:6px;
+      color: rgba(185,187,207,.72);
+      font-size:12px;
+      line-height:1.45;
+    }
+    .req{
+      color: rgba(200,163,73,.95);
+      font-weight:800;
+      margin-left:6px;
+      font-size:12px;
+    }
 
     input, select, textarea{
       width:100%;
@@ -541,6 +532,28 @@
     input::placeholder, textarea::placeholder{color: rgba(185,187,207,.55)}
     textarea{min-height:110px; resize:vertical}
     input:focus, select:focus, textarea:focus{box-shadow: var(--focus); background: rgba(12,12,18,.62)}
+
+    .chips{
+      display:flex; flex-wrap:wrap; gap:10px;
+      margin-top:8px;
+    }
+    .chipCheck{
+      display:flex; align-items:flex-start; gap:10px;
+      padding:10px 10px;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.03);
+      color: var(--muted);
+      font-size:13px;
+      line-height:1.35;
+      flex: 1 1 240px;
+      min-width: 220px;
+    }
+    .chipCheck input{
+      width:auto;
+      margin-top:3px;
+    }
+    .chipCheck b{color: var(--text); font-weight:700}
 
     .actions{display:flex; gap:12px; align-items:center; justify-content:flex-start; margin-top:12px; flex-wrap:wrap}
     .btn{
@@ -568,9 +581,6 @@
       color: var(--muted);
     }
 
-    .note{font-size:12px; color:var(--muted2); margin-top:10px; line-height:1.55}
-    .note strong{color:var(--text); font-weight:650}
-
     .formMsg{
       margin-top:12px;
       padding:12px 12px;
@@ -582,6 +592,18 @@
       line-height:1.55;
       display:none;
     }
+
+    .box{
+      margin-top:14px;
+      padding:12px 12px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      color: var(--muted2);
+      font-size:12px;
+      line-height:1.6;
+    }
+    .box strong{color:var(--text); font-weight:650}
 
     .resourceBox{
       margin-top:14px;
@@ -621,18 +643,6 @@
       border-color: rgba(255,255,255,.18);
       background: rgba(255,255,255,.05);
     }
-
-    .fineprint{
-      margin-top:14px;
-      padding:12px 12px;
-      border-radius:14px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.03);
-      color: var(--muted2);
-      font-size:12px;
-      line-height:1.55;
-    }
-    .fineprint strong{color:var(--text); font-weight:700}
 
     /* Footer */
     footer{
@@ -712,9 +722,11 @@
       .footNav a{font-size:12.5px}
       .ridBar{flex-direction:column; align-items:flex-start}
       .ridActions{justify-content:flex-start}
+      .bar{width:140px}
     }
     @media (max-width: 420px){
       .mobileGrid{grid-template-columns:1fr}
+      .chipCheck{min-width: 0}
     }
   </style>
 
@@ -722,9 +734,9 @@
   {
     "@context": "https://schema.org",
     "@type": "WebPage",
-    "name": "Noetfield Partners Gate",
-    "url": "https://www.noetfield.com/gate/partners/",
-    "description": "Partner intake for aligned operators, agencies, and vendors who want to deliver Noetfield governance artefacts (Trust Brief + Trust Ledger) to real organizations — board-first, evidence-ready.",
+    "name": "Noetfield Partner Apply",
+    "url": "https://www.noetfield.com/gate/partners/apply/",
+    "description": "Apply to the Noetfield partner track. Submit capabilities, coverage, and proof of board-ready delivery for AI governance artefacts.",
     "isPartOf": {
       "@type": "WebSite",
       "name": "Noetfield",
@@ -740,7 +752,6 @@
 
 <body>
   <div class="bg" aria-hidden="true"></div>
-  <a class="skip" href="#main">Skip to content</a>
 
   <header>
     <div class="nav">
@@ -788,50 +799,44 @@
           <a class="statusLink" href="/status/"><span class="statusDot" aria-hidden="true"></span>Status</a>
           <a href="/portal/login/">Login</a>
         </div>
-
-        <div class="mobileNote">
-          <span class="chip"><b>Partner track</b> delivery + distribution</span>
-          <span class="chip">board-first</span>
-          <span class="chip">evidence-ready</span>
-        </div>
       </div>
     </div>
   </header>
 
-  <main id="main" class="wrap">
+  <main class="wrap">
     <section class="hero">
       <div class="heroShell">
         <div class="heroInner">
-          <div class="eyebrow"><span class="dot"></span> Partner gate • routing • delivery • co-selling</div>
-          <h1>Partner routing — clean, scoped, board-safe.</h1>
+          <div class="eyebrow"><span class="dot"></span> Partner application • board-safe delivery • evidence discipline</div>
+          <h1>Partner Application</h1>
           <p class="lead">
-            Use this page for a <strong>quick routing request</strong> (no confidential details).
-            If you’re ready to submit capability + proof in more depth, use the <strong>full application</strong>.
+            This form is designed to route serious partners into a clean, board-ready delivery lane.
+            Keep it <strong>high-level</strong> and <strong>non-confidential</strong>. If aligned, we’ll propose a safer channel for details.
           </p>
 
-          <div class="pillrow" aria-label="Scope highlights">
-            <div class="pill"><strong>Clear lanes</strong> (delivery / referral / integration)</div>
-            <div class="pill"><strong>Evidence discipline</strong> &amp; auditability</div>
-            <div class="pill"><strong>Board-first</strong> outputs</div>
-            <div class="pill"><strong>Non-confidential</strong> intake</div>
-          </div>
-
-          <div class="heroActions" aria-label="Primary actions">
-            <a class="heroBtn primary" href="/gate/partners/apply/">Full partner application</a>
-            <a class="heroBtn" href="/gate/">Back to Gate</a>
-            <a class="heroBtn" href="/status/">Check status</a>
+          <div class="progressRow" aria-label="Completion">
+            <div class="progressPill">
+              <span style="font-weight:800; color: var(--text);">Completion:</span>
+              <span id="pctText">0%</span>
+              <span class="bar" aria-hidden="true"><span id="pctBar"></span></span>
+            </div>
+            <div class="progressPill">
+              <span style="font-weight:800; color: var(--text);">Target:</span>
+              <span>2–4 minutes</span>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
     <section class="grid">
-      <!-- Left: Quick routing intake -->
+      <!-- Left: Form -->
       <div class="card">
         <div class="hd">
-          <h2>Quick routing request</h2>
+          <h2>Submit a determining application</h2>
           <p>
-            Provide enough signal to route you into the right lane. Keep it high-level and non-confidential.
+            We’re looking for partners who can ship board-ready artefacts, preserve evidence trails, and respect clean boundaries.
+            <strong>No hype.</strong>
           </p>
 
           <div class="ridBar" aria-label="Request ID bar">
@@ -847,39 +852,48 @@
         </div>
 
         <div class="bd">
+          <!-- IMPORTANT:
+               Replace action with your REAL Formspree endpoint, e.g. https://formspree.io/f/xyzrdrpv
+          -->
           <form
-            id="nfPartnersRouteForm"
-            action="https://formspree.io/f/xyzrdrpv"
+            id="nfPartnerApplyForm"
+            action="https://formspree.io/f/YOUR_FORM_ID"
             method="POST"
             novalidate
           >
-            <input type="hidden" name="page_source" value="/gate/partners/" />
-            <input type="hidden" name="track" value="partners-route" />
+            <input type="hidden" name="page_source" value="/gate/partners/apply/" />
+            <input type="hidden" name="source" value="gate-partners-apply" />
             <input type="hidden" name="site" value="noetfield.com" />
-            <input type="hidden" name="_subject" value="Noetfield Gate — Partners routing request" />
+            <input type="hidden" name="_subject" value="Noetfield Gate — Partner application" />
             <input type="hidden" id="request_id" name="request_id" value="" />
 
             <!-- Honeypot -->
             <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true" />
 
+            <!-- Section 1 -->
+            <div class="sectionTitle">
+              <h3>1) Identity & point-of-contact</h3>
+              <div class="sectionHint">Who are we speaking with?</div>
+            </div>
+
             <div class="form">
               <div>
-                <label for="fullName">Full name</label>
+                <label for="fullName">Full name <span class="req">*</span></label>
                 <input id="fullName" name="fullName" type="text" autocomplete="name" placeholder="First + last" required />
               </div>
 
               <div>
-                <label for="email">Work email</label>
+                <label for="email">Work email <span class="req">*</span></label>
                 <input id="email" name="email" type="email" autocomplete="email" placeholder="name@company.com" required />
               </div>
 
               <div>
-                <label for="org">Company / studio</label>
-                <input id="org" name="org" type="text" autocomplete="organization" placeholder="Agency / operator / vendor" required />
+                <label for="org">Organization <span class="req">*</span></label>
+                <input id="org" name="organization" type="text" autocomplete="organization" placeholder="Company / firm / independent" required />
               </div>
 
               <div>
-                <label for="role">Your role</label>
+                <label for="role">Your role <span class="req">*</span></label>
                 <select id="role" name="role" required>
                   <option value="" disabled selected>Select one</option>
                   <option>Founder / Owner</option>
@@ -887,119 +901,299 @@
                   <option>Head of Delivery</option>
                   <option>Head of Sales</option>
                   <option>Consultant</option>
+                  <option>Security / Risk / GRC</option>
                   <option>Other</option>
                 </select>
               </div>
 
               <div class="full">
-                <label for="partnerLane">Preferred lane</label>
+                <label for="website">Website / LinkedIn (recommended)</label>
+                <input id="website" name="website" type="url" placeholder="https://…" />
+                <div class="help">Public presence helps us verify proof quickly.</div>
+              </div>
+            </div>
+
+            <!-- Section 2 -->
+            <div class="sectionTitle">
+              <h3>2) Partner lane & fit</h3>
+              <div class="sectionHint">How do you want to work together?</div>
+            </div>
+
+            <div class="form">
+              <div class="full">
+                <label for="partnerLane">Primary lane <span class="req">*</span></label>
                 <select id="partnerLane" name="partnerLane" required>
                   <option value="" disabled selected>Select one</option>
-                  <option>Delivery partner (co-deliver Trust Brief + Ledger)</option>
-                  <option>Referral partner (qualified intros)</option>
-                  <option>Reseller / channel partner</option>
-                  <option>Integration partner (tools / data / security)</option>
-                  <option>Public sector / oversight adjacency</option>
-                  <option>Not sure — route me</option>
+                  <option value="delivery">Delivery partner (co-deliver Trust Brief + Ledger)</option>
+                  <option value="referral">Referral partner (qualified intros)</option>
+                  <option value="channel">Reseller / channel partner</option>
+                  <option value="integration">Integration partner (tools / data / security)</option>
+                  <option value="public">Public sector / oversight adjacency</option>
+                  <option value="unsure">Not sure — route me</option>
+                </select>
+                <div class="help">Pick the closest match. We’ll refine during routing.</div>
+              </div>
+
+              <div>
+                <label for="geo">Primary geography <span class="req">*</span></label>
+                <input id="geo" name="geo" type="text" placeholder="e.g., Canada — BC/ON | USA — WA/CA" required />
+              </div>
+
+              <div>
+                <label for="sectors">Sectors you cover <span class="req">*</span></label>
+                <input id="sectors" name="sectors" type="text" placeholder="e.g., gov, finance, health, construction, utilities" required />
+              </div>
+
+              <div class="full">
+                <label for="whyFit">Why Noetfield? (2–4 lines) <span class="req">*</span></label>
+                <textarea
+                  id="whyFit"
+                  name="whyFit"
+                  placeholder="Example: Our clients are adopting AI fast; they need board-safe controls, evidence trails, and executive-ready writing — not theatre."
+                  required
+                ></textarea>
+              </div>
+            </div>
+
+            <!-- Section 3 -->
+            <div class="sectionTitle">
+              <h3>3) Capability profile (what you actually ship)</h3>
+              <div class="sectionHint">This is the “make-or-break” section.</div>
+            </div>
+
+            <div class="form">
+              <div class="full">
+                <label>Core capabilities (select all that apply) <span class="req">*</span></label>
+                <div class="chips" role="group" aria-label="Capabilities">
+                  <label class="chipCheck"><input type="checkbox" name="capabilities[]" value="board_memos" required /><span><b>Board-ready writing</b><br/>decision memos, options, risks, sign-offs</span></label>
+                  <label class="chipCheck"><input type="checkbox" name="capabilities[]" value="inventory_controls" /><span><b>AI inventory + controls</b><br/>use-case register, controls, approvals</span></label>
+                  <label class="chipCheck"><input type="checkbox" name="capabilities[]" value="evidence_trails" /><span><b>Evidence discipline</b><br/>audit trails, artefact hygiene, traceability</span></label>
+                  <label class="chipCheck"><input type="checkbox" name="capabilities[]" value="vendor_risk" /><span><b>Vendor / model risk</b><br/>third-party, model cards, procurement</span></label>
+                  <label class="chipCheck"><input type="checkbox" name="capabilities[]" value="policy" /><span><b>Policy & governance</b><br/>policies, SOPs, RACI, escalation</span></label>
+                  <label class="chipCheck"><input type="checkbox" name="capabilities[]" value="security_privacy" /><span><b>Security / privacy</b><br/>data flows, PII, controls, logging</span></label>
+                  <label class="chipCheck"><input type="checkbox" name="capabilities[]" value="m365_copilot" /><span><b>M365 / Copilot governance</b><br/>tenant controls, DLP, rollout discipline</span></label>
+                  <label class="chipCheck"><input type="checkbox" name="capabilities[]" value="grc_audit" /><span><b>GRC / audit readiness</b><br/>risk registers, compliance mapping</span></label>
+                </div>
+                <div class="help">Select at least one. Be honest; we route based on real coverage.</div>
+              </div>
+
+              <div class="full">
+                <label for="capNarrative">Your “delivery sentence” <span class="req">*</span></label>
+                <input
+                  id="capNarrative"
+                  name="capNarrative"
+                  type="text"
+                  placeholder="Example: We turn messy AI adoption into board-ready controls and evidence trails in 2–6 weeks."
+                  required
+                />
+                <div class="help">One sentence that a CEO can repeat without embarrassment.</div>
+              </div>
+
+              <div class="full">
+                <label for="toolstack">Tooling / stack you can operate (optional)</label>
+                <input id="toolstack" name="toolstack" type="text" placeholder="Example: M365 Purview, Entra ID, Jira/Confluence, GRC tools, SIEM…" />
+              </div>
+            </div>
+
+            <!-- Lane-specific sections -->
+            <div class="sectionTitle" id="laneTitle" style="display:none;">
+              <h3>4) Lane specifics</h3>
+              <div class="sectionHint" id="laneHint">Shown based on your selected lane.</div>
+            </div>
+
+            <div id="laneDelivery" hidden>
+              <div class="form">
+                <div>
+                  <label for="deliveryCapacity">Delivery capacity <span class="req">*</span></label>
+                  <select id="deliveryCapacity" name="deliveryCapacity">
+                    <option value="" selected>—</option>
+                    <option>1 pilot at a time</option>
+                    <option>2–3 parallel pilots</option>
+                    <option>Team capacity (4+)</option>
+                  </select>
+                </div>
+                <div>
+                  <label for="deliveryRole">Preferred role <span class="req">*</span></label>
+                  <select id="deliveryRole" name="deliveryRole">
+                    <option value="" selected>—</option>
+                    <option>Subcontract (Noetfield lead)</option>
+                    <option>Co-delivery (shared scope)</option>
+                    <option>Lead delivery (with Noetfield review)</option>
+                  </select>
+                </div>
+                <div class="full">
+                  <label for="deliveryProof">Proof of delivery (links only) <span class="req">*</span></label>
+                  <input id="deliveryProof" name="deliveryProof" type="text" placeholder="Case studies, writing samples, sanitized reports (URLs only)" />
+                  <div class="help">Links only. No attachments. No client confidentials.</div>
+                </div>
+              </div>
+            </div>
+
+            <div id="laneReferral" hidden>
+              <div class="form">
+                <div class="full">
+                  <label for="referralSource">Where intros come from? <span class="req">*</span></label>
+                  <textarea id="referralSource" name="referralSource" placeholder="Example: 40+ mid-market ops clients in BC/ON; CIO peer groups; MSP channel." ></textarea>
+                </div>
+                <div>
+                  <label for="referralVolume">Intro volume (estimate)</label>
+                  <select id="referralVolume" name="referralVolume">
+                    <option value="" selected>—</option>
+                    <option>1–2 / month</option>
+                    <option>3–5 / month</option>
+                    <option>6–10 / month</option>
+                    <option>10+ / month</option>
+                  </select>
+                </div>
+                <div>
+                  <label for="referralBuyer">Typical buyer</label>
+                  <input id="referralBuyer" name="referralBuyer" type="text" placeholder="CIO, COO, CEO, Head of Risk, etc." />
+                </div>
+              </div>
+            </div>
+
+            <div id="laneChannel" hidden>
+              <div class="form">
+                <div>
+                  <label for="channelMotion">Channel motion <span class="req">*</span></label>
+                  <select id="channelMotion" name="channelMotion">
+                    <option value="" selected>—</option>
+                    <option>Resell (you sell, we deliver)</option>
+                    <option>Co-sell (shared)</option>
+                    <option>White-label delivery</option>
+                  </select>
+                </div>
+                <div>
+                  <label for="channelCoverage">Distribution proof</label>
+                  <input id="channelCoverage" name="channelCoverage" type="text" placeholder="Newsletter, community, client base size, partnerships (high-level)" />
+                </div>
+              </div>
+            </div>
+
+            <div id="laneIntegration" hidden>
+              <div class="form">
+                <div class="full">
+                  <label for="integrationSurface">What do you integrate? <span class="req">*</span></label>
+                  <textarea id="integrationSurface" name="integrationSurface" placeholder="Example: identity/SSO, logging, data connectors, ticketing, evidence capture workflows." ></textarea>
+                </div>
+                <div>
+                  <label for="securityPosture">Security posture (optional)</label>
+                  <input id="securityPosture" name="securityPosture" type="text" placeholder="SOC2, ISO, internal security practice, etc." />
+                </div>
+                <div>
+                  <label for="integrationProof">Proof links</label>
+                  <input id="integrationProof" name="integrationProof" type="text" placeholder="Docs / GitHub / case studies (URLs)" />
+                </div>
+              </div>
+            </div>
+
+            <div id="lanePublic" hidden>
+              <div class="form">
+                <div class="full">
+                  <label for="publicAdjacency">Oversight adjacency <span class="req">*</span></label>
+                  <textarea id="publicAdjacency" name="publicAdjacency" placeholder="Example: standards, oversight, procurement, policy drafting, public-sector governance programs." ></textarea>
+                </div>
+              </div>
+            </div>
+
+            <!-- Section 5 -->
+            <div class="sectionTitle">
+              <h3>5) Commercial reality & timing</h3>
+              <div class="sectionHint">We avoid vague partnerships.</div>
+            </div>
+
+            <div class="form">
+              <div>
+                <label for="timeline">Timing <span class="req">*</span></label>
+                <select id="timeline" name="timeline" required>
+                  <option value="" disabled selected>Select one</option>
+                  <option>Immediate (0–2 weeks)</option>
+                  <option>Near-term (2–6 weeks)</option>
+                  <option>This quarter</option>
+                  <option>Exploratory</option>
+                </select>
+              </div>
+
+              <div>
+                <label for="availability">Weekly availability (estimate) <span class="req">*</span></label>
+                <select id="availability" name="availability" required>
+                  <option value="" disabled selected>Select one</option>
+                  <option>2–5 hours</option>
+                  <option>5–10 hours</option>
+                  <option>10–20 hours</option>
+                  <option>20+ hours</option>
                 </select>
               </div>
 
               <div class="full">
-                <label for="why">Why partner (high-level)</label>
-                <textarea
-                  id="why"
-                  name="why"
-                  placeholder="Example: Clients are adopting AI fast; we need board-safe governance artefacts to ship responsibly."
-                  required
-                ></textarea>
+                <label for="pricingSignal">Commercial signal (optional, high-level)</label>
+                <input id="pricingSignal" name="pricingSignal" type="text" placeholder="Example: delivery day-rate range, or pilot range (no contracts needed)." />
+                <div class="help">Optional, but it speeds alignment dramatically.</div>
               </div>
+            </div>
 
-              <div class="full">
-                <label for="whatYouBring">What you bring (skills / distribution / assets)</label>
-                <textarea
-                  id="whatYouBring"
-                  name="whatYouBring"
-                  placeholder="Example: enterprise delivery, security, GRC practice, existing client base, change mgmt."
-                  required
-                ></textarea>
-              </div>
+            <!-- Section 6 -->
+            <div class="sectionTitle">
+              <h3>6) Guardrails & acknowledgements</h3>
+              <div class="sectionHint">Clean channel. Clean evidence.</div>
+            </div>
 
+            <div class="form">
               <div class="full">
                 <label style="display:flex; gap:10px; align-items:flex-start;">
-                  <input
-                    type="checkbox"
-                    name="non_confidential_ack"
-                    value="yes"
-                    required
-                    style="width:auto; margin-top:3px;"
-                  />
+                  <input type="checkbox" name="non_confidential_ack" value="yes" required style="width:auto; margin-top:3px;" />
                   <span style="color: var(--muted); font-size:13px; line-height:1.45;">
-                    I confirm this submission is <strong>high-level and non-confidential</strong>. No customer info, credentials, or internal documents.
+                    I confirm this submission is <strong>high-level, non-confidential</strong>. No client names, credentials, internal docs, or security-sensitive details.
                     <span style="display:block; margin-top:6px; font-size:12px; color: var(--muted2);">
                       See: <a href="/privacy/" style="border-bottom:1px solid rgba(255,255,255,.18)">Privacy</a>
                     </span>
                   </span>
                 </label>
               </div>
+
+              <div class="full">
+                <label for="notes">Anything else (optional)</label>
+                <textarea id="notes" name="notes" placeholder="Constraints, delivery style, availability details, or context (high-level)."></textarea>
+              </div>
             </div>
 
             <div class="actions">
-              <button class="btn" id="submitBtn" type="submit">Request Routing</button>
-              <a class="btn secondary" href="/gate/partners/apply/">Full application</a>
-              <a class="btn secondary" href="/status/">Check status</a>
+              <button class="btn" id="submitBtn" type="submit">Submit Partner Application</button>
+              <a class="btn secondary" href="/gate/partners/">Back to Partners</a>
             </div>
 
             <div id="formMsg" class="formMsg" role="status" aria-live="polite"></div>
 
-            <div class="note">
-              <strong>What happens next:</strong> reply within <strong>1–2 business days</strong> with (a) suggested lane, (b) minimum scope,
-              and (c) next-step channel. <br /><br />
-              <strong>Rule:</strong> do not submit confidential client or security-sensitive details here.
+            <div class="box">
+              <strong>What happens next:</strong> we reply within <strong>1–2 business days</strong> with (a) lane confirmation, (b) minimum viable scope, and (c) next-step channel.
+              <br/><br/>
+              <strong>Tip:</strong> the fastest approvals include (1) clear lane, (2) credible proof links, (3) geography + sector focus, (4) board-ready writing ability.
             </div>
           </form>
         </div>
       </div>
 
-      <!-- Right: Model + guardrails -->
+      <!-- Right: Guardrails + links -->
       <aside class="card">
         <div class="hd">
-          <h2>How this partner track works</h2>
-          <p>Simple motions, clean boundaries, evidence-ready outcomes.</p>
+          <h2>What “good” looks like</h2>
+          <p>We optimize for clean delivery and board-safe artefacts.</p>
         </div>
 
         <div class="bd">
-          <div class="resourceBox">
-            <div class="resourceTitle">Use this page vs. Apply</div>
-            <div class="fineprint" style="margin-top:0;">
-              <strong>This page (routing):</strong> quick fit + lane selection (no proof required).<br /><br />
-              <strong>Apply (full):</strong> capability + coverage + proof links (more signal, more reviewable).
-            </div>
-          </div>
-
-          <div class="resourceBox">
-            <div class="resourceTitle">Common partner motions</div>
-            <div class="resourceGrid">
-              <a href="/trust-brief/">Co-deliver Trust Brief</a>
-              <a href="/trust-ledger/">Ledger entries</a>
-              <a href="/playbook/">0–90 day rollout</a>
-              <a href="/copilot-cost-governance/">Copilot governance</a>
-              <a href="/for-whom/">Target buyers</a>
-              <a href="/status/">Status</a>
-            </div>
-          </div>
-
-          <div class="fineprint">
-            <strong>Delivery partners:</strong> co-deliver pilot, share scope, ship board-ready artefacts.<br /><br />
-            <strong>Referral partners:</strong> qualified intros; Noetfield delivers (or co-delivers if scoped).<br /><br />
-            <strong>Integration partners:</strong> connect identity, logs, controls — preserve evidence trails.
-          </div>
+          <div class="box"><strong>High signal:</strong> board-ready writing, evidence discipline, repeatable delivery.</div>
+          <div class="box"><strong>Proof:</strong> public links to sanitized case studies, memos, reports, documentation.</div>
+          <div class="box"><strong>Not a fit:</strong> hype-first AI packages, chatbot dev shops, marketing bundles.</div>
 
           <div class="resourceBox" style="margin-top:14px;">
-            <div class="resourceTitle">Other gates</div>
+            <div class="resourceTitle">Useful context</div>
             <div class="resourceGrid">
-              <a href="/gate/investor/">Investor</a>
-              <a href="/gate/research/">Research</a>
+              <a href="/trust-brief/">Trust Brief</a>
+              <a href="/trust-ledger/">Trust Ledger</a>
+              <a href="/playbook/">Playbook</a>
+              <a href="/for-whom/">For Whom</a>
               <a href="/gate/">Back to Gate</a>
+              <a href="/status/">Status</a>
             </div>
           </div>
 
@@ -1030,6 +1224,11 @@
           <a href="/gate/">Gate</a>
           <a href="/portal/">Portal</a>
           <a class="statusLink" href="/status/"><span class="statusDot" aria-hidden="true"></span>Status</a>
+
+          <!-- Requested -->
+          <a href="/feedback/">Feedback</a>
+          <a href="/contact/">Contact</a>
+
           <a href="/privacy/">Privacy</a>
           <a href="/terms/">Terms</a>
         </div>
@@ -1061,7 +1260,7 @@
       });
     })();
 
-    // Request ID (partners routing): generate once, persist
+    // Request ID (generate once, persist per partner apply)
     (function () {
       var ridInput = document.getElementById("request_id");
       var ridText = document.getElementById("ridText");
@@ -1069,7 +1268,6 @@
       if (!ridInput || !ridText) return;
 
       function rand4() { return Math.floor(Math.random() * 10000).toString().padStart(4, "0"); }
-
       function genRID(){
         var d = new Date();
         var stamp = d.getUTCFullYear().toString()
@@ -1079,21 +1277,19 @@
           + String(d.getUTCHours()).padStart(2,"0")
           + String(d.getUTCMinutes()).padStart(2,"0")
           + String(d.getUTCSeconds()).padStart(2,"0");
-        return "NF-PR-" + stamp + "-" + rand4();
+        return "NF-P-" + stamp + "-" + rand4();
       }
 
-      var existing = "";
-      try { existing = localStorage.getItem("nf_partner_route_rid") || ""; } catch(e){}
+      var rid = "";
+      try { rid = localStorage.getItem("nf_partner_apply_rid") || ""; } catch(e){}
+      if (!rid) rid = genRID();
 
-      var rid = existing || genRID();
       ridInput.value = rid;
       ridText.textContent = rid;
 
-      try { localStorage.setItem("nf_partner_route_rid", rid); } catch(e){}
+      try { localStorage.setItem("nf_partner_apply_rid", rid); } catch(e){}
 
-      if (openStatusBtn) {
-        openStatusBtn.href = "/status/?rid=" + encodeURIComponent(rid);
-      }
+      if (openStatusBtn) openStatusBtn.href = "/status/?rid=" + encodeURIComponent(rid);
 
       var copyBtn = document.getElementById("copyRidBtn");
       if (copyBtn) {
@@ -1116,9 +1312,146 @@
       }
     })();
 
+    // Active nav (header + footer + mobile)
+    (function () {
+      function normPath(p) {
+        if (!p) return "/";
+        p = p.split("?")[0].split("#")[0];
+        if (p.length > 1 && p.endsWith("/")) p = p.slice(0, -1);
+        return p.toLowerCase();
+      }
+      var current = normPath(window.location.pathname);
+      var links = document.querySelectorAll('nav[aria-label="Primary navigation"] a, footer a, #mobilePanel a');
+
+      links.forEach(function (a) {
+        var href = a.getAttribute("href") || "";
+        if (!href.startsWith("/")) return;
+        var target = normPath(href);
+
+        var isActive =
+          (target === "/" && current === "/") ||
+          (target !== "/" && (current === target || current.startsWith(target + "/")));
+
+        if (isActive) {
+          a.classList.add("active");
+          a.setAttribute("aria-current", "page");
+        } else {
+          a.classList.remove("active");
+          a.removeAttribute("aria-current");
+        }
+      });
+    })();
+
+    // Lane-specific reveal + required toggles
+    (function () {
+      var sel = document.getElementById("partnerLane");
+      var laneTitle = document.getElementById("laneTitle");
+      var laneHint = document.getElementById("laneHint");
+
+      var blocks = {
+        delivery: document.getElementById("laneDelivery"),
+        referral: document.getElementById("laneReferral"),
+        channel: document.getElementById("laneChannel"),
+        integration: document.getElementById("laneIntegration"),
+        public: document.getElementById("lanePublic")
+      };
+
+      function hideAll(){
+        Object.keys(blocks).forEach(function(k){
+          if (blocks[k]) blocks[k].hidden = true;
+        });
+        if (laneTitle) laneTitle.style.display = "none";
+      }
+
+      function show(k){
+        hideAll();
+        if (!k || !blocks[k]) return;
+
+        blocks[k].hidden = false;
+        if (laneTitle) laneTitle.style.display = "flex";
+
+        var hint = "Shown based on your selected lane.";
+        if (k === "delivery") hint = "Delivery capacity + proof links are the fastest way to approval.";
+        if (k === "referral") hint = "Explain intro source + buyer. No client names needed.";
+        if (k === "channel") hint = "Describe motion (resell/co-sell/white-label).";
+        if (k === "integration") hint = "Focus on connectors, logging, identity, evidence capture.";
+        if (k === "public") hint = "Explain oversight adjacency at a high level.";
+        if (laneHint) laneHint.textContent = hint;
+      }
+
+      if (!sel) return;
+      sel.addEventListener("change", function(){
+        var v = sel.value || "";
+        if (v === "unsure") { hideAll(); return; }
+        show(v);
+        updateProgress();
+      });
+
+      // initial
+      if (sel.value) {
+        if (sel.value !== "unsure") show(sel.value);
+      } else {
+        hideAll();
+      }
+    })();
+
+    // Completion meter (simple, practical)
+    function updateProgress(){
+      var form = document.getElementById("nfPartnerApplyForm");
+      if (!form) return;
+
+      // Count "meaningful" fields only
+      var fields = form.querySelectorAll("input, select, textarea");
+      var total = 0, done = 0;
+
+      fields.forEach(function(el){
+        var name = el.getAttribute("name") || "";
+        if (name === "_gotcha" || name === "_subject" || name === "page_source" || name === "source" || name === "site" || name === "request_id") return;
+
+        // ignore hidden
+        if (el.type === "hidden") return;
+
+        // ignore lane fields if lane section hidden
+        var parentHidden = false;
+        var p = el.parentElement;
+        while (p) {
+          if (p.hidden === true) { parentHidden = true; break; }
+          p = p.parentElement;
+        }
+        if (parentHidden) return;
+
+        // count checkbox group as individual (good enough)
+        total++;
+
+        if (el.type === "checkbox") {
+          if (el.checked) done++;
+        } else if (el.tagName === "SELECT") {
+          if (el.value && el.value !== "—") done++;
+        } else {
+          if ((el.value || "").trim().length > 0) done++;
+        }
+      });
+
+      var pct = total ? Math.round((done / total) * 100) : 0;
+      pct = Math.max(0, Math.min(100, pct));
+
+      var pctText = document.getElementById("pctText");
+      var pctBar = document.getElementById("pctBar");
+      if (pctText) pctText.textContent = pct + "%";
+      if (pctBar) pctBar.style.width = pct + "%";
+    }
+
+    (function(){
+      var form = document.getElementById("nfPartnerApplyForm");
+      if (!form) return;
+      form.addEventListener("input", updateProgress);
+      form.addEventListener("change", updateProgress);
+      updateProgress();
+    })();
+
     // AJAX submit to Formspree, then redirect to /thanks/?rid=...
     (function () {
-      var form = document.getElementById("nfPartnersRouteForm");
+      var form = document.getElementById("nfPartnerApplyForm");
       if (!form) return;
 
       var msg = document.getElementById("formMsg");
@@ -1145,9 +1478,16 @@
       form.addEventListener("submit", async function (e) {
         e.preventDefault();
 
-        var action = form.getAttribute("action");
-        if (!action) {
-          setMsg("Form endpoint is missing. Please set the form action to your Formspree URL.", "err");
+        var action = form.getAttribute("action") || "";
+        if (!action || action.indexOf("YOUR_FORM_ID") !== -1) {
+          setMsg("Form endpoint is missing. Replace the Formspree action URL with your real Form ID.", "err");
+          return;
+        }
+
+        // Basic required validation (native)
+        if (!form.checkValidity()) {
+          setMsg("Please complete required fields (marked with *).", "err");
+          form.reportValidity();
           return;
         }
 
@@ -1158,7 +1498,7 @@
           btn.dataset.label = btn.textContent;
           btn.textContent = "Sending…";
         }
-        setMsg("Sending your request…", "info");
+        setMsg("Sending your application…", "info");
 
         try {
           var fd = new FormData(form);
@@ -1178,12 +1518,13 @@
               errText = data.errors.map(function(x){ return x.message || "Error"; }).join(" ");
             }
             setMsg(errText, "err");
-            if (btn) { btn.disabled = false; btn.textContent = btn.dataset.label || "Request Routing"; }
+            if (btn) { btn.disabled = false; btn.textContent = btn.dataset.label || "Submit Partner Application"; }
             return;
           }
 
           setMsg("Submitted successfully. Redirecting…", "ok");
-          try { localStorage.setItem("nf_last_submitted_rid", rid); } catch(e){}
+
+          try { localStorage.setItem("nf_last_submitted_partner_apply_rid", rid); } catch(e){}
 
           var url = "/thanks/";
           if (rid) url += "?rid=" + encodeURIComponent(rid);
@@ -1191,37 +1532,7 @@
 
         } catch (err) {
           setMsg("Network error. Please check your connection and try again.", "err");
-          if (btn) { btn.disabled = false; btn.textContent = btn.dataset.label || "Request Routing"; }
-        }
-      });
-    })();
-
-    // Auto-active (header + footer + mobile)
-    (function () {
-      function normPath(p) {
-        if (!p) return "/";
-        p = p.split("?")[0].split("#")[0];
-        if (p.length > 1 && p.endsWith("/")) p = p.slice(0, -1);
-        return p.toLowerCase();
-      }
-      var current = normPath(window.location.pathname);
-      var links = document.querySelectorAll('nav[aria-label="Primary navigation"] a, footer a, #mobilePanel a');
-
-      links.forEach(function (a) {
-        var href = a.getAttribute("href") || "";
-        if (!href.startsWith("/")) return;
-        var target = normPath(href);
-
-        var isActive =
-          (target === "/" && current === "/") ||
-          (target !== "/" && (current === target || current.startsWith(target + "/")));
-
-        if (isActive) {
-          a.classList.add("active");
-          a.setAttribute("aria-current", "page");
-        } else {
-          a.classList.remove("active");
-          a.removeAttribute("aria-current");
+          if (btn) { btn.disabled = false; btn.textContent = btn.dataset.label || "Submit Partner Application"; }
         }
       });
     })();

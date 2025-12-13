@@ -39,9 +39,10 @@
     var current = normPath(window.location.pathname);
 
     // Active state ONLY for:
-    // - Top header nav
+    // - Header primary nav links
     // - Mobile panel links
-    // - Footer mini nav (NOT footer box links)
+    // - Footer mini nav links
+    // (NOT footerTop box links)
     var selectors = [
       'nav[aria-label="Primary navigation"] a',
       "#mobilePanel a",
@@ -91,14 +92,9 @@
     }
 
     // Initial safety
-    if (burger.getAttribute("aria-expanded") !== "true") {
-      panel.hidden = true;
-      burger.setAttribute("aria-expanded", "false");
-      document.body.classList.remove("navOpen");
-    } else {
-      panel.hidden = false;
-      document.body.classList.add("navOpen");
-    }
+    burger.setAttribute("aria-expanded", "false");
+    panel.hidden = true;
+    document.body.classList.remove("navOpen");
 
     burger.addEventListener("click", function (e) {
       e.preventDefault();

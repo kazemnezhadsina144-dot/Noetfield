@@ -1,5 +1,5 @@
 /* Noetfield Shell (Burger + Active Links + Footer Year) */
-/* Version: locked-2025.12.13+gate-intake+faq+offers */
+/* Version: locked-2025.12.13+gate-intake+faq+offers+floating-feedback */
 
 (function () {
   "use strict";
@@ -14,18 +14,16 @@
   function toInternalPath(href) {
     if (!href) return null;
 
-    // Normalize absolute URL to path if same-origin
     if (href.startsWith("http")) {
       try {
         var u = new URL(href, window.location.origin);
         if (u.origin !== window.location.origin) return null;
         return u.pathname || "/";
-      } catch (e) {
+      } catch (_) {
         return null;
       }
     }
 
-    // Only style internal absolute-path links
     if (!href.startsWith("/")) return null;
     return href;
   }
@@ -39,7 +37,7 @@
     var current = normPath(window.location.pathname);
 
     // Active state ONLY for:
-    // - Header primary nav links
+    // - Header primary navigation
     // - Mobile panel links
     // - Footer mini nav links
     // (NOT footerTop box links)
@@ -56,6 +54,7 @@
       if (!href) return;
 
       var target = normPath(href);
+
       var isActive =
         (target === "/" && current === "/") ||
         (target !== "/" && (current === target || current.startsWith(target + "/")));
@@ -91,7 +90,6 @@
       else openPanel();
     }
 
-    // Initial safety
     burger.setAttribute("aria-expanded", "false");
     panel.hidden = true;
     document.body.classList.remove("navOpen");
@@ -101,27 +99,23 @@
       toggle();
     });
 
-    // Close on Esc
     document.addEventListener("keydown", function (e) {
       if (e.key === "Escape" && burger.getAttribute("aria-expanded") === "true") {
         closePanel();
       }
     });
 
-    // Close when clicking outside header
     document.addEventListener("click", function (e) {
       if (burger.getAttribute("aria-expanded") !== "true") return;
       var withinHeader = !!(e.target && e.target.closest && e.target.closest("header"));
       if (!withinHeader) closePanel();
     });
 
-    // Close after clicking a mobile link
     panel.addEventListener("click", function (e) {
       var a = e.target && e.target.closest ? e.target.closest("a") : null;
       if (a) closePanel();
     });
 
-    // Close on resize back to desktop width
     window.addEventListener("resize", function () {
       if (window.innerWidth > 1140 && burger.getAttribute("aria-expanded") === "true") {
         closePanel();

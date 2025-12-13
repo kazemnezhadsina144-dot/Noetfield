@@ -13,7 +13,6 @@
   <meta name="author" content="Noetfield Systems Inc." />
   <link rel="canonical" href="https://www.noetfield.com/gate/" />
 
-  <!-- Favicon / icons -->
   <link rel="icon" href="/noetfield-favicon-512.png" type="image/png" />
   <link rel="apple-touch-icon" href="/noetfield-favicon-512.png" />
   <meta name="theme-color" content="#07070b" />
@@ -51,11 +50,9 @@
       --muted2:#8e91ad;
       --line: rgba(255,255,255,.11);
 
-      /* Swiss-minimal gold */
       --gold:#c8a349;
       --gold2:#a98a3c;
 
-      /* Cool accent */
       --ice:#7aa7ff;
 
       --radius:18px;
@@ -86,9 +83,9 @@
       box-shadow: var(--focus);
       border-color: rgba(200,163,73,.58) !important;
     }
+
     [hidden]{display:none !important;}
 
-    /* Premium background */
     .bg{
       position:fixed; inset:0;
       z-index:-3; pointer-events:none;
@@ -120,7 +117,6 @@
 
     .wrap{max-width:var(--max); margin:0 auto; padding:24px}
 
-    /* Header */
     header{
       position:sticky; top:0; z-index:60;
       backdrop-filter: blur(16px);
@@ -147,7 +143,6 @@
     .brand .name{font-weight:720; letter-spacing:.15px}
     .brand .tag{font-size:12px; color:var(--muted2); margin-top:2px}
 
-    /* Desktop nav */
     .menu{
       display:flex; flex-wrap:wrap;
       gap:10px 10px;
@@ -177,7 +172,6 @@
         linear-gradient(180deg, rgba(200,163,73,.22), rgba(200,163,73,.10));
     }
 
-    /* Mobile */
     .burger{
       display:none;
       align-items:center; justify-content:center;
@@ -241,7 +235,6 @@
     }
     .chip b{color:var(--text); font-weight:650}
 
-    /* Hero */
     .hero{padding: 22px 0 18px}
     .heroShell{
       position:relative;
@@ -306,7 +299,6 @@
     }
     .pill strong{color:var(--text); font-weight:650}
 
-    /* Grid */
     .grid{
       display:grid;
       grid-template-columns: 1.2fr .8fr;
@@ -423,7 +415,6 @@
       line-height:1.55;
     }
 
-    /* Footer */
     footer{
       border-top:1px solid rgba(255,255,255,.10);
       padding: 18px 0 22px;
@@ -459,7 +450,6 @@
       background: rgba(200,163,73,.10);
     }
 
-    /* Responsive */
     @media (max-width: 980px){
       .grid{grid-template-columns:1fr}
     }
@@ -483,7 +473,6 @@
       .mobileGrid{grid-template-columns:1fr}
     }
 
-    /* Accessibility helper */
     .skip{
       position:absolute; left:-999px; top:10px;
       background:#111118; border:1px solid rgba(255,255,255,.12);
@@ -527,7 +516,7 @@
         </div>
       </a>
 
-      <!-- Partners removed from header -->
+      <!-- Partners REMOVED from header -->
       <nav class="menu" aria-label="Primary navigation">
         <a href="/trust-ledger/">Trust Ledger</a>
         <a href="/trust-brief/">Trust Brief</a>
@@ -545,7 +534,7 @@
       </button>
     </div>
 
-    <!-- Partners removed from mobile nav -->
+    <!-- Partners REMOVED from mobile -->
     <div class="mobilePanel" id="mobilePanel" hidden>
       <div class="mobileInner">
         <div class="mobileGrid" aria-label="Mobile navigation">
@@ -589,7 +578,6 @@
     </section>
 
     <section class="grid">
-      <!-- Left: Board/Client intake -->
       <div class="card">
         <div class="hd">
           <h2>Primary track: Board / Client intake</h2>
@@ -606,14 +594,12 @@
             method="POST"
             novalidate
           >
-            <!-- Routing / metadata -->
             <input type="hidden" name="page_source" value="/gate/" />
             <input type="hidden" name="source" value="gate-board" />
             <input type="hidden" name="site" value="noetfield.com" />
             <input type="hidden" name="_subject" value="Noetfield Gate — Board/Client intake" />
             <input type="hidden" name="_redirect" value="https://www.noetfield.com/thanks/" />
 
-            <!-- Honeypot -->
             <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true" />
 
             <div class="form">
@@ -753,7 +739,6 @@
         </div>
       </div>
 
-      <!-- Right: Additional tracks -->
       <aside class="card">
         <div class="hd">
           <h2>Additional tracks</h2>
@@ -762,7 +747,7 @@
 
         <div class="bd">
           <div class="tracks">
-            <!-- Partners link ONLY lives on Gate (not in header/footer/mobile) -->
+            <!-- Partners ONLY HERE (Gate-only visibility) -->
             <div class="track">
               <div>
                 <div class="t">Partners</div>
@@ -814,7 +799,7 @@
       <div class="foot">
         <div>© <span id="y"></span> Noetfield Systems Inc.</div>
 
-        <!-- Partners removed from footer -->
+        <!-- Partners REMOVED from footer -->
         <div class="footNav" aria-label="Footer navigation">
           <a href="/">Home</a>
           <a href="/trust-ledger/">Trust Ledger</a>
@@ -832,10 +817,8 @@
   </main>
 
   <script>
-    // Year
     document.getElementById("y").textContent = new Date().getFullYear();
 
-    // Mobile menu toggle
     (function () {
       var burger = document.getElementById("burger");
       var panel = document.getElementById("mobilePanel");
@@ -847,7 +830,6 @@
         panel.hidden = isOpen;
       });
 
-      // close on ESC
       document.addEventListener("keydown", function (e) {
         if (e.key === "Escape" && burger.getAttribute("aria-expanded") === "true") {
           burger.setAttribute("aria-expanded", "false");
@@ -856,7 +838,6 @@
       });
     })();
 
-    // Auto-active (header + footer + mobile)
     (function () {
       function normPath(p) {
         if (!p) return "/";

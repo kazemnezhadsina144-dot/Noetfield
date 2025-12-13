@@ -1,5 +1,5 @@
 /* Noetfield Shell (Burger + Active Links + Footer Year) */
-/* Version: locked */
+/* Version: locked-2025.12.13 */
 
 (function () {
   "use strict";
@@ -27,7 +27,19 @@
 
     var links = document.querySelectorAll(selectors);
     links.forEach(function (a) {
+      // allow both absolute and relative; only style internal links
       var href = a.getAttribute("href") || "";
+      if (!href) return;
+
+      // normalize absolute URL to path if same-origin
+      if (href.startsWith("http")) {
+        try {
+          var u = new URL(href, window.location.origin);
+          if (u.origin !== window.location.origin) return;
+          href = u.pathname || "/";
+        } catch (e) { return; }
+      }
+
       if (!href.startsWith("/")) return;
 
       var target = normPath(href);
@@ -53,10 +65,12 @@
     function openPanel() {
       burger.setAttribute("aria-expanded", "true");
       panel.hidden = false;
+      document.body.classList.add("navOpen");
     }
     function closePanel() {
       burger.setAttribute("aria-expanded", "false");
       panel.hidden = true;
+      document.body.classList.remove("navOpen");
     }
     function toggle() {
       var isOpen = burger.getAttribute("aria-expanded") === "true";
@@ -68,6 +82,10 @@
     if (burger.getAttribute("aria-expanded") !== "true") {
       panel.hidden = true;
       burger.setAttribute("aria-expanded", "false");
+      document.body.classList.remove("navOpen");
+    } else {
+      panel.hidden = false;
+      document.body.classList.add("navOpen");
     }
 
     burger.addEventListener("click", function (e) {
@@ -82,12 +100,11 @@
       }
     });
 
-    // Close when clicking outside the panel/burger
+    // Close when clicking outside the header region
     document.addEventListener("click", function (e) {
       if (burger.getAttribute("aria-expanded") !== "true") return;
-      var t = e.target;
-      if (panel.contains(t) || burger.contains(t)) return;
-      closePanel();
+      var withinHeader = !!(e.target && e.target.closest && e.target.closest("header"));
+      if (!withinHeader) closePanel();
     });
 
     // Close after clicking a mobile link

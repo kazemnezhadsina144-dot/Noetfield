@@ -1,5 +1,5 @@
 /* Noetfield Shell (Header + Mobile Nav + Footer) */
-/* Version: locked */
+/* Version: locked-2025.12.13 */
 
 :root{
   --bg0:#07070b; --bg1:#0b0b14;
@@ -185,25 +185,30 @@ header{
   background: radial-gradient(220px 90px at 30% 0%, rgba(200,163,73,.22), transparent 60%), rgba(200,163,73,.10);
 }
 
-/* Footer */
+/* Footer (LOCKED – 4-column + bottom right rail) */
 footer{
   border-top:1px solid rgba(255,255,255,.10);
-  padding: 18px 0 22px;
-  color:var(--muted2);
   margin-top:34px;
   background: rgba(8,8,12,.35);
   backdrop-filter: blur(10px);
+  color:var(--muted2);
 }
-.foot{
+
+.footerTop{
   max-width:var(--max);
   margin:0 auto;
-  padding: 0 16px;
-  display:flex;
-  flex-wrap:wrap;
-  gap:12px 18px;
-  align-items:center;
-  justify-content:space-between;
+  padding: 18px 16px 10px;
+  display:grid;
+  grid-template-columns: 1.2fr .8fr .8fr .8fr;
+  gap:14px;
 }
+.fcol{
+  border:1px solid rgba(255,255,255,.10);
+  background: rgba(255,255,255,.02);
+  border-radius:16px;
+  padding:14px 14px;
+}
+
 .footBrand{display:flex; align-items:center; gap:10px; color:var(--muted)}
 .footBrand img{
   width:28px; height:28px; border-radius:10px;
@@ -211,32 +216,90 @@ footer{
   background: rgba(255,255,255,.03);
 }
 .footBrand:hover{color:var(--text)}
-.footNav{display:flex; flex-wrap:wrap; gap:10px 12px; align-items:center}
-.footNav a{
-  color: var(--muted);
+
+.fTitle{font-weight:850; letter-spacing:-.2px; margin:0 0 10px; font-size:13px;}
+.fLinks{display:flex; flex-direction:column; gap:8px;}
+.fLinks a{
+  color:var(--muted);
   padding:8px 10px;
   border-radius:14px;
   border:1px solid rgba(255,255,255,.10);
   background: rgba(255,255,255,.03);
   font-size:13px;
   transition: background .15s ease, border-color .15s ease, color .15s ease;
-  white-space:nowrap;
 }
-.footNav a:hover{color:var(--text); border-color:rgba(255,255,255,.16); background:rgba(255,255,255,.05)}
-.footNav a.active, .footNav a[aria-current="page"]{
+.fLinks a:hover{color:var(--text); border-color:rgba(255,255,255,.16); background:rgba(255,255,255,.05);}
+
+.fLinks a.active, .fLinks a[aria-current="page"]{
   color: var(--text);
   border-color: rgba(200,163,73,.40);
-  background: rgba(200,163,73,.10)
+  background: rgba(200,163,73,.10);
 }
-.footNav a.statusLink{display:inline-flex; align-items:center; gap:8px}
+
+.fNote{color:var(--muted2); font-size:12px; line-height:1.65; margin:10px 0 0;}
+
+.footerBottom{
+  border-top:1px solid rgba(255,255,255,.10);
+  max-width:var(--max);
+  margin:0 auto;
+  padding: 12px 16px 18px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px 14px;
+  align-items:center;
+  justify-content:space-between;
+  color:var(--muted2);
+}
+
+.footerMiniNav{display:flex; flex-wrap:wrap; gap:10px; align-items:center}
+.footerMiniNav a{
+  color:var(--muted);
+  padding:8px 10px;
+  border-radius:14px;
+  border:1px solid rgba(255,255,255,.10);
+  background: rgba(255,255,255,.03);
+  font-size:13px;
+  transition: background .15s ease, border-color .15s ease, color .15s ease;
+}
+.footerMiniNav a:hover{color:var(--text); border-color:rgba(255,255,255,.16); background:rgba(255,255,255,.05);}
+
+/* Status in footer bottom */
+.footerMiniNav a.statusLink{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+}
+
+/* Contact as rightmost CTA (still an <a>, styled like a button) */
+.footerMiniNav a.footerCta{
+  padding:10px 12px;
+  border-radius:14px;
+  font-size:13px;
+  font-weight:850;
+  border:1px solid rgba(200,163,73,.58);
+  background:
+    radial-gradient(220px 90px at 40% 0%, rgba(255,255,255,.10), transparent 62%),
+    linear-gradient(180deg, rgba(200,163,73,.20), rgba(200,163,73,.10));
+  color: var(--text);
+}
+.footerMiniNav a.footerCta:hover{
+  border-color:rgba(200,163,73,.85);
+  filter: brightness(1.06);
+}
 
 /* Responsive locks */
 @media (max-width: 1140px){ .menu{display:none} .burger{display:flex} }
+@media (max-width: 980px){
+  .footerTop{grid-template-columns:1fr 1fr;}
+}
 @media (max-width: 760px){
   :root{--navH: 64px}
   .wrap{padding:16px}
   .nav{padding:10px 14px}
   .brand .tag{display:none}
   .mobileGrid{grid-template-columns:1fr 1fr}
+  .footerTop{grid-template-columns:1fr;}
 }
-@media (max-width: 420px){ .mobileGrid{grid-template-columns:1fr} }
+@media (max-width: 420px){
+  .mobileGrid{grid-template-columns:1fr}
+}

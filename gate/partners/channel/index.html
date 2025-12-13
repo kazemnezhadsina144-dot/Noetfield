@@ -5,16 +5,19 @@
   <title>Noetfield – Apply (Channel / Referral Partner)</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
+  <!-- Basic meta -->
   <meta name="description" content="Channel / Referral Partner application for Noetfield. Bring qualified buyers, run clean deal hygiene, and co-sell board-ready AI governance artefacts (Trust Brief + Trust Ledger)." />
   <meta name="robots" content="index,follow" />
   <meta name="author" content="Noetfield Systems Inc." />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
   <link rel="canonical" href="https://www.noetfield.com/gate/partners/apply-channel/" />
 
+  <!-- Icons -->
   <link rel="icon" href="/noetfield-favicon-512.png" type="image/png" />
   <link rel="apple-touch-icon" href="/noetfield-favicon-512.png" />
   <meta name="theme-color" content="#07070b" />
 
-  <!-- OG -->
+  <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Noetfield" />
   <meta property="og:title" content="Noetfield – Apply (Channel / Referral Partner)" />
@@ -28,12 +31,13 @@
   <meta name="twitter:description" content="Channel / Referral Partner application. Qualified intros, co-sell motion, and clean deal hygiene." />
   <meta name="twitter:image" content="https://www.noetfield.com/noetfield-og.png" />
 
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
   <style>
-    /* Same locked visual system as other Gate pages */
+    /* Locked Gate visual system */
     :root{
       --bg0:#07070b; --bg1:#0b0b14;
       --text:#eff0f7; --muted:#b9bbcf; --muted2:#8e91ad;
@@ -363,6 +367,8 @@
       line-height:1.6;
     }
     .box strong{color:var(--text); font-weight:800}
+    .box a{border-bottom:1px solid rgba(255,255,255,.18)}
+    .box a:hover{border-bottom-color: rgba(200,163,73,.70)}
 
     footer{
       border-top:1px solid rgba(255,255,255,.10);
@@ -473,6 +479,12 @@
   </header>
 
   <main id="main" class="wrap">
+    <noscript>
+      <div class="box">
+        <strong>Note:</strong> JavaScript is required to generate and attach a Request ID and to route to <strong>/thanks/</strong> after submit.
+      </div>
+    </noscript>
+
     <section class="hero">
       <div class="heroShell">
         <div class="heroInner">
@@ -526,6 +538,7 @@
             <input type="hidden" id="request_id" name="request_id" value="" />
             <input type="hidden" id="lane" name="lane" value="channel" />
 
+            <!-- Honeypot -->
             <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true" />
 
             <!-- A -->
@@ -696,7 +709,7 @@
                 <input type="checkbox" name="non_confidential_ack" value="yes" required />
                 <span>
                   I confirm this application is <strong>non-confidential</strong>. No client names/credentials/private docs in this form.
-                  <small>Privacy: <a href="/privacy/" style="border-bottom:1px solid rgba(255,255,255,.18)">/privacy/</a></small>
+                  <small>Privacy: <a href="/privacy/">/privacy/</a></small>
                 </span>
               </div>
 
@@ -718,7 +731,7 @@
             <div id="msg" class="msg" role="status" aria-live="polite"></div>
 
             <div class="box">
-              <strong>What happens next:</strong> if you pass qualification quality + buyer access, we define the co-sell motion, handoffs, and commercial terms for a first pilot close.
+              <strong>What happens next (SLA):</strong> if you pass qualification quality + buyer access, we reply within <strong>2–5 business days</strong> to define the co-sell motion, handoffs, and commercial terms for a first pilot close.
               Your <strong>Request ID</strong> is the tracking key.
             </div>
           </form>
@@ -738,9 +751,9 @@
 
           <div class="box" style="margin-top:14px;">
             <strong>Useful:</strong><br/>
-            <a href="/trust-brief/" style="border-bottom:1px solid rgba(255,255,255,.18)">Trust Brief</a> ·
-            <a href="/trust-ledger/" style="border-bottom:1px solid rgba(255,255,255,.18)">Trust Ledger</a> ·
-            <a href="/gate/partners/" style="border-bottom:1px solid rgba(255,255,255,.18)">Partners Gate</a>
+            <a href="/trust-brief/">Trust Brief</a> ·
+            <a href="/trust-ledger/">Trust Ledger</a> ·
+            <a href="/gate/partners/">Partners Gate</a>
           </div>
         </div>
       </aside>
@@ -779,11 +792,13 @@
       var burger = document.getElementById("burger");
       var panel = document.getElementById("mobilePanel");
       if (!burger || !panel) return;
+
       burger.addEventListener("click", function () {
         var isOpen = burger.getAttribute("aria-expanded") === "true";
         burger.setAttribute("aria-expanded", String(!isOpen));
         panel.hidden = isOpen;
       });
+
       document.addEventListener("keydown", function (e) {
         if (e.key === "Escape" && burger.getAttribute("aria-expanded") === "true") {
           burger.setAttribute("aria-expanded", "false");
@@ -875,6 +890,18 @@
         if (!action || action.indexOf("REPLACE_ME") !== -1) {
           setMsg("Form endpoint is missing. Replace Formspree action URL.", "err");
           return;
+        }
+
+        // Minimal client-side required check (keeps UX clean even with novalidate)
+        var missing = form.querySelectorAll("[required]");
+        for (var i=0; i<missing.length; i++){
+          var el = missing[i];
+          if (el.type === "checkbox" && !el.checked) { el.focus(); setMsg("Please confirm the required acknowledgements.", "err"); return; }
+          if ((el.type === "text" || el.tagName === "TEXTAREA" || el.tagName === "SELECT" || el.type === "email") && !String(el.value || "").trim()){
+            el.focus();
+            setMsg("Please complete all required fields.", "err");
+            return;
+          }
         }
 
         var rid = (ridInput && ridInput.value) ? ridInput.value : "";

@@ -5,11 +5,13 @@
   <title>Noetfield – Apply (Integration / Security Partner)</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <meta name="description" content="Integration / Security Partner application for Noetfield. Connect identity, logs, DLP, and controls so evidence trails remain intact for board-ready AI governance artefacts." />
+  <meta
+    name="description"
+    content="Integration / Security Partner application for Noetfield. Connect identity, logs, DLP, and controls so evidence trails remain intact for board-ready AI governance artefacts."
+  />
   <meta name="robots" content="index,follow" />
   <meta name="author" content="Noetfield Systems Inc." />
   <meta name="theme-color" content="#07070b" />
-  <meta name="color-scheme" content="dark" />
 
   <link rel="canonical" href="https://www.noetfield.com/gate/partners/apply-integration/" />
 
@@ -20,193 +22,36 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Noetfield" />
   <meta property="og:title" content="Noetfield – Apply (Integration / Security Partner)" />
-  <meta property="og:description" content="Integration / Security Partner application. Identity, logs, DLP, controls, and evidence trails." />
+  <meta
+    property="og:description"
+    content="Integration / Security Partner application. Identity, logs, DLP, controls, and evidence trails."
+  />
   <meta property="og:url" content="https://www.noetfield.com/gate/partners/apply-integration/" />
   <meta property="og:image" content="https://www.noetfield.com/noetfield-og.png" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Noetfield – Apply (Integration / Security Partner)" />
-  <meta name="twitter:description" content="Integration / Security Partner application. Identity, logs, DLP, controls, and evidence trails." />
+  <meta
+    name="twitter:description"
+    content="Integration / Security Partner application. Identity, logs, DLP, controls, and evidence trails."
+  />
   <meta name="twitter:image" content="https://www.noetfield.com/noetfield-og.png" />
 
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
 
+  <!-- LOCKED SHELL -->
+  <link rel="stylesheet" href="/assets/noetfield-shell.css" />
+  <script src="/assets/noetfield-shell.js" defer></script>
+
+  <!-- Page-specific styles ONLY (Integration/Security lane) -->
   <style>
-    :root{
-      --bg0:#07070b; --bg1:#0b0b14;
-      --text:#eff0f7; --muted:#b9bbcf; --muted2:#8e91ad;
-      --gold:#c8a349;
-      --ok:#2de38a; --okGlow: rgba(45,227,138,.18);
-      --err:#ff5a5a; --errGlow: rgba(255,90,90,.16);
-
-      --radius:18px; --max:1120px;
-      --shadow: 0 28px 80px rgba(0,0,0,.62);
-      --shadow2: 0 14px 50px rgba(0,0,0,.50);
-      --focus: 0 0 0 4px rgba(200,163,73,.18);
-      --navH: 68px;
-    }
-
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      color: var(--text);
-      background: linear-gradient(180deg, var(--bg0), var(--bg1));
-      overflow-x:hidden;
-      -webkit-font-smoothing: antialiased;
-      text-rendering: optimizeLegibility;
-    }
-
-    a{color:inherit; text-decoration:none}
-    a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible{
-      outline:none; box-shadow: var(--focus);
-      border-color: rgba(200,163,73,.58) !important;
-    }
-    [hidden]{display:none !important;}
-
-    .bg{
-      position:fixed; inset:0; z-index:-3; pointer-events:none;
-      background:
-        radial-gradient(1400px 820px at 10% -10%, rgba(200,163,73,.20), transparent 58%),
-        radial-gradient(1200px 820px at 100% 0%, rgba(122,167,255,.12), transparent 60%),
-        radial-gradient(900px 700px at 55% 22%, rgba(255,255,255,.05), transparent 62%),
-        linear-gradient(180deg, var(--bg0), var(--bg1));
-      filter: saturate(1.05);
-    }
-    .bg::before{
-      content:""; position:absolute; inset:0;
-      background:
-        linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
-      background-size: 54px 54px;
-      opacity:.055;
-      mask-image: radial-gradient(70% 60% at 50% 8%, black 55%, transparent 100%);
-    }
-    .bg::after{
-      content:""; position:absolute; inset:-90px;
-      background:
-        radial-gradient(1100px 760px at 50% 8%, transparent 55%, rgba(0,0,0,.58) 100%),
-        radial-gradient(1000px 900px at 50% 110%, rgba(0,0,0,.68), transparent 62%);
-      opacity:.92;
-    }
-
-    .wrap{max-width:var(--max); margin:0 auto; padding:24px}
-
-    header{
-      position:sticky; top:0; z-index:60;
-      backdrop-filter: blur(16px);
-      background: rgba(8,8,12,.62);
-      border-bottom: 1px solid rgba(255,255,255,.10);
-    }
-    .nav{
-      max-width:var(--max); margin:0 auto;
-      padding: 10px 16px;
-      display:flex; align-items:center; justify-content:space-between;
-      gap:14px;
-      min-height: var(--navH);
-    }
-
-    .brand{
-      display:flex; align-items:center; gap:12px;
-      flex:0 0 auto;
-      min-width: 180px;
-      max-width: 380px;
-    }
-    .brandMark{
-      width:36px; height:36px;
-      border-radius:12px;
-      box-shadow:0 12px 26px rgba(0,0,0,.55);
-      border:1px solid rgba(255,255,255,.12);
-      display:block;
-    }
-    .brandText{min-width:0}
-    .brand .name{font-weight:800; letter-spacing:.10px; line-height:1.05; font-size:15px;}
-    .brand .tag{
-      font-size:10.5px; color:var(--muted2);
-      margin-top:3px; letter-spacing:.28em; text-transform:uppercase;
-      white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
-      max-width: 320px; opacity:.95;
-    }
-
-    .menu{display:flex; align-items:center; justify-content:flex-end; gap:12px; flex:1 1 auto; min-width:0;}
-    .menuPrimary, .menuActions{display:flex; align-items:center; gap:8px; min-width:0; flex-wrap:nowrap;}
-    .menuPrimary{flex:1 1 auto; justify-content:center; overflow:hidden;}
-    .menuActions{flex:0 0 auto; justify-content:flex-end;}
-    .menu a{
-      color:var(--muted);
-      padding:8px 10px;
-      border-radius:14px;
-      border:1px solid transparent;
-      background: transparent;
-      transition: background .15s ease, border-color .15s ease, color .15s ease, transform .06s ease;
-      white-space:nowrap; font-size:12.75px; line-height:1;
-    }
-    .menu a:hover{color:var(--text); border-color:rgba(255,255,255,.10); background:rgba(255,255,255,.045);}
-    .menu a:active{transform: translateY(1px)}
-    .menu a.active, .menu a[aria-current="page"]{
-      color:var(--text);
-      border-color:rgba(200,163,73,.38);
-      background:
-        radial-gradient(240px 90px at 50% 0%, rgba(255,255,255,.10), transparent 60%),
-        linear-gradient(180deg, rgba(200,163,73,.22), rgba(200,163,73,.10));
-    }
-    .menu a.pilltab{border:1px solid rgba(255,255,255,.14); background: rgba(255,255,255,.03);}
-    .menu a.login{
-      border:1px solid rgba(200,163,73,.58);
-      background:
-        radial-gradient(220px 90px at 40% 0%, rgba(255,255,255,.11), transparent 62%),
-        linear-gradient(180deg, rgba(200,163,73,.22), rgba(200,163,73,.10));
-      color: var(--text);
-      font-weight:750;
-      padding:8px 11px;
-    }
-    .menu a.statusLink{display:inline-flex; align-items:center; gap:8px;}
-    .statusDot{width:7px; height:7px; border-radius:50%; background: var(--ok); box-shadow: 0 0 0 3px var(--okGlow);}
-
-    .burger{
-      display:none; align-items:center; justify-content:center;
-      width:42px; height:42px;
-      border-radius:14px;
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.04);
-      cursor:pointer;
-      transition: background .15s ease, border-color .15s ease;
-      flex:0 0 auto;
-    }
-    .burger:hover{border-color:rgba(255,255,255,.18); background:rgba(255,255,255,.06)}
-    .burger svg{width:20px; height:20px; opacity:.92}
-
-    .mobilePanel{border-top:1px solid rgba(255,255,255,.10); background: rgba(8,8,12,.74); backdrop-filter: blur(16px);}
-    .mobileInner{max-width:var(--max); margin:0 auto; padding: 12px 14px 16px;}
-    .mobileGrid{display:grid; grid-template-columns:1fr 1fr; gap:10px;}
-    .mobileGrid a{
-      padding:12px 12px; border-radius:16px;
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.04);
-      color: var(--muted);
-      font-size:14px;
-      transition: background .15s ease, border-color .15s ease, color .15s ease;
-      display:flex; align-items:center; justify-content:center; gap:8px;
-      text-align:center;
-    }
-    .mobileGrid a:hover{color:var(--text); border-color:rgba(255,255,255,.18); background:rgba(255,255,255,.06)}
-    .mobileGrid a.active, .mobileGrid a[aria-current="page"]{
-      color: var(--text);
-      border-color: rgba(200,163,73,.42);
-      background: radial-gradient(220px 90px at 30% 0%, rgba(200,163,73,.22), transparent 60%), rgba(200,163,73,.10);
-    }
-
-    .skip{
-      position:absolute; left:-999px; top:10px;
-      background:#111118; border:1px solid rgba(255,255,255,.12);
-      color:var(--text); padding:10px 12px; border-radius:12px; z-index:999;
-    }
-    .skip:focus{left:10px}
-
     .hero{padding: 22px 0 14px}
     .heroShell{
       position:relative;
@@ -228,6 +73,7 @@
       mask-image: linear-gradient(180deg, black 0%, black 58%, transparent 96%);
     }
     .heroInner{padding: 24px 22px}
+
     .eyebrow{
       display:inline-flex; gap:10px; align-items:center;
       color:var(--muted);
@@ -237,7 +83,12 @@
       border:1px solid rgba(255,255,255,.13);
       background: rgba(255,255,255,.035);
     }
-    .dot{width:8px; height:8px; border-radius:50%; background: rgba(200,163,73,.97); box-shadow: 0 0 0 3px rgba(200,163,73,.18);}
+    .dot{
+      width:8px; height:8px; border-radius:50%;
+      background: rgba(200,163,73,.97);
+      box-shadow: 0 0 0 3px rgba(200,163,73,.18);
+    }
+
     h1{margin:14px 0 10px; font-size:40px; line-height:1.07; letter-spacing:-0.75px}
     .lead{margin:0; color:var(--muted); font-size:16px; max-width: 980px}
 
@@ -255,7 +106,7 @@
 
     .grid{
       display:grid;
-      grid-template-columns: minmax(0,1.15fr) minmax(0,.85fr);
+      grid-template-columns: 1.15fr .85fr;
       gap:18px;
       margin: 18px 0 34px;
       align-items:start;
@@ -266,7 +117,7 @@
       background: linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.022));
       box-shadow: var(--shadow2);
       overflow:hidden;
-      min-width: 0;
+      min-width:0;
     }
     .card .hd{padding:18px 18px 0}
     .card h2{margin:0 0 8px; font-size:18px; letter-spacing:-0.2px}
@@ -285,8 +136,7 @@
     .ridLabel{font-size:11px; letter-spacing:.28em; text-transform:uppercase; color:var(--muted2)}
     .ridValue{
       font-weight:700; color:var(--text); font-size:13px;
-      white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
-      max-width:560px;
+      white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:560px
     }
     .ridActions{display:flex; gap:8px; align-items:center; flex-wrap:wrap}
     .miniBtn{
@@ -298,6 +148,7 @@
       cursor:pointer;
       display:inline-flex; align-items:center; justify-content:center; gap:8px;
       color: var(--text);
+      text-decoration:none;
       user-select:none;
     }
     .miniBtn.primary{border-color: rgba(200,163,73,.38); background: rgba(200,163,73,.10)}
@@ -311,8 +162,18 @@
       padding:14px;
       margin-top:12px;
     }
-    .sectionTitle{font-weight:900; letter-spacing:-.2px; margin:0 0 6px; font-size:14px;}
-    .sectionDesc{margin:0 0 12px; color:var(--muted2); font-size:12.5px; line-height:1.55;}
+    .sectionTitle{
+      font-weight:900;
+      letter-spacing:-.2px;
+      margin:0 0 6px;
+      font-size:14px;
+    }
+    .sectionDesc{
+      margin:0 0 12px;
+      color:var(--muted2);
+      font-size:12.5px;
+      line-height:1.55;
+    }
 
     label{display:block; font-size:12px; color:var(--muted2); margin:0 0 6px}
     input, select, textarea{
@@ -330,7 +191,11 @@
     textarea{min-height:110px; resize:vertical}
     input:focus, select:focus, textarea:focus{box-shadow: var(--focus); background: rgba(12,12,18,.62)}
 
-    .form{display:grid; grid-template-columns: 1fr 1fr; gap:12px;}
+    .form{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:12px;
+    }
     .full{grid-column: 1 / -1}
 
     .check{
@@ -344,33 +209,9 @@
     .check input{width:auto; margin-top:3px}
     .check span{color:var(--muted); font-size:13px; line-height:1.45}
     .check small{display:block; color:var(--muted2); font-size:12px; margin-top:6px}
+    .check a{border-bottom:1px solid rgba(255,255,255,.18)}
 
     .actions{display:flex; gap:12px; flex-wrap:wrap; align-items:center; margin-top:12px}
-    .btn{
-      display:inline-flex; align-items:center; justify-content:center;
-      gap:10px;
-      padding:12px 14px;
-      border-radius:16px;
-      border:1px solid rgba(200,163,73,.58);
-      background:
-        radial-gradient(260px 110px at 40% 0%, rgba(255,255,255,.11), transparent 62%),
-        linear-gradient(180deg, rgba(200,163,73,.24), rgba(200,163,73,.11));
-      color:var(--text);
-      font-weight:900;
-      font-size:14px;
-      cursor:pointer;
-      transition: border-color .15s ease, transform .06s ease, filter .15s ease;
-      white-space:nowrap;
-    }
-    .btn:hover{border-color:rgba(200,163,73,.85); filter:brightness(1.06)}
-    .btn:active{transform: translateY(1px)}
-    .btn:disabled{opacity:.65; cursor:not-allowed; filter:none;}
-    .btn.secondary{
-      border:1px solid rgba(255,255,255,.16);
-      background: rgba(255,255,255,.04);
-      font-weight:800;
-      color: var(--muted);
-    }
 
     .msg{
       display:none;
@@ -383,8 +224,6 @@
       font-size:12px;
       line-height:1.55;
     }
-    .msg.ok{border-color: rgba(45,227,138,.25); background: rgba(45,227,138,.06); color: var(--text);}
-    .msg.err{border-color: rgba(255,90,90,.25); background: rgba(255,90,90,.06); color: var(--text);}
 
     .box{
       margin-top:12px;
@@ -397,64 +236,26 @@
       line-height:1.6;
     }
     .box strong{color:var(--text); font-weight:800}
+    .box a{border-bottom:1px solid rgba(255,255,255,.18)}
 
-    footer{
-      border-top:1px solid rgba(255,255,255,.10);
-      padding: 18px 0 22px;
+    .formNote{
+      margin-top:10px;
       color:var(--muted2);
-      margin-top:34px;
-      background: rgba(8,8,12,.35);
-      backdrop-filter: blur(10px);
+      font-size:12px;
+      line-height:1.6;
     }
-    .foot{
-      max-width:var(--max); margin:0 auto; padding: 0 16px;
-      display:flex; flex-wrap:wrap; gap:12px 18px;
-      align-items:center; justify-content:space-between
-    }
-    .footBrand{display:flex; align-items:center; gap:10px; color:var(--muted)}
-    .footBrand img{width:28px; height:28px; border-radius:10px; border:1px solid rgba(255,255,255,.12); background: rgba(255,255,255,.03)}
-    .footNav{display:flex; flex-wrap:wrap; gap:10px 12px; align-items:center}
-    .footNav a{
-      color: var(--muted);
-      padding:8px 10px;
-      border-radius:14px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.03);
-      font-size:13px;
-      white-space:nowrap;
-      transition: background .15s ease, border-color .15s ease, color .15s ease;
-    }
-    .footNav a:hover{color:var(--text); border-color:rgba(255,255,255,.16); background:rgba(255,255,255,.05)}
-    .footNav a.active, .footNav a[aria-current="page"]{color: var(--text); border-color: rgba(200,163,73,.40); background: rgba(200,163,73,.10)}
-    .footNav a.statusLink{display:inline-flex; align-items:center; gap:8px}
+    .formNote a{border-bottom:1px solid rgba(255,255,255,.18)}
 
-    @media (prefers-reduced-motion: reduce){
-      *{scroll-behavior:auto !important; transition:none !important; animation:none !important;}
-    }
-
-    @media (max-width: 1140px){
-      .menu{display:none}
-      .burger{display:flex}
-    }
     @media (max-width: 980px){
       .grid{grid-template-columns:1fr}
       .ridValue{max-width:100%}
     }
     @media (max-width: 760px){
-      :root{--navH: 64px}
-      .wrap{padding:16px}
-      .nav{padding:10px 14px}
-      .brand .tag{display:none}
       h1{font-size:30px}
-      .mobileGrid{grid-template-columns:1fr 1fr}
       .form{grid-template-columns:1fr}
       .ridBar{flex-direction:column; align-items:flex-start}
       .ridActions{width:100%}
       .ridActions .miniBtn{flex:1 1 auto}
-    }
-    @media (max-width: 420px){
-      .mobileGrid{grid-template-columns:1fr}
-      .actions .btn{flex:1 1 auto}
     }
   </style>
 
@@ -462,7 +263,7 @@
   {
     "@context": "https://schema.org",
     "@type": "WebPage",
-    "name": "Noetfield Apply — Integration / Security Partner",
+    "name": "Noetfield – Apply (Integration / Security Partner)",
     "url": "https://www.noetfield.com/gate/partners/apply-integration/",
     "description": "Integration / Security Partner application for Noetfield. Identity, logs, DLP, controls, and evidence trails for board-ready AI governance artefacts.",
     "isPartOf": {"@type":"WebSite","name":"Noetfield","url":"https://www.noetfield.com/"},
@@ -475,6 +276,7 @@
   <div class="bg" aria-hidden="true"></div>
   <a class="skip" href="#main">Skip to content</a>
 
+  <!-- HEADER (LOCKED SHELL MARKUP — COPY FROM CHANNEL REFERENCE) -->
   <header>
     <div class="nav">
       <a class="brand" href="/" aria-label="Noetfield home">
@@ -496,7 +298,7 @@
         <div class="menuActions" aria-label="App actions">
           <a class="pilltab" href="/gate/">Gate</a>
           <a class="pilltab" href="/portal/">Portal</a>
-          <a class="pilltab statusLink" href="/status/"><span class="statusDot" aria-hidden="true"></span>Status</a>
+          <a class="pilltab" href="/platform/">Platform</a>
           <a class="login" href="/portal/login/">Login</a>
         </div>
       </nav>
@@ -518,7 +320,7 @@
           <a href="/for-whom/">For Whom</a>
           <a href="/gate/">Gate</a>
           <a href="/portal/">Portal</a>
-          <a class="statusLink" href="/status/"><span class="statusDot" aria-hidden="true"></span>Status</a>
+          <a href="/platform/">Platform</a>
           <a href="/portal/login/">Login</a>
         </div>
       </div>
@@ -526,14 +328,15 @@
   </header>
 
   <main id="main" class="wrap">
+    <!-- HERO -->
     <section class="hero">
       <div class="heroShell">
         <div class="heroInner">
-          <div class="eyebrow"><span class="dot"></span> Step 2 of 2 • Integration / security partner application</div>
+          <div class="eyebrow"><span class="dot"></span> Partners • Integration lane • application</div>
           <h1>Integration / security partner application.</h1>
           <p class="lead">
             This lane is for teams who can wire up <strong>identity</strong>, <strong>audit logs</strong>, <strong>DLP</strong>, and <strong>controls</strong>
-            so governance artefacts are backed by a reliable evidence trail.
+            so governance artefacts are backed by a reliable evidence trail. Links only (public or sanitized) — no confidential uploads.
           </p>
 
           <div class="metaRow" aria-label="Scope highlights">
@@ -547,6 +350,7 @@
     </section>
 
     <section class="grid">
+      <!-- FORM -->
       <div class="card">
         <div class="hd">
           <h2>Application</h2>
@@ -562,14 +366,21 @@
               <a class="miniBtn primary" id="openStatusBtn" href="/status/">Open Status</a>
             </div>
           </div>
+
+          <noscript>
+            <div class="box" style="margin-top:12px;">
+              <strong>Note:</strong> JavaScript is disabled. Request ID, Status link, and redirect tracking may not work.
+            </div>
+          </noscript>
         </div>
 
         <div class="bd">
-          <form id="nfApplyIntegrationForm"
-                action="https://formspree.io/f/REPLACE_ME"
-                method="POST"
-                novalidate>
-
+          <form
+            id="nfApplyIntegrationForm"
+            action="https://formspree.io/f/REPLACE_ME"
+            method="POST"
+          >
+            <!-- metadata -->
             <input type="hidden" name="page_source" value="/gate/partners/apply-integration/" />
             <input type="hidden" name="source" value="gate-partners-apply-integration" />
             <input type="hidden" name="application_type" value="partner-integration" />
@@ -579,7 +390,7 @@
             <input type="hidden" id="request_id" name="request_id" value="" />
             <input type="hidden" id="lane" name="lane" value="integration" />
 
-            <!-- Honeypot -->
+            <!-- honeypot -->
             <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true" />
 
             <!-- A -->
@@ -595,7 +406,7 @@
 
                 <div>
                   <label for="email">Work email</label>
-                  <input id="email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="name@company.com" required />
+                  <input id="email" name="email" type="email" autocomplete="email" placeholder="name@company.com" required />
                 </div>
 
                 <div>
@@ -776,27 +587,31 @@
                 </div>
               </div>
 
-              <div class="check">
-                <input type="checkbox" name="non_confidential_ack" value="yes" required />
+              <label class="check" for="non_confidential_ack">
+                <input id="non_confidential_ack" type="checkbox" name="non_confidential_ack" value="yes" required />
                 <span>
-                  I confirm this application is <strong>non-confidential</strong>. No client names/credentials/private docs in this form.
-                  <small>Privacy: <a href="/privacy/" style="border-bottom:1px solid rgba(255,255,255,.18)">/privacy/</a></small>
+                  I confirm this application is <strong>non-confidential</strong>. No client names, credentials, internal security details, or private documents.
+                  <small>Privacy: <a href="/privacy/">/privacy/</a></small>
                 </span>
-              </div>
+              </label>
 
-              <div class="check">
-                <input type="checkbox" name="truthful_ack" value="yes" required />
+              <label class="check" for="truthful_ack">
+                <input id="truthful_ack" type="checkbox" name="truthful_ack" value="yes" required />
                 <span>
                   I confirm the information provided is accurate to the best of my knowledge.
                   <small>We use this to decide routing, not for marketing spam.</small>
                 </span>
-              </div>
+              </label>
             </div>
 
             <div class="actions">
               <button class="btn" id="submitBtn" type="submit">Submit application</button>
               <a class="btn secondary" id="backToIntake" href="/gate/partners/intake/">Back to intake</a>
               <a class="btn secondary" href="/gate/partners/">Back to Partners</a>
+            </div>
+
+            <div class="formNote">
+              By submitting, you accept the processing terms in <a href="/privacy/">Privacy</a> and agree to keep this intake non-confidential.
             </div>
 
             <div id="msg" class="msg" role="status" aria-live="polite"></div>
@@ -809,6 +624,7 @@
         </div>
       </div>
 
+      <!-- ASIDE -->
       <aside class="card">
         <div class="hd">
           <h2>Decision criteria</h2>
@@ -821,84 +637,102 @@
 
           <div class="box" style="margin-top:14px;">
             <strong>Useful:</strong><br/>
-            <a href="/trust-brief/" style="border-bottom:1px solid rgba(255,255,255,.18)">Trust Brief</a> ·
-            <a href="/trust-ledger/" style="border-bottom:1px solid rgba(255,255,255,.18)">Trust Ledger</a> ·
-            <a href="/gate/partners/" style="border-bottom:1px solid rgba(255,255,255,.18)">Partners Gate</a>
+            <a href="/trust-brief/">Trust Brief</a> ·
+            <a href="/trust-ledger/">Trust Ledger</a> ·
+            <a href="/gate/partners/">Partners Gate</a>
           </div>
         </div>
       </aside>
     </section>
+  </main>
 
-    <footer>
-      <div class="foot">
+  <!-- FOOTER (LOCKED SHELL MARKUP — COPY FROM CHANNEL REFERENCE) -->
+  <footer>
+    <div class="footerTop">
+      <!-- Brand -->
+      <div class="fcol">
         <a class="footBrand" href="/" aria-label="Noetfield home">
           <img src="/noetfield-favicon-512.png" alt="Noetfield mark" />
-          <span>© <span id="y"></span> Noetfield Systems Inc.</span>
+          <span style="font-weight:850; color:var(--text);">Noetfield</span>
         </a>
+        <div class="fNote">
+          Trust and stewardship in AI — board-first governance artefacts designed to be evidence-ready and defensible.
+        </div>
+        <div class="ctaRow" style="margin-top:12px;">
+          <a class="btn secondary" href="/gate/">Gate</a>
+          <a class="btn secondary" href="/platform/">Platform</a>
+        </div>
+      </div>
 
-        <div class="footNav" aria-label="Footer navigation">
+      <!-- Core -->
+      <div class="fcol">
+        <div class="fTitle">Core</div>
+        <div class="fLinks">
           <a href="/trust-ledger/">Trust Ledger</a>
           <a href="/trust-brief/">Trust Brief</a>
           <a href="/playbook/">Playbook</a>
           <a href="/copilot-cost-governance/">Copilot</a>
           <a href="/for-whom/">For Whom</a>
-          <a href="/gate/">Gate</a>
-          <a href="/portal/">Portal</a>
-          <a class="statusLink" href="/status/"><span class="statusDot" aria-hidden="true"></span>Status</a>
-          <a href="/feedback/">Feedback</a>
-          <a href="/contact/">Contact</a>
-          <a href="/privacy/">Privacy</a>
-          <a href="/terms/">Terms</a>
         </div>
       </div>
-    </footer>
-  </main>
 
+      <!-- Gate -->
+      <div class="fcol">
+        <div class="fTitle">Gate</div>
+        <div class="fLinks">
+          <a href="/gate/">Gate Home</a>
+          <a href="/gate/partners/">Partners</a>
+          <a href="/gate/offers/">Offers</a>
+          <a href="/portal/">Portal</a>
+          <a href="/platform/">Platform</a>
+        </div>
+      </div>
+
+      <!-- Legal -->
+      <div class="fcol">
+        <div class="fTitle">Legal</div>
+        <div class="fLinks">
+          <a href="/privacy/">Privacy</a>
+          <a href="/terms/">Terms</a>
+          <a href="/cookies/">Cookies</a>
+          <a href="/accessibility/">Accessibility</a>
+          <a href="/policies/">Policies</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footerBottom">
+      <div>© <span id="y"></span> Noetfield Systems Inc.</div>
+
+      <div class="footerMiniNav" aria-label="Footer mini navigation">
+        <a class="statusLink" href="/status/"><span class="statusDot" aria-hidden="true"></span>Status</a>
+        <a href="/faq/">FAQ</a>
+        <a href="/sitemap.xml">Sitemap</a>
+
+        <a class="partnerIntakeLink" href="/gate/partners/intake/">
+          <span class="goldDot" aria-hidden="true"></span>Partner intake
+        </a>
+
+        <a href="/feedback/">Feedback</a>
+        <a href="/contact/">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Page-only JS: year + RID + submit redirect -->
   <script>
-    document.getElementById("y").textContent = new Date().getFullYear();
-
-    // Mobile menu (close on link click + ESC + outside click)
-    (function () {
-      var burger = document.getElementById("burger");
-      var panel = document.getElementById("mobilePanel");
-      if (!burger || !panel) return;
-
-      function closeMenu() {
-        burger.setAttribute("aria-expanded", "false");
-        panel.hidden = true;
-      }
-      function openMenu() {
-        burger.setAttribute("aria-expanded", "true");
-        panel.hidden = false;
-      }
-
-      burger.addEventListener("click", function () {
-        var isOpen = burger.getAttribute("aria-expanded") === "true";
-        if (isOpen) closeMenu(); else openMenu();
-      });
-
-      panel.addEventListener("click", function (e) {
-        var a = e.target && e.target.closest ? e.target.closest("a") : null;
-        if (a) closeMenu();
-      });
-
-      document.addEventListener("keydown", function (e) {
-        if (e.key === "Escape" && burger.getAttribute("aria-expanded") === "true") closeMenu();
-      });
-
-      document.addEventListener("click", function (e) {
-        if (burger.getAttribute("aria-expanded") !== "true") return;
-        var isInsideHeader = e.target.closest && (e.target.closest("header") || e.target.closest("#mobilePanel"));
-        if (!isInsideHeader) closeMenu();
-      });
+    (function(){
+      var y = document.getElementById("y");
+      if (y) y.textContent = new Date().getFullYear();
     })();
 
-    // RID + query parsing (?rid=...&lane=integration)
+    // RID (?rid=...) + storage + buttons
     (function () {
       var ridInput = document.getElementById("request_id");
       var ridText = document.getElementById("ridText");
       var openStatusBtn = document.getElementById("openStatusBtn");
       var backToIntake = document.getElementById("backToIntake");
+      var copyBtn = document.getElementById("copyRidBtn");
 
       function genRID(){
         function rand4(){ return Math.floor(Math.random() * 10000).toString().padStart(4,"0"); }
@@ -913,10 +747,19 @@
         return "NF-P-" + stamp + "-" + rand4();
       }
 
-      var params = new URLSearchParams(window.location.search || "");
-      var rid = (params.get("rid") || "").trim();
+      function sanitizeRID(x){
+        x = (x || "").trim();
+        if (!x) return "";
+        x = x.replace(/[^a-zA-Z0-9\-_]/g, "").slice(0, 64);
+        return x;
+      }
 
-      if (!rid) { try { rid = localStorage.getItem("nf_partner_rid") || ""; } catch(e){} }
+      var params = new URLSearchParams(window.location.search || "");
+      var rid = sanitizeRID(params.get("rid"));
+
+      if (!rid) {
+        try { rid = sanitizeRID(localStorage.getItem("nf_partner_rid") || ""); } catch(e){}
+      }
       if (!rid) rid = genRID();
 
       if (ridInput) ridInput.value = rid;
@@ -928,11 +771,32 @@
       if (openStatusBtn) openStatusBtn.href = "/status/?rid=" + encodeURIComponent(rid);
       if (backToIntake) backToIntake.href = "/gate/partners/intake/?rid=" + encodeURIComponent(rid) + "&lane=integration";
 
-      var copyBtn = document.getElementById("copyRidBtn");
+      function fallbackCopy(text){
+        try{
+          var ta = document.createElement("textarea");
+          ta.value = text;
+          ta.setAttribute("readonly","");
+          ta.style.position = "absolute";
+          ta.style.left = "-9999px";
+          document.body.appendChild(ta);
+          ta.select();
+          document.execCommand("copy");
+          document.body.removeChild(ta);
+          return true;
+        } catch(e){
+          return false;
+        }
+      }
+
       if (copyBtn) {
         copyBtn.addEventListener("click", async function(){
           try{
-            await navigator.clipboard.writeText(rid);
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+              await navigator.clipboard.writeText(rid);
+            } else {
+              var ok = fallbackCopy(rid);
+              if (!ok) throw new Error("copy");
+            }
             copyBtn.textContent = "Copied";
             setTimeout(function(){ copyBtn.textContent = "Copy"; }, 1200);
           } catch(e){
@@ -956,22 +820,26 @@
         if (!msg) return;
         msg.style.display = "block";
         msg.textContent = text;
-        msg.classList.remove("ok","err");
-        if (kind === "ok") msg.classList.add("ok");
-        if (kind === "err") msg.classList.add("err");
+
+        if (kind === "ok") {
+          msg.style.borderColor = "rgba(45,227,138,.25)";
+          msg.style.background = "rgba(45,227,138,.06)";
+        } else if (kind === "err") {
+          msg.style.borderColor = "rgba(255,90,90,.25)";
+          msg.style.background = "rgba(255,90,90,.06)";
+        } else {
+          msg.style.borderColor = "rgba(255,255,255,.12)";
+          msg.style.background = "rgba(255,255,255,.03)";
+        }
       }
 
       form.addEventListener("submit", async function (e) {
+        // keep native required validation
+        if (!form.checkValidity()) return;
+
         e.preventDefault();
 
-        // native validation UI (works even with novalidate)
-        if (!form.checkValidity()) {
-          form.reportValidity();
-          setMsg("Please complete the required fields.", "err");
-          return;
-        }
-
-        var action = form.getAttribute("action");
+        var action = form.getAttribute("action") || "";
         if (!action || action.indexOf("REPLACE_ME") !== -1) {
           setMsg("Form endpoint is missing. Replace Formspree action URL.", "err");
           return;
@@ -1006,28 +874,6 @@
           setMsg("Network error. Please check your connection and try again.", "err");
           if (btn) { btn.disabled = false; btn.textContent = btn.dataset.label || "Submit application"; }
         }
-      });
-    })();
-
-    // Active link highlight
-    (function () {
-      function normPath(p) {
-        if (!p) return "/";
-        p = p.split("?")[0].split("#")[0];
-        if (p.length > 1 && p.endsWith("/")) p = p.slice(0, -1);
-        return p.toLowerCase();
-      }
-      var current = normPath(window.location.pathname);
-      var links = document.querySelectorAll('nav[aria-label="Primary navigation"] a, footer a, #mobilePanel a');
-      links.forEach(function (a) {
-        var href = a.getAttribute("href") || "";
-        if (!href.startsWith("/")) return;
-        var target = normPath(href);
-        var isActive =
-          (target === "/" && current === "/") ||
-          (target !== "/" && (current === target || current.startsWith(target + "/")));
-        if (isActive) { a.classList.add("active"); a.setAttribute("aria-current", "page"); }
-        else { a.classList.remove("active"); a.removeAttribute("aria-current"); }
       });
     })();
   </script>

@@ -37,7 +37,7 @@
   <!-- Font -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;750;800&display=swap" rel="stylesheet" />
 
   <style>
     :root{
@@ -53,8 +53,7 @@
       --gold:#c8a349;
       --gold2:#a98a3c;
 
-      --ok:#2de38a; /* Status green */
-      --okGlow: rgba(45,227,138,.18);
+      --ice:#7aa7ff;
 
       --radius:18px;
       --max:1120px;
@@ -63,7 +62,7 @@
       --shadow2: 0 14px 50px rgba(0,0,0,.50);
       --focus: 0 0 0 4px rgba(200,163,73,.18);
 
-      --navH: 70px;
+      --navH: 66px;
     }
 
     *{box-sizing:border-box}
@@ -118,76 +117,83 @@
 
     .wrap{max-width:var(--max); margin:0 auto; padding:24px}
 
-    /* Header */
+    /* ===== Header (app-grade) ===== */
     header{
       position:sticky; top:0; z-index:60;
       backdrop-filter: blur(16px);
       background: rgba(8,8,12,.60);
       border-bottom: 1px solid rgba(255,255,255,.10);
     }
+    header::after{
+      content:"";
+      position:absolute; left:0; right:0; bottom:-1px; height:1px;
+      background: linear-gradient(90deg,
+        transparent,
+        rgba(200,163,73,.55),
+        rgba(122,167,255,.28),
+        transparent
+      );
+      opacity:.35;
+      pointer-events:none;
+    }
+
+    .topLoad{
+      height:2px;
+      background: rgba(255,255,255,.06);
+      position:absolute; left:0; right:0; top:0;
+    }
+    .topLoad span{
+      display:block; height:100%; width:0%;
+      background: linear-gradient(90deg, rgba(200,163,73,.9), rgba(122,167,255,.65));
+      box-shadow: 0 0 18px rgba(200,163,73,.22);
+      transition: width .35s ease;
+    }
+
     .nav{
       max-width:var(--max); margin:0 auto;
       padding: 12px 18px;
       display:flex; align-items:center; justify-content:space-between;
-      gap:16px;
+      gap:14px;
       min-height: var(--navH);
+      position:relative;
     }
 
     .brand{
       display:flex; align-items:center; gap:12px;
-      flex:0 0 auto;
-      min-width: 260px;
+      min-width: 220px;
     }
-    .brandMark{
-      width:38px; height:38px; border-radius:12px;
-      box-shadow: 0 12px 26px rgba(0,0,0,.55);
+    .mark{
+      width:40px; height:40px;
+      border-radius:14px;
       border:1px solid rgba(255,255,255,.12);
-      display:block;
-    }
-    .brandText{min-width:0}
-    .brand .name{font-weight:800; letter-spacing:.12px; line-height:1.1}
-    .brand .tag{
-      font-size:11px;
-      color:var(--muted2);
-      margin-top:3px;
-      letter-spacing:.32em;
-      text-transform:uppercase;
-      white-space:nowrap;
+      background: radial-gradient(240px 120px at 30% 0%, rgba(200,163,73,.16), rgba(255,255,255,.03));
+      box-shadow: 0 16px 34px rgba(0,0,0,.55);
+      display:grid; place-items:center;
       overflow:hidden;
-      text-overflow:ellipsis;
-      max-width: 360px; /* prevents wrap */
     }
+    .mark img{
+      width:38px; height:38px; border-radius:12px;
+      filter: saturate(1.05) contrast(1.05);
+    }
+    .brandText{display:flex; flex-direction:column; line-height:1.05}
+    .brand .name{font-weight:780; letter-spacing:.15px}
+    .brand .tag{font-size:12px; color:var(--muted2); margin-top:3px}
 
-    /* Menu (two groups) */
     .menu{
-      display:flex;
-      align-items:center;
+      display:flex; flex-wrap:wrap;
+      gap:10px 10px;
       justify-content:flex-end;
-      gap:12px;
-      flex:1 1 auto;
-      min-width:0;
-    }
-
-    .menuPrimary, .menuActions{
-      display:flex;
+      font-size:13px;
       align-items:center;
-      gap:10px;
-      min-width:0;
-      flex-wrap:nowrap;
     }
-    .menuPrimary{flex:1 1 auto; justify-content:center}
-    .menuActions{flex:0 0 auto; justify-content:flex-end}
-
     .menu a{
       color:var(--muted);
       padding:9px 11px;
       border-radius:14px;
       border:1px solid transparent;
       background: transparent;
-      transition: background .15s ease, border-color .15s ease, color .15s ease, transform .06s ease;
+      transition: background .15s ease, border-color .15s ease, color .15s ease, transform .08s ease;
       white-space:nowrap;
-      font-size:13px;
-      line-height:1;
     }
     .menu a:hover{
       color:var(--text);
@@ -204,39 +210,44 @@
         linear-gradient(180deg, rgba(200,163,73,.22), rgba(200,163,73,.10));
     }
 
-    /* App-like tabs */
+    /* App-like CTA tabs */
     .menu a.pilltab{
       border:1px solid rgba(255,255,255,.14);
       background: rgba(255,255,255,.03);
     }
-    .menu a.login{
-      border:1px solid rgba(200,163,73,.58);
+
+    /* Gate as main entry */
+    .menu a.primary{
+      border-color: rgba(200,163,73,.58);
       background:
-        radial-gradient(220px 90px at 40% 0%, rgba(255,255,255,.11), transparent 62%),
+        radial-gradient(260px 110px at 40% 0%, rgba(255,255,255,.11), transparent 62%),
         linear-gradient(180deg, rgba(200,163,73,.22), rgba(200,163,73,.10));
       color: var(--text);
-      font-weight:750;
+      font-weight: 750;
+    }
+    .menu a.primary:hover{border-color: rgba(200,163,73,.86); filter: brightness(1.06)}
+
+    /* Login distinct but subordinate to Gate */
+    .menu a.login{
+      border:1px solid rgba(255,255,255,.18);
+      background:
+        radial-gradient(220px 90px at 40% 0%, rgba(255,255,255,.08), transparent 62%),
+        rgba(255,255,255,.03);
+      color: var(--text);
+      font-weight: 720;
       padding:9px 12px;
     }
     .menu a.login:hover{
-      border-color: rgba(200,163,73,.85);
-      background:
-        radial-gradient(220px 90px at 40% 0%, rgba(255,255,255,.13), transparent 62%),
-        linear-gradient(180deg, rgba(200,163,73,.26), rgba(200,163,73,.12));
+      border-color: rgba(255,255,255,.26);
+      background: rgba(255,255,255,.05);
     }
 
-    /* Status dot */
-    .menu a.statusLink, .mobileGrid a.statusLink{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-    }
+    /* Status operational dot */
+    .statusLink{display:inline-flex; align-items:center; gap:8px}
     .statusDot{
-      width:7px; height:7px;
-      border-radius:50%;
-      background: var(--ok);
-      box-shadow: 0 0 0 3px var(--okGlow);
-      flex:0 0 auto;
+      width:8px; height:8px; border-radius:50%;
+      background: rgba(64, 214, 125, .95);
+      box-shadow: 0 0 0 3px rgba(64,214,125,.14);
     }
 
     /* Mobile */
@@ -249,7 +260,6 @@
       background: rgba(255,255,255,.04);
       cursor:pointer;
       transition: background .15s ease, border-color .15s ease;
-      flex:0 0 auto;
     }
     .burger:hover{border-color:rgba(255,255,255,.18); background:rgba(255,255,255,.06)}
     .burger svg{width:20px; height:20px; opacity:.92}
@@ -277,11 +287,6 @@
       color: var(--muted);
       font-size:14px;
       transition: background .15s ease, border-color .15s ease, color .15s ease;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      gap:8px;
-      text-align:center;
     }
     .mobileGrid a:hover{color:var(--text); border-color:rgba(255,255,255,.18); background:rgba(255,255,255,.06)}
     .mobileGrid a.active,
@@ -430,7 +435,7 @@
         radial-gradient(260px 110px at 40% 0%, rgba(255,255,255,.11), transparent 62%),
         linear-gradient(180deg, rgba(200,163,73,.24), rgba(200,163,73,.11));
       color:var(--text);
-      font-weight:800;
+      font-weight:720;
       font-size:14px;
       cursor:pointer;
       transition: border-color .15s ease, transform .06s ease, filter .15s ease;
@@ -443,7 +448,7 @@
       font-weight:650;
     }
 
-    .note{font-size:12px; color:var(--muted2); margin-top:10px; line-height:1.55}
+    .note{font-size:12px; color:var(--muted2); margin-top:10px}
     .note strong{color:var(--text); font-weight:650}
 
     .links{
@@ -525,8 +530,6 @@
       color: var(--text);
       margin: 0 0 8px;
       letter-spacing: .2px;
-      text-transform:uppercase;
-      opacity:.95;
     }
     .resourceGrid{
       display:flex;
@@ -551,7 +554,7 @@
       background: rgba(255,255,255,.05);
     }
 
-    /* Footer */
+    /* ===== Footer (upgraded) ===== */
     footer{
       border-top:1px solid rgba(255,255,255,.10);
       padding: 18px 0 22px;
@@ -567,19 +570,29 @@
       align-items:center; justify-content:space-between;
     }
     .footBrand{
-      display:flex; align-items:center; gap:10px;
-      color:var(--muted);
+      display:flex; align-items:center; gap:12px;
+      min-width: 260px;
     }
-    .footBrand img{
-      width:28px; height:28px; border-radius:10px;
+    .footBrand .markSm{
+      width:34px; height:34px;
+      border-radius:12px;
       border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.03);
+      background: radial-gradient(200px 90px at 30% 0%, rgba(200,163,73,.14), rgba(255,255,255,.03));
+      box-shadow: 0 14px 30px rgba(0,0,0,.55);
+      display:grid; place-items:center;
+      overflow:hidden;
     }
-    .footBrand:hover{color:var(--text)}
+    .footBrand .markSm img{
+      width:32px; height:32px; border-radius:10px;
+    }
+    .footName{font-weight:800; color:var(--text); letter-spacing:.1px}
+    .footTag{font-size:12px; color:var(--muted2); margin-top:2px}
+
     .footNav{
       display:flex; flex-wrap:wrap;
       gap:10px 12px;
       align-items:center;
+      justify-content:flex-end;
     }
     .footNav a{
       color: var(--muted);
@@ -589,7 +602,6 @@
       background: rgba(255,255,255,.03);
       font-size:13px;
       transition: background .15s ease, border-color .15s ease, color .15s ease;
-      white-space:nowrap;
     }
     .footNav a:hover{color:var(--text); border-color:rgba(255,255,255,.16); background:rgba(255,255,255,.05)}
     .footNav a.active, .footNav a[aria-current="page"]{
@@ -599,22 +611,18 @@
     }
 
     /* Responsive */
-    @media (max-width: 1060px){
-      /* Prevent "messy header": collapse earlier */
-      .menu{display:none}
-      .burger{display:flex}
-      .brand{min-width: 220px}
-      .brand .tag{max-width: 260px}
-    }
     @media (max-width: 980px){
       .grid{grid-template-columns:1fr}
     }
     @media (max-width: 760px){
-      :root{--navH: 64px}
+      :root{--navH: 62px}
       .wrap{padding:16px}
       .nav{padding:10px 14px}
-      .brandMark{width:36px; height:36px}
+      .mark{width:38px; height:38px}
+      .mark img{width:36px; height:36px}
       .brand .tag{display:none}
+      .menu{display:none}
+      .burger{display:flex}
       .heroInner{padding:20px 16px}
       h1{font-size:30px}
       .lead{font-size:15px}
@@ -659,33 +667,32 @@
 
 <body>
   <div class="bg" aria-hidden="true"></div>
-  <a class="skip" href="#main">Skip to content</a>
 
   <header>
+    <div class="topLoad" aria-hidden="true"><span id="topLoadBar"></span></div>
+
     <div class="nav">
       <a class="brand" href="/" aria-label="Noetfield home">
-        <img class="brandMark" src="/noetfield-favicon-512.png" alt="Noetfield mark" />
-        <div class="brandText">
-          <div class="name">Noetfield</div>
-          <div class="tag">Trust &amp; Stewardship in the Age of AI</div>
-        </div>
+        <span class="mark" aria-hidden="true">
+          <img src="/noetfield-favicon-512.png" alt="" />
+        </span>
+        <span class="brandText">
+          <span class="name">Noetfield</span>
+          <span class="tag">Trust &amp; Stewardship in the Age of AI</span>
+        </span>
       </a>
 
-      <!-- Clean header: 5 core tabs + app-actions group -->
+      <!-- Header: Portal (root) + Status + Login (under portal) -->
       <nav class="menu" aria-label="Primary navigation">
-        <div class="menuPrimary" aria-label="Core">
-          <a href="/trust-ledger/">Trust Ledger</a>
-          <a href="/trust-brief/">Trust Brief</a>
-          <a href="/playbook/">Playbook</a>
-          <a href="/copilot-cost-governance/">Copilot</a>
-          <a href="/for-whom/">For Whom</a>
-        </div>
-        <div class="menuActions" aria-label="App actions">
-          <a class="pilltab" href="/gate/">Gate</a>
-          <a class="pilltab" href="/portal/">Portal</a>
-          <a class="pilltab statusLink" href="/status/"><span class="statusDot" aria-hidden="true"></span>Status</a>
-          <a class="login" href="/portal/login/">Login</a>
-        </div>
+        <a href="/trust-ledger/">Trust Ledger</a>
+        <a href="/trust-brief/">Trust Brief</a>
+        <a href="/playbook/">Playbook</a>
+        <a href="/copilot-cost-governance/">Copilot</a>
+        <a href="/for-whom/">For Whom</a>
+        <a class="primary" href="/gate/">Gate</a>
+        <a class="pilltab" href="/portal/">Portal</a>
+        <a class="pilltab statusLink" href="/status/"><span class="statusDot" aria-hidden="true"></span>Status</a>
+        <a class="login" href="/portal/login/">Login</a>
       </nav>
 
       <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="mobilePanel">
@@ -705,7 +712,7 @@
           <a href="/for-whom/">For Whom</a>
           <a href="/gate/">Gate</a>
           <a href="/portal/">Portal</a>
-          <a class="statusLink" href="/status/"><span class="statusDot" aria-hidden="true"></span>Status</a>
+          <a href="/status/">Status</a>
           <a href="/portal/login/">Login</a>
         </div>
 
@@ -733,13 +740,14 @@
             <div class="pill"><strong>Materiality</strong> &amp; decision controls</div>
             <div class="pill"><strong>Accountability</strong> mapping</div>
             <div class="pill"><strong>Evidence-ready</strong> records</div>
-            <div class="pill"><strong>Status</strong> tracking via Request ID</div>
+            <div class="pill"><strong>Portal-ready</strong> next-step workflow</div>
           </div>
         </div>
       </div>
     </section>
 
     <section class="grid">
+      <!-- Left: Board/Client intake -->
       <div class="card">
         <div class="hd">
           <h2>Primary track: Board / Client intake</h2>
@@ -901,12 +909,13 @@
           <div class="links" aria-label="Core links">
             <a href="/trust-ledger/">Trust Ledger</a>
             <a href="/trust-brief/">Trust Brief</a>
-            <a href="/playbook/">Playbook</a>
-            <a href="/copilot-cost-governance/">Copilot</a>
+            <a href="/playbook/">AI Governance Playbook</a>
+            <a href="/copilot-cost-governance/">Copilot Cost &amp; Governance</a>
           </div>
         </div>
       </div>
 
+      <!-- Right: Additional tracks + resources -->
       <aside class="card">
         <div class="hd">
           <h2>Additional tracks</h2>
@@ -915,7 +924,7 @@
 
         <div class="bd">
           <div class="tracks">
-            <!-- SINGLE Partners entry (no duplicate Partner tab) -->
+            <!-- SINGLE Partners entry -->
             <div class="track">
               <div>
                 <div class="t">Partners</div>
@@ -958,6 +967,7 @@
               <a href="/copilot-cost-governance/">Copilot</a>
               <a href="/status/">Status</a>
               <a href="/portal/">Portal</a>
+              <a href="/portal/login/">Login</a>
             </div>
           </div>
 
@@ -977,13 +987,18 @@
 
     <footer>
       <div class="foot">
-        <!-- Footer: remove Home link; brand/logo links home -->
-        <a class="footBrand" href="/" aria-label="Noetfield home">
-          <img src="/noetfield-favicon-512.png" alt="Noetfield mark" />
-          <span>© <span id="y"></span> Noetfield Systems Inc.</span>
-        </a>
+        <div class="footBrand" aria-label="Noetfield footer brand">
+          <span class="markSm" aria-hidden="true">
+            <img src="/noetfield-favicon-512.png" alt="" />
+          </span>
+          <div>
+            <div class="footName">Noetfield</div>
+            <div class="footTag">Governance-first AI trust infrastructure.</div>
+          </div>
+        </div>
 
         <div class="footNav" aria-label="Footer navigation">
+          <a href="/">Home</a>
           <a href="/trust-ledger/">Trust Ledger</a>
           <a href="/trust-brief/">Trust Brief</a>
           <a href="/playbook/">Playbook</a>
@@ -991,10 +1006,14 @@
           <a href="/for-whom/">For Whom</a>
           <a href="/gate/">Gate</a>
           <a href="/portal/">Portal</a>
-          <a class="statusLink" href="/status/"><span class="statusDot" aria-hidden="true"></span>Status</a>
-          <a href="/feedback/">Feedback</a>
+          <a href="/status/">Status</a>
+          <a href="/portal/login/">Login</a>
           <a href="/privacy/">Privacy</a>
           <a href="/terms/">Terms</a>
+        </div>
+
+        <div style="font-size:12px; color:var(--muted2); width:100%;">
+          © <span id="y"></span> Noetfield Systems Inc.
         </div>
       </div>
     </footer>
@@ -1003,6 +1022,18 @@
   <script>
     // Year
     document.getElementById("y").textContent = new Date().getFullYear();
+
+    // Top “app load” bar
+    (function () {
+      var bar = document.getElementById("topLoadBar");
+      if (!bar) return;
+      bar.style.width = "18%";
+      window.addEventListener("DOMContentLoaded", function () { bar.style.width = "62%"; });
+      window.addEventListener("load", function () {
+        bar.style.width = "100%";
+        setTimeout(function(){ bar.style.width="0%"; }, 420);
+      });
+    })();
 
     // Mobile menu toggle
     (function () {
@@ -1049,7 +1080,7 @@
         return p.toLowerCase();
       }
       var current = normPath(window.location.pathname);
-      var links = document.querySelectorAll('nav[aria-label="Primary navigation"] a, footer a, #mobilePanel a');
+      var links = document.querySelectorAll('nav[aria-label="Primary navigation"] a, .footNav a, #mobilePanel a');
 
       links.forEach(function (a) {
         var href = a.getAttribute("href") || "";

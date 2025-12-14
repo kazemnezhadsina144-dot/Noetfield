@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Noetfield – Platform (Portal & Workspace)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta
+    name="description"
+    content="The Noetfield Platform is the governed workspace for Gate requests, status tracking, and delivery. Launching soon."
+  />
+  <meta name="robots" content="index,follow" />
+  <meta name="author" content="Noetfield Systems Inc." />
+  <meta name="theme-color" content="#07070b" />
+
+  <link rel="canonical" href="https://www.noetfield.com/platform/" />
+
+  <link rel="icon" href="/noetfield-favicon-512.png" type="image/png" />
+  <link rel="apple-touch-icon" href="/noetfield-favicon-512.png" />
+
+  <!-- OG -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Noetfield" />
+  <meta property="og:title" content="Noetfield – Platform (Portal & Workspace)" />
+  <meta
+    property="og:description"
+    content="The governed workspace for Gate requests, status tracking, and delivery. Launching soon."
+  />
+  <meta property="og:url" content="https://www.noetfield.com/platform/" />
+  <meta property="og:image" content="https://www.noetfield.com/noetfield-og.png" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Noetfield – Platform (Portal & Workspace)" />
+  <meta
+    name="twitter:description"
+    content="The governed workspace for Gate requests, status tracking, and delivery. Launching soon."
+  />
+  <meta name="twitter:image" content="https://www.noetfield.com/noetfield-og.png" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- LOCKED SHELL -->
+  <link rel="stylesheet" href="/assets/noetfield-shell.css" />
+  <script src="/assets/noetfield-shell.js" defer></script>
+
+  <!-- Page styles (minimal; rely on shell) -->
+  <style>
+    .hero{padding:22px 0 14px}
+    .heroShell{
+      position:relative;
+      border-radius: calc(var(--radius) + 8px);
+      border: 1px solid rgba(255,255,255,.11);
+      background:
+        radial-gradient(1000px 420px at 18% 0%, rgba(200,163,73,.16), transparent 60%),
+        radial-gradient(1000px 420px at 90% 10%, rgba(122,167,255,.10), transparent 62%),
+        linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.022));
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .heroShell::before{
+      content:"";
+      position:absolute; inset:-1px;
+      background: linear-gradient(120deg, rgba(200,163,73,.24), transparent 30%, rgba(255,255,255,.08) 68%, transparent);
+      opacity:.44;
+      pointer-events:none;
+      mask-image: linear-gradient(180deg, black 0%, black 58%, transparent 96%);
+    }
+    .heroInner{padding: 24px 22px}
+
+    .eyebrow{
+      display:inline-flex; gap:10px; align-items:center;
+      color:var(--muted);
+      font-size:13px;
+      padding:9px 12px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.13);
+      background: rgba(255,255,255,.035);
+    }
+    .dot{
+      width:8px; height:8px; border-radius:50%;
+      background: rgba(200,163,73,.97);
+      box-shadow: 0 0 0 3px rgba(200,163,73,.18);
+    }
+    h1{margin:14px 0 10px; font-size:40px; line-height:1.07; letter-spacing:-0.75px}
+    .lead{margin:0; color:var(--muted); font-size:16px; max-width: 980px}
+
+    .grid{
+      display:grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap:18px;
+      margin: 18px 0 34px;
+      align-items:start;
+    }
+    .card{
+      border-radius:var(--radius);
+      border:1px solid rgba(255,255,255,.11);
+      background: linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.022));
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+      min-width:0;
+    }
+    .card .hd{padding:18px 18px 0}
+    .card .bd{padding:18px}
+    .card h2{margin:0 0 8px; font-size:18px; letter-spacing:-0.2px}
+    .card p{margin:0 0 12px; color:var(--muted)}
+
+    .pillRow{display:flex; flex-wrap:wrap; gap:10px; margin-top:14px}
+    .pill{
+      display:inline-flex; align-items:center; gap:10px;
+      padding:9px 12px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.03);
+      color:var(--muted);
+      font-size:13px;
+    }
+    .pill strong{color:var(--text); font-weight:800}
+
+    .box{
+      margin-top:12px;
+      padding:12px 12px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      color:var(--muted2);
+      font-size:12.5px;
+      line-height:1.6;
+    }
+    .box strong{color:var(--text); font-weight:800}
+    .box a{border-bottom:1px solid rgba(255,255,255,.18)}
+    .actions{display:flex; gap:12px; flex-wrap:wrap; align-items:center; margin-top:12px}
+
+    .list{margin:0; padding-left:18px; color:var(--muted)}
+    .list li{margin:8px 0}
+
+    @media (max-width: 980px){
+      .grid{grid-template-columns:1fr}
+    }
+    @media (max-width: 760px){
+      h1{font-size:30px}
+    }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Noetfield – Platform",
+    "url": "https://www.noetfield.com/platform/",
+    "description": "The Noetfield Platform is the governed workspace for Gate requests, status tracking, and delivery. Launching soon.",
+    "isPartOf": {"@type":"WebSite","name":"Noetfield","url":"https://www.noetfield.com/"},
+    "publisher": {"@type":"Organization","name":"Noetfield Systems Inc."}
+  }
+  </script>
+</head>
+
+<body>
+  <div class="bg" aria-hidden="true"></div>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <!-- injected header -->
+  <div id="nfHeader"></div>
+
+  <main id="main" class="wrap">
+    <section class="hero">
+      <div class="heroShell">
+        <div class="heroInner">
+          <div class="eyebrow"><span class="dot"></span> Platform • workspace • launching soon</div>
+          <h1>Platform is coming online.</h1>
+          <p class="lead">
+            The Platform is the governed workspace where Gate requests become trackable delivery:
+            <strong>Request IDs</strong>, <strong>Status</strong>, and the <strong>Portal</strong> experience.
+            This section is being brought up in phases.
+          </p>
+
+          <div class="pillRow" aria-label="Platform pillars">
+            <div class="pill"><strong>Workspace</strong> routing</div>
+            <div class="pill"><strong>Status</strong> tracking</div>
+            <div class="pill"><strong>Portal</strong> access</div>
+            <div class="pill"><strong>Evidence</strong> discipline</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="grid">
+      <div class="card">
+        <div class="hd">
+          <h2>What this becomes</h2>
+          <p>A clean, app-like surface for controlled delivery.</p>
+        </div>
+        <div class="bd">
+          <ul class="list">
+            <li><strong>Request routing:</strong> Gate intakes are normalized into a single tracking stream.</li>
+            <li><strong>Status visibility:</strong> every Request ID has a clear state + next step.</li>
+            <li><strong>Portal access:</strong> login-based workspace for partners and delivery lanes.</li>
+            <li><strong>Evidence-ready delivery:</strong> artefacts + proof remain readable and defensible.</li>
+          </ul>
+
+          <div class="box">
+            <strong>Now:</strong> Use <a href="/gate/">Gate</a> to enter the governed intake.
+            Track with <a href="/status/">Status</a>. Portal surface: <a href="/portal/">/portal/</a>.
+          </div>
+
+          <div class="actions">
+            <a class="btn" href="/gate/">Go to Gate</a>
+            <a class="btn secondary" href="/status/">Open Status</a>
+            <a class="btn secondary" href="/portal/">Open Portal</a>
+          </div>
+        </div>
+      </div>
+
+      <aside class="card">
+        <div class="hd">
+          <h2>Rollout phases</h2>
+          <p>Short, controlled, and measurable.</p>
+        </div>
+        <div class="bd">
+          <div class="box">
+            <strong>P0 (now):</strong> Stable navigation + canonical URLs + Request ID handling.
+          </div>
+          <div class="box">
+            <strong>P1:</strong> Workspace shell (app navigation) + anti-spam controls.
+          </div>
+          <div class="box">
+            <strong>P2:</strong> Partner lanes (delivery/integration) inside portal with status events.
+          </div>
+          <div class="box">
+            <strong>P3:</strong> Evidence-ledger views + exports for boards and auditors.
+          </div>
+
+          <div class="box" style="margin-top:14px;">
+            <strong>Next links:</strong><br/>
+            <a href="/gate/partners/">Partners</a> ·
+            <a href="/trust-ledger/">Trust Ledger</a> ·
+            <a href="/trust-brief/">Trust Brief</a>
+          </div>
+        </div>
+      </aside>
+    </section>
+  </main>
+
+  <!-- injected footer -->
+  <div id="nfFooter"></div>
+</body>
+</html>

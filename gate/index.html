@@ -2,329 +2,57 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Noetfield – Gate (Board-Ready AI Governance Entry)</title>
+  <title>Noetfield – Gate (Board-Ready Entry)</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta
     name="description"
-    content="A governed entry for board-ready AI governance artefacts and routing: Trust Ledger samples, Trust Brief pilot outline, and board decision memo templates."
+    content="Noetfield Gate is a governed entry point for board-ready AI governance artefacts: Trust Brief pilots, Trust Ledger samples, partner lanes, and evidence-first intakes."
   />
   <meta name="robots" content="index,follow" />
   <meta name="author" content="Noetfield Systems Inc." />
+  <meta name="theme-color" content="#07070b" />
+
   <link rel="canonical" href="https://www.noetfield.com/gate/" />
 
   <link rel="icon" href="/noetfield-favicon-512.png" type="image/png" />
   <link rel="apple-touch-icon" href="/noetfield-favicon-512.png" />
-  <meta name="theme-color" content="#07070b" />
 
   <!-- OG -->
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Noetfield" />
-  <meta property="og:title" content="Noetfield Gate – Board-Ready AI Governance Entry" />
+  <meta property="og:title" content="Noetfield – Gate (Board-Ready Entry)" />
   <meta
     property="og:description"
-    content="Request board-ready governance artefacts and the right pathway (Client, Partner/Channel, Investor, Advisory/Research). Human-reviewed."
+    content="A governed entry point for board-ready AI governance artefacts: Trust Brief, Trust Ledger, partner lanes, and evidence-first intakes."
   />
   <meta property="og:url" content="https://www.noetfield.com/gate/" />
   <meta property="og:image" content="https://www.noetfield.com/noetfield-og.png" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Noetfield Gate – Board-Ready AI Governance Entry" />
-  <meta name="twitter:description" content="Request board-ready governance artefacts and the right pathway (Client, Partner/Channel, Investor, Advisory/Research). Human-reviewed." />
+  <meta name="twitter:title" content="Noetfield – Gate (Board-Ready Entry)" />
+  <meta
+    name="twitter:description"
+    content="A governed entry point for board-ready AI governance artefacts: Trust Brief, Trust Ledger, partner lanes, and evidence-first intakes."
+  />
   <meta name="twitter:image" content="https://www.noetfield.com/noetfield-og.png" />
 
-  <!-- Font -->
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
 
+  <!-- LOCKED SHELL -->
+  <link rel="stylesheet" href="/assets/noetfield-shell.css" />
+  <script src="/assets/noetfield-shell.js" defer></script>
+
+  <!-- Page-only styles -->
   <style>
-    :root{
-      --bg0:#07070b;
-      --bg1:#0b0b14;
-      --panel: rgba(255,255,255,.055);
-      --panel2: rgba(255,255,255,.038);
-      --text:#eff0f7;
-      --muted:#b9bbcf;
-      --muted2:#8e91ad;
-      --line: rgba(255,255,255,.11);
-
-      --gold:#c8a349;
-      --gold2:#a98a3c;
-
-      --ok:#2de38a;
-      --okGlow: rgba(45,227,138,.18);
-
-      --danger:#ff5a5a;
-      --dangerGlow: rgba(255,90,90,.18);
-
-      --radius:18px;
-      --max:1120px;
-
-      --shadow: 0 28px 80px rgba(0,0,0,.62);
-      --shadow2: 0 14px 50px rgba(0,0,0,.50);
-      --focus: 0 0 0 4px rgba(200,163,73,.18);
-
-      --navH: 68px;
-    }
-
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      color: var(--text);
-      background: linear-gradient(180deg, var(--bg0), var(--bg1));
-      overflow-x:hidden;
-      -webkit-font-smoothing: antialiased;
-      text-rendering: optimizeLegibility;
-    }
-
-    a{color:inherit; text-decoration:none}
-    a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible{
-      outline:none;
-      box-shadow: var(--focus);
-      border-color: rgba(200,163,73,.58) !important;
-    }
-    [hidden]{display:none !important;}
-
-    /* Premium background */
-    .bg{
-      position:fixed; inset:0;
-      z-index:-3; pointer-events:none;
-      background:
-        radial-gradient(1400px 820px at 10% -10%, rgba(200,163,73,.20), transparent 58%),
-        radial-gradient(1200px 820px at 100% 0%, rgba(122,167,255,.12), transparent 60%),
-        radial-gradient(900px 700px at 55% 22%, rgba(255,255,255,.05), transparent 62%),
-        linear-gradient(180deg, var(--bg0), var(--bg1));
-      filter: saturate(1.05);
-    }
-    .bg::before{
-      content:"";
-      position:absolute; inset:0;
-      background:
-        linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
-      background-size: 54px 54px;
-      opacity:.055;
-      mask-image: radial-gradient(70% 60% at 50% 8%, black 55%, transparent 100%);
-    }
-    .bg::after{
-      content:"";
-      position:absolute; inset:-90px;
-      background:
-        radial-gradient(1100px 760px at 50% 8%, transparent 55%, rgba(0,0,0,.58) 100%),
-        radial-gradient(1000px 900px at 50% 110%, rgba(0,0,0,.68), transparent 62%);
-      opacity:.92;
-    }
-
-    .wrap{max-width:var(--max); margin:0 auto; padding:24px}
-
-    /* Header */
-    header{
-      position:sticky; top:0; z-index:60;
-      backdrop-filter: blur(16px);
-      background: rgba(8,8,12,.62);
-      border-bottom: 1px solid rgba(255,255,255,.10);
-    }
-    .nav{
-      max-width:var(--max); margin:0 auto;
-      padding: 10px 16px;
-      display:flex; align-items:center; justify-content:space-between;
-      gap:14px;
-      min-height: var(--navH);
-    }
-
-    /* Brand */
-    .brand{
-      display:flex; align-items:center; gap:12px;
-      flex:0 0 auto;
-      min-width: 240px;
-      max-width: 360px;
-    }
-    .brandMark{
-      width:36px; height:36px; border-radius:12px;
-      box-shadow: 0 12px 26px rgba(0,0,0,.55);
-      border:1px solid rgba(255,255,255,.12);
-      display:block;
-      flex:0 0 auto;
-    }
-    .brandText{min-width:0}
-    .brand .name{
-      font-weight:800;
-      letter-spacing:.10px;
-      line-height:1.05;
-      font-size: 15px;
-    }
-    .brand .tag{
-      font-size:10.5px;
-      color:var(--muted2);
-      margin-top:3px;
-      letter-spacing:.28em;
-      text-transform:uppercase;
-      white-space:nowrap;
-      overflow:hidden;
-      text-overflow:ellipsis;
-      max-width: 320px;
-      opacity:.95;
-    }
-
-    .menu{
-      display:flex;
-      align-items:center;
-      justify-content:flex-end;
-      gap:12px;
-      flex:1 1 auto;
-      min-width:0;
-    }
-    .menuPrimary, .menuActions{
-      display:flex;
-      align-items:center;
-      gap:8px;
-      min-width:0;
-      flex-wrap:nowrap;
-    }
-    .menuPrimary{
-      flex:1 1 auto;
-      justify-content:center;
-      overflow:hidden;
-    }
-    .menuActions{
-      flex:0 0 auto;
-      justify-content:flex-end;
-    }
-
-    .menu a{
-      color:var(--muted);
-      padding:8px 10px;
-      border-radius:14px;
-      border:1px solid transparent;
-      background: transparent;
-      transition: background .15s ease, border-color .15s ease, color .15s ease, transform .06s ease;
-      white-space:nowrap;
-      font-size:12.75px;
-      line-height:1;
-    }
-    .menu a:hover{
-      color:var(--text);
-      border-color:rgba(255,255,255,.10);
-      background:rgba(255,255,255,.045);
-    }
-    .menu a:active{transform: translateY(1px)}
-    .menu a.active,
-    .menu a[aria-current="page"]{
-      color:var(--text);
-      border-color:rgba(200,163,73,.38);
-      background:
-        radial-gradient(240px 90px at 50% 0%, rgba(255,255,255,.10), transparent 60%),
-        linear-gradient(180deg, rgba(200,163,73,.22), rgba(200,163,73,.10));
-    }
-
-    .menu a.pilltab{
-      border:1px solid rgba(255,255,255,.14);
-      background: rgba(255,255,255,.03);
-    }
-    .menu a.login{
-      border:1px solid rgba(200,163,73,.58);
-      background:
-        radial-gradient(220px 90px at 40% 0%, rgba(255,255,255,.11), transparent 62%),
-        linear-gradient(180deg, rgba(200,163,73,.22), rgba(200,163,73,.10));
-      color: var(--text);
-      font-weight:750;
-      padding:8px 11px;
-    }
-    .menu a.login:hover{
-      border-color: rgba(200,163,73,.85);
-      background:
-        radial-gradient(220px 90px at 40% 0%, rgba(255,255,255,.13), transparent 62%),
-        linear-gradient(180deg, rgba(200,163,73,.26), rgba(200,163,73,.12));
-    }
-
-    .menu a.statusLink, .mobileGrid a.statusLink, .footNav a.statusLink{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-    }
-    .statusDot{
-      width:7px; height:7px;
-      border-radius:50%;
-      background: var(--ok);
-      box-shadow: 0 0 0 3px var(--okGlow);
-      flex:0 0 auto;
-    }
-
-    .burger{
-      display:none;
-      align-items:center; justify-content:center;
-      width:42px; height:42px;
-      border-radius:14px;
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.04);
-      cursor:pointer;
-      transition: background .15s ease, border-color .15s ease;
-      flex:0 0 auto;
-    }
-    .burger:hover{border-color:rgba(255,255,255,.18); background:rgba(255,255,255,.06)}
-    .burger svg{width:20px; height:20px; opacity:.92}
-
-    .mobilePanel{
-      border-top:1px solid rgba(255,255,255,.10);
-      background: rgba(8,8,12,.74);
-      backdrop-filter: blur(16px);
-    }
-    .mobileInner{
-      max-width:var(--max);
-      margin:0 auto;
-      padding: 12px 14px 16px;
-    }
-    .mobileGrid{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:10px;
-    }
-    .mobileGrid a{
-      padding:12px 12px;
-      border-radius:16px;
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.04);
-      color: var(--muted);
-      font-size:14px;
-      transition: background .15s ease, border-color .15s ease, color .15s ease;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      gap:8px;
-      text-align:center;
-    }
-    .mobileGrid a:hover{color:var(--text); border-color:rgba(255,255,255,.18); background:rgba(255,255,255,.06)}
-    .mobileGrid a.active,
-    .mobileGrid a[aria-current="page"]{
-      color: var(--text);
-      border-color: rgba(200,163,73,.42);
-      background:
-        radial-gradient(220px 90px at 30% 0%, rgba(200,163,73,.22), transparent 60%),
-        rgba(200,163,73,.10);
-    }
-    .mobileNote{
-      margin-top:12px;
-      color:var(--muted2);
-      font-size:12px;
-      display:flex; gap:8px; align-items:center;
-      flex-wrap:wrap;
-    }
-    .chip{
-      display:inline-flex; align-items:center; gap:8px;
-      padding:7px 10px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.03);
-      color: var(--muted2);
-    }
-    .chip b{color:var(--text); font-weight:650}
-
-    /* Hero */
-    .hero{padding: 22px 0 18px}
+    .hero{padding:22px 0 14px}
     .heroShell{
       position:relative;
       border-radius: calc(var(--radius) + 8px);
@@ -339,17 +67,13 @@
     .heroShell::before{
       content:"";
       position:absolute; inset:-1px;
-      background: linear-gradient(120deg,
-        rgba(200,163,73,.26),
-        transparent 30%,
-        rgba(255,255,255,.08) 68%,
-        transparent
-      );
+      background: linear-gradient(120deg, rgba(200,163,73,.26), transparent 30%, rgba(255,255,255,.08) 68%, transparent);
       opacity:.44;
       pointer-events:none;
       mask-image: linear-gradient(180deg, black 0%, black 58%, transparent 96%);
     }
     .heroInner{padding: 24px 22px}
+
     .eyebrow{
       display:inline-flex; gap:10px; align-items:center;
       color:var(--muted);
@@ -364,19 +88,13 @@
       background: rgba(200,163,73,.97);
       box-shadow: 0 0 0 3px rgba(200,163,73,.18);
     }
-    h1{
-      margin:14px 0 10px;
-      font-size:42px;
-      line-height:1.07;
-      letter-spacing:-0.75px;
-    }
-    .lead{
-      margin:0;
-      color:var(--muted);
-      font-size:16px;
-      max-width: 920px;
-    }
-    .pillrow{display:flex; flex-wrap:wrap; gap:10px; margin-top:14px}
+
+    h1{margin:14px 0 10px; font-size:40px; line-height:1.07; letter-spacing:-0.75px}
+    .lead{margin:0; color:var(--muted); font-size:16px; max-width: 980px}
+    .lead strong{color:var(--text); font-weight:800}
+    .lead a{border-bottom:1px solid rgba(255,255,255,.18)}
+
+    .metaRow{display:flex; flex-wrap:wrap; gap:10px; margin-top:14px}
     .pill{
       display:inline-flex; align-items:center; gap:10px;
       padding:9px 12px;
@@ -386,14 +104,14 @@
       color:var(--muted);
       font-size:13px;
     }
-    .pill strong{color:var(--text); font-weight:650}
+    .pill strong{color:var(--text); font-weight:800}
 
-    /* Grid */
     .grid{
       display:grid;
-      grid-template-columns: 1.2fr .8fr;
+      grid-template-columns: 1fr 1fr;
       gap:18px;
       margin: 18px 0 34px;
+      align-items:start;
     }
     .card{
       border-radius:var(--radius);
@@ -401,376 +119,95 @@
       background: linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.022));
       box-shadow: var(--shadow2);
       overflow:hidden;
+      min-width:0;
     }
     .card .hd{padding:18px 18px 0}
     .card h2{margin:0 0 8px; font-size:18px; letter-spacing:-0.2px}
-    .card p{margin:0 0 12px; color:var(--muted)}
+    .card p{margin:0 0 12px; color:var(--muted); line-height:1.7}
     .card .bd{padding:18px}
 
-    /* Request bar */
-    .ridBar{
+    .box{
       margin-top:12px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:10px;
       padding:12px 12px;
-      border-radius:16px;
+      border-radius:14px;
       border:1px solid rgba(255,255,255,.10);
       background: rgba(255,255,255,.03);
+      color:var(--muted2);
+      font-size:12.5px;
+      line-height:1.6;
     }
-    .ridLeft{
-      min-width:0;
-      display:flex;
-      flex-direction:column;
-      gap:4px;
+    .box strong{color:var(--text); font-weight:800}
+    .box a{border-bottom:1px solid rgba(255,255,255,.18)}
+
+    .ctaRow{display:flex; gap:12px; flex-wrap:wrap; align-items:center; margin-top:12px}
+    .ctaRow .btn{white-space:nowrap}
+
+    .laneGrid{display:grid; gap:10px; margin-top:10px}
+    .lane{
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      border-radius:16px;
+      padding:12px 12px;
     }
-    .ridLabel{
+    .laneTop{display:flex; align-items:flex-start; justify-content:space-between; gap:10px}
+    .laneTitle{margin:0; font-weight:900; font-size:14px; letter-spacing:-.2px}
+    .tag{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
       font-size:11px;
-      letter-spacing:.28em;
+      letter-spacing:.18em;
       text-transform:uppercase;
       color:var(--muted2);
-    }
-    .ridValue{
-      font-weight:700;
-      color:var(--text);
-      font-size:13px;
-      overflow:hidden;
-      text-overflow:ellipsis;
-      white-space:nowrap;
-      max-width: 520px;
-    }
-    .ridActions{
-      display:flex;
-      gap:8px;
-      align-items:center;
-      flex-wrap:wrap;
-      justify-content:flex-end;
-      flex:0 0 auto;
-    }
-    .miniBtn{
-      white-space:nowrap;
-      font-size:13px;
-      color:var(--text);
-      border:1px solid rgba(255,255,255,.14);
-      background: rgba(255,255,255,.04);
-      padding:9px 12px;
-      border-radius:14px;
-      cursor:pointer;
-      transition: background .15s ease, border-color .15s ease, transform .06s ease;
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:8px;
-    }
-    .miniBtn:hover{border-color:rgba(255,255,255,.22); background:rgba(255,255,255,.06)}
-    .miniBtn:active{transform: translateY(1px)}
-    .miniBtn.primary{
-      border-color: rgba(200,163,73,.38);
-      background: rgba(200,163,73,.10);
-    }
-    .miniBtn.primary:hover{
-      border-color: rgba(200,163,73,.70);
-      background: rgba(200,163,73,.14);
-    }
-
-    /* Form */
-    .form{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:12px;
-      margin-top:12px;
-    }
-    .form .full{grid-column:1 / -1}
-
-    label{display:block; font-size:12px; color:var(--muted2); margin:0 0 6px}
-
-    input, select, textarea{
-      width:100%;
-      background: rgba(10,10,16,.55);
-      border: 1px solid rgba(255,255,255,.14);
-      color: var(--text);
-      padding: 12px 12px;
-      border-radius: 14px;
-      outline:none;
-      font-family:inherit;
-      font-size:14px;
-      transition: border-color .15s ease, box-shadow .15s ease, background .15s ease;
-    }
-    input::placeholder, textarea::placeholder{color: rgba(185,187,207,.55)}
-    textarea{min-height:110px; resize:vertical}
-    input:focus, select:focus, textarea:focus{box-shadow: var(--focus); background: rgba(12,12,18,.62)}
-
-    .actions{display:flex; gap:12px; align-items:center; justify-content:flex-start; margin-top:12px; flex-wrap:wrap}
-    .btn{
-      display:inline-flex; align-items:center; justify-content:center;
-      gap:10px;
-      padding:12px 14px;
-      border-radius:16px;
-      border:1px solid rgba(200,163,73,.58);
-      background:
-        radial-gradient(260px 110px at 40% 0%, rgba(255,255,255,.11), transparent 62%),
-        linear-gradient(180deg, rgba(200,163,73,.24), rgba(200,163,73,.11));
-      color:var(--text);
-      font-weight:800;
-      font-size:14px;
-      cursor:pointer;
-      transition: border-color .15s ease, transform .06s ease, filter .15s ease;
-    }
-    .btn:hover{border-color:rgba(200,163,73,.85); filter:brightness(1.06)}
-    .btn:active{transform: translateY(1px)}
-    .btn:disabled{
-      opacity:.65;
-      cursor:not-allowed;
-      filter:none;
-    }
-    .btn.secondary{
-      border:1px solid rgba(255,255,255,.16);
-      background: rgba(255,255,255,.04);
-      font-weight:650;
-    }
-
-    .note{font-size:12px; color:var(--muted2); margin-top:10px; line-height:1.55}
-    .note strong{color:var(--text); font-weight:650}
-
-    .formMsg{
-      margin-top:12px;
-      padding:12px 12px;
-      border-radius:14px;
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.03);
-      color: var(--muted);
-      font-size:12px;
-      line-height:1.55;
-      display:none;
-    }
-
-    .links{
-      display:flex; flex-wrap:wrap; gap:10px 14px;
-      margin-top:16px;
-      font-size:13px;
-      color:var(--muted);
-    }
-    .links a{
-      border-bottom:1px solid rgba(255,255,255,.16);
-      padding-bottom:2px;
-    }
-    .links a:hover{color:var(--text); border-bottom-color:rgba(200,163,73,.55)}
-
-    .tracks{display:grid; grid-template-columns:1fr; gap:10px; margin-top:10px}
-    .track{
-      padding:14px 14px;
-      border-radius:16px;
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(10,10,14,.35);
-      display:flex; align-items:flex-start; justify-content:space-between; gap:14px;
-    }
-    .track .t{font-weight:800}
-    .track .d{color:var(--muted); font-size:13px; margin-top:4px}
-
-    .trackActions{
-      display:flex;
-      gap:8px;
-      align-items:center;
-      flex-wrap:wrap;
-      justify-content:flex-end;
-    }
-    .cta{
-      white-space:nowrap;
-      font-size:13px;
-      color:var(--text);
-      border:1px solid rgba(200,163,73,.38);
-      background: rgba(200,163,73,.10);
-      padding:9px 12px;
-      border-radius:14px;
-      transition: background .15s ease, border-color .15s ease;
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:8px;
-    }
-    .cta:hover{border-color:rgba(200,163,73,.70); background:rgba(200,163,73,.14)}
-    .cta.secondary{
-      border:1px solid rgba(255,255,255,.16);
-      background: rgba(255,255,255,.04);
-      color: var(--muted);
-    }
-    .cta.secondary:hover{
-      color: var(--text);
-      border-color: rgba(255,255,255,.22);
-      background: rgba(255,255,255,.06);
-    }
-
-    .fineprint{
-      margin-top:14px;
-      padding:12px 12px;
-      border-radius:14px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.03);
-      color: var(--muted2);
-      font-size:12px;
-      line-height:1.55;
-    }
-
-    .resourceBox{
-      margin-top:14px;
-      padding:12px 12px;
-      border-radius:14px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.03);
-    }
-    .resourceTitle{
-      font-weight:800;
-      font-size:12px;
-      color: var(--text);
-      margin: 0 0 8px;
-      letter-spacing: .2px;
-      text-transform:uppercase;
-      opacity:.95;
-    }
-    .resourceGrid{
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-    }
-    .resourceGrid a{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      padding:9px 10px;
+      padding:7px 10px;
       border-radius:999px;
       border:1px solid rgba(255,255,255,.12);
       background: rgba(255,255,255,.03);
-      color: var(--muted);
-      font-size:13px;
-      transition: background .15s ease, border-color .15s ease, color .15s ease;
-    }
-    .resourceGrid a:hover{
-      color: var(--text);
-      border-color: rgba(255,255,255,.18);
-      background: rgba(255,255,255,.05);
-    }
-
-    /* Footer */
-    footer{
-      border-top:1px solid rgba(255,255,255,.10);
-      padding: 18px 0 22px;
-      color:var(--muted2);
-      margin-top:34px;
-      background: rgba(8,8,12,.35);
-      backdrop-filter: blur(10px);
-    }
-    .foot{
-      max-width:var(--max); margin:0 auto;
-      padding: 0 16px;
-      display:flex; flex-wrap:wrap; gap:12px 18px;
-      align-items:center; justify-content:space-between;
-    }
-    .footBrand{
-      display:flex; align-items:center; gap:10px;
-      color:var(--muted);
-    }
-    .footBrand img{
-      width:28px; height:28px; border-radius:10px;
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.03);
-    }
-    .footBrand:hover{color:var(--text)}
-    .footNav{
-      display:flex; flex-wrap:wrap;
-      gap:10px 12px;
-      align-items:center;
-    }
-    .footNav a{
-      color: var(--muted);
-      padding:8px 10px;
-      border-radius:14px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.03);
-      font-size:13px;
-      transition: background .15s ease, border-color .15s ease, color .15s ease;
       white-space:nowrap;
     }
-    .footNav a:hover{color:var(--text); border-color:rgba(255,255,255,.16); background:rgba(255,255,255,.05)}
-    .footNav a.active, .footNav a[aria-current="page"]{
-      color: var(--text);
-      border-color: rgba(200,163,73,.40);
-      background: rgba(200,163,73,.10);
+    .laneDesc{margin:8px 0 0; color:var(--muted); font-size:13px; line-height:1.65}
+    .laneActions{display:flex; gap:10px; flex-wrap:wrap; margin-top:10px}
+
+    .mini{
+      margin-top:10px;
+      color:var(--muted2);
+      font-size:12.5px;
+      line-height:1.6;
     }
 
-    @media (max-width: 1220px){
-      .brand{min-width: 220px; max-width: 300px}
-      .brand .tag{max-width: 260px}
-      .menu a{font-size:12.25px; padding:8px 9px}
-      .menuPrimary{justify-content:flex-start}
+    .split{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:10px;
+      margin-top:10px;
     }
-    @media (max-width: 1140px){
-      .menu{display:none}
-      .burger{display:flex}
+    .tile{
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      border-radius:16px;
+      padding:12px 12px;
     }
+    .tile strong{color:var(--text); font-weight:900}
+    .tile div{margin-top:6px; color:var(--muted); font-size:13px; line-height:1.6}
+
     @media (max-width: 980px){
       .grid{grid-template-columns:1fr}
-      .ridValue{max-width: 100%}
     }
     @media (max-width: 760px){
-      :root{--navH: 64px}
-      .wrap{padding:16px}
-      .nav{padding:10px 14px}
-      .brandMark{width:34px; height:34px}
-      .brand{min-width: 0; max-width: 100%}
-      .brand .tag{display:none}
-      .heroInner{padding:20px 16px}
       h1{font-size:30px}
-      .lead{font-size:15px}
-      .form{grid-template-columns:1fr}
-      .mobileGrid{grid-template-columns:1fr 1fr}
-      .foot{padding:0 14px}
-      .footNav a{font-size:12.5px}
-      .ridBar{flex-direction:column; align-items:flex-start}
-      .ridActions{justify-content:flex-start}
+      .split{grid-template-columns:1fr}
     }
-    @media (max-width: 420px){
-      .mobileGrid{grid-template-columns:1fr}
-    }
-
-    .skip{
-      position:absolute; left:-999px; top:10px;
-      background:#111118; border:1px solid rgba(255,255,255,.12);
-      color:var(--text); padding:10px 12px; border-radius:12px;
-      z-index:999;
-    }
-    .skip:focus{left:10px}
   </style>
 
-  <!-- Structured data (expanded, still lightweight) -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "Organization",
-        "@id": "https://www.noetfield.com/#org",
-        "name": "Noetfield Systems Inc.",
-        "url": "https://www.noetfield.com/",
-        "logo": "https://www.noetfield.com/noetfield-favicon-512.png"
-      },
-      {
-        "@type": "WebSite",
-        "@id": "https://www.noetfield.com/#website",
-        "name": "Noetfield",
-        "url": "https://www.noetfield.com/",
-        "publisher": { "@id": "https://www.noetfield.com/#org" }
-      },
-      {
-        "@type": "WebPage",
-        "@id": "https://www.noetfield.com/gate/#webpage",
-        "name": "Noetfield Gate",
-        "url": "https://www.noetfield.com/gate/",
-        "description": "A governed entry point for board-ready AI governance artefacts and intakes.",
-        "isPartOf": { "@id": "https://www.noetfield.com/#website" },
-        "publisher": { "@id": "https://www.noetfield.com/#org" }
-      }
-    ]
+    "@type": "WebPage",
+    "name": "Noetfield – Gate (Board-Ready Entry)",
+    "url": "https://www.noetfield.com/gate/",
+    "description": "Noetfield Gate is a governed entry point for board-ready AI governance artefacts: Trust Brief pilots, Trust Ledger samples, partner lanes, and evidence-first intakes.",
+    "isPartOf": {"@type":"WebSite","name":"Noetfield","url":"https://www.noetfield.com/"},
+    "publisher": {"@type":"Organization","name":"Noetfield Systems Inc."}
   }
   </script>
 </head>
@@ -779,563 +216,160 @@
   <div class="bg" aria-hidden="true"></div>
   <a class="skip" href="#main">Skip to content</a>
 
-  <header>
-    <div class="nav">
-      <a class="brand" href="/" aria-label="Noetfield home">
-        <img class="brandMark" src="/noetfield-favicon-512.png" alt="Noetfield mark" />
-        <div class="brandText">
-          <div class="name">Noetfield</div>
-          <div class="tag">Trust and Stewardship in AI</div>
-        </div>
-      </a>
-
-      <nav class="menu" aria-label="Primary navigation">
-        <div class="menuPrimary" aria-label="Core">
-          <a href="/trust-ledger/">Trust Ledger</a>
-          <a href="/trust-brief/">Trust Brief</a>
-          <a href="/playbook/">Playbook</a>
-          <a href="/copilot-cost-governance/">Copilot</a>
-          <a href="/for-whom/">For Whom</a>
-        </div>
-        <div class="menuActions" aria-label="App actions">
-          <a class="pilltab" href="/gate/">Gate</a>
-          <a class="pilltab" href="/portal/">Portal</a>
-          <a class="pilltab statusLink" href="/status/"><span class="statusDot" aria-hidden="true"></span>Status</a>
-          <a class="login" href="/portal/login/">Login</a>
-        </div>
-      </nav>
-
-      <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="mobilePanel">
-        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-        </svg>
-      </button>
-    </div>
-
-    <div class="mobilePanel" id="mobilePanel" hidden>
-      <div class="mobileInner">
-        <div class="mobileGrid" aria-label="Mobile navigation">
-          <a href="/trust-ledger/">Trust Ledger</a>
-          <a href="/trust-brief/">Trust Brief</a>
-          <a href="/playbook/">Playbook</a>
-          <a href="/copilot-cost-governance/">Copilot</a>
-          <a href="/for-whom/">For Whom</a>
-          <a href="/gate/">Gate</a>
-          <a href="/portal/">Portal</a>
-          <a class="statusLink" href="/status/"><span class="statusDot" aria-hidden="true"></span>Status</a>
-          <a href="/portal/login/">Login</a>
-        </div>
-
-        <div class="mobileNote">
-          <span class="chip"><b>Board-ready</b> entry</span>
-          <span class="chip">Human review</span>
-          <span class="chip">Non-confidential</span>
-        </div>
-      </div>
-    </div>
-  </header>
+  <!-- injected header -->
+  <div id="nfHeader"></div>
 
   <main id="main" class="wrap">
+    <!-- HERO -->
     <section class="hero">
       <div class="heroShell">
         <div class="heroInner">
-          <div class="eyebrow"><span class="dot"></span> Governed entry point • board-ready artefacts • human review</div>
-          <h1>Board-ready AI governance starts here.</h1>
+          <div class="eyebrow"><span class="dot"></span> Gate • governed entry</div>
+          <h1>Board-ready entry. Evidence-first routing.</h1>
           <p class="lead">
-            Noetfield provides governance-first artefacts for AI systems that influence material decisions.
-            Requests are reviewed and routed to the safest next step (pack access, pilot outline, or secure exchange).
+            Gate is where intakes become <strong>decision-ready</strong>. Choose a track to request a
+            <a href="/trust-brief/"><strong>Trust Brief</strong></a>, review
+            <a href="/trust-ledger/"><strong>Trust Ledger</strong></a> references, or route partners into lanes.
+            No hype. Clean scope. Defensible outputs.
           </p>
 
-          <div class="pillrow" aria-label="Scope highlights">
-            <div class="pill"><strong>Materiality</strong> &amp; decision controls</div>
-            <div class="pill"><strong>Accountability</strong> mapping</div>
-            <div class="pill"><strong>Evidence-ready</strong> records</div>
-            <div class="pill"><strong>Status</strong> tracking via Request ID</div>
+          <div class="metaRow" aria-label="Highlights">
+            <div class="pill"><strong>Request ID</strong> tracking</div>
+            <div class="pill"><strong>Evidence trail</strong></div>
+            <div class="pill"><strong>Routing</strong> by lane</div>
+            <div class="pill"><strong>Board-safe</strong> formatting</div>
+          </div>
+
+          <div class="ctaRow" aria-label="Primary actions">
+            <a class="btn" href="/gate/partners/">Partners</a>
+            <a class="btn secondary" href="/status/">Open Status</a>
+            <a class="btn secondary" href="/trust-brief/">Trust Brief</a>
+            <a class="btn secondary" href="/trust-ledger/">Trust Ledger</a>
+          </div>
+
+          <div class="mini">
+            If you’re looking for the app experience, see <a href="/portal/">Portal</a> (coming online in phases).
           </div>
         </div>
       </div>
     </section>
 
     <section class="grid">
-      <!-- Left: Intake -->
+      <!-- LEFT: Partner tracks -->
       <div class="card">
         <div class="hd">
-          <h2>Primary intake: request the right pack</h2>
-          <p>
-            Use this intake to request artefact samples, a Trust Brief pilot outline, or structured routing.
-            Keep submissions high-level and non-confidential.
-          </p>
-
-          <div class="ridBar" aria-label="Request ID bar">
-            <div class="ridLeft">
-              <div class="ridLabel">Request ID</div>
-              <div class="ridValue" id="ridText">—</div>
+          <h2>Partner lanes</h2>
+          <p>Choose the route that matches how you contribute.</p>
+        </div>
+        <div class="bd">
+          <div class="laneGrid" aria-label="Partner lanes">
+            <div class="lane">
+              <div class="laneTop">
+                <div class="laneTitle">Partners Gate</div>
+                <span class="tag">Primary</span>
+              </div>
+              <p class="laneDesc">
+                Start here to route into Channel, Delivery, or Integration lanes with Request ID tracking.
+              </p>
+              <div class="laneActions">
+                <a class="btn" href="/gate/partners/">Open Partners</a>
+                <a class="btn secondary" href="/gate/partners/intake/">Partner intake</a>
+              </div>
             </div>
-            <div class="ridActions">
-              <button class="miniBtn" type="button" id="newRidBtn" title="Generate a new Request ID">New</button>
-              <button class="miniBtn" type="button" id="copyRidBtn">Copy</button>
-              <a class="miniBtn primary" id="openStatusBtn" href="/status/">Open Status</a>
+
+            <div class="lane">
+              <div class="laneTop">
+                <div class="laneTitle">Channel</div>
+                <span class="tag">Originate</span>
+              </div>
+              <p class="laneDesc">
+                You originate aligned clients and want routing, packaging, and governance delivery standards.
+              </p>
+              <div class="laneActions">
+                <a class="btn secondary" href="/gate/partners/channel/">Open Channel</a>
+                <a class="btn secondary" href="/gate/partners/intake/?lane=channel">Start intake</a>
+              </div>
+            </div>
+
+            <div class="lane">
+              <div class="laneTop">
+                <div class="laneTitle">Delivery</div>
+                <span class="tag">Artefacts</span>
+              </div>
+              <p class="laneDesc">
+                You can deliver Trust Brief + Trust Ledger outputs with evidence discipline and board formatting.
+              </p>
+              <div class="laneActions">
+                <a class="btn secondary" href="/gate/partners/delivery/">Open Delivery</a>
+                <a class="btn secondary" href="/gate/partners/intake/?lane=delivery">Start intake</a>
+              </div>
+            </div>
+
+            <div class="lane">
+              <div class="laneTop">
+                <div class="laneTitle">Integration</div>
+                <span class="tag">Controls</span>
+              </div>
+              <p class="laneDesc">
+                You implement identity, logs, DLP, and control enforcement so evidence trails stay intact.
+              </p>
+              <div class="laneActions">
+                <a class="btn secondary" href="/gate/partners/integration/">Open Integration</a>
+                <a class="btn secondary" href="/gate/partners/intake/?lane=integration">Start intake</a>
+              </div>
             </div>
           </div>
-        </div>
 
-        <div class="bd">
-          <form
-            id="nfGateForm"
-            action="https://formspree.io/f/xyzrdrpv"
-            method="POST"
-            novalidate
-          >
-            <input type="hidden" name="page_source" value="/gate/" />
-            <input type="hidden" name="source" value="gate" />
-            <input type="hidden" name="site" value="noetfield.com" />
-            <input type="hidden" name="_subject" value="Noetfield Gate — Intake" />
-
-            <!-- Request ID for Status tracking -->
-            <input type="hidden" id="request_id" name="request_id" value="" />
-
-            <!-- Honeypot -->
-            <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true" />
-
-            <div class="form">
-              <div>
-                <label for="fullName">Full name</label>
-                <input id="fullName" name="fullName" type="text" autocomplete="name" placeholder="First + last" required />
-              </div>
-
-              <div>
-                <label for="email">Work email</label>
-                <input id="email" name="email" type="email" autocomplete="email" placeholder="name@company.com" required />
-              </div>
-
-              <div>
-                <label for="role">Role / mandate</label>
-                <select id="role" name="role" required>
-                  <option value="" disabled selected>Select one</option>
-                  <option>Board / Director</option>
-                  <option>Audit</option>
-                  <option>Risk</option>
-                  <option>Legal / Privacy</option>
-                  <option>Security</option>
-                  <option>Regulator / Public oversight</option>
-                  <option>Procurement / Vendor risk</option>
-                  <option>IT / CIO / CTO</option>
-                  <option>Other</option>
-                </select>
-              </div>
-
-              <div>
-                <label for="organization">Organization</label>
-                <input id="organization" name="organization" type="text" autocomplete="organization" placeholder="Organization name" required />
-              </div>
-
-              <div>
-                <label for="jurisdiction">Country / province / state</label>
-                <input id="jurisdiction" name="jurisdiction" type="text" placeholder="e.g., Canada — BC" autocomplete="address-level1" />
-              </div>
-
-              <div>
-                <label for="industry">Industry (optional)</label>
-                <select id="industry" name="industry">
-                  <option value="" selected>—</option>
-                  <option>Financial services</option>
-                  <option>Insurance</option>
-                  <option>Public sector</option>
-                  <option>Healthcare</option>
-                  <option>Energy / Utilities</option>
-                  <option>Telecom</option>
-                  <option>Education</option>
-                  <option>Technology / SaaS</option>
-                  <option>Manufacturing</option>
-                  <option>Other</option>
-                </select>
-              </div>
-
-              <div class="full">
-                <label for="requestType">What would you like to see first?</label>
-                <select id="requestType" name="requestType" required>
-                  <option value="" disabled selected>Select one</option>
-                  <option>Trust Ledger sample (1–2 entries)</option>
-                  <option>Trust Brief pilot one-pager (6 weeks)</option>
-                  <option>Board Decision Memo template</option>
-                  <option>Partner / Channel pack (delivery & distribution)</option>
-                  <option>Investor pack (referral-only)</option>
-                  <option>Advisory / Research track</option>
-                </select>
-              </div>
-
-              <div class="full">
-                <label for="accountableFor">In one sentence, what are you accountable for? (non-confidential)</label>
-                <input
-                  id="accountableFor"
-                  name="accountableFor"
-                  type="text"
-                  placeholder="Example: I oversee audit & risk for a mid-market financial services group."
-                  required
-                />
-              </div>
-
-              <div class="full">
-                <label for="topConcern">Highest-level AI governance concern right now (non-confidential)</label>
-                <textarea
-                  id="topConcern"
-                  name="topConcern"
-                  placeholder="Example: Copilot adoption without inventory, controls, or auditability."
-                  required
-                ></textarea>
-              </div>
-
-              <div class="full">
-                <label for="timeline">Timing (optional)</label>
-                <select id="timeline" name="timeline">
-                  <option value="" selected>—</option>
-                  <option>Immediate (0–2 weeks)</option>
-                  <option>Near-term (2–6 weeks)</option>
-                  <option>This quarter</option>
-                  <option>Exploratory</option>
-                </select>
-              </div>
-
-              <div class="full">
-                <label for="referral">Referral / context (optional)</label>
-                <input id="referral" name="referral" type="text" placeholder="Name or source (if applicable)" autocomplete="off" />
-              </div>
-
-              <div class="full">
-                <label style="display:flex; gap:10px; align-items:flex-start;">
-                  <input
-                    type="checkbox"
-                    name="non_confidential_ack"
-                    value="yes"
-                    required
-                    style="width:auto; margin-top:3px;"
-                  />
-                  <span style="color: var(--muted); font-size:13px; line-height:1.45;">
-                    I understand this intake is for <strong>high-level, non-confidential</strong> routing. If we proceed, Noetfield will propose a safer channel (e.g., NDA / secure exchange).
-                    <span style="display:block; margin-top:6px; font-size:12px; color: var(--muted2);">
-                      See: <a href="/privacy/" style="border-bottom:1px solid rgba(255,255,255,.18)">Privacy</a>
-                    </span>
-                  </span>
-                </label>
-              </div>
-            </div>
-
-            <div class="actions">
-              <button class="btn" id="submitBtn" type="submit">Request Review</button>
-              <a class="btn secondary" id="checkStatusBtn" href="/status/">Check request status</a>
-            </div>
-
-            <div id="formMsg" class="formMsg" role="status" aria-live="polite"></div>
-
-            <div class="note" id="privacyNote">
-              <strong>Privacy &amp; security:</strong> do not submit confidential, customer, or security-sensitive details here.
-              This intake is used only to route and respond. If we proceed, we will propose a safer channel.
-              <br /><br />
-              <strong>What happens next:</strong> human review within <strong>1–2 business days</strong>. If aligned, you’ll receive the appropriate pack and the safest next-step channel.
-            </div>
-          </form>
-
-          <div class="links" aria-label="Core links">
-            <a href="/trust-ledger/">Trust Ledger</a>
-            <a href="/trust-brief/">Trust Brief</a>
-            <a href="/playbook/">Playbook</a>
-            <a href="/copilot-cost-governance/">Copilot</a>
+          <div class="box">
+            <strong>Note:</strong> Request IDs are the routing key across Gate, Status, and Thanks pages.
           </div>
         </div>
       </div>
 
-      <!-- Right: Tracks -->
+      <!-- RIGHT: Buyers / operators -->
       <aside class="card">
         <div class="hd">
-          <h2>Additional tracks</h2>
-          <p>Use these only when your request is specifically partner/channel-, investor-, or advisory/research-oriented.</p>
+          <h2>Buyer entry</h2>
+          <p>If you want Noetfield outputs for your organization.</p>
         </div>
-
         <div class="bd">
-          <div class="tracks">
-            <div class="track">
-              <div>
-                <div class="t">Partner / Channel</div>
-                <div class="d">Consultancies, GRC firms, MSP/MSSP, dev shops, joint delivery, referrals, distribution.</div>
-              </div>
-              <div class="trackActions">
-                <a class="cta secondary" href="/gate/partners/">View</a>
-                <a class="cta" href="/gate/partners/apply/">Apply</a>
+          <div class="split" aria-label="Buyer tiles">
+            <div class="tile">
+              <strong>Trust Brief</strong>
+              <div>6-week governance diagnostic with options, risks, and initial ledger entries.</div>
+              <div style="margin-top:10px;">
+                <a class="btn secondary" href="/trust-brief/">View</a>
               </div>
             </div>
-
-            <div class="track">
-              <div>
-                <div class="t">Investor (referral-only)</div>
-                <div class="d">For aligned strategic backers evaluating operating systems, not slides. Structured fit assessment.</div>
-              </div>
-              <div class="trackActions">
-                <a class="cta" href="/gate/investor/">Open</a>
-              </div>
-            </div>
-
-            <div class="track">
-              <div>
-                <div class="t">Advisory / Research</div>
-                <div class="d">Async-first contribution to strengthen practical governance artefacts and benchmarks.</div>
-              </div>
-              <div class="trackActions">
-                <a class="cta" href="/gate/research/">Open</a>
+            <div class="tile">
+              <strong>Trust Ledger</strong>
+              <div>Board-ready register of AI systems, controls, evidence, and material risk.</div>
+              <div style="margin-top:10px;">
+                <a class="btn secondary" href="/trust-ledger/">View</a>
               </div>
             </div>
           </div>
 
-          <div class="resourceBox" aria-label="Key resources">
-            <div class="resourceTitle">Key resources</div>
-            <div class="resourceGrid">
-              <a href="/trust-ledger/">Trust Ledger</a>
-              <a href="/trust-brief/">Trust Brief</a>
-              <a href="/playbook/">Playbook</a>
-              <a href="/faq/">FAQ</a>
-              <a href="/copilot-cost-governance/">Copilot</a>
-              <a href="/status/">Status</a>
-              <a href="/portal/">Portal</a>
-            </div>
+          <div class="box">
+            <strong>What happens next:</strong> we route your request to the correct lane, attach a Request ID,
+            and provide a simple next-step plan and response SLA.
           </div>
 
-          <div class="fineprint">
-            Not sure which track fits? Use the Primary intake and add one line in “Referral / context”.
-            <br /><br />
-            This Gate is designed for decision-makers and accountable roles. It is not a general support channel.
+          <div class="ctaRow" style="margin-top:12px;">
+            <a class="btn secondary" href="/contact/">Contact</a>
+            <a class="btn secondary" href="/faq/">FAQ</a>
+            <a class="btn secondary" href="/feedback/">Feedback</a>
           </div>
 
-          <div class="links" aria-label="Policy links" style="margin-top:16px;">
-            <a href="/privacy/">Privacy</a>
-            <a href="/terms/">Terms</a>
+          <div class="mini">
+            Looking for policies? See <a href="/privacy/">Privacy</a> · <a href="/terms/">Terms</a> · <a href="/policies/">Policies</a>.
           </div>
         </div>
       </aside>
     </section>
-
-    <footer>
-      <div class="foot">
-        <a class="footBrand" href="/" aria-label="Noetfield home">
-          <img src="/noetfield-favicon-512.png" alt="Noetfield mark" />
-          <span>© <span id="y"></span> Noetfield Systems Inc.</span>
-        </a>
-
-        <div class="footNav" aria-label="Footer navigation">
-          <a href="/trust-ledger/">Trust Ledger</a>
-          <a href="/trust-brief/">Trust Brief</a>
-          <a href="/playbook/">Playbook</a>
-          <a href="/copilot-cost-governance/">Copilot</a>
-          <a href="/for-whom/">For Whom</a>
-          <a href="/gate/">Gate</a>
-          <a href="/portal/">Portal</a>
-          <a class="statusLink" href="/status/"><span class="statusDot" aria-hidden="true"></span>Status</a>
-          <a href="/feedback/">Feedback</a>
-          <a href="/privacy/">Privacy</a>
-          <a href="/terms/">Terms</a>
-        </div>
-      </div>
-    </footer>
   </main>
 
-  <script>
-    // Year
-    document.getElementById("y").textContent = new Date().getFullYear();
-
-    // Mobile menu toggle
-    (function () {
-      var burger = document.getElementById("burger");
-      var panel = document.getElementById("mobilePanel");
-      if (!burger || !panel) return;
-
-      burger.addEventListener("click", function () {
-        var isOpen = burger.getAttribute("aria-expanded") === "true";
-        burger.setAttribute("aria-expanded", String(!isOpen));
-        panel.hidden = isOpen;
-      });
-
-      document.addEventListener("keydown", function (e) {
-        if (e.key === "Escape" && burger.getAttribute("aria-expanded") === "true") {
-          burger.setAttribute("aria-expanded", "false");
-          panel.hidden = true;
-        }
-      });
-    })();
-
-    // Request ID (generate, persist; allow manual refresh)
-    (function () {
-      var ridInput = document.getElementById("request_id");
-      var ridText = document.getElementById("ridText");
-      var openStatusBtn = document.getElementById("openStatusBtn");
-      var checkStatusBtn = document.getElementById("checkStatusBtn");
-      var newRidBtn = document.getElementById("newRidBtn");
-      if (!ridInput || !ridText) return;
-
-      function rand4() { return Math.floor(Math.random() * 10000).toString().padStart(4, "0"); }
-
-      function genRID(){
-        var d = new Date();
-        var stamp = d.getUTCFullYear().toString()
-          + String(d.getUTCMonth()+1).padStart(2,"0")
-          + String(d.getUTCDate()).padStart(2,"0")
-          + "-"
-          + String(d.getUTCHours()).padStart(2,"0")
-          + String(d.getUTCMinutes()).padStart(2,"0")
-          + String(d.getUTCSeconds()).padStart(2,"0");
-        return "NF-" + stamp + "-" + rand4();
-      }
-
-      function setRID(rid){
-        ridInput.value = rid;
-        ridText.textContent = rid;
-
-        try { localStorage.setItem("nf_last_rid", rid); } catch(e){}
-
-        var deep = "/status/?rid=" + encodeURIComponent(rid);
-        if (openStatusBtn) openStatusBtn.href = deep;
-        if (checkStatusBtn) checkStatusBtn.href = deep;
-      }
-
-      var existing = "";
-      try { existing = localStorage.getItem("nf_last_rid") || ""; } catch(e){}
-      setRID(existing || genRID());
-
-      if (newRidBtn) {
-        newRidBtn.addEventListener("click", function(){
-          setRID(genRID());
-        });
-      }
-
-      var copyBtn = document.getElementById("copyRidBtn");
-      if (copyBtn) {
-        copyBtn.addEventListener("click", async function(){
-          var rid = ridInput.value || "";
-          try{
-            await navigator.clipboard.writeText(rid);
-            copyBtn.textContent = "Copied";
-            setTimeout(function(){ copyBtn.textContent = "Copy"; }, 1200);
-          } catch(e){
-            var ta = document.createElement("textarea");
-            ta.value = rid;
-            document.body.appendChild(ta);
-            ta.select();
-            try { document.execCommand("copy"); } catch(_){}
-            document.body.removeChild(ta);
-            copyBtn.textContent = "Copied";
-            setTimeout(function(){ copyBtn.textContent = "Copy"; }, 1200);
-          }
-        });
-      }
-    })();
-
-    // AJAX submit to Formspree, then redirect to /thanks/?rid=...
-    (function () {
-      var form = document.getElementById("nfGateForm");
-      if (!form) return;
-
-      var msg = document.getElementById("formMsg");
-      var btn = document.getElementById("submitBtn");
-      var ridInput = document.getElementById("request_id");
-
-      function setMsg(text, kind){
-        if (!msg) return;
-        msg.style.display = "block";
-        msg.textContent = text;
-
-        if (kind === "ok") {
-          msg.style.borderColor = "rgba(45,227,138,.25)";
-          msg.style.background = "rgba(45,227,138,.06)";
-        } else if (kind === "err") {
-          msg.style.borderColor = "rgba(255,90,90,.25)";
-          msg.style.background = "rgba(255,90,90,.06)";
-        } else {
-          msg.style.borderColor = "rgba(255,255,255,.12)";
-          msg.style.background = "rgba(255,255,255,.03)";
-        }
-      }
-
-      form.addEventListener("submit", async function (e) {
-        e.preventDefault();
-
-        var action = form.getAttribute("action");
-        if (!action) {
-          setMsg("Form endpoint is missing. Please set the form action to your Formspree URL.", "err");
-          return;
-        }
-
-        var rid = (ridInput && ridInput.value) ? ridInput.value : "";
-
-        if (btn) {
-          btn.disabled = true;
-          btn.dataset.label = btn.textContent;
-          btn.textContent = "Sending…";
-        }
-        setMsg("Sending your request…", "info");
-
-        try {
-          var fd = new FormData(form);
-
-          var res = await fetch(action, {
-            method: "POST",
-            body: fd,
-            headers: { "Accept": "application/json" }
-          });
-
-          var data = null;
-          try { data = await res.json(); } catch (_) {}
-
-          if (!res.ok) {
-            var errText = "Submission failed. Please try again.";
-            if (data && data.errors && data.errors.length) {
-              errText = data.errors.map(function(x){ return x.message || "Error"; }).join(" ");
-            }
-            setMsg(errText, "err");
-            if (btn) { btn.disabled = false; btn.textContent = btn.dataset.label || "Request Review"; }
-            return;
-          }
-
-          setMsg("Submitted successfully. Redirecting…", "ok");
-
-          try { localStorage.setItem("nf_last_submitted_rid", rid); } catch(e){}
-
-          var url = "/thanks/";
-          if (rid) url += "?rid=" + encodeURIComponent(rid);
-          window.location.assign(url);
-
-        } catch (err) {
-          setMsg("Network error. Please check your connection and try again.", "err");
-          if (btn) { btn.disabled = false; btn.textContent = btn.dataset.label || "Request Review"; }
-        }
-      });
-    })();
-
-    // Auto-active (header + footer + mobile)
-    (function () {
-      function normPath(p) {
-        if (!p) return "/";
-        p = p.split("?")[0].split("#")[0];
-        if (p.length > 1 && p.endsWith("/")) p = p.slice(0, -1);
-        return p.toLowerCase();
-      }
-      var current = normPath(window.location.pathname);
-      var links = document.querySelectorAll('nav[aria-label="Primary navigation"] a, footer a, #mobilePanel a');
-
-      links.forEach(function (a) {
-        var href = a.getAttribute("href") || "";
-        if (!href.startsWith("/")) return;
-        var target = normPath(href);
-
-        var isActive =
-          (target === "/" && current === "/") ||
-          (target !== "/" && (current === target || current.startsWith(target + "/")));
-
-        if (isActive) {
-          a.classList.add("active");
-          a.setAttribute("aria-current", "page");
-        } else {
-          a.classList.remove("active");
-          a.removeAttribute("aria-current");
-        }
-      });
-    })();
-  </script>
+  <!-- injected footer -->
+  <div id="nfFooter"></div>
 </body>
 </html>

@@ -2,55 +2,187 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Noetfield – Trust Ledger and AI Trust Brief for AI Governance</title>
+  <title>Noetfield – Trust and Stewardship in AI</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- Basic meta -->
   <meta
     name="description"
-    content="Noetfield helps boards, executives, and regulators turn scattered AI artefacts into a board-ready Trust Ledger – starting with a 6-week AI Trust Brief pilot."
+    content="Noetfield helps boards and operators turn scattered AI activity into a board-ready Trust Ledger and a 6-week Trust Brief — evidence-first, defensible, and governance-grade."
   />
   <meta name="robots" content="index,follow" />
   <meta name="author" content="Noetfield Systems Inc." />
+  <meta name="theme-color" content="#07070b" />
+
   <link rel="canonical" href="https://www.noetfield.com/" />
 
-  <!-- Icons -->
   <link rel="icon" href="/noetfield-favicon-512.png" type="image/png" />
   <link rel="apple-touch-icon" href="/noetfield-favicon-512.png" />
-  <meta name="theme-color" content="#05060a" />
 
-  <!-- Open Graph -->
+  <!-- OG -->
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Noetfield" />
-  <meta property="og:title" content="Noetfield – Trust Ledger and AI Trust Brief for AI Governance" />
+  <meta property="og:title" content="Noetfield – Trust and Stewardship in AI" />
   <meta
     property="og:description"
-    content="Governance-first Trust Ledger and 6-week AI Trust Brief pilot for boards, executives, and regulators."
+    content="Board-ready AI governance artefacts: Trust Ledger + Trust Brief — evidence-first, defensible, and decision-grade."
   />
   <meta property="og:url" content="https://www.noetfield.com/" />
   <meta property="og:image" content="https://www.noetfield.com/noetfield-og.png" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Noetfield – Trust Ledger and AI Trust Brief for AI Governance" />
+  <meta name="twitter:title" content="Noetfield – Trust and Stewardship in AI" />
   <meta
     name="twitter:description"
-    content="Noetfield turns scattered AI artefacts into a board-ready Trust Ledger, starting with a 6-week AI Trust Brief pilot."
+    content="Board-ready AI governance artefacts: Trust Ledger + Trust Brief — evidence-first, defensible, and decision-grade."
   />
   <meta name="twitter:image" content="https://www.noetfield.com/noetfield-og.png" />
 
-  <!-- Schema -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "Noetfield Systems Inc.",
-    "url": "https://www.noetfield.com/",
-    "logo": "https://www.noetfield.com/noetfield-og.png",
-    "description": "Noetfield provides governance-first AI Trust Briefs and Trust Ledger reporting for boards, executives, and regulators.",
-    "areaServed": { "@type": "Country", "name": "Canada" }
-  }
-  </script>
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- LOCKED SHELL -->
+  <link rel="stylesheet" href="/assets/noetfield-shell.css" />
+  <script src="/assets/noetfield-shell.js" defer></script>
+
+  <!-- Page-only styles -->
+  <style>
+    .hero{padding:22px 0 14px}
+    .heroShell{
+      position:relative;
+      border-radius: calc(var(--radius) + 8px);
+      border: 1px solid rgba(255,255,255,.11);
+      background:
+        radial-gradient(1100px 460px at 18% 0%, rgba(200,163,73,.18), transparent 60%),
+        radial-gradient(1000px 420px at 90% 10%, rgba(122,167,255,.10), transparent 62%),
+        linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.022));
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .heroShell::before{
+      content:"";
+      position:absolute; inset:-1px;
+      background: linear-gradient(120deg, rgba(200,163,73,.26), transparent 30%, rgba(255,255,255,.08) 68%, transparent);
+      opacity:.44;
+      pointer-events:none;
+      mask-image: linear-gradient(180deg, black 0%, black 58%, transparent 96%);
+    }
+    .heroInner{padding: 26px 22px}
+
+    .eyebrow{
+      display:inline-flex; gap:10px; align-items:center;
+      color:var(--muted);
+      font-size:13px;
+      padding:9px 12px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.13);
+      background: rgba(255,255,255,.035);
+    }
+    .dot{
+      width:8px; height:8px; border-radius:50%;
+      background: rgba(200,163,73,.97);
+      box-shadow: 0 0 0 3px rgba(200,163,73,.18);
+    }
+
+    h1{margin:14px 0 10px; font-size:42px; line-height:1.06; letter-spacing:-0.85px}
+    .lead{margin:0; color:var(--muted); font-size:16px; max-width: 980px; line-height:1.75}
+    .lead strong{color:var(--text); font-weight:800}
+    .lead a{border-bottom:1px solid rgba(255,255,255,.18)}
+
+    .metaRow{display:flex; flex-wrap:wrap; gap:10px; margin-top:14px}
+    .pill{
+      display:inline-flex; align-items:center; gap:10px;
+      padding:9px 12px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.03);
+      color:var(--muted);
+      font-size:13px;
+    }
+    .pill strong{color:var(--text); font-weight:800}
+
+    .ctaRow{display:flex; gap:12px; flex-wrap:wrap; align-items:center; margin-top:14px}
+    .ctaRow .btn{white-space:nowrap}
+
+    .grid{
+      display:grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap:18px;
+      margin: 18px 0 34px;
+      align-items:start;
+    }
+    .card{
+      border-radius:var(--radius);
+      border:1px solid rgba(255,255,255,.11);
+      background: linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.022));
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+      min-width:0;
+    }
+    .card .hd{padding:18px 18px 0}
+    .card h2{margin:0 0 8px; font-size:18px; letter-spacing:-0.2px}
+    .card p{margin:0 0 12px; color:var(--muted); line-height:1.7}
+    .card .bd{padding:18px}
+
+    .kGrid{display:grid; gap:10px; margin-top:10px}
+    .k{
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      border-radius:16px;
+      padding:12px 12px;
+    }
+    .kTitle{margin:0; font-weight:900; font-size:14px; letter-spacing:-.2px}
+    .kDesc{margin:8px 0 0; color:var(--muted); font-size:13px; line-height:1.65}
+    .kActions{display:flex; gap:10px; flex-wrap:wrap; margin-top:10px}
+
+    .box{
+      margin-top:12px;
+      padding:12px 12px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      color:var(--muted2);
+      font-size:12.5px;
+      line-height:1.6;
+    }
+    .box strong{color:var(--text); font-weight:800}
+    .box a{border-bottom:1px solid rgba(255,255,255,.18)}
+
+    .mini{
+      margin-top:10px;
+      color:var(--muted2);
+      font-size:12.5px;
+      line-height:1.6;
+    }
+
+    .split{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:10px;
+      margin-top:10px;
+    }
+    .tile{
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      border-radius:16px;
+      padding:12px 12px;
+    }
+    .tile strong{color:var(--text); font-weight:900}
+    .tile div{margin-top:6px; color:var(--muted); font-size:13px; line-height:1.6}
+
+    @media (max-width: 980px){
+      .grid{grid-template-columns:1fr}
+    }
+    @media (max-width: 760px){
+      h1{font-size:32px}
+      .split{grid-template-columns:1fr}
+    }
+  </style>
 
   <script type="application/ld+json">
   {
@@ -58,825 +190,156 @@
     "@type": "WebSite",
     "name": "Noetfield",
     "url": "https://www.noetfield.com/",
-    "description": "Noetfield – Trust Brief and Trust Ledger for AI governance.",
-    "creator": { "@type": "Organization", "name": "Noetfield Systems Inc." }
+    "publisher": { "@type": "Organization", "name": "Noetfield Systems Inc." }
   }
   </script>
-
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebPage",
-    "name": "Noetfield – Trust Ledger and AI Trust Brief for AI Governance",
-    "url": "https://www.noetfield.com/",
-    "isPartOf": { "@type": "WebSite", "name": "Noetfield", "url": "https://www.noetfield.com/" },
-    "description": "Noetfield helps boards and regulators turn scattered AI artefacts into a board-ready Trust Ledger, starting with a 6-week AI Trust Brief pilot."
-  }
-  </script>
-
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
-    rel="stylesheet"
-  />
-
-  <!-- IMPORTANT: CSS is intentionally kept identical to the Trust Brief page for 100% visual alignment -->
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --bg: #05060a;
-      --bg-soft: #080911;
-      --border-soft: rgba(255,255,255,0.10);
-      --text-main: #f5f5f7;
-      --text-soft: #daddef;
-      --text-mute: #9ca3af;
-      --accent: #ffffff;
-      --accent-soft: #9ca3ff;
-    }
-
-    body {
-      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: radial-gradient(circle at top, #151827 0%, var(--bg) 55%);
-      color: var(--text-main);
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 32px 20px 40px;
-    }
-
-    a { color: inherit; text-decoration: none; }
-
-    .page {
-      width: 100%;
-      max-width: 1040px;
-      display: flex;
-      flex-direction: column;
-      min-height: calc(100vh - 72px);
-    }
-
-    header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 32px;
-      padding-bottom: 14px;
-      border-bottom: 1px solid var(--border-soft);
-      gap: 14px;
-    }
-
-    .brand-wrap {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .brand-logo {
-      width: 32px;
-      height: 32px;
-      border-radius: 999px;
-      background: radial-gradient(circle at 25% 0, #ffffff 0, #d4e0ff 18%, #818cf8 45%, #1f2937 70%, #020617 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 18px;
-      font-weight: 700;
-      color: #ffffff;
-      box-shadow: 0 10px 28px rgba(15,23,42,0.9);
-    }
-
-    .brand-text {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
-
-    .brand-name {
-      font-size: 16px;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
-    .brand-tagline {
-      font-size: 12px;
-      color: var(--text-mute);
-    }
-
-    nav {
-      display: flex;
-      gap: 18px;
-      font-size: 13px;
-      flex-wrap: wrap;
-    }
-
-    nav a {
-      opacity: 0.78;
-      padding-bottom: 2px;
-      border-bottom: 1px solid transparent;
-      position: relative;
-    }
-
-    nav a:hover {
-      opacity: 1;
-      border-bottom-color: rgba(209,213,219,0.6);
-    }
-
-    nav a.active {
-      opacity: 1;
-      border-bottom-color: rgba(255,255,255,0.85);
-      font-weight: 500;
-    }
-
-    main { width: 100%; }
-
-    .hero {
-      margin-bottom: 36px;
-    }
-
-    .pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 11px;
-      padding: 4px 10px;
-      border-radius: 999px;
-      border: 1px solid rgba(148,163,253,0.35);
-      background: radial-gradient(circle at 0 0, rgba(129,140,248,0.32), transparent 55%);
-      color: #e5e7eb;
-      margin-bottom: 10px;
-    }
-
-    .pill-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 999px;
-      background: linear-gradient(135deg, #7dd3fc, #a855f7);
-    }
-
-    .hero-kicker {
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      color: var(--text-mute);
-      margin-bottom: 8px;
-    }
-
-    .hero-title {
-      font-size: clamp(26px, 3vw, 30px);
-      line-height: 1.15;
-      font-weight: 600;
-      margin-bottom: 14px;
-      letter-spacing: -0.02em;
-    }
-
-    .hero-title span {
-      background: linear-gradient(135deg, #ffffff, #a5b4fc);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
-
-    .hero-subtitle {
-      font-size: 15px;
-      line-height: 1.6;
-      color: #d0d3dd;
-      max-width: 680px;
-    }
-
-    .hero-cta-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 22px;
-    }
-
-    .btn-primary,
-    .btn-ghost {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 9px 18px;
-      border-radius: 999px;
-      font-size: 13px;
-      font-weight: 500;
-      cursor: pointer;
-      border: 1px solid transparent;
-      transition: background-color 0.16s ease, border-color 0.16s ease, color 0.16s ease, transform 0.06s ease;
-      white-space: nowrap;
-    }
-
-    .btn-primary {
-      background: linear-gradient(135deg, #f9fafb, #e5e7eb);
-      color: #050608;
-      box-shadow: 0 12px 32px rgba(15,23,42,0.9);
-    }
-
-    .btn-primary:hover {
-      background: #ffffff;
-      transform: translateY(-1px);
-    }
-
-    .btn-ghost {
-      background: rgba(15,23,42,0.9);
-      border-color: #4b4f5c;
-      color: #e1e3ea;
-    }
-
-    .btn-ghost:hover {
-      background: #111827;
-      border-color: #6c7080;
-    }
-
-    .btn-full {
-      width: 100%;
-      justify-content: center;
-    }
-
-    .section {
-      margin-bottom: 30px;
-    }
-
-    .section-kicker {
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      color: var(--text-mute);
-      margin-bottom: 4px;
-    }
-
-    .section-title-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      margin-bottom: 8px;
-    }
-
-    .section-title {
-      font-size: 18px;
-      font-weight: 600;
-      margin-bottom: 0;
-      letter-spacing: -0.02em;
-    }
-
-    .section-subtitle {
-      font-size: 14px;
-      color: #a0a4ae;
-      margin-bottom: 10px;
-    }
-
-    .section p {
-      font-size: 14px;
-      line-height: 1.7;
-      color: #e1e3ea;
-      margin-bottom: 9px;
-      max-width: 720px;
-    }
-
-    ul {
-      list-style: none;
-      margin-top: 4px;
-    }
-
-    li {
-      font-size: 14px;
-      line-height: 1.6;
-      color: #e1e3ea;
-      padding-left: 18px;
-      position: relative;
-      margin-bottom: 6px;
-    }
-
-    li::before {
-      content: "•";
-      position: absolute;
-      left: 4px;
-      color: var(--accent-soft);
-    }
-
-    ol {
-      margin-top: 6px;
-      padding-left: 18px;
-    }
-
-    ol li {
-      margin-bottom: 10px;
-      color: #e1e3ea;
-      line-height: 1.7;
-    }
-
-    .grid-2,
-    .grid-3 {
-      display: grid;
-      gap: 24px;
-    }
-
-    .grid-2 {
-      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
-    }
-
-    .grid-3 {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-
-    .card {
-      border-radius: 16px;
-      border: 1px solid #22252f;
-      background: radial-gradient(circle at top left, #191c2e 0, #0a0b10 52%, #050608 100%);
-      padding: 16px 16px 14px;
-    }
-
-    .card-kicker {
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      color: #9ea2b2;
-      margin-bottom: 6px;
-    }
-
-    .card-title {
-      font-size: 14px;
-      font-weight: 600;
-      margin-bottom: 6px;
-    }
-
-    .card p {
-      font-size: 13px;
-      line-height: 1.6;
-      color: #daddef;
-      margin-bottom: 6px;
-    }
-
-    .checklist {
-      border-radius: 14px;
-      border: 1px solid #232633;
-      background: var(--bg-soft);
-      padding: 14px 16px 10px;
-    }
-
-    .checklist-title {
-      font-size: 13px;
-      font-weight: 600;
-      margin-bottom: 6px;
-    }
-
-    .checklist-item {
-      font-size: 12px;
-      color: #b6bad1;
-      line-height: 1.6;
-      padding-left: 18px;
-      position: relative;
-      margin-bottom: 4px;
-    }
-
-    .checklist-item::before {
-      content: "✓";
-      position: absolute;
-      left: 3px;
-      color: var(--accent-soft);
-      font-size: 11px;
-    }
-
-    .two-col {
-      display: grid;
-      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
-      gap: 24px;
-    }
-
-    .faq-item {
-      margin-bottom: 14px;
-    }
-
-    .faq-q {
-      font-size: 13px;
-      font-weight: 500;
-      color: #f1f2fb;
-      margin-bottom: 3px;
-    }
-
-    .faq-a {
-      font-size: 13px;
-      color: #cacfe4;
-      line-height: 1.6;
-    }
-
-    /* ---- Form + FAQ section ---- */
-    .form-layout {
-      display: grid;
-      grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
-      gap: 24px;
-      align-items: flex-start;
-    }
-
-    .form-card,
-    .faq-card {
-      border-radius: 16px;
-      border: 1px solid #22252f;
-      background: radial-gradient(circle at top left, #191c2e 0, #0a0b10 52%, #050608 100%);
-      padding: 16px 16px 18px;
-    }
-
-    form { width: 100%; }
-
-    .form-group {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      margin-bottom: 10px;
-    }
-
-    .form-group-inline {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-      gap: 10px;
-    }
-
-    label {
-      font-size: 13px;
-      color: var(--text-soft);
-    }
-
-    input[type="text"],
-    input[type="email"],
-    select,
-    textarea {
-      background: #020617;
-      border-radius: 10px;
-      border: 1px solid #272a37;
-      padding: 9px 11px;
-      font-size: 13px;
-      color: var(--text-main);
-      outline: none;
-      width: 100%;
-    }
-
-    input::placeholder,
-    textarea::placeholder {
-      color: #6b7280;
-    }
-
-    input:focus,
-    select:focus,
-    textarea:focus {
-      border-color: var(--accent-soft);
-      box-shadow: 0 0 0 1px rgba(129,140,248,0.5);
-    }
-
-    select {
-      appearance: none;
-      -webkit-appearance: none;
-      -moz-appearance: none;
-      background-image: linear-gradient(45deg, transparent 50%, #9ca3af 50%), linear-gradient(135deg, #9ca3af 50%, transparent 50%);
-      background-position: calc(100% - 14px) calc(50% - 3px), calc(100% - 9px) calc(50% - 3px);
-      background-size: 7px 7px, 7px 7px;
-      background-repeat: no-repeat;
-    }
-
-    .helper-text {
-      font-size: 12px;
-      color: var(--text-mute);
-      margin-top: 2px;
-    }
-
-    .licence-options {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.75rem 1.5rem;
-      margin-top: 4px;
-    }
-
-    .licence-option {
-      display: flex;
-      align-items: center;
-      font-size: 13px;
-      color: var(--text-soft);
-    }
-
-    .licence-option input[type="radio"] {
-      margin-right: 0.45rem;
-    }
-
-    .consent {
-      display: flex;
-      align-items: flex-start;
-      gap: 8px;
-      margin-top: 8px;
-      font-size: 12px;
-      color: var(--text-mute);
-    }
-
-    .consent input[type="checkbox"] {
-      margin-top: 2px;
-    }
-
-    footer {
-      margin-top: 32px;
-      font-size: 11px;
-      color: #737889;
-      display: flex;
-      justify-content: space-between;
-      gap: 12px;
-      flex-wrap: wrap;
-      align-items: center;
-    }
-
-    footer a {
-      color: #b6bad1;
-      text-decoration: none;
-    }
-
-    footer a:hover {
-      text-decoration: underline;
-    }
-
-    @media (max-width: 900px) {
-      .grid-3 { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
-    }
-
-    @media (max-width: 768px) {
-      body { padding: 24px 16px 32px; }
-
-      header {
-        align-items: flex-start;
-        flex-direction: column;
-        gap: 6px;
-      }
-
-      nav { justify-content: flex-start; }
-
-      .hero-title { font-size: 24px; }
-
-      .hero-subtitle { max-width: 100%; }
-
-      .grid-2 { grid-template-columns: minmax(0, 1fr); }
-      .grid-3 { grid-template-columns: minmax(0, 1fr); }
-      .two-col { grid-template-columns: minmax(0, 1fr); }
-
-      .hero-cta-row { flex-direction: column; }
-
-      .btn-primary,
-      .btn-ghost {
-        width: 100%;
-        justify-content: center;
-      }
-
-      .form-layout { grid-template-columns: minmax(0, 1fr); }
-      .form-group-inline { grid-template-columns: minmax(0, 1fr); }
-
-      footer {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-    }
-
-    @media (max-width: 640px) {
-      .licence-options {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-    }
-  </style>
 </head>
 
 <body>
-  <div class="page">
-    <header>
-      <a href="/" class="brand-wrap">
-        <div class="brand-logo" aria-hidden="true">N</div>
-        <div class="brand-text">
-          <div class="brand-name">Noetfield</div>
-          <div class="brand-tagline">Trust systems for AI governance</div>
-        </div>
-      </a>
+  <div class="bg" aria-hidden="true"></div>
+  <a class="skip" href="#main">Skip to content</a>
 
-      <nav aria-label="Primary navigation">
-        <a href="/" class="active" aria-current="page">Home</a>
-        <a href="/trust-brief/">Trust Brief</a>
-        <a href="/trust-ledger/">Trust Ledger</a>
-        <a href="/for-whom/">For Whom</a>
-        <a href="/gate/">Gate</a>
-        <a href="/about/">About</a>
-        <a href="/contact/">Contact</a>
-        <a href="/playbook/">Playbook</a>
-        <a href="/partners/">Partners</a>
-      </nav>
-    </header>
+  <!-- injected header -->
+  <div id="nfHeader"></div>
 
-    <main>
-      <!-- Hero -->
-      <section class="hero">
-        <div class="pill">
-          <span class="pill-dot" aria-hidden="true"></span>
-          Governance-first, not hype-first
-        </div>
+  <main id="main" class="wrap">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="heroShell">
+        <div class="heroInner">
+          <div class="eyebrow"><span class="dot"></span> Trust and stewardship in AI</div>
+          <h1>Governance-grade AI. Built for boards.</h1>
+          <p class="lead">
+            Noetfield turns scattered AI usage into an <strong>evidence-first</strong> system:
+            a <a href="/trust-ledger/"><strong>Trust Ledger</strong></a> (board-ready register)
+            and a <a href="/trust-brief/"><strong>Trust Brief</strong></a> (6-week diagnostic)
+            that makes decisions defensible — without building a compliance department.
+          </p>
 
-        <div class="hero-kicker">AI governance for real-economy institutions</div>
+          <div class="metaRow" aria-label="Highlights">
+            <div class="pill"><strong>Evidence trail</strong></div>
+            <div class="pill"><strong>Board-ready</strong></div>
+            <div class="pill"><strong>Decision memos</strong></div>
+            <div class="pill"><strong>Request ID</strong> tracking</div>
+          </div>
 
-        <h1 class="hero-title">
-          Turning AI into a <span>board-ready Trust Ledger</span>, starting with a 6-week Trust Brief.
-        </h1>
+          <div class="ctaRow" aria-label="Primary actions">
+            <a class="btn" href="/gate/">Enter Gate</a>
+            <a class="btn secondary" href="/trust-brief/">Trust Brief</a>
+            <a class="btn secondary" href="/trust-ledger/">Trust Ledger</a>
+            <a class="btn secondary" href="/playbook/">Playbook</a>
+          </div>
 
-        <p class="hero-subtitle">
-          Noetfield helps boards, executives, and regulators move from scattered AI artefacts – logs, tickets, slide decks,
-          and model documents – to a short, auditable Trust Ledger and a 6–10 page AI Trust Brief.
-        </p>
-
-        <div class="hero-cta-row">
-          <a href="/trust-brief/" class="btn-primary">Explore the 6-week Trust Brief</a>
-          <a href="/trust-ledger/" class="btn-ghost">See how the Trust Ledger works</a>
-        </div>
-      </section>
-
-      <!-- Offering -->
-      <section class="section">
-        <div class="section-title-row">
-          <div>
-            <div class="section-kicker">Offering</div>
-            <h2 class="section-title">Two connected pieces: Trust Brief and Trust Ledger</h2>
+          <div class="mini">
+            Already routed? Check <a href="/status/">Status</a> or access <a href="/portal/">Portal</a> (rolling out).
           </div>
         </div>
-
-        <p class="section-subtitle">
-          A focused entry pilot, and a repeatable governance artefact for boards, auditors, and supervisors.
-        </p>
-
-        <div class="grid-2">
-          <div class="card">
-            <div class="card-kicker">Entry pilot</div>
-            <div class="card-title">Noetfield AI Trust Brief (6 weeks)</div>
-            <p>
-              A time-boxed engagement that maps material AI use, highlights risks and safeguards, and delivers a board-ready
-              AI Trust Brief plus a first Trust Ledger sample.
-            </p>
-            <ul>
-              <li>6–10 page AI Trust Brief in plain language.</li>
-              <li>1–2 page Trust Ledger sample for critical AI systems.</li>
-              <li>5–7 priority actions for the next 12 months.</li>
-            </ul>
-          </div>
-
-          <div class="card">
-            <div class="card-kicker">Ongoing artefact</div>
-            <div class="card-title">Noetfield Trust Ledger</div>
-            <p>
-              A curated, plain-language record of the most critical AI decisions – how they were approved, what safeguards
-              they rely on, and who is accountable – designed to sit above existing controls.
-            </p>
-            <ul>
-              <li>Focus on 3–10 material AI decisions, not every model.</li>
-              <li>Connects documentation, controls, and incidents into one history.</li>
-              <li>Built for boards, internal audit, and regulators.</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <!-- Who it is for -->
-      <section class="section">
-        <div class="section-title-row">
-          <div>
-            <div class="section-kicker">Who it is for</div>
-            <h2 class="section-title">Boards, executives, and stewards under AI pressure</h2>
-          </div>
-        </div>
-
-        <p>
-          Noetfield is designed for organisations where AI is becoming material – in risk, operations, or customer journeys –
-          and where questions from boards, funders, or regulators are becoming more frequent.
-        </p>
-
-        <div class="grid-3">
-          <div class="card">
-            <div class="card-kicker">Governance & risk</div>
-            <div class="card-title">Boards and committees</div>
-            <p>
-              A short, credible view of AI risk and oversight that can be read in minutes and revisited each cycle.
-            </p>
-          </div>
-
-          <div class="card">
-            <div class="card-kicker">Execution</div>
-            <div class="card-title">Executives and owners</div>
-            <p>
-              Practical governance that supports delivery teams without turning into theatre or endless documentation.
-            </p>
-          </div>
-
-          <div class="card">
-            <div class="card-kicker">Oversight</div>
-            <div class="card-title">Regulators and supervisors</div>
-            <p>
-              A consistent, concise way to see how AI is controlled, without reconciling dozens of artefacts each time.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <!-- Why now -->
-      <section class="section">
-        <div class="section-title-row">
-          <div>
-            <div class="section-kicker">Why now</div>
-            <h2 class="section-title">From “Do you use AI?” to “How is it governed?”</h2>
-          </div>
-        </div>
-
-        <p>
-          Boards and funders are shifting from inventories to accountability: decision rights, safeguards, monitoring, and
-          evidence that can be revisited over time.
-        </p>
-
-        <div class="two-col" style="margin-top: 10px;">
-          <div class="card">
-            <div class="card-kicker">Common gap</div>
-            <div class="card-title">Fragments exist, but no narrative</div>
-            <p>
-              Most organisations already have fragments: policies, vendor docs, logs, dashboards, model notes, tickets, and
-              minutes. The gap is a coherent record that connects them.
-            </p>
-            <p>
-              Noetfield connects fragments into a short narrative that boards and supervisors can trust and reuse.
-            </p>
-          </div>
-
-          <div class="checklist">
-            <div class="checklist-title">Signals of fit</div>
-            <div class="checklist-item">AI touches customers, money, or critical decisions</div>
-            <div class="checklist-item">Board questions are increasing</div>
-            <div class="checklist-item">Vendor + internal tooling are growing</div>
-            <div class="checklist-item">Controls exist, but are scattered</div>
-            <div class="checklist-item">Need a time-boxed starting point</div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Next step -->
-      <section class="section">
-        <div class="section-title-row">
-          <div>
-            <div class="section-kicker">Next step</div>
-            <h2 class="section-title">Start with a 6-week Trust Brief</h2>
-          </div>
-        </div>
-
-        <p>
-          The fastest way to confirm fit is a short scoping note. If there is a match, the Trust Brief becomes the first,
-          reusable governance artefact and a template for expanding into the Trust Ledger.
-        </p>
-
-        <div class="grid-2" style="margin-top: 10px;">
-          <div class="card">
-            <div class="card-kicker">Pilot</div>
-            <div class="card-title">Explore Trust Brief</div>
-            <p>
-              Scope, deliverables, process, and pilot pricing for early partners.
-            </p>
-            <p>
-              <a href="/trust-brief/">Go to Trust Brief →</a>
-            </p>
-          </div>
-
-          <div class="card">
-            <div class="card-kicker">Example</div>
-            <div class="card-title">See a Trust Ledger sample</div>
-            <p>
-              A simplified snapshot of what a board-ready Trust Ledger entry can look like.
-            </p>
-            <p>
-              <a href="/trust-ledger/sample-report/online/">View sample →</a>
-            </p>
-          </div>
-        </div>
-
-        <div class="hero-cta-row" style="margin-top: 14px;">
-          <a href="mailto:ceo@noetfield.com?subject=Trust%20Brief%20pilot%20inquiry" class="btn-primary">
-            Discuss a Trust Brief pilot
-          </a>
-          <a href="/contact/" class="btn-ghost">Contact</a>
-        </div>
-      </section>
-    </main>
-
-    <!-- Footer (Structure removed, aligned with Trust Brief nav) -->
-    <footer>
-      <div>© <span id="year"></span> Noetfield Systems Inc. All rights reserved.</div>
-      <div>
-        <a href="/">Home</a> ·
-        <a href="/trust-brief/">Trust Brief</a> ·
-        <a href="/trust-ledger/">Trust Ledger</a> ·
-        <a href="/for-whom/">For Whom</a> ·
-        <a href="/gate/">Gate</a> ·
-        <a href="/about/">About</a> ·
-        <a href="/contact/">Contact</a> ·
-        <a href="/playbook/">Playbook</a> ·
-        <a href="/partners/">Partners</a>
       </div>
-    </footer>
-  </div>
+    </section>
 
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
+    <section class="grid">
+      <!-- LEFT -->
+      <div class="card">
+        <div class="hd">
+          <h2>What we deliver</h2>
+          <p>Two artefacts, one system: governance that survives scrutiny.</p>
+        </div>
+        <div class="bd">
+          <div class="kGrid" aria-label="Deliverables">
+            <div class="k">
+              <div class="kTitle">Trust Ledger</div>
+              <p class="kDesc">
+                A board-ready register of AI systems, material use-cases, controls, evidence, and sign-offs —
+                formatted for executive review and regulator-facing conversations.
+              </p>
+              <div class="kActions">
+                <a class="btn secondary" href="/trust-ledger/">View Trust Ledger</a>
+                <a class="btn secondary" href="/gate/">Request via Gate</a>
+              </div>
+            </div>
+
+            <div class="k">
+              <div class="kTitle">Trust Brief (6-week diagnostic)</div>
+              <p class="kDesc">
+                A tight diagnostic that maps what matters, identifies decision points, and produces initial ledger
+                entries with options, tradeoffs, and a clean next-step plan.
+              </p>
+              <div class="kActions">
+                <a class="btn secondary" href="/trust-brief/">View Trust Brief</a>
+                <a class="btn secondary" href="/gate/">Enter Gate</a>
+              </div>
+            </div>
+
+            <div class="k">
+              <div class="kTitle">Partner lanes</div>
+              <p class="kDesc">
+                Channel, Delivery, and Integration partners help originate, deliver, and implement controls
+                so the evidence trail stays intact.
+              </p>
+              <div class="kActions">
+                <a class="btn secondary" href="/gate/partners/">Partners Gate</a>
+                <a class="btn secondary" href="/gate/partners/intake/">Partner intake</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="box">
+            <strong>Core rule:</strong> if a claim can’t be supported by evidence (logs, exports, screenshots, configs),
+            it doesn’t go into the ledger.
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT -->
+      <aside class="card">
+        <div class="hd">
+          <h2>Quick navigation</h2>
+          <p>Start where you are.</p>
+        </div>
+        <div class="bd">
+          <div class="split" aria-label="Quick tiles">
+            <div class="tile">
+              <strong>Gate</strong>
+              <div>Governed entry for requests, routing, and partner lanes.</div>
+              <div style="margin-top:10px;"><a class="btn" href="/gate/">Enter</a></div>
+            </div>
+            <div class="tile">
+              <strong>Status</strong>
+              <div>Track by Request ID across Gate and submissions.</div>
+              <div style="margin-top:10px;"><a class="btn secondary" href="/status/">Open</a></div>
+            </div>
+            <div class="tile">
+              <strong>Portal</strong>
+              <div>Workspace for clients and partners (rolling out).</div>
+              <div style="margin-top:10px;"><a class="btn secondary" href="/portal/">View</a></div>
+            </div>
+            <div class="tile">
+              <strong>FAQ</strong>
+              <div>Clear answers about scope, privacy, and process.</div>
+              <div style="margin-top:10px;"><a class="btn secondary" href="/faq/">Read</a></div>
+            </div>
+          </div>
+
+          <div class="box">
+            <strong>Preferred path:</strong> enter via <a href="/gate/">Gate</a> so everything is tracked with a Request ID
+            and routed to the correct lane.
+          </div>
+
+          <div class="mini">
+            Policies: <a href="/privacy/">Privacy</a> · <a href="/terms/">Terms</a> · <a href="/policies/">Policies</a> ·
+            <a href="/cookies/">Cookies</a> · <a href="/accessibility/">Accessibility</a>
+          </div>
+
+          <div class="ctaRow" style="margin-top:12px;">
+            <a class="btn secondary" href="/contact/">Contact</a>
+            <a class="btn secondary" href="/feedback/">Feedback</a>
+          </div>
+        </div>
+      </aside>
+    </section>
+  </main>
+
+  <!-- injected footer -->
+  <div id="nfFooter"></div>
 </body>
 </html>

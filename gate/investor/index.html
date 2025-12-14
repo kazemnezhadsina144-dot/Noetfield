@@ -2,248 +2,109 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Noetfield — Investor track (signal-first)</title>
+  <title>Noetfield — Partners Gate</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta
     name="description"
-    content="Investor track for Noetfield. A governed entry for aligned capital and strategic operators: Trust Ledger thesis, evidence posture, and a clean routing intake tied to a Request ID"
+    content="Partner track for operators, agencies, and vendors who originate, deliver, or implement Noetfield governance artefacts with evidence discipline and Request ID routing."
   />
   <meta name="robots" content="index,follow" />
   <meta name="author" content="Noetfield Systems Inc." />
   <meta name="theme-color" content="#07070b" />
 
-  <link rel="canonical" href="https://www.noetfield.com/gate/investor/" />
+  <link rel="canonical" href="https://www.noetfield.com/gate/partners/" />
 
   <link rel="icon" href="/noetfield-favicon-512.png" type="image/png" />
   <link rel="apple-touch-icon" href="/noetfield-favicon-512.png" />
 
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Noetfield" />
-  <meta property="og:title" content="Noetfield — Investor track (signal-first)" />
+  <meta property="og:title" content="Noetfield — Partners Gate" />
   <meta
     property="og:description"
-    content="Investor track for Noetfield. Governed entry for aligned capital: thesis, evidence posture, and routing via Request ID"
+    content="Channel, Delivery, and Integration lanes with evidence-first standards and Request ID routing."
   />
-  <meta property="og:url" content="https://www.noetfield.com/gate/investor/" />
+  <meta property="og:url" content="https://www.noetfield.com/gate/partners/" />
   <meta property="og:image" content="https://www.noetfield.com/noetfield-og.png" />
 
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Noetfield — Investor track (signal-first)" />
+  <meta name="twitter:title" content="Noetfield — Partners Gate" />
   <meta
     name="twitter:description"
-    content="Investor track for Noetfield. Governed entry for aligned capital: thesis, evidence posture, and routing via Request ID"
+    content="Channel, Delivery, and Integration lanes with evidence-first standards and Request ID routing."
   />
   <meta name="twitter:image" content="https://www.noetfield.com/noetfield-og.png" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
 
-  <!-- Locked shell (inject header/footer + RID + nav) -->
+  <!-- Shell (inject header/footer + RID + routing) -->
   <link rel="stylesheet" href="/assets/noetfield-shell.css" />
   <script src="/assets/noetfield-shell.js" defer></script>
 
-  <!-- Page-only styles -->
+  <!-- Page-only CSS (keep minimal; if you later move these classes into shell.css, you can delete this block) -->
   <style>
-    .hero{padding:22px 0 14px}
+    .hero{padding:22px 0 10px}
     .heroShell{
-      position:relative;
-      border-radius: calc(var(--radius) + 10px);
-      border: 1px solid rgba(255,255,255,.11);
+      border-radius: calc(var(--radius) + 8px);
+      border:1px solid rgba(255,255,255,.11);
       background:
-        radial-gradient(1020px 460px at 18% 0%, rgba(200,163,73,.18), transparent 60%),
-        radial-gradient(980px 420px at 86% 12%, rgba(122,167,255,.10), transparent 62%),
+        radial-gradient(1000px 420px at 18% 0%, rgba(200,163,73,.18), transparent 60%),
+        radial-gradient(1000px 420px at 90% 10%, rgba(122,167,255,.10), transparent 62%),
         linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.022));
       box-shadow: var(--shadow);
       overflow:hidden;
     }
-    .heroShell::before{
-      content:"";
-      position:absolute; inset:-1px;
-      background: linear-gradient(120deg, rgba(200,163,73,.26), transparent 30%, rgba(255,255,255,.08) 68%, transparent);
-      opacity:.44;
-      pointer-events:none;
-      mask-image: linear-gradient(180deg, black 0%, black 58%, transparent 96%);
-    }
-    .heroInner{padding: 24px 22px}
+    .heroInner{padding:24px 22px}
+    .eyebrow{display:inline-flex;gap:10px;align-items:center;color:var(--muted);font-size:13px;padding:9px 12px;border-radius:999px;border:1px solid rgba(255,255,255,.13);background: rgba(255,255,255,.035)}
+    .dot{width:8px;height:8px;border-radius:50%;background:rgba(200,163,73,.97);box-shadow:0 0 0 3px rgba(200,163,73,.18)}
+    h1{margin:14px 0 10px;font-size:38px;line-height:1.07;letter-spacing:-.75px}
+    .lead{margin:0;color:var(--muted);font-size:16px;max-width:980px;line-height:1.6}
 
-    .eyebrow{
-      display:inline-flex; gap:10px; align-items:center;
-      color:var(--muted);
-      font-size:13px;
-      padding:9px 12px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.13);
-      background: rgba(255,255,255,.035);
-    }
-    .dot{
-      width:8px; height:8px; border-radius:50%;
-      background: rgba(200,163,73,.97);
-      box-shadow: 0 0 0 3px rgba(200,163,73,.18);
-    }
+    .metaRow{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+    .pill{display:inline-flex;align-items:center;gap:10px;padding:9px 12px;border-radius:999px;border:1px solid rgba(255,255,255,.12);background: rgba(255,255,255,.03);color:var(--muted);font-size:13px}
+    .pill strong{color:var(--text);font-weight:800}
 
-    h1{margin:14px 0 10px; font-size:40px; line-height:1.07; letter-spacing:-0.75px}
-    .lead{margin:0; color:var(--muted); font-size:16px; max-width: 980px; line-height:1.6}
+    .actions{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
 
-    .metaRow{display:flex; flex-wrap:wrap; gap:10px; margin-top:14px}
-    .pill{
-      display:inline-flex; align-items:center; gap:10px;
-      padding:9px 12px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.03);
-      color:var(--muted);
-      font-size:13px;
-    }
-    .pill strong{color:var(--text); font-weight:800}
-
-    .grid{
-      display:grid;
-      grid-template-columns: 1.15fr .85fr;
-      gap:18px;
-      margin: 18px 0 34px;
-      align-items:start;
-    }
-
-    .card{
-      border-radius:var(--radius);
-      border:1px solid rgba(255,255,255,.11);
-      background: linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.022));
-      box-shadow: var(--shadow2);
-      overflow:hidden;
-      min-width:0;
-    }
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:18px 0 18px}
+    .card{border-radius:var(--radius);border:1px solid rgba(255,255,255,.11);background: linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.022));box-shadow: var(--shadow2);overflow:hidden;min-width:0}
     .card .hd{padding:18px 18px 0}
+    .card h2{margin:0 0 8px;font-size:18px;letter-spacing:-.2px}
+    .card p{margin:0 0 12px;color:var(--muted);line-height:1.6}
     .card .bd{padding:18px}
-    .card h2{margin:0 0 8px; font-size:18px; letter-spacing:-0.2px}
-    .card p{margin:0 0 12px; color:var(--muted); line-height:1.55}
+    .badge{display:inline-flex;align-items:center;gap:8px;padding:7px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.12);background: rgba(255,255,255,.03);color:var(--muted);font-size:12px;margin-bottom:10px}
 
-    .section{
+    .bar{
+      margin-top:14px;
+      padding:12px 12px;
+      border-radius:14px;
       border:1px solid rgba(255,255,255,.10);
       background: rgba(255,255,255,.03);
-      border-radius:16px;
-      padding:14px;
-      margin-top:12px;
-    }
-    .sectionTitle{
-      font-weight:900;
-      letter-spacing:-.2px;
-      margin:0 0 6px;
-      font-size:14px;
-    }
-    .sectionDesc{
-      margin:0 0 12px;
       color:var(--muted2);
       font-size:12.5px;
-      line-height:1.55;
+      line-height:1.65;
     }
+    .bar strong{color:var(--text);font-weight:800}
 
-    .miniGrid{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap:12px;
-    }
-    .mini{
-      border-radius:14px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.03);
-      padding:12px;
-      min-width:0;
-    }
-    .mini b{display:block; margin:0 0 6px; letter-spacing:-.2px}
-    .mini span{display:block; color:var(--muted); font-size:13px; line-height:1.5}
-
-    label{display:block; font-size:12px; color:var(--muted2); margin:0 0 6px}
-    input, select, textarea{
-      width:100%;
-      background: rgba(10,10,16,.55);
-      border: 1px solid rgba(255,255,255,.14);
-      color: var(--text);
-      padding: 12px 12px;
-      border-radius: 14px;
-      font-family:inherit;
-      font-size:14px;
-      transition: border-color .15s ease, box-shadow .15s ease, background .15s ease;
-    }
-    input::placeholder, textarea::placeholder{color: rgba(185,187,207,.55)}
-    textarea{min-height:110px; resize:vertical}
-    input:focus, select:focus, textarea:focus{box-shadow: var(--focus); background: rgba(12,12,18,.62)}
-
-    .form{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap:12px;
-    }
-    .full{grid-column: 1 / -1}
-
-    .check{
-      display:flex; gap:10px; align-items:flex-start;
-      padding:12px 12px;
-      border-radius:14px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.03);
-      margin-top:10px;
-    }
-    .check input{width:auto; margin-top:3px}
-    .check span{color:var(--muted); font-size:13px; line-height:1.45}
-    .check small{display:block; color:var(--muted2); font-size:12px; margin-top:6px}
-    .check a{border-bottom:1px solid rgba(255,255,255,.18)}
-
-    .actions{display:flex; gap:12px; flex-wrap:wrap; align-items:center; margin-top:12px}
-
-    .msg{
-      display:none;
-      margin-top:12px;
-      padding:12px 12px;
-      border-radius:14px;
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.03);
-      color: var(--muted);
-      font-size:12px;
-      line-height:1.55;
-    }
-
-    .box{
-      margin-top:12px;
-      padding:12px 12px;
-      border-radius:14px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.03);
-      color:var(--muted2);
-      font-size:12px;
-      line-height:1.6;
-    }
-    .box strong{color:var(--text); font-weight:800}
-    .box a{border-bottom:1px solid rgba(255,255,255,.18)}
-
-    .formNote{
-      margin-top:10px;
-      color:var(--muted2);
-      font-size:12px;
-      line-height:1.6;
-    }
-    .formNote a{border-bottom:1px solid rgba(255,255,255,.18)}
-
-    @media (max-width: 980px){
-      .grid{grid-template-columns:1fr}
-    }
-    @media (max-width: 760px){
-      h1{font-size:30px}
-      .form{grid-template-columns:1fr}
-      .miniGrid{grid-template-columns:1fr}
-    }
+    @media (max-width: 1060px){ .grid{grid-template-columns:1fr 1fr} }
+    @media (max-width: 760px){ .grid{grid-template-columns:1fr} h1{font-size:30px} }
   </style>
 
   <script type="application/ld+json">
   {
-    "@context": "https://schema.org",
-    "@type": "WebPage",
-    "name": "Noetfield — Investor track (signal-first)",
-    "url": "https://www.noetfield.com/gate/investor/",
-    "description": "Investor track for Noetfield. Governed entry for aligned capital and strategic operators: thesis, evidence posture, and clean routing tied to a Request ID.",
-    "isPartOf": {"@type":"WebSite","name":"Noetfield","url":"https://www.noetfield.com/"},
-    "publisher": {"@type":"Organization","name":"Noetfield Systems Inc."}
+    "@context":"https://schema.org",
+    "@type":"WebPage",
+    "name":"Noetfield — Partners Gate",
+    "url":"https://www.noetfield.com/gate/partners/",
+    "description":"Partner lanes: Channel, Delivery, and Integration with evidence-first standards and Request ID routing",
+    "isPartOf":{"@type":"WebSite","name":"Noetfield","url":"https://www.noetfield.com/"},
+    "publisher":{"@type":"Organization","name":"Noetfield Systems Inc."}
   }
   </script>
 </head>
@@ -252,315 +113,91 @@
   <div class="bg" aria-hidden="true"></div>
   <a class="skip" href="#main">Skip to content</a>
 
+  <!-- Injected header -->
   <header id="nfHeader"></header>
 
   <main id="main" class="wrap">
     <section class="hero">
       <div class="heroShell">
         <div class="heroInner">
-          <div class="eyebrow"><span class="dot"></span> Investor track • routing via Request ID</div>
-          <h1>Aligned capital, clear signals</h1>
+          <div class="eyebrow"><span class="dot"></span> Partners • lane routing</div>
+          <h1>Partners who ship governance that survives scrutiny</h1>
           <p class="lead">
-            This track is for investors and strategic operators who care about <strong>defensibility</strong>, <strong>evidence posture</strong>, and
-            <strong>board adoption</strong>. If you want a fast, clean way to evaluate the thesis and route next steps, start here.
+            This is the partner entry for teams who originate opportunities, deliver Trust Brief and Trust Ledger artefacts,
+            or implement controls that keep evidence readable over time.
           </p>
 
-          <div class="metaRow" aria-label="Scope highlights">
-            <div class="pill"><strong>Trust Ledger</strong> governance system</div>
-            <div class="pill"><strong>Trust Brief</strong> paid diagnostic</div>
-            <div class="pill"><strong>Real economy</strong> decision risk</div>
-            <div class="pill"><strong>Proof</strong> over narrative</div>
+          <div class="metaRow" aria-label="Partner principles">
+            <div class="pill"><strong>Evidence discipline</strong></div>
+            <div class="pill"><strong>Board formatting</strong></div>
+            <div class="pill"><strong>Clean routing</strong></div>
+            <div class="pill"><strong>Request ID tracking</strong></div>
+          </div>
+
+          <div class="actions" style="margin-top:14px;">
+            <a class="btn" href="/gate/partners/intake/" data-rid-link>Start partner intake</a>
+            <a class="btn secondary" href="/status/" data-rid-link>Open Status</a>
+            <a class="btn secondary" href="/gate/" data-rid-link>Back to Gate</a>
+          </div>
+
+          <div class="bar">
+            Tracking key: <strong><code data-rid>—</code></strong> stays attached across Gate, Status, and submissions.
           </div>
         </div>
       </div>
     </section>
 
-    <section class="grid">
+    <section class="grid" aria-label="Partner lanes">
       <div class="card">
         <div class="hd">
-          <h2>Investor entry</h2>
-          <p>Short, decisive, and tied to your Request ID for routing.</p>
+          <div class="badge">Channel</div>
+          <h2>Originate</h2>
+          <p>You bring aligned organizations and want a governed route, packaging, and shared delivery standards.</p>
         </div>
-
         <div class="bd">
-          <div class="section">
-            <div class="sectionTitle">What you can evaluate quickly</div>
-            <p class="sectionDesc">Three signals that matter before a longer conversation.</p>
-
-            <div class="miniGrid" aria-label="Signals">
-              <div class="mini">
-                <b>Market pull</b>
-                <span>AI is already making material decisions. Boards need a readable record of controls and proof.</span>
-              </div>
-              <div class="mini">
-                <b>Product logic</b>
-                <span>Trust Ledger + Trust Brief: paid diagnostic that produces artefacts and routes follow-on work.</span>
-              </div>
-              <div class="mini">
-                <b>Adoption path</b>
-                <span>Start small, attach evidence, earn board trust, expand to ongoing governance coverage.</span>
-              </div>
-              <div class="mini">
-                <b>Defensibility</b>
-                <span>Evidence posture and board formatting become the moat, not the hype layer.</span>
-              </div>
-            </div>
+          <div class="actions">
+            <a class="btn" href="/gate/partners/channel/" data-rid-link>Open channel lane</a>
+            <a class="btn secondary" href="/gate/partners/intake/" data-rid-link>Start intake</a>
           </div>
-
-          <form
-            id="nfInvestorIntake"
-            action="https://formspree.io/f/REPLACE_ME"
-            method="POST"
-            novalidate
-          >
-            <input type="hidden" name="page_source" value="/gate/investor/" />
-            <input type="hidden" name="source" value="gate-investor" />
-            <input type="hidden" name="intake_type" value="investor" />
-            <input type="hidden" name="site" value="noetfield.com" />
-            <input type="hidden" name="_subject" value="Noetfield Gate — Investor intake" />
-
-            <!-- honeypot -->
-            <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true" />
-
-            <div class="section">
-              <div class="sectionTitle">A) You</div>
-              <p class="sectionDesc">Enough context to route you correctly.</p>
-
-              <div class="form">
-                <div>
-                  <label for="fullName">Full name</label>
-                  <input id="fullName" name="fullName" type="text" autocomplete="name" placeholder="First + last" required />
-                </div>
-
-                <div>
-                  <label for="email">Work email</label>
-                  <input id="email" name="email" type="email" autocomplete="email" placeholder="name@firm.com" required />
-                </div>
-
-                <div>
-                  <label for="firm">Firm / vehicle</label>
-                  <input id="firm" name="firm" type="text" autocomplete="organization" placeholder="Fund / family office / SPV / personal" required />
-                </div>
-
-                <div>
-                  <label for="role">Your role</label>
-                  <select id="role" name="role" required>
-                    <option value="" disabled selected>Select one</option>
-                    <option>GP / Partner</option>
-                    <option>Principal / Associate</option>
-                    <option>Family office</option>
-                    <option>Strategic operator</option>
-                    <option>Angel</option>
-                    <option>Other</option>
-                  </select>
-                </div>
-
-                <div>
-                  <label for="geo">Primary geography</label>
-                  <input id="geo" name="geo" type="text" placeholder="e.g., Canada, US, EU, MENA" required />
-                </div>
-
-                <div>
-                  <label for="checkSize">Typical check size</label>
-                  <select id="checkSize" name="checkSize" required>
-                    <option value="" disabled selected>Select one</option>
-                    <option>&lt; $25k</option>
-                    <option>$25k–$100k</option>
-                    <option>$100k–$250k</option>
-                    <option>$250k–$1M</option>
-                    <option>$1M+</option>
-                    <option>Undisclosed</option>
-                  </select>
-                </div>
-
-                <div class="full">
-                  <label for="thesisFit">What made you lean in</label>
-                  <textarea id="thesisFit" name="thesisFit" placeholder="One paragraph. What signal or problem are you tracking that brought you here" required></textarea>
-                </div>
-              </div>
-            </div>
-
-            <div class="section">
-              <div class="sectionTitle">B) Intent</div>
-              <p class="sectionDesc">This keeps the next step efficient and board-grade.</p>
-
-              <div class="form">
-                <div>
-                  <label for="intent">Your intent</label>
-                  <select id="intent" name="intent" required>
-                    <option value="" disabled selected>Select one</option>
-                    <option>Explore investment</option>
-                    <option>Strategic partnership</option>
-                    <option>Client intro / distribution</option>
-                    <option>Advisory</option>
-                    <option>Just learning</option>
-                  </select>
-                </div>
-
-                <div>
-                  <label for="timing">Timing</label>
-                  <select id="timing" name="timing" required>
-                    <option value="" disabled selected>Select one</option>
-                    <option>Now (0–30 days)</option>
-                    <option>Near (30–90 days)</option>
-                    <option>Later (90+ days)</option>
-                    <option>Not sure</option>
-                  </select>
-                </div>
-
-                <div class="full">
-                  <label for="questions">Top 3 questions you want answered</label>
-                  <textarea id="questions" name="questions" placeholder="Example: traction + unit economics, delivery capacity, defensibility, target buyers, regulatory fit" required></textarea>
-                </div>
-              </div>
-            </div>
-
-            <div class="section">
-              <div class="sectionTitle">C) Routing guardrails</div>
-              <p class="sectionDesc">Keep this intake clean and fast.</p>
-
-              <label class="check" for="truthful_ack">
-                <input id="truthful_ack" type="checkbox" name="truthful_ack" value="yes" required />
-                <span>
-                  I confirm the information provided is accurate to the best of my knowledge
-                  <small>Request ID is attached automatically for tracking</small>
-                </span>
-              </label>
-
-              <label class="check" for="privacy_ack">
-                <input id="privacy_ack" type="checkbox" name="privacy_ack" value="yes" required />
-                <span>
-                  I accept the processing terms in <a href="/privacy/">Privacy</a>
-                  <small>We use this to route next steps, not to spam</small>
-                </span>
-              </label>
-
-              <div class="actions">
-                <button class="btn" id="submitBtn" type="submit">Submit</button>
-                <a class="btn secondary" href="/gate/" data-rid-link>Back to Gate</a>
-                <a class="btn secondary" href="/status/" data-rid-link>Open Status</a>
-              </div>
-
-              <div class="formNote">
-                By submitting, you agree to <a href="/privacy/">Privacy</a> and accept routing tied to your Request ID.
-              </div>
-
-              <div id="msg" class="msg" role="status" aria-live="polite"></div>
-
-              <div class="box">
-                <strong>What happens next:</strong> we respond with a short routing note and the next concrete step.
-                Your <strong>Request ID</strong> is the tracking key across Gate and Status.
-              </div>
-            </div>
-          </form>
         </div>
       </div>
 
-      <aside class="card">
+      <div class="card">
         <div class="hd">
-          <h2>Start with product truth</h2>
-          <p>Links that explain the system, not a pitch deck.</p>
+          <div class="badge">Delivery</div>
+          <h2>Deliver</h2>
+          <p>You can deliver Trust Brief and Trust Ledger outputs with evidence capture and board-ready writing.</p>
         </div>
         <div class="bd">
-          <div class="box"><strong>Trust Ledger:</strong> what the artefact is and why boards adopt it. <a href="/trust-ledger/">Open</a></div>
-          <div class="box"><strong>Trust Brief:</strong> paid diagnostic that produces ledger entries and options. <a href="/trust-brief/">Open</a></div>
-          <div class="box"><strong>Playbook:</strong> governance patterns teams can implement quickly. <a href="/playbook/">Open</a></div>
-
-          <div class="box" style="margin-top:14px;">
-            <strong>Useful:</strong><br/>
-            <a href="/for-whom/">For whom</a> ·
-            <a href="/gate/" data-rid-link>Gate</a> ·
-            <a href="/contact/">Contact</a>
-          </div>
-
-          <div class="box" style="margin-top:14px;">
-            <strong>Portal:</strong> coming online for tracked access and updates. <a href="/portal/">Open</a>
+          <div class="actions">
+            <a class="btn" href="/gate/partners/delivery/" data-rid-link>Open delivery lane</a>
+            <a class="btn secondary" href="/gate/partners/intake/" data-rid-link>Start intake</a>
           </div>
         </div>
-      </aside>
+      </div>
+
+      <div class="card">
+        <div class="hd">
+          <div class="badge">Integration</div>
+          <h2>Implement controls</h2>
+          <p>You wire identity, logs, DLP, and control enforcement so governance claims remain provable.</p>
+        </div>
+        <div class="bd">
+          <div class="actions">
+            <a class="btn" href="/gate/partners/integration/" data-rid-link>Open integration lane</a>
+            <a class="btn secondary" href="/gate/partners/intake/" data-rid-link>Start intake</a>
+          </div>
+        </div>
+      </div>
     </section>
+
+    <div class="bar">
+      How we decide: repeatable delivery, clear scope boundaries, and evidence capture habits that scale.<br />
+      A strong partner makes a board decision easy and a regulator conversation calm.
+    </div>
   </main>
 
+  <!-- Injected footer -->
   <footer id="nfFooter"></footer>
-
-  <!-- Page-only JS: submit via fetch -> /thanks/?rid=... (RID is injected by shell into the form as hidden input "rid") -->
-  <script>
-    (function () {
-      "use strict";
-
-      var form = document.getElementById("nfInvestorIntake");
-      if (!form) return;
-
-      var msg = document.getElementById("msg");
-      var btn = document.getElementById("submitBtn");
-
-      function setMsg(text, kind){
-        if (!msg) return;
-        msg.style.display = "block";
-        msg.textContent = text;
-
-        if (kind === "ok") {
-          msg.style.borderColor = "rgba(45,227,138,.25)";
-          msg.style.background = "rgba(45,227,138,.06)";
-        } else if (kind === "err") {
-          msg.style.borderColor = "rgba(255,90,90,.25)";
-          msg.style.background = "rgba(255,90,90,.06)";
-        } else {
-          msg.style.borderColor = "rgba(255,255,255,.12)";
-          msg.style.background = "rgba(255,255,255,.03)";
-        }
-      }
-
-      function firstInvalidEl(){
-        return form.querySelector(":invalid");
-      }
-
-      form.addEventListener("submit", async function (e) {
-        e.preventDefault();
-
-        var bad = firstInvalidEl();
-        if (bad && typeof form.reportValidity === "function") {
-          form.reportValidity();
-          setMsg("Please complete the required fields.", "err");
-          return;
-        }
-
-        var action = (form.getAttribute("action") || "").trim();
-        if (!action || action.indexOf("REPLACE_ME") !== -1) {
-          setMsg("Form endpoint is missing. Replace Formspree action URL.", "err");
-          return;
-        }
-
-        var ridInput = form.querySelector('input[name="rid"]');
-        var rid = (ridInput && ridInput.value) ? String(ridInput.value) : "";
-
-        if (btn) {
-          btn.disabled = true;
-          btn.dataset.label = btn.textContent;
-          btn.textContent = "Submitting…";
-        }
-        setMsg("Submitting…", "info");
-
-        try{
-          var fd = new FormData(form);
-          var res = await fetch(action, { method:"POST", body: fd, headers: { "Accept":"application/json" } });
-
-          if (!res.ok) {
-            setMsg("Submission failed. Please try again.", "err");
-            if (btn) { btn.disabled = false; btn.textContent = btn.dataset.label || "Submit"; }
-            return;
-          }
-
-          setMsg("Submitted. Redirecting…", "ok");
-          try { localStorage.setItem("nf_last_submitted_rid", rid); } catch(e){}
-
-          window.location.assign("/thanks/?rid=" + encodeURIComponent(rid) + "&track=investor");
-        } catch(err){
-          setMsg("Network error. Please check your connection and try again.", "err");
-          if (btn) { btn.disabled = false; btn.textContent = btn.dataset.label || "Submit"; }
-        }
-      });
-    })();
-  </script>
 </body>
 </html>

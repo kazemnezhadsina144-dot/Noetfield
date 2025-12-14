@@ -2,13 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Noetfield – Gate (Board-Ready Entry)</title>
+  <title>Noetfield — Gate, board-ready entry</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <meta
-    name="description"
-    content="Noetfield Gate is a governed entry point for board-ready AI governance artefacts: Trust Brief pilots, Trust Ledger samples, partner lanes, and evidence-first intakes."
-  />
+  <meta name="description" content="A governed entry point where intakes become decision-ready — choose a track, get a Request ID, and route into board-safe outputs" />
   <meta name="robots" content="index,follow" />
   <meta name="author" content="Noetfield Systems Inc." />
   <meta name="theme-color" content="#07070b" />
@@ -18,48 +15,36 @@
   <link rel="icon" href="/noetfield-favicon-512.png" type="image/png" />
   <link rel="apple-touch-icon" href="/noetfield-favicon-512.png" />
 
-  <!-- OG -->
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Noetfield" />
-  <meta property="og:title" content="Noetfield – Gate (Board-Ready Entry)" />
-  <meta
-    property="og:description"
-    content="A governed entry point for board-ready AI governance artefacts: Trust Brief, Trust Ledger, partner lanes, and evidence-first intakes."
-  />
+  <meta property="og:title" content="Noetfield — Gate, board-ready entry" />
+  <meta property="og:description" content="A governed entry point where intakes become decision-ready — choose a track, get a Request ID, and route into board-safe outputs" />
   <meta property="og:url" content="https://www.noetfield.com/gate/" />
   <meta property="og:image" content="https://www.noetfield.com/noetfield-og.png" />
 
-  <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Noetfield – Gate (Board-Ready Entry)" />
-  <meta
-    name="twitter:description"
-    content="A governed entry point for board-ready AI governance artefacts: Trust Brief, Trust Ledger, partner lanes, and evidence-first intakes."
-  />
+  <meta name="twitter:title" content="Noetfield — Gate, board-ready entry" />
+  <meta name="twitter:description" content="A governed entry point where intakes become decision-ready — choose a track, get a Request ID, and route into board-safe outputs" />
   <meta name="twitter:image" content="https://www.noetfield.com/noetfield-og.png" />
 
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
-    rel="stylesheet"
-  />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
-  <!-- LOCKED SHELL -->
+  <!-- Locked shell (inject header/footer + RID + nav) -->
   <link rel="stylesheet" href="/assets/noetfield-shell.css" />
   <script src="/assets/noetfield-shell.js" defer></script>
 
   <!-- Page-only styles -->
   <style>
-    .hero{padding:22px 0 14px}
+    .hero{padding:22px 0 12px}
     .heroShell{
       position:relative;
       border-radius: calc(var(--radius) + 8px);
       border: 1px solid rgba(255,255,255,.11);
       background:
-        radial-gradient(1000px 420px at 18% 0%, rgba(200,163,73,.18), transparent 60%),
-        radial-gradient(1000px 420px at 90% 10%, rgba(122,167,255,.10), transparent 62%),
+        radial-gradient(980px 420px at 18% 0%, rgba(200,163,73,.18), transparent 60%),
+        radial-gradient(980px 420px at 90% 10%, rgba(122,167,255,.10), transparent 62%),
         linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.022));
       box-shadow: var(--shadow);
       overflow:hidden;
@@ -72,8 +57,7 @@
       pointer-events:none;
       mask-image: linear-gradient(180deg, black 0%, black 58%, transparent 96%);
     }
-    .heroInner{padding: 24px 22px}
-
+    .heroInner{padding: 22px 22px}
     .eyebrow{
       display:inline-flex; gap:10px; align-items:center;
       color:var(--muted);
@@ -88,11 +72,8 @@
       background: rgba(200,163,73,.97);
       box-shadow: 0 0 0 3px rgba(200,163,73,.18);
     }
-
-    h1{margin:14px 0 10px; font-size:40px; line-height:1.07; letter-spacing:-0.75px}
+    h1{margin:14px 0 10px; font-size:38px; line-height:1.08; letter-spacing:-0.7px}
     .lead{margin:0; color:var(--muted); font-size:16px; max-width: 980px}
-    .lead strong{color:var(--text); font-weight:800}
-    .lead a{border-bottom:1px solid rgba(255,255,255,.18)}
 
     .metaRow{display:flex; flex-wrap:wrap; gap:10px; margin-top:14px}
     .pill{
@@ -106,12 +87,32 @@
     }
     .pill strong{color:var(--text); font-weight:800}
 
+    .section{
+      margin: 14px 0;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      border-radius:16px;
+      padding:14px;
+    }
+    .kicker{font-weight:900; letter-spacing:-.2px; margin:0 0 6px; font-size:14px}
+    .sub{margin:0; color:var(--muted2); font-size:12.5px; line-height:1.55}
+
+    .ridInline{
+      display:flex; flex-wrap:wrap; gap:10px; align-items:center;
+      margin-top:12px;
+      padding:12px 12px;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+    }
+    .ridInline b{font-size:12px; letter-spacing:.22em; text-transform:uppercase; color:var(--muted2)}
+    .ridInline code[data-rid]{margin-left:auto}
+
     .grid{
       display:grid;
       grid-template-columns: 1fr 1fr;
-      gap:18px;
-      margin: 18px 0 34px;
-      align-items:start;
+      gap:14px;
+      margin-top:12px;
     }
     .card{
       border-radius:var(--radius);
@@ -121,93 +122,34 @@
       overflow:hidden;
       min-width:0;
     }
-    .card .hd{padding:18px 18px 0}
-    .card h2{margin:0 0 8px; font-size:18px; letter-spacing:-0.2px}
-    .card p{margin:0 0 12px; color:var(--muted); line-height:1.7}
     .card .bd{padding:18px}
+    .card h2{margin:0 0 6px; font-size:18px; letter-spacing:-0.2px}
+    .card p{margin:0; color:var(--muted); line-height:1.55}
+    .card .row{display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-top:12px}
 
-    .box{
-      margin-top:12px;
-      padding:12px 12px;
-      border-radius:14px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.03);
-      color:var(--muted2);
-      font-size:12.5px;
-      line-height:1.6;
-    }
-    .box strong{color:var(--text); font-weight:800}
-    .box a{border-bottom:1px solid rgba(255,255,255,.18)}
-
-    .ctaRow{display:flex; gap:12px; flex-wrap:wrap; align-items:center; margin-top:12px}
-    .ctaRow .btn{white-space:nowrap}
-
-    .laneGrid{display:grid; gap:10px; margin-top:10px}
-    .lane{
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.03);
-      border-radius:16px;
-      padding:12px 12px;
-    }
-    .laneTop{display:flex; align-items:flex-start; justify-content:space-between; gap:10px}
-    .laneTitle{margin:0; font-weight:900; font-size:14px; letter-spacing:-.2px}
-    .tag{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      font-size:11px;
-      letter-spacing:.18em;
-      text-transform:uppercase;
-      color:var(--muted2);
-      padding:7px 10px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.03);
-      white-space:nowrap;
-    }
-    .laneDesc{margin:8px 0 0; color:var(--muted); font-size:13px; line-height:1.65}
-    .laneActions{display:flex; gap:10px; flex-wrap:wrap; margin-top:10px}
-
-    .mini{
-      margin-top:10px;
-      color:var(--muted2);
-      font-size:12.5px;
-      line-height:1.6;
-    }
-
-    .split{
+    .laneGrid{
       display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap:10px;
-      margin-top:10px;
+      grid-template-columns: repeat(3, 1fr);
+      gap:14px;
+      margin-top:12px;
     }
-    .tile{
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.03);
-      border-radius:16px;
-      padding:12px 12px;
-    }
-    .tile strong{color:var(--text); font-weight:900}
-    .tile div{margin-top:6px; color:var(--muted); font-size:13px; line-height:1.6}
 
     @media (max-width: 980px){
-      .grid{grid-template-columns:1fr}
-    }
-    @media (max-width: 760px){
-      h1{font-size:30px}
-      .split{grid-template-columns:1fr}
+      .grid{grid-template-columns: 1fr}
+      .laneGrid{grid-template-columns: 1fr}
+      h1{font-size:32px}
     }
   </style>
 
   <script type="application/ld+json">
   {
-    "@context": "https://schema.org",
-    "@type": "WebPage",
-    "name": "Noetfield – Gate (Board-Ready Entry)",
-    "url": "https://www.noetfield.com/gate/",
-    "description": "Noetfield Gate is a governed entry point for board-ready AI governance artefacts: Trust Brief pilots, Trust Ledger samples, partner lanes, and evidence-first intakes.",
-    "isPartOf": {"@type":"WebSite","name":"Noetfield","url":"https://www.noetfield.com/"},
-    "publisher": {"@type":"Organization","name":"Noetfield Systems Inc."}
+    "@context":"https://schema.org",
+    "@type":"WebPage",
+    "name":"Noetfield — Gate, board-ready entry",
+    "url":"https://www.noetfield.com/gate/",
+    "description":"A governed entry point where intakes become decision-ready — choose a track, get a Request ID, and route into board-safe outputs",
+    "isPartOf":{"@type":"WebSite","name":"Noetfield","url":"https://www.noetfield.com/"},
+    "publisher":{"@type":"Organization","name":"Noetfield Systems Inc."}
   }
   </script>
 </head>
@@ -216,160 +158,134 @@
   <div class="bg" aria-hidden="true"></div>
   <a class="skip" href="#main">Skip to content</a>
 
-  <!-- injected header -->
-  <div id="nfHeader"></div>
+  <!-- Injected header -->
+  <header id="nfHeader"></header>
 
   <main id="main" class="wrap">
-    <!-- HERO -->
     <section class="hero">
       <div class="heroShell">
         <div class="heroInner">
-          <div class="eyebrow"><span class="dot"></span> Gate • governed entry</div>
-          <h1>Board-ready entry. Evidence-first routing.</h1>
+          <div class="eyebrow"><span class="dot"></span> Gate, governed entry</div>
+          <h1>Board-ready entry, evidence-first routing</h1>
           <p class="lead">
-            Gate is where intakes become <strong>decision-ready</strong>. Choose a track to request a
-            <a href="/trust-brief/"><strong>Trust Brief</strong></a>, review
-            <a href="/trust-ledger/"><strong>Trust Ledger</strong></a> references, or route partners into lanes.
-            No hype. Clean scope. Defensible outputs.
+            Gate is where intakes become decision-ready — choose a track to request a Trust Brief, review Trust Ledger references, or route partners into lanes with clean scope and predictable outputs
           </p>
 
           <div class="metaRow" aria-label="Highlights">
             <div class="pill"><strong>Request ID</strong> tracking</div>
-            <div class="pill"><strong>Evidence trail</strong></div>
+            <div class="pill"><strong>Evidence trail</strong> discipline</div>
             <div class="pill"><strong>Routing</strong> by lane</div>
             <div class="pill"><strong>Board-safe</strong> formatting</div>
           </div>
 
-          <div class="ctaRow" aria-label="Primary actions">
-            <a class="btn" href="/gate/partners/">Partners</a>
-            <a class="btn secondary" href="/status/">Open Status</a>
-            <a class="btn secondary" href="/trust-brief/">Trust Brief</a>
-            <a class="btn secondary" href="/trust-ledger/">Trust Ledger</a>
-          </div>
-
-          <div class="mini">
-            If you’re looking for the app experience, see <a href="/portal/">Portal</a> (coming online in phases).
+          <div class="ridInline" aria-label="Request ID bar">
+            <b>Request ID</b>
+            <code data-rid>—</code>
+            <button type="button" data-copy-rid>Copy</button>
+            <a class="btn secondary" href="/status/" data-rid-link>Open Status</a>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="grid">
-      <!-- LEFT: Partner tracks -->
-      <div class="card">
-        <div class="hd">
-          <h2>Partner lanes</h2>
-          <p>Choose the route that matches how you contribute.</p>
-        </div>
-        <div class="bd">
-          <div class="laneGrid" aria-label="Partner lanes">
-            <div class="lane">
-              <div class="laneTop">
-                <div class="laneTitle">Partners Gate</div>
-                <span class="tag">Primary</span>
-              </div>
-              <p class="laneDesc">
-                Start here to route into Channel, Delivery, or Integration lanes with Request ID tracking.
-              </p>
-              <div class="laneActions">
-                <a class="btn" href="/gate/partners/">Open Partners</a>
-                <a class="btn secondary" href="/gate/partners/intake/">Partner intake</a>
-              </div>
-            </div>
+    <section class="section" aria-label="Partner lanes">
+      <div class="kicker">Partner lanes</div>
+      <p class="sub">Choose the route that matches how you contribute — routing stays attached to your Request ID</p>
 
-            <div class="lane">
-              <div class="laneTop">
-                <div class="laneTitle">Channel</div>
-                <span class="tag">Originate</span>
-              </div>
-              <p class="laneDesc">
-                You originate aligned clients and want routing, packaging, and governance delivery standards.
-              </p>
-              <div class="laneActions">
-                <a class="btn secondary" href="/gate/partners/channel/">Open Channel</a>
-                <a class="btn secondary" href="/gate/partners/intake/?lane=channel">Start intake</a>
-              </div>
-            </div>
-
-            <div class="lane">
-              <div class="laneTop">
-                <div class="laneTitle">Delivery</div>
-                <span class="tag">Artefacts</span>
-              </div>
-              <p class="laneDesc">
-                You can deliver Trust Brief + Trust Ledger outputs with evidence discipline and board formatting.
-              </p>
-              <div class="laneActions">
-                <a class="btn secondary" href="/gate/partners/delivery/">Open Delivery</a>
-                <a class="btn secondary" href="/gate/partners/intake/?lane=delivery">Start intake</a>
-              </div>
-            </div>
-
-            <div class="lane">
-              <div class="laneTop">
-                <div class="laneTitle">Integration</div>
-                <span class="tag">Controls</span>
-              </div>
-              <p class="laneDesc">
-                You implement identity, logs, DLP, and control enforcement so evidence trails stay intact.
-              </p>
-              <div class="laneActions">
-                <a class="btn secondary" href="/gate/partners/integration/">Open Integration</a>
-                <a class="btn secondary" href="/gate/partners/intake/?lane=integration">Start intake</a>
-              </div>
+      <div class="laneGrid">
+        <div class="card">
+          <div class="bd">
+            <h2>Partners Gate</h2>
+            <p>Start here to route into Channel, Delivery, or Integration lanes with tracking and standards</p>
+            <div class="row">
+              <a class="btn secondary" href="/gate/partners/" data-rid-link>Open Partners</a>
+              <a class="btn secondary" href="/gate/partners/intake/" data-rid-link>Partner intake</a>
             </div>
           </div>
+        </div>
 
-          <div class="box">
-            <strong>Note:</strong> Request IDs are the routing key across Gate, Status, and Thanks pages.
+        <div class="card">
+          <div class="bd">
+            <h2>Channel</h2>
+            <p>You originate aligned clients and want routing, packaging, and delivery standards</p>
+            <div class="row">
+              <a class="btn secondary" href="/gate/partners/channel/" data-rid-link>Open Channel</a>
+              <a class="btn secondary" href="/gate/partners/intake/" data-rid-link>Start intake</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="bd">
+            <h2>Delivery</h2>
+            <p>You can deliver Trust Brief plus Trust Ledger outputs with evidence discipline and board formatting</p>
+            <div class="row">
+              <a class="btn secondary" href="/gate/partners/delivery/" data-rid-link>Open Delivery</a>
+              <a class="btn secondary" href="/gate/partners/intake/" data-rid-link>Start intake</a>
+            </div>
           </div>
         </div>
       </div>
 
-      <!-- RIGHT: Buyers / operators -->
-      <aside class="card">
-        <div class="hd">
-          <h2>Buyer entry</h2>
-          <p>If you want Noetfield outputs for your organization.</p>
+      <div class="laneGrid" style="margin-top:14px;">
+        <div class="card" style="grid-column: 1 / -1;">
+          <div class="bd">
+            <h2>Integration</h2>
+            <p>You implement identity, logs, DLP, and control enforcement so evidence trails stay intact across systems</p>
+            <div class="row">
+              <a class="btn secondary" href="/gate/partners/integration/" data-rid-link>Open Integration</a>
+              <a class="btn secondary" href="/gate/partners/intake/" data-rid-link>Start intake</a>
+              <a class="btn secondary" href="/portal/">Portal coming online</a>
+            </div>
+          </div>
         </div>
+      </div>
+
+      <p class="sub" style="margin-top:12px;">
+        Note: Request IDs are the routing key across Gate, Status, and Thanks
+      </p>
+    </section>
+
+    <section class="grid" aria-label="Buyer entry">
+      <div class="card">
         <div class="bd">
-          <div class="split" aria-label="Buyer tiles">
-            <div class="tile">
-              <strong>Trust Brief</strong>
-              <div>6-week governance diagnostic with options, risks, and initial ledger entries.</div>
-              <div style="margin-top:10px;">
-                <a class="btn secondary" href="/trust-brief/">View</a>
-              </div>
-            </div>
-            <div class="tile">
-              <strong>Trust Ledger</strong>
-              <div>Board-ready register of AI systems, controls, evidence, and material risk.</div>
-              <div style="margin-top:10px;">
-                <a class="btn secondary" href="/trust-ledger/">View</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="box">
-            <strong>What happens next:</strong> we route your request to the correct lane, attach a Request ID,
-            and provide a simple next-step plan and response SLA.
-          </div>
-
-          <div class="ctaRow" style="margin-top:12px;">
-            <a class="btn secondary" href="/contact/">Contact</a>
-            <a class="btn secondary" href="/faq/">FAQ</a>
-            <a class="btn secondary" href="/feedback/">Feedback</a>
-          </div>
-
-          <div class="mini">
-            Looking for policies? See <a href="/privacy/">Privacy</a> · <a href="/terms/">Terms</a> · <a href="/policies/">Policies</a>.
+          <h2>Trust Brief</h2>
+          <p>6-week governance diagnostic with options, risks, and initial ledger entries</p>
+          <div class="row">
+            <a class="btn secondary" href="/trust-brief/">View Trust Brief</a>
+            <a class="btn secondary" href="/contact/">Talk to us</a>
           </div>
         </div>
-      </aside>
+      </div>
+
+      <div class="card">
+        <div class="bd">
+          <h2>Trust Ledger</h2>
+          <p>Board-ready register of AI systems, controls, evidence, and material risk</p>
+          <div class="row">
+            <a class="btn secondary" href="/trust-ledger/">View Ledger</a>
+            <a class="btn secondary" href="/faq/">Open FAQ</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-label="Next step">
+      <div class="kicker">What happens next</div>
+      <p class="sub">
+        We route your request to the correct lane, keep the Request ID attached, and return a simple next-step plan with a response SLA
+      </p>
+      <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap;">
+        <a class="btn" href="/gate/intake/" data-rid-link>Start buyer intake</a>
+        <a class="btn secondary" href="/feedback/">Feedback</a>
+        <a class="btn secondary" href="/privacy/">Privacy</a>
+        <a class="btn secondary" href="/terms/">Terms</a>
+        <a class="btn secondary" href="/policies/">Policies</a>
+      </div>
     </section>
   </main>
 
-  <!-- injected footer -->
-  <div id="nfFooter"></div>
+  <!-- Injected footer -->
+  <footer id="nfFooter"></footer>
 </body>
 </html>

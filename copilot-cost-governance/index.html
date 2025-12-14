@@ -2,1136 +2,500 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Noetfield – Copilot Cost & Governance Readiness</title>
+  <title>Noetfield – Copilot Governance</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta
     name="description"
-    content="A board-ready Copilot cost and governance pack: scope mapping, license waste, agent inventory, data exposure, and controls — plus a decision memo and Trust Ledger entries."
+    content="Copilot governance for real organizations: control baseline, evidence trails, cost recording readiness, and board-safe usage patterns for Microsoft 365 Copilot and related AI assistants."
   />
   <meta name="robots" content="index,follow" />
   <meta name="author" content="Noetfield Systems Inc." />
-  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <meta name="theme-color" content="#07070b" />
 
-  <!-- Canonical (always with www) -->
-  <link rel="canonical" href="https://www.noetfield.com/copilot-cost-governance/" />
+  <link rel="canonical" href="https://www.noetfield.com/copilot/" />
 
-  <!-- Favicon / icons -->
   <link rel="icon" href="/noetfield-favicon-512.png" type="image/png" />
   <link rel="apple-touch-icon" href="/noetfield-favicon-512.png" />
-  <meta name="theme-color" content="#05060a" />
 
-  <!-- Open Graph -->
+  <!-- OG -->
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Noetfield" />
-  <meta property="og:title" content="Noetfield – Copilot Cost & Governance Readiness" />
+  <meta property="og:title" content="Noetfield – Copilot Governance" />
   <meta
     property="og:description"
-    content="Board-ready Copilot cost recording and governance readiness. Map Copilot scope, license waste, agent sprawl, data exposure, and controls. Deliver a decision memo plus Trust Ledger entries."
+    content="Control baseline, evidence trails, and board-safe patterns for Microsoft 365 Copilot and AI assistants."
   />
-  <meta property="og:url" content="https://www.noetfield.com/copilot-cost-governance/" />
+  <meta property="og:url" content="https://www.noetfield.com/copilot/" />
   <meta property="og:image" content="https://www.noetfield.com/noetfield-og.png" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Noetfield – Copilot Cost & Governance Readiness" />
+  <meta name="twitter:title" content="Noetfield – Copilot Governance" />
   <meta
     name="twitter:description"
-    content="A board-ready Copilot cost and governance pack: scope mapping, license waste, agent inventory, data exposure, and controls — plus a decision memo and Trust Ledger entries."
+    content="Control baseline, evidence trails, and board-safe patterns for Microsoft 365 Copilot and AI assistants."
   />
   <meta name="twitter:image" content="https://www.noetfield.com/noetfield-og.png" />
 
-  <!-- Structured data: WebPage + Service -->
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- LOCKED SHELL -->
+  <link rel="stylesheet" href="/assets/noetfield-shell.css" />
+  <script src="/assets/noetfield-shell.js" defer></script>
+
+  <!-- Page-only styles -->
+  <style>
+    .hero{padding:22px 0 14px}
+    .heroShell{
+      position:relative;
+      border-radius: calc(var(--radius) + 8px);
+      border: 1px solid rgba(255,255,255,.11);
+      background:
+        radial-gradient(1000px 420px at 18% 0%, rgba(200,163,73,.18), transparent 60%),
+        radial-gradient(1000px 420px at 90% 10%, rgba(122,167,255,.10), transparent 62%),
+        linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.022));
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .heroShell::before{
+      content:"";
+      position:absolute; inset:-1px;
+      background: linear-gradient(120deg, rgba(200,163,73,.26), transparent 30%, rgba(255,255,255,.08) 68%, transparent);
+      opacity:.44;
+      pointer-events:none;
+      mask-image: linear-gradient(180deg, black 0%, black 58%, transparent 96%);
+    }
+    .heroInner{padding: 24px 22px}
+
+    .eyebrow{
+      display:inline-flex; gap:10px; align-items:center;
+      color:var(--muted);
+      font-size:13px;
+      padding:9px 12px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.13);
+      background: rgba(255,255,255,.035);
+    }
+    .dot{
+      width:8px; height:8px; border-radius:50%;
+      background: rgba(200,163,73,.97);
+      box-shadow: 0 0 0 3px rgba(200,163,73,.18);
+    }
+
+    h1{margin:14px 0 10px; font-size:40px; line-height:1.07; letter-spacing:-0.75px}
+    .lead{margin:0; color:var(--muted); font-size:16px; max-width: 1080px; line-height:1.75}
+    .lead strong{color:var(--text); font-weight:800}
+
+    .metaRow{display:flex; flex-wrap:wrap; gap:10px; margin-top:14px}
+    .pill{
+      display:inline-flex; align-items:center; gap:10px;
+      padding:9px 12px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.03);
+      color:var(--muted);
+      font-size:13px;
+      white-space:nowrap;
+    }
+    .pill strong{color:var(--text); font-weight:800}
+
+    .grid{
+      display:grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap:18px;
+      margin: 18px 0 34px;
+      align-items:start;
+    }
+    .card{
+      border-radius:var(--radius);
+      border:1px solid rgba(255,255,255,.11);
+      background: linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.022));
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+      min-width:0;
+    }
+    .card .hd{padding:18px 18px 0}
+    .card h2{margin:0 0 8px; font-size:18px; letter-spacing:-0.2px}
+    .card p{margin:0 0 12px; color:var(--muted); line-height:1.7}
+    .card .bd{padding:18px}
+
+    .section{
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      border-radius:16px;
+      padding:14px;
+      margin-top:12px;
+    }
+    .sectionTitle{
+      font-weight:900;
+      letter-spacing:-.2px;
+      margin:0 0 6px;
+      font-size:14px;
+    }
+    .sectionDesc{
+      margin:0 0 12px;
+      color:var(--muted2);
+      font-size:12.7px;
+      line-height:1.6;
+    }
+
+    .split{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:12px;
+      margin-top:12px;
+    }
+    .mini{
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      padding:12px;
+      min-width:0;
+    }
+    .mini h3{margin:0 0 8px; font-size:14px; letter-spacing:-.2px}
+    .mini ul{margin:0; padding-left:18px; color:var(--muted); line-height:1.85}
+    .mini li{margin:6px 0}
+    .mini strong{color:var(--text); font-weight:800}
+
+    .table{
+      width:100%;
+      border-collapse:separate;
+      border-spacing:0;
+      overflow:hidden;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.02);
+      margin-top:10px;
+    }
+    .table th, .table td{
+      text-align:left;
+      padding:12px;
+      border-bottom:1px solid rgba(255,255,255,.08);
+      vertical-align:top;
+      font-size:13px;
+    }
+    .table th{
+      color:var(--muted2);
+      font-size:11px;
+      letter-spacing:.28em;
+      text-transform:uppercase;
+      background: rgba(255,255,255,.03);
+    }
+    .table tr:last-child td{border-bottom:none}
+
+    .box{
+      margin-top:12px;
+      padding:12px 12px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      color:var(--muted2);
+      font-size:12.8px;
+      line-height:1.6;
+    }
+    .box strong{color:var(--text); font-weight:800}
+    .box a{border-bottom:1px solid rgba(255,255,255,.18)}
+
+    .actions{display:flex; gap:12px; flex-wrap:wrap; align-items:center; margin-top:12px}
+
+    .toc{
+      display:flex; flex-direction:column; gap:10px;
+      margin-top:10px;
+    }
+    .toc a{
+      display:flex; align-items:center; justify-content:space-between; gap:10px;
+      padding:11px 12px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      text-decoration:none;
+      color:var(--text);
+      transition: border-color .15s ease, background .15s ease, transform .06s ease;
+    }
+    .toc a:hover{border-color:rgba(255,255,255,.22); background:rgba(255,255,255,.05)}
+    .toc a:active{transform: translateY(1px)}
+    .toc span{color:var(--muted)}
+    .arrow{opacity:.8}
+
+    .badge{
+      font-size:11px;
+      letter-spacing:.28em;
+      text-transform:uppercase;
+      color:var(--muted2);
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.03);
+      white-space:nowrap;
+    }
+
+    @media (max-width: 980px){
+      .grid{grid-template-columns:1fr}
+      .split{grid-template-columns:1fr}
+    }
+    @media (max-width: 760px){
+      h1{font-size:30px}
+      .table th, .table td{padding:10px}
+    }
+  </style>
+
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "WebPage",
-    "name": "Noetfield – Copilot Cost & Governance Readiness",
-    "description": "A board-ready Copilot cost and governance pack: scope mapping, license waste, agent inventory, data exposure, and controls — plus a decision memo and Trust Ledger entries.",
-    "url": "https://www.noetfield.com/copilot-cost-governance/",
-    "publisher": {
-      "@type": "Organization",
-      "name": "Noetfield Systems Inc.",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://www.noetfield.com/noetfield-og.png"
-      }
-    },
-    "mainEntity": {
-      "@type": "Service",
-      "name": "Copilot Cost & Governance Readiness Pack",
-      "provider": {
-        "@type": "Organization",
-        "name": "Noetfield Systems Inc."
-      },
-      "serviceType": "AI governance and board-ready risk/cost documentation",
-      "areaServed": "CA"
-    }
+    "name": "Noetfield – Copilot Governance",
+    "url": "https://www.noetfield.com/copilot/",
+    "description": "Copilot governance for real organizations: control baseline, evidence trails, cost recording readiness, and board-safe usage patterns for Microsoft 365 Copilot and related AI assistants.",
+    "isPartOf": {"@type":"WebSite","name":"Noetfield","url":"https://www.noetfield.com/"},
+    "publisher": {"@type":"Organization","name":"Noetfield Systems Inc."}
   }
   </script>
-
-  <!-- FAQ -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "Who is the Copilot Cost & Governance Readiness pack for?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Designed for boards, audit and risk committees, CIO/CISO/CRO/COO leaders, and real-economy operators rolling out Microsoft Copilot who need a board-ready view of cost, scope, agents, and controls."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Do you need direct tenant access?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Not always. The pack can start from licensing context, role mapping, and use-case analysis. Where governance tooling exists, outputs can be integrated as evidence without deep technical access."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Is this a replacement for Microsoft or a governance tool vendor?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "No. This is a governance and decision layer that sits above Microsoft Copilot and any existing tooling. It organises cost, scope, and controls in language that boards and regulators can use."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "What is the typical duration and price?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Most organisations complete a credible v1 in 2–3 weeks. Typical pricing ranges from CAD 2.5k–7.5k depending on scope and complexity."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "What happens after delivery?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "After delivery, Copilot entries can be converted into a standing Trust Ledger track with a monthly reporting cadence tied to AI governance and board reporting."
-        }
-      }
-    ]
-  }
-  </script>
-
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-
-    :root{
-      --bg:#05060a;
-      --bg-soft:#080911;
-      --panel:rgba(15,23,42,0.55);
-      --border-soft:rgba(255,255,255,0.10);
-      --border:#232633;
-      --text-main:#f5f5f7;
-      --text-soft:#daddef;
-      --text-mute:#9ca3af;
-      --accent-soft:#a5b4fc;
-      --focus:#6366f1;
-      --shadow: rgba(15,23,42,0.9);
-    }
-
-    body{
-      font-family:'Inter',system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-      background: radial-gradient(circle at top, #151827 0%, var(--bg) 55%);
-      color: var(--text-main);
-      min-height: 100vh;
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      padding:32px 20px 40px;
-    }
-
-    a { color: inherit; text-decoration: none; }
-    .skip-link{
-      position:absolute;
-      left:-9999px; top:auto;
-      width:1px; height:1px; overflow:hidden;
-    }
-    .skip-link:focus{
-      left: 20px; top: 16px;
-      width:auto; height:auto;
-      padding:10px 12px;
-      border-radius:10px;
-      background:#111827;
-      border:1px solid rgba(255,255,255,0.2);
-      z-index: 9999;
-    }
-
-    .page{
-      width:100%;
-      max-width:1040px;
-      display:flex;
-      flex-direction:column;
-      min-height: calc(100vh - 72px);
-    }
-
-    header{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      margin-bottom:32px;
-      padding-bottom:14px;
-      border-bottom:1px solid var(--border-soft);
-      gap:14px;
-    }
-
-    .brand-wrap{ display:flex; align-items:center; gap:10px; }
-    .brand-logo{
-      width:32px;height:32px;border-radius:999px;
-      background: radial-gradient(circle at 25% 0, #ffffff 0, #d4e0ff 18%, #818cf8 45%, #1f2937 70%, #020617 100%);
-      display:flex;align-items:center;justify-content:center;
-      font-size:18px;font-weight:700;color:#fff;
-      box-shadow:0 10px 28px var(--shadow);
-    }
-    .brand-text{ display:flex; flex-direction:column; gap:2px; }
-    .brand-name{ font-size:16px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; }
-    .brand-tagline{ font-size:12px; color: var(--text-mute); }
-
-    nav{ display:flex; gap:18px; font-size:13px; flex-wrap:wrap; }
-    nav a{
-      opacity:0.78; padding-bottom:2px;
-      border-bottom:1px solid transparent;
-    }
-    nav a:hover{ opacity:1; border-bottom-color:rgba(209,213,219,0.6); }
-    nav a.active{ opacity:1; border-bottom-color:rgba(255,255,255,0.85); font-weight:500; }
-
-    main{ width:100%; }
-
-    .hero{ margin-bottom:18px; }
-    .pill{
-      display:inline-flex; align-items:center; gap:8px;
-      font-size:11px; padding:4px 10px; border-radius:999px;
-      border:1px solid rgba(148,163,253,0.35);
-      background: radial-gradient(circle at 0 0, rgba(129,140,248,0.32), transparent 55%);
-      color:#e5e7eb; margin-bottom:10px;
-    }
-    .pill-dot{ width:8px;height:8px;border-radius:999px;background: linear-gradient(135deg, #7dd3fc, #a855f7); }
-    .hero-kicker{
-      font-size:11px; text-transform:uppercase; letter-spacing:0.16em;
-      color: var(--text-mute); margin-bottom:8px;
-    }
-    .hero-title{
-      font-size: clamp(26px, 3vw, 30px);
-      line-height:1.15; font-weight:600; margin-bottom:14px;
-      letter-spacing:-0.02em;
-    }
-    .hero-title span{
-      background: linear-gradient(135deg, #ffffff, #a5b4fc);
-      -webkit-background-clip:text; background-clip:text; color:transparent;
-    }
-    .hero-subtitle{
-      font-size:15px; line-height:1.6;
-      color:#d0d3dd; max-width: 760px;
-    }
-    .hero-cta-row{
-      display:flex; flex-wrap:wrap; gap:12px; margin-top:18px;
-    }
-
-    .btn-primary,.btn-ghost{
-      display:inline-flex; align-items:center; justify-content:center;
-      padding:9px 18px; border-radius:999px;
-      font-size:13px; font-weight:500;
-      cursor:pointer; border:1px solid transparent;
-      transition: background-color 0.16s ease, border-color 0.16s ease, color 0.16s ease, transform 0.06s ease;
-      white-space:nowrap;
-    }
-    .btn-primary{
-      background: linear-gradient(135deg, #f9fafb, #e5e7eb);
-      color:#050608; box-shadow:0 12px 32px var(--shadow);
-    }
-    .btn-primary:hover{ background:#fff; transform: translateY(-1px); }
-    .btn-ghost{
-      background: rgba(15,23,42,0.9);
-      border-color:#4b4f5c;
-      color:#e1e3ea;
-    }
-    .btn-ghost:hover{ background:#111827; border-color:#6c7080; }
-    .btn-full{ width:100%; justify-content:center; }
-
-    .toc{
-      border-radius:14px;
-      border:1px solid var(--border);
-      background: var(--panel);
-      padding:12px 12px 10px;
-      margin:14px 0 18px;
-    }
-    .toc-title{
-      font-size:12px; color:#cbd0e0; margin-bottom:8px;
-      letter-spacing:0.08em; text-transform:uppercase;
-    }
-    .toc-row{ display:flex; flex-wrap:wrap; gap:8px; }
-    .chip{
-      font-size:11px; padding:3px 8px; border-radius:999px;
-      border:1px solid rgba(148,163,253,0.4);
-      color:#cbd5f5; background: rgba(15,23,42,0.8);
-      white-space:nowrap;
-      transition: transform 0.10s ease, border-color 0.16s ease;
-    }
-    .chip:hover{ border-color:rgba(165,180,252,0.65); transform: translateY(-1px); }
-
-    .section{ margin-bottom:30px; }
-    .section-kicker{
-      font-size:11px; text-transform:uppercase; letter-spacing:0.16em;
-      color: var(--text-mute); margin-bottom:4px;
-    }
-    .section-title-row{
-      display:flex; align-items:center; justify-content:space-between;
-      gap:10px; margin-bottom:8px;
-    }
-    .section-title{
-      font-size:18px; font-weight:600; letter-spacing:-0.02em;
-    }
-    .section-subtitle{
-      font-size:14px; color:#a0a4ae; margin-bottom:10px;
-    }
-    .section p{
-      font-size:14px; line-height:1.7; color:#e1e3ea;
-      margin-bottom:9px; max-width: 760px;
-    }
-
-    ul{ list-style:none; margin-top:4px; }
-    li{
-      font-size:14px; line-height:1.6; color:#e1e3ea;
-      padding-left:18px; position:relative; margin-bottom:6px;
-    }
-    li::before{
-      content:"•"; position:absolute; left:4px;
-      color: var(--accent-soft);
-    }
-
-    .grid-2{ display:grid; gap:16px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    .card{
-      border-radius:16px;
-      border:1px solid #22252f;
-      background: radial-gradient(circle at top left, #191c2e 0, #0a0b10 52%, #050608 100%);
-      padding:16px 16px 14px;
-    }
-    .card-title{ font-size:14px; font-weight:600; margin-bottom:6px; }
-    .card p{ font-size:13px; line-height:1.6; color:#daddef; margin-bottom:6px; }
-    .card-pill{
-      display:inline-flex; align-items:center;
-      border-radius:999px; border:1px solid #343848;
-      padding:3px 9px; font-size:11px; color:#b6bad1;
-      margin-bottom:10px;
-    }
-    .badge-row{ display:flex; flex-wrap:wrap; gap:6px; margin-top:8px; }
-    .badge{
-      font-size:11px;
-      border-radius:999px;
-      border:1px solid #343848;
-      padding:3px 8px;
-      color:#b6bad1;
-    }
-
-    .one-sentence{
-      margin-top:12px;
-      padding:10px 12px;
-      border-radius:10px;
-      border:1px dashed #343848;
-      background: rgba(15,23,42,0.6);
-      font-size:13px;
-      color:#d4d7eb;
-    }
-    .one-sentence strong{ font-weight:600; }
-
-    .layout-grid{
-      display:grid;
-      grid-template-columns: minmax(0, 3fr) minmax(0, 2.4fr);
-      gap:28px;
-      align-items:flex-start;
-      margin-bottom:32px;
-    }
-
-    .checklist{
-      border-radius:14px;
-      border:1px solid var(--border);
-      background: var(--bg-soft);
-      padding:14px 16px 10px;
-    }
-    .checklist-title{ font-size:13px; font-weight:600; margin-bottom:6px; }
-    .checklist-item{
-      font-size:12px; color:#b6bad1; line-height:1.6;
-      padding-left:18px; position:relative; margin-bottom:4px;
-    }
-    .checklist-item::before{
-      content:"✓"; position:absolute; left:3px;
-      color: var(--accent-soft); font-size:11px;
-    }
-
-    .two-col{
-      display:grid;
-      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
-      gap:24px;
-    }
-
-    .pricing-grid{
-      display:grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap:16px;
-      margin-top:12px;
-      margin-bottom:8px;
-    }
-    .pricing-card{
-      border-radius:14px;
-      border:1px solid var(--border);
-      background: radial-gradient(circle at top left, #191c2e 0, #0a0b10 52%, #050608 100%);
-      padding:14px 14px 12px;
-      display:block;
-      transition: transform 0.10s ease, border-color 0.16s ease;
-    }
-    .pricing-card:hover{
-      border-color: rgba(165,180,252,0.55);
-      transform: translateY(-1px);
-    }
-    .pricing-card h3{ font-size:14px; font-weight:600; margin-bottom:4px; }
-    .pricing-amount{ font-size:18px; font-weight:600; margin-bottom:4px; }
-    .pricing-note{ font-size:12px; color:#c4c8dd; line-height:1.6; }
-
-    .faq-item{ margin-bottom:14px; }
-    .faq-q{ font-size:13px; font-weight:500; color:#f1f2fb; margin-bottom:3px; }
-    .faq-a{ font-size:13px; color:#cacfe4; line-height:1.6; }
-
-    .form-shell{
-      border-radius:16px;
-      border:1px solid var(--border);
-      background: radial-gradient(circle at top left, rgba(129,140,248,0.12) 0, rgba(15,23,42,0.55) 55%, rgba(5,6,8,0.96) 100%);
-      padding:14px 14px 12px;
-      max-width: 760px;
-    }
-
-    form.simple-form{ margin-top:12px; }
-    .form-grid{
-      display:grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap:12px;
-      margin-top:10px;
-    }
-    .form-row.full{ grid-column:1 / -1; }
-
-    .form-row label, .form-row span.label{
-      display:block;
-      font-size:12px;
-      color:#cbd0e0;
-      margin-bottom:6px;
-      letter-spacing:0.02em;
-    }
-
-    .hint{
-      font-size:11px;
-      color:#9aa0b2;
-      line-height:1.5;
-      margin-top:6px;
-    }
-
-    .form-row input, .form-row textarea, .form-row select{
-      width:100%;
-      padding:10px 10px;
-      border-radius:10px;
-      border:1px solid #303445;
-      background: rgba(15,23,42,0.92);
-      color:#e5e7f5;
-      font-size:13px;
-      outline:none;
-    }
-    .form-row textarea{ min-height: 92px; resize: vertical; }
-
-    .form-row input:focus, .form-row textarea:focus, .form-row select:focus{
-      border-color: var(--focus);
-      box-shadow: 0 0 0 1px rgba(99,102,241,0.5);
-    }
-
-    .choice-grid{
-      display:grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap:10px;
-      margin-top:6px;
-    }
-    .choice-grid.two{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
-
-    .choice-input{
-      position:absolute;
-      opacity:0;
-      pointer-events:none;
-    }
-
-    .choice-card{
-      border-radius:14px;
-      border:1px solid var(--border);
-      background: rgba(15,23,42,0.55);
-      padding:10px 10px 9px;
-      cursor:pointer;
-      transition: transform 0.10s ease, border-color 0.16s ease, background 0.16s ease;
-      min-height: 74px;
-      display:flex;
-      flex-direction:column;
-      justify-content:space-between;
-      gap:8px;
-    }
-    .choice-card:hover{
-      border-color: rgba(165,180,252,0.55);
-      transform: translateY(-1px);
-    }
-
-    .choice-top{
-      display:flex;
-      align-items:flex-start;
-      justify-content:space-between;
-      gap:10px;
-    }
-    .choice-title{
-      font-size:13px;
-      font-weight:600;
-      color:#f1f2fb;
-      margin-bottom:2px;
-    }
-    .choice-sub{
-      font-size:12px;
-      color:#b6bad1;
-      line-height:1.5;
-    }
-    .choice-mark{
-      width:18px;height:18px;border-radius:999px;
-      border:1px solid #343848;
-      display:inline-flex; align-items:center; justify-content:center;
-      font-size:12px; color:transparent;
-      flex:0 0 auto; margin-top:1px;
-    }
-
-    .choice-input:checked + label.choice-card{
-      border-color: rgba(165,180,252,0.95);
-      background: radial-gradient(circle at top left, rgba(129,140,248,0.20) 0, rgba(15,23,42,0.55) 60%, rgba(5,6,8,0.95) 100%);
-    }
-    .choice-input:checked + label .choice-mark{
-      color:#050608;
-      border-color: rgba(165,180,252,0.95);
-      background: linear-gradient(135deg, #f9fafb, #e5e7eb);
-    }
-
-    .form-actions{
-      margin-top:12px;
-      display:grid;
-      grid-template-columns: minmax(0, 1fr);
-      gap:10px;
-      max-width: 360px;
-    }
-
-    .checkbox-row{
-      display:flex;
-      align-items:flex-start;
-      gap:10px;
-      cursor:pointer;
-      color:#d4d7eb;
-      font-size:12px;
-      line-height:1.5;
-      user-select:none;
-      padding:8px 10px;
-      border-radius:10px;
-      border:1px solid #2a2d3b;
-      background: rgba(15,23,42,0.55);
-    }
-    .checkbox-row input{ margin-top:2px; }
-
-    .privacy-note{
-      font-size:12px;
-      color:#a0a4ae;
-      line-height:1.6;
-      max-width: 760px;
-      margin-top:10px;
-    }
-
-    footer{
-      margin-top:32px;
-      font-size:11px;
-      color:#737889;
-      display:flex;
-      justify-content:space-between;
-      gap:12px;
-      flex-wrap:wrap;
-      align-items:center;
-    }
-    footer a{ color:#b6bad1; text-decoration:none; }
-    footer a:hover{ text-decoration: underline; }
-
-    @media (max-width: 900px){
-      .choice-grid{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .pricing-grid{ grid-template-columns: minmax(0, 1fr); }
-    }
-
-    @media (max-width: 768px){
-      body{ padding:24px 16px 32px; }
-      header{ align-items:flex-start; flex-direction:column; gap:6px; }
-      nav{ justify-content:flex-start; }
-      .hero-title{ font-size:24px; }
-      .hero-subtitle{ max-width:100%; }
-      .grid-2{ grid-template-columns: minmax(0, 1fr); }
-      .layout-grid,.two-col{ grid-template-columns: minmax(0, 1fr); }
-      .hero-cta-row{ flex-direction:column; }
-      .btn-primary,.btn-ghost{ width:100%; justify-content:center; }
-      .form-grid{ grid-template-columns: 1fr; }
-      .choice-grid, .choice-grid.two{ grid-template-columns: 1fr; }
-      .form-actions{ max-width:100%; }
-      footer{ flex-direction:column; align-items:flex-start; }
-    }
-  </style>
 </head>
 
 <body>
-  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="bg" aria-hidden="true"></div>
+  <a class="skip" href="#main">Skip to content</a>
 
-  <div class="page">
-    <header>
-      <a href="/" class="brand-wrap" aria-label="Noetfield home">
-        <div class="brand-logo" aria-hidden="true">N</div>
-        <div class="brand-text">
-          <div class="brand-name">Noetfield</div>
-          <div class="brand-tagline">Trust systems for AI governance</div>
+  <!-- injected header -->
+  <div id="nfHeader"></div>
+
+  <main id="main" class="wrap">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="heroShell">
+        <div class="heroInner">
+          <div class="eyebrow"><span class="dot"></span> Microsoft 365 Copilot • governance lane</div>
+          <h1>Copilot governance.</h1>
+          <p class="lead">
+            Copilot does not fail because the model is weak — it fails because organizations ship it without
+            <strong>controls</strong>, <strong>evidence trails</strong>, and <strong>board-safe boundaries</strong>.
+            This lane defines a minimum baseline you can defend under audit: who can use it, on what data, with what logging,
+            and how to record cost + risk in a way leadership can sign.
+          </p>
+
+          <div class="metaRow" aria-label="Highlights">
+            <div class="pill"><strong>Identity</strong> + access</div>
+            <div class="pill"><strong>Purview</strong> labels/DLP</div>
+            <div class="pill"><strong>Audit</strong> + telemetry</div>
+            <div class="pill"><strong>Cost recording</strong></div>
+            <div class="pill"><strong>Board memo</strong> options</div>
+          </div>
         </div>
-      </a>
+      </div>
+    </section>
 
-      <!-- REQUIRED NAV ORDER: Copilot between Trust Ledger and For Whom -->
-      <nav aria-label="Primary navigation">
-        <a href="/">Home</a>
-        <a href="/trust-brief/">Trust Brief</a>
-        <a href="/trust-ledger/">Trust Ledger</a>
-        <a href="/copilot-cost-governance/" class="active" aria-current="page">Copilot</a>
-        <a href="/for-whom/">For Whom</a>
-        <a href="/gate/">Gate</a>
-        <a href="/about/">About</a>
-        <a href="/contact/">Contact</a>
-        <a href="/playbook/">Playbook</a>
-        <a href="/partners/">Partners</a>
-      </nav>
-    </header>
-
-    <main id="main">
-      <!-- Hero -->
-      <section class="hero">
-        <div class="pill">
-          <span class="pill-dot"></span>
-          Copilot cost & governance track
+    <section class="grid">
+      <!-- MAIN -->
+      <div class="card">
+        <div class="hd">
+          <h2>What this page is</h2>
+          <p>
+            A practical implementation map for organizations rolling out Microsoft 365 Copilot (and adjacent assistants),
+            aligned to Noetfield’s evidence-ready governance posture.
+          </p>
         </div>
-        <div class="hero-kicker">Copilot Cost &amp; Governance Readiness</div>
-        <h1 class="hero-title">
-          Turn <span>Copilot rollout into a board-ready, auditable decision.</span>
-        </h1>
-        <p class="hero-subtitle">
-          A governance-first Copilot readiness pack that maps scope, license utilization, agent inventory,
-          data exposure, and controls — and converts it into a short decision memo plus Trust Ledger entries
-          your board, audit committee, or regulator can read in one sitting.
-        </p>
-        <div class="hero-cta-row">
-          <a href="#request-assessment" class="btn-primary">Request a readiness assessment</a>
-          <a href="#process" class="btn-ghost">See how it works</a>
-          <a href="/trust-brief/" class="btn-ghost">View the 6-week Trust Brief</a>
-        </div>
-      </section>
 
-      <!-- TOC -->
-      <div class="toc" aria-label="Page sections">
-        <div class="toc-title">On this page</div>
-        <div class="toc-row">
-          <a class="chip" href="#why">Why this exists</a>
-          <a class="chip" href="#definition">Definition</a>
-          <a class="chip" href="#what-you-get">What you get</a>
-          <a class="chip" href="#fit">Fit</a>
-          <a class="chip" href="#process">Process</a>
-          <a class="chip" href="#pricing">Pricing</a>
-          <a class="chip" href="#request-assessment">Request assessment</a>
-          <a class="chip" href="#faq">FAQ</a>
+        <div class="bd">
+          <div class="section" id="baseline">
+            <div class="sectionTitle">Minimum baseline (what must be true)</div>
+            <p class="sectionDesc">
+              If these are not true, Copilot adoption becomes a policy theatre exercise with weak defensibility.
+            </p>
+
+            <div class="split" aria-label="Baseline blocks">
+              <div class="mini">
+                <h3>1) Identity + access boundaries</h3>
+                <ul>
+                  <li><strong>SSO/IdP</strong> enforced; privileged roles separated.</li>
+                  <li><strong>Conditional access</strong> + MFA; device compliance where needed.</li>
+                  <li>Copilot enabled only for scoped groups (not “everyone”).</li>
+                  <li>Admin actions are logged and reviewed (no silent drift).</li>
+                </ul>
+              </div>
+
+              <div class="mini">
+                <h3>2) Data boundaries (labels and DLP)</h3>
+                <ul>
+                  <li>Information protection labels exist and are used in reality.</li>
+                  <li><strong>Purview / DLP</strong> policies are enforced for sensitive categories.</li>
+                  <li>External sharing and guest access are reviewed against Copilot scope.</li>
+                  <li>High-risk repositories are excluded or remediated before enabling.</li>
+                </ul>
+              </div>
+
+              <div class="mini">
+                <h3>3) Logging + evidence trail</h3>
+                <ul>
+                  <li>Audit logging is enabled and retained (policy + proof).</li>
+                  <li>Access, sharing, and admin events are exportable.</li>
+                  <li>Escalation path exists for incidents (who investigates, how).</li>
+                  <li>Evidence is stored in an audit-friendly structure.</li>
+                </ul>
+              </div>
+
+              <div class="mini">
+                <h3>4) Cost recording + decision memos</h3>
+                <ul>
+                  <li>Licensing scope and governance ownership are explicit.</li>
+                  <li>Usage metrics are reviewed on a cadence (not vibes).</li>
+                  <li>Leadership gets options: expand / constrain / pause with reasons.</li>
+                  <li>Cost and risk are tied to material workflows.</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="box">
+              <strong>Rule:</strong> if you cannot prove the boundary exists (config, export, log),
+              you cannot claim the control exists.
+            </div>
+          </div>
+
+          <div class="section" id="artefacts">
+            <div class="sectionTitle">Board-ready artefacts (what you produce)</div>
+            <p class="sectionDesc">
+              These are the outputs that make Copilot adoption defensible for boards, regulators, and auditors.
+            </p>
+
+            <table class="table" aria-label="Copilot governance artefacts">
+              <thead>
+                <tr>
+                  <th>Artefact</th>
+                  <th>What it answers</th>
+                  <th>Evidence anchor</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Copilot scope memo</td>
+                  <td>Who gets access and why</td>
+                  <td>Group list + policy screenshots/exports</td>
+                </tr>
+                <tr>
+                  <td>Data readiness map</td>
+                  <td>What Copilot can touch</td>
+                  <td>Label usage evidence + DLP policy references</td>
+                </tr>
+                <tr>
+                  <td>Control baseline (Copilot)</td>
+                  <td>What is enforced</td>
+                  <td>Config exports + audit log enablement proof</td>
+                </tr>
+                <tr>
+                  <td>Evidence trail pack</td>
+                  <td>Can we reconstruct events</td>
+                  <td>Log export paths + retention policy</td>
+                </tr>
+                <tr>
+                  <td>Board decision memo</td>
+                  <td>Approve / expand / constrain</td>
+                  <td>Options + trade-offs + residual risk</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <div class="actions">
+              <a class="btn" href="/gate/">Open Gate</a>
+              <a class="btn secondary" href="/trust-brief/">Trust Brief</a>
+              <a class="btn secondary" href="/trust-ledger/">Trust Ledger</a>
+            </div>
+          </div>
+
+          <div class="section" id="routing">
+            <div class="sectionTitle">Implementation routing (partners)</div>
+            <p class="sectionDesc">
+              If you need execution capacity (IdP, logs, DLP, controls), route to the right lane and keep it evidence-ready.
+            </p>
+
+            <div class="split" aria-label="Routing options">
+              <div class="mini">
+                <h3>Integration lane</h3>
+                <ul>
+                  <li>Identity, audit logs, SIEM pipelines, DLP/classification.</li>
+                  <li>Goal: enforce controls and produce exportable evidence.</li>
+                  <li><a href="/gate/partners/integration/">Open Integration lane</a></li>
+                </ul>
+              </div>
+              <div class="mini">
+                <h3>Delivery lane</h3>
+                <ul>
+                  <li>Structured rollout packages and acceptance criteria.</li>
+                  <li>Goal: predictable delivery, clean scope, clear SLAs.</li>
+                  <li><a href="/gate/partners/delivery/">Open Delivery lane</a></li>
+                </ul>
+              </div>
+              <div class="mini">
+                <h3>Channel lane</h3>
+                <ul>
+                  <li>Agencies/MSPs who route qualified clients into Noetfield.</li>
+                  <li>Goal: correct intake + routing, not hype.</li>
+                  <li><a href="/gate/partners/channel/">Open Channel lane</a></li>
+                </ul>
+              </div>
+              <div class="mini">
+                <h3>Start intake</h3>
+                <ul>
+                  <li>For operators who want a governed entry and routing.</li>
+                  <li>Goal: decide track + lane + next action.</li>
+                  <li><a href="/gate/intake/">Start intake</a></li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="box">
+              <strong>Note:</strong> this page is the Copilot lane overview. Detailed implementation checklists and templates
+              will be published progressively in the <a href="/playbook/">Playbook</a>.
+            </div>
+          </div>
         </div>
       </div>
 
-      <!-- Why this exists -->
-      <section class="section" id="why">
-        <div class="section-title-row">
-          <div>
-            <div class="section-kicker">Context</div>
-            <h2 class="section-title">Why this Copilot pack exists</h2>
-          </div>
-          <div class="chip">Cost + risk drift</div>
+      <!-- ASIDE -->
+      <aside class="card">
+        <div class="hd">
+          <h2>Quick navigation</h2>
+          <p>Jump to what matters, fast.</p>
         </div>
-        <p class="section-subtitle">
-          Copilot is not only a license line item. It expands the governance surface: new access patterns,
-          new agents, new content flows, and new failure modes. Without a record, cost and risk drift quietly.
-        </p>
-        <ul>
-          <li>Clarify Copilot scope (which experiences are in use, by whom, and for what).</li>
-          <li>Detect license waste, under-adoption, and misaligned spend.</li>
-          <li>Inventory Copilot agents, owners, and data scope in one place.</li>
-          <li>Reduce oversharing and exposure from orphaned or outdated sources.</li>
-          <li>Produce board-ready artefacts instead of scattered spreadsheets and chats.</li>
-        </ul>
-        <div class="one-sentence">
-          <strong>Outcome:</strong> where Copilot is used, what it costs, what it touches, and which controls exist —
-          documented in a format that survives audit and board scrutiny.
-        </div>
-      </section>
-
-      <!-- Definition + Aside -->
-      <section class="layout-grid" id="definition">
-        <div class="section">
-          <div class="section-title-row">
-            <div>
-              <div class="section-kicker">Definition</div>
-              <h2 class="section-title">What the Copilot readiness pack is</h2>
-            </div>
-            <div class="chip">Board-ready</div>
+        <div class="bd">
+          <div class="toc" aria-label="On-page navigation">
+            <a href="#baseline"><span>Minimum</span><strong>Baseline</strong><span class="arrow">→</span></a>
+            <a href="#artefacts"><span>Board-ready</span><strong>Artefacts</strong><span class="arrow">→</span></a>
+            <a href="#routing"><span>Implementation</span><strong>Routing</strong><span class="arrow">→</span></a>
           </div>
 
-          <p>
-            The Noetfield Copilot Cost &amp; Governance Readiness pack is a focused engagement that turns a Copilot rollout
-            (or planned rollout) into a documented, auditable decision.
-          </p>
-          <p>
-            It consolidates cost, scope, agents, data exposure, and controls into a short record the board can approve,
-            the audit committee can track, and risk/security teams can operationalize.
-          </p>
-          <p>
-            Outputs are structured to feed directly into Noetfield’s Trust Ledger and remain usable as evidence over time.
-          </p>
-
-          <div class="one-sentence">
-            <strong>In one sentence:</strong> a 2–3 week Copilot diagnostic that produces a cost map, agent inventory,
-            exposure scan, and a board-ready decision memo plus Trust Ledger entries.
-          </div>
-        </div>
-
-        <aside class="card" aria-label="At a glance">
-          <div class="card-pill">At a glance</div>
-          <div class="card-title">Core components inside the pack</div>
-          <p>Plain language outputs with enough structure to satisfy audit and risk teams.</p>
-          <ul>
-            <li>Copilot scope &amp; license context — which SKUs are active, where, and why.</li>
-            <li>License utilization analysis — assigned vs active, waste hotspots, cleanup actions.</li>
-            <li>Agent inventory (MVP ledger) — agents, owners, purpose, data scope, risk tier.</li>
-            <li>Oversharing &amp; exposure scan — high-risk content paths and common misconfigurations.</li>
-            <li>Control baseline — lifecycle rules, accountability, and reporting cadence.</li>
-            <li>Board decision memo — proceed / pause / limited pilot / scale, with conditions.</li>
-          </ul>
-          <div class="badge-row">
-            <div class="badge">2–3 weeks</div>
-            <div class="badge">Board-readable</div>
-            <div class="badge">Trust Ledger-compatible</div>
-          </div>
-        </aside>
-      </section>
-
-      <!-- What you get -->
-      <section class="section" id="what-you-get">
-        <div class="section-title-row">
-          <div>
-            <div class="section-kicker">What you get</div>
-            <h2 class="section-title">Concrete Copilot artefacts, not generic AI advice</h2>
-          </div>
-        </div>
-        <p class="section-subtitle">
-          A small set of high-leverage artefacts you can plug into existing governance (and reuse), not another long slide deck.
-        </p>
-
-        <div class="grid-2">
-          <div class="card">
-            <div class="card-pill">Cost &amp; scope</div>
-            <div class="card-title">1) Copilot cost map</div>
-            <p>Clarifies Copilot types in use, license SKUs, and where spend can drift if adoption is uneven or ungoverned.</p>
-            <ul>
-              <li>License types vs business units or functions.</li>
-              <li>Baseline spend and projected scenarios.</li>
-              <li>Waste and over-provisioning signals.</li>
-            </ul>
+          <div class="box" style="margin-top:14px;">
+            <strong>Use this when:</strong><br/>
+            You are enabling M365 Copilot (or planning to), and you need to prove you can control data exposure,
+            retain evidence, and report cost/risk in a board-legible way.
           </div>
 
-          <div class="card">
-            <div class="card-pill">Utilization</div>
-            <div class="card-title">2) License utilization report</div>
-            <p>A short utilization view: assigned vs active usage, adoption blockers, and a practical cleanup plan.</p>
-            <ul>
-              <li>Low-usage clusters and patterns.</li>
-              <li>Areas where Copilot could replace legacy spend.</li>
-              <li>Signals for ongoing monitoring.</li>
-            </ul>
+          <div class="box" style="margin-top:14px;">
+            <strong>Related:</strong><br/>
+            <a href="/copilot-cost-governance/">Cost recording</a> ·
+            <a href="/for-whom/">For Whom</a> ·
+            <a href="/mandate/">Mandate</a>
           </div>
 
-          <div class="card">
-            <div class="card-pill">Agent layer</div>
-            <div class="card-title">3) Agent inventory (MVP ledger)</div>
-            <p>A first-generation ledger of Copilot agents, with owners, purpose, data scope, and risk tier.</p>
-            <ul>
-              <li>Who created what, for which process.</li>
-              <li>Which sources each agent depends on.</li>
-              <li>Flags for high-sensitivity combinations.</li>
-            </ul>
-          </div>
-
-          <div class="card">
-            <div class="card-pill">Exposure</div>
-            <div class="card-title">4) Oversharing and exposure scan</div>
-            <p>Short risk map of sensitive paths: oversharing, shadow data, and misaligned access patterns.</p>
-            <ul>
-              <li>High-risk content and teams.</li>
-              <li>Common misconfigurations and quick fixes.</li>
-              <li>Recommendations for safe defaults.</li>
-            </ul>
-          </div>
-
-          <div class="card">
-            <div class="card-pill">Controls</div>
-            <div class="card-title">5) Control baseline</div>
-            <p>A minimal, realistic governance baseline specific to Copilot usage.</p>
-            <ul>
-              <li>Policy hooks and lifecycle rules.</li>
-              <li>Reporting cadence and owner assignments.</li>
-              <li>Links into broader AI governance and security.</li>
-            </ul>
-          </div>
-
-          <div class="card">
-            <div class="card-pill">Board artefact</div>
-            <div class="card-title">6) Board decision memo + Trust Ledger entries</div>
-            <p>A short decision memo plus a set of Copilot entries ready to drop into a Trust Ledger record.</p>
-            <ul>
-              <li>Proceed / pause / limited pilot / scale framing.</li>
-              <li>Explicit conditions and safeguards.</li>
-              <li>Ledger entries as ongoing evidence anchors.</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <!-- Fit -->
-      <section class="section" id="fit">
-        <div class="section-title-row">
-          <div>
-            <div class="section-kicker">Fit</div>
-            <h2 class="section-title">Who the Copilot pack is for</h2>
-          </div>
-        </div>
-
-        <div class="two-col">
-          <div>
-            <p>Best suited for organisations where:</p>
-            <ul>
-              <li>Copilot licenses are purchased or being trialled at non-trivial scale.</li>
-              <li>Boards or audit committees are asking “What exactly did we approve?”</li>
-              <li>Security and risk teams want evidence without blocking adoption.</li>
-            </ul>
-
-            <p>Typical buyer and stakeholders:</p>
-            <ul>
-              <li>Board chair, audit or risk committee.</li>
-              <li>CIO, CISO, CRO, COO, or Head of Transformation.</li>
-              <li>Leaders accountable for AI and digital spend.</li>
-            </ul>
-          </div>
-
-          <div>
-            <div class="checklist">
-              <div class="checklist-title">If these statements are true, the pack fits:</div>
-              <div class="checklist-item">Copilot spend is material enough to appear on board agendas.</div>
-              <div class="checklist-item">There is no single view of where Copilot is used and by whom.</div>
-              <div class="checklist-item">A short, auditable, non-technical board pack is required.</div>
-              <div class="checklist-item">Copilot entries are needed to seed an ongoing Trust Ledger cadence.</div>
+          <div class="section" style="margin-top:14px;">
+            <div class="sectionTitle">Next action</div>
+            <p class="sectionDesc">If you want this turned into a routed, trackable engagement.</p>
+            <div class="actions" style="margin-top:10px;">
+              <a class="btn" href="/gate/intake/">Start intake</a>
+              <a class="btn secondary" href="/status/">Status</a>
             </div>
           </div>
         </div>
-      </section>
+      </aside>
+    </section>
+  </main>
 
-      <!-- Process -->
-      <section class="section" id="process">
-        <div class="section-title-row">
-          <div>
-            <div class="section-kicker">Process</div>
-            <h2 class="section-title">How the Copilot readiness work runs</h2>
-          </div>
-        </div>
-        <p class="section-subtitle">
-          Designed as a short diagnostic that respects existing tools and workloads. Most work is async and uses artefacts you already have.
-        </p>
-        <ul>
-          <li><strong>1) Intake (48h)</strong> – licensing context, target groups, governance constraints.</li>
-          <li><strong>2) Mapping</strong> – Copilot scope, license allocation, first agent inventory.</li>
-          <li><strong>3) Analysis</strong> – cost/utilization findings and exposure/oversharing scan.</li>
-          <li><strong>4) Controls</strong> – Copilot-specific baseline and reporting cadence.</li>
-          <li><strong>5) Board pack</strong> – decision memo plus Copilot Trust Ledger entries.</li>
-        </ul>
-        <div class="one-sentence">
-          <strong>Default duration:</strong> 2–3 weeks from intake to delivery (depending on data availability and scope).
-        </div>
-      </section>
-
-      <!-- Pricing -->
-      <section class="section" id="pricing">
-        <div class="section-title-row">
-          <div>
-            <div class="section-kicker">Pricing</div>
-            <h2 class="section-title">Typical range and engagement shape</h2>
-          </div>
-          <div class="chip">Indicative</div>
-        </div>
-
-        <p>
-          Pricing reflects scale, complexity, and how many business units or regions are in scope.
-        </p>
-
-        <div class="pricing-grid">
-          <div class="pricing-card">
-            <h3>Focused pilot</h3>
-            <p class="pricing-amount">CAD 2.5k–4.5k</p>
-            <p class="pricing-note">
-              Limited rollout (one function or business unit). Establish a first board-ready record and baseline controls.
-            </p>
-          </div>
-
-          <div class="pricing-card">
-            <h3>Multi-unit readiness</h3>
-            <p class="pricing-amount">CAD 4.5k–7.5k</p>
-            <p class="pricing-note">
-              Broader deployment across multiple functions/regions. Deeper cost analysis, agent mapping, exposure scanning.
-            </p>
-          </div>
-        </div>
-
-        <p>
-          Final pricing is confirmed after intake. Invoicing can be issued to the operating entity or holding company as required.
-        </p>
-      </section>
-
-      <!-- Request Assessment -->
-      <section class="section" id="request-assessment">
-        <div class="section-title-row">
-          <div>
-            <div class="section-kicker">Next step</div>
-            <h2 class="section-title">Request a Copilot readiness assessment</h2>
-          </div>
-          <div class="chip">Structured intake</div>
-        </div>
-
-        <p>
-          Share a few details below. If there is a fit, a short scoping call or async exchange confirms scope and pricing.
-        </p>
-
-        <div class="form-shell">
-          <!-- Uses same Formspree ID pattern as Gate example -->
-          <form class="simple-form" method="POST" action="https://formspree.io/f/xyzrdrpv">
-            <!-- Honeypot -->
-            <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
-
-            <input type="hidden" name="page_source" value="/copilot-cost-governance/" />
-            <input type="hidden" name="offer" value="Copilot Cost & Governance Readiness" />
-            <input type="hidden" name="_subject" value="Noetfield – Copilot readiness request" />
-
-            <div class="form-grid" role="group" aria-label="Contact details">
-              <div class="form-row">
-                <label for="f_name">Name</label>
-                <input id="f_name" name="name" type="text" placeholder="Full name" autocomplete="name" required />
-              </div>
-
-              <div class="form-row">
-                <label for="f_email">Email</label>
-                <input id="f_email" name="email" type="email" placeholder="name@company.com" autocomplete="email" required />
-              </div>
-
-              <div class="form-row">
-                <label for="f_org">Organization / Role</label>
-                <input id="f_org" name="organization" type="text" placeholder="Company + role" autocomplete="organization" />
-              </div>
-
-              <div class="form-row">
-                <label for="f_website">Website (optional)</label>
-                <input id="f_website" name="website" type="url" placeholder="https://..." inputmode="url" />
-              </div>
-
-              <div class="form-row full">
-                <span class="label">Copilot status</span>
-                <div class="choice-grid two" role="radiogroup" aria-label="Copilot rollout status">
-                  <input class="choice-input" type="radio" id="cp1" name="copilot_status" value="planning" required />
-                  <label class="choice-card" for="cp1">
-                    <div class="choice-top">
-                      <div>
-                        <div class="choice-title">Planning rollout</div>
-                        <div class="choice-sub">Licenses not yet widely assigned</div>
-                      </div>
-                      <div class="choice-mark">✓</div>
-                    </div>
-                  </label>
-
-                  <input class="choice-input" type="radio" id="cp2" name="copilot_status" value="live" />
-                  <label class="choice-card" for="cp2">
-                    <div class="choice-top">
-                      <div>
-                        <div class="choice-title">Already live</div>
-                        <div class="choice-sub">Active usage in at least one function</div>
-                      </div>
-                      <div class="choice-mark">✓</div>
-                    </div>
-                  </label>
-                </div>
-              </div>
-
-              <div class="form-row full">
-                <span class="label">Approximate scope</span>
-                <div class="choice-grid" role="radiogroup" aria-label="Scope">
-                  <input class="choice-input" type="radio" id="sc1" name="scope" value="up-to-100-licenses" required />
-                  <label class="choice-card" for="sc1">
-                    <div class="choice-top">
-                      <div>
-                        <div class="choice-title">Up to ~100 licenses</div>
-                        <div class="choice-sub">Single function or small organisation</div>
-                      </div>
-                      <div class="choice-mark">✓</div>
-                    </div>
-                  </label>
-
-                  <input class="choice-input" type="radio" id="sc2" name="scope" value="100-500-licenses" />
-                  <label class="choice-card" for="sc2">
-                    <div class="choice-top">
-                      <div>
-                        <div class="choice-title">~100–500 licenses</div>
-                        <div class="choice-sub">Multiple functions or regions</div>
-                      </div>
-                      <div class="choice-mark">✓</div>
-                    </div>
-                  </label>
-
-                  <input class="choice-input" type="radio" id="sc3" name="scope" value="500-plus-licenses" />
-                  <label class="choice-card" for="sc3">
-                    <div class="choice-top">
-                      <div>
-                        <div class="choice-title">500+ licenses</div>
-                        <div class="choice-sub">Enterprise-scale rollout</div>
-                      </div>
-                      <div class="choice-mark">✓</div>
-                    </div>
-                  </label>
-                </div>
-              </div>
-
-              <div class="form-row full">
-                <label for="f_notes">Primary concern or driver</label>
-                <textarea
-                  id="f_notes"
-                  name="primary_concern"
-                  placeholder="Board questions, audit requests, cost justification, risk concerns, upcoming renewal, etc."
-                ></textarea>
-                <div class="hint">Optional, but helps scope quickly.</div>
-              </div>
-
-              <div class="form-row full">
-                <label class="checkbox-row">
-                  <input type="checkbox" name="ready_to_proceed" value="yes" />
-                  Prepared to proceed to a scoped proposal if there is a fit and pricing is aligned.
-                </label>
-              </div>
-
-              <div class="form-row full">
-                <div class="form-actions">
-                  <button type="submit" class="btn-primary btn-full">Request assessment</button>
-                  <a class="btn-ghost btn-full" href="/contact/">Prefer direct contact</a>
-                </div>
-
-                <div class="privacy-note">
-                  Minimal data only. Used to respond to this request and scope the engagement. Delete on request.
-                </div>
-              </div>
-            </div>
-          </form>
-        </div>
-      </section>
-
-      <!-- FAQ -->
-      <section class="section" id="faq">
-        <div class="section-title-row">
-          <div>
-            <div class="section-kicker">FAQ</div>
-            <h2 class="section-title">FAQ – using the Copilot pack in practice</h2>
-          </div>
-          <div class="chip">Answer-ready</div>
-        </div>
-
-        <div class="two-col">
-          <div>
-            <div class="faq-item">
-              <div class="faq-q">Who is the Copilot Cost &amp; Governance Readiness pack for?</div>
-              <div class="faq-a">
-                Boards, audit/risk committees, and CIO/CISO/CRO/COO leaders who need a credible, structured view of Copilot cost,
-                usage, agents, and controls — not just a license count.
-              </div>
-            </div>
-
-            <div class="faq-item">
-              <div class="faq-q">Do you need direct tenant access?</div>
-              <div class="faq-a">
-                Not always. Many engagements start from licensing reports, role maps, and policy documents. Where appropriate,
-                outputs can be integrated into existing governance tooling without deep technical access.
-              </div>
-            </div>
-
-            <div class="faq-item">
-              <div class="faq-q">Is this a replacement for Microsoft or other tooling?</div>
-              <div class="faq-a">
-                No. This is a governance and decision layer that sits above Microsoft Copilot and any tooling already used.
-                It helps boards and regulators interpret what those tools are doing in human language.
-              </div>
-            </div>
-          </div>
-
-          <div>
-            <div class="faq-item">
-              <div class="faq-q">How long does it take?</div>
-              <div class="faq-a">
-                Most organisations complete a credible v1 within 2–3 weeks. Timelines depend on data availability and how many units are in scope.
-              </div>
-            </div>
-
-            <div class="faq-item">
-              <div class="faq-q">How does this relate to the Trust Brief and Trust Ledger?</div>
-              <div class="faq-a">
-                The Copilot pack is a focused entry point. Its outputs can feed into a wider Trust Brief, and its entries can seed an ongoing Trust Ledger cadence.
-              </div>
-            </div>
-
-            <div class="faq-item">
-              <div class="faq-q">What happens after delivery?</div>
-              <div class="faq-a">
-                Keep the artefacts as a one-time diagnostic, or convert them into a recurring Trust Ledger track with monthly updates and board reporting.
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <!-- REQUIRED FOOTER ORDER: Copilot between Trust Ledger and For Whom -->
-    <footer>
-      <div>© <span id="year"></span> Noetfield Systems Inc. All rights reserved.</div>
-      <div>
-        <a href="/">Home</a> ·
-        <a href="/trust-brief/">Trust Brief</a> ·
-        <a href="/trust-ledger/">Trust Ledger</a> ·
-        <a href="/copilot-cost-governance/">Copilot</a> ·
-        <a href="/for-whom/">For Whom</a> ·
-        <a href="/gate/">Gate</a> ·
-        <a href="/about/">About</a> ·
-        <a href="/contact/">Contact</a> ·
-        <a href="/playbook/">Playbook</a> ·
-        <a href="/partners/">Partners</a> ·
-        <a href="/structure/">Structure</a>
-      </div>
-    </footer>
-  </div>
-
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
+  <!-- injected footer -->
+  <div id="nfFooter"></div>
 </body>
 </html>
-

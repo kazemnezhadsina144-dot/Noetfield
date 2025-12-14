@@ -2,1223 +2,441 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Noetfield – AI Trust Brief (6-week pilot)</title>
+  <title>Noetfield – Trust Brief</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta
     name="description"
-    content="The Noetfield AI Trust Brief is a governance-first, six-week pilot that maps where AI is materially used in your work, highlights key risks and safeguards, and delivers a board-ready AI Trust Brief plus a Trust Ledger sample."
+    content="The Noetfield Trust Brief is a 6-week governance-first diagnostic that maps material AI use cases and produces board-ready Trust Ledger entries, risks, controls, and decision options."
   />
   <meta name="robots" content="index,follow" />
   <meta name="author" content="Noetfield Systems Inc." />
+  <meta name="theme-color" content="#07070b" />
 
   <link rel="canonical" href="https://www.noetfield.com/trust-brief/" />
 
   <link rel="icon" href="/noetfield-favicon-512.png" type="image/png" />
   <link rel="apple-touch-icon" href="/noetfield-favicon-512.png" />
-  <meta name="theme-color" content="#05060a" />
 
+  <!-- OG -->
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Noetfield" />
-  <meta property="og:title" content="Noetfield – AI Trust Brief (6-week pilot)" />
+  <meta property="og:title" content="Noetfield – Trust Brief" />
   <meta
     property="og:description"
-    content="A governance-first, six-week pilot that maps material AI use in your organisation, highlights key risks and safeguards, and delivers a board-ready AI Trust Brief plus a Trust Ledger sample for boards and regulators."
+    content="A 6-week AI governance diagnostic producing board-ready Trust Ledger entries, risks, controls, and decision options."
   />
   <meta property="og:url" content="https://www.noetfield.com/trust-brief/" />
   <meta property="og:image" content="https://www.noetfield.com/noetfield-og.png" />
 
+  <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Noetfield – AI Trust Brief (6-week pilot)" />
+  <meta name="twitter:title" content="Noetfield – Trust Brief" />
   <meta
     name="twitter:description"
-    content="The Noetfield AI Trust Brief is a governance-first, six-week pilot that delivers a board-ready AI Trust Brief and a sample Trust Ledger page for boards, executives, and regulators."
+    content="A 6-week AI governance diagnostic producing board-ready Trust Ledger entries, risks, controls, and decision options."
   />
   <meta name="twitter:image" content="https://www.noetfield.com/noetfield-og.png" />
 
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Service",
-    "name": "Noetfield AI Trust Brief",
-    "provider": {
-      "@type": "Organization",
-      "name": "Noetfield Systems Inc.",
-      "url": "https://www.noetfield.com/"
-    },
-    "url": "https://www.noetfield.com/trust-brief/",
-    "description": "A governance-first, six-week pilot that maps material AI use in your organisation and delivers a board-ready AI Trust Brief plus a Trust Ledger sample.",
-    "areaServed": {
-      "@type": "Country",
-      "name": "Canada"
-    },
-    "audience": {
-      "@type": "Audience",
-      "audienceType": [
-        "Board of directors",
-        "Risk and audit committee",
-        "Executives",
-        "Regulators",
-        "Supervisors"
-      ]
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- LOCKED SHELL -->
+  <link rel="stylesheet" href="/assets/noetfield-shell.css" />
+  <script src="/assets/noetfield-shell.js" defer></script>
+
+  <!-- Page-only styles -->
+  <style>
+    .hero{padding:22px 0 14px}
+    .heroShell{
+      position:relative;
+      border-radius: calc(var(--radius) + 8px);
+      border: 1px solid rgba(255,255,255,.11);
+      background:
+        radial-gradient(1000px 420px at 18% 0%, rgba(200,163,73,.18), transparent 60%),
+        radial-gradient(1000px 420px at 90% 10%, rgba(122,167,255,.10), transparent 62%),
+        linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.022));
+      box-shadow: var(--shadow);
+      overflow:hidden;
     }
-  }
-  </script>
+    .heroShell::before{
+      content:"";
+      position:absolute; inset:-1px;
+      background: linear-gradient(120deg, rgba(200,163,73,.26), transparent 30%, rgba(255,255,255,.08) 68%, transparent);
+      opacity:.44;
+      pointer-events:none;
+      mask-image: linear-gradient(180deg, black 0%, black 58%, transparent 96%);
+    }
+    .heroInner{padding: 24px 22px}
+
+    .eyebrow{
+      display:inline-flex; gap:10px; align-items:center;
+      color:var(--muted);
+      font-size:13px;
+      padding:9px 12px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.13);
+      background: rgba(255,255,255,.035);
+    }
+    .dot{
+      width:8px; height:8px; border-radius:50%;
+      background: rgba(200,163,73,.97);
+      box-shadow: 0 0 0 3px rgba(200,163,73,.18);
+    }
+
+    h1{margin:14px 0 10px; font-size:40px; line-height:1.07; letter-spacing:-0.75px}
+    .lead{margin:0; color:var(--muted); font-size:16px; max-width: 1020px; line-height:1.75}
+    .lead strong{color:var(--text); font-weight:800}
+
+    .metaRow{display:flex; flex-wrap:wrap; gap:10px; margin-top:14px}
+    .pill{
+      display:inline-flex; align-items:center; gap:10px;
+      padding:9px 12px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.03);
+      color:var(--muted);
+      font-size:13px;
+      white-space:nowrap;
+    }
+    .pill strong{color:var(--text); font-weight:800}
+
+    .grid{
+      display:grid;
+      grid-template-columns: 1.12fr .88fr;
+      gap:18px;
+      margin: 18px 0 34px;
+      align-items:start;
+    }
+    .card{
+      border-radius:var(--radius);
+      border:1px solid rgba(255,255,255,.11);
+      background: linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.022));
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+      min-width:0;
+    }
+    .card .hd{padding:18px 18px 0}
+    .card h2{margin:0 0 8px; font-size:18px; letter-spacing:-0.2px}
+    .card p{margin:0 0 12px; color:var(--muted); line-height:1.7}
+    .card .bd{padding:18px}
+
+    .kpiGrid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:12px;
+      margin-top:12px;
+    }
+    .kpi{
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      padding:12px;
+      min-width:0;
+    }
+    .kpi .t{font-size:11px; letter-spacing:.28em; text-transform:uppercase; color:var(--muted2)}
+    .kpi .v{margin-top:8px; font-weight:900; letter-spacing:-.2px}
+    .kpi .d{margin-top:6px; color:var(--muted2); font-size:12.6px; line-height:1.55}
+
+    .section{
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      border-radius:16px;
+      padding:14px;
+      margin-top:12px;
+    }
+    .sectionTitle{
+      font-weight:900;
+      letter-spacing:-.2px;
+      margin:0 0 6px;
+      font-size:14px;
+    }
+    .sectionDesc{
+      margin:0 0 12px;
+      color:var(--muted2);
+      font-size:12.7px;
+      line-height:1.6;
+    }
+
+    .steps{margin:0; padding-left:18px; color:var(--muted); line-height:1.85}
+    .steps li{margin:6px 0}
+
+    .table{
+      width:100%;
+      border-collapse:separate;
+      border-spacing:0;
+      overflow:hidden;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.02);
+      margin-top:10px;
+    }
+    .table th, .table td{
+      text-align:left;
+      padding:12px;
+      border-bottom:1px solid rgba(255,255,255,.08);
+      vertical-align:top;
+      font-size:13px;
+    }
+    .table th{
+      color:var(--muted2);
+      font-size:11px;
+      letter-spacing:.28em;
+      text-transform:uppercase;
+      background: rgba(255,255,255,.03);
+    }
+    .table tr:last-child td{border-bottom:none}
+
+    .tag{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:7px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.03);
+      color:var(--muted);
+      font-size:12px;
+      white-space:nowrap;
+    }
+    .tag strong{color:var(--text); font-weight:800}
+
+    .actions{display:flex; gap:12px; flex-wrap:wrap; align-items:center; margin-top:12px}
+    .box{
+      margin-top:12px;
+      padding:12px 12px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      color:var(--muted2);
+      font-size:12.8px;
+      line-height:1.6;
+    }
+    .box strong{color:var(--text); font-weight:800}
+    .box a{border-bottom:1px solid rgba(255,255,255,.18)}
+
+    .priceRow{
+      display:flex; gap:12px; flex-wrap:wrap; align-items:stretch;
+      margin-top:12px;
+    }
+    .priceCard{
+      flex:1 1 220px;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      padding:12px;
+      min-width:0;
+    }
+    .priceCard .name{font-weight:900; letter-spacing:-.2px}
+    .priceCard .amt{margin-top:8px; font-size:22px; font-weight:900; letter-spacing:-.4px}
+    .priceCard .sub{margin-top:6px; color:var(--muted2); font-size:12.6px; line-height:1.55}
+
+    @media (max-width: 980px){
+      .grid{grid-template-columns:1fr}
+      .kpiGrid{grid-template-columns:1fr}
+    }
+    @media (max-width: 760px){
+      h1{font-size:30px}
+      .table th, .table td{padding:10px}
+    }
+  </style>
 
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "WebPage",
-    "name": "Noetfield – AI Trust Brief (6-week pilot)",
+    "name": "Noetfield – Trust Brief",
     "url": "https://www.noetfield.com/trust-brief/",
-    "isPartOf": {
-      "@type": "WebSite",
-      "name": "Noetfield",
-      "url": "https://www.noetfield.com/"
-    },
-    "description": "Noetfield AI Trust Brief – a governance-first, six-week AI governance pilot that leads into the Noetfield Trust Ledger with board-ready artefacts."
+    "description": "The Noetfield Trust Brief is a 6-week governance-first diagnostic that maps material AI use cases and produces board-ready Trust Ledger entries, risks, controls, and decision options.",
+    "isPartOf": {"@type":"WebSite","name":"Noetfield","url":"https://www.noetfield.com/"},
+    "publisher": {"@type":"Organization","name":"Noetfield Systems Inc."}
   }
   </script>
-
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
-    rel="stylesheet"
-  />
-
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --bg: #05060a;
-      --bg-soft: #080911;
-      --border-soft: rgba(255,255,255,0.10);
-      --text-main: #f5f5f7;
-      --text-soft: #daddef;
-      --text-mute: #9ca3af;
-      --accent: #ffffff;
-      --accent-soft: #9ca3ff;
-    }
-
-    body {
-      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: radial-gradient(circle at top, #151827 0%, var(--bg) 55%);
-      color: var(--text-main);
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 32px 20px 40px;
-    }
-
-    a { color: inherit; text-decoration: none; }
-
-    .page {
-      width: 100%;
-      max-width: 1040px;
-      display: flex;
-      flex-direction: column;
-      min-height: calc(100vh - 72px);
-    }
-
-    header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 32px;
-      padding-bottom: 14px;
-      border-bottom: 1px solid var(--border-soft);
-      gap: 14px;
-    }
-
-    .brand-wrap {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .brand-logo {
-      width: 32px;
-      height: 32px;
-      border-radius: 999px;
-      background: radial-gradient(circle at 25% 0, #ffffff 0, #d4e0ff 18%, #818cf8 45%, #1f2937 70%, #020617 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 18px;
-      font-weight: 700;
-      color: #ffffff;
-      box-shadow: 0 10px 28px rgba(15,23,42,0.9);
-    }
-
-    .brand-text {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
-
-    .brand-name {
-      font-size: 16px;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
-    .brand-tagline {
-      font-size: 12px;
-      color: var(--text-mute);
-    }
-
-    nav {
-      display: flex;
-      gap: 18px;
-      font-size: 13px;
-      flex-wrap: wrap;
-    }
-
-    nav a {
-      opacity: 0.78;
-      padding-bottom: 2px;
-      border-bottom: 1px solid transparent;
-      position: relative;
-    }
-
-    nav a:hover {
-      opacity: 1;
-      border-bottom-color: rgba(209,213,219,0.6);
-    }
-
-    nav a.active {
-      opacity: 1;
-      border-bottom-color: rgba(255,255,255,0.85);
-      font-weight: 500;
-    }
-
-    main { width: 100%; }
-
-    .hero {
-      margin-bottom: 28px;
-    }
-
-    .pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 11px;
-      padding: 4px 10px;
-      border-radius: 999px;
-      border: 1px solid rgba(148,163,253,0.35);
-      background: radial-gradient(circle at 0 0, rgba(129,140,248,0.32), transparent 55%);
-      color: #e5e7eb;
-      margin-bottom: 10px;
-    }
-
-    .pill-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 999px;
-      background: linear-gradient(135deg, #7dd3fc, #a855f7);
-    }
-
-    .hero-kicker {
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      color: var(--text-mute);
-      margin-bottom: 8px;
-    }
-
-    .hero-title {
-      font-size: clamp(26px, 3vw, 30px);
-      line-height: 1.15;
-      font-weight: 600;
-      margin-bottom: 14px;
-      letter-spacing: -0.02em;
-    }
-
-    .hero-title span {
-      background: linear-gradient(135deg, #ffffff, #a5b4fc);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
-
-    .hero-subtitle {
-      font-size: 15px;
-      line-height: 1.6;
-      color: #d0d3dd;
-      max-width: 680px;
-    }
-
-    .hero-cta-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 22px;
-    }
-
-    .btn-primary,
-    .btn-ghost {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 9px 18px;
-      border-radius: 999px;
-      font-size: 13px;
-      font-weight: 500;
-      cursor: pointer;
-      border: 1px solid transparent;
-      transition: background-color 0.16s ease, border-color 0.16s ease, color 0.16s ease, transform 0.06s ease;
-      white-space: nowrap;
-    }
-
-    .btn-primary {
-      background: linear-gradient(135deg, #f9fafb, #e5e7eb);
-      color: #050608;
-      box-shadow: 0 12px 32px rgba(15,23,42,0.9);
-    }
-
-    .btn-primary:hover {
-      background: #ffffff;
-      transform: translateY(-1px);
-    }
-
-    .btn-ghost {
-      background: rgba(15,23,42,0.9);
-      border-color: #4b4f5c;
-      color: #e1e3ea;
-    }
-
-    .btn-ghost:hover {
-      background: #111827;
-      border-color: #6c7080;
-    }
-
-    .btn-full {
-      width: 100%;
-      justify-content: center;
-    }
-
-    .section {
-      margin-bottom: 30px;
-    }
-
-    .section-kicker {
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      color: var(--text-mute);
-      margin-bottom: 4px;
-    }
-
-    .section-title-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      margin-bottom: 8px;
-    }
-
-    .section-title {
-      font-size: 18px;
-      font-weight: 600;
-      margin-bottom: 0;
-      letter-spacing: -0.02em;
-    }
-
-    .section-subtitle {
-      font-size: 14px;
-      color: #a0a4ae;
-      margin-bottom: 10px;
-    }
-
-    .section p {
-      font-size: 14px;
-      line-height: 1.7;
-      color: #e1e3ea;
-      margin-bottom: 9px;
-      max-width: 720px;
-    }
-
-    ul {
-      list-style: none;
-      margin-top: 4px;
-    }
-
-    li {
-      font-size: 14px;
-      line-height: 1.6;
-      color: #e1e3ea;
-      padding-left: 18px;
-      position: relative;
-      margin-bottom: 6px;
-    }
-
-    li::before {
-      content: "•";
-      position: absolute;
-      left: 4px;
-      color: var(--accent-soft);
-    }
-
-    ol {
-      margin-top: 4px;
-      padding-left: 18px;
-    }
-
-    ol li {
-      list-style: decimal;
-      padding-left: 4px;
-      margin-bottom: 8px;
-    }
-
-    .grid-2,
-    .grid-3 {
-      display: grid;
-      gap: 24px;
-    }
-
-    .grid-2 {
-      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
-    }
-
-    .grid-3 {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-
-    .card {
-      border-radius: 16px;
-      border: 1px solid #22252f;
-      background: radial-gradient(circle at top left, #191c2e 0, #0a0b10 52%, #050608 100%);
-      padding: 16px 16px 14px;
-    }
-
-    .card-kicker {
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      color: #9ea2b2;
-      margin-bottom: 6px;
-    }
-
-    .card-title {
-      font-size: 14px;
-      font-weight: 600;
-      margin-bottom: 6px;
-    }
-
-    .card p {
-      font-size: 13px;
-      line-height: 1.6;
-      color: #daddef;
-      margin-bottom: 6px;
-    }
-
-    .checklist {
-      border-radius: 14px;
-      border: 1px solid #232633;
-      background: var(--bg-soft);
-      padding: 14px 16px 10px;
-    }
-
-    .checklist-title {
-      font-size: 13px;
-      font-weight: 600;
-      margin-bottom: 6px;
-    }
-
-    .checklist-item {
-      font-size: 12px;
-      color: #b6bad1;
-      line-height: 1.6;
-      padding-left: 18px;
-      position: relative;
-      margin-bottom: 4px;
-    }
-
-    .checklist-item::before {
-      content: "✓";
-      position: absolute;
-      left: 3px;
-      color: var(--accent-soft);
-      font-size: 11px;
-    }
-
-    .two-col {
-      display: grid;
-      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
-      gap: 24px;
-    }
-
-    .faq-item {
-      margin-bottom: 14px;
-    }
-
-    .faq-q {
-      font-size: 13px;
-      font-weight: 500;
-      color: #f1f2fb;
-      margin-bottom: 3px;
-    }
-
-    .faq-a {
-      font-size: 13px;
-      color: #cacfe4;
-      line-height: 1.6;
-    }
-
-    /* ---- Form + FAQ section ---- */
-
-    .form-layout {
-      display: grid;
-      grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
-      gap: 24px;
-      align-items: flex-start;
-    }
-
-    .form-card,
-    .faq-card {
-      border-radius: 16px;
-      border: 1px solid #22252f;
-      background: radial-gradient(circle at top left, #191c2e 0, #0a0b10 52%, #050608 100%);
-      padding: 16px 16px 18px;
-    }
-
-    form {
-      width: 100%;
-    }
-
-    .form-group {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      margin-bottom: 10px;
-    }
-
-    .form-group-inline {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-      gap: 10px;
-    }
-
-    label {
-      font-size: 13px;
-      color: var(--text-soft);
-    }
-
-    input[type="text"],
-    input[type="email"],
-    select,
-    textarea {
-      background: #020617;
-      border-radius: 10px;
-      border: 1px solid #272a37;
-      padding: 9px 11px;
-      font-size: 13px;
-      color: var(--text-main);
-      outline: none;
-      width: 100%;
-    }
-
-    input::placeholder,
-    textarea::placeholder {
-      color: #6b7280;
-    }
-
-    input:focus,
-    select:focus,
-    textarea:focus {
-      border-color: var(--accent-soft);
-      box-shadow: 0 0 0 1px rgba(129,140,248,0.5);
-    }
-
-    select {
-      appearance: none;
-      -webkit-appearance: none;
-      -moz-appearance: none;
-      background-image: linear-gradient(45deg, transparent 50%, #9ca3af 50%), linear-gradient(135deg, #9ca3af 50%, transparent 50%);
-      background-position: calc(100% - 14px) calc(50% - 3px), calc(100% - 9px) calc(50% - 3px);
-      background-size: 7px 7px, 7px 7px;
-      background-repeat: no-repeat;
-    }
-
-    .helper-text {
-      font-size: 12px;
-      color: var(--text-mute);
-      margin-top: 2px;
-    }
-
-    .licence-options {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.75rem 1.5rem;
-      margin-top: 4px;
-    }
-
-    .licence-option {
-      display: flex;
-      align-items: center;
-      font-size: 13px;
-      color: var(--text-soft);
-    }
-
-    .licence-option input[type="radio"] {
-      margin-right: 0.45rem;
-    }
-
-    .consent {
-      display: flex;
-      align-items: flex-start;
-      gap: 8px;
-      margin-top: 8px;
-      font-size: 12px;
-      color: var(--text-mute);
-    }
-
-    .consent input[type="checkbox"] {
-      margin-top: 2px;
-    }
-
-    footer {
-      margin-top: 32px;
-      font-size: 11px;
-      color: #737889;
-      display: flex;
-      justify-content: space-between;
-      gap: 12px;
-      flex-wrap: wrap;
-      align-items: center;
-    }
-
-    footer a {
-      color: #b6bad1;
-      text-decoration: none;
-    }
-
-    footer a:hover {
-      text-decoration: underline;
-    }
-
-    @media (max-width: 900px) {
-      .grid-3 {
-        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-      }
-    }
-
-    @media (max-width: 768px) {
-      body {
-        padding: 24px 16px 32px;
-      }
-
-      header {
-        align-items: flex-start;
-        flex-direction: column;
-        gap: 6px;
-      }
-
-      nav {
-        justify-content: flex-start;
-      }
-
-      .hero-title {
-        font-size: 24px;
-      }
-
-      .hero-subtitle {
-        max-width: 100%;
-      }
-
-      .grid-2 {
-        grid-template-columns: minmax(0, 1fr);
-      }
-
-      .grid-3 {
-        grid-template-columns: minmax(0, 1fr);
-      }
-
-      .two-col {
-        grid-template-columns: minmax(0, 1fr);
-      }
-
-      .hero-cta-row {
-        flex-direction: column;
-      }
-
-      .btn-primary,
-      .btn-ghost {
-        width: 100%;
-        justify-content: center;
-      }
-
-      .form-layout {
-        grid-template-columns: minmax(0, 1fr);
-      }
-
-      .form-group-inline {
-        grid-template-columns: minmax(0, 1fr);
-      }
-
-      footer {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-    }
-
-    @media (max-width: 640px) {
-      .licence-options {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-    }
-  </style>
 </head>
+
 <body>
-  <div class="page">
-    <header>
-      <a href="/" class="brand-wrap">
-        <div class="brand-logo">N</div>
-        <div class="brand-text">
-          <div class="brand-name">Noetfield</div>
-          <div class="brand-tagline">Trust systems for AI governance</div>
-        </div>
-      </a>
-      <nav aria-label="Primary navigation">
-        <a href="/">Home</a>
-        <a href="/trust-brief/" class="active" aria-current="page">Trust Brief</a>
-        <a href="/trust-ledger/">Trust Ledger</a>
-        <a href="/for-whom/">For Whom</a>
-        <a href="/gate/">Gate</a>
-        <a href="/about/">About</a>
-        <a href="/contact/">Contact</a>
-        <a href="/playbook/">Playbook</a>
-        <a href="/partners/">Partners</a>
-      </nav>
-    </header>
+  <div class="bg" aria-hidden="true"></div>
+  <a class="skip" href="#main">Skip to content</a>
 
-    <main>
-      <!-- Hero / Summary -->
-      <section class="hero">
-        <div class="pill">
-          <span class="pill-dot"></span>
-          6-week AI Trust Brief pilot
-        </div>
-        <div class="hero-kicker">Trust Brief</div>
-        <h1 class="hero-title">
-          A <span>six-week pilot</span> that delivers a board-ready AI Trust Brief and Trust Ledger sample.
-        </h1>
-        <p class="hero-subtitle">
-          The Noetfield AI Trust Brief is a governance-first, six-week engagement that maps where AI is materially
-          used in your work, highlights key risks and safeguards, and delivers one board-ready AI Trust Brief plus
-          a sample Trust Ledger page – so AI decisions, responsibilities, and next steps are clear.
-        </p>
-        <div class="hero-cta-row">
-          <a
-            href="mailto:ceo@noetfield.com?subject=Trust%20Brief%20pilot%20inquiry"
-            class="btn-primary"
-          >
-            Discuss a Trust Brief pilot (by email)
-          </a>
-          <a href="/trust-ledger/" class="btn-ghost">See how the Trust Ledger works</a>
-        </div>
-      </section>
+  <!-- injected header -->
+  <div id="nfHeader"></div>
 
-      <!-- At a glance – what you get / async model / pricing -->
-      <section class="section" style="margin-top:4px;margin-bottom:18px;">
-        <div class="section-title-row">
-          <div>
-            <div class="section-kicker">At a glance</div>
-            <h2 class="section-title">What the 6-week Trust Brief includes</h2>
+  <main id="main" class="wrap">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="heroShell">
+        <div class="heroInner">
+          <div class="eyebrow"><span class="dot"></span> 6-week diagnostic • board-first</div>
+          <h1>Trust Brief.</h1>
+          <p class="lead">
+            A governance-first diagnostic designed to get you to a <strong>board-readable</strong> posture fast:
+            we map material AI use cases, define the control baseline, and produce a first set of
+            <strong>Trust Ledger</strong> entries with evidence expectations and decision options.
+          </p>
+
+          <div class="metaRow" aria-label="Highlights">
+            <div class="pill"><strong>6 weeks</strong> structured delivery</div>
+            <div class="pill"><strong>Use-case map</strong> (material AI)</div>
+            <div class="pill"><strong>Control baseline</strong> (minimum viable)</div>
+            <div class="pill"><strong>Board memo</strong> + options</div>
+            <div class="pill"><strong>First ledger entries</strong></div>
           </div>
         </div>
-
-        <div class="two-col" style="gap:20px;">
-          <div>
-            <h3 style="font-size:14px;font-weight:600;margin-bottom:6px;">What you get</h3>
-            <ul>
-              <li>6 weeks of focused work on 1–3 material AI use cases or systems.</li>
-              <li>1 × <strong>AI Trust Brief</strong> (approx. 6–10 pages, board-ready, in plain language).</li>
-              <li>1 × <strong>Trust Ledger sample entry</strong> (1–2 pages, human-readable record of one AI system).</li>
-              <li>1 × short <strong>12-month action plan</strong> with ~5–7 concrete next steps.</li>
-            </ul>
-
-            <h3 style="font-size:14px;font-weight:600;margin:10px 0 6px;">How we work (async-first)</h3>
-            <ul>
-              <li>Designed to be delivered <strong>90% asynchronously</strong> via documents and email.</li>
-              <li>Short written intake form instead of a long RFP or multiple discovery meetings.</li>
-              <li>Optional short live touchpoints only if they are useful for your team.</li>
-              <li>No ongoing subscription or lock-in unless you later choose a Trust Ledger retainer.</li>
-            </ul>
-          </div>
-
-          <div>
-            <div class="checklist">
-              <div class="checklist-title">Pilot pricing (fixed fee)</div>
-              <div class="checklist-item">
-                <strong>Standard Pilot</strong> – 4,800 CAD + applicable tax  
-                For smaller / mid-sized organisations and up to ~3 AI systems in scope.
-              </div>
-              <div class="checklist-item">
-                <strong>Extended Pilot</strong> – 7,200 CAD + applicable tax  
-                For larger organisations, more complex structures, or additional AI systems.
-              </div>
-              <div class="checklist-item">
-                Fixed-fee, scoped in writing. Any expansion of scope is agreed in advance.
-              </div>
-              <div class="checklist-item">
-                Invoices are issued to the organisation directly, with standard payment terms.
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Who this is for -->
-      <section class="section">
-        <div class="section-title-row">
-          <div>
-            <div class="section-kicker">Who it is for</div>
-            <h2 class="section-title">Boards, executives, and stewards under AI pressure</h2>
-          </div>
-        </div>
-        <p>
-          The Noetfield AI Trust Brief is designed for board chairs, executive directors, CEOs, and risk, audit,
-          or compliance leaders who:
-        </p>
-        <ul>
-          <li>Are already using AI, or planning to use it soon, in ways that affect customers, money, or critical decisions.</li>
-          <li>Feel growing pressure from boards, funders, or regulators to show that AI usage is under control.</li>
-          <li>Want a clear, independent view of AI risks and safeguards – without a long consulting project.</li>
-        </ul>
-        <p>Typical organisations include:</p>
-        <ul>
-          <li>Credit unions and financial co-operatives</li>
-          <li>Nonprofits and foundations</li>
-          <li>Indigenous and community economic organisations</li>
-          <li>Mid-size companies with emerging AI use</li>
-        </ul>
-      </section>
-
-      <!-- What you receive -->
-      <section class="section">
-        <div class="section-title-row">
-          <div>
-            <div class="section-kicker">Outcome</div>
-            <h2 class="section-title">What you receive in 6 weeks</h2>
-          </div>
-        </div>
-        <p>By the end of the pilot, your organisation receives:</p>
-        <ul>
-          <li>
-            A <strong>board-ready AI Trust Brief</strong> (6–10 pages) in plain language, mapping where AI is used
-            today and where it is planned, the associated risks, current safeguards, and priority actions.
-          </li>
-          <li>
-            A <strong>sample Trust Ledger page</strong> (1–2 pages) that shows how critical AI systems and
-            decisions can be documented going forward.
-          </li>
-        </ul>
-        <p>These give your board, funders, and regulators a clear picture of:</p>
-        <ul>
-          <li>Where AI is used today and where it is planned.</li>
-          <li>Key risks, gaps, and dependencies.</li>
-          <li>Existing safeguards, controls, and accountable roles.</li>
-          <li><strong>5–7 priority actions</strong> for the next 12 months.</li>
-        </ul>
-      </section>
-
-      <!-- Standards alignment -->
-      <section class="section">
-        <div class="section-title-row">
-          <div>
-            <div class="section-kicker">Standards</div>
-            <h2 class="section-title">Aligned with emerging AI governance standards</h2>
-          </div>
-        </div>
-        <p>
-          The AI Trust Brief does not attempt to “certify” your organisation. Instead, it creates a practical,
-          board-ready view of material AI use that can be read alongside emerging standards and frameworks.
-        </p>
-        <p>
-          The structure is designed to be compatible with risk-based AI rules and common governance frameworks
-          (for example ISO-style management systems and NIST-style risk management approaches), so that your
-          existing compliance and legal teams can integrate it into their own work without starting from zero.
-        </p>
-      </section>
-
-      <!-- 6-week process (async-first) -->
-      <section class="section">
-        <div class="section-title-row">
-          <div>
-            <div class="section-kicker">Process</div>
-            <h2 class="section-title">How the six-week pilot works</h2>
-          </div>
-        </div>
-        <p>
-          The Trust Brief is intentionally time-boxed. It focuses on a manageable number of AI systems and decisions
-          so that you get a concrete, board-ready outcome in six weeks, with an async-first delivery model.
-        </p>
-        <ol>
-          <li>
-            <strong>Week 1 – Intake and scope confirmation</strong><br />
-            You complete a short intake form and share any existing AI-related policies, project notes, or risk logs.
-            Scope and systems in focus are confirmed in writing. A short live alignment session is optional, not required.
-          </li>
-          <li>
-            <strong>Weeks 2–3 – Mapping AI use, risks, and safeguards</strong><br />
-            Noetfield reviews documents and runs 1–3 targeted interactions with people who own or operate AI-related tools
-            (short remote sessions or written questionnaires) to map AI use, risks, and existing safeguards.
-          </li>
-          <li>
-            <strong>Week 4 – Synthesis and draft Brief</strong><br />
-            Findings are consolidated into a draft AI Trust Brief and a first Trust Ledger sample entry for one of the
-            material systems in scope.
-          </li>
-          <li>
-            <strong>Week 5 – Review and refine (async-first)</strong><br />
-            The draft is shared for written feedback from key stakeholders. Clarifications are handled by email or
-            short remote check-ins, so the process stays light on calendars.
-          </li>
-          <li>
-            <strong>Week 6 – Final delivery</strong><br />
-            Final AI Trust Brief (PDF) and Trust Ledger sample are delivered, along with a concise written summary
-            for boards and funders. A short optional presentation can be added if requested.
-          </li>
-        </ol>
-      </section>
-
-      <!-- Pricing -->
-      <section class="section">
-        <div class="section-title-row">
-          <div>
-            <div class="section-kicker">Pricing</div>
-            <h2 class="section-title">Pilot pricing for early partners</h2>
-          </div>
-        </div>
-        <p>
-          For early partners, the six-week AI Trust Brief pilot is offered at founding pilot pricing:
-        </p>
-        <ul>
-          <li><strong>Standard Pilot</strong> – 4,800 CAD + applicable taxes.</li>
-          <li><strong>Extended Pilot</strong> – 7,200 CAD + applicable taxes (for larger or more complex scopes).</li>
-        </ul>
-        <p>
-          Final pricing depends on the number of interviews, the number and complexity of systems in scope,
-          and any additional workshops or presentations requested. Pilot partners help shape the standard
-          Trust Brief format for their sector and the future Noetfield Trust Ledger service.
-        </p>
-      </section>
-
-      <!-- Why now / board questions -->
-      <section class="section">
-        <div class="section-title-row">
-          <div>
-            <div class="section-kicker">Why now</div>
-            <h2 class="section-title">Boards and funders are starting to ask simple questions</h2>
-          </div>
-        </div>
-        <p>
-          Across sectors, boards, funders, and regulators are beginning to ask:
-        </p>
-        <ul>
-          <li>Where are we using AI in ways that move risk, money, or customers?</li>
-          <li>What could go wrong if those systems fail or behave unexpectedly?</li>
-          <li>Who is accountable, and what safeguards exist?</li>
-          <li>How do we know those safeguards are actually monitored and enforced?</li>
-          <li>Where is this written down in a way we can revisit over time?</li>
-        </ul>
-        <p>
-          Most organisations do not yet have a short, structured document that answers these questions.
-          The Noetfield AI Trust Brief is a focused way to move from ad-hoc conversations to one coherent
-          view of AI risk and governance – without over-building or over-spending.
-        </p>
-      </section>
-
-      <!-- Three steps – async-first start -->
-      <section class="section" id="how-to-start">
-        <div class="section-title-row">
-          <div>
-            <div class="section-kicker">How to start</div>
-            <h2 class="section-title">Three steps to begin a Trust Brief – fully remote</h2>
-          </div>
-        </div>
-
-        <p class="section-subtitle">
-          The default path is async-first: you share a short form and existing documents; Noetfield responds with a
-          written mini-proposal. Live calls are optional and only added if they are genuinely useful for you.
-        </p>
-
-        <div class="two-col">
-          <div>
-            <h3 style="font-size:14px;font-weight:600;margin-bottom:6px;">Step 1 – Share the basics (2–3 minutes)</h3>
-            <p>
-              Complete the short Trust Brief form on this page with your organisation name, role, scale, and 1–2 lines
-              about your AI usage or concerns.
-            </p>
-            <ul>
-              <li>No long RFP, no deck required to start.</li>
-              <li>You can also attach or link to any existing AI policy, risk register, or project overview later.</li>
-            </ul>
-          </div>
-
-          <div>
-            <h3 style="font-size:14px;font-weight:600;margin-bottom:6px;">Step 2 – Receive a written mini-proposal</h3>
-            <p>
-              Within <strong>2 business days</strong>, you receive a concise written mini-proposal (2–3 pages) by email:
-            </p>
-            <ul>
-              <li>Confirmed scope and focus for the 6-week pilot.</li>
-              <li>Standard vs Extended pilot recommendation and fixed price.</li>
-              <li>Timeline options and key assumptions (people, systems, data access).</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="two-col" style="margin-top:18px;">
-          <div>
-            <h3 style="font-size:14px;font-weight:600;margin-bottom:6px;">Step 3 – Confirm and schedule (no call required)</h3>
-            <p>
-              If the mini-proposal is aligned, you confirm by email and the start week is scheduled. Payment is handled
-              by invoice or a secure online payment link.
-            </p>
-            <ul>
-              <li>Everything can be handled over email and documents.</li>
-              <li>If helpful, a short live session can be added – but it is optional.</li>
-            </ul>
-          </div>
-
-          <div>
-            <div class="checklist">
-              <div class="checklist-title">Async-first by design</div>
-              <div class="checklist-item">
-                No requirement for recurring calls or standing meetings.
-              </div>
-              <div class="checklist-item">
-                Suitable for boards and executives who want clarity without adding more calendar load.
-              </div>
-              <div class="checklist-item">
-                All key outputs are delivered as written artefacts your team can circulate internally.
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Form + FAQ section -->
-      <section class="section">
-        <div class="section-title-row">
-          <div>
-            <div class="section-kicker">Next step</div>
-            <h2 class="section-title">Request early access to a Trust Brief pilot</h2>
-          </div>
-        </div>
-        <p>
-          Share a few details about your organisation and interest. You will receive a short follow-up to confirm fit,
-          timing, and scope before any commitment is made.
-        </p>
-
-        <div class="form-layout">
-          <div class="form-card">
-            <!-- TODO: replace action URL with your Formspree or backend endpoint -->
-            <form method="POST" action="https://formspree.io/f/YOUR_FORM_ID">
-              <div class="form-group">
-                <label for="name">Name</label>
-                <input
-                  id="name"
-                  name="name"
-                  type="text"
-                  autocomplete="name"
-                  placeholder="Your full name"
-                  required
-                />
-              </div>
-
-              <div class="form-group">
-                <label for="email">Email</label>
-                <input
-                  id="email"
-                  name="email"
-                  type="email"
-                  autocomplete="email"
-                  placeholder="you@example.org"
-                  required
-                />
-              </div>
-
-              <div class="form-group">
-                <label for="org">Organization / Role</label>
-                <input
-                  id="org"
-                  name="organization"
-                  type="text"
-                  placeholder="e.g. Credit union – Board chair"
-                  required
-                />
-              </div>
-
-              <div class="form-group">
-                <label for="company-size">Organization size</label>
-                <select id="company-size" name="company_size" required>
-                  <option value="" selected disabled>Select</option>
-                  <option value="1-49">1–49 staff</option>
-                  <option value="50-199">50–199 staff</option>
-                  <option value="200-999">200–999 staff</option>
-                  <option value="1000+">1,000+ staff</option>
-                </select>
-              </div>
-
-              <div class="form-group">
-                <label>Primary interest</label>
-                <div class="licence-options">
-                  <label class="licence-option">
-                    <input type="radio" name="interest" value="trust_brief_pilot" required />
-                    <span>Trust Brief pilot</span>
-                  </label>
-                  <label class="licence-option">
-                    <input type="radio" name="interest" value="trust_ledger_follow_on" />
-                    <span>Trust Ledger / follow-on work</span>
-                  </label>
-                  <label class="licence-option">
-                    <input type="radio" name="interest" value="playbook_sme_agency" />
-                    <span>AI Governance &amp; Playbook (SME / agency)</span>
-                  </label>
-                  <label class="licence-option">
-                    <input type="radio" name="interest" value="not_sure_yet" />
-                    <span>Not sure yet</span>
-                  </label>
-                </div>
-              </div>
-
-              <div class="form-group">
-                <label for="notes">Context (optional)</label>
-                <textarea
-                  id="notes"
-                  name="context"
-                  rows="3"
-                  placeholder="Any brief context on your AI use, regulatory pressure, or timing."
-                ></textarea>
-                <p class="helper-text">
-                  A short paragraph is enough – this simply helps the first response be more focused.
-                </p>
-              </div>
-
-              <label class="consent">
-                <input type="checkbox" name="consent_updates" value="yes" />
-                <span>
-                  I’d like to receive occasional updates about Noetfield’s AI governance work and the Trust Ledger.
-                </span>
-              </label>
-
-              <div style="margin-top: 14px;">
-                <button type="submit" class="btn-primary btn-full">
-                  Request early access
-                </button>
-              </div>
-            </form>
-          </div>
-
-          <div class="faq-card">
-            <div class="section-kicker">FAQ</div>
-            <h3 class="card-title">Using the AI Trust Brief in practice</h3>
-
-            <div class="faq-item">
-              <div class="faq-q">Who is the AI Trust Brief for?</div>
-              <div class="faq-a">
-                It is designed for boards, executives, and risk leaders in organisations that already use AI in their
-                work – or will soon – and now need a credible, structured way to show that AI usage is governed,
-                documented, and aligned with basic risk expectations.
-              </div>
-            </div>
-
-            <div class="faq-item">
-              <div class="faq-q">Does the Trust Brief replace legal or compliance advice?</div>
-              <div class="faq-a">
-                No. The Trust Brief does not provide legal advice and does not replace formal compliance functions.
-                It gives structure, language, and a baseline record that can be reviewed with internal or external
-                counsel, auditors, or regulators.
-              </div>
-            </div>
-
-            <div class="faq-item">
-              <div class="faq-q">How does it connect to the Trust Ledger?</div>
-              <div class="faq-a">
-                The pilot produces a first Trust Ledger sample for one or two material AI systems. This acts as a
-                template for expanding coverage over time or moving into a fuller Noetfield Trust Ledger engagement
-                once the organisation is ready.
-              </div>
-            </div>
-
-            <div class="faq-item">
-              <div class="faq-q">Can the pilot be delivered remotely and async-first?</div>
-              <div class="faq-a">
-                Yes. The default model is async-first: documents, email, and written artefacts. Short remote sessions
-                are used only where they add clear value. All materials are shared securely, and in-person work is
-                only added by separate arrangement.
-              </div>
-            </div>
-
-            <div class="faq-item">
-              <div class="faq-q">What if we are not sure whether a full 6-week Trust Brief is the right fit?</div>
-              <div class="faq-a">
-                The mini-proposal stage is designed to clarify that. If, after reviewing your form and context, it looks
-                like a different scope or a lighter diagnostic would make more sense, Noetfield will say so and suggest
-                alternatives. There is no obligation to proceed until you are comfortable with the scope, price, and value.
-              </div>
-            </div>
-
-            <div class="faq-item">
-              <div class="faq-q">Can the entire process be handled without live calls?</div>
-              <div class="faq-a">
-                Yes. Many organisations choose to complete the pilot entirely via email and documents. Optional live
-                sessions are available but not required. The core value is in the written Trust Brief and Trust Ledger
-                sample that your team can use and recirculate internally.
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Alternative next step – written diagnostic -->
-      <section class="section">
-        <div class="section-title-row">
-          <div>
-            <div class="section-kicker">Alternative next step</div>
-            <h2 class="section-title">Request a short written AI footprint note</h2>
-          </div>
-        </div>
-        <p>
-          If you are not ready for a full 6-week pilot, you can request a short written note summarising your current
-          AI footprint and potential governance priorities, based on a few lines of context and any documents you choose
-          to share.
-        </p>
-        <p>
-          Email
-          <a href="mailto:ceo@noetfield.com?subject=AI%20footprint%20note%20request">
-            ceo@noetfield.com
-          </a>
-          with your sector, role, and one paragraph on where AI is beginning to show up in your organisation. You will
-          receive a concise written response you can share with colleagues or your board.
-        </p>
-      </section>
-    </main>
-
-    <footer>
-      <div>© <span id="year"></span> Noetfield Systems Inc. All rights reserved.</div>
-      <div>
-        <a href="/">Home</a> ·
-        <a href="/trust-brief/">Trust Brief</a> ·
-        <a href="/trust-ledger/">Trust Ledger</a> ·
-        <a href="/for-whom/">For Whom</a> ·
-        <a href="/gate/">Gate</a> ·
-        <a href="/about/">About</a> ·
-        <a href="/contact/">Contact</a> ·
-        <a href="/playbook/">Playbook</a> ·
-        <a href="/partners/">Partners</a> ·
-        <a href="/partners/structure/">Structure</a>
       </div>
-    </footer>
-  </div>
+    </section>
 
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
+    <section class="grid">
+      <!-- MAIN -->
+      <div class="card">
+        <div class="hd">
+          <h2>What you get</h2>
+          <p>
+            The Trust Brief converts “we use AI” into a governable, provable reality: clear scope,
+            accountable owners, and a short list of controls that actually holds under audit pressure.
+          </p>
+        </div>
+        <div class="bd">
+          <div class="kpiGrid" aria-label="Deliverables">
+            <div class="kpi">
+              <div class="t">Deliverable</div>
+              <div class="v">Material AI map</div>
+              <div class="d">Which AI use cases matter, where they run, and what they affect.</div>
+            </div>
+            <div class="kpi">
+              <div class="t">Deliverable</div>
+              <div class="v">Control baseline</div>
+              <div class="d">A minimum viable set of controls + owners + evidence expectations.</div>
+            </div>
+            <div class="kpi">
+              <div class="t">Deliverable</div>
+              <div class="v">Ledger entries (starter set)</div>
+              <div class="d">Initial Trust Ledger entries for the highest-impact use cases.</div>
+            </div>
+            <div class="kpi">
+              <div class="t">Deliverable</div>
+              <div class="v">Board decision memo</div>
+              <div class="d">Options, trade-offs, priorities, and next-step recommendations.</div>
+            </div>
+          </div>
+
+          <div class="section">
+            <div class="sectionTitle">6-week structure</div>
+            <p class="sectionDesc">Designed to be decisive: mapping → controls → entries → board options.</p>
+
+            <table class="table" aria-label="6-week plan">
+              <thead>
+                <tr>
+                  <th>Week</th>
+                  <th>Focus</th>
+                  <th>Output</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><span class="tag"><strong>1</strong></span></td>
+                  <td>Scope + materiality thresholds</td>
+                  <td>Intake, objectives, decision boundaries, initial inventory</td>
+                </tr>
+                <tr>
+                  <td><span class="tag"><strong>2</strong></span></td>
+                  <td>Use-case mapping</td>
+                  <td>Material AI map + owners + where data moves</td>
+                </tr>
+                <tr>
+                  <td><span class="tag"><strong>3</strong></span></td>
+                  <td>Risk & control baseline</td>
+                  <td>Control baseline + evidence expectations (what counts as proof)</td>
+                </tr>
+                <tr>
+                  <td><span class="tag"><strong>4</strong></span></td>
+                  <td>Ledger entry build</td>
+                  <td>First ledger entries for highest-impact use cases</td>
+                </tr>
+                <tr>
+                  <td><span class="tag"><strong>5</strong></span></td>
+                  <td>Board memo draft</td>
+                  <td>Options, prioritization, quick wins, and governance cadence</td>
+                </tr>
+                <tr>
+                  <td><span class="tag"><strong>6</strong></span></td>
+                  <td>Finalize + handoff</td>
+                  <td>Board-ready brief + ledger pack + next-step plan</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="section">
+            <div class="sectionTitle">What we need from you</div>
+            <p class="sectionDesc">This stays light-weight and non-disruptive, but it must be truthful.</p>
+            <ol class="steps">
+              <li>Point of contact for AI usage + IT/security context.</li>
+              <li>Basic inventory of AI tools/vendors and key workflows.</li>
+              <li>Access to sanitized artefacts (policies, screenshots, exports) when available.</li>
+              <li>Agreement on what “material impact” means in your context.</li>
+            </ol>
+          </div>
+
+          <div class="actions">
+            <a class="btn" href="/gate/intake/">Start intake</a>
+            <a class="btn secondary" href="/trust-ledger/">See Trust Ledger</a>
+            <a class="btn secondary" href="/gate/">Gate</a>
+          </div>
+
+          <div class="box">
+            <strong>Outcome:</strong> you get a board-ready posture without pretending you have a full compliance department.
+            If you want the diagnostic to route into implementation partners, you can also use
+            <a href="/gate/partners/">Partners Gate</a>.
+          </div>
+        </div>
+      </div>
+
+      <!-- ASIDE -->
+      <aside class="card">
+        <div class="hd">
+          <h2>When to use this</h2>
+          <p>Common situations where Trust Brief is the fastest, safest next step.</p>
+        </div>
+        <div class="bd">
+          <div class="box"><strong>Copilot adoption:</strong> you need guardrails and evidence trails before scaling.</div>
+          <div class="box"><strong>Vendor AI everywhere:</strong> procurement outpaced governance.</div>
+          <div class="box"><strong>Audit pressure:</strong> you need readable posture and proof quickly.</div>
+          <div class="box"><strong>Incident/near-miss:</strong> you want to prevent repetition with real controls.</div>
+
+          <div class="section" style="margin-top:14px;">
+            <div class="sectionTitle">Pricing signal</div>
+            <p class="sectionDesc">You can adjust later; start with a clear anchor for buyers.</p>
+            <div class="priceRow" aria-label="Pricing">
+              <div class="priceCard">
+                <div class="name">Trust Brief</div>
+                <div class="amt">3–10k</div>
+                <div class="sub">Typical range depending on scope and number of material use cases.</div>
+              </div>
+              <div class="priceCard">
+                <div class="name">Next step</div>
+                <div class="amt">Ledger build</div>
+                <div class="sub">Convert the starter entries into an operational Trust Ledger cadence.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="box" style="margin-top:14px;">
+            <strong>Policy-ready references:</strong><br/>
+            <a href="/playbook/">Playbook</a> ·
+            <a href="/copilot-cost-governance/">Copilot</a> ·
+            <a href="/for-whom/">For Whom</a>
+          </div>
+        </div>
+      </aside>
+    </section>
+  </main>
+
+  <!-- injected footer -->
+  <div id="nfFooter"></div>
 </body>
 </html>

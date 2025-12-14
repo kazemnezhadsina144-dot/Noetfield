@@ -1,358 +1,275 @@
-/* Noetfield Shell
-   - Inject header/footer partials
-   - Burger menu
-   - Active links
-   - Footer year
-   - Feedback tab
-   - RID (Request ID): generate/store/display/copy + propagate to tagged links + inject into forms
-   Version: locked-2025.12.13+shell-v2.1
-*/
-(function () {
-  "use strict";
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Noetfield — Trust and Stewardship in AI</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  var SHELL_VERSION = "2025.12.13";
-  var PARTIALS_BASE = "/assets/partials";
-  var RID_KEY = "nf_rid";
+  <meta name="description" content="Board-first AI governance artefacts built to be evidence-ready and defensible — Trust Ledger, Trust Brief, and a practical playbook for real organizations" />
+  <meta name="robots" content="index,follow" />
+  <meta name="author" content="Noetfield Systems Inc." />
+  <meta name="theme-color" content="#07070b" />
 
-  /* -------------------------
-     Utilities
-  ------------------------- */
-  function normPath(p) {
-    if (!p) return "/";
-    p = String(p).split("?")[0].split("#")[0];
-    if (p.length > 1 && p.endsWith("/")) p = p.slice(0, -1);
-    return p.toLowerCase();
-  }
+  <link rel="canonical" href="https://www.noetfield.com/" />
 
-  function safeQueryAll(sel) {
-    try { return document.querySelectorAll(sel); } catch (_) { return []; }
-  }
+  <link rel="icon" href="/noetfield-favicon-512.png" type="image/png" />
+  <link rel="apple-touch-icon" href="/noetfield-favicon-512.png" />
 
-  function toInternalPath(href) {
-    if (!href) return null;
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Noetfield" />
+  <meta property="og:title" content="Noetfield — Trust and Stewardship in AI" />
+  <meta property="og:description" content="Board-first AI governance artefacts built to be evidence-ready and defensible — Trust Ledger, Trust Brief, and a practical playbook" />
+  <meta property="og:url" content="https://www.noetfield.com/" />
+  <meta property="og:image" content="https://www.noetfield.com/noetfield-og.png" />
 
-    if (href.startsWith("http")) {
-      try {
-        var u = new URL(href, window.location.origin);
-        if (u.origin !== window.location.origin) return null;
-        return u.pathname || "/";
-      } catch (_) { return null; }
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Noetfield — Trust and Stewardship in AI" />
+  <meta name="twitter:description" content="Board-first AI governance artefacts built to be evidence-ready and defensible — Trust Ledger, Trust Brief, and a practical playbook" />
+  <meta name="twitter:image" content="https://www.noetfield.com/noetfield-og.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Locked shell (inject header/footer + RID + nav) -->
+  <link rel="stylesheet" href="/assets/noetfield-shell.css" />
+  <script src="/assets/noetfield-shell.js" defer></script>
+
+  <!-- Page-only styles -->
+  <style>
+    .hero{padding:26px 0 10px}
+    .heroShell{
+      position:relative;
+      border-radius: calc(var(--radius) + 10px);
+      border: 1px solid rgba(255,255,255,.11);
+      background:
+        radial-gradient(1000px 420px at 16% 0%, rgba(200,163,73,.18), transparent 60%),
+        radial-gradient(1000px 420px at 86% 10%, rgba(122,167,255,.10), transparent 62%),
+        linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.022));
+      box-shadow: var(--shadow);
+      overflow:hidden;
     }
-
-    if (!href.startsWith("/")) return null;
-    return href;
-  }
-
-  function setYear() {
-    var y = document.getElementById("y");
-    if (y) y.textContent = String(new Date().getFullYear());
-  }
-
-  function sanitizeRID(x) {
-    x = (x || "").trim();
-    if (!x) return "";
-    // allow only safe chars; cap length
-    x = x.replace(/[^a-zA-Z0-9\-_]/g, "").slice(0, 64);
-    // require minimum entropy/length
-    if (x.length < 6) return "";
-    return x;
-  }
-
-  function buildUrlWithRID(href, rid) {
-    try {
-      var u = new URL(href, window.location.origin);
-      if (u.origin !== window.location.origin) return null;
-      u.searchParams.set("rid", rid);
-      var qs = u.searchParams.toString();
-      return u.pathname + (qs ? ("?" + qs) : "") + (u.hash || "");
-    } catch (_) {
-      return null;
+    .heroShell::before{
+      content:"";
+      position:absolute; inset:-1px;
+      background: linear-gradient(120deg, rgba(200,163,73,.26), transparent 30%, rgba(255,255,255,.08) 68%, transparent);
+      opacity:.44;
+      pointer-events:none;
+      mask-image: linear-gradient(180deg, black 0%, black 58%, transparent 96%);
     }
-  }
-
-  /* -------------------------
-     RID (Request ID)
-     Policy:
-     1) if ?rid= exists -> sanitize -> store & use
-     2) else if localStorage has rid -> sanitize -> use
-     3) else generate -> store & use
-  ------------------------- */
-  function generateRID() {
-    return (
-      "RID-" +
-      Date.now().toString(36) +
-      "-" +
-      Math.random().toString(36).slice(2, 8)
-    ).toUpperCase();
-  }
-
-  function getOrCreateRID() {
-    var url;
-    try { url = new URL(window.location.href); } catch (_) { url = null; }
-
-    var ridFromUrl = "";
-    if (url) ridFromUrl = sanitizeRID(url.searchParams.get("rid"));
-
-    if (ridFromUrl) {
-      try { localStorage.setItem(RID_KEY, ridFromUrl); } catch (_) {}
-      return ridFromUrl;
+    .heroInner{padding: 26px 22px}
+    .eyebrow{
+      display:inline-flex; gap:10px; align-items:center;
+      color:var(--muted);
+      font-size:13px;
+      padding:9px 12px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.13);
+      background: rgba(255,255,255,.035);
     }
-
-    var stored = "";
-    try { stored = sanitizeRID(localStorage.getItem(RID_KEY)); } catch (_) {}
-    if (stored) return stored;
-
-    var rid = sanitizeRID(generateRID()) || generateRID();
-    try { localStorage.setItem(RID_KEY, rid); } catch (_) {}
-    return rid;
-  }
-
-  function copyText(text) {
-    // returns Promise<boolean>
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      return navigator.clipboard.writeText(text).then(function () { return true; }).catch(function () { return false; });
+    .dot{
+      width:8px; height:8px; border-radius:50%;
+      background: rgba(200,163,73,.97);
+      box-shadow: 0 0 0 3px rgba(200,163,73,.18);
     }
-    // fallback
-    return new Promise(function (resolve) {
-      try {
-        var ta = document.createElement("textarea");
-        ta.value = text;
-        ta.setAttribute("readonly", "");
-        ta.style.position = "fixed";
-        ta.style.left = "-9999px";
-        document.body.appendChild(ta);
-        ta.select();
-        var ok = document.execCommand("copy");
-        document.body.removeChild(ta);
-        resolve(!!ok);
-      } catch (_) {
-        resolve(false);
-      }
-    });
-  }
+    h1{margin:14px 0 10px; font-size:42px; line-height:1.06; letter-spacing:-0.85px}
+    .lead{margin:0; color:var(--muted); font-size:16px; max-width: 980px}
 
-  function applyRID(rid) {
-    // render RID into any element that declares data-rid
-    safeQueryAll("[data-rid]").forEach(function (el) {
-      el.textContent = rid;
-    });
-
-    // copy buttons
-    safeQueryAll("[data-copy-rid]").forEach(function (btn) {
-      btn.addEventListener("click", function () {
-        copyText(rid).then(function (ok) {
-          if (!ok) return;
-          btn.setAttribute("data-copied", "1");
-          setTimeout(function () { btn.removeAttribute("data-copied"); }, 900);
-        });
-      });
-    });
-
-    // propagate to tagged links (keeps existing query + hash)
-    safeQueryAll("a[data-rid-link]").forEach(function (a) {
-      var href = (a.getAttribute("href") || "").trim();
-      if (!href) return;
-      var out = buildUrlWithRID(href, rid);
-      if (out) a.setAttribute("href", out);
-    });
-
-    // inject into forms:
-    // - if request_id exists -> set
-    // - if rid exists -> set
-    // - else add BOTH hidden inputs for consistency
-    safeQueryAll("form").forEach(function (form) {
-      var ridInput = form.querySelector('input[name="rid"]');
-      var reqInput = form.querySelector('input[name="request_id"]');
-
-      if (!ridInput) {
-        ridInput = document.createElement("input");
-        ridInput.type = "hidden";
-        ridInput.name = "rid";
-        form.appendChild(ridInput);
-      }
-      ridInput.value = rid;
-
-      if (!reqInput) {
-        reqInput = document.createElement("input");
-        reqInput.type = "hidden";
-        reqInput.name = "request_id";
-        form.appendChild(reqInput);
-      }
-      reqInput.value = rid;
-    });
-  }
-
-  /* -------------------------
-     Active links (Header + Mobile + Footer mini nav)
-  ------------------------- */
-  function setActiveLinks() {
-    var current = normPath(window.location.pathname);
-
-    var selectors = [
-      "#nfHeader .menuPrimary a",
-      "#nfHeader .menuActions a",
-      "#nfHeader .mobileGrid a",
-      "#nfFooter .footerMiniNav a"
-    ].join(", ");
-
-    safeQueryAll(selectors).forEach(function (a) {
-      var hrefRaw = a.getAttribute("href") || "";
-      var href = toInternalPath(hrefRaw);
-      if (!href) return;
-
-      var target = normPath(href);
-      var isActive =
-        (target === "/" && current === "/") ||
-        (target !== "/" && (current === target || current.startsWith(target + "/")));
-
-      if (isActive) {
-        a.classList.add("active");
-        a.setAttribute("aria-current", "page");
-      } else {
-        a.classList.remove("active");
-        a.removeAttribute("aria-current");
-      }
-    });
-  }
-
-  /* -------------------------
-     Burger (robust)
-  ------------------------- */
-  function initBurger() {
-    var burger = document.getElementById("burger");
-    var panel = document.getElementById("mobilePanel");
-    if (!burger || !panel) return;
-
-    function openPanel() {
-      burger.setAttribute("aria-expanded", "true");
-      panel.hidden = false;
-      document.body.classList.add("navOpen");
+    .heroActions{display:flex; gap:12px; flex-wrap:wrap; margin-top:16px; align-items:center}
+    .heroMeta{display:flex; flex-wrap:wrap; gap:10px; margin-top:14px}
+    .pill{
+      display:inline-flex; align-items:center; gap:10px;
+      padding:9px 12px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.03);
+      color:var(--muted);
+      font-size:13px;
     }
+    .pill strong{color:var(--text); font-weight:800}
 
-    function closePanel() {
-      burger.setAttribute("aria-expanded", "false");
-      panel.hidden = true;
-      document.body.classList.remove("navOpen");
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:14px;
+      margin: 18px 0 18px;
     }
-
-    function toggle() {
-      var isOpen = burger.getAttribute("aria-expanded") === "true";
-      if (isOpen) closePanel(); else openPanel();
+    .card{
+      border-radius:var(--radius);
+      border:1px solid rgba(255,255,255,.11);
+      background: linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.022));
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+      min-width:0;
     }
+    .card .bd{padding:18px}
+    .card h2{margin:0 0 8px; font-size:18px; letter-spacing:-0.2px}
+    .card p{margin:0 0 12px; color:var(--muted); line-height:1.55}
+    .card .links{display:flex; gap:10px; flex-wrap:wrap; margin-top:12px}
 
-    burger.setAttribute("aria-expanded", "false");
-    panel.hidden = true;
-    document.body.classList.remove("navOpen");
-
-    burger.addEventListener("click", function (e) {
-      e.preventDefault();
-      toggle();
-    });
-
-    document.addEventListener("keydown", function (e) {
-      if (e.key === "Escape" && burger.getAttribute("aria-expanded") === "true") closePanel();
-    });
-
-    document.addEventListener("click", function (e) {
-      if (burger.getAttribute("aria-expanded") !== "true") return;
-      var withinHeader = !!(e.target && e.target.closest && e.target.closest("#nfHeader"));
-      if (!withinHeader) closePanel();
-    });
-
-    panel.addEventListener("click", function (e) {
-      var a = e.target && e.target.closest ? e.target.closest("a") : null;
-      if (a) closePanel();
-    });
-
-    window.addEventListener("resize", function () {
-      if (window.innerWidth > 1140 && burger.getAttribute("aria-expanded") === "true") closePanel();
-    });
-  }
-
-  /* -------------------------
-     Footer CTA normalization (left box: Gate + Portal only)
-  ------------------------- */
-  function normalizeFooterCTA() {
-    var cta = document.querySelector("#nfFooter .ctaRow");
-    if (!cta) return;
-
-    var keep = { "/gate/": true, "/gate": true, "/portal/": true, "/portal": true };
-    Array.prototype.slice.call(cta.querySelectorAll("a")).forEach(function (a) {
-      var href = (a.getAttribute("href") || "").trim();
-      if (!keep[href]) a.parentNode && a.parentNode.removeChild(a);
-    });
-  }
-
-  /* -------------------------
-     Feedback tab (only if not on feedback page)
-  ------------------------- */
-  function ensureFeedbackTab() {
-    var p = normPath(window.location.pathname);
-    if (p === "/feedback" || p.startsWith("/feedback/")) return;
-    if (document.querySelector(".feedbackTab")) return;
-
-    var a = document.createElement("a");
-    a.className = "feedbackTab";
-    a.href = "/feedback/";
-    a.setAttribute("aria-label", "Open feedback");
-
-    var spark = document.createElement("span");
-    spark.className = "spark";
-    spark.setAttribute("aria-hidden", "true");
-
-    a.appendChild(spark);
-    a.appendChild(document.createTextNode("Feedback"));
-    document.body.appendChild(a);
-  }
-
-  /* -------------------------
-     Inject partials
-  ------------------------- */
-  async function injectOne(targetId, partialName) {
-    var el = document.getElementById(targetId);
-    if (!el) return;
-
-    // do not override if developer hardcoded markup
-    if (el.children && el.children.length > 0) return;
-
-    var url = PARTIALS_BASE + "/" + partialName + "?v=" + encodeURIComponent(SHELL_VERSION);
-
-    try {
-      var res = await fetch(url, { credentials: "same-origin", cache: "reload" });
-      if (!res.ok) return;
-      var html = await res.text();
-      el.innerHTML = html;
-    } catch (_) {
-      // silent fail
+    .section{
+      margin: 14px 0;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      border-radius:16px;
+      padding:14px;
     }
+    .kicker{font-weight:900; letter-spacing:-.2px; margin:0 0 6px; font-size:14px}
+    .sub{margin:0; color:var(--muted2); font-size:12.5px; line-height:1.55}
+
+    .steps{
+      display:grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap:12px;
+      margin-top:12px;
+    }
+    .step{
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      padding:12px;
+      min-width:0;
+    }
+    .step b{display:block; margin:0 0 6px; letter-spacing:-.2px}
+    .step span{display:block; color:var(--muted); font-size:13px; line-height:1.5}
+
+    .ctaBand{
+      margin: 16px 0 34px;
+      border-radius: calc(var(--radius) + 8px);
+      border: 1px solid rgba(255,255,255,.11);
+      background:
+        radial-gradient(900px 360px at 20% 10%, rgba(200,163,73,.16), transparent 60%),
+        linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      padding: 18px;
+      box-shadow: var(--shadow);
+    }
+    .ctaBand h3{margin:0 0 8px; font-size:18px; letter-spacing:-0.2px}
+    .ctaBand p{margin:0; color:var(--muted); line-height:1.55}
+    .ctaBand .row{display:flex; gap:12px; flex-wrap:wrap; align-items:center; margin-top:12px}
+
+    @media (max-width: 980px){
+      .grid{grid-template-columns: 1fr}
+      .steps{grid-template-columns: 1fr}
+      h1{font-size:34px}
+    }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"WebPage",
+    "name":"Noetfield — Trust and Stewardship in AI",
+    "url":"https://www.noetfield.com/",
+    "description":"Board-first AI governance artefacts built to be evidence-ready and defensible — Trust Ledger, Trust Brief, and a practical playbook",
+    "isPartOf":{"@type":"WebSite","name":"Noetfield","url":"https://www.noetfield.com/"},
+    "publisher":{"@type":"Organization","name":"Noetfield Systems Inc."}
   }
+  </script>
+</head>
 
-  async function injectShell() {
-    await injectOne("nfHeader", "header.html");
-    await injectOne("nfFooter", "footer.html");
-  }
+<body>
+  <div class="bg" aria-hidden="true"></div>
+  <a class="skip" href="#main">Skip to content</a>
 
-  /* -------------------------
-     Boot
-  ------------------------- */
-  async function boot() {
-    await injectShell();
+  <!-- Injected header -->
+  <header id="nfHeader"></header>
 
-    // post-injection hooks
-    setYear();
-    setActiveLinks();
-    initBurger();
-    normalizeFooterCTA();
-    ensureFeedbackTab();
+  <main id="main" class="wrap">
+    <section class="hero">
+      <div class="heroShell">
+        <div class="heroInner">
+          <div class="eyebrow"><span class="dot"></span> Evidence-first governance for AI that makes material decisions</div>
+          <h1>Trust for AI, built for boards</h1>
+          <p class="lead">
+            Noetfield turns scattered AI usage into a board-ready system of records — clear controls, readable evidence trails, and decision-grade artefacts you can defend
+          </p>
 
-    // RID last (needs injected DOM)
-    var rid = getOrCreateRID();
-    applyRID(rid);
-  }
+          <div class="heroActions">
+            <a class="btn" href="/gate/" data-rid-link>Enter Gate</a>
+            <a class="btn secondary" href="/trust-ledger/">Explore Trust Ledger</a>
+            <a class="btn secondary" href="/trust-brief/">See Trust Brief</a>
+            <a class="btn secondary" href="/status/" data-rid-link>Open Status</a>
+          </div>
 
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", function () { boot(); });
-  } else {
-    boot();
-  }
-})();
+          <div class="heroMeta" aria-label="Highlights">
+            <div class="pill"><strong>Request ID</strong> routing across flows</div>
+            <div class="pill"><strong>Evidence</strong> attached to claims</div>
+            <div class="pill"><strong>Board-safe</strong> formatting</div>
+            <div class="pill"><strong>Clean scope</strong> predictable delivery</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="grid" aria-label="Core modules">
+      <div class="card">
+        <div class="bd">
+          <h2>Trust Ledger</h2>
+          <p>A board-ready register of AI systems, controls, evidence, and material risk — designed to stay readable under audit</p>
+          <div class="links">
+            <a class="btn secondary" href="/trust-ledger/">Open Ledger</a>
+            <a class="btn secondary" href="/for-whom/">Who this is for</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="bd">
+          <h2>Trust Brief</h2>
+          <p>A 6-week governance diagnostic that maps AI use cases, exposes decision risk, and produces first ledger entries plus board options</p>
+          <div class="links">
+            <a class="btn secondary" href="/trust-brief/">Open Brief</a>
+            <a class="btn secondary" href="/gate/" data-rid-link>Request routing</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="bd">
+          <h2>Playbook</h2>
+          <p>Practical governance patterns for teams already using AI — the shortest path to controls, evidence, and board confidence</p>
+          <div class="links">
+            <a class="btn secondary" href="/playbook/">Open Playbook</a>
+            <a class="btn secondary" href="/copilot-cost-governance/">Copilot governance</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-label="Operating logic">
+      <div class="kicker">Why we route through Gate</div>
+      <p class="sub">
+        Gate is the governed entry point where intakes become decision-ready — you get a Request ID, clean routing, and a next-step plan with response expectations
+      </p>
+
+      <div class="steps" aria-label="How it works">
+        <div class="step">
+          <b>1) Identify the lane</b>
+          <span>Buyer, Partner, Delivery, Channel, Integration — the lane decides scope and outputs</span>
+        </div>
+        <div class="step">
+          <b>2) Attach proof</b>
+          <span>Claims land better when a minimal evidence trail exists — links, references, configs, exports, logs</span>
+        </div>
+        <div class="step">
+          <b>3) Board-ready output</b>
+          <span>Short, structured artefacts that boards and regulators can read fast and challenge safely</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="ctaBand" aria-label="Primary call to action">
+      <h3>Start with Gate, keep your Request ID</h3>
+      <p>Routing becomes faster when the same Request ID travels across Gate, Status, and Thanks</p>
+      <div class="row">
+        <a class="btn" href="/gate/" data-rid-link>Enter Gate</a>
+        <a class="btn secondary" href="/gate/partners/" data-rid-link>Partners</a>
+        <a class="btn secondary" href="/portal/">Portal coming online</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Injected footer -->
+  <footer id="nfFooter"></footer>
+</body>
+</html>

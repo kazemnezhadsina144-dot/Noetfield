@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Noetfield – Copilot Governance</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta
+    name="description"
+    content="Copilot governance for real organizations: control baseline, evidence trails, cost recording readiness, and board-safe usage patterns for Microsoft 365 Copilot and related AI assistants."
+  />
+  <meta name="robots" content="index,follow" />
+  <meta name="author" content="Noetfield Systems Inc." />
+  <meta name="theme-color" content="#07070b" />
+
+  <link rel="canonical" href="https://www.noetfield.com/copilot/" />
+
+  <link rel="icon" href="/noetfield-favicon-512.png" type="image/png" />
+  <link rel="apple-touch-icon" href="/noetfield-favicon-512.png" />
+
+  <!-- OG -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Noetfield" />
+  <meta property="og:title" content="Noetfield – Copilot Governance" />
+  <meta
+    property="og:description"
+    content="Control baseline, evidence trails, and board-safe patterns for Microsoft 365 Copilot and AI assistants."
+  />
+  <meta property="og:url" content="https://www.noetfield.com/copilot/" />
+  <meta property="og:image" content="https://www.noetfield.com/noetfield-og.png" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Noetfield – Copilot Governance" />
+  <meta
+    name="twitter:description"
+    content="Control baseline, evidence trails, and board-safe patterns for Microsoft 365 Copilot and AI assistants."
+  />
+  <meta name="twitter:image" content="https://www.noetfield.com/noetfield-og.png" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- LOCKED SHELL -->
+  <link rel="stylesheet" href="/assets/noetfield-shell.css" />
+  <script src="/assets/noetfield-shell.js" defer></script>
+
+  <!-- Page-only styles -->
+  <style>
+    .hero{padding:22px 0 14px}
+    .heroShell{
+      position:relative;
+      border-radius: calc(var(--radius) + 8px);
+      border: 1px solid rgba(255,255,255,.11);
+      background:
+        radial-gradient(1000px 420px at 18% 0%, rgba(200,163,73,.18), transparent 60%),
+        radial-gradient(1000px 420px at 90% 10%, rgba(122,167,255,.10), transparent 62%),
+        linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.022));
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .heroShell::before{
+      content:"";
+      position:absolute; inset:-1px;
+      background: linear-gradient(120deg, rgba(200,163,73,.26), transparent 30%, rgba(255,255,255,.08) 68%, transparent);
+      opacity:.44;
+      pointer-events:none;
+      mask-image: linear-gradient(180deg, black 0%, black 58%, transparent 96%);
+    }
+    .heroInner{padding: 24px 22px}
+
+    .eyebrow{
+      display:inline-flex; gap:10px; align-items:center;
+      color:var(--muted);
+      font-size:13px;
+      padding:9px 12px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.13);
+      background: rgba(255,255,255,.035);
+    }
+    .dot{
+      width:8px; height:8px; border-radius:50%;
+      background: rgba(200,163,73,.97);
+      box-shadow: 0 0 0 3px rgba(200,163,73,.18);
+    }
+
+    h1{margin:14px 0 10px; font-size:40px; line-height:1.07; letter-spacing:-0.75px}
+    .lead{margin:0; color:var(--muted); font-size:16px; max-width: 1080px; line-height:1.75}
+    .lead strong{color:var(--text); font-weight:800}
+
+    .metaRow{display:flex; flex-wrap:wrap; gap:10px; margin-top:14px}
+    .pill{
+      display:inline-flex; align-items:center; gap:10px;
+      padding:9px 12px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.03);
+      color:var(--muted);
+      font-size:13px;
+      white-space:nowrap;
+    }
+    .pill strong{color:var(--text); font-weight:800}
+
+    .grid{
+      display:grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap:18px;
+      margin: 18px 0 34px;
+      align-items:start;
+    }
+    .card{
+      border-radius:var(--radius);
+      border:1px solid rgba(255,255,255,.11);
+      background: linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.022));
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+      min-width:0;
+    }
+    .card .hd{padding:18px 18px 0}
+    .card h2{margin:0 0 8px; font-size:18px; letter-spacing:-0.2px}
+    .card p{margin:0 0 12px; color:var(--muted); line-height:1.7}
+    .card .bd{padding:18px}
+
+    .section{
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      border-radius:16px;
+      padding:14px;
+      margin-top:12px;
+    }
+    .sectionTitle{
+      font-weight:900;
+      letter-spacing:-.2px;
+      margin:0 0 6px;
+      font-size:14px;
+    }
+    .sectionDesc{
+      margin:0 0 12px;
+      color:var(--muted2);
+      font-size:12.7px;
+      line-height:1.6;
+    }
+
+    .split{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:12px;
+      margin-top:12px;
+    }
+    .mini{
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      padding:12px;
+      min-width:0;
+    }
+    .mini h3{margin:0 0 8px; font-size:14px; letter-spacing:-.2px}
+    .mini ul{margin:0; padding-left:18px; color:var(--muted); line-height:1.85}
+    .mini li{margin:6px 0}
+    .mini strong{color:var(--text); font-weight:800}
+
+    .table{
+      width:100%;
+      border-collapse:separate;
+      border-spacing:0;
+      overflow:hidden;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.02);
+      margin-top:10px;
+    }
+    .table th, .table td{
+      text-align:left;
+      padding:12px;
+      border-bottom:1px solid rgba(255,255,255,.08);
+      vertical-align:top;
+      font-size:13px;
+    }
+    .table th{
+      color:var(--muted2);
+      font-size:11px;
+      letter-spacing:.28em;
+      text-transform:uppercase;
+      background: rgba(255,255,255,.03);
+    }
+    .table tr:last-child td{border-bottom:none}
+
+    .box{
+      margin-top:12px;
+      padding:12px 12px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      color:var(--muted2);
+      font-size:12.8px;
+      line-height:1.6;
+    }
+    .box strong{color:var(--text); font-weight:800}
+    .box a{border-bottom:1px solid rgba(255,255,255,.18)}
+
+    .actions{display:flex; gap:12px; flex-wrap:wrap; align-items:center; margin-top:12px}
+
+    .toc{
+      display:flex; flex-direction:column; gap:10px;
+      margin-top:10px;
+    }
+    .toc a{
+      display:flex; align-items:center; justify-content:space-between; gap:10px;
+      padding:11px 12px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      text-decoration:none;
+      color:var(--text);
+      transition: border-color .15s ease, background .15s ease, transform .06s ease;
+    }
+    .toc a:hover{border-color:rgba(255,255,255,.22); background:rgba(255,255,255,.05)}
+    .toc a:active{transform: translateY(1px)}
+    .toc span{color:var(--muted)}
+    .arrow{opacity:.8}
+
+    .badge{
+      font-size:11px;
+      letter-spacing:.28em;
+      text-transform:uppercase;
+      color:var(--muted2);
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.03);
+      white-space:nowrap;
+    }
+
+    @media (max-width: 980px){
+      .grid{grid-template-columns:1fr}
+      .split{grid-template-columns:1fr}
+    }
+    @media (max-width: 760px){
+      h1{font-size:30px}
+      .table th, .table td{padding:10px}
+    }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Noetfield – Copilot Governance",
+    "url": "https://www.noetfield.com/copilot/",
+    "description": "Copilot governance for real organizations: control baseline, evidence trails, cost recording readiness, and board-safe usage patterns for Microsoft 365 Copilot and related AI assistants.",
+    "isPartOf": {"@type":"WebSite","name":"Noetfield","url":"https://www.noetfield.com/"},
+    "publisher": {"@type":"Organization","name":"Noetfield Systems Inc."}
+  }
+  </script>
+</head>
+
+<body>
+  <div class="bg" aria-hidden="true"></div>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <!-- injected header -->
+  <div id="nfHeader"></div>
+
+  <main id="main" class="wrap">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="heroShell">
+        <div class="heroInner">
+          <div class="eyebrow"><span class="dot"></span> Microsoft 365 Copilot • governance lane</div>
+          <h1>Copilot governance.</h1>
+          <p class="lead">
+            Copilot does not fail because the model is weak — it fails because organizations ship it without
+            <strong>controls</strong>, <strong>evidence trails</strong>, and <strong>board-safe boundaries</strong>.
+            This lane defines a minimum baseline you can defend under audit: who can use it, on what data, with what logging,
+            and how to record cost + risk in a way leadership can sign.
+          </p>
+
+          <div class="metaRow" aria-label="Highlights">
+            <div class="pill"><strong>Identity</strong> + access</div>
+            <div class="pill"><strong>Purview</strong> labels/DLP</div>
+            <div class="pill"><strong>Audit</strong> + telemetry</div>
+            <div class="pill"><strong>Cost recording</strong></div>
+            <div class="pill"><strong>Board memo</strong> options</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="grid">
+      <!-- MAIN -->
+      <div class="card">
+        <div class="hd">
+          <h2>What this page is</h2>
+          <p>
+            A practical implementation map for organizations rolling out Microsoft 365 Copilot (and adjacent assistants),
+            aligned to Noetfield’s evidence-ready governance posture.
+          </p>
+        </div>
+
+        <div class="bd">
+          <div class="section" id="baseline">
+            <div class="sectionTitle">Minimum baseline (what must be true)</div>
+            <p class="sectionDesc">
+              If these are not true, Copilot adoption becomes a policy theatre exercise with weak defensibility.
+            </p>
+
+            <div class="split" aria-label="Baseline blocks">
+              <div class="mini">
+                <h3>1) Identity + access boundaries</h3>
+                <ul>
+                  <li><strong>SSO/IdP</strong> enforced; privileged roles separated.</li>
+                  <li><strong>Conditional access</strong> + MFA; device compliance where needed.</li>
+                  <li>Copilot enabled only for scoped groups (not “everyone”).</li>
+                  <li>Admin actions are logged and reviewed (no silent drift).</li>
+                </ul>
+              </div>
+
+              <div class="mini">
+                <h3>2) Data boundaries (labels and DLP)</h3>
+                <ul>
+                  <li>Information protection labels exist and are used in reality.</li>
+                  <li><strong>Purview / DLP</strong> policies are enforced for sensitive categories.</li>
+                  <li>External sharing and guest access are reviewed against Copilot scope.</li>
+                  <li>High-risk repositories are excluded or remediated before enabling.</li>
+                </ul>
+              </div>
+
+              <div class="mini">
+                <h3>3) Logging + evidence trail</h3>
+                <ul>
+                  <li>Audit logging is enabled and retained (policy + proof).</li>
+                  <li>Access, sharing, and admin events are exportable.</li>
+                  <li>Escalation path exists for incidents (who investigates, how).</li>
+                  <li>Evidence is stored in an audit-friendly structure.</li>
+                </ul>
+              </div>
+
+              <div class="mini">
+                <h3>4) Cost recording + decision memos</h3>
+                <ul>
+                  <li>Licensing scope and governance ownership are explicit.</li>
+                  <li>Usage metrics are reviewed on a cadence (not vibes).</li>
+                  <li>Leadership gets options: expand / constrain / pause with reasons.</li>
+                  <li>Cost and risk are tied to material workflows.</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="box">
+              <strong>Rule:</strong> if you cannot prove the boundary exists (config, export, log),
+              you cannot claim the control exists.
+            </div>
+          </div>
+
+          <div class="section" id="artefacts">
+            <div class="sectionTitle">Board-ready artefacts (what you produce)</div>
+            <p class="sectionDesc">
+              These are the outputs that make Copilot adoption defensible for boards, regulators, and auditors.
+            </p>
+
+            <table class="table" aria-label="Copilot governance artefacts">
+              <thead>
+                <tr>
+                  <th>Artefact</th>
+                  <th>What it answers</th>
+                  <th>Evidence anchor</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Copilot scope memo</td>
+                  <td>Who gets access and why</td>
+                  <td>Group list + policy screenshots/exports</td>
+                </tr>
+                <tr>
+                  <td>Data readiness map</td>
+                  <td>What Copilot can touch</td>
+                  <td>Label usage evidence + DLP policy references</td>
+                </tr>
+                <tr>
+                  <td>Control baseline (Copilot)</td>
+                  <td>What is enforced</td>
+                  <td>Config exports + audit log enablement proof</td>
+                </tr>
+                <tr>
+                  <td>Evidence trail pack</td>
+                  <td>Can we reconstruct events</td>
+                  <td>Log export paths + retention policy</td>
+                </tr>
+                <tr>
+                  <td>Board decision memo</td>
+                  <td>Approve / expand / constrain</td>
+                  <td>Options + trade-offs + residual risk</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <div class="actions">
+              <a class="btn" href="/gate/">Open Gate</a>
+              <a class="btn secondary" href="/trust-brief/">Trust Brief</a>
+              <a class="btn secondary" href="/trust-ledger/">Trust Ledger</a>
+            </div>
+          </div>
+
+          <div class="section" id="routing">
+            <div class="sectionTitle">Implementation routing (partners)</div>
+            <p class="sectionDesc">
+              If you need execution capacity (IdP, logs, DLP, controls), route to the right lane and keep it evidence-ready.
+            </p>
+
+            <div class="split" aria-label="Routing options">
+              <div class="mini">
+                <h3>Integration lane</h3>
+                <ul>
+                  <li>Identity, audit logs, SIEM pipelines, DLP/classification.</li>
+                  <li>Goal: enforce controls and produce exportable evidence.</li>
+                  <li><a href="/gate/partners/integration/">Open Integration lane</a></li>
+                </ul>
+              </div>
+              <div class="mini">
+                <h3>Delivery lane</h3>
+                <ul>
+                  <li>Structured rollout packages and acceptance criteria.</li>
+                  <li>Goal: predictable delivery, clean scope, clear SLAs.</li>
+                  <li><a href="/gate/partners/delivery/">Open Delivery lane</a></li>
+                </ul>
+              </div>
+              <div class="mini">
+                <h3>Channel lane</h3>
+                <ul>
+                  <li>Agencies/MSPs who route qualified clients into Noetfield.</li>
+                  <li>Goal: correct intake + routing, not hype.</li>
+                  <li><a href="/gate/partners/channel/">Open Channel lane</a></li>
+                </ul>
+              </div>
+              <div class="mini">
+                <h3>Start intake</h3>
+                <ul>
+                  <li>For operators who want a governed entry and routing.</li>
+                  <li>Goal: decide track + lane + next action.</li>
+                  <li><a href="/gate/intake/">Start intake</a></li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="box">
+              <strong>Note:</strong> this page is the Copilot lane overview. Detailed implementation checklists and templates
+              will be published progressively in the <a href="/playbook/">Playbook</a>.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ASIDE -->
+      <aside class="card">
+        <div class="hd">
+          <h2>Quick navigation</h2>
+          <p>Jump to what matters, fast.</p>
+        </div>
+        <div class="bd">
+          <div class="toc" aria-label="On-page navigation">
+            <a href="#baseline"><span>Minimum</span><strong>Baseline</strong><span class="arrow">→</span></a>
+            <a href="#artefacts"><span>Board-ready</span><strong>Artefacts</strong><span class="arrow">→</span></a>
+            <a href="#routing"><span>Implementation</span><strong>Routing</strong><span class="arrow">→</span></a>
+          </div>
+
+          <div class="box" style="margin-top:14px;">
+            <strong>Use this when:</strong><br/>
+            You are enabling M365 Copilot (or planning to), and you need to prove you can control data exposure,
+            retain evidence, and report cost/risk in a board-legible way.
+          </div>
+
+          <div class="box" style="margin-top:14px;">
+            <strong>Related:</strong><br/>
+            <a href="/copilot-cost-governance/">Cost recording</a> ·
+            <a href="/for-whom/">For Whom</a> ·
+            <a href="/mandate/">Mandate</a>
+          </div>
+
+          <div class="section" style="margin-top:14px;">
+            <div class="sectionTitle">Next action</div>
+            <p class="sectionDesc">If you want this turned into a routed, trackable engagement.</p>
+            <div class="actions" style="margin-top:10px;">
+              <a class="btn" href="/gate/intake/">Start intake</a>
+              <a class="btn secondary" href="/status/">Status</a>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </section>
+  </main>
+
+  <!-- injected footer -->
+  <div id="nfFooter"></div>
+</body>
+</html>

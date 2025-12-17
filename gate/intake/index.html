@@ -1,0 +1,534 @@
+<!-- /gate/intake/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Noetfield — Intake (Request ID routing)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="description" content="Non-confidential intake. Get a Request ID, route into the right track, and receive a board-ready next-step plan." />
+  <meta name="robots" content="index,follow" />
+  <meta name="author" content="Noetfield Systems Inc." />
+  <meta name="theme-color" content="#07070b" />
+
+  <link rel="canonical" href="https://www.noetfield.com/gate/intake/" />
+
+  <link rel="icon" href="/noetfield-favicon-512.png" type="image/png" />
+  <link rel="apple-touch-icon" href="/noetfield-favicon-512.png" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Noetfield" />
+  <meta property="og:title" content="Noetfield — Intake" />
+  <meta property="og:description" content="Non-confidential intake. Get a Request ID, route into the right track, and receive a board-ready next-step plan." />
+  <meta property="og:url" content="https://www.noetfield.com/gate/intake/" />
+  <meta property="og:image" content="https://www.noetfield.com/noetfield-og.png" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Noetfield — Intake" />
+  <meta name="twitter:description" content="Non-confidential intake. Get a Request ID, route into the right track, and receive a board-ready next-step plan." />
+  <meta name="twitter:image" content="https://www.noetfield.com/noetfield-og.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Locked shell (inject header/footer + RID + nav) -->
+  <link rel="stylesheet" href="/assets/noetfield-shell.css" />
+  <script src="/assets/noetfield-shell.js" defer></script>
+
+  <style>
+    .hero{padding:22px 0 10px}
+    .heroShell{
+      position:relative;
+      border-radius: calc(var(--radius) + 8px);
+      border: 1px solid rgba(255,255,255,.11);
+      background:
+        radial-gradient(980px 420px at 18% 0%, rgba(200,163,73,.18), transparent 60%),
+        radial-gradient(980px 420px at 90% 10%, rgba(122,167,255,.10), transparent 62%),
+        linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.022));
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .heroShell::before{
+      content:"";
+      position:absolute; inset:-1px;
+      background: linear-gradient(120deg, rgba(200,163,73,.26), transparent 30%, rgba(255,255,255,.08) 68%, transparent);
+      opacity:.44;
+      pointer-events:none;
+      mask-image: linear-gradient(180deg, black 0%, black 58%, transparent 96%);
+    }
+    .heroInner{padding: 22px 22px}
+    .eyebrow{
+      display:inline-flex; gap:10px; align-items:center;
+      color:var(--muted);
+      font-size:13px;
+      padding:9px 12px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.13);
+      background: rgba(255,255,255,.035);
+    }
+    .dot{
+      width:8px; height:8px; border-radius:50%;
+      background: rgba(200,163,73,.97);
+      box-shadow: 0 0 0 3px rgba(200,163,73,.18);
+    }
+    h1{margin:14px 0 10px; font-size:34px; line-height:1.08; letter-spacing:-0.7px}
+    .lead{margin:0; color:var(--muted); font-size:16px; max-width: 980px}
+
+    .ridInline{
+      display:flex; flex-wrap:wrap; gap:10px; align-items:center;
+      margin-top:12px;
+      padding:12px 12px;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+    }
+    .ridInline b{font-size:12px; letter-spacing:.22em; text-transform:uppercase; color:var(--muted2)}
+    .ridInline code[data-rid]{margin-left:auto}
+
+    .grid{
+      display:grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap:14px;
+      margin: 14px 0 28px;
+      align-items:start;
+    }
+    .card{
+      border-radius:var(--radius);
+      border:1px solid rgba(255,255,255,.11);
+      background: linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.022));
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+      min-width:0;
+    }
+    .card .hd{padding:16px 18px; border-bottom:1px solid rgba(255,255,255,.10)}
+    .card .bd{padding:18px}
+    .card h2{margin:0 0 6px; font-size:18px; letter-spacing:-0.2px}
+    .muted{color:var(--muted)}
+    .tiny{font-size:12.5px; color:var(--muted2); line-height:1.55}
+
+    form label{display:block; font-weight:700; margin: 10px 0 6px}
+    form input, form select, form textarea{
+      width:100%;
+      padding:12px 12px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.22);
+      color: var(--text);
+      outline: none;
+    }
+    form textarea{min-height: 120px; resize: vertical}
+    .row2{display:grid; grid-template-columns: 1fr 1fr; gap:12px}
+    .actions{display:flex; gap:10px; flex-wrap:wrap; margin-top:14px}
+    .box{
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      border-radius:16px;
+      padding:12px;
+      margin-top:12px;
+    }
+    .kv{display:grid; grid-template-columns: 120px 1fr; gap:8px 10px; margin-top:10px}
+    .kv .k{color:var(--muted2); font-size:12px; letter-spacing:.12em; text-transform:uppercase}
+    .kv .v{color:var(--text); font-size:13px}
+    .ok{color: var(--ok, #2de38a)}
+    .warn{color: #ffcf5a}
+    .err{color: #ff5a5a}
+    .hide{position:absolute !important; left:-9999px !important; top:auto !important; width:1px !important; height:1px !important; overflow:hidden !important;}
+
+    @media (max-width: 980px){
+      .grid{grid-template-columns: 1fr}
+      .row2{grid-template-columns: 1fr}
+      h1{font-size:30px}
+    }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"WebPage",
+    "name":"Noetfield — Intake",
+    "url":"https://www.noetfield.com/gate/intake/",
+    "description":"Non-confidential intake. Get a Request ID, route into the right track, and receive a board-ready next-step plan.",
+    "isPartOf":{"@type":"WebSite","name":"Noetfield","url":"https://www.noetfield.com/"},
+    "publisher":{"@type":"Organization","name":"Noetfield Systems Inc."}
+  }
+  </script>
+</head>
+
+<body>
+  <div class="bg" aria-hidden="true"></div>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <!-- Injected header -->
+  <header id="nfHeader"></header>
+
+  <main id="main" class="wrap">
+    <section class="hero">
+      <div class="heroShell">
+        <div class="heroInner">
+          <div class="eyebrow"><span class="dot"></span> Intake, non-confidential by design</div>
+          <h1 id="pageTitle">Start intake (Request ID + routing)</h1>
+          <p class="lead" id="pageLead">
+            This intake generates/uses your Request ID and captures minimal context to route you into a board-safe scope.
+            Prefer links and summaries. Do not submit confidential identifiers.
+          </p>
+
+          <div class="ridInline" aria-label="Request ID bar">
+            <b>Request ID</b>
+            <code data-rid>—</code>
+            <button type="button" data-copy-rid>Copy</button>
+            <a class="btn secondary" href="/status/" data-rid-link>Open Status</a>
+          </div>
+
+          <noscript>
+            <div class="box" role="alert" style="margin-top:12px;">
+              <strong class="err">JavaScript required:</strong>
+              Request ID continuity and routing links require JavaScript on this site.
+            </div>
+          </noscript>
+        </div>
+      </div>
+    </section>
+
+    <section class="grid" aria-label="Intake form and boundaries">
+      <!-- FORM -->
+      <div class="card">
+        <div class="hd">
+          <h2>Intake</h2>
+          <p class="muted">Submit the minimum needed to route correctly.</p>
+        </div>
+        <div class="bd">
+          <form id="nfIntakeForm" method="POST" action="https://formspree.io/xyzrdrpv">
+            <!-- Honeypot -->
+            <label class="hide" for="company">Company</label>
+            <input class="hide" id="company" name="company" type="text" tabindex="-1" autocomplete="off" />
+
+            <!-- Hidden routing -->
+            <input type="hidden" id="ridField" name="rid" value="" />
+            <input type="hidden" id="trackField" name="track" value="gate" />
+            <input type="hidden" id="needField" name="need" value="" />
+            <input type="hidden" id="laneField" name="lane" value="" />
+            <input type="hidden" id="sourceField" name="source" value="/gate/intake/" />
+
+            <label for="needSelect">What are you trying to get done?</label>
+            <select id="needSelect" name="need_select">
+              <option value="">Select a package / outcome</option>
+              <option value="copilot">Copilot Governance QuickScan</option>
+              <option value="trust-brief">Trust Brief (6-week diagnostic)</option>
+              <option value="trust-ledger">Trust Ledger (evidence register)</option>
+              <option value="agent-governance">Agent Governance Sprint</option>
+              <option value="playbook">Playbook / Packs</option>
+              <option value="partner">Partner inquiry (generic)</option>
+              <option value="partner-channel">Partner — Channel</option>
+              <option value="partner-delivery">Partner — Delivery</option>
+              <option value="partner-integration">Partner — Integration</option>
+            </select>
+            <div class="tiny">Deep links should use <code>/gate/intake/?need=&lt;value&gt;</code>.  [oai_citation:5‡noetfield-intake-routing-spec-v1.0.docx](file-service://file-GyAvapNh8R6tgC4x3odCqc)</div>
+
+            <div class="row2">
+              <div>
+                <label for="name">Name</label>
+                <input id="name" name="name" type="text" autocomplete="name" placeholder="Your name" required />
+              </div>
+              <div>
+                <label for="email">Work email</label>
+                <input id="email" name="email" type="email" autocomplete="email" placeholder="you@company.com" required />
+              </div>
+            </div>
+
+            <div class="row2">
+              <div>
+                <label for="org">Organization</label>
+                <input id="org" name="organization" type="text" autocomplete="organization" placeholder="Company / org name" />
+              </div>
+              <div>
+                <label for="role">Role</label>
+                <input id="role" name="role" type="text" placeholder="Board / Security / IT / Legal / Ops…" />
+              </div>
+            </div>
+
+            <label for="outcome">Outcome you want (1–3 lines)</label>
+            <textarea id="outcome" name="outcome" placeholder="Example: 'We need a board memo and control map for Copilot rollout, with risks + next steps.'"></textarea>
+
+            <label for="systems">Systems in scope (high-level)</label>
+            <textarea id="systems" name="systems" placeholder="Example: 'M365 Copilot, SharePoint/OneDrive, Teams, Purview, IdP/SSO.'"></textarea>
+
+            <label for="links">Relevant links (preferred)</label>
+            <textarea id="links" name="links" placeholder="Public docs, internal wiki links, policy links, vendor pages (no uploads)."></textarea>
+
+            <div class="box" role="note">
+              <strong>Non-confidential by design.</strong>
+              Please do not submit sensitive identifiers (IDs, credentials, medical/HR files, bank data). Use links + summaries only.  [oai_citation:6‡Privacy.gdoc](file-service://file-NRTgyKrDoX43U85Egtcdgg)
+            </div>
+
+            <label style="margin-top:12px;">
+              <input type="checkbox" id="confirm" name="confirm_nonconfidential" value="yes" required />
+              <span class="tiny">I confirm this submission contains no confidential information.</span>
+            </label>
+
+            <div class="actions">
+              <button class="btn" id="submitBtn" type="submit">Submit intake</button>
+              <a class="btn secondary" href="/gate/" data-rid-link>Back to Gate</a>
+              <a class="btn secondary" href="/privacy/">Privacy</a>
+              <a class="btn secondary" href="/terms/">Terms</a>
+            </div>
+
+            <div id="formMsg" class="box" style="display:none;" role="status" aria-live="polite"></div>
+
+            <div class="box" style="margin-top:12px;">
+              <strong>Fallback:</strong> if the form fails, email
+              <a href="mailto:ceo@noetfield.com">ceo@noetfield.com</a>
+              with your <em>Request ID</em> and the same fields.  [oai_citation:7‡noetfield-intake-routing-spec-v1.0.docx](file-service://file-GyAvapNh8R6tgC4x3odCqc)
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- ROUTING / BOUNDARIES -->
+      <aside class="card" aria-label="Routing context">
+        <div class="hd">
+          <h2>Routing context</h2>
+          <p class="muted">What will be attached to your Request ID.</p>
+        </div>
+        <div class="bd">
+          <div class="kv" aria-label="Routing key-values">
+            <div class="k">Track</div>
+            <div class="v" id="trackText">gate</div>
+
+            <div class="k">Lane</div>
+            <div class="v" id="laneText">—</div>
+
+            <div class="k">Need</div>
+            <div class="v" id="needText">—</div>
+          </div>
+
+          <div class="box">
+            <strong>What you get next:</strong>
+            <div class="tiny">
+              A simple next-step plan and response SLA, plus the correct page routing for your package/lane.
+              Status uses your saved track/lane hints (safe preview).  [oai_citation:8‡Status 3.gdoc](file-service://file-L7CSc8MU47ZYpdqWA7Xmrn)
+            </div>
+          </div>
+
+          <div class="box">
+            <strong>Useful:</strong><br/>
+            <a href="/status/" data-rid-link>Status</a> ·
+            <a href="/thanks/" data-rid-link>Thanks</a> ·
+            <a href="/faq/">FAQ</a> ·
+            <a href="/offers/">Offers</a>
+          </div>
+
+          <div class="box">
+            <strong>Partners:</strong> If you meant a partner lane, you can also start from
+            <a href="/gate/partners/">/gate/partners/</a>. (Partner routing is supported here too.)  [oai_citation:9‡noetfield-intake-routing-spec-v1.0.docx](file-service://file-GyAvapNh8R6tgC4x3odCqc)
+          </div>
+        </div>
+      </aside>
+    </section>
+  </main>
+
+  <!-- Injected footer -->
+  <footer id="nfFooter"></footer>
+
+  <!-- Page-only JS: need/lane parsing + storage + Formspree submit + redirect -->
+  <script>
+    (function(){
+      var form = document.getElementById("nfIntakeForm");
+      var formMsg = document.getElementById("formMsg");
+      var submitBtn = document.getElementById("submitBtn");
+
+      var needSelect = document.getElementById("needSelect");
+      var ridField = document.getElementById("ridField");
+      var trackField = document.getElementById("trackField");
+      var needField = document.getElementById("needField");
+      var laneField = document.getElementById("laneField");
+
+      var trackText = document.getElementById("trackText");
+      var laneText = document.getElementById("laneText");
+      var needText = document.getElementById("needText");
+
+      var pageTitle = document.getElementById("pageTitle");
+
+      function qs(name){
+        try { return new URLSearchParams(window.location.search || "").get(name) || ""; } catch(e){ return ""; }
+      }
+      function norm(x){ return (x || "").trim().toLowerCase(); }
+
+      function sanitizeRID(x){
+        x = (x || "").trim();
+        if (!x) return "";
+        return x.replace(/[^a-zA-Z0-9\-_]/g, "").slice(0, 64);
+      }
+
+      function getRIDFromDOM(){
+        var el = document.querySelector("[data-rid]");
+        var txt = el ? (el.textContent || "").trim() : "";
+        return sanitizeRID(txt);
+      }
+
+      function deriveRouting(need, lane){
+        need = norm(need);
+        lane = norm(lane);
+
+        var track = "gate";
+        var outLane = "";
+
+        // normalize partner shortcuts
+        if (need === "partner") { track = "partners"; outLane = lane || ""; }
+        if (need === "partner-channel") { track = "partners"; outLane = "channel"; }
+        if (need === "partner-delivery") { track = "partners"; outLane = "delivery"; }
+        if (need === "partner-integration") { track = "partners"; outLane = "integration"; }
+
+        // buyer lanes map 1:1 to need
+        if (track === "gate") outLane = need || "";
+
+        return { track: track, need: need, lane: outLane };
+      }
+
+      function setUI(meta){
+        if (trackText) trackText.textContent = meta.track || "gate";
+        if (laneText) laneText.textContent = meta.lane ? meta.lane : "—";
+        if (needText) needText.textContent = meta.need ? meta.need : "—";
+
+        // title polish
+        var title = "Start intake (Request ID + routing)";
+        if (meta.need === "copilot") title = "Copilot Governance QuickScan — Intake";
+        if (meta.need === "trust-brief") title = "Trust Brief — Intake";
+        if (meta.need === "trust-ledger") title = "Trust Ledger — Intake";
+        if (meta.need === "agent-governance") title = "Agent Governance Sprint — Intake";
+        if (meta.need === "playbook") title = "Playbook / Packs — Intake";
+        if (meta.track === "partners") title = "Partners — Intake";
+        if (pageTitle) pageTitle.textContent = title;
+      }
+
+      function setHidden(meta, rid){
+        if (ridField) ridField.value = rid || "";
+        if (trackField) trackField.value = meta.track || "gate";
+        if (needField) needField.value = meta.need || "";
+        if (laneField) laneField.value = meta.lane || "";
+      }
+
+      function setStorage(meta, rid){
+        try { localStorage.setItem("nf_gate_track", meta.track || "gate"); } catch(e){}
+        try { localStorage.setItem("nf_gate_lane", meta.lane || (meta.need || "")); } catch(e){}
+        try { localStorage.setItem("nf_gate_rid", rid || ""); } catch(e){}
+        try { localStorage.setItem("nf_gate_last_submitted_rid", rid || ""); } catch(e){}
+
+        // partner hints (Status reads nf_partner_lane too)  [oai_citation:10‡Status 3.gdoc](file-service://file-L7CSc8MU47ZYpdqWA7Xmrn)
+        if (meta.track === "partners") {
+          try { localStorage.setItem("nf_partner_lane", meta.lane || ""); } catch(e){}
+          try { localStorage.setItem("nf_partner_rid", rid || ""); } catch(e){}
+          try { localStorage.setItem("nf_partner_last_submitted_rid", rid || ""); } catch(e){}
+        }
+      }
+
+      function showMsg(text, kind){
+        if (!formMsg) return;
+        formMsg.style.display = "block";
+        formMsg.textContent = text;
+
+        // simple styling
+        var c = "rgba(255,255,255,.10)";
+        var b = "rgba(255,255,255,.03)";
+        if (kind === "ok"){ c = "rgba(45,227,138,.25)"; b = "rgba(45,227,138,.06)"; }
+        if (kind === "err"){ c = "rgba(255,90,90,.25)"; b = "rgba(255,90,90,.06)"; }
+        formMsg.style.borderColor = c;
+        formMsg.style.background = b;
+      }
+
+      // Init from query (default: copilot if empty)
+      var qNeed = norm(qs("need"));
+      var qLane = norm(qs("lane"));
+
+      if (!qNeed) qNeed = "copilot"; // Carnegie lock default (safe; user can change)
+
+      if (needSelect) needSelect.value = qNeed;
+
+      var meta = deriveRouting(qNeed, qLane);
+      setUI(meta);
+
+      // When user changes need
+      if (needSelect) {
+        needSelect.addEventListener("change", function(){
+          var n = norm(needSelect.value);
+          if (!n) n = "copilot";
+          var m = deriveRouting(n, "");
+          meta = m;
+          setUI(meta);
+          var ridNow = getRIDFromDOM();
+          setHidden(meta, ridNow);
+          setStorage(meta, ridNow);
+        });
+      }
+
+      // Pre-fill hidden + storage once RID exists (shell sets data-rid)
+      function syncRID(){
+        var ridNow = getRIDFromDOM();
+        if (!ridNow || ridNow === "—") return false;
+        setHidden(meta, ridNow);
+        setStorage(meta, ridNow);
+        return true;
+      }
+
+      // try a few times in case shell loads after this script
+      var tries = 0;
+      var t = setInterval(function(){
+        tries++;
+        if (syncRID() || tries > 20) clearInterval(t);
+      }, 120);
+
+      // Intercept submit -> post to Formspree -> redirect to /thanks/?rid=
+      if (form) {
+        form.addEventListener("submit", async function(ev){
+          ev.preventDefault();
+
+          // block honeypot
+          var hp = document.getElementById("company");
+          if (hp && (hp.value || "").trim()) return;
+
+          var ridNow = getRIDFromDOM();
+          if (!ridNow || ridNow === "—") {
+            showMsg("Request ID not ready. Please wait 1–2 seconds and try again.", "err");
+            return;
+          }
+
+          setHidden(meta, ridNow);
+          setStorage(meta, ridNow);
+
+          if (submitBtn) submitBtn.disabled = true;
+          showMsg("Submitting…", "");
+
+          try{
+            var fd = new FormData(form);
+            // ensure canonical routing fields
+            fd.set("rid", ridNow);
+            fd.set("track", meta.track || "gate");
+            fd.set("need", meta.need || "");
+            fd.set("lane", meta.lane || "");
+
+            var res = await fetch(form.getAttribute("action"), {
+              method: "POST",
+              headers: { "Accept": "application/json" },
+              body: fd
+            });
+
+            if (!res.ok) throw new Error("submit");
+
+            showMsg("Submitted. Redirecting to Thanks…", "ok");
+
+            var url = "/thanks/?rid=" + encodeURIComponent(ridNow);
+            // keep routing hints for downstream (optional; Status uses storage anyway)
+            url += "&track=" + encodeURIComponent(meta.track || "gate");
+            if (meta.lane) url += "&lane=" + encodeURIComponent(meta.lane);
+
+            window.location.href = url;
+          } catch(e){
+            showMsg("Submission failed. Please use the fallback email: ceo@noetfield.com (include your Request ID).", "err");
+            if (submitBtn) submitBtn.disabled = false;
+          }
+        });
+      }
+    })();
+  </script>
+</body>
+</html>

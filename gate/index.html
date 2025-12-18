@@ -1,12 +1,12 @@
-<!-- /gate/index.html — Noetfield Gate (sales-first) -->
-<!DOCTYPE html>
+<!-- /gate/index.html — Noetfield Gate Wizard (buyer-first, sales-focused) -->
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Noetfield — Gate</title>
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <meta name="description" content="Noetfield Gate: start the right package immediately. Direct sales CTAs to product intakes (Copilot QuickScan, Trust Brief, Trust Ledger). Public intakes are non-confidential by design." />
+  <title>Noetfield — Gate (buyer-first entry)</title>
+  <meta name="description" content="A buyer-first entry point: choose a start point, route to non-confidential intake, and get board-ready outputs without extra browsing." />
   <meta name="robots" content="index,follow" />
   <meta name="author" content="Noetfield Systems Inc." />
   <meta name="theme-color" content="#07070b" />
@@ -15,363 +15,554 @@
   <link rel="icon" href="/noetfield-favicon-512.png" type="image/png" />
   <link rel="apple-touch-icon" href="/noetfield-favicon-512.png" />
 
-  <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="Noetfield" />
-  <meta property="og:title" content="Noetfield — Gate" />
-  <meta property="og:description" content="Start the right package immediately. Direct CTAs to product intakes." />
-  <meta property="og:url" content="https://www.noetfield.com/gate/" />
-  <meta property="og:image" content="https://www.noetfield.com/noetfield-og.png" />
-
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Noetfield — Gate" />
-  <meta name="twitter:description" content="Sales-first directory: packages → direct product intakes." />
-  <meta name="twitter:image" content="https://www.noetfield.com/noetfield-og.png" />
-
-  <!-- LOCKED SHELL -->
+  <!-- Locked shared assets -->
   <link rel="stylesheet" href="/assets/noetfield-shell.css" />
-  <script src="/assets/noetfield-shell.js" defer></script>
+  <script defer src="/assets/noetfield-shell.js"></script>
 
   <style>
-    .hero{padding:22px 0 10px}
-    .heroShell{
-      position:relative;
-      border-radius: calc(var(--radius) + 8px);
-      border: 1px solid rgba(255,255,255,.11);
-      background:
-        radial-gradient(980px 420px at 18% 0%, rgba(200,163,73,.18), transparent 60%),
-        radial-gradient(980px 420px at 90% 10%, rgba(122,167,255,.10), transparent 62%),
-        linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.022));
-      box-shadow: var(--shadow);
-      overflow:hidden;
-    }
-    .heroShell::before{
-      content:"";
-      position:absolute; inset:-1px;
-      background: linear-gradient(120deg, rgba(200,163,73,.26), transparent 30%, rgba(255,255,255,.08) 68%, transparent);
-      opacity:.44;
-      pointer-events:none;
-      mask-image: linear-gradient(180deg, black 0%, black 58%, transparent 96%);
-    }
-    .heroInner{padding: 24px 22px}
-    .eyebrow{
-      display:inline-flex; gap:10px; align-items:center;
-      color:var(--muted);
-      font-size:13px;
-      padding:9px 12px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.13);
-      background: rgba(255,255,255,.035);
-    }
-    .dot{
-      width:8px; height:8px; border-radius:50%;
-      background: rgba(200,163,73,.97);
-      box-shadow: 0 0 0 3px rgba(200,163,73,.18);
-    }
-
-    h1{margin:14px 0 10px; font-size:40px; line-height:1.07; letter-spacing:-0.75px}
-    .lead{margin:0; color:var(--muted); font-size:16px; max-width: 980px; line-height:1.75}
-    .lead strong{color:var(--text); font-weight:900}
-
-    .ctaRow{display:flex; gap:12px; flex-wrap:wrap; align-items:center; margin-top:14px}
-    .ctaRow .btn{min-height:44px}
-
-    .note{
-      margin-top:12px;
-      padding:12px 12px;
-      border-radius:14px;
-      border:1px solid rgba(255,255,255,.10);
+    /* Gate-specific (minimal). Prefixed to avoid collisions. */
+    .nfGateWrap { max-width: 1080px; margin: 0 auto; padding: 22px 18px 40px; }
+    .nfGateHero { display: grid; gap: 14px; }
+    .nfGateKicker { opacity: .85; font-size: .95rem; }
+    .nfGateTitle { font-size: clamp(1.6rem, 3.6vw, 2.4rem); line-height: 1.08; letter-spacing: -0.02em; margin: 0; }
+    .nfGateLead { opacity: .9; max-width: 70ch; margin: 0; }
+    .nfGateNotice {
+      border: 1px solid rgba(255,255,255,.12);
       background: rgba(255,255,255,.03);
-      color:var(--muted2);
-      font-size:12.8px;
-      line-height:1.6;
+      border-radius: 14px;
+      padding: 12px 14px;
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
     }
-    .note strong{color:var(--text); font-weight:900}
-    .note a{border-bottom:1px solid rgba(255,255,255,.18)}
+    .nfGateNotice strong { font-weight: 650; }
+    .nfGateNotice p { margin: 0; opacity: .92; }
+    .nfGateRow { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
 
-    .cards{
-      display:grid;
+    .nfGateBtn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+      padding: 12px 14px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.04);
+      text-decoration: none;
+      color: inherit;
+      cursor: pointer;
+      user-select: none;
+      transition: transform .12s ease, background .12s ease, border-color .12s ease;
+      min-height: 44px;
+    }
+    .nfGateBtn:hover { transform: translateY(-1px); background: rgba(255,255,255,.06); border-color: rgba(255,255,255,.22); }
+    .nfGateBtnPrimary { border-color: rgba(255,255,255,.24); background: rgba(255,255,255,.08); }
+    .nfGateBtnPrimary:hover { background: rgba(255,255,255,.10); }
+
+    .nfGateGrid {
+      display: grid;
       grid-template-columns: repeat(12, 1fr);
-      gap:14px;
-      margin: 16px 0 34px;
+      gap: 14px;
+      margin-top: 16px;
     }
-    .card{
-      grid-column: span 6;
-      border-radius:var(--radius);
-      border:1px solid rgba(255,255,255,.11);
-      background: linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.022));
-      box-shadow: var(--shadow2);
-      overflow:hidden;
-      min-width:0;
-    }
-    .card .bd{padding:18px}
-    .k{font-size:11px; letter-spacing:.28em; text-transform:uppercase; color:var(--muted2)}
-    .t{margin-top:10px; font-weight:950; letter-spacing:-.2px; font-size:18px}
-    .d{margin-top:8px; color:var(--muted); line-height:1.7}
-    .pills{display:flex; gap:10px; flex-wrap:wrap; margin-top:12px}
-    .pill{
-      display:inline-flex; align-items:center; gap:8px;
-      padding:7px 10px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.03);
-      color:var(--muted);
-      font-size:12px;
-      white-space:nowrap;
-    }
-    .pill strong{color:var(--text); font-weight:900}
-    .actions{display:flex; gap:12px; flex-wrap:wrap; align-items:center; margin-top:14px}
-    .actions .btn{min-height:44px}
-    .links{margin-top:10px; color:var(--muted2); font-size:12.8px; line-height:1.6}
-    .links a{border-bottom:1px solid rgba(255,255,255,.18)}
-
-    .miniGrid{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap:14px;
-      margin-bottom: 34px;
-    }
-    .mini{
-      border-radius:var(--radius);
-      border:1px solid rgba(255,255,255,.11);
+    .nfGateCard {
+      grid-column: span 12;
+      border: 1px solid rgba(255,255,255,.12);
       background: rgba(255,255,255,.02);
-      padding:16px;
+      border-radius: 16px;
+      padding: 16px;
     }
-    .mini h2{margin:0 0 8px; font-size:16px; letter-spacing:-0.2px}
-    .mini p{margin:0; color:var(--muted); line-height:1.7}
-    .mini a{border-bottom:1px solid rgba(255,255,255,.18)}
+    .nfGateCard h2 { margin: 0 0 8px; font-size: 1.1rem; letter-spacing: -0.01em; }
+    .nfGateCard p { margin: 0; opacity: .9; }
+    .nfGateCard .nfGateRow { margin-top: 12px; }
 
-    /* Sticky CTA (sales-first) */
-    .stickyCta{
-      position: sticky;
-      bottom: 0;
-      z-index: 20;
-      padding: 10px 0;
-      background: linear-gradient(180deg, rgba(7,7,11,0) 0%, rgba(7,7,11,.78) 22%, rgba(7,7,11,.92) 100%);
-      backdrop-filter: blur(10px);
-      border-top: 1px solid rgba(255,255,255,.08);
-    }
-    .stickyInner{
-      display:flex;
-      gap:12px;
-      align-items:center;
-      justify-content:space-between;
-      padding: 0 16px;
-      max-width: 1120px;
-      margin: 0 auto;
-    }
-    .stickyText{
-      min-width:0;
-      color:var(--muted);
-      font-size:12.6px;
-      line-height:1.4;
-    }
-    .stickyText strong{ color:var(--text); font-weight:950; }
+    .nfGateMini { opacity: .8; font-size: .92rem; }
+    .nfGateDivider { height: 1px; background: rgba(255,255,255,.10); margin: 14px 0; }
 
-    @media (max-width: 980px){
-      .card{grid-column: span 12}
-      .miniGrid{grid-template-columns:1fr}
+    /* Wizard */
+    .nfWizard { display: grid; gap: 12px; }
+    .nfWizardTop { display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; }
+    .nfWizardProgress { opacity: .85; font-size: .92rem; }
+    .nfWizardStepTitle { margin: 0; font-size: 1.05rem; letter-spacing: -0.01em; }
+    .nfWizardChoices { display: grid; gap: 10px; grid-template-columns: repeat(12, 1fr); }
+    .nfWizardChoice {
+      grid-column: span 12;
+      text-align: left;
+      padding: 12px 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.03);
+      cursor: pointer;
+      transition: transform .12s ease, background .12s ease, border-color .12s ease;
     }
-    @media (max-width: 760px){
-      h1{font-size:30px}
-      .stickyText{display:none}
+    .nfWizardChoice:hover { transform: translateY(-1px); background: rgba(255,255,255,.05); border-color: rgba(255,255,255,.22); }
+    .nfWizardChoice b { display: block; font-weight: 650; }
+    .nfWizardChoice span { display: block; opacity: .88; margin-top: 4px; }
+
+    .nfWizardNav { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+    .nfWizardSummary { display: grid; gap: 10px; }
+    .nfWizardRec {
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.03);
+      border-radius: 16px;
+      padding: 14px;
+    }
+    .nfWizardRec h3 { margin: 0 0 6px; font-size: 1.05rem; }
+    .nfWizardRec ul { margin: 8px 0 0; padding-left: 18px; opacity: .92; }
+    .nfWizardRec li { margin: 4px 0; }
+
+    /* Responsive */
+    @media (min-width: 760px) {
+      .nfGateCard { padding: 18px; }
+      .nfWizardChoices .nfWizardChoice { grid-column: span 6; }
+      .nfGateCardSplit { grid-column: span 6; }
+    }
+    @media (min-width: 980px) {
+      .nfWizardChoices .nfWizardChoice { grid-column: span 4; }
+    }
+
+    /* Motion safety */
+    @media (prefers-reduced-motion: reduce) {
+      .nfGateBtn, .nfWizardChoice { transition: none; }
+      .nfGateBtn:hover, .nfWizardChoice:hover { transform: none; }
     }
   </style>
-
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"WebPage",
-    "name":"Noetfield — Gate",
-    "url":"https://www.noetfield.com/gate/",
-    "description":"Sales-first directory: packages → direct product intakes.",
-    "isPartOf":{"@type":"WebSite","name":"Noetfield","url":"https://www.noetfield.com/"},
-    "publisher":{"@type":"Organization","name":"Noetfield Systems Inc."}
-  }
-  </script>
 </head>
 
 <body>
-  <div class="bg" aria-hidden="true"></div>
-  <a class="skip" href="#main">Skip to content</a>
+  <a class="skipLink" href="#main">Skip to content</a>
 
+  <!-- Shell injection targets (locked convention) -->
   <header id="nfHeader"></header>
 
-  <main id="main" class="wrap">
-    <section class="hero" aria-label="Gate hero">
-      <div class="heroShell">
-        <div class="heroInner">
-          <div class="eyebrow"><span class="dot"></span> Gate • start immediately</div>
+  <main id="main">
+    <div class="nfGateWrap">
 
-          <h1>Start a package. No detours.</h1>
-
-          <p class="lead">
-            Direct links to product intakes. If procurement asks “what is this?”, each package has a clean
-            details page — but the primary path stays <strong>sales-first</strong>.
-          </p>
-
-          <div class="ctaRow" aria-label="Primary CTAs">
-            <a class="btn" href="/copilot/quickscan/intake/">Start Copilot QuickScan</a>
-            <a class="btn secondary" href="/trust-brief/intake/">Start Trust Brief</a>
-            <a class="btn secondary" href="/trust-ledger/intake/">Start Trust Ledger</a>
-            <a class="btn secondary" href="/status/">Status</a>
-          </div>
-
-          <div class="note">
-            <strong>Public intake = non-confidential.</strong>
-            Use summaries and safe links only. No credentials, IDs, HR/medical files, bank data, or sensitive content samples.
-            Fallback email: <a href="mailto:ceo@noetfield.com">ceo@noetfield.com</a>.
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="cards" aria-label="Packages">
-      <article class="card" aria-label="Copilot QuickScan card">
-        <div class="bd">
-          <div class="k">Fast package</div>
-          <div class="t">Copilot QuickScan</div>
-          <div class="d">
-            Board-ready evidence pack for Microsoft 365 Copilot adoption in <strong>5–7 business days</strong>.
-            Scope, oversharing exposure paths, boundaries, evidence readiness, connector/extension controls.
-          </div>
-          <div class="pills">
-            <div class="pill"><strong>D0–D5</strong> Buyer Pack</div>
-            <div class="pill"><strong>Oversharing</strong> exposure</div>
-            <div class="pill"><strong>Evidence</strong> exportability</div>
-          </div>
-          <div class="actions">
-            <a class="btn" href="/copilot/quickscan/intake/">Start</a>
-            <a class="btn secondary" href="/copilot/quickscan/">Details</a>
-            <a class="btn secondary" href="/copilot/">Copilot hub</a>
-          </div>
-          <div class="links">
-            Typical: $1.5k–$4k CAD (scope-dependent). Taxes may apply.
-          </div>
-        </div>
-      </article>
-
-      <article class="card" aria-label="Trust Brief card">
-        <div class="bd">
-          <div class="k">Diagnostic</div>
-          <div class="t">Trust Brief (6 weeks)</div>
-          <div class="d">
-            A structured diagnostic to turn AI/tool adoption into clear decisions, owners, controls, and board-ready outputs.
-          </div>
-          <div class="pills">
-            <div class="pill"><strong>6 weeks</strong> cadence</div>
-            <div class="pill"><strong>Controls</strong> + owners</div>
-            <div class="pill"><strong>Board</strong> format</div>
-          </div>
-          <div class="actions">
-            <a class="btn" href="/trust-brief/intake/">Start</a>
-            <a class="btn secondary" href="/trust-brief/">Details</a>
-          </div>
-        </div>
-      </article>
-
-      <article class="card" aria-label="Trust Ledger card">
-        <div class="bd">
-          <div class="k">Ongoing</div>
-          <div class="t">Trust Ledger</div>
-          <div class="d">
-            Evidence register + control trail for executive oversight, audits, and regulator-facing readiness (exportable artifacts).
-          </div>
-          <div class="pills">
-            <div class="pill"><strong>Evidence</strong> trail</div>
-            <div class="pill"><strong>Exports</strong> + owners</div>
-            <div class="pill"><strong>Governance</strong> core</div>
-          </div>
-          <div class="actions">
-            <a class="btn" href="/trust-ledger/intake/">Start</a>
-            <a class="btn secondary" href="/trust-ledger/">Details</a>
-          </div>
-        </div>
-      </article>
-
-      <article class="card" aria-label="Partners card">
-        <div class="bd">
-          <div class="k">Delivery ecosystem</div>
-          <div class="t">Partners</div>
-          <div class="d">
-            Channel, delivery, and integration lanes (implementation and remediation workstreams).
-          </div>
-          <div class="pills">
-            <div class="pill"><strong>Channel</strong> lane</div>
-            <div class="pill"><strong>Delivery</strong> lane</div>
-            <div class="pill"><strong>Integration</strong> lane</div>
-          </div>
-          <div class="actions">
-            <a class="btn" href="/gate/partners/intake/">Partner intake</a>
-            <a class="btn secondary" href="/gate/partners/">Partners gate</a>
-          </div>
-          <div class="links">
-            For buyers, start with a package above. Partners are for delivery capacity.
-          </div>
-        </div>
-      </article>
-    </section>
-
-    <section class="miniGrid" aria-label="Help and lookup">
-      <div class="mini">
-        <h2>Not sure what to pick?</h2>
-        <p>
-          If Copilot is live (or imminent), start with <a href="/copilot/quickscan/intake/">Copilot QuickScan</a>.
-          It is the fastest decision-grade entry.
+      <section class="nfGateHero" aria-label="Noetfield Gate">
+        <div class="nfGateKicker">Governed entry • buyer-first routing</div>
+        <h1 class="nfGateTitle">Gate: choose a start point, get board-ready outputs.</h1>
+        <p class="nfGateLead">
+          Minimal paths that keep sales obvious and reading optional. Start now via a non-confidential intake to lock scope and access readiness.
         </p>
-      </div>
-      <div class="mini">
-        <h2>Already submitted?</h2>
-        <p>
-          Check <a href="/status/">Status</a> with a reference ID.
-          If needed, email <a href="mailto:ceo@noetfield.com">ceo@noetfield.com</a>.
-        </p>
-      </div>
-    </section>
+
+        <div class="nfGateNotice" role="note" aria-label="Public intake notice">
+          <div aria-hidden="true">ⓘ</div>
+          <div>
+            <p><strong>Public intake = non-confidential.</strong> Do not submit secrets, credentials, private keys, or regulated personal data. Use it to route scope and next step.</p>
+          </div>
+        </div>
+
+        <!-- Top-level start points (fast path, sales-first) -->
+        <div class="nfGateRow" aria-label="Start points">
+          <a class="nfGateBtn nfGateBtnPrimary" href="/gate/intake/?need=quickscan" data-rid-link>Start with QuickScan</a>
+          <a class="nfGateBtn" href="/gate/intake/?need=trust-brief" data-rid-link>Start Trust Brief (6-week)</a>
+          <a class="nfGateBtn" href="/gate/intake/?need=trust-ledger" data-rid-link>Start Trust Ledger</a>
+          <button class="nfGateBtn" type="button" id="nfOpenWizardBtn" aria-controls="nfWizardCard" aria-expanded="false">Find my best start point</button>
+        </div>
+      </section>
+
+      <section class="nfGateGrid" aria-label="Gate content">
+
+        <!-- Wizard (progressive disclosure) -->
+        <div class="nfGateCard" id="nfWizardCard" hidden>
+          <h2>Gate Wizard</h2>
+          <p class="nfGateMini">Answer a few short questions. Your choices determine what appears next.</p>
+          <div class="nfGateDivider" role="separator" aria-hidden="true"></div>
+
+          <div class="nfWizard" id="nfWizard" aria-live="polite"></div>
+        </div>
+
+        <!-- Buyer-first offers (visible) -->
+        <div class="nfGateCard nfGateCardSplit">
+          <h2>Copilot QuickScan</h2>
+          <p>Fastest path to board-ready Copilot evidence: scope, oversharing exposure, boundaries, evidence readiness, and connector controls.</p>
+          <div class="nfGateRow">
+            <a class="nfGateBtn nfGateBtnPrimary" href="/gate/intake/?need=quickscan" data-rid-link>Start QuickScan</a>
+            <a class="nfGateBtn" href="/copilot" >View Copilot hub</a>
+          </div>
+        </div>
+
+        <div class="nfGateCard nfGateCardSplit">
+          <h2>Trust Brief (6-week)</h2>
+          <p>A governance-first diagnostic: map material AI use-cases, decision points, risks, and initial Trust Ledger entries with options and tradeoffs.</p>
+          <div class="nfGateRow">
+            <a class="nfGateBtn nfGateBtnPrimary" href="/gate/intake/?need=trust-brief" data-rid-link>Start Trust Brief</a>
+            <a class="nfGateBtn" href="/" >See overview</a>
+          </div>
+        </div>
+
+        <div class="nfGateCard nfGateCardSplit">
+          <h2>Trust Ledger</h2>
+          <p>A maintained, board-ready register of AI systems, safeguards, evidence, and accountability over time — answer-ready for scrutiny.</p>
+          <div class="nfGateRow">
+            <a class="nfGateBtn nfGateBtnPrimary" href="/gate/intake/?need=trust-ledger" data-rid-link>Start Trust Ledger</a>
+            <a class="nfGateBtn" href="/trust-ledger/" >View Trust Ledger page</a>
+          </div>
+        </div>
+
+        <div class="nfGateCard nfGateCardSplit">
+          <h2>Playbook (templates + licenses)</h2>
+          <p>For small teams and agencies that need a defensible baseline quickly — templates, checklists, and buyer-ready language.</p>
+          <div class="nfGateRow">
+            <a class="nfGateBtn nfGateBtnPrimary" href="/playbook/" >Open Playbook</a>
+            <a class="nfGateBtn" href="/playbook/pro/" >Agency / Pro License</a>
+          </div>
+        </div>
+
+        <!-- Partner lane (hidden by default; URL-gated) -->
+        <div class="nfGateCard" id="nfPartnerLane" hidden>
+          <h2>Partner lane</h2>
+          <p class="nfGateMini">Not shown in buyer mode. Use only if explicitly routed as a partner.</p>
+          <div class="nfGateRow">
+            <a class="nfGateBtn" href="/gate/partners/intake/?lane=channel" data-rid-link>Channel partner intake</a>
+            <a class="nfGateBtn" href="/gate/partners/intake/?lane=delivery" data-rid-link>Delivery partner intake</a>
+            <a class="nfGateBtn" href="/gate/partners/intake/?lane=integration" data-rid-link>Integration partner intake</a>
+          </div>
+        </div>
+
+      </section>
+
+    </div>
   </main>
 
   <footer id="nfFooter"></footer>
 
-  <div class="stickyCta" aria-label="Sticky call to action">
-    <div class="stickyInner">
-      <div class="stickyText">
-        <strong>Copilot QuickScan</strong> — board-ready Buyer Pack in 5–7 business days. Public intake is non-confidential.
-      </div>
-      <a class="btn" href="/copilot/quickscan/intake/">Start</a>
-    </div>
-  </div>
-
   <script>
-    (function(){
-      function qs(name){
-        try{ return new URLSearchParams(window.location.search || "").get(name) || ""; }catch(e){ return ""; }
+    (function () {
+      // --- Mode gating (buyers first) ---
+      const params = new URLSearchParams(location.search);
+      const mode = (params.get("mode") || "").toLowerCase();
+      const partnerLane = document.getElementById("nfPartnerLane");
+      if (partnerLane && mode === "partners") partnerLane.hidden = false;
+
+      // --- Wizard open/close ---
+      const openBtn = document.getElementById("nfOpenWizardBtn");
+      const wizardCard = document.getElementById("nfWizardCard");
+      const wizardRoot = document.getElementById("nfWizard");
+
+      function setWizardOpen(open) {
+        if (!wizardCard || !openBtn) return;
+        wizardCard.hidden = !open;
+        openBtn.setAttribute("aria-expanded", String(open));
+        if (open) wizardCard.scrollIntoView({ behavior: "smooth", block: "start" });
       }
-      function norm(x){ return (x || "").trim().toLowerCase(); }
 
-      var need = norm(qs("need"));
-      if (!need) return;
+      if (openBtn) {
+        openBtn.addEventListener("click", function () {
+          setWizardOpen(wizardCard.hidden);
+          if (!wizardCard.hidden) initWizard();
+        });
+      }
 
-      // Compatibility: allow /gate/?need=... to jump directly to the correct product intake.
-      var map = {
-        "copilot-quickscan": "/copilot/quickscan/intake/",
-        "copilot": "/copilot/quickscan/intake/",
-        "trust-brief": "/trust-brief/intake/",
-        "trust-ledger": "/trust-ledger/intake/",
-        "partner": "/gate/partners/intake/",
-        "partner-channel": "/gate/partners/intake/?lane=channel",
-        "partner-delivery": "/gate/partners/intake/?lane=delivery",
-        "partner-integration": "/gate/partners/intake/?lane=integration"
+      // --- Wizard model (progressive disclosure + branching) ---
+      const state = {
+        step: 0,
+        answers: {
+          persona: null,
+          intent: null,
+          timeline: null,
+          commitment: null
+        }
       };
 
-      var dest = map[need];
-      if (dest) window.location.replace(dest);
+      const steps = [
+        {
+          key: "persona",
+          title: "Who is this for?",
+          choices: [
+            { value: "board", label: "Board / executive", hint: "Decision-ready, procurement-friendly outputs." },
+            { value: "itsec", label: "IT / Security", hint: "Controls, evidence, and operational readiness." },
+            { value: "legal", label: "Legal / compliance", hint: "Defensible language, boundaries, traceability." },
+            { value: "operator", label: "Founder / operator", hint: "Fast baseline without building a compliance team." },
+            { value: "unsure", label: "Not sure", hint: "Use QuickScan as the default start." }
+          ]
+        },
+        {
+          key: "intent",
+          title: "What needs to happen first?",
+          choices: [
+            { value: "quickscan", label: "Copilot QuickScan", hint: "Fastest paid start: evidence in days." },
+            { value: "brief", label: "Trust Brief (6-week)", hint: "Map material use-cases + decisions + initial ledger entries." },
+            { value: "ledger", label: "Trust Ledger (ongoing)", hint: "Maintain a board-ready record over time." },
+            { value: "playbook", label: "Playbook (templates)", hint: "Baseline governance kit for small teams/agencies." },
+            { value: "vendor", label: "Vendor due diligence", hint: "Pass/fail gates + scoring + evidence requests." },
+            { value: "unsure", label: "Not sure", hint: "Recommend the most reliable first step." }
+          ]
+        },
+        {
+          key: "timeline",
+          title: "How soon is the pressure?",
+          choices: [
+            { value: "now", label: "Now (0–14 days)", hint: "Start with the fastest path to evidence." },
+            { value: "soon", label: "This quarter (30–90 days)", hint: "Baseline + ownership + plan." },
+            { value: "explore", label: "Exploratory", hint: "Start with templates or a light intake." }
+          ]
+        },
+        {
+          key: "commitment",
+          title: "Preferred next step",
+          choices: [
+            { value: "start", label: "Start intake now", hint: "Non-confidential scope lock + access readiness." },
+            { value: "compare", label: "Compare options", hint: "Open the relevant product page." },
+            { value: "contact", label: "Ask a question", hint: "Route to Contact for a scoped response." }
+          ]
+        }
+      ];
+
+      function initWizard() {
+        if (!wizardRoot || wizardRoot.dataset.ready === "1") return;
+        wizardRoot.dataset.ready = "1";
+        renderWizard();
+      }
+
+      function renderWizard() {
+        if (!wizardRoot) return;
+
+        const total = steps.length;
+        const stepObj = steps[state.step];
+
+        // If finished, show recommendation
+        if (!stepObj) return renderRecommendation();
+
+        const stepIndex = state.step + 1;
+
+        wizardRoot.innerHTML = `
+          <div class="nfWizardTop">
+            <div>
+              <div class="nfWizardProgress">Step ${stepIndex} / ${total}</div>
+              <p class="nfWizardStepTitle">${escapeHtml(stepObj.title)}</p>
+            </div>
+            <div class="nfWizardNav">
+              <button class="nfGateBtn" type="button" ${state.step === 0 ? "disabled" : ""} id="nfWizardBack">Back</button>
+              <button class="nfGateBtn" type="button" id="nfWizardReset">Reset</button>
+            </div>
+          </div>
+
+          <div class="nfWizardChoices" role="list">
+            ${stepObj.choices.map(c => `
+              <button class="nfWizardChoice" type="button" role="listitem" data-value="${escapeAttr(c.value)}">
+                <b>${escapeHtml(c.label)}</b>
+                <span>${escapeHtml(c.hint)}</span>
+              </button>
+            `).join("")}
+          </div>
+
+          <div class="nfGateNotice" role="note">
+            <div aria-hidden="true">ⓘ</div>
+            <div><p><strong>Reminder:</strong> Public intake is non-confidential. Use it to route scope and start point.</p></div>
+          </div>
+        `;
+
+        const backBtn = document.getElementById("nfWizardBack");
+        const resetBtn = document.getElementById("nfWizardReset");
+
+        if (backBtn) backBtn.onclick = () => { if (state.step > 0) state.step -= 1; renderWizard(); };
+        if (resetBtn) resetBtn.onclick = () => { state.step = 0; state.answers = { persona:null, intent:null, timeline:null, commitment:null }; renderWizard(); };
+
+        wizardRoot.querySelectorAll(".nfWizardChoice").forEach(btn => {
+          btn.addEventListener("click", () => {
+            const v = btn.getAttribute("data-value");
+            state.answers[stepObj.key] = v;
+            state.step += 1;
+
+            // Small “app-like” pacing without heavy effects
+            wizardRoot.style.opacity = "0.5";
+            setTimeout(() => { wizardRoot.style.opacity = ""; renderWizard(); }, 140);
+          });
+        });
+      }
+
+      function renderRecommendation() {
+        const rec = computeRecommendation(state.answers);
+        const summary = [
+          ["For", labelFor("persona", state.answers.persona)],
+          ["Need", labelFor("intent", state.answers.intent)],
+          ["Timing", labelFor("timeline", state.answers.timeline)],
+          ["Next step", labelFor("commitment", state.answers.commitment)]
+        ];
+
+        wizardRoot.innerHTML = `
+          <div class="nfWizardSummary">
+            <div class="nfWizardRec">
+              <h3>Recommended start point: ${escapeHtml(rec.title)}</h3>
+              <div class="nfGateMini">${escapeHtml(rec.subtitle)}</div>
+              <ul>
+                ${rec.bullets.map(b => `<li>${escapeHtml(b)}</li>`).join("")}
+              </ul>
+              <div class="nfGateDivider" role="separator" aria-hidden="true"></div>
+              <div class="nfGateRow">
+                <a class="nfGateBtn nfGateBtnPrimary" href="${escapeAttr(rec.primaryHref)}" data-rid-link>${escapeHtml(rec.primaryLabel)}</a>
+                <a class="nfGateBtn" href="${escapeAttr(rec.secondaryHref)}">${escapeHtml(rec.secondaryLabel)}</a>
+                <button class="nfGateBtn" type="button" id="nfWizardRestart">Restart</button>
+              </div>
+            </div>
+
+            <div class="nfGateCard" style="padding:14px;">
+              <h2 style="margin:0 0 8px; font-size:1.02rem;">Your selections</h2>
+              <div class="nfGateMini">
+                ${summary.map(([k,v]) => `<div><strong>${escapeHtml(k)}:</strong> ${escapeHtml(v)}</div>`).join("")}
+              </div>
+            </div>
+          </div>
+        `;
+
+        const restart = document.getElementById("nfWizardRestart");
+        if (restart) restart.onclick = () => {
+          state.step = 0;
+          state.answers = { persona:null, intent:null, timeline:null, commitment:null };
+          renderWizard();
+        };
+      }
+
+      function computeRecommendation(a) {
+        // Defaults (buyer-first)
+        let offer = {
+          key: "quickscan",
+          title: "Copilot QuickScan",
+          subtitle: "Fastest paid start: scope + oversharing exposure + evidence readiness.",
+          bullets: [
+            "Buyer-first: reduces uncertainty fast.",
+            "Routes through non-confidential intake for scope lock.",
+            "Produces procurement-friendly artifacts."
+          ],
+          primaryHref: "/gate/intake/?need=quickscan",
+          primaryLabel: "Start QuickScan",
+          secondaryHref: "/copilot",
+          secondaryLabel: "View Copilot hub"
+        };
+
+        // Explicit intent overrides
+        if (a.intent === "brief") {
+          offer = {
+            key: "brief",
+            title: "Trust Brief (6-week)",
+            subtitle: "Governance-first diagnostic: decisions, risks, and initial ledger entries.",
+            bullets: [
+              "Maps material AI use-cases and decision points.",
+              "Produces board-ready options and tradeoffs.",
+              "Sets up Trust Ledger continuity."
+            ],
+            primaryHref: "/gate/intake/?need=trust-brief",
+            primaryLabel: "Start Trust Brief",
+            secondaryHref: "/",
+            secondaryLabel: "See overview"
+          };
+        } else if (a.intent === "ledger") {
+          offer = {
+            key: "ledger",
+            title: "Trust Ledger",
+            subtitle: "Ongoing evidence-first record: safeguards, sign-offs, and accountability.",
+            bullets: [
+              "Board-ready register format.",
+              "Evidence linkage (exports, configs, logs) by design.",
+              "Maintained over time for answer-ready posture."
+            ],
+            primaryHref: "/gate/intake/?need=trust-ledger",
+            primaryLabel: "Start Trust Ledger",
+            secondaryHref: "/trust-ledger/",
+            secondaryLabel: "View Trust Ledger page"
+          };
+        } else if (a.intent === "playbook") {
+          offer = {
+            key: "playbook",
+            title: "Playbook (templates)",
+            subtitle: "For small teams/agencies: a defensible baseline without heavy lift.",
+            bullets: [
+              "Template kit + language compatible with board-level track.",
+              "Good for exploratory or quarter planning.",
+              "Can later migrate into Trust Brief / Trust Ledger."
+            ],
+            primaryHref: "/playbook/",
+            primaryLabel: "Open Playbook",
+            secondaryHref: "/playbook/pro/",
+            secondaryLabel: "Agency / Pro License"
+          };
+        } else if (a.intent === "vendor") {
+          offer = {
+            key: "vendor",
+            title: "AI Vendor Due Diligence Kit",
+            subtitle: "Procurement-ready: pass/fail gates, scoring rubric, evidence requests.",
+            bullets: [
+              "Defensible “yes/no + conditions” vendor decisions.",
+              "Audit-friendly pack: repeatable and traceable.",
+              "Routes to Trust Brief if broader governance posture is needed."
+            ],
+            primaryHref: "/playbook/vendor-due-diligence/",
+            primaryLabel: "Open Vendor Kit",
+            secondaryHref: "/gate/intake/?need=vendor-due-diligence",
+            secondaryLabel: "Request via intake"
+          };
+        }
+
+        // If unsure persona/intent + urgent timeline, prefer QuickScan
+        if ((a.intent === "unsure" || !a.intent) && (a.timeline === "now")) {
+          offer = {
+            key: "quickscan",
+            title: "Copilot QuickScan",
+            subtitle: "When timing is tight, start with the fastest evidence path.",
+            bullets: [
+              "Best default when the buyer is unsure.",
+              "Surfaces oversharing exposure and scope fast.",
+              "Produces a 30/60/90 plan with owners."
+            ],
+            primaryHref: "/gate/intake/?need=quickscan",
+            primaryLabel: "Start QuickScan",
+            secondaryHref: "/copilot",
+            secondaryLabel: "View Copilot hub"
+          };
+        }
+
+        // Commitment affects the secondary link destination
+        if (a.commitment === "contact") {
+          offer.secondaryHref = "/contact";
+          offer.secondaryLabel = "Ask a question (Contact)";
+        } else if (a.commitment === "compare") {
+          // keep current secondary
+        } else {
+          // start is already primary CTA
+        }
+
+        return offer;
+      }
+
+      function labelFor(key, value) {
+        const step = steps.find(s => s.key === key);
+        if (!step || !value) return "—";
+        const c = step.choices.find(x => x.value === value);
+        return c ? c.label : value;
+      }
+
+      // --- utils ---
+      function escapeHtml(s) {
+        return String(s || "")
+          .replaceAll("&", "&amp;")
+          .replaceAll("<", "&lt;")
+          .replaceAll(">", "&gt;")
+          .replaceAll('"', "&quot;")
+          .replaceAll("'", "&#039;");
+      }
+      function escapeAttr(s) { return escapeHtml(s).replaceAll("`", "&#096;"); }
+
+      // Open wizard automatically if ?wizard=1
+      if ((params.get("wizard") || "") === "1") {
+        setWizardOpen(true);
+        initWizard();
+      }
     })();
   </script>
 
   <!--
-  CHANGELOG
-  - Sales-first Gate: prominent CTAs to product intakes (Copilot QuickScan is primary).
-  - Keeps optional “details” pages for credibility without breaking the buying path.
-  - Adds /gate/?need=... compatibility redirect to preserve old links.
+    CHANGELOG (gate v1)
+    - Buyer-first top CTAs (QuickScan / Trust Brief / Trust Ledger) + optional wizard.
+    - Progressive-disclosure wizard (Persona → Intent → Timeline → Commitment) with a single recommended CTA.
+    - Partner lane hidden by default; only visible via /gate/?mode=partners.
+
+    SMOKE TEST
+    - GET /gate/ returns 200
+    - /assets/noetfield-shell.css returns 200 and styles apply
+    - /assets/noetfield-shell.js returns 200 and header/footer load into #nfHeader/#nfFooter
+    - CTA links route correctly:
+      - /gate/intake/?need=quickscan
+      - /gate/intake/?need=trust-brief
+      - /gate/intake/?need=trust-ledger
+    - Wizard works on mobile and desktop; no scroll-jank; reduced motion respected
   -->
 </body>
 </html>

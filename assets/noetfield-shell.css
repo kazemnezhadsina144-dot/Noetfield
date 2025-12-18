@@ -1,66 +1,169 @@
-/* ===== RID (Request ID) mini UI ===== */
-.ridRow{
-  display:flex;
-  flex-wrap:wrap;
-  gap:10px;
-  align-items:center;
-  margin-top:10px;
-}
+/* Noetfield Shell (Burger + Active Links + Footer Year) */
+/* Version: locked-2025.12.13+gate-intake+faq+offers */
 
-/* RID code pill */
-.ridRow code[data-rid]{
-  display:inline-flex;
-  align-items:center;
-  max-width: 100%;
-  padding:6px 10px;
-  border-radius:12px;
-  border:1px solid rgba(255,255,255,.12);
-  background: rgba(255,255,255,.03);
-  color: var(--text);
-  font-size:12px;
-  line-height:1.2;
-  white-space:nowrap;
-  overflow:hidden;
-  text-overflow:ellipsis;
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-}
+(function () {
+  "use strict";
 
-/* Copy button (scoped) */
-.ridRow button[data-copy-rid]{
-  appearance:none;
-  border:1px solid rgba(255,255,255,.14);
-  background: rgba(255,255,255,.03);
-  color: var(--muted);
-  padding:8px 10px;
-  border-radius:14px;
-  cursor:pointer;
-  font-size:12.5px;
-  line-height:1.2;
-  transition: background .15s ease, border-color .15s ease, color .15s ease, transform .06s ease;
-  user-select:none;
-}
+  function normPath(p) {
+    if (!p) return "/";
+    p = String(p).split("?")[0].split("#")[0];
+    if (p.length > 1 && p.endsWith("/")) p = p.slice(0, -1);
+    return p.toLowerCase();
+  }
 
-.ridRow button[data-copy-rid]:hover{
-  color: var(--text);
-  border-color: rgba(200,163,73,.38);
-  background: rgba(200,163,73,.10);
-}
+  function toInternalPath(href) {
+    if (!href) return null;
 
-.ridRow button[data-copy-rid]:active{ transform: translateY(1px); }
+    // Normalize absolute URL to path if same-origin
+    if (href.startsWith("http")) {
+      try {
+        var u = new URL(href, window.location.origin);
+        if (u.origin !== window.location.origin) return null;
+        return u.pathname || "/";
+      } catch (e) {
+        return null;
+      }
+    }
 
-.ridRow button[data-copy-rid][data-copied="1"]{
-  border-color: rgba(45,227,138,.55);
-  background: rgba(45,227,138,.10);
-  color: var(--text);
-}
+    // Only style internal absolute-path links
+    if (!href.startsWith("/")) return null;
+    return href;
+  }
 
-/* Accessibility: focus ring aligned to shell */
-.ridRow button[data-copy-rid]:focus-visible{
-  outline:none;
-  box-shadow: var(--focus);
-}
+  function setYear() {
+    var y = document.getElementById("y");
+    if (y) y.textContent = String(new Date().getFullYear());
+  }
 
-/* Reduce motion */
-@media (prefers-reduced-motion: reduce){
-  .ridRow button[data-copy-rid]{ transition:none; }
-}
+  function setActiveLinks() {
+    var current = normPath(window.location.pathname);
+
+    // Active state ONLY for:
+    // - Header primary nav links
+    // - Mobile panel links
+    // - Footer mini nav links
+    // (NOT footerTop box links)
+    var selectors = [
+      'nav[aria-label="Primary navigation"] a',
+      "#mobilePanel a",
+      "footer .footerMiniNav a"
+    ].join(", ");
+
+    var links = document.querySelectorAll(selectors);
+    links.forEach(function (a) {
+      var hrefRaw = a.getAttribute("href") || "";
+      var href = toInternalPath(hrefRaw);
+      if (!href) return;
+
+      var target = normPath(href);
+      var isActive =
+        (target === "/" && current === "/") ||
+        (target !== "/" && (current === target || current.startsWith(target + "/")));
+
+      if (isActive) {
+        a.classList.add("active");
+        a.setAttribute("aria-current", "page");
+      } else {
+        a.classList.remove("active");
+        a.removeAttribute("aria-current");
+      }
+    });
+  }
+
+  function initBurger() {
+    var burger = document.getElementById("burger");
+    var panel = document.getElementById("mobilePanel");
+    if (!burger || !panel) return;
+
+    function openPanel() {
+      burger.setAttribute("aria-expanded", "true");
+      panel.hidden = false;
+      document.body.classList.add("navOpen");
+    }
+    function closePanel() {
+      burger.setAttribute("aria-expanded", "false");
+      panel.hidden = true;
+      document.body.classList.remove("navOpen");
+    }
+    function toggle() {
+      var isOpen = burger.getAttribute("aria-expanded") === "true";
+      if (isOpen) closePanel();
+      else openPanel();
+    }
+
+    // Initial safety
+    burger.setAttribute("aria-expanded", "false");
+    panel.hidden = true;
+    document.body.classList.remove("navOpen");
+
+    burger.addEventListener("click", function (e) {
+      e.preventDefault();
+      toggle();
+    });
+
+    // Close on Esc
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && burger.getAttribute("aria-expanded") === "true") {
+        closePanel();
+      }
+    });
+
+    // Close when clicking outside header
+    document.addEventListener("click", function (e) {
+      if (burger.getAttribute("aria-expanded") !== "true") return;
+      var withinHeader = !!(e.target && e.target.closest && e.target.closest("header"));
+      if (!withinHeader) closePanel();
+    });
+
+    // Close after clicking a mobile link
+    panel.addEventListener("click", function (e) {
+      var a = e.target && e.target.closest ? e.target.closest("a") : null;
+      if (a) closePanel();
+    });
+
+    // Close on resize back to desktop width
+    window.addEventListener("resize", function () {
+      if (window.innerWidth > 1140 && burger.getAttribute("aria-expanded") === "true") {
+        closePanel();
+      }
+    });
+  }
+
+  /* ===== Floating Feedback Tab (match /gate/partners/channel/) ===== */
+  function ensureFeedbackTab() {
+    // Don’t duplicate on the Feedback page itself
+    var p = normPath(window.location.pathname);
+    if (p === "/feedback" || p.startsWith("/feedback/")) return;
+
+    // If the page already has it (like channel), leave it alone
+    if (document.querySelector(".feedbackTab")) return;
+
+    // Inject the exact markup used on channel pages
+    var a = document.createElement("a");
+    a.className = "feedbackTab";
+    a.href = "/feedback/";
+    a.setAttribute("aria-label", "Open feedback");
+
+    var spark = document.createElement("span");
+    spark.className = "spark";
+    spark.setAttribute("aria-hidden", "true");
+
+    a.appendChild(spark);
+    a.appendChild(document.createTextNode("Feedback"));
+
+    document.body.appendChild(a);
+  }
+
+  function boot() {
+    setYear();
+    setActiveLinks();
+    initBurger();
+    ensureFeedbackTab(); // <-- added (no other behavior changed)
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", boot);
+  } else {
+    boot();
+  }
+})();

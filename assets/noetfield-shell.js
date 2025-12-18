@@ -1,20 +1,22 @@
-/* /assets/noetfield-shell.js
-   Noetfield Shell
+/* Noetfield Shell
    - Inject header/footer partials
-   - Burger menu + scroll lock
+   - Burger menu
    - Active links
    - Footer year
    - Feedback tab
    - RID (Request ID): generate/store/display/copy + propagate to tagged links + inject into forms
-   Version: locked-2025.12.17+shell-v2.3
+   Version: locked-2025.12.13+shell-v2.1
 */
 (function () {
   "use strict";
 
-  var SHELL_VERSION = "2025.12.17";
+  var SHELL_VERSION = "2025.12.13";
   var PARTIALS_BASE = "/assets/partials";
   var RID_KEY = "nf_rid";
 
+  /* -------------------------
+     Utilities
+  ------------------------- */
   function normPath(p) {
     if (!p) return "/";
     p = String(p).split("?")[0].split("#")[0];
@@ -49,13 +51,39 @@
   function sanitizeRID(x) {
     x = (x || "").trim();
     if (!x) return "";
+    // allow only safe chars; cap length
     x = x.replace(/[^a-zA-Z0-9\-_]/g, "").slice(0, 64);
+    // require minimum entropy/length
     if (x.length < 6) return "";
     return x;
   }
 
+  function buildUrlWithRID(href, rid) {
+    try {
+      var u = new URL(href, window.location.origin);
+      if (u.origin !== window.location.origin) return null;
+      u.searchParams.set("rid", rid);
+      var qs = u.searchParams.toString();
+      return u.pathname + (qs ? ("?" + qs) : "") + (u.hash || "");
+    } catch (_) {
+      return null;
+    }
+  }
+
+  /* -------------------------
+     RID (Request ID)
+     Policy:
+     1) if ?rid= exists -> sanitize -> store & use
+     2) else if localStorage has rid -> sanitize -> use
+     3) else generate -> store & use
+  ------------------------- */
   function generateRID() {
-    return ("RID-" + Date.now().toString(36) + "-" + Math.random().toString(36).slice(2, 8)).toUpperCase();
+    return (
+      "RID-" +
+      Date.now().toString(36) +
+      "-" +
+      Math.random().toString(36).slice(2, 8)
+    ).toUpperCase();
   }
 
   function getOrCreateRID() {
@@ -79,24 +107,12 @@
     return rid;
   }
 
-  function buildUrlWithRID(href, rid) {
-    try {
-      var u = new URL(href, window.location.origin);
-      if (u.origin !== window.location.origin) return null;
-      u.searchParams.set("rid", rid);
-      var qs = u.searchParams.toString();
-      return u.pathname + (qs ? ("?" + qs) : "") + (u.hash || "");
-    } catch (_) {
-      return null;
-    }
-  }
-
   function copyText(text) {
+    // returns Promise<boolean>
     if (navigator.clipboard && navigator.clipboard.writeText) {
-      return navigator.clipboard.writeText(text)
-        .then(function () { return true; })
-        .catch(function () { return false; });
+      return navigator.clipboard.writeText(text).then(function () { return true; }).catch(function () { return false; });
     }
+    // fallback
     return new Promise(function (resolve) {
       try {
         var ta = document.createElement("textarea");
@@ -109,13 +125,19 @@
         var ok = document.execCommand("copy");
         document.body.removeChild(ta);
         resolve(!!ok);
-      } catch (_) { resolve(false); }
+      } catch (_) {
+        resolve(false);
+      }
     });
   }
 
   function applyRID(rid) {
-    safeQueryAll("[data-rid]").forEach(function (el) { el.textContent = rid; });
+    // render RID into any element that declares data-rid
+    safeQueryAll("[data-rid]").forEach(function (el) {
+      el.textContent = rid;
+    });
 
+    // copy buttons
     safeQueryAll("[data-copy-rid]").forEach(function (btn) {
       btn.addEventListener("click", function () {
         copyText(rid).then(function (ok) {
@@ -126,6 +148,7 @@
       });
     });
 
+    // propagate to tagged links (keeps existing query + hash)
     safeQueryAll("a[data-rid-link]").forEach(function (a) {
       var href = (a.getAttribute("href") || "").trim();
       if (!href) return;
@@ -133,6 +156,10 @@
       if (out) a.setAttribute("href", out);
     });
 
+    // inject into forms:
+    // - if request_id exists -> set
+    // - if rid exists -> set
+    // - else add BOTH hidden inputs for consistency
     safeQueryAll("form").forEach(function (form) {
       var ridInput = form.querySelector('input[name="rid"]');
       var reqInput = form.querySelector('input[name="request_id"]');
@@ -155,6 +182,9 @@
     });
   }
 
+  /* -------------------------
+     Active links (Header + Mobile + Footer mini nav)
+  ------------------------- */
   function setActiveLinks() {
     var current = normPath(window.location.pathname);
 
@@ -185,35 +215,24 @@
     });
   }
 
+  /* -------------------------
+     Burger (robust)
+  ------------------------- */
   function initBurger() {
     var burger = document.getElementById("burger");
     var panel = document.getElementById("mobilePanel");
     if (!burger || !panel) return;
 
-    var lastFocus = null;
-
-    function focusFirstInPanel() {
-      var focusables = panel.querySelectorAll('a, button, input, select, textarea, [tabindex]:not([tabindex="-1"])');
-      if (focusables && focusables.length) focusables[0].focus();
-    }
-
     function openPanel() {
-      lastFocus = document.activeElement;
       burger.setAttribute("aria-expanded", "true");
-      burger.setAttribute("aria-label", "Close menu");
       panel.hidden = false;
-      panel.setAttribute("aria-hidden", "false");
       document.body.classList.add("navOpen");
-      setTimeout(focusFirstInPanel, 0);
     }
 
     function closePanel() {
       burger.setAttribute("aria-expanded", "false");
-      burger.setAttribute("aria-label", "Open menu");
       panel.hidden = true;
-      panel.setAttribute("aria-hidden", "true");
       document.body.classList.remove("navOpen");
-      if (lastFocus && lastFocus.focus) lastFocus.focus();
     }
 
     function toggle() {
@@ -223,24 +242,15 @@
 
     burger.setAttribute("aria-expanded", "false");
     panel.hidden = true;
-    panel.setAttribute("aria-hidden", "true");
     document.body.classList.remove("navOpen");
 
-    burger.addEventListener("click", function (e) { e.preventDefault(); toggle(); });
+    burger.addEventListener("click", function (e) {
+      e.preventDefault();
+      toggle();
+    });
 
     document.addEventListener("keydown", function (e) {
       if (e.key === "Escape" && burger.getAttribute("aria-expanded") === "true") closePanel();
-
-      if (e.key === "Tab" && burger.getAttribute("aria-expanded") === "true") {
-        var focusables = panel.querySelectorAll('a, button, input, select, textarea, [tabindex]:not([tabindex="-1"])');
-        if (!focusables || !focusables.length) return;
-
-        var first = focusables[0];
-        var last = focusables[focusables.length - 1];
-
-        if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
-        else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
-      }
     });
 
     document.addEventListener("click", function (e) {
@@ -255,26 +265,27 @@
     });
 
     window.addEventListener("resize", function () {
-      if (window.innerWidth > 980 && burger.getAttribute("aria-expanded") === "true") closePanel();
+      if (window.innerWidth > 1140 && burger.getAttribute("aria-expanded") === "true") closePanel();
     });
   }
 
+  /* -------------------------
+     Footer CTA normalization (left box: Gate + Portal only)
+  ------------------------- */
   function normalizeFooterCTA() {
     var cta = document.querySelector("#nfFooter .ctaRow");
     if (!cta) return;
 
+    var keep = { "/gate/": true, "/gate": true, "/portal/": true, "/portal": true };
     Array.prototype.slice.call(cta.querySelectorAll("a")).forEach(function (a) {
-      var hrefRaw = (a.getAttribute("href") || "").trim();
-      var internal = toInternalPath(hrefRaw);
-      if (!internal) return;
-      var p = normPath(internal);
-
-      /* keep: /gate, /gate/intake, /gate/offers, /portal */
-      var keep = (p === "/gate" || p === "/gate/intake" || p === "/gate/offers" || p === "/portal");
-      if (!keep && a.parentNode) a.parentNode.removeChild(a);
+      var href = (a.getAttribute("href") || "").trim();
+      if (!keep[href]) a.parentNode && a.parentNode.removeChild(a);
     });
   }
 
+  /* -------------------------
+     Feedback tab (only if not on feedback page)
+  ------------------------- */
   function ensureFeedbackTab() {
     var p = normPath(window.location.pathname);
     if (p === "/feedback" || p.startsWith("/feedback/")) return;
@@ -294,9 +305,14 @@
     document.body.appendChild(a);
   }
 
+  /* -------------------------
+     Inject partials
+  ------------------------- */
   async function injectOne(targetId, partialName) {
     var el = document.getElementById(targetId);
     if (!el) return;
+
+    // do not override if developer hardcoded markup
     if (el.children && el.children.length > 0) return;
 
     var url = PARTIALS_BASE + "/" + partialName + "?v=" + encodeURIComponent(SHELL_VERSION);
@@ -306,7 +322,9 @@
       if (!res.ok) return;
       var html = await res.text();
       el.innerHTML = html;
-    } catch (_) {}
+    } catch (_) {
+      // silent fail
+    }
   }
 
   async function injectShell() {
@@ -314,21 +332,22 @@
     await injectOne("nfFooter", "footer.html");
   }
 
+  /* -------------------------
+     Boot
+  ------------------------- */
   async function boot() {
     await injectShell();
 
+    // post-injection hooks
     setYear();
-
-    var rid = getOrCreateRID();
-    applyRID(rid);
-
     setActiveLinks();
     initBurger();
     normalizeFooterCTA();
     ensureFeedbackTab();
 
-    // after RID rewriting
-    setActiveLinks();
+    // RID last (needs injected DOM)
+    var rid = getOrCreateRID();
+    applyRID(rid);
   }
 
   if (document.readyState === "loading") {

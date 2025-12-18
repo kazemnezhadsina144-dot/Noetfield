@@ -1,4 +1,4 @@
-<!-- /gate/index.html — Noetfield Gate v3 (Sales Hub + Wizard Router + Procurement-Ready Snapshot) -->
+<!-- /gate/index.html — Noetfield Gate v3.1 (Sales Hub + Wizard Router + Procurement Email Builder) -->
 <!doctype html>
 <html lang="en">
 <head>
@@ -380,6 +380,32 @@
     .nfRecoWhy{ margin:10px 0 0; padding-left:18px; color:var(--muted2); line-height:1.6; }
     .nfRecoWhy li{ margin:6px 0; }
 
+    /* Procurement email builder (prefixed) */
+    .nfProcNote { margin-top: 12px; color: var(--muted2); font-size: 12.8px; line-height: 1.6; }
+    .nfProcForm { margin-top: 12px; }
+    .nfProcRow{ display:grid; gap:10px; grid-template-columns: repeat(12, minmax(0, 1fr)); }
+    .nfProcField{ grid-column: span 6; min-width:0; }
+    .nfProcField.full{ grid-column: span 12; }
+    .nfProcLabel{
+      display:block;
+      color: var(--muted2);
+      font-size: 11px;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      margin: 0 0 6px;
+    }
+    .nfProcInput, .nfProcSelect, .nfProcTextarea{
+      width:100%;
+      padding:10px 11px;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(5,8,20,.72);
+      color: rgba(255,255,255,.92);
+      font-size:13px;
+      outline:none;
+    }
+    .nfProcTextarea{ resize: vertical; min-height: 110px; }
+
     /* Mobile bottom bar */
     .nfBottomBar{
       z-index: 30;
@@ -414,6 +440,7 @@
       .nfRail{ position: relative; top: 0; }
       .nfGateTitle{ font-size: 30px; }
       .nfSamplesGrid{ grid-template-columns: 1fr; }
+      .nfProcField{ grid-column: span 12; }
     }
     @media (max-width: 760px){
       .nfGateHeroInner{ padding: 18px 14px; }
@@ -1014,6 +1041,75 @@
               <strong>Support:</strong> <a href="mailto:ceo@noetfield.com">ceo@noetfield.com</a><br/>
               <strong>Kickoff:</strong> asynchronous by default (email-based). Optional call only if required.
             </div>
+
+            <div class="nfGateNotice" style="margin-top:12px;">
+              <strong>Quick procurement email</strong><br/>
+              This does not submit data. It prepares an email draft in your email client.
+            </div>
+
+            <form id="nfProcEmailForm" class="nfProcForm" novalidate>
+              <div class="nfProcRow">
+                <div class="nfProcField">
+                  <label class="nfProcLabel" for="nf_org">Organisation</label>
+                  <input class="nfProcInput" id="nf_org" type="text" placeholder="Company / institution name" />
+                </div>
+
+                <div class="nfProcField">
+                  <label class="nfProcLabel" for="nf_contact">Contact (optional)</label>
+                  <input class="nfProcInput" id="nf_contact" type="text" placeholder="Name" />
+                </div>
+
+                <div class="nfProcField">
+                  <label class="nfProcLabel" for="nf_role">Role / team (optional)</label>
+                  <input class="nfProcInput" id="nf_role" type="text" placeholder="e.g., Procurement, IT, Security" />
+                </div>
+
+                <div class="nfProcField">
+                  <label class="nfProcLabel" for="nf_reply">Your email (optional)</label>
+                  <input class="nfProcInput" id="nf_reply" type="email" placeholder="So we can reply to the right address" />
+                </div>
+
+                <div class="nfProcField">
+                  <label class="nfProcLabel" for="nf_package">Package</label>
+                  <select class="nfProcSelect" id="nf_package">
+                    <option value="quickscan">Copilot QuickScan</option>
+                    <option value="brief">Trust Brief (6-week)</option>
+                    <option value="ledger">Trust Ledger</option>
+                    <option value="playbook">Playbook Pro</option>
+                    <option value="other">Other / not sure</option>
+                  </select>
+                </div>
+
+                <div class="nfProcField">
+                  <label class="nfProcLabel" for="nf_proc">Procurement path</label>
+                  <select class="nfProcSelect" id="nf_proc">
+                    <option value="invoice">Invoice</option>
+                    <option value="po">Purchase Order (PO)</option>
+                    <option value="vendor">Vendor onboarding</option>
+                    <option value="other">Other</option>
+                  </select>
+                </div>
+
+                <div class="nfProcField full">
+                  <label class="nfProcLabel" for="nf_timeline">Timing (optional)</label>
+                  <input class="nfProcInput" id="nf_timeline" type="text" placeholder="e.g., this week / this quarter / target date" />
+                </div>
+
+                <div class="nfProcField full">
+                  <label class="nfProcLabel" for="nf_note">Short note (non-confidential)</label>
+                  <textarea class="nfProcTextarea" id="nf_note" placeholder="High-level context only. No secrets, credentials, or regulated personal data."></textarea>
+                </div>
+
+                <div class="nfProcField full" style="display:flex; gap:10px; flex-wrap:wrap;">
+                  <button class="btn" type="submit">Prepare email</button>
+                  <a class="btn secondary" href="/vendor/">Open procurement pack</a>
+                </div>
+              </div>
+
+              <p class="nfProcNote">
+                Public intake = non-confidential. Secure sharing is confirmed after kickoff.
+              </p>
+            </form>
           </div>
         </section>
       </div>
@@ -1128,7 +1224,6 @@
       }
 
       function escapeHtml(s){
-        // safer for legacy engines than replaceAll
         return String(s || "")
           .replace(/&/g,"&amp;")
           .replace(/</g,"&lt;")
@@ -1141,6 +1236,15 @@
         document.querySelectorAll(".nfOfferSelected").forEach(function(el){
           el.classList.remove("nfOfferSelected");
         });
+      }
+
+      function syncProcPackage(key){
+        var sel = document.getElementById("nf_package");
+        if (!sel) return;
+        if (sel.value === "other") return;
+        if (key && (key === "quickscan" || key === "brief" || key === "ledger" || key === "playbook")) {
+          sel.value = key;
+        }
       }
 
       function selectOffer(key){
@@ -1165,6 +1269,9 @@
         var bBtn = document.getElementById("nfBottomBtn");
         if (bText) bText.innerHTML = "<strong>Start:</strong> " + escapeHtml(o.name);
         if (bBtn) bBtn.href = o.primaryHref;
+
+        // keep procurement form aligned
+        syncProcPackage(o.key);
 
         // remember
         try { localStorage.setItem("nf_gate_focus", o.key); } catch(e){}
@@ -1194,8 +1301,18 @@
         a.addEventListener("focus", sync);
       });
 
-      // Initial focus: query ?focus=quickscan|brief|ledger|playbook OR last saved OR default quickscan
+      // Initial focus: ?focus= OR ?need= OR last saved OR default
       var focus = (qs("focus") || "").trim().toLowerCase();
+      var need = (qs("need") || "").trim().toLowerCase();
+
+      if (!focus && need) {
+        // allow common synonyms
+        if (need === "copilot" || need === "quickscan" || need === "copilot-quickscan") focus = "quickscan";
+        else if (need === "trust-brief" || need === "brief") focus = "brief";
+        else if (need === "trust-ledger" || need === "ledger") focus = "ledger";
+        else if (need === "playbook" || need === "playbook-pro") focus = "playbook";
+      }
+
       if (!offers[focus]){
         try { focus = (localStorage.getItem("nf_gate_focus") || "").trim().toLowerCase(); } catch(e){}
       }
@@ -1312,18 +1429,15 @@
         if (recoCard) recoCard.scrollIntoView({ behavior: "smooth", block: "start" });
       }
 
-      // Auto-advance: after step 1 selection → step 2
       document.querySelectorAll('input[name="nf_situation"]').forEach(function(i){
         i.addEventListener("change", function(){
           if (hint1) hint1.classList.remove("nfRouterHintShow");
           showStep(2);
-          // focus first option in step 2 for fast completion
           var first = document.querySelector('#nfWizardStep2 input[name="nf_timing"]');
           if (first) first.focus({ preventScroll: true });
         });
       });
 
-      // Auto-generate: after step 2 selection → show recommendation
       document.querySelectorAll('input[name="nf_timing"]').forEach(function(i){
         i.addEventListener("change", function(){
           if (hint2) hint2.classList.remove("nfRouterHintShow");
@@ -1340,27 +1454,109 @@
         resetBtn.addEventListener("click", resetWizard);
       }
 
-      // Router open via ?router=1
       if ((qs("router") || "") === "1"){
         setRouterOpen(true);
-        // if partial answers exist (e.g., user navigated back), place them
         showStep(v("nf_situation") ? 2 : 1);
       } else {
-        // default wizard state
         showStep(1);
       }
+
+      // Procurement email builder (mailto)
+      (function () {
+        var form = document.getElementById("nfProcEmailForm");
+        if (!form) return;
+
+        function getVal(id){
+          var el = document.getElementById(id);
+          return el ? (el.value || "").trim() : "";
+        }
+
+        function labelForPackage(v){
+          if (v === "quickscan") return "Copilot QuickScan";
+          if (v === "brief") return "Trust Brief (6-week)";
+          if (v === "ledger") return "Trust Ledger";
+          if (v === "playbook") return "Playbook Pro";
+          return "Other / not sure";
+        }
+
+        function labelForProc(v){
+          if (v === "invoice") return "Invoice";
+          if (v === "po") return "Purchase Order (PO)";
+          if (v === "vendor") return "Vendor onboarding";
+          return "Other";
+        }
+
+        function readRid(){
+          try {
+            return (
+              localStorage.getItem("nf_rid") ||
+              localStorage.getItem("nfRid") ||
+              localStorage.getItem("rid") ||
+              ""
+            ).trim();
+          } catch(e){ return ""; }
+        }
+
+        form.addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          var org = getVal("nf_org");
+          var contact = getVal("nf_contact");
+          var role = getVal("nf_role");
+          var reply = getVal("nf_reply");
+          var pkg = getVal("nf_package");
+          var proc = getVal("nf_proc");
+          var timeline = getVal("nf_timeline");
+          var note = getVal("nf_note");
+
+          var rid = readRid();
+
+          var pkgLabel = labelForPackage(pkg);
+          var procLabel = labelForProc(proc);
+
+          var subject = "Procurement — " + pkgLabel + (org ? " (" + org + ")" : "");
+
+          var body = [];
+          body.push("Hello Noetfield,");
+          body.push("");
+          body.push("Request: " + procLabel + " process for " + pkgLabel + ".");
+          body.push("");
+
+          if (org) body.push("Organisation: " + org);
+          if (contact) body.push("Contact: " + contact);
+          if (role) body.push("Role/team: " + role);
+          if (reply) body.push("Reply email: " + reply);
+          if (timeline) body.push("Timing: " + timeline);
+          if (rid) body.push("Request ID (if applicable): " + rid);
+
+          body.push("");
+          if (note) {
+            body.push("Note (non-confidential):");
+            body.push(note);
+            body.push("");
+          }
+
+          body.push("Gate link: " + (location.origin + "/gate/#procurement"));
+          body.push("");
+          body.push("Public intake = non-confidential. Secure sharing is confirmed after kickoff.");
+
+          var mailto =
+            "mailto:ceo@noetfield.com" +
+            "?subject=" + encodeURIComponent(subject) +
+            "&body=" + encodeURIComponent(body.join("\n"));
+
+          window.location.href = mailto;
+        });
+      })();
     })();
   </script>
 
   <!--
-    CHANGELOG (gate v3)
-    - Made Gate explicitly the primary entry (buyer-first, direct start).
-    - Added procurement-ready “snapshot” per package: Deliverables + Inputs + Timeline rule + Scope drivers (reduces back-and-forth).
-    - Upgraded router into a true wizard: one question per step, auto-advance, auto-generate recommendation.
-    - Added Samples section (redacted-by-design) for internal alignment; links can be published under /samples/.
-    - Added Procurement Pack CTA linking to /vendor/ (keeps PO/invoice path obvious).
-    - Reinforced async-first kickoff language (optional call only if required).
-    - Preserved locked assets: /assets/noetfield-shell.css + /assets/noetfield-shell.js and header/footer injection.
+    CHANGELOG (gate v3.1)
+    - Added procurement email builder (smart mailto) under Invoice / PO.
+    - Synced selected offer -> procurement package dropdown.
+    - Added support for ?need=... routing (maps to focus).
+    - Preserved locked assets + header/footer injection.
 
     SMOKE TEST
     - GET /gate/ returns 200
@@ -1373,6 +1569,7 @@
       - /playbook/pro/
       - /vendor/ (procurement pack)
     - Wizard: opens, Step 1 selection advances to Step 2, Step 2 selection generates recommendation, highlights offer, updates rail + bottom bar
+    - Procurement form: submit opens mail client with subject/body populated; no network submit
     - Mobile: bottom bar fixed, no overlap (body padding applied)
   -->
 </body>

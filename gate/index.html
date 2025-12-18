@@ -1,4 +1,4 @@
-<!-- /gate/index.html — Noetfield Gate Wizard (buyer-first, sales-focused) -->
+<!-- /gate/index.html — Gate v2 (Product Intake Architecture: sales-first + optional wizard) -->
 <!doctype html>
 <html lang="en">
 <head>
@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <title>Noetfield — Gate (buyer-first entry)</title>
-  <meta name="description" content="A buyer-first entry point: choose a start point, route to non-confidential intake, and get board-ready outputs without extra browsing." />
+  <meta name="description" content="A buyer-first entry point: choose a start point, route to non-confidential product intake, and get board-ready outputs without extra browsing." />
   <meta name="robots" content="index,follow" />
   <meta name="author" content="Noetfield Systems Inc." />
   <meta name="theme-color" content="#07070b" />
@@ -15,7 +15,21 @@
   <link rel="icon" href="/noetfield-favicon-512.png" type="image/png" />
   <link rel="apple-touch-icon" href="/noetfield-favicon-512.png" />
 
-  <!-- Locked shared assets -->
+  <!-- OG -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Noetfield" />
+  <meta property="og:title" content="Noetfield — Gate" />
+  <meta property="og:description" content="Buyer-first routing: start with the right product and submit a non-confidential product intake." />
+  <meta property="og:url" content="https://www.noetfield.com/gate/" />
+  <meta property="og:image" content="https://www.noetfield.com/noetfield-og.png" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Noetfield — Gate" />
+  <meta name="twitter:description" content="Buyer-first routing: start with the right product and submit a non-confidential product intake." />
+  <meta name="twitter:image" content="https://www.noetfield.com/noetfield-og.png" />
+
+  <!-- LOCKED SHELL -->
   <link rel="stylesheet" href="/assets/noetfield-shell.css" />
   <script defer src="/assets/noetfield-shell.js"></script>
 
@@ -24,7 +38,7 @@
     .nfGateWrap { max-width: 1080px; margin: 0 auto; padding: 22px 18px 40px; }
     .nfGateHero { display: grid; gap: 14px; }
     .nfGateKicker { opacity: .85; font-size: .95rem; }
-    .nfGateTitle { font-size: clamp(1.6rem, 3.6vw, 2.4rem); line-height: 1.08; letter-spacing: -0.02em; margin: 0; }
+    .nfGateTitle { font-size: clamp(1.7rem, 3.6vw, 2.6rem); line-height: 1.08; letter-spacing: -0.02em; margin: 0; }
     .nfGateLead { opacity: .9; max-width: 70ch; margin: 0; }
     .nfGateNotice {
       border: 1px solid rgba(255,255,255,.12);
@@ -124,10 +138,23 @@
       .nfGateBtn:hover, .nfWizardChoice:hover { transform: none; }
     }
   </style>
+
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"WebPage",
+    "name":"Noetfield — Gate",
+    "url":"https://www.noetfield.com/gate/",
+    "description":"Buyer-first routing to product pages and non-confidential product intakes.",
+    "isPartOf":{"@type":"WebSite","name":"Noetfield","url":"https://www.noetfield.com/"},
+    "publisher":{"@type":"Organization","name":"Noetfield Systems Inc."}
+  }
+  </script>
 </head>
 
 <body>
-  <a class="skipLink" href="#main">Skip to content</a>
+  <div class="bg" aria-hidden="true"></div>
+  <a class="skip" href="#main">Skip to content</a>
 
   <!-- Shell injection targets (locked convention) -->
   <header id="nfHeader"></header>
@@ -139,21 +166,21 @@
         <div class="nfGateKicker">Governed entry • buyer-first routing</div>
         <h1 class="nfGateTitle">Gate: choose a start point, get board-ready outputs.</h1>
         <p class="nfGateLead">
-          Minimal paths that keep sales obvious and reading optional. Start now via a non-confidential intake to lock scope and access readiness.
+          Minimal paths that keep sales obvious and reading optional. Start now via a non-confidential <strong>product intake</strong> to lock scope and access readiness.
         </p>
 
         <div class="nfGateNotice" role="note" aria-label="Public intake notice">
           <div aria-hidden="true">ⓘ</div>
           <div>
-            <p><strong>Public intake = non-confidential.</strong> Do not submit secrets, credentials, private keys, or regulated personal data. Use it to route scope and next step.</p>
+            <p><strong>Public intake = non-confidential.</strong> Do not submit secrets, credentials, private keys, or regulated personal data. Use it to route scope and start point.</p>
           </div>
         </div>
 
         <!-- Top-level start points (fast path, sales-first) -->
         <div class="nfGateRow" aria-label="Start points">
-          <a class="nfGateBtn nfGateBtnPrimary" href="/gate/intake/?need=quickscan" data-rid-link>Start with QuickScan</a>
-          <a class="nfGateBtn" href="/gate/intake/?need=trust-brief" data-rid-link>Start Trust Brief (6-week)</a>
-          <a class="nfGateBtn" href="/gate/intake/?need=trust-ledger" data-rid-link>Start Trust Ledger</a>
+          <a class="nfGateBtn nfGateBtnPrimary" href="/copilot/quickscan/intake/" data-rid-link>Start with QuickScan</a>
+          <a class="nfGateBtn" href="/trust-brief/intake/" data-rid-link>Start Trust Brief (6-week)</a>
+          <a class="nfGateBtn" href="/trust-ledger/intake/" data-rid-link>Start Trust Ledger</a>
           <button class="nfGateBtn" type="button" id="nfOpenWizardBtn" aria-controls="nfWizardCard" aria-expanded="false">Find my best start point</button>
         </div>
       </section>
@@ -174,8 +201,8 @@
           <h2>Copilot QuickScan</h2>
           <p>Fastest path to board-ready Copilot evidence: scope, oversharing exposure, boundaries, evidence readiness, and connector controls.</p>
           <div class="nfGateRow">
-            <a class="nfGateBtn nfGateBtnPrimary" href="/gate/intake/?need=quickscan" data-rid-link>Start QuickScan</a>
-            <a class="nfGateBtn" href="/copilot" >View Copilot hub</a>
+            <a class="nfGateBtn nfGateBtnPrimary" href="/copilot/quickscan/intake/" data-rid-link>Start QuickScan</a>
+            <a class="nfGateBtn" href="/copilot/">View Copilot hub</a>
           </div>
         </div>
 
@@ -183,8 +210,8 @@
           <h2>Trust Brief (6-week)</h2>
           <p>A governance-first diagnostic: map material AI use-cases, decision points, risks, and initial Trust Ledger entries with options and tradeoffs.</p>
           <div class="nfGateRow">
-            <a class="nfGateBtn nfGateBtnPrimary" href="/gate/intake/?need=trust-brief" data-rid-link>Start Trust Brief</a>
-            <a class="nfGateBtn" href="/" >See overview</a>
+            <a class="nfGateBtn nfGateBtnPrimary" href="/trust-brief/intake/" data-rid-link>Start Trust Brief</a>
+            <a class="nfGateBtn" href="/">See overview</a>
           </div>
         </div>
 
@@ -192,8 +219,8 @@
           <h2>Trust Ledger</h2>
           <p>A maintained, board-ready register of AI systems, safeguards, evidence, and accountability over time — answer-ready for scrutiny.</p>
           <div class="nfGateRow">
-            <a class="nfGateBtn nfGateBtnPrimary" href="/gate/intake/?need=trust-ledger" data-rid-link>Start Trust Ledger</a>
-            <a class="nfGateBtn" href="/trust-ledger/" >View Trust Ledger page</a>
+            <a class="nfGateBtn nfGateBtnPrimary" href="/trust-ledger/intake/" data-rid-link>Start Trust Ledger</a>
+            <a class="nfGateBtn" href="/trust-ledger/">View Trust Ledger page</a>
           </div>
         </div>
 
@@ -201,8 +228,8 @@
           <h2>Playbook (templates + licenses)</h2>
           <p>For small teams and agencies that need a defensible baseline quickly — templates, checklists, and buyer-ready language.</p>
           <div class="nfGateRow">
-            <a class="nfGateBtn nfGateBtnPrimary" href="/playbook/" >Open Playbook</a>
-            <a class="nfGateBtn" href="/playbook/pro/" >Agency / Pro License</a>
+            <a class="nfGateBtn nfGateBtnPrimary" href="/playbook/">Open Playbook</a>
+            <a class="nfGateBtn" href="/playbook/pro/">Agency / Pro License</a>
           </div>
         </div>
 
@@ -419,12 +446,12 @@
           subtitle: "Fastest paid start: scope + oversharing exposure + evidence readiness.",
           bullets: [
             "Buyer-first: reduces uncertainty fast.",
-            "Routes through non-confidential intake for scope lock.",
+            "Routes through a non-confidential product intake for scope lock.",
             "Produces procurement-friendly artifacts."
           ],
-          primaryHref: "/gate/intake/?need=quickscan",
+          primaryHref: "/copilot/quickscan/intake/",
           primaryLabel: "Start QuickScan",
-          secondaryHref: "/copilot",
+          secondaryHref: "/copilot/",
           secondaryLabel: "View Copilot hub"
         };
 
@@ -439,10 +466,10 @@
               "Produces board-ready options and tradeoffs.",
               "Sets up Trust Ledger continuity."
             ],
-            primaryHref: "/gate/intake/?need=trust-brief",
+            primaryHref: "/trust-brief/intake/",
             primaryLabel: "Start Trust Brief",
-            secondaryHref: "/",
-            secondaryLabel: "See overview"
+            secondaryHref: "/trust-brief/",
+            secondaryLabel: "View Trust Brief page"
           };
         } else if (a.intent === "ledger") {
           offer = {
@@ -454,7 +481,7 @@
               "Evidence linkage (exports, configs, logs) by design.",
               "Maintained over time for answer-ready posture."
             ],
-            primaryHref: "/gate/intake/?need=trust-ledger",
+            primaryHref: "/trust-ledger/intake/",
             primaryLabel: "Start Trust Ledger",
             secondaryHref: "/trust-ledger/",
             secondaryLabel: "View Trust Ledger page"
@@ -486,7 +513,7 @@
             ],
             primaryHref: "/playbook/vendor-due-diligence/",
             primaryLabel: "Open Vendor Kit",
-            secondaryHref: "/gate/intake/?need=vendor-due-diligence",
+            secondaryHref: "/playbook/vendor-due-diligence/intake/",
             secondaryLabel: "Request via intake"
           };
         }
@@ -502,16 +529,16 @@
               "Surfaces oversharing exposure and scope fast.",
               "Produces a 30/60/90 plan with owners."
             ],
-            primaryHref: "/gate/intake/?need=quickscan",
+            primaryHref: "/copilot/quickscan/intake/",
             primaryLabel: "Start QuickScan",
-            secondaryHref: "/copilot",
+            secondaryHref: "/copilot/",
             secondaryLabel: "View Copilot hub"
           };
         }
 
         // Commitment affects the secondary link destination
         if (a.commitment === "contact") {
-          offer.secondaryHref = "/contact";
+          offer.secondaryHref = "/contact/";
           offer.secondaryLabel = "Ask a question (Contact)";
         } else if (a.commitment === "compare") {
           // keep current secondary
@@ -549,20 +576,24 @@
   </script>
 
   <!--
-    CHANGELOG (gate v1)
-    - Buyer-first top CTAs (QuickScan / Trust Brief / Trust Ledger) + optional wizard.
-    - Progressive-disclosure wizard (Persona → Intent → Timeline → Commitment) with a single recommended CTA.
-    - Partner lane hidden by default; only visible via /gate/?mode=partners.
+    CHANGELOG (gate v2)
+    - Switched all sales CTAs from /gate/intake/?need=... to product intakes:
+      - /copilot/quickscan/intake/
+      - /trust-brief/intake/
+      - /trust-ledger/intake/
+    - Updated wizard recommendation links to the same product-intake architecture.
+    - Added OG/Twitter + JSON-LD WebPage metadata.
+    - Kept buyer-first UI, wizard optional, partner lane hidden by default.
 
     SMOKE TEST
     - GET /gate/ returns 200
     - /assets/noetfield-shell.css returns 200 and styles apply
     - /assets/noetfield-shell.js returns 200 and header/footer load into #nfHeader/#nfFooter
-    - CTA links route correctly:
-      - /gate/intake/?need=quickscan
-      - /gate/intake/?need=trust-brief
-      - /gate/intake/?need=trust-ledger
-    - Wizard works on mobile and desktop; no scroll-jank; reduced motion respected
+    - Primary CTAs route 200:
+      - /copilot/quickscan/intake/
+      - /trust-brief/intake/
+      - /trust-ledger/intake/
+    - Wizard works on mobile and desktop; reduced motion respected
   -->
 </body>
 </html>

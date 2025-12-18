@@ -4,86 +4,126 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <title>Noetfield — Trust Ledger for board-ready AI governance</title>
-  <meta name="description" content="Noetfield produces board-ready AI governance artefacts: Trust Ledger, Trust Brief, and Playbook. Evidence-first. Privacy-first by default." />
-  <meta name="robots" content="index,follow" />
+  <title>Noetfield — Trust and Stewardship in AI</title>
+  <meta name="description" content="Board-ready AI governance artefacts: Trust Ledger, Trust Brief, and Playbook. Evidence-ready, defensible, privacy-first by design." />
   <link rel="canonical" href="https://www.noetfield.com/" />
 
   <meta property="og:site_name" content="Noetfield" />
-  <meta property="og:title" content="Noetfield — Trust Ledger for board-ready AI governance" />
-  <meta property="og:description" content="Board-ready governance artefacts: Trust Ledger, Trust Brief, Playbook. Evidence-first. Privacy-first by default." />
+  <meta property="og:title" content="Noetfield — Trust and Stewardship in AI" />
+  <meta property="og:description" content="Board-ready AI governance artefacts: Trust Ledger, Trust Brief, and Playbook. Evidence-ready, defensible, privacy-first by design." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://www.noetfield.com/" />
-  <meta property="og:image" content="https://www.noetfield.com/noetfield-favicon-512.png" />
 
-  <link rel="icon" href="/noetfield-favicon-512.png" type="image/png" />
-  <link rel="preload" href="/assets/nf-core.css" as="style" />
-  <link rel="stylesheet" href="/assets/nf-core.css" />
+  <!-- IMPORTANT: no trailing slash on CSS path -->
+  <link rel="stylesheet" href="/assets/noetfield-shell.css?v=2025.12.17" />
 
-  <!-- Minimal critical safety (page still readable if CSS fails) -->
+  <!-- Page-only minimal styling (kept inside this single file) -->
   <style>
-    body{margin:0}
-    #nfHeader,#nfFooter{min-height:64px}
-  </style>
+    .hero{ padding: 54px 0 18px; }
+    .kicker{ color: var(--muted2); font-size: 13px; letter-spacing: .2px; text-transform: uppercase; }
+    h1{ margin: 10px 0 10px; font-size: clamp(30px, 4.2vw, 46px); letter-spacing: -0.6px; line-height: 1.08; }
+    .sub{ margin: 0 0 16px; color: var(--muted); max-width: 70ch; line-height: 1.6; }
+    .cta{ display:flex; flex-wrap:wrap; gap:10px; margin-top: 14px; }
 
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"Organization",
-    "name":"Noetfield",
-    "url":"https://www.noetfield.com/",
-    "logo":"https://www.noetfield.com/noetfield-favicon-512.png"
-  }
-  </script>
+    .grid{ display:grid; grid-template-columns: 1.2fr .8fr; gap: 14px; padding: 18px 0 4px; }
+    .card{
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.02);
+      padding: 14px;
+      box-shadow: var(--shadow2);
+    }
+    .cardTitle{ font-weight: 850; letter-spacing: -.2px; margin: 0 0 8px; }
+    .cardP{ margin: 0; color: var(--muted); line-height: 1.6; font-size: 13.5px; }
+    .bullets{ margin: 10px 0 0; padding-left: 18px; color: var(--muted); line-height: 1.7; }
+    .bullets li{ margin: 6px 0; }
+
+    .strip{ margin: 18px 0 0; display:flex; flex-wrap:wrap; gap:10px; }
+    .chip{
+      display:inline-flex; align-items:center; gap:10px;
+      padding: 10px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.03);
+      color: var(--muted);
+      font-size: 12.5px;
+      line-height: 1.1;
+    }
+    .chip b{ color: var(--text); font-weight: 750; }
+
+    @media (max-width: 980px){
+      .grid{ grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
 
 <body>
-  <a class="skip" href="#main">Skip to content</a>
   <div class="bg" aria-hidden="true"></div>
+  <a class="skip" href="#main">Skip to content</a>
 
-  <!-- Shell injection targets -->
-  <header id="nfHeader" aria-label="Site header"></header>
+  <!-- Shell inject targets -->
+  <header id="nfHeader" role="banner"></header>
 
-  <main id="main" class="wrap" role="main">
-    <section style="padding-top:10px">
-      <h1 style="margin:18px 0 10px; font-size:34px; letter-spacing:-0.4px; line-height:1.12;">
-        Trust Ledger for board-ready AI governance
-      </h1>
-
-      <p style="margin:0 0 18px; color:rgba(255,255,255,.70); line-height:1.6; max-width:70ch;">
-        A governed record of decisions, models, data, and controls — designed to be evidence-ready and defensible.
+  <main id="main" class="wrap">
+    <section class="hero" aria-label="Noetfield overview">
+      <div class="kicker">Board-first governance</div>
+      <h1>Trust and stewardship in AI — made decision-ready.</h1>
+      <p class="sub">
+        Noetfield produces board-ready governance artefacts that make automated systems easier to audit, justify, and keep under control.
+        Privacy-first by design: public intake is non-confidential; sensitive exchange belongs in Portal.
       </p>
 
-      <div style="display:flex; gap:10px; flex-wrap:wrap; margin: 10px 0 18px;">
+      <div class="cta" aria-label="Primary actions">
         <a class="btn" href="/gate/intake/" data-rid-link>Start intake</a>
-        <a class="btn secondary" href="/trust-ledger/">Trust Ledger</a>
-        <a class="btn secondary" href="/trust-brief/">Trust Brief</a>
-        <a class="btn secondary" href="/playbook/">Playbook</a>
+        <a class="btn secondary" href="/gate/" data-rid-link>Open Gate</a>
+        <a class="btn secondary" href="/status/" data-rid-link>Check status</a>
       </div>
 
-      <div style="border:1px solid rgba(255,255,255,.10); background:rgba(255,255,255,.02); border-radius:16px; padding:14px; max-width: 980px;">
-        <div style="font-weight:850; letter-spacing:-.2px; margin-bottom:8px;">What gets delivered</div>
-        <ul style="margin:0; padding-left:18px; color:rgba(255,255,255,.75); line-height:1.65;">
-          <li>Board memo: scope, decision points, ownership, and approvals.</li>
-          <li>Controls map: risks → controls → evidence, versioned and reviewable.</li>
-          <li>Evidence checklist: what exists, what is missing, what is required.</li>
-        </ul>
-        <p style="margin:10px 0 0; color:rgba(255,255,255,.58); line-height:1.55;">
-          Public forms are non-confidential by design. Sensitive artefacts belong behind Portal with access control.
-        </p>
+      <div class="strip" aria-label="Signals">
+        <div class="chip"><b>RID</b> auto-generated and propagated</div>
+        <div class="chip"><b>Evidence-ready</b> outputs by default</div>
+        <div class="chip"><b>Buyer-first</b> routing, no friction</div>
       </div>
     </section>
 
-    <noscript>
-      <div style="margin-top:18px; padding:12px; border:1px solid rgba(255,255,255,.14); border-radius:14px;">
-        JavaScript is disabled. Navigation header/footer and Request ID will not load.
+    <section class="grid" aria-label="Products">
+      <div class="card">
+        <div class="cardTitle">Core offerings</div>
+        <p class="cardP">Three lanes, one governed delivery standard.</p>
+        <ul class="bullets">
+          <li><b>Trust Ledger</b> — decision record + controls + evidence mapping.</li>
+          <li><b>Trust Brief</b> — fast diagnostic, board memo, prioritized actions.</li>
+          <li><b>Playbook</b> — templates and operating routines for governance.</li>
+          <li><b>Copilot</b> — cost + exposure + controls readiness pack.</li>
+        </ul>
+        <div class="cta" style="margin-top:12px;">
+          <a class="btn secondary" href="/trust-ledger/">Trust Ledger</a>
+          <a class="btn secondary" href="/trust-brief/">Trust Brief</a>
+          <a class="btn secondary" href="/playbook/">Playbook</a>
+          <a class="btn secondary" href="/copilot-cost-governance/">Copilot</a>
+        </div>
       </div>
-    </noscript>
+
+      <div class="card">
+        <div class="cardTitle">What happens after intake</div>
+        <p class="cardP">A predictable, buyer-safe path from submission to delivery.</p>
+        <ul class="bullets">
+          <li>Request ID captured and attached to links/forms.</li>
+          <li>Scope confirmation + delivery lane selection.</li>
+          <li>Board-ready artefact delivered (PDF/memo/checklist).</li>
+          <li>Optional Portal for sensitive files (later phases).</li>
+        </ul>
+        <div class="cta" style="margin-top:12px;">
+          <a class="btn" href="/gate/intake/" data-rid-link>Start intake</a>
+          <a class="btn secondary" href="/portal/" data-rid-link>Portal</a>
+        </div>
+      </div>
+    </section>
   </main>
 
-  <footer id="nfFooter" aria-label="Site footer"></footer>
+  <footer id="nfFooter" role="contentinfo"></footer>
 
-  <!-- IMPORTANT: rename your deployed files to avoid WAF blocks -->
-  <script src="/assets/nf-core.js" defer></script>
+  <!-- IMPORTANT: no trailing slash on JS path -->
+  <script defer src="/assets/noetfield-shell.js?v=2025.12.17"></script>
 </body>
 </html>

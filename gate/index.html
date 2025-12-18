@@ -1,4 +1,4 @@
-<!-- /gate/index.html — Noetfield Gate v2.1 (Sales Hub + optional 60-second Router) -->
+<!-- /gate/index.html — Noetfield Gate v3 (Sales Hub + Wizard Router + Procurement-Ready Snapshot) -->
 <!doctype html>
 <html lang="en">
 <head>
@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <title>Noetfield — Gate</title>
-  <meta name="description" content="Purchase-ready entry to Noetfield packages. Clear options, direct intake for kickoff, and an optional 60-second router for the best start point." />
+  <meta name="description" content="Purchase-ready entry to Noetfield packages. Clear options, procurement-ready snapshots, direct intake for kickoff, and a fast wizard router for the best start point." />
   <meta name="robots" content="index,follow" />
   <meta name="author" content="Noetfield Systems Inc." />
   <meta name="theme-color" content="#07070b" />
@@ -18,13 +18,13 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Noetfield" />
   <meta property="og:title" content="Noetfield — Gate" />
-  <meta property="og:description" content="Purchase-ready entry to Noetfield packages. Direct intake + optional 60-second router." />
+  <meta property="og:description" content="Purchase-ready entry to Noetfield packages. Procurement-ready snapshots + direct intake + wizard router." />
   <meta property="og:url" content="https://www.noetfield.com/gate/" />
   <meta property="og:image" content="https://www.noetfield.com/noetfield-og.png" />
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Noetfield — Gate" />
-  <meta name="twitter:description" content="Purchase-ready entry. Direct intake + optional 60-second router." />
+  <meta name="twitter:description" content="Purchase-ready entry. Procurement-ready snapshots + direct intake + wizard router." />
   <meta name="twitter:image" content="https://www.noetfield.com/noetfield-og.png" />
 
   <!-- LOCKED SHELL -->
@@ -160,6 +160,66 @@
         rgba(255,255,255,.03);
     }
 
+    /* Offer: procurement-ready snapshot (collapsible) */
+    .nfOfferSnap{
+      margin-top:12px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.02);
+      overflow:hidden;
+    }
+    .nfOfferSnap summary{
+      list-style:none;
+      cursor:pointer;
+      padding:12px;
+      display:flex; align-items:center; justify-content:space-between; gap:12px;
+      color: var(--muted);
+      user-select:none;
+    }
+    .nfOfferSnap summary::-webkit-details-marker{ display:none; }
+    .nfOfferSnap summary .k{ font-weight:900; color:var(--text); letter-spacing:-.2px; }
+    .nfOfferSnap summary .m{ color:var(--muted2); font-size:12.6px; line-height:1.4; }
+    .nfOfferSnap summary .chev{
+      width:34px; height:34px; border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.03);
+      display:flex; align-items:center; justify-content:center;
+      color: var(--muted2);
+      flex: 0 0 auto;
+    }
+    .nfOfferSnap[open] summary .chev{ transform: rotate(180deg); }
+    .nfOfferSnap .bd{
+      padding:0 12px 12px;
+      border-top:1px solid rgba(255,255,255,.08);
+      color: var(--muted2);
+      font-size:12.8px;
+      line-height:1.6;
+    }
+    .nfOfferSnap .bd strong{ color:var(--text); font-weight:900; }
+    .nfSnapGrid{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:10px;
+      margin-top:10px;
+    }
+    .nfSnapItem{
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      padding:10px;
+    }
+    .nfSnapItem .h{ font-weight:900; color:var(--text); margin:0 0 6px; }
+    .nfSnapItem ul{ margin:0; padding-left:18px; }
+    .nfSnapItem li{ margin:6px 0; }
+    .nfSnapNote{
+      margin-top:10px;
+      padding:10px;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.02);
+      color: var(--muted2);
+    }
+
     /* Compare table */
     .nfTable{
       width:100%;
@@ -219,7 +279,21 @@
     }
     .nfRailMiniLinks a{ border-bottom:1px solid rgba(255,255,255,.18); }
 
-    /* Router */
+    /* Samples */
+    .nfSamplesGrid{ display:grid; gap:12px; grid-template-columns: 1fr 1fr; }
+    .nfSample{
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.11);
+      background: rgba(255,255,255,.03);
+      padding:14px;
+      overflow:hidden;
+    }
+    .nfSample h3{ margin:0 0 8px; font-size:15px; letter-spacing:-.2px; font-weight:950; }
+    .nfSample p{ margin:0; color:var(--muted); line-height:1.7; }
+    .nfSample .actions{ display:flex; gap:10px; flex-wrap:wrap; margin-top:12px; }
+    .nfSample .actions .btn{ min-height:44px; }
+
+    /* Router (Wizard) */
     .nfRouterWrap{ margin-top:12px; }
     .nfRouterToggleRow{
       display:flex; gap:10px; flex-wrap:wrap; align-items:center;
@@ -232,7 +306,32 @@
       background: rgba(255,255,255,.03);
       padding:14px;
     }
-    .nfRouterQTitle{ margin:10px 0 8px; font-weight:950; letter-spacing:-.2px; }
+    .nfRouterTop{
+      display:flex; gap:10px; align-items:center; justify-content:space-between; flex-wrap:wrap;
+      margin-top:10px;
+    }
+    .nfRouterSteps{
+      display:flex; gap:8px; flex-wrap:wrap; align-items:center;
+    }
+    .nfStepPill{
+      display:inline-flex; gap:8px; align-items:center;
+      padding:7px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.03);
+      color:var(--muted2);
+      font-size:12.6px;
+      white-space:nowrap;
+    }
+    .nfStepPill strong{ color:var(--text); font-weight:950; }
+    .nfStepPillActive{
+      border-color: rgba(200,163,73,.28);
+      box-shadow: 0 0 0 1px rgba(200,163,73,.12);
+      background: rgba(255,255,255,.035);
+      color: var(--muted);
+    }
+
+    .nfRouterQTitle{ margin:12px 0 8px; font-weight:950; letter-spacing:-.2px; }
     .nfRouterOpts{ display:grid; gap:10px; }
     .nfRouterOpt{
       display:flex; gap:12px; align-items:flex-start;
@@ -247,8 +346,8 @@
     .nfRouterOpt input{ margin-top:2px; }
     .nfRouterOpt .t{ font-weight:900; }
     .nfRouterOpt .d{ color:var(--muted2); font-size:12.8px; line-height:1.55; margin-top:4px; }
-    .nfRouterActions{ display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-top:12px; }
 
+    .nfRouterActions{ display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-top:12px; }
     .nfRouterHint{
       margin-top:10px;
       color: var(--muted2);
@@ -314,6 +413,7 @@
       .nfGateGrid{ grid-template-columns: 1fr; }
       .nfRail{ position: relative; top: 0; }
       .nfGateTitle{ font-size: 30px; }
+      .nfSamplesGrid{ grid-template-columns: 1fr; }
     }
     @media (max-width: 760px){
       .nfGateHeroInner{ padding: 18px 14px; }
@@ -337,7 +437,7 @@
     "@type":"WebPage",
     "name":"Noetfield — Gate",
     "url":"https://www.noetfield.com/gate/",
-    "description":"Purchase-ready entry to Noetfield packages with an optional 60-second router.",
+    "description":"Purchase-ready entry to Noetfield packages with procurement-ready snapshots and a fast wizard router.",
     "isPartOf":{"@type":"WebSite","name":"Noetfield","url":"https://www.noetfield.com/"},
     "publisher":{"@type":"Organization","name":"Noetfield Systems Inc."}
   }
@@ -356,18 +456,19 @@
     <section class="nfGateHero" aria-label="Gate hero">
       <div class="nfGateHeroShell">
         <div class="nfGateHeroInner">
-          <div class="nfGateEyebrow"><span class="nfGateDot"></span> Purchase-ready entry • clear packages • direct start</div>
+          <div class="nfGateEyebrow"><span class="nfGateDot"></span> Gate = primary entry • buyer-first • direct start</div>
 
           <h1 class="nfGateTitle">Pick a package. Start cleanly.</h1>
 
           <p class="nfGateLead">
-            Clear offers, clear next steps. Each <strong>Start</strong> button routes to the package’s dedicated intake for kickoff.
+            Clear offers, clear next steps. Each <strong>Start</strong> button routes to the package intake for kickoff.
           </p>
 
           <div class="nfGateOnPage" aria-label="On this page">
             <a class="nfGateChip" href="#packages">Packages</a>
             <a class="nfGateChip" href="#compare">Compare</a>
-            <a class="nfGateChip" href="#router">60-second router</a>
+            <a class="nfGateChip" href="#router">Wizard router</a>
+            <a class="nfGateChip" href="#samples">Samples</a>
             <a class="nfGateChip" href="#procurement">Invoice / PO</a>
           </div>
 
@@ -379,13 +480,13 @@
     </section>
 
     <section class="nfGateGrid" aria-label="Gate layout">
-      <!-- LEFT: PACKAGES + COMPARE + ROUTER -->
+      <!-- LEFT: PACKAGES + COMPARE + ROUTER + SAMPLES + PROCUREMENT -->
       <div>
         <!-- PACKAGES -->
         <section class="nfGateCard" id="packages" aria-label="Packages">
           <div class="nfGateCardHd">
             <h2 class="nfGateCardTitle">Packages</h2>
-            <p class="nfGateMuted">Direct start points. Details are optional. Kickoff happens through each package intake.</p>
+            <p class="nfGateMuted">Direct start points. Details are optional. Each package includes a procurement-ready snapshot (deliverables, inputs, timeline rule).</p>
           </div>
 
           <div class="nfGateCardBd">
@@ -398,7 +499,7 @@
                     <div class="nfOfferMeta">
                       <span class="nfTag">5–7 business days</span>
                       <span class="nfTag">Decision-ready outputs</span>
-                      <span class="nfTag">Typical $1.5k–$4k CAD</span>
+                      <span class="nfTag">Base + fixed add-ons</span>
                     </div>
                   </div>
                   <span class="nfTag" title="Best fit">Best for: rollout pressure</span>
@@ -414,6 +515,56 @@
                   <li>Designed to reduce avoidable back-and-forth</li>
                 </ul>
 
+                <details class="nfOfferSnap">
+                  <summary>
+                    <div>
+                      <div class="k">Procurement snapshot</div>
+                      <div class="m">Deliverables • Inputs • Timeline rule • Scope drivers</div>
+                    </div>
+                    <div class="chev" aria-hidden="true">⌄</div>
+                  </summary>
+                  <div class="bd">
+                    <div class="nfSnapGrid">
+                      <div class="nfSnapItem">
+                        <div class="h">Deliverables (named)</div>
+                        <ul>
+                          <li><strong>Executive Memo</strong> (PDF) — posture, risks, decision options</li>
+                          <li><strong>Exposure & Boundary Map</strong> (PDF) — oversharing paths + recommended boundaries</li>
+                          <li><strong>Control Checklist</strong> (XLSX/CSV) — prioritized controls + owners</li>
+                          <li><strong>Connector/Extension Notes</strong> (PDF) — what to tighten first</li>
+                        </ul>
+                      </div>
+                      <div class="nfSnapItem">
+                        <div class="h">Inputs required (non-confidential)</div>
+                        <ul>
+                          <li>Tenant/rollout intent (pilot vs wide)</li>
+                          <li>High-level data types (e.g., HR, finance, client files)</li>
+                          <li>Existing policy posture (basic / partial / mature)</li>
+                        </ul>
+                      </div>
+                      <div class="nfSnapItem">
+                        <div class="h">Timeline rule</div>
+                        <ul>
+                          <li>Clock starts after intake + scope confirmation</li>
+                          <li>Default delivery window: <strong>5–7 business days</strong></li>
+                        </ul>
+                      </div>
+                      <div class="nfSnapItem">
+                        <div class="h">Scope drivers (pricing clarity)</div>
+                        <ul>
+                          <li>Single tenant vs multi-entity rollout</li>
+                          <li>Number of business units in scope</li>
+                          <li>Depth of connector/extension review</li>
+                        </ul>
+                      </div>
+                    </div>
+
+                    <div class="nfSnapNote">
+                      <strong>Kickoff:</strong> asynchronous by default (email-based). Optional call only if required by the engagement.
+                    </div>
+                  </div>
+                </details>
+
                 <div class="nfOfferActions">
                   <a class="btn" href="/copilot/quickscan/intake/" data-primary-cta>Start Copilot QuickScan</a>
                   <a class="btn secondary" href="/copilot/quickscan/">View details</a>
@@ -428,7 +579,7 @@
                     <div class="nfOfferMeta">
                       <span class="nfTag">6 weeks</span>
                       <span class="nfTag">Governance plan</span>
-                      <span class="nfTag">Typical $3k–$10k CAD</span>
+                      <span class="nfTag">Base + fixed add-ons</span>
                     </div>
                   </div>
                   <span class="nfTag" title="Best fit">Best for: clarity + roadmap</span>
@@ -444,6 +595,56 @@
                   <li>Sets up continuity into Trust Ledger</li>
                 </ul>
 
+                <details class="nfOfferSnap">
+                  <summary>
+                    <div>
+                      <div class="k">Procurement snapshot</div>
+                      <div class="m">Deliverables • Inputs • Timeline rule • Scope drivers</div>
+                    </div>
+                    <div class="chev" aria-hidden="true">⌄</div>
+                  </summary>
+                  <div class="bd">
+                    <div class="nfSnapGrid">
+                      <div class="nfSnapItem">
+                        <div class="h">Deliverables (named)</div>
+                        <ul>
+                          <li><strong>Trust Brief Report</strong> (PDF) — decisions, risks, controls, roadmap</li>
+                          <li><strong>Use-Case Map</strong> (XLSX/CSV) — material use cases + owners</li>
+                          <li><strong>Decision Gate Set</strong> (PDF) — what must be approved, by whom, and why</li>
+                          <li><strong>Operating Model Draft</strong> (PDF) — roles, cadence, escalation</li>
+                        </ul>
+                      </div>
+                      <div class="nfSnapItem">
+                        <div class="h">Inputs required (non-confidential)</div>
+                        <ul>
+                          <li>High-level inventory of AI/tool usage</li>
+                          <li>Org structure (owners / IT / legal / security)</li>
+                          <li>Known constraints (regulatory, client, audit)</li>
+                        </ul>
+                      </div>
+                      <div class="nfSnapItem">
+                        <div class="h">Timeline rule</div>
+                        <ul>
+                          <li>Starts after intake + kickoff alignment</li>
+                          <li>Default delivery window: <strong>6 weeks</strong></li>
+                        </ul>
+                      </div>
+                      <div class="nfSnapItem">
+                        <div class="h">Scope drivers (pricing clarity)</div>
+                        <ul>
+                          <li>Number of material use cases</li>
+                          <li>Stakeholder groups involved</li>
+                          <li>Need for board memo variants</li>
+                        </ul>
+                      </div>
+                    </div>
+
+                    <div class="nfSnapNote">
+                      <strong>Kickoff:</strong> asynchronous by default (email-based). Optional call only if required by the engagement.
+                    </div>
+                  </div>
+                </details>
+
                 <div class="nfOfferActions">
                   <a class="btn" href="/trust-brief/intake/" data-primary-cta>Start Trust Brief</a>
                   <a class="btn secondary" href="/trust-brief/">View details</a>
@@ -458,7 +659,7 @@
                     <div class="nfOfferMeta">
                       <span class="nfTag">Ongoing</span>
                       <span class="nfTag">Evidence continuity</span>
-                      <span class="nfTag">Typical $750–$3k / month</span>
+                      <span class="nfTag">Monthly base + add-ons</span>
                     </div>
                   </div>
                   <span class="nfTag" title="Best fit">Best for: audit readiness</span>
@@ -473,6 +674,55 @@
                   <li>Change trail mindset (what changed, when, why)</li>
                   <li>Reduces risk of “answer-later” scrambling</li>
                 </ul>
+
+                <details class="nfOfferSnap">
+                  <summary>
+                    <div>
+                      <div class="k">Procurement snapshot</div>
+                      <div class="m">Deliverables • Inputs • Timeline rule • Scope drivers</div>
+                    </div>
+                    <div class="chev" aria-hidden="true">⌄</div>
+                  </summary>
+                  <div class="bd">
+                    <div class="nfSnapGrid">
+                      <div class="nfSnapItem">
+                        <div class="h">Deliverables (named)</div>
+                        <ul>
+                          <li><strong>Ledger Register</strong> (maintained) — systems, risks, controls, approvals</li>
+                          <li><strong>Board Export</strong> (PDF) — periodic summary + changes since last cycle</li>
+                          <li><strong>Evidence Index</strong> (CSV/XLSX) — what evidence exists, where, and gaps</li>
+                        </ul>
+                      </div>
+                      <div class="nfSnapItem">
+                        <div class="h">Inputs required (non-confidential)</div>
+                        <ul>
+                          <li>List of AI systems/tools (high-level)</li>
+                          <li>Primary owners / accountable roles</li>
+                          <li>Cadence preference (monthly/quarterly)</li>
+                        </ul>
+                      </div>
+                      <div class="nfSnapItem">
+                        <div class="h">Timeline rule</div>
+                        <ul>
+                          <li>Ongoing service; first cycle begins after kickoff</li>
+                          <li>Exports delivered on agreed cadence</li>
+                        </ul>
+                      </div>
+                      <div class="nfSnapItem">
+                        <div class="h">Scope drivers (pricing clarity)</div>
+                        <ul>
+                          <li>Number of systems in scope</li>
+                          <li>Export cadence + stakeholder set</li>
+                          <li>Depth of evidence indexing</li>
+                        </ul>
+                      </div>
+                    </div>
+
+                    <div class="nfSnapNote">
+                      <strong>Kickoff:</strong> asynchronous by default (email-based). Optional call only if required by the engagement.
+                    </div>
+                  </div>
+                </details>
 
                 <div class="nfOfferActions">
                   <a class="btn" href="/trust-ledger/intake/" data-primary-cta>Start Trust Ledger</a>
@@ -503,6 +753,39 @@
                   <li>Reusable structure across engagements</li>
                   <li>Good “start here” when timing is exploratory</li>
                 </ul>
+
+                <details class="nfOfferSnap">
+                  <summary>
+                    <div>
+                      <div class="k">Procurement snapshot</div>
+                      <div class="m">What it is • What you get • How to use it</div>
+                    </div>
+                    <div class="chev" aria-hidden="true">⌄</div>
+                  </summary>
+                  <div class="bd">
+                    <div class="nfSnapGrid">
+                      <div class="nfSnapItem">
+                        <div class="h">Included</div>
+                        <ul>
+                          <li>Reusable templates (policy/control/risk formats)</li>
+                          <li>Client-ready brief structures</li>
+                          <li>Procurement questionnaire support patterns</li>
+                        </ul>
+                      </div>
+                      <div class="nfSnapItem">
+                        <div class="h">Best use</div>
+                        <ul>
+                          <li>SME teams, agencies, or internal enablement</li>
+                          <li>Start with templates → upgrade to Trust Brief/Ledger when needed</li>
+                        </ul>
+                      </div>
+                    </div>
+
+                    <div class="nfSnapNote">
+                      <strong>Note:</strong> Playbook is a product track. For enterprise delivery work, start with QuickScan / Trust Brief / Trust Ledger.
+                    </div>
+                  </div>
+                </details>
 
                 <div class="nfOfferActions">
                   <a class="btn" href="/playbook/pro/" data-primary-cta>Open Playbook Pro</a>
@@ -549,12 +832,6 @@
                   <td>Maintained register + exports</td>
                 </tr>
                 <tr>
-                  <td>Typical price</td>
-                  <td>$1.5k–$4k CAD</td>
-                  <td>$3k–$10k CAD</td>
-                  <td>$750–$3k / month</td>
-                </tr>
-                <tr>
                   <td>Start</td>
                   <td><a href="/copilot/quickscan/intake/">Intake</a></td>
                   <td><a href="/trust-brief/intake/">Intake</a></td>
@@ -564,20 +841,20 @@
             </table>
 
             <div class="nfGateNotice" style="margin-top:12px;">
-              <strong>Tip:</strong> If a purchase needs internal approval, use the Invoice / PO option below and attach this page link to the request.
+              <strong>Tip:</strong> If a purchase needs internal approval, share this page link and attach the procurement pack from the Invoice / PO section below.
             </div>
           </div>
         </section>
 
-        <!-- ROUTER -->
-        <section class="nfGateCard" id="router" aria-label="60-second router" style="margin-top:14px;">
+        <!-- ROUTER (Wizard) -->
+        <section class="nfGateCard" id="router" aria-label="Wizard router" style="margin-top:14px;">
           <div class="nfGateCardHd">
             <h2 class="nfGateCardTitle">Not sure which fits?</h2>
-            <p class="nfGateMuted">Take a 60-second router and get one recommendation.</p>
+            <p class="nfGateMuted">Answer two quick questions. The wizard auto-advances and gives one recommendation.</p>
           </div>
           <div class="nfGateCardBd">
             <div class="nfRouterToggleRow" aria-label="Router actions">
-              <button class="btn" type="button" id="nfRouterOpenBtn" aria-controls="nfRouterCard" aria-expanded="false">Start router</button>
+              <button class="btn" type="button" id="nfRouterOpenBtn" aria-controls="nfRouterCard" aria-expanded="false">Start wizard</button>
               <a class="btn secondary" href="/copilot">Copilot hub</a>
               <a class="btn secondary" href="/status/">Status</a>
             </div>
@@ -588,71 +865,83 @@
                   <strong>Public intake = non-confidential.</strong> Use safe, high-level selections. Secure sharing is confirmed after kickoff.
                 </div>
 
-                <!-- Q1 -->
-                <div class="nfRouterQTitle">1) What are you starting with?</div>
-                <div class="nfRouterOpts" role="radiogroup" aria-label="Start situation">
-                  <label class="nfRouterOpt">
-                    <input type="radio" name="nf_situation" value="copilot" />
-                    <div>
-                      <div class="t">Microsoft 365 Copilot rollout</div>
-                      <div class="d">Need a fast posture and evidence pack for leadership review.</div>
-                    </div>
-                  </label>
-                  <label class="nfRouterOpt">
-                    <input type="radio" name="nf_situation" value="plan" />
-                    <div>
-                      <div class="t">Need a governance plan</div>
-                      <div class="d">Owners, controls, decisions, and a clear roadmap.</div>
-                    </div>
-                  </label>
-                  <label class="nfRouterOpt">
-                    <input type="radio" name="nf_situation" value="ongoing" />
-                    <div>
-                      <div class="t">Need ongoing evidence readiness</div>
-                      <div class="d">A maintained register with repeatable exports.</div>
-                    </div>
-                  </label>
-                  <label class="nfRouterOpt">
-                    <input type="radio" name="nf_situation" value="templates" />
-                    <div>
-                      <div class="t">Need templates first</div>
-                      <div class="d">A reusable kit for teams or agencies.</div>
-                    </div>
-                  </label>
+                <div class="nfRouterTop">
+                  <div class="nfRouterSteps" aria-label="Wizard steps">
+                    <span class="nfStepPill nfStepPillActive" id="nfStep1Pill"><strong>Step 1</strong> · Starting point</span>
+                    <span class="nfStepPill" id="nfStep2Pill"><strong>Step 2</strong> · Timing</span>
+                  </div>
+                  <div class="nfRouterActions" style="margin-top:0;">
+                    <button class="btn secondary" type="button" id="nfWizardBackBtn" hidden>Back</button>
+                    <button class="btn secondary" type="button" id="nfWizardResetBtn">Reset</button>
+                  </div>
                 </div>
 
-                <!-- Q2 -->
-                <div class="nfRouterQTitle">2) Timing</div>
-                <div class="nfRouterOpts" role="radiogroup" aria-label="Timing">
-                  <label class="nfRouterOpt">
-                    <input type="radio" name="nf_timing" value="fast" />
-                    <div>
-                      <div class="t">Urgent (1–2 weeks)</div>
-                      <div class="d">A quick package with clear outputs.</div>
-                    </div>
-                  </label>
-                  <label class="nfRouterOpt">
-                    <input type="radio" name="nf_timing" value="normal" />
-                    <div>
-                      <div class="t">This quarter (2–6 weeks)</div>
-                      <div class="d">Structured planning and internal alignment.</div>
-                    </div>
-                  </label>
-                  <label class="nfRouterOpt">
-                    <input type="radio" name="nf_timing" value="ongoing" />
-                    <div>
-                      <div class="t">Ongoing</div>
-                      <div class="d">Continuity and readiness over time.</div>
-                    </div>
-                  </label>
+                <!-- STEP 1 -->
+                <div id="nfWizardStep1">
+                  <div class="nfRouterQTitle">1) What are you starting with?</div>
+                  <div class="nfRouterOpts" role="radiogroup" aria-label="Start situation">
+                    <label class="nfRouterOpt">
+                      <input type="radio" name="nf_situation" value="copilot" />
+                      <div>
+                        <div class="t">Microsoft 365 Copilot rollout</div>
+                        <div class="d">Need a fast posture and evidence pack for leadership review.</div>
+                      </div>
+                    </label>
+                    <label class="nfRouterOpt">
+                      <input type="radio" name="nf_situation" value="plan" />
+                      <div>
+                        <div class="t">Need a governance plan</div>
+                        <div class="d">Owners, controls, decisions, and a clear roadmap.</div>
+                      </div>
+                    </label>
+                    <label class="nfRouterOpt">
+                      <input type="radio" name="nf_situation" value="ongoing" />
+                      <div>
+                        <div class="t">Need ongoing evidence readiness</div>
+                        <div class="d">A maintained register with repeatable exports.</div>
+                      </div>
+                    </label>
+                    <label class="nfRouterOpt">
+                      <input type="radio" name="nf_situation" value="templates" />
+                      <div>
+                        <div class="t">Need templates first</div>
+                        <div class="d">A reusable kit for teams or agencies.</div>
+                      </div>
+                    </label>
+                  </div>
+
+                  <div class="nfRouterHint nfRouterHintShow" id="nfWizardHint1" role="status">Select one option to continue.</div>
                 </div>
 
-                <div class="nfRouterActions">
-                  <button class="btn" type="button" id="nfRouterFinishBtn" disabled>Get recommendation</button>
-                  <button class="btn secondary" type="button" id="nfRouterResetBtn">Reset</button>
-                </div>
+                <!-- STEP 2 -->
+                <div id="nfWizardStep2" hidden>
+                  <div class="nfRouterQTitle">2) Timing</div>
+                  <div class="nfRouterOpts" role="radiogroup" aria-label="Timing">
+                    <label class="nfRouterOpt">
+                      <input type="radio" name="nf_timing" value="fast" />
+                      <div>
+                        <div class="t">Urgent (1–2 weeks)</div>
+                        <div class="d">A quick package with clear outputs.</div>
+                      </div>
+                    </label>
+                    <label class="nfRouterOpt">
+                      <input type="radio" name="nf_timing" value="normal" />
+                      <div>
+                        <div class="t">This quarter (2–6 weeks)</div>
+                        <div class="d">Structured planning and internal alignment.</div>
+                      </div>
+                    </label>
+                    <label class="nfRouterOpt">
+                      <input type="radio" name="nf_timing" value="ongoing" />
+                      <div>
+                        <div class="t">Ongoing</div>
+                        <div class="d">Continuity and readiness over time.</div>
+                      </div>
+                    </label>
+                  </div>
 
-                <div class="nfRouterHint" id="nfRouterHint" role="status">Select one option in each section to continue.</div>
+                  <div class="nfRouterHint nfRouterHintShow" id="nfWizardHint2" role="status">Select one option to generate a recommendation.</div>
+                </div>
 
                 <div class="nfRecoCard" id="nfRecoCard" hidden aria-label="Recommendation">
                   <div class="nfRecoBadge"><strong>Recommendation</strong> · next best start</div>
@@ -670,6 +959,38 @@
           </div>
         </section>
 
+        <!-- SAMPLES -->
+        <section class="nfGateCard" id="samples" aria-label="Samples" style="margin-top:14px;">
+          <div class="nfGateCardHd">
+            <h2 class="nfGateCardTitle">Samples (redacted)</h2>
+            <p class="nfGateMuted">Short examples for internal alignment. These are intentionally non-confidential.</p>
+          </div>
+          <div class="nfGateCardBd">
+            <div class="nfSamplesGrid" aria-label="Sample cards">
+              <div class="nfSample">
+                <h3>Board memo sample</h3>
+                <p>A short, board-safe decision memo format (structure + recommended decision options).</p>
+                <div class="actions">
+                  <a class="btn secondary" href="/samples/board-memo.pdf">View sample</a>
+                  <a class="btn" href="/copilot/quickscan/intake/">Start QuickScan</a>
+                </div>
+              </div>
+              <div class="nfSample">
+                <h3>Ledger entry sample</h3>
+                <p>A redacted ledger entry example (system → risks → controls → evidence → approvals).</p>
+                <div class="actions">
+                  <a class="btn secondary" href="/samples/ledger-entry.pdf">View sample</a>
+                  <a class="btn" href="/trust-ledger/intake/">Start Trust Ledger</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="nfGateNotice" style="margin-top:12px;">
+              <strong>Note:</strong> If these sample links are not live yet, publish the PDFs at <code>/samples/</code> and keep them redacted by design.
+            </div>
+          </div>
+        </section>
+
         <!-- PROCUREMENT -->
         <section class="nfGateCard" id="procurement" aria-label="Invoice / PO" style="margin-top:14px;">
           <div class="nfGateCardHd">
@@ -678,10 +999,20 @@
           </div>
           <div class="nfGateCardBd">
             <div class="nfGateNotice" style="margin-top:0;">
-              <strong>Invoice / PO:</strong> Available on request. Start with the package intake, select “Invoice / PO”, and a purchase-ready summary will be provided.
+              <strong>Procurement Pack:</strong> Use this for internal approvals and vendor onboarding.
+              <div style="margin-top:10px; display:flex; gap:10px; flex-wrap:wrap;">
+                <a class="btn secondary" href="/vendor/">Open procurement pack</a>
+                <a class="btn" href="/copilot/quickscan/intake/">Start QuickScan (fastest)</a>
+              </div>
             </div>
+
             <div class="nfGateNotice" style="margin-top:12px;">
-              <strong>Support:</strong> <a href="mailto:ceo@noetfield.com">ceo@noetfield.com</a>
+              <strong>Invoice / PO:</strong> Start with the package intake and select “Invoice / PO”. A purchase-ready summary (deliverables + scope + timeline) is provided.
+            </div>
+
+            <div class="nfGateNotice" style="margin-top:12px;">
+              <strong>Support:</strong> <a href="mailto:ceo@noetfield.com">ceo@noetfield.com</a><br/>
+              <strong>Kickoff:</strong> asynchronous by default (email-based). Optional call only if required.
             </div>
           </div>
         </section>
@@ -692,13 +1023,13 @@
         <div class="nfRailBox">
           <div class="nfRailHd">
             <h2 class="nfGateCardTitle" style="margin-bottom:6px;">Purchase & kickoff</h2>
-            <p class="nfGateMuted">Choose a package and start the dedicated intake.</p>
+            <p class="nfGateMuted">Select a package (or use the wizard). Start the dedicated intake.</p>
           </div>
 
           <div class="nfRailBd">
             <div class="nfRailKpi" id="nfRailKpi">
               <strong>Current focus:</strong> Copilot QuickScan<br/>
-              Typical: $1.5k–$4k CAD · 5–7 business days
+              Fastest path to decision-ready outputs · 5–7 business days
             </div>
 
             <div class="nfRailActions" aria-label="Primary actions">
@@ -707,8 +1038,18 @@
             </div>
 
             <div class="nfRailKpi" style="margin-top:12px;">
+              <strong>Procurement</strong><br/>
+              For invoice/PO and vendor onboarding.
+            </div>
+
+            <div class="nfRailActions" aria-label="Procurement actions">
+              <a class="btn secondary" href="/vendor/">Open procurement pack</a>
+              <a class="btn secondary" href="#procurement">Invoice / PO info</a>
+            </div>
+
+            <div class="nfRailKpi" style="margin-top:12px;">
               <strong>Other packages</strong><br/>
-              Use these direct links if the package is already clear.
+              Use direct links if the package is already clear.
             </div>
 
             <div class="nfRailActions" aria-label="Other packages">
@@ -735,7 +1076,7 @@
     <div class="nfBottomInner">
       <div class="nfBottomText" id="nfBottomText"><strong>Start:</strong> Copilot QuickScan</div>
       <a class="btn" id="nfBottomBtn" href="/copilot/quickscan/intake/">Start</a>
-      <a class="btn secondary" href="#router">Router</a>
+      <a class="btn secondary" href="#router">Wizard</a>
     </div>
   </div>
 
@@ -746,7 +1087,7 @@
         quickscan: {
           key: "quickscan",
           name: "Copilot QuickScan",
-          kpi: "<strong>Current focus:</strong> Copilot QuickScan<br/>Typical: $1.5k–$4k CAD · 5–7 business days",
+          kpi: "<strong>Current focus:</strong> Copilot QuickScan<br/>Fastest path to decision-ready outputs · 5–7 business days",
           primaryHref: "/copilot/quickscan/intake/",
           primaryLabel: "Start Copilot QuickScan",
           detailsHref: "/copilot/quickscan/",
@@ -755,7 +1096,7 @@
         brief: {
           key: "brief",
           name: "Trust Brief (6-week)",
-          kpi: "<strong>Current focus:</strong> Trust Brief (6-week)<br/>Typical: $3k–$10k CAD · 6 weeks",
+          kpi: "<strong>Current focus:</strong> Trust Brief (6-week)<br/>Governance plan + roadmap · 6 weeks",
           primaryHref: "/trust-brief/intake/",
           primaryLabel: "Start Trust Brief",
           detailsHref: "/trust-brief/",
@@ -764,7 +1105,7 @@
         ledger: {
           key: "ledger",
           name: "Trust Ledger",
-          kpi: "<strong>Current focus:</strong> Trust Ledger<br/>Typical: $750–$3k / month · ongoing",
+          kpi: "<strong>Current focus:</strong> Trust Ledger<br/>Ongoing evidence continuity · recurring exports",
           primaryHref: "/trust-ledger/intake/",
           primaryLabel: "Start Trust Ledger",
           detailsHref: "/trust-ledger/",
@@ -773,7 +1114,7 @@
         playbook: {
           key: "playbook",
           name: "Playbook Pro (Agency / Pro)",
-          kpi: "<strong>Current focus:</strong> Playbook Pro<br/>749 CAD · one-time purchase",
+          kpi: "<strong>Current focus:</strong> Playbook Pro<br/>Template kit · one-time purchase",
           primaryHref: "/playbook/pro/",
           primaryLabel: "Open Playbook Pro",
           detailsHref: "/playbook/",
@@ -784,6 +1125,16 @@
       function qs(name){
         try { return new URLSearchParams(location.search || "").get(name) || ""; }
         catch(e){ return ""; }
+      }
+
+      function escapeHtml(s){
+        // safer for legacy engines than replaceAll
+        return String(s || "")
+          .replace(/&/g,"&amp;")
+          .replace(/</g,"&lt;")
+          .replace(/>/g,"&gt;")
+          .replace(/"/g,"&quot;")
+          .replace(/'/g,"&#039;");
       }
 
       function clearSelected(){
@@ -822,8 +1173,7 @@
       // Select offer when clicking the card (mobile-friendly)
       document.querySelectorAll("[data-offer]").forEach(function(card){
         card.addEventListener("click", function(e){
-          // do not block link clicks
-          if (e.target && (e.target.closest("a") || e.target.closest("button"))) return;
+          if (e.target && (e.target.closest("a") || e.target.closest("button") || e.target.closest("summary"))) return;
           selectOffer(card.getAttribute("data-offer"));
         });
         card.addEventListener("keydown", function(e){
@@ -844,6 +1194,14 @@
         a.addEventListener("focus", sync);
       });
 
+      // Initial focus: query ?focus=quickscan|brief|ledger|playbook OR last saved OR default quickscan
+      var focus = (qs("focus") || "").trim().toLowerCase();
+      if (!offers[focus]){
+        try { focus = (localStorage.getItem("nf_gate_focus") || "").trim().toLowerCase(); } catch(e){}
+      }
+      if (!offers[focus]) focus = "quickscan";
+      selectOffer(focus);
+
       // Router open/close
       var routerBtn = document.getElementById("nfRouterOpenBtn");
       var routerCard = document.getElementById("nfRouterCard");
@@ -859,16 +1217,48 @@
         });
       }
 
+      // Wizard logic
+      var step1 = document.getElementById("nfWizardStep1");
+      var step2 = document.getElementById("nfWizardStep2");
+      var step1Pill = document.getElementById("nfStep1Pill");
+      var step2Pill = document.getElementById("nfStep2Pill");
+      var backBtn = document.getElementById("nfWizardBackBtn");
+      var resetBtn = document.getElementById("nfWizardResetBtn");
+      var hint1 = document.getElementById("nfWizardHint1");
+      var hint2 = document.getElementById("nfWizardHint2");
+
+      var recoCard = document.getElementById("nfRecoCard");
+      var recoTitle = document.getElementById("nfRecoTitle");
+      var recoDesc = document.getElementById("nfRecoDesc");
+      var recoWhy = document.getElementById("nfRecoWhy");
+      var recoPrimary = document.getElementById("nfRecoPrimary");
+      var recoDetails = document.getElementById("nfRecoDetails");
+
       function v(name){
         var el = document.querySelector('input[name="'+name+'"]:checked');
         return el ? (el.value || "") : "";
       }
 
-      function resetRouter(){
+      function showStep(n){
+        if (!step1 || !step2) return;
+        var s1 = (n === 1);
+        step1.hidden = !s1;
+        step2.hidden = s1;
+
+        if (step1Pill && step2Pill){
+          step1Pill.classList.toggle("nfStepPillActive", s1);
+          step2Pill.classList.toggle("nfStepPillActive", !s1);
+        }
+        if (backBtn) backBtn.hidden = s1;
+
+        if (hint1) hint1.classList.toggle("nfRouterHintShow", s1 && !v("nf_situation"));
+        if (hint2) hint2.classList.toggle("nfRouterHintShow", !s1 && !v("nf_timing"));
+      }
+
+      function resetWizard(){
         document.querySelectorAll('input[name="nf_situation"], input[name="nf_timing"]').forEach(function(i){ i.checked = false; });
-        var rc = document.getElementById("nfRecoCard");
-        if (rc) rc.hidden = true;
-        setRouterReady(false);
+        if (recoCard) recoCard.hidden = true;
+        showStep(1);
       }
 
       function recommend(){
@@ -900,86 +1290,77 @@
         ]};
       }
 
-      var finish = document.getElementById("nfRouterFinishBtn");
-      var reset = document.getElementById("nfRouterResetBtn");
-      var hint = document.getElementById("nfRouterHint");
+      function renderRecommendation(){
+        var situation = v("nf_situation");
+        var timing = v("nf_timing");
+        if (!situation || !timing) return;
 
-      function setRouterReady(ready){
-        if (finish) finish.disabled = !ready;
-        if (hint) hint.classList.toggle("nfRouterHintShow", !ready);
+        var r = recommend();
+        var o = offers[r.key] || offers.quickscan;
+
+        if (recoTitle) recoTitle.textContent = o.name;
+        if (recoDesc) recoDesc.textContent = "Recommended based on your selections. Start the package intake for kickoff.";
+        if (recoWhy) recoWhy.innerHTML = (r.why || []).map(function(x){ return "<li>" + escapeHtml(x) + "</li>"; }).join("");
+        if (recoPrimary){ recoPrimary.href = o.primaryHref; recoPrimary.textContent = "Start"; }
+        if (recoDetails){ recoDetails.href = o.detailsHref; recoDetails.textContent = "View details"; }
+
+        if (recoCard) recoCard.hidden = false;
+
+        // Sync UI focus to the recommended offer
+        selectOffer(o.key);
+
+        if (recoCard) recoCard.scrollIntoView({ behavior: "smooth", block: "start" });
       }
 
-      function routerReady(){
-        return !!(v("nf_situation") && v("nf_timing"));
-      }
-
-      // Enable finish only when both answered
-      document.querySelectorAll('input[name="nf_situation"], input[name="nf_timing"]').forEach(function(i){
+      // Auto-advance: after step 1 selection → step 2
+      document.querySelectorAll('input[name="nf_situation"]').forEach(function(i){
         i.addEventListener("change", function(){
-          setRouterReady(routerReady());
+          if (hint1) hint1.classList.remove("nfRouterHintShow");
+          showStep(2);
+          // focus first option in step 2 for fast completion
+          var first = document.querySelector('#nfWizardStep2 input[name="nf_timing"]');
+          if (first) first.focus({ preventScroll: true });
         });
       });
 
-      if (reset) reset.addEventListener("click", resetRouter);
+      // Auto-generate: after step 2 selection → show recommendation
+      document.querySelectorAll('input[name="nf_timing"]').forEach(function(i){
+        i.addEventListener("change", function(){
+          if (hint2) hint2.classList.remove("nfRouterHintShow");
+          renderRecommendation();
+        });
+      });
 
-      if (finish){
-        finish.addEventListener("click", function(){
-          if (!routerReady()) { setRouterReady(false); return; }
-
-          var r = recommend();
-          var o = offers[r.key] || offers.quickscan;
-
-          var rc = document.getElementById("nfRecoCard");
-          var t = document.getElementById("nfRecoTitle");
-          var d = document.getElementById("nfRecoDesc");
-          var w = document.getElementById("nfRecoWhy");
-          var p = document.getElementById("nfRecoPrimary");
-          var det = document.getElementById("nfRecoDetails");
-
-          if (t) t.textContent = o.name;
-          if (d) d.textContent = "Recommended based on your selections. Start the package intake for kickoff.";
-          if (w) w.innerHTML = (r.why || []).map(function(x){ return "<li>" + escapeHtml(x) + "</li>"; }).join("");
-          if (p){ p.href = o.primaryHref; p.textContent = "Start"; }
-          if (det){ det.href = o.detailsHref; det.textContent = "View details"; }
-          if (rc) rc.hidden = false;
-
-          selectOffer(o.key);
-          if (rc) rc.scrollIntoView({ behavior: "smooth", block: "start" });
+      if (backBtn){
+        backBtn.addEventListener("click", function(){
+          showStep(1);
         });
       }
-
-      function escapeHtml(s){
-        return String(s || "")
-          .replaceAll("&","&amp;")
-          .replaceAll("<","&lt;")
-          .replaceAll(">","&gt;")
-          .replaceAll('"',"&quot;")
-          .replaceAll("'","&#039;");
+      if (resetBtn){
+        resetBtn.addEventListener("click", resetWizard);
       }
 
-      // Initial focus: query ?focus=quickscan|brief|ledger|playbook OR last saved OR default quickscan
-      var focus = (qs("focus") || "").trim().toLowerCase();
-      if (!offers[focus]){
-        try { focus = (localStorage.getItem("nf_gate_focus") || "").trim().toLowerCase(); } catch(e){}
-      }
-      if (!offers[focus]) focus = "quickscan";
-      selectOffer(focus);
-
-      // Auto-open router if ?router=1
+      // Router open via ?router=1
       if ((qs("router") || "") === "1"){
         setRouterOpen(true);
-        setRouterReady(routerReady());
+        // if partial answers exist (e.g., user navigated back), place them
+        showStep(v("nf_situation") ? 2 : 1);
+      } else {
+        // default wizard state
+        showStep(1);
       }
     })();
   </script>
 
   <!--
-    CHANGELOG (gate v2.1)
-    - Kept your v2 layout and visuals; tightened buyer-safety language (“Public intake = non-confidential”) to match site policy.
-    - Mobile: bottom bar is fixed (not sticky) + safe-area padding; added body padding to prevent overlap.
-    - Router: finish button disabled until both answers are selected; inline hint shown when incomplete.
-    - Offers: card click selects offer (better on mobile); keyboard support on cards.
-    - Rail/bottom bar remain synced via a single offers model.
+    CHANGELOG (gate v3)
+    - Made Gate explicitly the primary entry (buyer-first, direct start).
+    - Added procurement-ready “snapshot” per package: Deliverables + Inputs + Timeline rule + Scope drivers (reduces back-and-forth).
+    - Upgraded router into a true wizard: one question per step, auto-advance, auto-generate recommendation.
+    - Added Samples section (redacted-by-design) for internal alignment; links can be published under /samples/.
+    - Added Procurement Pack CTA linking to /vendor/ (keeps PO/invoice path obvious).
+    - Reinforced async-first kickoff language (optional call only if required).
+    - Preserved locked assets: /assets/noetfield-shell.css + /assets/noetfield-shell.js and header/footer injection.
 
     SMOKE TEST
     - GET /gate/ returns 200
@@ -990,7 +1371,9 @@
       - /trust-brief/intake/
       - /trust-ledger/intake/
       - /playbook/pro/
-    - Router opens, requires 2 answers, produces a recommendation, highlights the matching offer, and updates right rail + bottom bar
+      - /vendor/ (procurement pack)
+    - Wizard: opens, Step 1 selection advances to Step 2, Step 2 selection generates recommendation, highlights offer, updates rail + bottom bar
+    - Mobile: bottom bar fixed, no overlap (body padding applied)
   -->
 </body>
 </html>

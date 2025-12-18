@@ -1,4 +1,4 @@
-<!-- /copilot/quickscan/index.html — Version 9 (conversion-optimized + objections + sticky CTA) -->
+<!-- /copilot/quickscan/index.html — Version 10 (procurement-ready + decision clarity + single CTA) -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -43,7 +43,7 @@
   <script src="/assets/noetfield-shell.js" defer></script>
 
   <style>
-    /* Layout baseline aligned with reference */
+    /* Reference-aligned visuals */
     .hero { padding: 22px 0 14px; }
     .heroShell{
       position:relative;
@@ -199,6 +199,7 @@
     .steps li{ margin:6px 0; }
 
     .actions{ display:flex; gap:12px; flex-wrap:wrap; align-items:center; margin-top:12px; }
+
     .box{
       margin-top:12px;
       padding:12px 12px;
@@ -212,21 +213,54 @@
     .box strong{ color:var(--text); font-weight:800; }
     .box a{ border-bottom:1px solid rgba(255,255,255,.18); }
 
-    .priceRow{
-      display:flex; gap:12px; flex-wrap:wrap; align-items:stretch;
-      margin-top:12px;
+    /* Procurement facts */
+    .facts{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:10px;
     }
-    .priceCard{
-      flex:1 1 220px;
-      border-radius:16px;
+    .factRow{
+      border-radius:14px;
       border:1px solid rgba(255,255,255,.10);
       background: rgba(255,255,255,.03);
       padding:12px;
-      min-width:0;
     }
-    .priceCard .name{ font-weight:900; letter-spacing:-.2px; }
-    .priceCard .amt{ margin-top:8px; font-size:22px; font-weight:900; letter-spacing:-.4px; }
-    .priceCard .sub{ margin-top:6px; color:var(--muted2); font-size:12.6px; line-height:1.55; }
+    .factRow .k{
+      font-size:11px;
+      letter-spacing:.28em;
+      text-transform:uppercase;
+      color:var(--muted2);
+    }
+    .factRow .v{
+      margin-top:6px;
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.55;
+    }
+    .factRow .v strong{ color:var(--text); font-weight:900; }
+
+    /* Mini TOC (rail) */
+    .toc{
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+      margin-top:10px;
+    }
+    .toc a{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      padding:10px 12px;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      color:var(--muted);
+      font-size:13px;
+      text-decoration:none;
+    }
+    .toc a:hover{ border-color: rgba(255,255,255,.16); }
+    .toc span{ color: var(--muted2); font-size: 12px; }
 
     /* FAQ (objection-handling) */
     details.faq{
@@ -251,7 +285,7 @@
       line-height:1.65;
     }
 
-    /* Sticky CTA bar (single CTA, no distractions) */
+    /* Sticky CTA bar (single CTA only) */
     .stickyCta{
       position: sticky;
       bottom: 0;
@@ -311,7 +345,7 @@
 
   <main id="main" class="wrap">
     <!-- HERO -->
-    <section class="hero">
+    <section class="hero" id="top">
       <div class="heroShell">
         <div class="heroInner">
           <div class="eyebrow"><span class="dot"></span> Microsoft 365 Copilot • 5–7 business days</div>
@@ -339,7 +373,7 @@
 
           <!-- Single CTA -->
           <div class="actions" style="margin-top:14px;">
-            <a class="btn" href="/gate/intake/?need=copilot-quickscan">Start intake</a>
+            <a class="btn" href="/gate/intake/?need=copilot-quickscan" data-cta="primary">Start intake</a>
           </div>
 
           <div class="box" style="margin-top:12px;">
@@ -353,7 +387,7 @@
       <!-- MAIN -->
       <div class="card">
         <div class="hd">
-          <h2>Deliverables (D0–D5)</h2>
+          <h2 id="deliverables">Deliverables (D0–D5)</h2>
           <p>Named, exportable artifacts — designed to remove ambiguity and withstand scrutiny.</p>
         </div>
 
@@ -391,7 +425,7 @@
             </div>
           </div>
 
-          <div class="section" style="margin-top:14px;">
+          <div class="section" id="timing" style="margin-top:14px;">
             <div class="sectionTitle">5–7 day structure</div>
             <p class="sectionDesc">Designed to be decisive: scope → posture → evidence → board-ready pack.</p>
 
@@ -433,7 +467,19 @@
             </table>
           </div>
 
-          <div class="section">
+          <div class="section" id="readiness">
+            <div class="sectionTitle">Quick readiness check</div>
+            <p class="sectionDesc">If 2+ items are true, QuickScan is typically the right fast step.</p>
+            <ol class="steps">
+              <li>Copilot is live (or within 30 days) and leadership wants a defensible posture.</li>
+              <li>SharePoint/Teams permissions are not cleanly governed (risk of oversharing).</li>
+              <li>Client due diligence or audit questions require exportable evidence.</li>
+              <li>Connectors/extensions/custom copilots may be introduced without clear controls.</li>
+              <li>Owners and proof (logs/retention/exports) are not clearly mapped.</li>
+            </ol>
+          </div>
+
+          <div class="section" id="access">
             <div class="sectionTitle">Access required</div>
             <p class="sectionDesc">Read-only is preferred. No content sampling unless explicitly authorized.</p>
             <ol class="steps">
@@ -443,12 +489,12 @@
             </ol>
           </div>
 
-          <div class="section">
+          <div class="section" id="limits">
             <div class="sectionTitle">Limitations</div>
             <p class="sectionDesc">Assessment + evidence-readiness outputs. Implementation/remediation and adversarial testing are separate scopes.</p>
           </div>
 
-          <div class="section">
+          <div class="section" id="faq">
             <div class="sectionTitle">FAQ (common objections)</div>
             <p class="sectionDesc">Short answers to reduce back-and-forth and unblock decision-making.</p>
 
@@ -471,15 +517,10 @@
               <summary>Is this an implementation project?</summary>
               <div class="a">No. QuickScan is assessment + evidence readiness. Implementation/remediation can be scoped as a separate sprint after the evidence pack is delivered.</div>
             </details>
-
-            <details class="faq">
-              <summary>What if we are not ready to go live?</summary>
-              <div class="a">QuickScan still produces a defensible posture and a ranked plan. The output is designed to support a safe “pause + fix” decision, not force go-live.</div>
-            </details>
           </div>
 
           <div class="actions">
-            <a class="btn" href="/gate/intake/?need=copilot-quickscan">Start intake</a>
+            <a class="btn" href="/gate/intake/?need=copilot-quickscan" data-cta="primary-bottom">Start intake</a>
           </div>
 
           <div class="box">
@@ -490,36 +531,60 @@
       </div>
 
       <!-- ASIDE -->
-      <aside class="card">
+      <aside class="card" aria-label="Right rail">
         <div class="hd">
-          <h2>Use this when</h2>
-          <p>Copilot is live (or imminent) and leadership needs a defensible posture — fast.</p>
+          <h2>Procurement facts</h2>
+          <p>Minimal friction for buyers and purchasing teams.</p>
         </div>
         <div class="bd">
-          <div class="box"><strong>Go / no-go pressure:</strong> decision-grade evidence, not assurances.</div>
-          <div class="box"><strong>Permission sprawl risk:</strong> Copilot could amplify oversharing.</div>
-          <div class="box"><strong>Client due diligence:</strong> exportable artifacts for external questions.</div>
-
-          <div class="section" style="margin-top:14px;">
-            <div class="sectionTitle">Pricing (signal)</div>
-            <p class="sectionDesc">Anchor for early buyers; refine after initial deliveries.</p>
-
-            <div class="priceRow" aria-label="Pricing">
-              <div class="priceCard">
-                <div class="name">Copilot QuickScan</div>
-                <div class="amt">From $2,500 CAD</div>
-                <div class="sub">Typical range: $1,500–$4,000 CAD depending on tenant scope, enabled surfaces, and connectors.</div>
-              </div>
-              <div class="priceCard">
-                <div class="name">Common next step</div>
-                <div class="amt">Remediation sprint</div>
-                <div class="sub">2–3 weeks + re-scan + updated evidence pack and control register.</div>
-              </div>
+          <div class="facts" id="procurement">
+            <div class="factRow">
+              <div class="k">Pricing</div>
+              <div class="v"><strong>Typical range:</strong> $1,500–$4,000 CAD. <strong>Taxes</strong> added where applicable.</div>
+            </div>
+            <div class="factRow">
+              <div class="k">Delivery</div>
+              <div class="v"><strong>5–7 business days</strong> after scope lock + access readiness.</div>
+            </div>
+            <div class="factRow">
+              <div class="k">Format</div>
+              <div class="v">Board-ready pack (PDF/Doc) + registers/sheets as applicable (exportable, named D0–D5).</div>
+            </div>
+            <div class="factRow">
+              <div class="k">Meetings</div>
+              <div class="v">Typically 2 touchpoints: kickoff (scope lock) + readout (delivery).</div>
+            </div>
+            <div class="factRow">
+              <div class="k">Access posture</div>
+              <div class="v"><strong>Read-only preferred.</strong> No content sampling unless explicitly authorized.</div>
+            </div>
+            <div class="factRow">
+              <div class="k">Intake rule</div>
+              <div class="v"><strong>Public intake = non-confidential</strong> by design.</div>
             </div>
           </div>
 
-          <div class="actions">
-            <a class="btn" href="/gate/intake/?need=copilot-quickscan">Start intake</a>
+          <div class="section" style="margin-top:14px;">
+            <div class="sectionTitle">On this page</div>
+            <div class="toc" aria-label="Table of contents">
+              <a href="#deliverables">Deliverables <span>D0–D5</span></a>
+              <a href="#timing">Timing <span>5–7 days</span></a>
+              <a href="#readiness">Readiness <span>quick check</span></a>
+              <a href="#access">Access <span>read-only</span></a>
+              <a href="#limits">Limitations <span>scope</span></a>
+              <a href="#faq">FAQ <span>objections</span></a>
+            </div>
+          </div>
+
+          <div class="actions" style="margin-top:14px;">
+            <a class="btn" href="/gate/intake/?need=copilot-quickscan" data-cta="primary-rail">Start intake</a>
+          </div>
+
+          <div class="box" style="margin-top:12px;">
+            <strong>Related:</strong><br/>
+            <a href="/copilot/">Copilot hub</a> ·
+            <a href="/trust-brief/">Trust Brief</a> ·
+            <a href="/trust-ledger/">Trust Ledger</a>
           </div>
         </div>
       </aside>
@@ -535,15 +600,16 @@
       <div class="stickyText">
         <strong>Copilot QuickScan</strong> — board-ready evidence in 5–7 business days. Public intake is non-confidential.
       </div>
-      <a class="btn" href="/gate/intake/?need=copilot-quickscan">Start intake</a>
+      <a class="btn" href="/gate/intake/?need=copilot-quickscan" data-cta="primary-sticky">Start intake</a>
     </div>
   </div>
 
   <!--
-  CHANGELOG (v9)
-  - Added objection-handling FAQ (confidentiality, deliverables, access, scope, readiness).
-  - Added sticky single-CTA bar to increase conversion on long scroll (no additional CTAs).
-  - Preserved v8 structure: D0–D5, 5–7 plan, access requirements, limitations, pricing signal.
+  CHANGELOG (v10)
+  - Added procurement-ready facts (pricing/tax note, format, meetings, delivery).
+  - Added right-rail “On this page” TOC for fast executive scanning.
+  - Added quick readiness checklist to reduce unqualified leads and speed decisions.
+  - Preserved single CTA strategy + sticky CTA bar + objection FAQ.
   -->
 
   <!--
@@ -552,8 +618,7 @@
   - Assets return 200: /assets/noetfield-shell.css and /assets/noetfield-shell.js
   - Header/footer inject: #nfHeader and #nfFooter populated after load
   - Primary CTA works: /gate/intake/?need=copilot-quickscan
-  - Sticky CTA appears on scroll and does not overlap critical content
-  - Mobile: grid collapses; FAQ toggles work; buttons tappable
+  - Mobile: rail stacks; TOC links jump; buttons tappable; sticky CTA not blocking
   -->
 </body>
 </html>

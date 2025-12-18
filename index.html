@@ -2,13 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Noetfield – Trust and Stewardship in AI</title>
+  <title>Noetfield — Trust and Stewardship in AI</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <meta
-    name="description"
-    content="Noetfield helps boards and operators turn scattered AI activity into a board-ready Trust Ledger and a 6-week Trust Brief — evidence-first, defensible, and governance-grade."
-  />
+  <meta name="description" content="Board-first AI governance artefacts built to be evidence-ready and defensible — Trust Ledger, Trust Brief, and a practical playbook for real organizations." />
   <meta name="robots" content="index,follow" />
   <meta name="author" content="Noetfield Systems Inc." />
   <meta name="theme-color" content="#07070b" />
@@ -18,48 +15,36 @@
   <link rel="icon" href="/noetfield-favicon-512.png" type="image/png" />
   <link rel="apple-touch-icon" href="/noetfield-favicon-512.png" />
 
-  <!-- OG -->
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Noetfield" />
-  <meta property="og:title" content="Noetfield – Trust and Stewardship in AI" />
-  <meta
-    property="og:description"
-    content="Board-ready AI governance artefacts: Trust Ledger + Trust Brief — evidence-first, defensible, and decision-grade."
-  />
+  <meta property="og:title" content="Noetfield — Trust and Stewardship in AI" />
+  <meta property="og:description" content="Board-first AI governance artefacts built to be evidence-ready and defensible — Trust Ledger, Trust Brief, and a practical playbook." />
   <meta property="og:url" content="https://www.noetfield.com/" />
   <meta property="og:image" content="https://www.noetfield.com/noetfield-og.png" />
 
-  <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Noetfield – Trust and Stewardship in AI" />
-  <meta
-    name="twitter:description"
-    content="Board-ready AI governance artefacts: Trust Ledger + Trust Brief — evidence-first, defensible, and decision-grade."
-  />
+  <meta name="twitter:title" content="Noetfield — Trust and Stewardship in AI" />
+  <meta name="twitter:description" content="Board-first AI governance artefacts built to be evidence-ready and defensible — Trust Ledger, Trust Brief, and a practical playbook." />
   <meta name="twitter:image" content="https://www.noetfield.com/noetfield-og.png" />
 
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
-    rel="stylesheet"
-  />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
-  <!-- LOCKED SHELL -->
+  <!-- Locked shell (inject header/footer + RID + nav behaviors) -->
   <link rel="stylesheet" href="/assets/noetfield-shell.css" />
   <script src="/assets/noetfield-shell.js" defer></script>
 
-  <!-- Page-only styles -->
+  <!-- Page-only styles (safe, minimal; relies on shell tokens/classes) -->
   <style>
-    .hero{padding:22px 0 14px}
+    .hero{padding:26px 0 12px}
     .heroShell{
       position:relative;
-      border-radius: calc(var(--radius) + 8px);
+      border-radius: calc(var(--radius) + 10px);
       border: 1px solid rgba(255,255,255,.11);
       background:
-        radial-gradient(1100px 460px at 18% 0%, rgba(200,163,73,.18), transparent 60%),
-        radial-gradient(1000px 420px at 90% 10%, rgba(122,167,255,.10), transparent 62%),
+        radial-gradient(980px 420px at 16% 0%, rgba(200,163,73,.18), transparent 60%),
+        radial-gradient(980px 420px at 86% 10%, rgba(122,167,255,.10), transparent 62%),
         linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.022));
       box-shadow: var(--shadow);
       overflow:hidden;
@@ -73,7 +58,6 @@
       mask-image: linear-gradient(180deg, black 0%, black 58%, transparent 96%);
     }
     .heroInner{padding: 26px 22px}
-
     .eyebrow{
       display:inline-flex; gap:10px; align-items:center;
       color:var(--muted);
@@ -90,11 +74,10 @@
     }
 
     h1{margin:14px 0 10px; font-size:42px; line-height:1.06; letter-spacing:-0.85px}
-    .lead{margin:0; color:var(--muted); font-size:16px; max-width: 980px; line-height:1.75}
-    .lead strong{color:var(--text); font-weight:800}
-    .lead a{border-bottom:1px solid rgba(255,255,255,.18)}
+    .lead{margin:0; color:var(--muted); font-size:16px; max-width: 980px}
 
-    .metaRow{display:flex; flex-wrap:wrap; gap:10px; margin-top:14px}
+    .heroActions{display:flex; gap:12px; flex-wrap:wrap; margin-top:16px; align-items:center}
+    .heroMeta{display:flex; flex-wrap:wrap; gap:10px; margin-top:14px}
     .pill{
       display:inline-flex; align-items:center; gap:10px;
       padding:9px 12px;
@@ -106,15 +89,11 @@
     }
     .pill strong{color:var(--text); font-weight:800}
 
-    .ctaRow{display:flex; gap:12px; flex-wrap:wrap; align-items:center; margin-top:14px}
-    .ctaRow .btn{white-space:nowrap}
-
     .grid{
       display:grid;
-      grid-template-columns: 1.15fr .85fr;
-      gap:18px;
-      margin: 18px 0 34px;
-      align-items:start;
+      grid-template-columns: repeat(3, 1fr);
+      gap:14px;
+      margin: 18px 0 18px;
     }
     .card{
       border-radius:var(--radius);
@@ -124,73 +103,68 @@
       overflow:hidden;
       min-width:0;
     }
-    .card .hd{padding:18px 18px 0}
-    .card h2{margin:0 0 8px; font-size:18px; letter-spacing:-0.2px}
-    .card p{margin:0 0 12px; color:var(--muted); line-height:1.7}
     .card .bd{padding:18px}
+    .card h2{margin:0 0 8px; font-size:18px; letter-spacing:-0.2px}
+    .card p{margin:0 0 12px; color:var(--muted); line-height:1.55}
+    .card .links{display:flex; gap:10px; flex-wrap:wrap; margin-top:12px}
 
-    .kGrid{display:grid; gap:10px; margin-top:10px}
-    .k{
+    .section{
+      margin: 14px 0;
       border:1px solid rgba(255,255,255,.10);
       background: rgba(255,255,255,.03);
       border-radius:16px;
-      padding:12px 12px;
+      padding:14px;
     }
-    .kTitle{margin:0; font-weight:900; font-size:14px; letter-spacing:-.2px}
-    .kDesc{margin:8px 0 0; color:var(--muted); font-size:13px; line-height:1.65}
-    .kActions{display:flex; gap:10px; flex-wrap:wrap; margin-top:10px}
+    .kicker{font-weight:900; letter-spacing:-.2px; margin:0 0 6px; font-size:14px}
+    .sub{margin:0; color:var(--muted2); font-size:12.5px; line-height:1.55}
 
-    .box{
+    .steps{
+      display:grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap:12px;
       margin-top:12px;
-      padding:12px 12px;
+    }
+    .step{
       border-radius:14px;
       border:1px solid rgba(255,255,255,.10);
       background: rgba(255,255,255,.03);
-      color:var(--muted2);
-      font-size:12.5px;
-      line-height:1.6;
+      padding:12px;
+      min-width:0;
     }
-    .box strong{color:var(--text); font-weight:800}
-    .box a{border-bottom:1px solid rgba(255,255,255,.18)}
+    .step b{display:block; margin:0 0 6px; letter-spacing:-.2px}
+    .step span{display:block; color:var(--muted); font-size:13px; line-height:1.5}
 
-    .mini{
-      margin-top:10px;
-      color:var(--muted2);
-      font-size:12.5px;
-      line-height:1.6;
+    .ctaBand{
+      margin: 16px 0 34px;
+      border-radius: calc(var(--radius) + 8px);
+      border: 1px solid rgba(255,255,255,.11);
+      background:
+        radial-gradient(900px 360px at 20% 10%, rgba(200,163,73,.16), transparent 60%),
+        linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      padding: 18px;
+      box-shadow: var(--shadow);
     }
-
-    .split{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap:10px;
-      margin-top:10px;
-    }
-    .tile{
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.03);
-      border-radius:16px;
-      padding:12px 12px;
-    }
-    .tile strong{color:var(--text); font-weight:900}
-    .tile div{margin-top:6px; color:var(--muted); font-size:13px; line-height:1.6}
+    .ctaBand h3{margin:0 0 8px; font-size:18px; letter-spacing:-0.2px}
+    .ctaBand p{margin:0; color:var(--muted); line-height:1.55}
+    .ctaBand .row{display:flex; gap:12px; flex-wrap:wrap; align-items:center; margin-top:12px}
 
     @media (max-width: 980px){
-      .grid{grid-template-columns:1fr}
-    }
-    @media (max-width: 760px){
-      h1{font-size:32px}
-      .split{grid-template-columns:1fr}
+      .grid{grid-template-columns: 1fr}
+      .steps{grid-template-columns: 1fr}
+      h1{font-size:34px}
+      .heroInner{padding: 22px 18px}
     }
   </style>
 
   <script type="application/ld+json">
   {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "name": "Noetfield",
-    "url": "https://www.noetfield.com/",
-    "publisher": { "@type": "Organization", "name": "Noetfield Systems Inc." }
+    "@context":"https://schema.org",
+    "@type":"WebPage",
+    "name":"Noetfield — Trust and Stewardship in AI",
+    "url":"https://www.noetfield.com/",
+    "description":"Board-first AI governance artefacts built to be evidence-ready and defensible — Trust Ledger, Trust Brief, and a practical playbook for real organizations.",
+    "isPartOf":{"@type":"WebSite","name":"Noetfield","url":"https://www.noetfield.com/"},
+    "publisher":{"@type":"Organization","name":"Noetfield Systems Inc."}
   }
   </script>
 </head>
@@ -199,147 +173,111 @@
   <div class="bg" aria-hidden="true"></div>
   <a class="skip" href="#main">Skip to content</a>
 
-  <!-- injected header -->
-  <div id="nfHeader"></div>
+  <!-- Optional backdrop support (safe if unused) -->
+  <div id="navBackdrop" class="navBackdrop" hidden aria-hidden="true"></div>
+
+  <!-- Injected header -->
+  <header id="nfHeader"></header>
 
   <main id="main" class="wrap">
-    <!-- HERO -->
-    <section class="hero">
+    <section class="hero" aria-label="Noetfield overview">
       <div class="heroShell">
         <div class="heroInner">
-          <div class="eyebrow"><span class="dot"></span> Trust and stewardship in AI</div>
-          <h1>Governance-grade AI. Built for boards.</h1>
+          <div class="eyebrow"><span class="dot" aria-hidden="true"></span> Evidence-first governance for AI that makes material decisions</div>
+          <h1>Trust for AI, built for boards</h1>
           <p class="lead">
-            Noetfield turns scattered AI usage into an <strong>evidence-first</strong> system:
-            a <a href="/trust-ledger/"><strong>Trust Ledger</strong></a> (board-ready register)
-            and a <a href="/trust-brief/"><strong>Trust Brief</strong></a> (6-week diagnostic)
-            that makes decisions defensible — without building a compliance department.
+            Noetfield turns scattered AI usage into a board-ready system of records — clear controls, readable evidence trails,
+            and decision-grade artefacts you can defend.
           </p>
 
-          <div class="metaRow" aria-label="Highlights">
-            <div class="pill"><strong>Evidence trail</strong></div>
-            <div class="pill"><strong>Board-ready</strong></div>
-            <div class="pill"><strong>Decision memos</strong></div>
-            <div class="pill"><strong>Request ID</strong> tracking</div>
+          <div class="heroActions" aria-label="Primary actions">
+            <a class="btn" href="/gate/intake/" data-rid-link>Start intake</a>
+            <a class="btn secondary" href="/gate/" data-rid-link>Enter Gate</a>
+            <a class="btn secondary" href="/trust-ledger/">Explore Trust Ledger</a>
+            <a class="btn secondary" href="/trust-brief/">See Trust Brief</a>
+            <a class="btn secondary" href="/status/" data-rid-link>Open Status</a>
           </div>
 
-          <div class="ctaRow" aria-label="Primary actions">
-            <a class="btn" href="/gate/">Enter Gate</a>
-            <a class="btn secondary" href="/trust-brief/">Trust Brief</a>
-            <a class="btn secondary" href="/trust-ledger/">Trust Ledger</a>
-            <a class="btn secondary" href="/playbook/">Playbook</a>
-          </div>
-
-          <div class="mini">
-            Already routed? Check <a href="/status/">Status</a> or access <a href="/portal/">Portal</a> (rolling out).
+          <div class="heroMeta" aria-label="Highlights">
+            <div class="pill"><strong>Request ID</strong> routing across flows</div>
+            <div class="pill"><strong>Evidence</strong> attached to claims</div>
+            <div class="pill"><strong>Board-safe</strong> formatting</div>
+            <div class="pill"><strong>Clean scope</strong> predictable delivery</div>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="grid">
-      <!-- LEFT -->
-      <div class="card">
-        <div class="hd">
-          <h2>What we deliver</h2>
-          <p>Two artefacts, one system: governance that survives scrutiny.</p>
-        </div>
+    <section class="grid" aria-label="Core modules">
+      <article class="card">
         <div class="bd">
-          <div class="kGrid" aria-label="Deliverables">
-            <div class="k">
-              <div class="kTitle">Trust Ledger</div>
-              <p class="kDesc">
-                A board-ready register of AI systems, material use-cases, controls, evidence, and sign-offs —
-                formatted for executive review and regulator-facing conversations.
-              </p>
-              <div class="kActions">
-                <a class="btn secondary" href="/trust-ledger/">View Trust Ledger</a>
-                <a class="btn secondary" href="/gate/">Request via Gate</a>
-              </div>
-            </div>
-
-            <div class="k">
-              <div class="kTitle">Trust Brief (6-week diagnostic)</div>
-              <p class="kDesc">
-                A tight diagnostic that maps what matters, identifies decision points, and produces initial ledger
-                entries with options, tradeoffs, and a clean next-step plan.
-              </p>
-              <div class="kActions">
-                <a class="btn secondary" href="/trust-brief/">View Trust Brief</a>
-                <a class="btn secondary" href="/gate/">Enter Gate</a>
-              </div>
-            </div>
-
-            <div class="k">
-              <div class="kTitle">Partner lanes</div>
-              <p class="kDesc">
-                Channel, Delivery, and Integration partners help originate, deliver, and implement controls
-                so the evidence trail stays intact.
-              </p>
-              <div class="kActions">
-                <a class="btn secondary" href="/gate/partners/">Partners Gate</a>
-                <a class="btn secondary" href="/gate/partners/intake/">Partner intake</a>
-              </div>
-            </div>
+          <h2>Trust Ledger</h2>
+          <p>A board-ready register of AI systems, controls, evidence, and material risk — designed to stay readable under audit.</p>
+          <div class="links">
+            <a class="btn secondary" href="/trust-ledger/">Open Ledger</a>
+            <a class="btn secondary" href="/for-whom/">For Whom</a>
           </div>
+        </div>
+      </article>
 
-          <div class="box">
-            <strong>Core rule:</strong> if a claim can’t be supported by evidence (logs, exports, screenshots, configs),
-            it doesn’t go into the ledger.
+      <article class="card">
+        <div class="bd">
+          <h2>Trust Brief</h2>
+          <p>A 6-week governance diagnostic: maps AI use cases, exposes decision risk, and produces initial ledger entries plus board options.</p>
+          <div class="links">
+            <a class="btn secondary" href="/trust-brief/">Open Brief</a>
+            <a class="btn secondary" href="/gate/intake/" data-rid-link>Start intake</a>
           </div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="bd">
+          <h2>Playbook</h2>
+          <p>Practical governance patterns for teams already using AI — the shortest path to controls, evidence, and board confidence.</p>
+          <div class="links">
+            <a class="btn secondary" href="/playbook/">Open Playbook</a>
+            <a class="btn secondary" href="/copilot-cost-governance/">Copilot governance</a>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <section class="section" aria-label="Operating logic">
+      <div class="kicker">How routing works</div>
+      <p class="sub">
+        Gate is the governed entry point where intakes become decision-ready. The same Request ID travels across Gate, Status, and delivery threads.
+      </p>
+
+      <div class="steps" aria-label="Steps">
+        <div class="step">
+          <b>1) Identify the lane</b>
+          <span>Buyer routing first. Partner lanes remain available but do not lead the experience.</span>
+        </div>
+        <div class="step">
+          <b>2) Attach proof</b>
+          <span>Logs, exports, screenshots, configs. If it cannot be supported, it does not enter the ledger.</span>
+        </div>
+        <div class="step">
+          <b>3) Receive board-ready artefacts</b>
+          <span>Short, structured outputs designed for executive review and regulator-facing conversations.</span>
         </div>
       </div>
+    </section>
 
-      <!-- RIGHT -->
-      <aside class="card">
-        <div class="hd">
-          <h2>Quick navigation</h2>
-          <p>Start where you are.</p>
-        </div>
-        <div class="bd">
-          <div class="split" aria-label="Quick tiles">
-            <div class="tile">
-              <strong>Gate</strong>
-              <div>Governed entry for requests, routing, and partner lanes.</div>
-              <div style="margin-top:10px;"><a class="btn" href="/gate/">Enter</a></div>
-            </div>
-            <div class="tile">
-              <strong>Status</strong>
-              <div>Track by Request ID across Gate and submissions.</div>
-              <div style="margin-top:10px;"><a class="btn secondary" href="/status/">Open</a></div>
-            </div>
-            <div class="tile">
-              <strong>Portal</strong>
-              <div>Workspace for clients and partners (rolling out).</div>
-              <div style="margin-top:10px;"><a class="btn secondary" href="/portal/">View</a></div>
-            </div>
-            <div class="tile">
-              <strong>FAQ</strong>
-              <div>Clear answers about scope, privacy, and process.</div>
-              <div style="margin-top:10px;"><a class="btn secondary" href="/faq/">Read</a></div>
-            </div>
-          </div>
-
-          <div class="box">
-            <strong>Preferred path:</strong> enter via <a href="/gate/">Gate</a> so everything is tracked with a Request ID
-            and routed to the correct lane.
-          </div>
-
-          <div class="mini">
-            Policies: <a href="/privacy/">Privacy</a> · <a href="/terms/">Terms</a> · <a href="/policies/">Policies</a> ·
-            <a href="/cookies/">Cookies</a> · <a href="/accessibility/">Accessibility</a>
-          </div>
-
-          <div class="ctaRow" style="margin-top:12px;">
-            <a class="btn secondary" href="/contact/">Contact</a>
-            <a class="btn secondary" href="/feedback/">Feedback</a>
-          </div>
-        </div>
-      </aside>
+    <section class="ctaBand" aria-label="Primary call to action">
+      <h3>Start with intake. Keep the Request ID.</h3>
+      <p>Fast routing starts with a clean intake. The same Request ID keeps continuity across Gate, Status, and delivery.</p>
+      <div class="row">
+        <a class="btn" href="/gate/intake/" data-rid-link>Start intake</a>
+        <a class="btn secondary" href="/gate/" data-rid-link>Gate home</a>
+        <a class="btn secondary" href="/faq/">FAQ</a>
+        <a class="btn secondary" href="/portal/" data-rid-link>Portal (rolling out)</a>
+      </div>
     </section>
   </main>
 
-  <!-- injected footer -->
-  <div id="nfFooter"></div>
+  <!-- Injected footer -->
+  <footer id="nfFooter"></footer>
 </body>
 </html>

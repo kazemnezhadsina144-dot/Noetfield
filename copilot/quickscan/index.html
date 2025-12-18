@@ -1,142 +1,518 @@
-<!doctype html>
+<!-- /copilot/quickscan/index.html — Version 11 (Enterprise Sales + Buyer Pack Hub, Gate routes here; CTA goes to Intake only) -->
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta charset="UTF-8" />
+  <title>Noetfield — Copilot QuickScan</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <title>Copilot QuickScan | Noetfield</title>
-  <meta name="description" content="A 5–7 business day governance and evidence readiness assessment for Microsoft 365 Copilot (and Copilot Studio if present): surface inventory, oversharing exposure paths, sensitive-data boundaries, audit/retention posture, and extension/connector controls." />
+  <meta name="description" content="Copilot QuickScan: board-ready evidence for Microsoft 365 Copilot adoption in 5–7 business days. Surface scope, oversharing exposure paths, data boundaries, evidence readiness, and connector controls." />
+  <meta name="robots" content="index,follow" />
+  <meta name="author" content="Noetfield Systems Inc." />
+  <meta name="theme-color" content="#07070b" />
 
   <link rel="canonical" href="https://www.noetfield.com/copilot/quickscan/" />
+  <link rel="icon" href="/noetfield-favicon-512.png" type="image/png" />
+  <link rel="apple-touch-icon" href="/noetfield-favicon-512.png" />
 
+  <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Noetfield" />
-  <meta property="og:title" content="Copilot QuickScan | Board-ready evidence for Microsoft 365 Copilot" />
-  <meta property="og:description" content="A 5–7 business day evidence-first assessment: inventory, oversharing exposure, data boundaries, audit/retention posture, and connector/custom Copilot controls." />
+  <meta property="og:title" content="Noetfield — Copilot QuickScan" />
+  <meta property="og:description" content="Board-ready Copilot evidence pack in 5–7 business days." />
   <meta property="og:url" content="https://www.noetfield.com/copilot/quickscan/" />
-  <meta name="twitter:card" content="summary" />
+  <meta property="og:image" content="https://www.noetfield.com/noetfield-og.png" />
 
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Noetfield — Copilot QuickScan" />
+  <meta name="twitter:description" content="Evidence-first Copilot governance pack: scope, exposure, boundaries, evidence." />
+  <meta name="twitter:image" content="https://www.noetfield.com/noetfield-og.png" />
+
+  <!-- LOCKED SHELL -->
   <link rel="stylesheet" href="/assets/noetfield-shell.css" />
-  <script defer src="/assets/noetfield-shell.js"></script>
+  <script src="/assets/noetfield-shell.js" defer></script>
+
+  <style>
+    .hero{padding:22px 0 14px}
+    .heroShell{
+      position:relative;
+      border-radius: calc(var(--radius) + 8px);
+      border: 1px solid rgba(255,255,255,.11);
+      background:
+        radial-gradient(1000px 420px at 18% 0%, rgba(200,163,73,.18), transparent 60%),
+        radial-gradient(1000px 420px at 90% 10%, rgba(122,167,255,.10), transparent 62%),
+        linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.022));
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .heroShell::before{
+      content:"";
+      position:absolute; inset:-1px;
+      background: linear-gradient(120deg, rgba(200,163,73,.26), transparent 30%, rgba(255,255,255,.08) 68%, transparent);
+      opacity:.44;
+      pointer-events:none;
+      mask-image: linear-gradient(180deg, black 0%, black 58%, transparent 96%);
+    }
+    .heroInner{padding: 24px 22px}
+
+    .eyebrow{
+      display:inline-flex; gap:10px; align-items:center;
+      color:var(--muted);
+      font-size:13px;
+      padding:9px 12px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.13);
+      background: rgba(255,255,255,.035);
+    }
+    .dot{
+      width:8px; height:8px; border-radius:50%;
+      background: rgba(200,163,73,.97);
+      box-shadow: 0 0 0 3px rgba(200,163,73,.18);
+    }
+
+    h1{margin:14px 0 10px; font-size:40px; line-height:1.07; letter-spacing:-0.75px}
+    .lead{margin:0; color:var(--muted); font-size:16px; max-width: 1020px; line-height:1.75}
+    .lead strong{color:var(--text); font-weight:800}
+
+    .metaRow{display:flex; flex-wrap:wrap; gap:10px; margin-top:14px}
+    .pill{
+      display:inline-flex; align-items:center; gap:10px;
+      padding:9px 12px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.03);
+      color:var(--muted);
+      font-size:13px;
+      white-space:nowrap;
+    }
+    .pill strong{color:var(--text); font-weight:800}
+
+    .grid{
+      display:grid;
+      grid-template-columns: 1.12fr .88fr;
+      gap:18px;
+      margin: 18px 0 34px;
+      align-items:start;
+    }
+    .card{
+      border-radius:var(--radius);
+      border:1px solid rgba(255,255,255,.11);
+      background: linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.022));
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+      min-width:0;
+    }
+    .card .hd{padding:18px 18px 0}
+    .card h2{margin:0 0 8px; font-size:18px; letter-spacing:-0.2px}
+    .card p{margin:0 0 12px; color:var(--muted); line-height:1.7}
+    .card .bd{padding:18px}
+
+    .kpiGrid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:12px;
+      margin-top:12px;
+    }
+    .kpi{
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      padding:12px;
+      min-width:0;
+    }
+    .kpi .t{font-size:11px; letter-spacing:.28em; text-transform:uppercase; color:var(--muted2)}
+    .kpi .v{margin-top:8px; font-weight:900; letter-spacing:-.2px}
+    .kpi .d{margin-top:6px; color:var(--muted2); font-size:12.6px; line-height:1.55}
+
+    .section{
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      border-radius:16px;
+      padding:14px;
+      margin-top:12px;
+    }
+    .sectionTitle{
+      font-weight:900;
+      letter-spacing:-.2px;
+      margin:0 0 6px;
+      font-size:14px;
+    }
+    .sectionDesc{
+      margin:0 0 12px;
+      color:var(--muted2);
+      font-size:12.7px;
+      line-height:1.6;
+    }
+
+    .table{
+      width:100%;
+      border-collapse:separate;
+      border-spacing:0;
+      overflow:hidden;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.02);
+      margin-top:10px;
+    }
+    .table th, .table td{
+      text-align:left;
+      padding:12px;
+      border-bottom:1px solid rgba(255,255,255,.08);
+      vertical-align:top;
+      font-size:13px;
+    }
+    .table th{
+      color:var(--muted2);
+      font-size:11px;
+      letter-spacing:.28em;
+      text-transform:uppercase;
+      background: rgba(255,255,255,.03);
+    }
+    .table tr:last-child td{border-bottom:none}
+
+    .actions{display:flex; gap:12px; flex-wrap:wrap; align-items:center; margin-top:12px}
+    .box{
+      margin-top:12px;
+      padding:12px 12px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      color:var(--muted2);
+      font-size:12.8px;
+      line-height:1.6;
+    }
+    .box strong{color:var(--text); font-weight:800}
+    .box a{border-bottom:1px solid rgba(255,255,255,.18)}
+
+    /* Role chips */
+    .chips{display:flex; flex-wrap:wrap; gap:10px; margin-top:12px}
+    .chip{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:8px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.03);
+      color:var(--muted);
+      font-size:12.6px;
+      text-decoration:none;
+      white-space:nowrap;
+    }
+    .chip:hover{filter:brightness(1.08)}
+    .chip strong{color:var(--text); font-weight:900}
+
+    /* Sticky CTA */
+    .stickyCta{
+      position: sticky;
+      bottom: 0;
+      z-index: 20;
+      padding: 10px 0;
+      background: linear-gradient(180deg, rgba(7,7,11,0) 0%, rgba(7,7,11,.78) 22%, rgba(7,7,11,.92) 100%);
+      backdrop-filter: blur(10px);
+      border-top: 1px solid rgba(255,255,255,.08);
+    }
+    .stickyInner{
+      display:flex;
+      gap:12px;
+      align-items:center;
+      justify-content:space-between;
+      padding: 0 16px;
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+    .stickyText{
+      min-width:0;
+      color:var(--muted);
+      font-size:12.6px;
+      line-height:1.4;
+    }
+    .stickyText strong{ color:var(--text); font-weight:900; }
+
+    @media (max-width: 980px){
+      .grid{grid-template-columns:1fr}
+      .kpiGrid{grid-template-columns:1fr}
+    }
+    @media (max-width: 760px){
+      h1{font-size:30px}
+      .table th, .table td{padding:10px}
+      .stickyText{display:none}
+    }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Service",
+    "name":"Copilot QuickScan",
+    "provider":{"@type":"Organization","name":"Noetfield Systems Inc."},
+    "areaServed":"CA",
+    "description":"Board-ready evidence for Microsoft 365 Copilot adoption in 5–7 business days. Surface scope, oversharing exposure paths, data boundaries, evidence readiness, and connector controls.",
+    "url":"https://www.noetfield.com/copilot/quickscan/"
+  }
+  </script>
 </head>
 
 <body>
-  <a class="skip" href="#content">Skip to content</a>
+  <div class="bg" aria-hidden="true"></div>
+  <a class="skip" href="#main">Skip to content</a>
 
-  <!-- shell include (keep same include hook you use elsewhere) -->
-  <div id="site-header" data-include="/assets/partials/header.html"></div>
+  <!-- injected header -->
+  <div id="nfHeader"></div>
 
-  <main id="content">
-    <p>Microsoft 365 Copilot • quickscan</p>
-    <h1>Copilot QuickScan.</h1>
+  <main id="main" class="wrap">
+    <section class="hero">
+      <div class="heroShell">
+        <div class="heroInner">
+          <div class="eyebrow"><span class="dot"></span> Microsoft 365 Copilot • 5–7 business days</div>
 
-    <p>
-      Board-ready evidence for Copilot adoption — delivered in 5–7 business days.
-      QuickScan produces an evidence-first governance pack covering Copilot surfaces, oversharing exposure paths,
-      sensitive-data boundaries, audit/retention posture, and extension/connector controls.
-    </p>
+          <h1>Copilot QuickScan.</h1>
 
-    <p>
-      <a href="/gate/">Start intake</a>
-      &nbsp;·&nbsp;
-      <a href="/copilot/">Copilot hub</a>
-      &nbsp;·&nbsp;
-      <a href="/copilot-cost-governance/">Baseline map</a>
-    </p>
+          <p class="lead">
+            A fast, evidence-first assessment that makes Copilot adoption <strong>board-readable</strong>.
+            Outputs an <strong>exportable Buyer Pack</strong> (D0–D5) to support leadership decisions,
+            audit readiness, and client due diligence.
+          </p>
 
-    <h2 id="scan">What is scanned</h2>
-    <p>Fixed scope across five pillars.</p>
+          <div class="box" style="margin-top:12px;">
+            <strong>Public intake = non-confidential.</strong> Read-only posture review preferred. No content sampling unless explicitly authorized.
+          </div>
 
-    <h3 id="p1">1) Copilot surface inventory + enablement map</h3>
-    <ul>
-      <li>Which Copilot experiences are active (M365 Copilot surfaces; Copilot Studio/custom copilots if present).</li>
-      <li>Who is enabled, and under what licensing/tenant scope.</li>
-    </ul>
+          <div class="metaRow" aria-label="Highlights">
+            <div class="pill"><strong>5–7 days</strong> delivery</div>
+            <div class="pill"><strong>D0–D5</strong> named outputs</div>
+            <div class="pill"><strong>Decision-ready</strong> format</div>
+            <div class="pill"><strong>Evidence</strong> exportability</div>
+          </div>
 
-    <h3 id="p2">2) Permission sprawl + oversharing exposure paths</h3>
-    <ul>
-      <li>SharePoint / OneDrive / Teams sharing model review: high-risk sites, anonymous/external links, broad groups, inherited permissions.</li>
-      <li>Where Copilot could amplify unintended access based on existing permissions.</li>
-    </ul>
+          <!-- Single CTA (intake endpoint only) -->
+          <div class="actions" style="margin-top:14px;">
+            <a class="btn" href="/gate/intake/?need=copilot-quickscan">Start intake</a>
+          </div>
 
-    <h3 id="p3">3) Data boundaries + sensitive content controls</h3>
-    <ul>
-      <li>Data classification alignment for high-risk domains (HR / finance / legal / client).</li>
-      <li>DLP and sensitivity labels posture (governance-level) and “red-line” rules for prompt/content handling.</li>
-    </ul>
+          <!-- Role-based quick reading -->
+          <div class="chips" aria-label="Role-based reading">
+            <a class="chip" href="#role-it"><strong>IT/Admin</strong> view</a>
+            <a class="chip" href="#role-sec"><strong>Security/Compliance</strong> view</a>
+            <a class="chip" href="#role-biz"><strong>Business owner</strong> view</a>
+            <a class="chip" href="#procurement"><strong>Procurement</strong> pack</a>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    <h3 id="p4">4) Logging, retention, and evidence readiness</h3>
-    <ul>
-      <li>Which usage/audit signals exist, retention posture, and exportability.</li>
-      <li>Minimum evidence set to answer audit / board / client due diligence questions.</li>
-    </ul>
+    <section class="grid">
+      <!-- MAIN -->
+      <div class="card">
+        <div class="hd">
+          <h2>What you get (Buyer Pack)</h2>
+          <p>Named deliverables designed for executive review and internal approvals.</p>
+        </div>
 
-    <h3 id="p5">5) Extension/connector/custom Copilot risk controls</h3>
-    <ul>
-      <li>Plugins/connectors/custom copilots (if present): allowed vs restricted tool access.</li>
-      <li>Change control for copilots/prompts and exception / break-glass rules for high-risk actions.</li>
-    </ul>
+        <div class="bd">
+          <div class="kpiGrid" aria-label="Deliverables grid">
+            <div class="kpi">
+              <div class="t">D0</div>
+              <div class="v">Executive Summary (1 page)</div>
+              <div class="d">RAG posture + decision requests + what changes now vs later.</div>
+            </div>
+            <div class="kpi">
+              <div class="t">D1</div>
+              <div class="v">Surface Inventory & Enablement Map</div>
+              <div class="d">Which Copilot surfaces exist, who is enabled, and tenant scope.</div>
+            </div>
+            <div class="kpi">
+              <div class="t">D2</div>
+              <div class="v">Oversharing Heatmap</div>
+              <div class="d">Top exposure paths caused by current permissions posture.</div>
+            </div>
+            <div class="kpi">
+              <div class="t">D3</div>
+              <div class="v">Data Boundaries Pack</div>
+              <div class="d">Sensitive domains + boundary rules + red-line guidance v1.</div>
+            </div>
+            <div class="kpi">
+              <div class="t">D4</div>
+              <div class="v">Evidence Readiness Sheet</div>
+              <div class="d">Signals, retention, export steps, owners — what counts as proof.</div>
+            </div>
+            <div class="kpi">
+              <div class="t">D5</div>
+              <div class="v">Connector / Extension Controls</div>
+              <div class="d">Allowed/restricted posture, change control, exceptions (if applicable).</div>
+            </div>
+          </div>
 
-    <h2 id="deliverables">What the client receives</h2>
-    <ul>
-      <li><strong>D0 — Executive Summary (1 page, RAG):</strong> overall status + 5-pillar RAG + decision requests.</li>
-      <li><strong>D1 — Copilot Surface Inventory & Enablement Map.</strong></li>
-      <li><strong>D2 — Oversharing Heatmap (Top 10) + ranked actions</strong> (quick wins vs projects).</li>
-      <li><strong>D3 — Data Boundaries Pack + Red-Line Rules v1</strong> (publish-ready internal memo).</li>
-      <li><strong>D4 — Evidence Readiness Sheet:</strong> signals, retention posture, export steps, owners.</li>
-      <li><strong>D5 — Extension/Connector Control Register:</strong> allowed/restricted tools + change control + exception protocol.</li>
-      <li><strong>30/60/90 plan:</strong> quick wins + governance milestones and owners.</li>
-    </ul>
+          <div class="section">
+            <div class="sectionTitle">Process & timing</div>
+            <p class="sectionDesc">Scope → posture → evidence → delivery.</p>
+            <table class="table" aria-label="Plan">
+              <thead>
+                <tr>
+                  <th>Day</th>
+                  <th>Focus</th>
+                  <th>Output</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>0–1</td><td>Scope lock + access readiness</td><td>Checklist, export plan, boundaries</td></tr>
+                <tr><td>2–4</td><td>Inventory + posture review + evidence capture</td><td>D1/D2/D3/D4 drafts</td></tr>
+                <tr><td>5–7</td><td>Synthesis + delivery</td><td>D0–D5 + 30/60/90 plan</td></tr>
+              </tbody>
+            </table>
+          </div>
 
-    <h2 id="process">Process and timing</h2>
-    <ul>
-      <li><strong>Day 0–1:</strong> scope lock + access readiness.</li>
-      <li><strong>Day 2–4:</strong> inventory + posture review + evidence capture.</li>
-      <li><strong>Day 5–7:</strong> synthesis + delivery of board-ready pack.</li>
-    </ul>
+          <!-- Role sections -->
+          <div class="section" id="role-it">
+            <div class="sectionTitle">IT/Admin view</div>
+            <p class="sectionDesc">What matters operationally: surfaces, enablement, connectors, and change control.</p>
+            <ul class="steps">
+              <li>D1 surface inventory + enablement map</li>
+              <li>D5 connector/extension controls + exception model</li>
+              <li>Access readiness checklist (read-only preferred)</li>
+            </ul>
+          </div>
 
-    <h2 id="access">Access required</h2>
-    <p>
-      Read-only administrative access is preferred where possible, sufficient to export configuration and reporting signals
-      across in-scope Microsoft 365 workloads. No content sampling unless explicitly authorized.
-    </p>
-    <ul>
-      <li>M365 Admin</li>
-      <li>Security / Compliance lead</li>
-      <li>Business owner (Copilot adoption owner)</li>
-    </ul>
+          <div class="section" id="role-sec">
+            <div class="sectionTitle">Security/Compliance view</div>
+            <p class="sectionDesc">What matters defensibly: oversharing, boundaries, retention, exportable proof.</p>
+            <ul class="steps">
+              <li>D2 oversharing heatmap + ranked fixes</li>
+              <li>D3 data boundaries + red-line rules</li>
+              <li>D4 evidence readiness (signals/retention/export/owners)</li>
+            </ul>
+          </div>
 
-    <h2 id="limits">Limitations</h2>
-    <p>
-      QuickScan provides assessment and evidence readiness outputs. Remediation implementation, content-level review,
-      and adversarial testing are available only as separate scopes.
-    </p>
+          <div class="section" id="role-biz">
+            <div class="sectionTitle">Business owner view</div>
+            <p class="sectionDesc">What matters for leadership: go/no-go posture, decision requests, 30/60/90 plan.</p>
+            <ul class="steps">
+              <li>D0 executive summary (RAG + decisions)</li>
+              <li>30/60/90 plan with owners and milestones</li>
+              <li>Defined scope boundaries (what is and is not included)</li>
+            </ul>
+          </div>
 
-    <h2 id="addons">Add-ons</h2>
-    <ul>
-      <li>Remediation Sprint (2–3 weeks) + re-scan</li>
-      <li>Copilot Studio deep governance program</li>
-      <li>Quarterly evidence refresh (delta report)</li>
-      <li>Connector/vendor egress review</li>
-    </ul>
+          <!-- Procurement pack -->
+          <div class="section" id="procurement">
+            <div class="sectionTitle">Procurement Pack (internal approvals)</div>
+            <p class="sectionDesc">A compact summary for purchasing, finance, and vendor onboarding.</p>
 
-    <h2 id="nav">Quick navigation</h2>
-    <p>
-      <a href="#scan">Scan →</a>
-      &nbsp;·&nbsp;
-      <a href="#deliverables">Deliverables →</a>
-      &nbsp;·&nbsp;
-      <a href="#process">Process →</a>
-      &nbsp;·&nbsp;
-      <a href="#access">Access →</a>
-      &nbsp;·&nbsp;
-      <a href="#addons">Add-ons →</a>
-    </p>
+            <table class="table" aria-label="Procurement pack table">
+              <thead>
+                <tr>
+                  <th>Item</th>
+                  <th>Summary</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Service</td>
+                  <td>Copilot QuickScan (5–7 business days)</td>
+                </tr>
+                <tr>
+                  <td>Scope</td>
+                  <td>Surface scope, oversharing exposure paths, data boundaries, evidence readiness, connectors/extensions (if present)</td>
+                </tr>
+                <tr>
+                  <td>Deliverables</td>
+                  <td>D0–D5 + 30/60/90 plan</td>
+                </tr>
+                <tr>
+                  <td>Access</td>
+                  <td>Read-only admin review preferred. No content sampling unless explicitly authorized.</td>
+                </tr>
+                <tr>
+                  <td>Data handling</td>
+                  <td>Public intake is non-confidential. Outputs focus on posture/config/evidence readiness.</td>
+                </tr>
+                <tr>
+                  <td>Out of scope</td>
+                  <td>Implementation/remediation, content-level review, adversarial testing (available as separate scopes)</td>
+                </tr>
+              </tbody>
+            </table>
 
-    <p>
-      Next action: <a href="/gate/">start intake</a> to route this as a trackable engagement.
-    </p>
+            <div class="box">
+              <strong>Next step:</strong> Start intake to lock scope and confirm access readiness.<br/>
+              <a href="/gate/intake/?need=copilot-quickscan">/gate/intake/?need=copilot-quickscan</a>
+            </div>
+          </div>
+
+          <!-- Deep dive links -->
+          <div class="section">
+            <div class="sectionTitle">Deep dives</div>
+            <p class="sectionDesc">Optional reading to support stakeholder alignment.</p>
+            <div class="box">
+              <strong>Recommended links:</strong><br/>
+              <a href="/copilot/governance/">Copilot governance baseline</a> ·
+              <a href="/copilot/quickscan/what-we-scan/">What we scan</a> ·
+              <a href="/copilot/quickscan/deliverables/">Deliverables (D0–D5)</a> ·
+              <a href="/copilot/quickscan/evidence/">Evidence readiness</a> ·
+              <a href="/copilot/quickscan/oversharing/">Oversharing paths</a> ·
+              <a href="/copilot/quickscan/connectors/">Connectors & extensions</a> ·
+              <a href="/copilot/quickscan/procurement/">Procurement pack</a>
+            </div>
+          </div>
+
+          <!-- Single CTA repeated -->
+          <div class="actions">
+            <a class="btn" href="/gate/intake/?need=copilot-quickscan">Start intake</a>
+            <a class="btn secondary" href="/status/">Status</a>
+          </div>
+
+          <div class="box">
+            <strong>Scope note:</strong> QuickScan provides assessment + evidence-readiness outputs.
+            Remediation implementation and deeper testing are separate scopes.
+          </div>
+        </div>
+      </div>
+
+      <!-- ASIDE -->
+      <aside class="card">
+        <div class="hd">
+          <h2>Use this when</h2>
+          <p>Copilot is live (or imminent) and leadership needs defensible posture — fast.</p>
+        </div>
+        <div class="bd">
+          <div class="box"><strong>Go/no-go pressure:</strong> decision-grade evidence, not assurances.</div>
+          <div class="box"><strong>Permission sprawl:</strong> reduce oversharing amplification risk.</div>
+          <div class="box"><strong>Due diligence:</strong> exportable artifacts for client/audit questions.</div>
+
+          <div class="section">
+            <div class="sectionTitle">Pricing signal</div>
+            <p class="sectionDesc">Anchor for buyers; refine after early deliveries.</p>
+            <div class="box">
+              <strong>Typical:</strong> $1.5k–$4k CAD depending on tenant scope and enabled surfaces/connectors.<br/>
+              <strong>Note:</strong> taxes may apply.
+            </div>
+          </div>
+
+          <div class="actions">
+            <a class="btn" href="/gate/intake/?need=copilot-quickscan">Start intake</a>
+          </div>
+        </div>
+      </aside>
+    </section>
   </main>
 
-  <div id="site-footer" data-include="/assets/partials/footer.html"></div>
+  <!-- injected footer -->
+  <div id="nfFooter"></div>
+
+  <!-- Sticky CTA -->
+  <div class="stickyCta" aria-label="Sticky call to action">
+    <div class="stickyInner">
+      <div class="stickyText">
+        <strong>Copilot QuickScan</strong> — board-ready Buyer Pack in 5–7 business days. Public intake is non-confidential.
+      </div>
+      <a class="btn" href="/gate/intake/?need=copilot-quickscan">Start intake</a>
+    </div>
+  </div>
+
+  <!--
+  CHANGELOG (v11)
+  - Removed navigation to Gate as a sales step; Gate is assumed to route users here.
+  - CTA points only to Intake endpoint: /gate/intake/?need=copilot-quickscan
+  - Added role-based reading sections (IT/Admin, Security/Compliance, Business owner).
+  - Added Procurement Pack block for internal approvals and vendor onboarding.
+  - Added deep-dive link hub to supporting Copilot subpages.
+  -->
 </body>
 </html>

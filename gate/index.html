@@ -1,12 +1,12 @@
-<!-- /gate/index.html — Gate v2 (Product Intake Architecture: sales-first + optional wizard) -->
+<!-- /gate/index.html — Noetfield Gate (direct routing + optional wizard) -->
 <!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <title>Noetfield — Gate (buyer-first entry)</title>
-  <meta name="description" content="A buyer-first entry point: choose a start point, route to non-confidential product intake, and get board-ready outputs without extra browsing." />
+  <title>Noetfield — Gate</title>
+  <meta name="description" content="Choose a start point. Route to a non-confidential product intake and get board-ready outputs without extra browsing." />
   <meta name="robots" content="index,follow" />
   <meta name="author" content="Noetfield Systems Inc." />
   <meta name="theme-color" content="#07070b" />
@@ -15,18 +15,16 @@
   <link rel="icon" href="/noetfield-favicon-512.png" type="image/png" />
   <link rel="apple-touch-icon" href="/noetfield-favicon-512.png" />
 
-  <!-- OG -->
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Noetfield" />
   <meta property="og:title" content="Noetfield — Gate" />
-  <meta property="og:description" content="Buyer-first routing: start with the right product and submit a non-confidential product intake." />
+  <meta property="og:description" content="Choose a start point. Route to a non-confidential product intake and get board-ready outputs." />
   <meta property="og:url" content="https://www.noetfield.com/gate/" />
   <meta property="og:image" content="https://www.noetfield.com/noetfield-og.png" />
 
-  <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Noetfield — Gate" />
-  <meta name="twitter:description" content="Buyer-first routing: start with the right product and submit a non-confidential product intake." />
+  <meta name="twitter:description" content="Choose a start point. Route to a non-confidential product intake and get board-ready outputs." />
   <meta name="twitter:image" content="https://www.noetfield.com/noetfield-og.png" />
 
   <!-- LOCKED SHELL -->
@@ -34,13 +32,12 @@
   <script defer src="/assets/noetfield-shell.js"></script>
 
   <style>
-    /* Gate-specific (minimal). Prefixed to avoid collisions. */
     .nfGateWrap { max-width: 1080px; margin: 0 auto; padding: 22px 18px 40px; }
     .nfGateHero { display: grid; gap: 14px; }
     .nfGateKicker { opacity: .85; font-size: .95rem; }
     .nfGateTitle { font-size: clamp(1.7rem, 3.6vw, 2.6rem); line-height: 1.08; letter-spacing: -0.02em; margin: 0; }
     .nfGateLead { opacity: .9; max-width: 70ch; margin: 0; }
-    .nfGateNotice {
+    .nfGateNotice{
       border: 1px solid rgba(255,255,255,.12);
       background: rgba(255,255,255,.03);
       border-radius: 14px;
@@ -53,7 +50,7 @@
     .nfGateNotice p { margin: 0; opacity: .92; }
     .nfGateRow { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
 
-    .nfGateBtn {
+    .nfGateBtn{
       display: inline-flex; align-items: center; justify-content: center; gap: 10px;
       padding: 12px 14px;
       border-radius: 12px;
@@ -70,13 +67,13 @@
     .nfGateBtnPrimary { border-color: rgba(255,255,255,.24); background: rgba(255,255,255,.08); }
     .nfGateBtnPrimary:hover { background: rgba(255,255,255,.10); }
 
-    .nfGateGrid {
+    .nfGateGrid{
       display: grid;
       grid-template-columns: repeat(12, 1fr);
       gap: 14px;
       margin-top: 16px;
     }
-    .nfGateCard {
+    .nfGateCard{
       grid-column: span 12;
       border: 1px solid rgba(255,255,255,.12);
       background: rgba(255,255,255,.02);
@@ -96,7 +93,7 @@
     .nfWizardProgress { opacity: .85; font-size: .92rem; }
     .nfWizardStepTitle { margin: 0; font-size: 1.05rem; letter-spacing: -0.01em; }
     .nfWizardChoices { display: grid; gap: 10px; grid-template-columns: repeat(12, 1fr); }
-    .nfWizardChoice {
+    .nfWizardChoice{
       grid-column: span 12;
       text-align: left;
       padding: 12px 14px;
@@ -112,7 +109,7 @@
 
     .nfWizardNav { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
     .nfWizardSummary { display: grid; gap: 10px; }
-    .nfWizardRec {
+    .nfWizardRec{
       border: 1px solid rgba(255,255,255,.14);
       background: rgba(255,255,255,.03);
       border-radius: 16px;
@@ -122,18 +119,15 @@
     .nfWizardRec ul { margin: 8px 0 0; padding-left: 18px; opacity: .92; }
     .nfWizardRec li { margin: 4px 0; }
 
-    /* Responsive */
-    @media (min-width: 760px) {
+    @media (min-width: 760px){
       .nfGateCard { padding: 18px; }
       .nfWizardChoices .nfWizardChoice { grid-column: span 6; }
       .nfGateCardSplit { grid-column: span 6; }
     }
-    @media (min-width: 980px) {
+    @media (min-width: 980px){
       .nfWizardChoices .nfWizardChoice { grid-column: span 4; }
     }
-
-    /* Motion safety */
-    @media (prefers-reduced-motion: reduce) {
+    @media (prefers-reduced-motion: reduce){
       .nfGateBtn, .nfWizardChoice { transition: none; }
       .nfGateBtn:hover, .nfWizardChoice:hover { transform: none; }
     }
@@ -145,7 +139,7 @@
     "@type":"WebPage",
     "name":"Noetfield — Gate",
     "url":"https://www.noetfield.com/gate/",
-    "description":"Buyer-first routing to product pages and non-confidential product intakes.",
+    "description":"Direct routing to product pages and non-confidential product intakes.",
     "isPartOf":{"@type":"WebSite","name":"Noetfield","url":"https://www.noetfield.com/"},
     "publisher":{"@type":"Organization","name":"Noetfield Systems Inc."}
   }
@@ -156,87 +150,81 @@
   <div class="bg" aria-hidden="true"></div>
   <a class="skip" href="#main">Skip to content</a>
 
-  <!-- Shell injection targets (locked convention) -->
   <header id="nfHeader"></header>
 
   <main id="main">
     <div class="nfGateWrap">
 
       <section class="nfGateHero" aria-label="Noetfield Gate">
-        <div class="nfGateKicker">Governed entry • buyer-first routing</div>
-        <h1 class="nfGateTitle">Gate: choose a start point, get board-ready outputs.</h1>
+        <div class="nfGateKicker">Start here • direct routing</div>
+        <h1 class="nfGateTitle">Gate: choose a start point.</h1>
         <p class="nfGateLead">
-          Minimal paths that keep sales obvious and reading optional. Start now via a non-confidential <strong>product intake</strong> to lock scope and access readiness.
+          Pick the fastest path to the outcome needed. Submit a short, non-confidential intake to lock scope and the next step.
         </p>
 
         <div class="nfGateNotice" role="note" aria-label="Public intake notice">
           <div aria-hidden="true">ⓘ</div>
           <div>
-            <p><strong>Public intake = non-confidential.</strong> Do not submit secrets, credentials, private keys, or regulated personal data. Use it to route scope and start point.</p>
+            <p><strong>Public intake = non-confidential.</strong> Do not submit secrets, credentials, private keys, or regulated personal data.</p>
           </div>
         </div>
 
-        <!-- Top-level start points (fast path, sales-first) -->
         <div class="nfGateRow" aria-label="Start points">
-          <a class="nfGateBtn nfGateBtnPrimary" href="/copilot/quickscan/intake/" data-rid-link>Start with QuickScan</a>
-          <a class="nfGateBtn" href="/trust-brief/intake/" data-rid-link>Start Trust Brief (6-week)</a>
+          <a class="nfGateBtn nfGateBtnPrimary" href="/copilot/quickscan/intake/" data-rid-link>Start Copilot QuickScan</a>
+          <a class="nfGateBtn" href="/trust-brief/intake/" data-rid-link>Start Trust Brief</a>
           <a class="nfGateBtn" href="/trust-ledger/intake/" data-rid-link>Start Trust Ledger</a>
-          <button class="nfGateBtn" type="button" id="nfOpenWizardBtn" aria-controls="nfWizardCard" aria-expanded="false">Find my best start point</button>
+          <button class="nfGateBtn" type="button" id="nfOpenWizardBtn" aria-controls="nfWizardCard" aria-expanded="false">Help me choose</button>
         </div>
       </section>
 
       <section class="nfGateGrid" aria-label="Gate content">
 
-        <!-- Wizard (progressive disclosure) -->
         <div class="nfGateCard" id="nfWizardCard" hidden>
-          <h2>Gate Wizard</h2>
-          <p class="nfGateMini">Answer a few short questions. Your choices determine what appears next.</p>
+          <h2>Quick routing wizard</h2>
+          <p class="nfGateMini">Answer a few short questions to get one recommended next step.</p>
           <div class="nfGateDivider" role="separator" aria-hidden="true"></div>
-
           <div class="nfWizard" id="nfWizard" aria-live="polite"></div>
         </div>
 
-        <!-- Buyer-first offers (visible) -->
         <div class="nfGateCard nfGateCardSplit">
           <h2>Copilot QuickScan</h2>
-          <p>Fastest path to board-ready Copilot evidence: scope, oversharing exposure, boundaries, evidence readiness, and connector controls.</p>
+          <p>Fast Copilot evidence pack in days: scope, oversharing exposure, boundaries, evidence readiness, connector controls.</p>
           <div class="nfGateRow">
             <a class="nfGateBtn nfGateBtnPrimary" href="/copilot/quickscan/intake/" data-rid-link>Start QuickScan</a>
-            <a class="nfGateBtn" href="/copilot/">View Copilot hub</a>
+            <a class="nfGateBtn" href="/copilot/">Copilot hub</a>
           </div>
         </div>
 
         <div class="nfGateCard nfGateCardSplit">
           <h2>Trust Brief (6-week)</h2>
-          <p>A governance-first diagnostic: map material AI use-cases, decision points, risks, and initial Trust Ledger entries with options and tradeoffs.</p>
+          <p>Governance diagnostic: map material AI use-cases, decision points, risks, and initial Trust Ledger entries.</p>
           <div class="nfGateRow">
             <a class="nfGateBtn nfGateBtnPrimary" href="/trust-brief/intake/" data-rid-link>Start Trust Brief</a>
-            <a class="nfGateBtn" href="/">See overview</a>
+            <a class="nfGateBtn" href="/trust-brief/">Trust Brief page</a>
           </div>
         </div>
 
         <div class="nfGateCard nfGateCardSplit">
           <h2>Trust Ledger</h2>
-          <p>A maintained, board-ready register of AI systems, safeguards, evidence, and accountability over time — answer-ready for scrutiny.</p>
+          <p>Ongoing register of AI systems, safeguards, evidence, and accountability — maintained over time.</p>
           <div class="nfGateRow">
             <a class="nfGateBtn nfGateBtnPrimary" href="/trust-ledger/intake/" data-rid-link>Start Trust Ledger</a>
-            <a class="nfGateBtn" href="/trust-ledger/">View Trust Ledger page</a>
+            <a class="nfGateBtn" href="/trust-ledger/">Trust Ledger page</a>
           </div>
         </div>
 
         <div class="nfGateCard nfGateCardSplit">
           <h2>Playbook (templates + licenses)</h2>
-          <p>For small teams and agencies that need a defensible baseline quickly — templates, checklists, and buyer-ready language.</p>
+          <p>Templates and checklists for small teams and agencies that need a defensible baseline quickly.</p>
           <div class="nfGateRow">
             <a class="nfGateBtn nfGateBtnPrimary" href="/playbook/">Open Playbook</a>
             <a class="nfGateBtn" href="/playbook/pro/">Agency / Pro License</a>
           </div>
         </div>
 
-        <!-- Partner lane (hidden by default; URL-gated) -->
         <div class="nfGateCard" id="nfPartnerLane" hidden>
           <h2>Partner lane</h2>
-          <p class="nfGateMini">Not shown in buyer mode. Use only if explicitly routed as a partner.</p>
+          <p class="nfGateMini">Shown only when routed as a partner.</p>
           <div class="nfGateRow">
             <a class="nfGateBtn" href="/gate/partners/intake/?lane=channel" data-rid-link>Channel partner intake</a>
             <a class="nfGateBtn" href="/gate/partners/intake/?lane=delivery" data-rid-link>Delivery partner intake</a>
@@ -253,13 +241,14 @@
 
   <script>
     (function () {
-      // --- Mode gating (buyers first) ---
       const params = new URLSearchParams(location.search);
+
+      // Partner lane only via /gate/?mode=partners
       const mode = (params.get("mode") || "").toLowerCase();
       const partnerLane = document.getElementById("nfPartnerLane");
       if (partnerLane && mode === "partners") partnerLane.hidden = false;
 
-      // --- Wizard open/close ---
+      // Wizard open/close
       const openBtn = document.getElementById("nfOpenWizardBtn");
       const wizardCard = document.getElementById("nfWizardCard");
       const wizardRoot = document.getElementById("nfWizard");
@@ -278,38 +267,30 @@
         });
       }
 
-      // --- Wizard model (progressive disclosure + branching) ---
-      const state = {
-        step: 0,
-        answers: {
-          persona: null,
-          intent: null,
-          timeline: null,
-          commitment: null
-        }
-      };
+      // Wizard model
+      const state = { step: 0, answers: { persona:null, intent:null, timeline:null, commitment:null } };
 
       const steps = [
         {
           key: "persona",
           title: "Who is this for?",
           choices: [
-            { value: "board", label: "Board / executive", hint: "Decision-ready, procurement-friendly outputs." },
-            { value: "itsec", label: "IT / Security", hint: "Controls, evidence, and operational readiness." },
-            { value: "legal", label: "Legal / compliance", hint: "Defensible language, boundaries, traceability." },
-            { value: "operator", label: "Founder / operator", hint: "Fast baseline without building a compliance team." },
-            { value: "unsure", label: "Not sure", hint: "Use QuickScan as the default start." }
+            { value: "board", label: "Board / executive", hint: "Decision-ready outputs." },
+            { value: "itsec", label: "IT / Security", hint: "Controls, evidence, readiness." },
+            { value: "legal", label: "Legal / compliance", hint: "Defensible language and boundaries." },
+            { value: "operator", label: "Founder / operator", hint: "Fast baseline without heavy lift." },
+            { value: "unsure", label: "Not sure", hint: "Default to the fastest start." }
           ]
         },
         {
           key: "intent",
           title: "What needs to happen first?",
           choices: [
-            { value: "quickscan", label: "Copilot QuickScan", hint: "Fastest paid start: evidence in days." },
-            { value: "brief", label: "Trust Brief (6-week)", hint: "Map material use-cases + decisions + initial ledger entries." },
-            { value: "ledger", label: "Trust Ledger (ongoing)", hint: "Maintain a board-ready record over time." },
-            { value: "playbook", label: "Playbook (templates)", hint: "Baseline governance kit for small teams/agencies." },
-            { value: "vendor", label: "Vendor due diligence", hint: "Pass/fail gates + scoring + evidence requests." },
+            { value: "quickscan", label: "Copilot QuickScan", hint: "Evidence in days." },
+            { value: "brief", label: "Trust Brief (6-week)", hint: "Decisions + risks + initial ledger entries." },
+            { value: "ledger", label: "Trust Ledger (ongoing)", hint: "Maintain proof over time." },
+            { value: "playbook", label: "Playbook (templates)", hint: "Baseline kit for small teams/agencies." },
+            { value: "vendor", label: "Vendor due diligence", hint: "Gates, scoring, evidence requests." },
             { value: "unsure", label: "Not sure", hint: "Recommend the most reliable first step." }
           ]
         },
@@ -317,18 +298,18 @@
           key: "timeline",
           title: "How soon is the pressure?",
           choices: [
-            { value: "now", label: "Now (0–14 days)", hint: "Start with the fastest path to evidence." },
+            { value: "now", label: "Now (0–14 days)", hint: "Fastest path to evidence." },
             { value: "soon", label: "This quarter (30–90 days)", hint: "Baseline + ownership + plan." },
-            { value: "explore", label: "Exploratory", hint: "Start with templates or a light intake." }
+            { value: "explore", label: "Exploratory", hint: "Templates or a light start." }
           ]
         },
         {
           key: "commitment",
           title: "Preferred next step",
           choices: [
-            { value: "start", label: "Start intake now", hint: "Non-confidential scope lock + access readiness." },
-            { value: "compare", label: "Compare options", hint: "Open the relevant product page." },
-            { value: "contact", label: "Ask a question", hint: "Route to Contact for a scoped response." }
+            { value: "start", label: "Start intake now", hint: "Lock scope and next step." },
+            { value: "compare", label: "Compare options", hint: "Open the relevant page." },
+            { value: "contact", label: "Ask a question", hint: "Route to Contact." }
           ]
         }
       ];
@@ -345,7 +326,6 @@
         const total = steps.length;
         const stepObj = steps[state.step];
 
-        // If finished, show recommendation
         if (!stepObj) return renderRecommendation();
 
         const stepIndex = state.step + 1;
@@ -373,7 +353,7 @@
 
           <div class="nfGateNotice" role="note">
             <div aria-hidden="true">ⓘ</div>
-            <div><p><strong>Reminder:</strong> Public intake is non-confidential. Use it to route scope and start point.</p></div>
+            <div><p><strong>Reminder:</strong> Public intake is non-confidential.</p></div>
           </div>
         `;
 
@@ -388,8 +368,6 @@
             const v = btn.getAttribute("data-value");
             state.answers[stepObj.key] = v;
             state.step += 1;
-
-            // Small “app-like” pacing without heavy effects
             wizardRoot.style.opacity = "0.5";
             setTimeout(() => { wizardRoot.style.opacity = ""; renderWizard(); }, 140);
           });
@@ -398,17 +376,11 @@
 
       function renderRecommendation() {
         const rec = computeRecommendation(state.answers);
-        const summary = [
-          ["For", labelFor("persona", state.answers.persona)],
-          ["Need", labelFor("intent", state.answers.intent)],
-          ["Timing", labelFor("timeline", state.answers.timeline)],
-          ["Next step", labelFor("commitment", state.answers.commitment)]
-        ];
 
         wizardRoot.innerHTML = `
           <div class="nfWizardSummary">
             <div class="nfWizardRec">
-              <h3>Recommended start point: ${escapeHtml(rec.title)}</h3>
+              <h3>Recommended start: ${escapeHtml(rec.title)}</h3>
               <div class="nfGateMini">${escapeHtml(rec.subtitle)}</div>
               <ul>
                 ${rec.bullets.map(b => `<li>${escapeHtml(b)}</li>`).join("")}
@@ -418,13 +390,6 @@
                 <a class="nfGateBtn nfGateBtnPrimary" href="${escapeAttr(rec.primaryHref)}" data-rid-link>${escapeHtml(rec.primaryLabel)}</a>
                 <a class="nfGateBtn" href="${escapeAttr(rec.secondaryHref)}">${escapeHtml(rec.secondaryLabel)}</a>
                 <button class="nfGateBtn" type="button" id="nfWizardRestart">Restart</button>
-              </div>
-            </div>
-
-            <div class="nfGateCard" style="padding:14px;">
-              <h2 style="margin:0 0 8px; font-size:1.02rem;">Your selections</h2>
-              <div class="nfGateMini">
-                ${summary.map(([k,v]) => `<div><strong>${escapeHtml(k)}:</strong> ${escapeHtml(v)}</div>`).join("")}
               </div>
             </div>
           </div>
@@ -439,60 +404,54 @@
       }
 
       function computeRecommendation(a) {
-        // Defaults (buyer-first)
         let offer = {
-          key: "quickscan",
           title: "Copilot QuickScan",
           subtitle: "Fastest paid start: scope + oversharing exposure + evidence readiness.",
           bullets: [
-            "Buyer-first: reduces uncertainty fast.",
-            "Routes through a non-confidential product intake for scope lock.",
-            "Produces procurement-friendly artifacts."
+            "Good default when the buyer is unsure.",
+            "Short intake to lock scope and next step.",
+            "Outputs suitable for leadership and procurement."
           ],
           primaryHref: "/copilot/quickscan/intake/",
           primaryLabel: "Start QuickScan",
           secondaryHref: "/copilot/",
-          secondaryLabel: "View Copilot hub"
+          secondaryLabel: "Copilot hub"
         };
 
-        // Explicit intent overrides
         if (a.intent === "brief") {
           offer = {
-            key: "brief",
             title: "Trust Brief (6-week)",
-            subtitle: "Governance-first diagnostic: decisions, risks, and initial ledger entries.",
+            subtitle: "Governance diagnostic: decisions, risks, and initial ledger entries.",
             bullets: [
               "Maps material AI use-cases and decision points.",
-              "Produces board-ready options and tradeoffs.",
+              "Produces options and tradeoffs.",
               "Sets up Trust Ledger continuity."
             ],
             primaryHref: "/trust-brief/intake/",
             primaryLabel: "Start Trust Brief",
             secondaryHref: "/trust-brief/",
-            secondaryLabel: "View Trust Brief page"
+            secondaryLabel: "Trust Brief page"
           };
         } else if (a.intent === "ledger") {
           offer = {
-            key: "ledger",
             title: "Trust Ledger",
-            subtitle: "Ongoing evidence-first record: safeguards, sign-offs, and accountability.",
+            subtitle: "Ongoing record: safeguards, sign-offs, evidence, accountability.",
             bullets: [
               "Board-ready register format.",
-              "Evidence linkage (exports, configs, logs) by design.",
+              "Evidence linkage by design.",
               "Maintained over time for answer-ready posture."
             ],
             primaryHref: "/trust-ledger/intake/",
             primaryLabel: "Start Trust Ledger",
             secondaryHref: "/trust-ledger/",
-            secondaryLabel: "View Trust Ledger page"
+            secondaryLabel: "Trust Ledger page"
           };
         } else if (a.intent === "playbook") {
           offer = {
-            key: "playbook",
             title: "Playbook (templates)",
-            subtitle: "For small teams/agencies: a defensible baseline without heavy lift.",
+            subtitle: "Baseline kit for small teams and agencies.",
             bullets: [
-              "Template kit + language compatible with board-level track.",
+              "Templates and checklists for quick rollout.",
               "Good for exploratory or quarter planning.",
               "Can later migrate into Trust Brief / Trust Ledger."
             ],
@@ -503,60 +462,37 @@
           };
         } else if (a.intent === "vendor") {
           offer = {
-            key: "vendor",
-            title: "AI Vendor Due Diligence Kit",
-            subtitle: "Procurement-ready: pass/fail gates, scoring rubric, evidence requests.",
+            title: "Vendor due diligence kit",
+            subtitle: "Procurement pack: gates, scoring, evidence requests.",
             bullets: [
-              "Defensible “yes/no + conditions” vendor decisions.",
-              "Audit-friendly pack: repeatable and traceable.",
-              "Routes to Trust Brief if broader governance posture is needed."
+              "Repeatable vendor decisions.",
+              "Audit-friendly structure.",
+              "Escalate to Trust Brief if broader posture is needed."
             ],
             primaryHref: "/playbook/vendor-due-diligence/",
             primaryLabel: "Open Vendor Kit",
-            secondaryHref: "/playbook/vendor-due-diligence/intake/",
-            secondaryLabel: "Request via intake"
+            secondaryHref: "/contact/",
+            secondaryLabel: "Ask a question"
           };
         }
 
-        // If unsure persona/intent + urgent timeline, prefer QuickScan
-        if ((a.intent === "unsure" || !a.intent) && (a.timeline === "now")) {
-          offer = {
-            key: "quickscan",
-            title: "Copilot QuickScan",
-            subtitle: "When timing is tight, start with the fastest evidence path.",
-            bullets: [
-              "Best default when the buyer is unsure.",
-              "Surfaces oversharing exposure and scope fast.",
-              "Produces a 30/60/90 plan with owners."
-            ],
-            primaryHref: "/copilot/quickscan/intake/",
-            primaryLabel: "Start QuickScan",
-            secondaryHref: "/copilot/",
-            secondaryLabel: "View Copilot hub"
-          };
+        if ((a.intent === "unsure" || !a.intent) && a.timeline === "now") {
+          offer.title = "Copilot QuickScan";
+          offer.subtitle = "When timing is tight, start with the fastest evidence path.";
+          offer.primaryHref = "/copilot/quickscan/intake/";
+          offer.primaryLabel = "Start QuickScan";
+          offer.secondaryHref = "/copilot/";
+          offer.secondaryLabel = "Copilot hub";
         }
 
-        // Commitment affects the secondary link destination
         if (a.commitment === "contact") {
           offer.secondaryHref = "/contact/";
-          offer.secondaryLabel = "Ask a question (Contact)";
-        } else if (a.commitment === "compare") {
-          // keep current secondary
-        } else {
-          // start is already primary CTA
+          offer.secondaryLabel = "Ask a question";
         }
 
         return offer;
       }
 
-      function labelFor(key, value) {
-        const step = steps.find(s => s.key === key);
-        if (!step || !value) return "—";
-        const c = step.choices.find(x => x.value === value);
-        return c ? c.label : value;
-      }
-
-      // --- utils ---
       function escapeHtml(s) {
         return String(s || "")
           .replaceAll("&", "&amp;")
@@ -567,7 +503,6 @@
       }
       function escapeAttr(s) { return escapeHtml(s).replaceAll("`", "&#096;"); }
 
-      // Open wizard automatically if ?wizard=1
       if ((params.get("wizard") || "") === "1") {
         setWizardOpen(true);
         initWizard();
@@ -576,24 +511,13 @@
   </script>
 
   <!--
-    CHANGELOG (gate v2)
-    - Switched all sales CTAs from /gate/intake/?need=... to product intakes:
-      - /copilot/quickscan/intake/
-      - /trust-brief/intake/
-      - /trust-ledger/intake/
-    - Updated wizard recommendation links to the same product-intake architecture.
-    - Added OG/Twitter + JSON-LD WebPage metadata.
-    - Kept buyer-first UI, wizard optional, partner lane hidden by default.
-
-    SMOKE TEST
-    - GET /gate/ returns 200
-    - /assets/noetfield-shell.css returns 200 and styles apply
-    - /assets/noetfield-shell.js returns 200 and header/footer load into #nfHeader/#nfFooter
-    - Primary CTAs route 200:
-      - /copilot/quickscan/intake/
-      - /trust-brief/intake/
-      - /trust-ledger/intake/
-    - Wizard works on mobile and desktop; reduced motion respected
+    CHANGELOG
+    - Removed “buyer-first” wording entirely; replaced with direct language.
+    - CTAs route to product-specific intake pages (sales-first):
+      /copilot/quickscan/intake/
+      /trust-brief/intake/
+      /trust-ledger/intake/
+    - Wizard remains optional; partner lane still URL-gated via /gate/?mode=partners
   -->
 </body>
 </html>

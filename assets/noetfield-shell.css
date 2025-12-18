@@ -1,8 +1,10 @@
-/* /assets/noetfield-shell.css
-   Noetfield Shell (single-source)
-   - Base tokens + global UI
-   - Header/Footer (v3) + RID UI
-   Version: locked-2025.12.17+shell-css-v1.0
+/*
+  /assets/noetfield-shell.css
+  Noetfield Shell (single-source)
+  - Base tokens + global UI
+  - Header/Footer (v3) + RID UI
+  - Minimal page primitives used by index
+  Version: locked-2025.12.17+shell-css-v1.0-fixed
 */
 
 :root{
@@ -43,6 +45,8 @@ body{
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
+a{ color: var(--text); text-decoration: none; }
+a:hover{ text-decoration: underline; text-decoration-color: rgba(200,163,73,.55); }
 
 /* background */
 .bg{
@@ -103,6 +107,7 @@ body{
 .btn:hover{
   border-color: rgba(200,163,73,.58);
   background: rgba(200,163,73,.16);
+  text-decoration:none;
 }
 .btn.secondary{
   border-color: rgba(255,255,255,.14);
@@ -140,6 +145,7 @@ body{
 .feedbackTab:hover{
   border-color: rgba(200,163,73,.34);
   background: rgba(7,7,11,.82);
+  text-decoration:none;
 }
 .feedbackTab .spark{
   width: 9px;
@@ -315,6 +321,7 @@ body.navOpen{ overflow: hidden; }
 #nfHeader .mobileGrid a:hover{
   border-color: rgba(200,163,73,.34);
   background: rgba(200,163,73,.10);
+  text-decoration:none;
 }
 
 /* ===== Footer ===== */
@@ -350,10 +357,16 @@ body.navOpen{ overflow: hidden; }
   line-height: 1.55;
   font-size: 13px;
 }
+#nfFooter .fineNote{
+  margin-top: 12px;
+  color: var(--muted2);
+  font-size: 12.5px;
+  line-height: 1.5;
+}
 #nfFooter .fTitle{ font-weight: 850; letter-spacing:-.2px; margin-bottom: 10px; }
 #nfFooter .fLinks{ display:flex; flex-direction:column; gap: 9px; }
 #nfFooter .fLinks a{ color: var(--muted); text-decoration:none; }
-#nfFooter .fLinks a:hover{ color: var(--text); }
+#nfFooter .fLinks a:hover{ color: var(--text); text-decoration:none; }
 #nfFooter .ctaRow{
   display:flex;
   flex-wrap:wrap;
@@ -386,6 +399,7 @@ body.navOpen{ overflow: hidden; }
   color: var(--text);
   border-color: rgba(200,163,73,.28);
   background: rgba(200,163,73,.08);
+  text-decoration:none;
 }
 #nfFooter .footerMiniNav a.active{
   color: var(--text);
@@ -443,11 +457,119 @@ body.navOpen{ overflow: hidden; }
 }
 .ridRow button[data-copy-rid]:focus-visible{ outline:none; box-shadow: var(--focus); }
 
+/* ===== Minimal page primitives (index) ===== */
+.hero{
+  padding: 24px 0 12px;
+}
+.kicker{
+  font-size: 13px;
+  color: var(--muted2);
+  letter-spacing: .2px;
+  margin-bottom: 10px;
+}
+.hero h1{
+  margin: 0 0 12px;
+  font-size: clamp(28px, 4vw, 44px);
+  line-height: 1.08;
+  letter-spacing: -0.6px;
+}
+.lead{
+  margin: 0;
+  max-width: 78ch;
+  color: var(--muted);
+  line-height: 1.65;
+  font-size: 15px;
+}
+.heroActions{
+  display:flex;
+  flex-wrap: wrap;
+  gap:10px;
+  margin-top: 14px;
+}
+.signals{
+  display:flex;
+  flex-wrap: wrap;
+  gap:10px;
+  margin-top: 14px;
+}
+.sig{
+  padding: 8px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.10);
+  background: rgba(255,255,255,.02);
+  color: var(--muted);
+  font-size: 12.5px;
+}
+.note{
+  margin-top: 14px;
+  color: var(--muted2);
+  font-size: 13px;
+  line-height: 1.6;
+}
+.grid3{
+  margin-top: 18px;
+  display:grid;
+  gap: 12px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.card{
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,.10);
+  background: rgba(255,255,255,.02);
+  padding: 14px;
+  box-shadow: 0 0 0 rgba(0,0,0,0);
+}
+.card h2{
+  margin: 0 0 10px;
+  font-size: 16px;
+  letter-spacing: -.2px;
+}
+.card p{
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.6;
+  font-size: 13.5px;
+}
+.cardActions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top: 12px;
+}
+.rule{
+  margin-top: 14px;
+  border-radius: 16px;
+  border: 1px solid rgba(200,163,73,.22);
+  background: rgba(200,163,73,.06);
+  padding: 14px;
+}
+.ruleTitle{
+  font-weight: 850;
+  letter-spacing: -.2px;
+  margin-bottom: 6px;
+}
+.ruleText{
+  color: var(--muted);
+  line-height: 1.6;
+  font-size: 13.5px;
+}
+.noscript{
+  margin-top: 16px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.02);
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
 /* responsive */
 @media (max-width: 980px){
   #nfHeader .menu{ display:none; }
   #nfHeader .burger{ display:inline-flex; align-items:center; justify-content:center; }
   #nfFooter .footerTop{ grid-template-columns: 1fr; }
+  .grid3{ grid-template-columns: 1fr; }
 }
 @media (prefers-reduced-motion: reduce){
   .ridRow button[data-copy-rid]{ transition:none; }

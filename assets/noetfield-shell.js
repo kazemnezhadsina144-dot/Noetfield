@@ -1,11 +1,12 @@
-/* Noetfield Shell
+/* /assets/noetfield-shell.js
+   Noetfield Shell
    - Inject header/footer partials
-   - Burger menu + backdrop + scroll lock
+   - Burger menu + scroll lock
    - Active links
    - Footer year
    - Feedback tab
    - RID (Request ID): generate/store/display/copy + propagate to tagged links + inject into forms
-   Version: locked-2025.12.17+shell-v2.2
+   Version: locked-2025.12.17+shell-v2.3
 */
 (function () {
   "use strict";
@@ -14,9 +15,6 @@
   var PARTIALS_BASE = "/assets/partials";
   var RID_KEY = "nf_rid";
 
-  /* -------------------------
-     Utilities
-  ------------------------- */
   function normPath(p) {
     if (!p) return "/";
     p = String(p).split("?")[0].split("#")[0];
@@ -56,21 +54,6 @@
     return x;
   }
 
-  function buildUrlWithRID(href, rid) {
-    try {
-      var u = new URL(href, window.location.origin);
-      if (u.origin !== window.location.origin) return null;
-      u.searchParams.set("rid", rid);
-      var qs = u.searchParams.toString();
-      return u.pathname + (qs ? ("?" + qs) : "") + (u.hash || "");
-    } catch (_) {
-      return null;
-    }
-  }
-
-  /* -------------------------
-     RID (Request ID)
-  ------------------------- */
   function generateRID() {
     return ("RID-" + Date.now().toString(36) + "-" + Math.random().toString(36).slice(2, 8)).toUpperCase();
   }
@@ -94,6 +77,18 @@
     var rid = sanitizeRID(generateRID()) || generateRID();
     try { localStorage.setItem(RID_KEY, rid); } catch (_) {}
     return rid;
+  }
+
+  function buildUrlWithRID(href, rid) {
+    try {
+      var u = new URL(href, window.location.origin);
+      if (u.origin !== window.location.origin) return null;
+      u.searchParams.set("rid", rid);
+      var qs = u.searchParams.toString();
+      return u.pathname + (qs ? ("?" + qs) : "") + (u.hash || "");
+    } catch (_) {
+      return null;
+    }
   }
 
   function copyText(text) {
@@ -160,9 +155,6 @@
     });
   }
 
-  /* -------------------------
-     Active links
-  ------------------------- */
   function setActiveLinks() {
     var current = normPath(window.location.pathname);
 
@@ -193,22 +185,12 @@
     });
   }
 
-  /* -------------------------
-     Burger + backdrop + focus management
-  ------------------------- */
   function initBurger() {
     var burger = document.getElementById("burger");
     var panel = document.getElementById("mobilePanel");
     if (!burger || !panel) return;
 
-    var backdrop = document.getElementById("navBackdrop"); // optional
     var lastFocus = null;
-
-    function setBackdrop(open) {
-      if (!backdrop) return;
-      backdrop.hidden = !open;
-      backdrop.setAttribute("aria-hidden", open ? "false" : "true");
-    }
 
     function focusFirstInPanel() {
       var focusables = panel.querySelectorAll('a, button, input, select, textarea, [tabindex]:not([tabindex="-1"])');
@@ -222,7 +204,6 @@
       panel.hidden = false;
       panel.setAttribute("aria-hidden", "false");
       document.body.classList.add("navOpen");
-      setBackdrop(true);
       setTimeout(focusFirstInPanel, 0);
     }
 
@@ -232,7 +213,6 @@
       panel.hidden = true;
       panel.setAttribute("aria-hidden", "true");
       document.body.classList.remove("navOpen");
-      setBackdrop(false);
       if (lastFocus && lastFocus.focus) lastFocus.focus();
     }
 
@@ -245,14 +225,12 @@
     panel.hidden = true;
     panel.setAttribute("aria-hidden", "true");
     document.body.classList.remove("navOpen");
-    setBackdrop(false);
 
     burger.addEventListener("click", function (e) { e.preventDefault(); toggle(); });
 
     document.addEventListener("keydown", function (e) {
       if (e.key === "Escape" && burger.getAttribute("aria-expanded") === "true") closePanel();
 
-      // basic focus trap
       if (e.key === "Tab" && burger.getAttribute("aria-expanded") === "true") {
         var focusables = panel.querySelectorAll('a, button, input, select, textarea, [tabindex]:not([tabindex="-1"])');
         if (!focusables || !focusables.length) return;
@@ -265,17 +243,10 @@
       }
     });
 
-    if (backdrop) {
-      backdrop.addEventListener("click", function () {
-        if (burger.getAttribute("aria-expanded") === "true") closePanel();
-      });
-    }
-
     document.addEventListener("click", function (e) {
       if (burger.getAttribute("aria-expanded") !== "true") return;
       var withinHeader = !!(e.target && e.target.closest && e.target.closest("#nfHeader"));
-      var withinBackdrop = !!(e.target && e.target.closest && e.target.closest("#navBackdrop"));
-      if (!withinHeader && !withinBackdrop) closePanel();
+      if (!withinHeader) closePanel();
     });
 
     panel.addEventListener("click", function (e) {
@@ -288,9 +259,6 @@
     });
   }
 
-  /* -------------------------
-     Footer CTA normalization (robust path-based)
-  ------------------------- */
   function normalizeFooterCTA() {
     var cta = document.querySelector("#nfFooter .ctaRow");
     if (!cta) return;
@@ -301,15 +269,12 @@
       if (!internal) return;
       var p = normPath(internal);
 
-      // Keep only Gate / Offers / Portal (ignores query/hash safely)
-      var keep = (p === "/gate" || p === "/gate/offers" || p === "/portal");
-      if (!keep) a.parentNode && a.parentNode.removeChild(a);
+      /* keep: /gate, /gate/intake, /gate/offers, /portal */
+      var keep = (p === "/gate" || p === "/gate/intake" || p === "/gate/offers" || p === "/portal");
+      if (!keep && a.parentNode) a.parentNode.removeChild(a);
     });
   }
 
-  /* -------------------------
-     Feedback tab
-  ------------------------- */
   function ensureFeedbackTab() {
     var p = normPath(window.location.pathname);
     if (p === "/feedback" || p.startsWith("/feedback/")) return;
@@ -329,9 +294,6 @@
     document.body.appendChild(a);
   }
 
-  /* -------------------------
-     Inject partials
-  ------------------------- */
   async function injectOne(targetId, partialName) {
     var el = document.getElementById(targetId);
     if (!el) return;
@@ -352,20 +314,21 @@
     await injectOne("nfFooter", "footer.html");
   }
 
-  /* -------------------------
-     Boot
-  ------------------------- */
   async function boot() {
     await injectShell();
 
     setYear();
+
+    var rid = getOrCreateRID();
+    applyRID(rid);
+
     setActiveLinks();
     initBurger();
     normalizeFooterCTA();
     ensureFeedbackTab();
 
-    var rid = getOrCreateRID();
-    applyRID(rid);
+    // after RID rewriting
+    setActiveLinks();
   }
 
   if (document.readyState === "loading") {

@@ -1,4 +1,4 @@
-<!-- /gate/index.html — Noetfield Gate (routing + sell, light router) -->
+<!-- /gate/index.html — Gate (Sales Hub + Optional 60-second Router) -->
 <!doctype html>
 <html lang="en">
 <head>
@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <title>Noetfield — Gate</title>
-  <meta name="description" content="Start with a package. Clear scope, timing, and decision-ready outputs — with direct paths to Copilot QuickScan, Trust Brief, and Trust Ledger." />
+  <meta name="description" content="Start here. Choose a package, purchase via direct intake, and receive decision-ready outputs. Optional 60-second router included." />
   <meta name="robots" content="index,follow" />
   <meta name="author" content="Noetfield Systems Inc." />
   <meta name="theme-color" content="#07070b" />
@@ -15,34 +15,32 @@
   <link rel="icon" href="/noetfield-favicon-512.png" type="image/png" />
   <link rel="apple-touch-icon" href="/noetfield-favicon-512.png" />
 
-  <!-- OG -->
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Noetfield" />
   <meta property="og:title" content="Noetfield — Gate" />
-  <meta property="og:description" content="Start with a package. Direct paths to Copilot QuickScan, Trust Brief, and Trust Ledger." />
+  <meta property="og:description" content="Choose a package and start. Optional 60-second router included." />
   <meta property="og:url" content="https://www.noetfield.com/gate/" />
   <meta property="og:image" content="https://www.noetfield.com/noetfield-og.png" />
 
-  <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Noetfield — Gate" />
-  <meta name="twitter:description" content="Start with a package. Direct paths to Copilot QuickScan, Trust Brief, and Trust Ledger." />
+  <meta name="twitter:description" content="Choose a package and start. Optional 60-second router included." />
   <meta name="twitter:image" content="https://www.noetfield.com/noetfield-og.png" />
 
   <!-- LOCKED SHELL -->
   <link rel="stylesheet" href="/assets/noetfield-shell.css" />
-  <script src="/assets/noetfield-shell.js" defer></script>
+  <script defer src="/assets/noetfield-shell.js"></script>
 
   <style>
-    /* Gate-only styles (prefixed) */
+    /* Page-local styles (prefixed to avoid collisions) */
     .nfGateHero{padding:22px 0 12px}
     .nfGateHeroShell{
       position:relative;
       border-radius: calc(var(--radius) + 8px);
       border: 1px solid rgba(255,255,255,.11);
       background:
-        radial-gradient(980px 420px at 18% 0%, rgba(200,163,73,.18), transparent 60%),
-        radial-gradient(980px 420px at 90% 10%, rgba(122,167,255,.10), transparent 62%),
+        radial-gradient(1000px 420px at 18% 0%, rgba(200,163,73,.18), transparent 60%),
+        radial-gradient(1000px 420px at 90% 10%, rgba(122,167,255,.10), transparent 62%),
         linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.022));
       box-shadow: var(--shadow);
       overflow:hidden;
@@ -70,14 +68,12 @@
       background: rgba(200,163,73,.97);
       box-shadow: 0 0 0 3px rgba(200,163,73,.18);
     }
-    .nfGateTitle{margin:14px 0 10px; font-size:42px; line-height:1.06; letter-spacing:-0.85px}
-    .nfGateLead{margin:0; color:var(--muted); font-size:16.5px; max-width: 980px; line-height:1.75}
+    .nfGateH1{margin:14px 0 10px; font-size:40px; line-height:1.07; letter-spacing:-0.75px}
+    .nfGateLead{margin:0; color:var(--muted); font-size:16px; max-width: 980px; line-height:1.75}
     .nfGateLead strong{color:var(--text); font-weight:900}
 
-    .nfGateTopRow{
-      display:flex; flex-wrap:wrap; gap:10px; align-items:center;
-      margin-top:14px;
-    }
+    .nfGateTopRow{display:flex; gap:12px; flex-wrap:wrap; align-items:center; margin-top:14px}
+    .nfGateTopRow .btn{min-height:44px}
 
     .nfGateNote{
       margin-top:12px;
@@ -91,9 +87,9 @@
     }
     .nfGateNote strong{color:var(--text); font-weight:900}
 
-    .nfGateGrid{
+    .nfGateLayout{
       display:grid;
-      grid-template-columns: 1.15fr .85fr;
+      grid-template-columns: 1.05fr .95fr;
       gap:16px;
       margin: 16px 0 34px;
       align-items:start;
@@ -109,122 +105,128 @@
     }
     .nfCardHd{padding:18px 18px 0}
     .nfCardBd{padding:18px}
-    .nfCard h2{margin:0 0 8px; font-size:18px; letter-spacing:-0.2px}
-    .nfMuted{color:var(--muted); line-height:1.7; margin:0}
+    .nfCardTitle{margin:0 0 8px; font-size:18px; letter-spacing:-0.2px}
+    .nfCardP{margin:0 0 10px; color:var(--muted); line-height:1.7}
 
-    .nfOffers{
+    .nfProducts{
       display:grid;
       grid-template-columns: repeat(12, 1fr);
-      gap:12px;
-      margin-top:10px;
+      gap:14px;
     }
-    .nfOffer{
+    .nfProduct{
       grid-column: span 12;
       border-radius:16px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.03);
-      padding:14px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.02);
+      padding:16px;
       min-width:0;
     }
-    .nfOfferTop{display:flex; flex-wrap:wrap; gap:10px; align-items:baseline; justify-content:space-between}
-    .nfOfferName{font-weight:950; letter-spacing:-.2px}
-    .nfOfferMeta{
+    .nfProductTop{display:flex; gap:12px; align-items:flex-start; justify-content:space-between}
+    .nfProductLeft{min-width:0}
+    .nfProductName{margin:0; font-size:18px; letter-spacing:-.2px}
+    .nfProductSub{margin:6px 0 0; color:var(--muted); line-height:1.65}
+    .nfProductMeta{margin-top:12px; display:flex; gap:10px; flex-wrap:wrap; align-items:center}
+    .nfPill{
       display:inline-flex; align-items:center; gap:8px;
-      color:var(--muted2);
-      font-size:12.6px;
-      white-space:nowrap;
-    }
-    .nfOfferDesc{margin:8px 0 0; color:var(--muted); line-height:1.7}
-    .nfOfferActions{display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-top:12px}
-    .nfOfferActions .btn{min-height:44px}
-
-    .nfRouterShell{
-      border-radius:16px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.03);
-      padding:14px;
-      margin-top:12px;
-    }
-    .nfRouterTitle{margin:0 0 6px; font-weight:950; letter-spacing:-.2px}
-    .nfRouterSub{margin:0; color:var(--muted2); font-size:12.9px; line-height:1.6}
-    .nfRouterGrid{
-      display:grid;
-      grid-template-columns: 1fr;
-      gap:10px;
-      margin-top:12px;
-    }
-    .nfField{
-      border-radius:14px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.02);
-      padding:12px;
-    }
-    .nfLabel{
-      display:block;
-      color:var(--muted2);
-      font-size:11px;
-      letter-spacing:.28em;
-      text-transform:uppercase;
-      margin-bottom:8px;
-    }
-    .nfSelect{
-      width:100%;
-      min-height:44px;
-      border-radius:12px;
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(7,7,11,.28);
-      color: var(--text);
-      padding:10px 12px;
-      outline:none;
-    }
-
-    .nfRouterActions{
-      display:flex; gap:10px; flex-wrap:wrap; align-items:center;
-      margin-top:12px;
-    }
-
-    .nfReco{
-      margin-top:12px;
-      border-radius:16px;
-      border:1px solid rgba(255,255,255,.11);
-      background: linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.02));
-      padding:14px;
-    }
-    .nfRecoBadge{
-      display:inline-flex; align-items:center; gap:8px;
-      padding:7px 10px;
+      padding:8px 10px;
       border-radius:999px;
       border:1px solid rgba(255,255,255,.12);
       background: rgba(255,255,255,.03);
-      color:var(--muted);
-      font-size:12.6px;
+      color:var(--muted2);
+      font-size:12.5px;
       white-space:nowrap;
     }
-    .nfRecoBadge strong{color:var(--text); font-weight:950}
-    .nfRecoTitle{margin:10px 0 6px; font-size:20px; letter-spacing:-.25px; font-weight:950}
-    .nfRecoDesc{margin:0; color:var(--muted); line-height:1.75}
-    .nfRecoActions{display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-top:12px}
-    .nfRecoActions .btn{min-height:44px}
+    .nfPill strong{color:var(--text); font-weight:900}
 
-    /* Aside */
-    .nfAsideList{display:grid; gap:10px; margin-top:10px}
-    .nfAsideBox{
+    .nfProductActions{display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-top:12px}
+    .nfProductActions .btn{min-height:44px}
+
+    /* Small “visual” badge (inline SVG container) */
+    .nfMark{
+      flex:0 0 auto;
+      width:46px; height:46px;
       border-radius:14px;
-      border:1px solid rgba(255,255,255,.10);
+      border:1px solid rgba(255,255,255,.12);
       background: rgba(255,255,255,.03);
-      padding:12px;
-      color:var(--muted2);
-      font-size:12.8px;
-      line-height:1.6;
+      display:grid;
+      place-items:center;
+      overflow:hidden;
     }
-    .nfAsideBox strong{color:var(--text); font-weight:950}
+    .nfMark svg{opacity:.95}
+
+    /* Sidebar purchase panel (shop-like) */
+    .nfAsideStack{display:grid; gap:14px}
+    .nfAsideBox{
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.02);
+      padding:16px;
+    }
+    .nfAsideBox h3{margin:0 0 8px; font-size:16px; letter-spacing:-.2px}
+    .nfAsideMini{margin:0; color:var(--muted); line-height:1.7}
+    .nfAsideActions{display:grid; gap:10px; margin-top:12px}
+    .nfAsideActions .btn{min-height:44px; justify-content:center}
+
+    /* Router */
+    .nfRouterCard{margin-top:14px}
+    .nfRouterTop{display:flex; gap:10px; align-items:center; justify-content:space-between; flex-wrap:wrap}
+    .nfRouterTop .btn{min-height:44px}
+    .nfRouterWrap{margin-top:12px}
+    .nfRouterQ{margin:14px 0 8px; font-weight:900; letter-spacing:-.2px}
+    .nfRouterOpts{display:grid; gap:10px}
+    .nfOpt{
+      display:flex; gap:12px; align-items:flex-start;
+      padding:12px;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.11);
+      background: rgba(255,255,255,.03);
+      cursor:pointer;
+      user-select:none;
+      transition: filter .12s ease, border-color .12s ease, transform .12s ease;
+    }
+    .nfOpt:hover{filter:brightness(1.06)}
+    .nfOpt:active{transform: translateY(1px)}
+    .nfOpt input{margin-top:2px}
+    .nfOpt .t{font-weight:900}
+    .nfOpt .d{color:var(--muted2); font-size:12.8px; line-height:1.55; margin-top:4px}
+
+    .nfRouterActions{display:flex; gap:12px; flex-wrap:wrap; align-items:center; margin-top:12px}
+    .nfRouterActions .btn{min-height:44px}
+
+    .nfResult{
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.02);
+      padding:14px;
+      margin-top:12px;
+    }
+    .nfResultBadge{
+      display:inline-flex; align-items:center; gap:10px;
+      padding:8px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.03);
+      color:var(--muted2);
+      font-size:12.5px;
+      white-space:nowrap;
+    }
+    .nfResultBadge strong{color:var(--text); font-weight:900}
+    .nfResultTitle{margin:10px 0 6px; font-size:18px; letter-spacing:-.2px; font-weight:900}
+    .nfResultDesc{margin:0; color:var(--muted); line-height:1.7}
 
     /* Responsive */
     @media (max-width: 980px){
-      .nfGateGrid{grid-template-columns:1fr}
+      .nfGateLayout{grid-template-columns:1fr}
+      .nfGateH1{font-size:30px}
     }
-    @media (max-width: 760px){
-      .nfGateTitle{font-size:30px}
+    @media (min-width: 860px){
+      .nfProduct{grid-column: span 6}
+      .nfProduct--wide{grid-column: span 12}
+    }
+    @media (prefers-reduced-motion: reduce){
+      .nfOpt{transition:none}
+      .nfOpt:hover{filter:none}
+      .nfOpt:active{transform:none}
     }
   </style>
 
@@ -234,7 +236,7 @@
     "@type":"WebPage",
     "name":"Noetfield — Gate",
     "url":"https://www.noetfield.com/gate/",
-    "description":"Start with a package. Clear scope, timing, and decision-ready outputs — with direct paths to Copilot QuickScan, Trust Brief, and Trust Ledger.",
+    "description":"Start here. Choose a package, purchase via direct intake, and receive decision-ready outputs.",
     "isPartOf":{"@type":"WebSite","name":"Noetfield","url":"https://www.noetfield.com/"},
     "publisher":{"@type":"Organization","name":"Noetfield Systems Inc."}
   }
@@ -253,153 +255,275 @@
     <section class="nfGateHero" aria-label="Gate hero">
       <div class="nfGateHeroShell">
         <div class="nfGateHeroInner">
-          <div class="nfGateEyebrow"><span class="nfGateDot"></span> Gate • quick start</div>
-
-          <h1 class="nfGateTitle">Start with a package.</h1>
+          <div class="nfGateEyebrow"><span class="nfGateDot"></span> Start here • packages + direct purchase intake</div>
+          <h1 class="nfGateH1">Choose a package. Start today.</h1>
 
           <p class="nfGateLead">
-            Choose a starting point and move fast: <strong>scope</strong>, <strong>timing</strong>, and <strong>decision-ready outputs</strong>.
-            Details are optional—sales paths stay obvious.
+            Gate is the fastest way to purchase and begin.
+            Pick a package below and start the intake to confirm scope, access readiness, and delivery details.
+            <strong>Not sure yet?</strong> Use the 60-second router (optional).
           </p>
 
-          <div class="nfGateTopRow" aria-label="Primary paths">
-            <a class="btn" href="/copilot/quickscan/" data-rid-link>Copilot QuickScan</a>
-            <a class="btn secondary" href="/trust-brief/" data-rid-link>Trust Brief</a>
-            <a class="btn secondary" href="/trust-ledger/" data-rid-link>Trust Ledger</a>
+          <div class="nfGateTopRow" aria-label="Top actions">
+            <a class="btn" href="#packages">View packages</a>
+            <a class="btn secondary" href="#router">Not sure? Use the router</a>
+            <a class="btn secondary" href="/contact">Talk to Noetfield</a>
           </div>
 
-          <div class="nfGateNote" role="note" aria-label="Intake note">
-            <strong>Intake note:</strong> Share high-level context only. We’ll confirm scope and access requirements after review.
+          <div class="nfGateNote" role="note" aria-label="Intake guidance">
+            <strong>Intake is designed for fast starting.</strong> Use short, high-level context.
+            For sensitive materials, use a secure channel after scope is confirmed.
           </div>
         </div>
       </div>
     </section>
 
-    <section class="nfGateGrid" aria-label="Gate content grid">
-      <!-- LEFT: Offers + Router -->
-      <section class="nfCard" aria-label="Offers and router">
+    <section class="nfGateLayout" aria-label="Gate layout">
+
+      <!-- LEFT: packages -->
+      <section class="nfCard" id="packages" aria-label="Packages">
         <div class="nfCardHd">
-          <h2>Direct paths</h2>
-          <p class="nfMuted">Open the product page for details. Start intake when ready.</p>
+          <h2 class="nfCardTitle">Packages</h2>
+          <p class="nfCardP">Clear offers, clear next steps. Each “Buy” button routes to the direct purchase intake for that package.</p>
         </div>
 
         <div class="nfCardBd">
-          <div class="nfOffers" aria-label="Offer cards">
-            <!-- Offer 1 -->
-            <div class="nfOffer">
-              <div class="nfOfferTop">
-                <div class="nfOfferName">Copilot QuickScan</div>
-                <div class="nfOfferMeta">5–7 business days • evidence pack</div>
-              </div>
-              <p class="nfOfferDesc">
-                Practical readiness for Microsoft 365 Copilot: enabled surfaces, oversharing exposure, boundaries, evidence readiness, and connector controls.
-              </p>
-              <div class="nfOfferActions">
-                <a class="btn" href="/copilot/quickscan/" data-rid-link>Open details</a>
-                <a class="btn secondary" href="/copilot/quickscan/intake/" data-rid-link>Start intake</a>
-              </div>
-            </div>
+          <div class="nfProducts">
 
-            <!-- Offer 2 -->
-            <div class="nfOffer">
-              <div class="nfOfferTop">
-                <div class="nfOfferName">Trust Brief</div>
-                <div class="nfOfferMeta">6 weeks • governance diagnostic</div>
-              </div>
-              <p class="nfOfferDesc">
-                Map material AI use-cases, decision points, risks, and owners. Produce options and tradeoffs in an executive-ready format.
-              </p>
-              <div class="nfOfferActions">
-                <a class="btn" href="/trust-brief/" data-rid-link>Open details</a>
-                <a class="btn secondary" href="/trust-brief/intake/" data-rid-link>Start intake</a>
-              </div>
-            </div>
+            <!-- Copilot QuickScan (featured wide) -->
+            <article class="nfProduct nfProduct--wide" aria-label="Copilot QuickScan">
+              <div class="nfProductTop">
+                <div class="nfProductLeft">
+                  <div class="nfMark" aria-hidden="true">
+                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+                      <path d="M4 12c3-5 13-5 16 0-3 5-13 5-16 0Z" stroke="rgba(255,255,255,.9)" stroke-width="1.8"/>
+                      <path d="M12 15.2a3.2 3.2 0 1 0 0-6.4 3.2 3.2 0 0 0 0 6.4Z" stroke="rgba(200,163,73,.95)" stroke-width="1.8"/>
+                    </svg>
+                  </div>
+                  <h3 class="nfProductName">Copilot QuickScan</h3>
+                  <p class="nfProductSub">
+                    A fast, decision-ready evidence pack for Microsoft 365 Copilot adoption:
+                    scope, oversharing exposure paths, boundaries, evidence readiness, and connector controls.
+                  </p>
 
-            <!-- Offer 3 -->
-            <div class="nfOffer">
-              <div class="nfOfferTop">
-                <div class="nfOfferName">Trust Ledger</div>
-                <div class="nfOfferMeta">Ongoing • evidence continuity</div>
-              </div>
-              <p class="nfOfferDesc">
-                Maintain a board-ready register of AI systems, safeguards, evidence, and accountability over time—answer-ready for scrutiny.
-              </p>
-              <div class="nfOfferActions">
-                <a class="btn" href="/trust-ledger/" data-rid-link>Open details</a>
-                <a class="btn secondary" href="/trust-ledger/intake/" data-rid-link>Start intake</a>
-              </div>
-            </div>
-          </div>
+                  <div class="nfProductMeta" aria-label="Copilot QuickScan highlights">
+                    <div class="nfPill"><strong>5–7</strong> business days</div>
+                    <div class="nfPill"><strong>Buyer Pack</strong> outputs</div>
+                    <div class="nfPill"><strong>Procurement-ready</strong> format</div>
+                    <div class="nfPill"><strong>CAD</strong> pricing band</div>
+                  </div>
 
-          <!-- Light Router -->
-          <div class="nfRouterShell" aria-label="Light routing router">
-            <h3 class="nfRouterTitle">Not sure which one fits?</h3>
-            <p class="nfRouterSub">Take a 30-second router. Three picks. One clear route.</p>
+                  <div class="nfProductActions">
+                    <a class="btn" href="/copilot/quickscan/intake/" data-rid-link>Buy Copilot QuickScan</a>
+                    <a class="btn secondary" href="/copilot/quickscan/">View details</a>
+                  </div>
+                </div>
 
-            <form id="nfRouterForm" class="nfRouterGrid">
-              <div class="nfField">
-                <label class="nfLabel" for="nfR_situation">What’s happening now?</label>
-                <select class="nfSelect" id="nfR_situation" name="situation" required>
-                  <option value="" selected disabled>Select…</option>
-                  <option value="copilot">Copilot rollout (live or imminent)</option>
-                  <option value="plan">Need a governance plan and decisions</option>
-                  <option value="evidence">Need ongoing evidence continuity</option>
-                </select>
+                <div class="nfPill" aria-label="Price anchor"><strong>Typical</strong> $1.5k–$4k CAD</div>
               </div>
+            </article>
 
-              <div class="nfField">
-                <label class="nfLabel" for="nfR_timeline">Timeline</label>
-                <select class="nfSelect" id="nfR_timeline" name="timeline" required>
-                  <option value="" selected disabled>Select…</option>
-                  <option value="fast">1–2 weeks</option>
-                  <option value="quarter">This quarter</option>
-                  <option value="ongoing">Ongoing</option>
-                </select>
+            <!-- Trust Brief -->
+            <article class="nfProduct" aria-label="Trust Brief">
+              <div class="nfProductTop">
+                <div class="nfProductLeft">
+                  <div class="nfMark" aria-hidden="true">
+                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+                      <path d="M7 3h10v18l-5-3-5 3V3Z" stroke="rgba(255,255,255,.9)" stroke-width="1.8"/>
+                      <path d="M9 8h6" stroke="rgba(200,163,73,.95)" stroke-width="1.8" stroke-linecap="round"/>
+                      <path d="M9 12h6" stroke="rgba(200,163,73,.65)" stroke-width="1.8" stroke-linecap="round"/>
+                    </svg>
+                  </div>
+                  <h3 class="nfProductName">Trust Brief (6-week)</h3>
+                  <p class="nfProductSub">
+                    Governance-first diagnostic to map material AI use-cases, decision points, risks, and a structured plan.
+                    Designed for leadership alignment and clear tradeoffs.
+                  </p>
+                  <div class="nfProductMeta">
+                    <div class="nfPill"><strong>6</strong> weeks</div>
+                    <div class="nfPill"><strong>Decision memo</strong> output</div>
+                    <div class="nfPill"><strong>Roadmap</strong> included</div>
+                  </div>
+                  <div class="nfProductActions">
+                    <a class="btn" href="/trust-brief/intake/" data-rid-link>Buy Trust Brief</a>
+                    <a class="btn secondary" href="/trust-brief/">View details</a>
+                  </div>
+                </div>
               </div>
+            </article>
 
-              <div class="nfField">
-                <label class="nfLabel" for="nfR_outcome">Primary outcome</label>
-                <select class="nfSelect" id="nfR_outcome" name="outcome" required>
-                  <option value="" selected disabled>Select…</option>
-                  <option value="decision">Decision-ready pack</option>
-                  <option value="controls">Controls, owners, and roadmap</option>
-                  <option value="continuity">Evidence continuity and exports</option>
-                </select>
+            <!-- Trust Ledger -->
+            <article class="nfProduct" aria-label="Trust Ledger">
+              <div class="nfProductTop">
+                <div class="nfProductLeft">
+                  <div class="nfMark" aria-hidden="true">
+                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+                      <path d="M4 6h12a4 4 0 0 1 4 4v8H8a4 4 0 0 0-4 4V6Z" stroke="rgba(255,255,255,.9)" stroke-width="1.8"/>
+                      <path d="M8 10h10" stroke="rgba(200,163,73,.95)" stroke-width="1.8" stroke-linecap="round"/>
+                      <path d="M8 14h8" stroke="rgba(200,163,73,.65)" stroke-width="1.8" stroke-linecap="round"/>
+                    </svg>
+                  </div>
+                  <h3 class="nfProductName">Trust Ledger</h3>
+                  <p class="nfProductSub">
+                    A maintained, decision-ready register of AI systems, safeguards, evidence, and accountability over time.
+                    Built for repeatable answers under scrutiny.
+                  </p>
+                  <div class="nfProductMeta">
+                    <div class="nfPill"><strong>Ongoing</strong> stewardship</div>
+                    <div class="nfPill"><strong>Evidence</strong> traceability</div>
+                    <div class="nfPill"><strong>Board-ready</strong> structure</div>
+                  </div>
+                  <div class="nfProductActions">
+                    <a class="btn" href="/trust-ledger/intake/" data-rid-link>Buy Trust Ledger</a>
+                    <a class="btn secondary" href="/trust-ledger/">View details</a>
+                  </div>
+                </div>
               </div>
+            </article>
 
-              <div class="nfRouterActions">
-                <button class="btn" type="submit" id="nfRouterBtn">Show my best start</button>
-                <button class="btn secondary" type="button" id="nfRouterReset">Reset</button>
+            <!-- Playbook Pro -->
+            <article class="nfProduct nfProduct--wide" aria-label="Playbook Pro">
+              <div class="nfProductTop">
+                <div class="nfProductLeft">
+                  <div class="nfMark" aria-hidden="true">
+                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+                      <path d="M6 4h9a3 3 0 0 1 3 3v13H9a3 3 0 0 0-3 3V4Z" stroke="rgba(255,255,255,.9)" stroke-width="1.8"/>
+                      <path d="M9 9h7" stroke="rgba(200,163,73,.95)" stroke-width="1.8" stroke-linecap="round"/>
+                      <path d="M9 13h6" stroke="rgba(200,163,73,.65)" stroke-width="1.8" stroke-linecap="round"/>
+                    </svg>
+                  </div>
+                  <h3 class="nfProductName">Playbook Pro (Agency / Pro)</h3>
+                  <p class="nfProductSub">
+                    Reusable governance templates and operational patterns for agencies, advisors, and delivery partners.
+                    Designed to reduce back-and-forth and speed up approvals.
+                  </p>
+                  <div class="nfProductMeta">
+                    <div class="nfPill"><strong>749</strong> CAD</div>
+                    <div class="nfPill"><strong>Multi-client</strong> use</div>
+                    <div class="nfPill"><strong>One-time</strong> purchase</div>
+                  </div>
+                  <div class="nfProductActions">
+                    <a class="btn" href="/playbook/pro/">Open Playbook Pro</a>
+                    <a class="btn secondary" href="/playbook/">See Playbook overview</a>
+                  </div>
+                </div>
               </div>
-            </form>
+            </article>
 
-            <div class="nfReco" id="nfReco" hidden>
-              <div class="nfRecoBadge"><strong>Recommendation</strong> · suggested start</div>
-              <div class="nfRecoTitle" id="nfRecoTitle">—</div>
-              <p class="nfRecoDesc" id="nfRecoDesc">—</p>
-              <div class="nfRecoActions" id="nfRecoActions"></div>
-            </div>
           </div>
         </div>
       </section>
 
-      <!-- RIGHT: Compact reassurance + shortcuts -->
-      <aside class="nfCard" aria-label="Shortcuts">
-        <div class="nfCardHd">
-          <h2>Common starts</h2>
-          <p class="nfMuted">Quick picks for typical situations.</p>
-        </div>
-        <div class="nfCardBd">
-          <div class="nfAsideList">
-            <div class="nfAsideBox"><strong>Rollout pressure:</strong> start with Copilot QuickScan for fast evidence and scope clarity.</div>
-            <div class="nfAsideBox"><strong>Governance clarity:</strong> start with Trust Brief for decisions, owners, and a plan.</div>
-            <div class="nfAsideBox"><strong>Audit continuity:</strong> start with Trust Ledger for maintained evidence and exports.</div>
+      <!-- RIGHT: shop-like quick purchase panel + router entry -->
+      <aside class="nfAsideStack" aria-label="Quick purchase">
+
+        <div class="nfAsideBox">
+          <h3>Quick purchase</h3>
+          <p class="nfAsideMini">Choose the most common starts. Each link opens the direct intake for purchase and kickoff.</p>
+
+          <div class="nfAsideActions" aria-label="Quick purchase buttons">
+            <a class="btn" href="/copilot/quickscan/intake/" data-rid-link>Buy Copilot QuickScan</a>
+            <a class="btn secondary" href="/trust-brief/intake/" data-rid-link>Buy Trust Brief</a>
+            <a class="btn secondary" href="/trust-ledger/intake/" data-rid-link>Buy Trust Ledger</a>
+            <a class="btn secondary" href="/playbook/pro/">Playbook Pro (749 CAD)</a>
           </div>
 
           <div class="nfGateNote" style="margin-top:12px;">
-            <strong>Contact:</strong> <a href="mailto:ceo@noetfield.com">ceo@noetfield.com</a>
+            <strong>Receipt / invoice:</strong> issued after purchase where applicable.
+            <br/><strong>Support:</strong> <a href="mailto:ceo@noetfield.com">ceo@noetfield.com</a>
           </div>
         </div>
+
+        <div class="nfAsideBox" id="router">
+          <div class="nfRouterTop">
+            <div>
+              <h3 style="margin:0 0 6px;">Not sure which fits?</h3>
+              <p class="nfAsideMini" style="margin:0;">Take a 60-second router and get one recommendation.</p>
+            </div>
+            <button class="btn secondary" type="button" id="nfOpenRouterBtn" aria-controls="nfRouterCard" aria-expanded="false">Start router</button>
+          </div>
+
+          <div class="nfRouterCard" id="nfRouterCard" hidden>
+            <div class="nfRouterWrap" aria-label="Router form">
+              <div class="nfRouterQ">1) What are you starting with?</div>
+              <div class="nfRouterOpts" role="radiogroup" aria-label="Start situation">
+                <label class="nfOpt">
+                  <input type="radio" name="situation" value="copilot" />
+                  <div>
+                    <div class="t">Microsoft 365 Copilot rollout</div>
+                    <div class="d">Need a fast, decision-ready evidence pack.</div>
+                  </div>
+                </label>
+                <label class="nfOpt">
+                  <input type="radio" name="situation" value="governance" />
+                  <div>
+                    <div class="t">Governance plan & internal alignment</div>
+                    <div class="d">Controls, owners, roadmap, and decision structure.</div>
+                  </div>
+                </label>
+                <label class="nfOpt">
+                  <input type="radio" name="situation" value="continuity" />
+                  <div>
+                    <div class="t">Ongoing evidence continuity</div>
+                    <div class="d">A maintained register with repeatable outputs.</div>
+                  </div>
+                </label>
+                <label class="nfOpt">
+                  <input type="radio" name="situation" value="templates" />
+                  <div>
+                    <div class="t">Templates for delivery teams</div>
+                    <div class="d">Reusable baseline for agencies and advisors.</div>
+                  </div>
+                </label>
+              </div>
+
+              <div class="nfRouterQ">2) How soon is the pressure?</div>
+              <div class="nfRouterOpts" role="radiogroup" aria-label="Timeline">
+                <label class="nfOpt">
+                  <input type="radio" name="timeline" value="fast" />
+                  <div>
+                    <div class="t">Within 1–2 weeks</div>
+                    <div class="d">Need fast outputs and clear next steps.</div>
+                  </div>
+                </label>
+                <label class="nfOpt">
+                  <input type="radio" name="timeline" value="normal" />
+                  <div>
+                    <div class="t">This quarter</div>
+                    <div class="d">Structured work with stakeholders.</div>
+                  </div>
+                </label>
+                <label class="nfOpt">
+                  <input type="radio" name="timeline" value="ongoing" />
+                  <div>
+                    <div class="t">Ongoing</div>
+                    <div class="d">Continuous tracking and readiness.</div>
+                  </div>
+                </label>
+              </div>
+
+              <div class="nfRouterActions" aria-label="Router actions">
+                <button class="btn" type="button" id="nfRouteBtn">Get recommendation</button>
+                <button class="btn secondary" type="button" id="nfResetBtn">Reset</button>
+              </div>
+
+              <div class="nfResult" id="nfResult" hidden>
+                <div class="nfResultBadge"><strong>Recommendation</strong> · next best start</div>
+                <div class="nfResultTitle" id="nfResTitle">—</div>
+                <p class="nfResultDesc" id="nfResDesc">—</p>
+                <div class="nfRouterActions" style="margin-top:12px;">
+                  <a class="btn" id="nfResPrimary" href="/copilot/quickscan/intake/" data-rid-link>Start</a>
+                  <a class="btn secondary" id="nfResSecondary" href="/copilot/quickscan/">View details</a>
+                </div>
+              </div>
+
+              <div class="nfGateNote" style="margin-top:12px;">
+                Router is for fast direction. Purchase and kickoff happen on the package intake pages.
+              </div>
+            </div>
+          </div>
+        </div>
+
       </aside>
     </section>
   </main>
@@ -409,134 +533,148 @@
 
   <script>
     (function(){
-      var form = document.getElementById("nfRouterForm");
-      var reco = document.getElementById("nfReco");
-      var titleEl = document.getElementById("nfRecoTitle");
-      var descEl = document.getElementById("nfRecoDesc");
-      var actionsEl = document.getElementById("nfRecoActions");
-      var resetBtn = document.getElementById("nfRouterReset");
+      // Router open/close
+      var openBtn = document.getElementById("nfOpenRouterBtn");
+      var card = document.getElementById("nfRouterCard");
+      function setOpen(v){
+        if (!card || !openBtn) return;
+        card.hidden = !v;
+        openBtn.setAttribute("aria-expanded", String(v));
+        if (v) card.scrollIntoView({behavior:"smooth", block:"start"});
+      }
+      if (openBtn) openBtn.addEventListener("click", function(){ setOpen(card.hidden); });
 
-      function v(id){
-        var el = document.getElementById(id);
+      // Router logic
+      var routeBtn = document.getElementById("nfRouteBtn");
+      var resetBtn = document.getElementById("nfResetBtn");
+      var result = document.getElementById("nfResult");
+      var resTitle = document.getElementById("nfResTitle");
+      var resDesc = document.getElementById("nfResDesc");
+      var resPrimary = document.getElementById("nfResPrimary");
+      var resSecondary = document.getElementById("nfResSecondary");
+
+      function val(name){
+        var el = document.querySelector('input[name="'+name+'"]:checked');
         return el ? (el.value || "") : "";
       }
+      function clear(name){
+        document.querySelectorAll('input[name="'+name+'"]').forEach(function(x){ x.checked = false; });
+      }
 
-      function choose(situation, timeline, outcome){
-        // Simple, predictable rules:
-        // - Strong Copilot signals: situation=copilot OR (fast + decision)
-        // - Strong Ledger signals: situation=evidence OR (ongoing + continuity)
-        // - Otherwise: Trust Brief
-        var copilotScore = 0, ledgerScore = 0, briefScore = 0;
+      function compute(){
+        var s = val("situation");
+        var t = val("timeline");
 
-        if (situation === "copilot") copilotScore += 4;
-        if (timeline === "fast") copilotScore += 2;
-        if (outcome === "decision") copilotScore += 2;
-
-        if (situation === "evidence") ledgerScore += 4;
-        if (timeline === "ongoing") ledgerScore += 2;
-        if (outcome === "continuity") ledgerScore += 2;
-
-        if (situation === "plan") briefScore += 4;
-        if (timeline === "quarter") briefScore += 2;
-        if (outcome === "controls") briefScore += 2;
-
-        // Tie-breakers:
-        // - If urgent, prefer Copilot.
-        // - If ongoing, prefer Ledger.
-        // - Else Brief.
-        var best = "brief";
-        var bestScore = briefScore;
-
-        if (ledgerScore > bestScore){ best = "ledger"; bestScore = ledgerScore; }
-        if (copilotScore > bestScore){ best = "copilot"; bestScore = copilotScore; }
-
-        if (bestScore === 0){
-          if (timeline === "fast") best = "copilot";
-          else if (timeline === "ongoing") best = "ledger";
-          else best = "brief";
-        }
-
-        if (best === "copilot"){
-          return {
-            title: "Copilot QuickScan",
-            desc: "Best fit for rollout pressure and fast, decision-ready evidence (5–7 business days).",
-            detailsHref: "/copilot/quickscan/",
-            intakeHref: "/copilot/quickscan/intake/"
-          };
-        }
-        if (best === "ledger"){
-          return {
-            title: "Trust Ledger",
-            desc: "Best fit for ongoing evidence continuity, exports, and scrutiny-ready tracking over time.",
-            detailsHref: "/trust-ledger/",
-            intakeHref: "/trust-ledger/intake/"
-          };
-        }
-        return {
-          title: "Trust Brief",
-          desc: "Best fit for governance clarity: controls, owners, roadmap, and structured decisions.",
-          detailsHref: "/trust-brief/",
-          intakeHref: "/trust-brief/intake/"
+        // Defaults
+        var rec = {
+          title: "Copilot QuickScan",
+          desc: "Fast, decision-ready evidence outputs designed for Copilot rollout questions and leadership approvals.",
+          primaryHref: "/copilot/quickscan/intake/",
+          primaryLabel: "Buy Copilot QuickScan",
+          secondaryHref: "/copilot/quickscan/",
+          secondaryLabel: "View details"
         };
+
+        // Templates
+        if (s === "templates"){
+          rec = {
+            title: "Playbook Pro (Agency / Pro)",
+            desc: "Reusable templates and delivery patterns for agencies and advisors. Fastest start for template-led delivery.",
+            primaryHref: "/playbook/pro/",
+            primaryLabel: "Open Playbook Pro",
+            secondaryHref: "/playbook/",
+            secondaryLabel: "See overview"
+          };
+          return rec;
+        }
+
+        // Continuity
+        if (s === "continuity" || t === "ongoing"){
+          rec = {
+            title: "Trust Ledger",
+            desc: "Best fit for ongoing evidence continuity and repeatable readiness outputs over time.",
+            primaryHref: "/trust-ledger/intake/",
+            primaryLabel: "Buy Trust Ledger",
+            secondaryHref: "/trust-ledger/",
+            secondaryLabel: "View details"
+          };
+        }
+
+        // Governance plan
+        if (s === "governance" && t !== "fast"){
+          rec = {
+            title: "Trust Brief (6-week)",
+            desc: "Best fit for governance clarity, stakeholder alignment, and a structured plan with clear tradeoffs.",
+            primaryHref: "/trust-brief/intake/",
+            primaryLabel: "Buy Trust Brief",
+            secondaryHref: "/trust-brief/",
+            secondaryLabel: "View details"
+          };
+        }
+
+        // Copilot + fast stays QuickScan
+        if (s === "copilot" || t === "fast"){
+          rec = {
+            title: "Copilot QuickScan",
+            desc: "Best fit when timing is tight and leadership needs a clear, decision-ready Copilot posture pack.",
+            primaryHref: "/copilot/quickscan/intake/",
+            primaryLabel: "Buy Copilot QuickScan",
+            secondaryHref: "/copilot/quickscan/",
+            secondaryLabel: "View details"
+          };
+        }
+
+        return rec;
       }
 
-      function render(r){
-        titleEl.textContent = r.title;
-        descEl.textContent = r.desc;
-
-        actionsEl.innerHTML =
-          '<a class="btn" href="'+ r.detailsHref +'" data-rid-link>Open details</a>' +
-          '<a class="btn secondary" href="'+ r.intakeHref +'" data-rid-link>Start intake</a>';
-
-        reco.hidden = false;
-
-        // Optional: remember last recommendation
-        try{
-          localStorage.setItem("nf_gate_reco_title", r.title);
-          localStorage.setItem("nf_gate_reco_details", r.detailsHref);
-          localStorage.setItem("nf_gate_reco_intake", r.intakeHref);
-        }catch(e){}
+      function showRec(r){
+        if (!result) return;
+        result.hidden = false;
+        resTitle.textContent = r.title;
+        resDesc.textContent = r.desc;
+        resPrimary.href = r.primaryHref;
+        resPrimary.textContent = r.primaryLabel;
+        resSecondary.href = r.secondaryHref;
+        resSecondary.textContent = r.secondaryLabel;
       }
 
-      if (form){
-        form.addEventListener("submit", function(ev){
-          ev.preventDefault();
-          var situation = v("nfR_situation");
-          var timeline = v("nfR_timeline");
-          var outcome = v("nfR_outcome");
-          if (!situation || !timeline || !outcome) return;
-          render( choose(situation, timeline, outcome) );
-          reco.scrollIntoView({ behavior: "smooth", block: "nearest" });
-        });
-      }
+      if (routeBtn) routeBtn.addEventListener("click", function(){
+        if (!val("situation") || !val("timeline")) return;
+        showRec(compute());
+      });
 
-      if (resetBtn){
-        resetBtn.addEventListener("click", function(){
-          try{ form.reset(); }catch(e){}
-          if (reco) reco.hidden = true;
-          if (titleEl) titleEl.textContent = "—";
-          if (descEl) descEl.textContent = "—";
-          if (actionsEl) actionsEl.innerHTML = "";
-        });
-      }
+      if (resetBtn) resetBtn.addEventListener("click", function(){
+        clear("situation");
+        clear("timeline");
+        if (result) result.hidden = true;
+      });
+
+      // Auto-open router if ?router=1
+      try{
+        var p = new URLSearchParams(location.search || "");
+        if ((p.get("router") || "") === "1") setOpen(true);
+      }catch(e){}
     })();
   </script>
 
   <!--
-  CHANGELOG (gate v2)
-  - Gate = routing + sell: direct product cards + clear CTAs (Open details / Start intake).
-  - Added a light, low-friction router (3 selects → 1 recommendation) below the offers.
-  - Removed jargon and overly legal wording; kept one short intake note.
+  CHANGELOG (Gate Sales Hub v1)
+  - Replaced “app-like wizard-first” layout with a clean sales hub: packages + direct purchase intake CTAs.
+  - Added a shop-like “Quick purchase” panel (right column) for immediate buying.
+  - Moved the router to an optional section: “Not sure which fits? Take a 60-second router.”
+  - Removed “buyer-first” wording; kept language sales-focused and natural.
+  - Added small inline SVG “visual marks” per package for a more storefront feel (no external images required).
 
   SMOKE TEST
   - GET /gate/ returns 200
   - /assets/noetfield-shell.css returns 200 and styles apply
-  - /assets/noetfield-shell.js returns 200 and header/footer inject into #nfHeader/#nfFooter
-  - CTAs route correctly:
-    - /copilot/quickscan/ and /copilot/quickscan/intake/
-    - /trust-brief/ and /trust-brief/intake/
-    - /trust-ledger/ and /trust-ledger/intake/
-  - Router renders recommendation and links correctly on mobile + desktop
+  - /assets/noetfield-shell.js returns 200 and header/footer load into #nfHeader/#nfFooter
+  - CTAs route correctly (200/expected):
+    - /copilot/quickscan/intake/
+    - /trust-brief/intake/
+    - /trust-ledger/intake/
+    - /playbook/pro/
+  - Router opens/closes, requires 2 answers, produces one recommendation and links work
   -->
 </body>
 </html>

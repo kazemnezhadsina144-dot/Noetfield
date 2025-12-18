@@ -1,4 +1,4 @@
-<!-- /copilot/quickscan/index.html — Version 10 (procurement-ready + decision clarity + single CTA) -->
+<!-- /copilot/quickscan/index.html — Version 11 (Enterprise Sales + Buyer Pack Hub, Gate routes here; CTA goes to Intake only) -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,10 +6,7 @@
   <title>Noetfield — Copilot QuickScan</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <meta
-    name="description"
-    content="Board-ready evidence for Microsoft 365 Copilot adoption — delivered in 5–7 business days. Surface enablement scope, oversharing exposure paths, sensitive-data boundaries, evidence readiness, and connector controls."
-  />
+  <meta name="description" content="Copilot QuickScan: board-ready evidence for Microsoft 365 Copilot adoption in 5–7 business days. Surface scope, oversharing exposure paths, data boundaries, evidence readiness, and connector controls." />
   <meta name="robots" content="index,follow" />
   <meta name="author" content="Noetfield Systems Inc." />
   <meta name="theme-color" content="#07070b" />
@@ -18,24 +15,16 @@
   <link rel="icon" href="/noetfield-favicon-512.png" type="image/png" />
   <link rel="apple-touch-icon" href="/noetfield-favicon-512.png" />
 
-  <!-- OG -->
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Noetfield" />
   <meta property="og:title" content="Noetfield — Copilot QuickScan" />
-  <meta
-    property="og:description"
-    content="A board-ready evidence pack for Microsoft 365 Copilot adoption — delivered in 5–7 business days."
-  />
+  <meta property="og:description" content="Board-ready Copilot evidence pack in 5–7 business days." />
   <meta property="og:url" content="https://www.noetfield.com/copilot/quickscan/" />
   <meta property="og:image" content="https://www.noetfield.com/noetfield-og.png" />
 
-  <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Noetfield — Copilot QuickScan" />
-  <meta
-    name="twitter:description"
-    content="Evidence-first Copilot governance pack: scope, exposure, boundaries, and exportable readiness."
-  />
+  <meta name="twitter:description" content="Evidence-first Copilot governance pack: scope, exposure, boundaries, evidence." />
   <meta name="twitter:image" content="https://www.noetfield.com/noetfield-og.png" />
 
   <!-- LOCKED SHELL -->
@@ -43,8 +32,7 @@
   <script src="/assets/noetfield-shell.js" defer></script>
 
   <style>
-    /* Reference-aligned visuals */
-    .hero { padding: 22px 0 14px; }
+    .hero{padding:22px 0 14px}
     .heroShell{
       position:relative;
       border-radius: calc(var(--radius) + 8px);
@@ -64,7 +52,7 @@
       pointer-events:none;
       mask-image: linear-gradient(180deg, black 0%, black 58%, transparent 96%);
     }
-    .heroInner{ padding: 24px 22px; }
+    .heroInner{padding: 24px 22px}
 
     .eyebrow{
       display:inline-flex; gap:10px; align-items:center;
@@ -81,11 +69,11 @@
       box-shadow: 0 0 0 3px rgba(200,163,73,.18);
     }
 
-    h1{ margin:14px 0 10px; font-size:40px; line-height:1.07; letter-spacing:-0.75px; }
-    .lead{ margin:0; color:var(--muted); font-size:16px; max-width: 1020px; line-height:1.75; }
-    .lead strong{ color:var(--text); font-weight:800; }
+    h1{margin:14px 0 10px; font-size:40px; line-height:1.07; letter-spacing:-0.75px}
+    .lead{margin:0; color:var(--muted); font-size:16px; max-width: 1020px; line-height:1.75}
+    .lead strong{color:var(--text); font-weight:800}
 
-    .metaRow{ display:flex; flex-wrap:wrap; gap:10px; margin-top:14px; }
+    .metaRow{display:flex; flex-wrap:wrap; gap:10px; margin-top:14px}
     .pill{
       display:inline-flex; align-items:center; gap:10px;
       padding:9px 12px;
@@ -96,7 +84,7 @@
       font-size:13px;
       white-space:nowrap;
     }
-    .pill strong{ color:var(--text); font-weight:800; }
+    .pill strong{color:var(--text); font-weight:800}
 
     .grid{
       display:grid;
@@ -113,10 +101,27 @@
       overflow:hidden;
       min-width:0;
     }
-    .card .hd{ padding:18px 18px 0; }
-    .card h2{ margin:0 0 8px; font-size:18px; letter-spacing:-0.2px; }
-    .card p{ margin:0 0 12px; color:var(--muted); line-height:1.7; }
-    .card .bd{ padding:18px; }
+    .card .hd{padding:18px 18px 0}
+    .card h2{margin:0 0 8px; font-size:18px; letter-spacing:-0.2px}
+    .card p{margin:0 0 12px; color:var(--muted); line-height:1.7}
+    .card .bd{padding:18px}
+
+    .kpiGrid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:12px;
+      margin-top:12px;
+    }
+    .kpi{
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      padding:12px;
+      min-width:0;
+    }
+    .kpi .t{font-size:11px; letter-spacing:.28em; text-transform:uppercase; color:var(--muted2)}
+    .kpi .v{margin-top:8px; font-weight:900; letter-spacing:-.2px}
+    .kpi .d{margin-top:6px; color:var(--muted2); font-size:12.6px; line-height:1.55}
 
     .section{
       border:1px solid rgba(255,255,255,.10);
@@ -137,23 +142,6 @@
       font-size:12.7px;
       line-height:1.6;
     }
-
-    .kpiGrid{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap:12px;
-      margin-top:12px;
-    }
-    .kpi{
-      border-radius:16px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.03);
-      padding:12px;
-      min-width:0;
-    }
-    .kpi .t{ font-size:11px; letter-spacing:.28em; text-transform:uppercase; color:var(--muted2); }
-    .kpi .v{ margin-top:8px; font-weight:900; letter-spacing:-.2px; }
-    .kpi .d{ margin-top:6px; color:var(--muted2); font-size:12.6px; line-height:1.55; }
 
     .table{
       width:100%;
@@ -179,27 +167,9 @@
       text-transform:uppercase;
       background: rgba(255,255,255,.03);
     }
-    .table tr:last-child td{ border-bottom:none; }
+    .table tr:last-child td{border-bottom:none}
 
-    .tag{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      padding:7px 10px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.03);
-      color:var(--muted);
-      font-size:12px;
-      white-space:nowrap;
-    }
-    .tag strong{ color:var(--text); font-weight:800; }
-
-    .steps{ margin:0; padding-left:18px; color:var(--muted); line-height:1.85; }
-    .steps li{ margin:6px 0; }
-
-    .actions{ display:flex; gap:12px; flex-wrap:wrap; align-items:center; margin-top:12px; }
-
+    .actions{display:flex; gap:12px; flex-wrap:wrap; align-items:center; margin-top:12px}
     .box{
       margin-top:12px;
       padding:12px 12px;
@@ -210,82 +180,26 @@
       font-size:12.8px;
       line-height:1.6;
     }
-    .box strong{ color:var(--text); font-weight:800; }
-    .box a{ border-bottom:1px solid rgba(255,255,255,.18); }
+    .box strong{color:var(--text); font-weight:800}
+    .box a{border-bottom:1px solid rgba(255,255,255,.18)}
 
-    /* Procurement facts */
-    .facts{
-      display:grid;
-      grid-template-columns: 1fr;
-      gap:10px;
-    }
-    .factRow{
-      border-radius:14px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.03);
-      padding:12px;
-    }
-    .factRow .k{
-      font-size:11px;
-      letter-spacing:.28em;
-      text-transform:uppercase;
-      color:var(--muted2);
-    }
-    .factRow .v{
-      margin-top:6px;
-      color:var(--muted);
-      font-size:13px;
-      line-height:1.55;
-    }
-    .factRow .v strong{ color:var(--text); font-weight:900; }
-
-    /* Mini TOC (rail) */
-    .toc{
-      display:flex;
-      flex-direction:column;
-      gap:8px;
-      margin-top:10px;
-    }
-    .toc a{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:10px;
-      padding:10px 12px;
-      border-radius:12px;
-      border:1px solid rgba(255,255,255,.10);
+    /* Role chips */
+    .chips{display:flex; flex-wrap:wrap; gap:10px; margin-top:12px}
+    .chip{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:8px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
       background: rgba(255,255,255,.03);
       color:var(--muted);
-      font-size:13px;
+      font-size:12.6px;
       text-decoration:none;
+      white-space:nowrap;
     }
-    .toc a:hover{ border-color: rgba(255,255,255,.16); }
-    .toc span{ color: var(--muted2); font-size: 12px; }
+    .chip:hover{filter:brightness(1.08)}
+    .chip strong{color:var(--text); font-weight:900}
 
-    /* FAQ (objection-handling) */
-    details.faq{
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.03);
-      border-radius:16px;
-      padding:12px;
-      margin-top:10px;
-    }
-    details.faq summary{
-      cursor:pointer;
-      font-weight:900;
-      letter-spacing:-.2px;
-      list-style:none;
-      outline:none;
-    }
-    details.faq summary::-webkit-details-marker{ display:none; }
-    details.faq .a{
-      margin-top:8px;
-      color:var(--muted2);
-      font-size:12.8px;
-      line-height:1.65;
-    }
-
-    /* Sticky CTA bar (single CTA only) */
+    /* Sticky CTA */
     .stickyCta{
       position: sticky;
       bottom: 0;
@@ -313,25 +227,25 @@
     .stickyText strong{ color:var(--text); font-weight:900; }
 
     @media (max-width: 980px){
-      .grid{ grid-template-columns:1fr; }
-      .kpiGrid{ grid-template-columns:1fr; }
+      .grid{grid-template-columns:1fr}
+      .kpiGrid{grid-template-columns:1fr}
     }
     @media (max-width: 760px){
-      h1{ font-size:30px; }
-      .table th, .table td{ padding:10px; }
-      .stickyText{ display:none; }
+      h1{font-size:30px}
+      .table th, .table td{padding:10px}
+      .stickyText{display:none}
     }
   </style>
 
   <script type="application/ld+json">
   {
     "@context":"https://schema.org",
-    "@type":"WebPage",
-    "name":"Noetfield — Copilot QuickScan",
-    "url":"https://www.noetfield.com/copilot/quickscan/",
-    "description":"Board-ready evidence for Microsoft 365 Copilot adoption — delivered in 5–7 business days. Surface enablement scope, oversharing exposure paths, sensitive-data boundaries, evidence readiness, and connector controls.",
-    "isPartOf":{"@type":"WebSite","name":"Noetfield","url":"https://www.noetfield.com/"},
-    "publisher":{"@type":"Organization","name":"Noetfield Systems Inc."}
+    "@type":"Service",
+    "name":"Copilot QuickScan",
+    "provider":{"@type":"Organization","name":"Noetfield Systems Inc."},
+    "areaServed":"CA",
+    "description":"Board-ready evidence for Microsoft 365 Copilot adoption in 5–7 business days. Surface scope, oversharing exposure paths, data boundaries, evidence readiness, and connector controls.",
+    "url":"https://www.noetfield.com/copilot/quickscan/"
   }
   </script>
 </head>
@@ -344,8 +258,7 @@
   <div id="nfHeader"></div>
 
   <main id="main" class="wrap">
-    <!-- HERO -->
-    <section class="hero" id="top">
+    <section class="hero">
       <div class="heroShell">
         <div class="heroInner">
           <div class="eyebrow"><span class="dot"></span> Microsoft 365 Copilot • 5–7 business days</div>
@@ -354,30 +267,32 @@
 
           <p class="lead">
             A fast, evidence-first assessment that makes Copilot adoption <strong>board-readable</strong>.
-            Outputs an <strong>exportable evidence pack</strong> with exposure paths, boundaries, and owners —
-            ready for leadership, audit, and client due diligence.
+            Outputs an <strong>exportable Buyer Pack</strong> (D0–D5) to support leadership decisions,
+            audit readiness, and client due diligence.
           </p>
 
           <div class="box" style="margin-top:12px;">
-            <strong>Public intake = non-confidential.</strong> Read-only review preferred. No content sampling unless explicitly authorized.
+            <strong>Public intake = non-confidential.</strong> Read-only posture review preferred. No content sampling unless explicitly authorized.
           </div>
 
           <div class="metaRow" aria-label="Highlights">
             <div class="pill"><strong>5–7 days</strong> delivery</div>
             <div class="pill"><strong>D0–D5</strong> named outputs</div>
-            <div class="pill"><strong>Oversharing</strong> paths</div>
-            <div class="pill"><strong>Boundaries</strong> + red-lines</div>
-            <div class="pill"><strong>Evidence</strong> readiness</div>
-            <div class="pill"><strong>Connectors</strong> controls</div>
+            <div class="pill"><strong>Decision-ready</strong> format</div>
+            <div class="pill"><strong>Evidence</strong> exportability</div>
           </div>
 
-          <!-- Single CTA -->
+          <!-- Single CTA (intake endpoint only) -->
           <div class="actions" style="margin-top:14px;">
-            <a class="btn" href="/gate/intake/?need=copilot-quickscan" data-cta="primary">Start intake</a>
+            <a class="btn" href="/gate/intake/?need=copilot-quickscan">Start intake</a>
           </div>
 
-          <div class="box" style="margin-top:12px;">
-            <strong>Related:</strong> <a href="/copilot/">Copilot hub</a> · <a href="/trust-brief/">Trust Brief</a> · <a href="/trust-ledger/">Trust Ledger</a>
+          <!-- Role-based quick reading -->
+          <div class="chips" aria-label="Role-based reading">
+            <a class="chip" href="#role-it"><strong>IT/Admin</strong> view</a>
+            <a class="chip" href="#role-sec"><strong>Security/Compliance</strong> view</a>
+            <a class="chip" href="#role-biz"><strong>Business owner</strong> view</a>
+            <a class="chip" href="#procurement"><strong>Procurement</strong> pack</a>
           </div>
         </div>
       </div>
@@ -387,49 +302,48 @@
       <!-- MAIN -->
       <div class="card">
         <div class="hd">
-          <h2 id="deliverables">Deliverables (D0–D5)</h2>
-          <p>Named, exportable artifacts — designed to remove ambiguity and withstand scrutiny.</p>
+          <h2>What you get (Buyer Pack)</h2>
+          <p>Named deliverables designed for executive review and internal approvals.</p>
         </div>
 
         <div class="bd">
           <div class="kpiGrid" aria-label="Deliverables grid">
             <div class="kpi">
               <div class="t">D0</div>
-              <div class="v">Executive summary (1 page)</div>
+              <div class="v">Executive Summary (1 page)</div>
               <div class="d">RAG posture + decision requests + what changes now vs later.</div>
             </div>
             <div class="kpi">
               <div class="t">D1</div>
-              <div class="v">Surface inventory & enablement map</div>
-              <div class="d">Which Copilot surfaces are enabled, for whom, and under what scope.</div>
+              <div class="v">Surface Inventory & Enablement Map</div>
+              <div class="d">Which Copilot surfaces exist, who is enabled, and tenant scope.</div>
             </div>
             <div class="kpi">
               <div class="t">D2</div>
-              <div class="v">Oversharing heatmap (Top 10)</div>
-              <div class="d">Exposure paths driven by current permissions posture.</div>
+              <div class="v">Oversharing Heatmap</div>
+              <div class="d">Top exposure paths caused by current permissions posture.</div>
             </div>
             <div class="kpi">
               <div class="t">D3</div>
-              <div class="v">Data boundaries pack</div>
-              <div class="d">Sensitive domains + boundary rules + “red-line” guidance v1.</div>
+              <div class="v">Data Boundaries Pack</div>
+              <div class="d">Sensitive domains + boundary rules + red-line guidance v1.</div>
             </div>
             <div class="kpi">
               <div class="t">D4</div>
-              <div class="v">Evidence readiness sheet</div>
-              <div class="d">Signals, retention, export steps, and owners — what counts as proof.</div>
+              <div class="v">Evidence Readiness Sheet</div>
+              <div class="d">Signals, retention, export steps, owners — what counts as proof.</div>
             </div>
             <div class="kpi">
               <div class="t">D5</div>
-              <div class="v">Connector / extension controls register</div>
-              <div class="d">Allowed vs restricted, change control, exceptions, break-glass rules (if applicable).</div>
+              <div class="v">Connector / Extension Controls</div>
+              <div class="d">Allowed/restricted posture, change control, exceptions (if applicable).</div>
             </div>
           </div>
 
-          <div class="section" id="timing" style="margin-top:14px;">
-            <div class="sectionTitle">5–7 day structure</div>
-            <p class="sectionDesc">Designed to be decisive: scope → posture → evidence → board-ready pack.</p>
-
-            <table class="table" aria-label="5–7 day plan">
+          <div class="section">
+            <div class="sectionTitle">Process & timing</div>
+            <p class="sectionDesc">Scope → posture → evidence → delivery.</p>
+            <table class="table" aria-label="Plan">
               <thead>
                 <tr>
                   <th>Day</th>
@@ -438,153 +352,141 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td><span class="tag"><strong>0–1</strong></span></td>
-                  <td>Scope lock + access readiness</td>
-                  <td>Engagement boundaries, target surfaces, access checklist, export plan</td>
-                </tr>
-                <tr>
-                  <td><span class="tag"><strong>2–3</strong></span></td>
-                  <td>Surface + enablement mapping</td>
-                  <td>Inventory of enabled experiences, audience scope, ownership map</td>
-                </tr>
-                <tr>
-                  <td><span class="tag"><strong>3–4</strong></span></td>
-                  <td>Exposure + boundary review</td>
-                  <td>Oversharing paths, sensitive domains, boundary posture snapshot</td>
-                </tr>
-                <tr>
-                  <td><span class="tag"><strong>4–5</strong></span></td>
-                  <td>Evidence readiness capture</td>
-                  <td>Signals, retention, exportability, evidence steps + owners</td>
-                </tr>
-                <tr>
-                  <td><span class="tag"><strong>5–7</strong></span></td>
-                  <td>Synthesis + delivery</td>
-                  <td>Executive summary + ranked actions + 30/60/90 plan</td>
-                </tr>
+                <tr><td>0–1</td><td>Scope lock + access readiness</td><td>Checklist, export plan, boundaries</td></tr>
+                <tr><td>2–4</td><td>Inventory + posture review + evidence capture</td><td>D1/D2/D3/D4 drafts</td></tr>
+                <tr><td>5–7</td><td>Synthesis + delivery</td><td>D0–D5 + 30/60/90 plan</td></tr>
               </tbody>
             </table>
           </div>
 
-          <div class="section" id="readiness">
-            <div class="sectionTitle">Quick readiness check</div>
-            <p class="sectionDesc">If 2+ items are true, QuickScan is typically the right fast step.</p>
-            <ol class="steps">
-              <li>Copilot is live (or within 30 days) and leadership wants a defensible posture.</li>
-              <li>SharePoint/Teams permissions are not cleanly governed (risk of oversharing).</li>
-              <li>Client due diligence or audit questions require exportable evidence.</li>
-              <li>Connectors/extensions/custom copilots may be introduced without clear controls.</li>
-              <li>Owners and proof (logs/retention/exports) are not clearly mapped.</li>
-            </ol>
+          <!-- Role sections -->
+          <div class="section" id="role-it">
+            <div class="sectionTitle">IT/Admin view</div>
+            <p class="sectionDesc">What matters operationally: surfaces, enablement, connectors, and change control.</p>
+            <ul class="steps">
+              <li>D1 surface inventory + enablement map</li>
+              <li>D5 connector/extension controls + exception model</li>
+              <li>Access readiness checklist (read-only preferred)</li>
+            </ul>
           </div>
 
-          <div class="section" id="access">
-            <div class="sectionTitle">Access required</div>
-            <p class="sectionDesc">Read-only is preferred. No content sampling unless explicitly authorized.</p>
-            <ol class="steps">
-              <li>M365 admin contact (tenant posture / enablement).</li>
-              <li>Security / compliance contact (labels/DLP, retention, audit posture).</li>
-              <li>Business owner for Copilot adoption (decision boundaries and priorities).</li>
-            </ol>
+          <div class="section" id="role-sec">
+            <div class="sectionTitle">Security/Compliance view</div>
+            <p class="sectionDesc">What matters defensibly: oversharing, boundaries, retention, exportable proof.</p>
+            <ul class="steps">
+              <li>D2 oversharing heatmap + ranked fixes</li>
+              <li>D3 data boundaries + red-line rules</li>
+              <li>D4 evidence readiness (signals/retention/export/owners)</li>
+            </ul>
           </div>
 
-          <div class="section" id="limits">
-            <div class="sectionTitle">Limitations</div>
-            <p class="sectionDesc">Assessment + evidence-readiness outputs. Implementation/remediation and adversarial testing are separate scopes.</p>
+          <div class="section" id="role-biz">
+            <div class="sectionTitle">Business owner view</div>
+            <p class="sectionDesc">What matters for leadership: go/no-go posture, decision requests, 30/60/90 plan.</p>
+            <ul class="steps">
+              <li>D0 executive summary (RAG + decisions)</li>
+              <li>30/60/90 plan with owners and milestones</li>
+              <li>Defined scope boundaries (what is and is not included)</li>
+            </ul>
           </div>
 
-          <div class="section" id="faq">
-            <div class="sectionTitle">FAQ (common objections)</div>
-            <p class="sectionDesc">Short answers to reduce back-and-forth and unblock decision-making.</p>
+          <!-- Procurement pack -->
+          <div class="section" id="procurement">
+            <div class="sectionTitle">Procurement Pack (internal approvals)</div>
+            <p class="sectionDesc">A compact summary for purchasing, finance, and vendor onboarding.</p>
 
-            <details class="faq">
-              <summary>Is any confidential information required in the intake?</summary>
-              <div class="a">No. Public intake is non-confidential by design. Read-only review is preferred. Content sampling is not performed unless explicitly authorized in writing.</div>
-            </details>
+            <table class="table" aria-label="Procurement pack table">
+              <thead>
+                <tr>
+                  <th>Item</th>
+                  <th>Summary</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Service</td>
+                  <td>Copilot QuickScan (5–7 business days)</td>
+                </tr>
+                <tr>
+                  <td>Scope</td>
+                  <td>Surface scope, oversharing exposure paths, data boundaries, evidence readiness, connectors/extensions (if present)</td>
+                </tr>
+                <tr>
+                  <td>Deliverables</td>
+                  <td>D0–D5 + 30/60/90 plan</td>
+                </tr>
+                <tr>
+                  <td>Access</td>
+                  <td>Read-only admin review preferred. No content sampling unless explicitly authorized.</td>
+                </tr>
+                <tr>
+                  <td>Data handling</td>
+                  <td>Public intake is non-confidential. Outputs focus on posture/config/evidence readiness.</td>
+                </tr>
+                <tr>
+                  <td>Out of scope</td>
+                  <td>Implementation/remediation, content-level review, adversarial testing (available as separate scopes)</td>
+                </tr>
+              </tbody>
+            </table>
 
-            <details class="faq">
-              <summary>What exactly do we receive at the end?</summary>
-              <div class="a">A named evidence pack (D0–D5) with an executive summary, exposure paths, boundary rules, evidence readiness steps, and owners — plus a 30/60/90 plan.</div>
-            </details>
-
-            <details class="faq">
-              <summary>Can this be completed without full admin access?</summary>
-              <div class="a">Often yes, but scope becomes narrower. Read-only administrative access is the fastest path because it enables export of configuration posture and reporting signals.</div>
-            </details>
-
-            <details class="faq">
-              <summary>Is this an implementation project?</summary>
-              <div class="a">No. QuickScan is assessment + evidence readiness. Implementation/remediation can be scoped as a separate sprint after the evidence pack is delivered.</div>
-            </details>
+            <div class="box">
+              <strong>Next step:</strong> Start intake to lock scope and confirm access readiness.<br/>
+              <a href="/gate/intake/?need=copilot-quickscan">/gate/intake/?need=copilot-quickscan</a>
+            </div>
           </div>
 
+          <!-- Deep dive links -->
+          <div class="section">
+            <div class="sectionTitle">Deep dives</div>
+            <p class="sectionDesc">Optional reading to support stakeholder alignment.</p>
+            <div class="box">
+              <strong>Recommended links:</strong><br/>
+              <a href="/copilot/governance/">Copilot governance baseline</a> ·
+              <a href="/copilot/quickscan/what-we-scan/">What we scan</a> ·
+              <a href="/copilot/quickscan/deliverables/">Deliverables (D0–D5)</a> ·
+              <a href="/copilot/quickscan/evidence/">Evidence readiness</a> ·
+              <a href="/copilot/quickscan/oversharing/">Oversharing paths</a> ·
+              <a href="/copilot/quickscan/connectors/">Connectors & extensions</a> ·
+              <a href="/copilot/quickscan/procurement/">Procurement pack</a>
+            </div>
+          </div>
+
+          <!-- Single CTA repeated -->
           <div class="actions">
-            <a class="btn" href="/gate/intake/?need=copilot-quickscan" data-cta="primary-bottom">Start intake</a>
+            <a class="btn" href="/gate/intake/?need=copilot-quickscan">Start intake</a>
+            <a class="btn secondary" href="/status/">Status</a>
           </div>
 
           <div class="box">
-            <strong>Scope note:</strong> QuickScan focuses on configuration posture, exposure paths, and evidence readiness.
-            If implementation should be routed to a delivery partner, use <a href="/gate/partners/">Partners Gate</a>.
+            <strong>Scope note:</strong> QuickScan provides assessment + evidence-readiness outputs.
+            Remediation implementation and deeper testing are separate scopes.
           </div>
         </div>
       </div>
 
       <!-- ASIDE -->
-      <aside class="card" aria-label="Right rail">
+      <aside class="card">
         <div class="hd">
-          <h2>Procurement facts</h2>
-          <p>Minimal friction for buyers and purchasing teams.</p>
+          <h2>Use this when</h2>
+          <p>Copilot is live (or imminent) and leadership needs defensible posture — fast.</p>
         </div>
         <div class="bd">
-          <div class="facts" id="procurement">
-            <div class="factRow">
-              <div class="k">Pricing</div>
-              <div class="v"><strong>Typical range:</strong> $1,500–$4,000 CAD. <strong>Taxes</strong> added where applicable.</div>
-            </div>
-            <div class="factRow">
-              <div class="k">Delivery</div>
-              <div class="v"><strong>5–7 business days</strong> after scope lock + access readiness.</div>
-            </div>
-            <div class="factRow">
-              <div class="k">Format</div>
-              <div class="v">Board-ready pack (PDF/Doc) + registers/sheets as applicable (exportable, named D0–D5).</div>
-            </div>
-            <div class="factRow">
-              <div class="k">Meetings</div>
-              <div class="v">Typically 2 touchpoints: kickoff (scope lock) + readout (delivery).</div>
-            </div>
-            <div class="factRow">
-              <div class="k">Access posture</div>
-              <div class="v"><strong>Read-only preferred.</strong> No content sampling unless explicitly authorized.</div>
-            </div>
-            <div class="factRow">
-              <div class="k">Intake rule</div>
-              <div class="v"><strong>Public intake = non-confidential</strong> by design.</div>
+          <div class="box"><strong>Go/no-go pressure:</strong> decision-grade evidence, not assurances.</div>
+          <div class="box"><strong>Permission sprawl:</strong> reduce oversharing amplification risk.</div>
+          <div class="box"><strong>Due diligence:</strong> exportable artifacts for client/audit questions.</div>
+
+          <div class="section">
+            <div class="sectionTitle">Pricing signal</div>
+            <p class="sectionDesc">Anchor for buyers; refine after early deliveries.</p>
+            <div class="box">
+              <strong>Typical:</strong> $1.5k–$4k CAD depending on tenant scope and enabled surfaces/connectors.<br/>
+              <strong>Note:</strong> taxes may apply.
             </div>
           </div>
 
-          <div class="section" style="margin-top:14px;">
-            <div class="sectionTitle">On this page</div>
-            <div class="toc" aria-label="Table of contents">
-              <a href="#deliverables">Deliverables <span>D0–D5</span></a>
-              <a href="#timing">Timing <span>5–7 days</span></a>
-              <a href="#readiness">Readiness <span>quick check</span></a>
-              <a href="#access">Access <span>read-only</span></a>
-              <a href="#limits">Limitations <span>scope</span></a>
-              <a href="#faq">FAQ <span>objections</span></a>
-            </div>
-          </div>
-
-          <div class="actions" style="margin-top:14px;">
-            <a class="btn" href="/gate/intake/?need=copilot-quickscan" data-cta="primary-rail">Start intake</a>
-          </div>
-
-          <div class="box" style="margin-top:12px;">
-            <strong>Related:</strong><br/>
-            <a href="/copilot/">Copilot hub</a> ·
-            <a href="/trust-brief/">Trust Brief</a> ·
-            <a href="/trust-ledger/">Trust Ledger</a>
+          <div class="actions">
+            <a class="btn" href="/gate/intake/?need=copilot-quickscan">Start intake</a>
           </div>
         </div>
       </aside>
@@ -594,31 +496,23 @@
   <!-- injected footer -->
   <div id="nfFooter"></div>
 
-  <!-- Sticky single CTA bar -->
+  <!-- Sticky CTA -->
   <div class="stickyCta" aria-label="Sticky call to action">
     <div class="stickyInner">
       <div class="stickyText">
-        <strong>Copilot QuickScan</strong> — board-ready evidence in 5–7 business days. Public intake is non-confidential.
+        <strong>Copilot QuickScan</strong> — board-ready Buyer Pack in 5–7 business days. Public intake is non-confidential.
       </div>
-      <a class="btn" href="/gate/intake/?need=copilot-quickscan" data-cta="primary-sticky">Start intake</a>
+      <a class="btn" href="/gate/intake/?need=copilot-quickscan">Start intake</a>
     </div>
   </div>
 
   <!--
-  CHANGELOG (v10)
-  - Added procurement-ready facts (pricing/tax note, format, meetings, delivery).
-  - Added right-rail “On this page” TOC for fast executive scanning.
-  - Added quick readiness checklist to reduce unqualified leads and speed decisions.
-  - Preserved single CTA strategy + sticky CTA bar + objection FAQ.
-  -->
-
-  <!--
-  SMOKE-TEST CHECKLIST
-  - URL returns 200: /copilot/quickscan/
-  - Assets return 200: /assets/noetfield-shell.css and /assets/noetfield-shell.js
-  - Header/footer inject: #nfHeader and #nfFooter populated after load
-  - Primary CTA works: /gate/intake/?need=copilot-quickscan
-  - Mobile: rail stacks; TOC links jump; buttons tappable; sticky CTA not blocking
+  CHANGELOG (v11)
+  - Removed navigation to Gate as a sales step; Gate is assumed to route users here.
+  - CTA points only to Intake endpoint: /gate/intake/?need=copilot-quickscan
+  - Added role-based reading sections (IT/Admin, Security/Compliance, Business owner).
+  - Added Procurement Pack block for internal approvals and vendor onboarding.
+  - Added deep-dive link hub to supporting Copilot subpages.
   -->
 </body>
 </html>

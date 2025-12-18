@@ -1,4 +1,4 @@
-<!-- /copilot/quickscan/index.html — Version 8 (commercial, board-safe, single-CTA) -->
+<!-- /copilot/quickscan/index.html — Version 9 (conversion-optimized + objections + sticky CTA) -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -38,17 +38,12 @@
   />
   <meta name="twitter:image" content="https://www.noetfield.com/noetfield-og.png" />
 
-  <!-- Fonts (optional; safe to keep) -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-
   <!-- LOCKED SHELL -->
   <link rel="stylesheet" href="/assets/noetfield-shell.css" />
   <script src="/assets/noetfield-shell.js" defer></script>
 
-  <!-- Page-only styles: minimal + aligned with reference primitives -->
   <style>
+    /* Layout baseline aligned with reference */
     .hero { padding: 22px 0 14px; }
     .heroShell{
       position:relative;
@@ -233,7 +228,55 @@
     .priceCard .amt{ margin-top:8px; font-size:22px; font-weight:900; letter-spacing:-.4px; }
     .priceCard .sub{ margin-top:6px; color:var(--muted2); font-size:12.6px; line-height:1.55; }
 
-    .railNote{ margin-top:10px; color:var(--muted2); font-size:12.6px; line-height:1.55; }
+    /* FAQ (objection-handling) */
+    details.faq{
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      border-radius:16px;
+      padding:12px;
+      margin-top:10px;
+    }
+    details.faq summary{
+      cursor:pointer;
+      font-weight:900;
+      letter-spacing:-.2px;
+      list-style:none;
+      outline:none;
+    }
+    details.faq summary::-webkit-details-marker{ display:none; }
+    details.faq .a{
+      margin-top:8px;
+      color:var(--muted2);
+      font-size:12.8px;
+      line-height:1.65;
+    }
+
+    /* Sticky CTA bar (single CTA, no distractions) */
+    .stickyCta{
+      position: sticky;
+      bottom: 0;
+      z-index: 20;
+      padding: 10px 0;
+      background: linear-gradient(180deg, rgba(7,7,11,0) 0%, rgba(7,7,11,.78) 22%, rgba(7,7,11,.92) 100%);
+      backdrop-filter: blur(10px);
+      border-top: 1px solid rgba(255,255,255,.08);
+    }
+    .stickyInner{
+      display:flex;
+      gap:12px;
+      align-items:center;
+      justify-content:space-between;
+      padding: 0 16px;
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+    .stickyText{
+      min-width:0;
+      color:var(--muted);
+      font-size:12.6px;
+      line-height:1.4;
+    }
+    .stickyText strong{ color:var(--text); font-weight:900; }
 
     @media (max-width: 980px){
       .grid{ grid-template-columns:1fr; }
@@ -242,6 +285,7 @@
     @media (max-width: 760px){
       h1{ font-size:30px; }
       .table th, .table td{ padding:10px; }
+      .stickyText{ display:none; }
     }
   </style>
 
@@ -276,8 +320,8 @@
 
           <p class="lead">
             A fast, evidence-first assessment that makes Copilot adoption <strong>board-readable</strong>.
-            Outputs a compact <strong>evidence pack</strong> with exposure paths, boundaries, and owners — ready for leadership,
-            audit, and client due diligence.
+            Outputs an <strong>exportable evidence pack</strong> with exposure paths, boundaries, and owners —
+            ready for leadership, audit, and client due diligence.
           </p>
 
           <div class="box" style="margin-top:12px;">
@@ -286,20 +330,20 @@
 
           <div class="metaRow" aria-label="Highlights">
             <div class="pill"><strong>5–7 days</strong> delivery</div>
-            <div class="pill"><strong>Surface map</strong> + enablement</div>
-            <div class="pill"><strong>Oversharing</strong> exposure paths</div>
+            <div class="pill"><strong>D0–D5</strong> named outputs</div>
+            <div class="pill"><strong>Oversharing</strong> paths</div>
             <div class="pill"><strong>Boundaries</strong> + red-lines</div>
-            <div class="pill"><strong>Evidence</strong> exportability</div>
+            <div class="pill"><strong>Evidence</strong> readiness</div>
             <div class="pill"><strong>Connectors</strong> controls</div>
           </div>
 
-          <!-- Single dominant CTA -->
+          <!-- Single CTA -->
           <div class="actions" style="margin-top:14px;">
             <a class="btn" href="/gate/intake/?need=copilot-quickscan">Start intake</a>
           </div>
 
-          <div class="railNote">
-            Related: <a href="/copilot/">Copilot hub</a> · <a href="/trust-brief/">Trust Brief</a> · <a href="/trust-ledger/">Trust Ledger</a>
+          <div class="box" style="margin-top:12px;">
+            <strong>Related:</strong> <a href="/copilot/">Copilot hub</a> · <a href="/trust-brief/">Trust Brief</a> · <a href="/trust-ledger/">Trust Ledger</a>
           </div>
         </div>
       </div>
@@ -310,9 +354,7 @@
       <div class="card">
         <div class="hd">
           <h2>Deliverables (D0–D5)</h2>
-          <p>
-            Named, exportable outputs — designed to remove ambiguity, reduce risk, and make Copilot decisions defensible.
-          </p>
+          <p>Named, exportable artifacts — designed to remove ambiguity and withstand scrutiny.</p>
         </div>
 
         <div class="bd">
@@ -322,49 +364,34 @@
               <div class="v">Executive summary (1 page)</div>
               <div class="d">RAG posture + decision requests + what changes now vs later.</div>
             </div>
-
             <div class="kpi">
               <div class="t">D1</div>
               <div class="v">Surface inventory & enablement map</div>
               <div class="d">Which Copilot surfaces are enabled, for whom, and under what scope.</div>
             </div>
-
             <div class="kpi">
               <div class="t">D2</div>
               <div class="v">Oversharing heatmap (Top 10)</div>
-              <div class="d">Exposure paths driven by current permissions posture (Teams/SharePoint/OneDrive).</div>
+              <div class="d">Exposure paths driven by current permissions posture.</div>
             </div>
-
             <div class="kpi">
               <div class="t">D3</div>
               <div class="v">Data boundaries pack</div>
-              <div class="d">Sensitive domains + boundary rules + “red-line” prompt/content guidance v1.</div>
+              <div class="d">Sensitive domains + boundary rules + “red-line” guidance v1.</div>
             </div>
-
             <div class="kpi">
               <div class="t">D4</div>
               <div class="v">Evidence readiness sheet</div>
-              <div class="d">Signals, retention posture, export steps, and owners — what counts as proof.</div>
+              <div class="d">Signals, retention, export steps, and owners — what counts as proof.</div>
             </div>
-
             <div class="kpi">
               <div class="t">D5</div>
               <div class="v">Connector / extension controls register</div>
-              <div class="d">Allowed vs restricted, change control, exceptions, and break-glass rules (if applicable).</div>
+              <div class="d">Allowed vs restricted, change control, exceptions, break-glass rules (if applicable).</div>
             </div>
           </div>
 
           <div class="section" style="margin-top:14px;">
-            <div class="sectionTitle">30/60/90 plan</div>
-            <p class="sectionDesc">A ranked action plan with owners and sequencing for safe adoption.</p>
-            <ul class="steps" aria-label="30 60 90 bullets">
-              <li><strong>30:</strong> quick wins + top-risk exposure controls.</li>
-              <li><strong>60:</strong> boundaries, policy alignment, connector control hardening.</li>
-              <li><strong>90:</strong> evidence maturity, cadence, and re-scan readiness.</li>
-            </ul>
-          </div>
-
-          <div class="section">
             <div class="sectionTitle">5–7 day structure</div>
             <p class="sectionDesc">Designed to be decisive: scope → posture → evidence → board-ready pack.</p>
 
@@ -422,17 +449,35 @@
           </div>
 
           <div class="section">
-            <div class="sectionTitle">Add-ons</div>
-            <p class="sectionDesc">Optional next steps after QuickScan, if needed.</p>
-            <ul class="steps">
-              <li>Remediation sprint (2–3 weeks) + re-scan + updated evidence pack.</li>
-              <li>Quarterly evidence refresh (delta report) for ongoing oversight.</li>
-              <li>Copilot Studio governance program (if custom copilots/agents are in scope).</li>
-              <li>Connector/vendor egress review for high-risk integrations.</li>
-            </ul>
+            <div class="sectionTitle">FAQ (common objections)</div>
+            <p class="sectionDesc">Short answers to reduce back-and-forth and unblock decision-making.</p>
+
+            <details class="faq">
+              <summary>Is any confidential information required in the intake?</summary>
+              <div class="a">No. Public intake is non-confidential by design. Read-only review is preferred. Content sampling is not performed unless explicitly authorized in writing.</div>
+            </details>
+
+            <details class="faq">
+              <summary>What exactly do we receive at the end?</summary>
+              <div class="a">A named evidence pack (D0–D5) with an executive summary, exposure paths, boundary rules, evidence readiness steps, and owners — plus a 30/60/90 plan.</div>
+            </details>
+
+            <details class="faq">
+              <summary>Can this be completed without full admin access?</summary>
+              <div class="a">Often yes, but scope becomes narrower. Read-only administrative access is the fastest path because it enables export of configuration posture and reporting signals.</div>
+            </details>
+
+            <details class="faq">
+              <summary>Is this an implementation project?</summary>
+              <div class="a">No. QuickScan is assessment + evidence readiness. Implementation/remediation can be scoped as a separate sprint after the evidence pack is delivered.</div>
+            </details>
+
+            <details class="faq">
+              <summary>What if we are not ready to go live?</summary>
+              <div class="a">QuickScan still produces a defensible posture and a ranked plan. The output is designed to support a safe “pause + fix” decision, not force go-live.</div>
+            </details>
           </div>
 
-          <!-- Repeat single CTA near bottom -->
           <div class="actions">
             <a class="btn" href="/gate/intake/?need=copilot-quickscan">Start intake</a>
           </div>
@@ -451,10 +496,9 @@
           <p>Copilot is live (or imminent) and leadership needs a defensible posture — fast.</p>
         </div>
         <div class="bd">
-          <div class="box"><strong>Go / no-go pressure:</strong> leadership wants decision-grade evidence, not assurances.</div>
-          <div class="box"><strong>Permission sprawl risk:</strong> Copilot could amplify existing oversharing.</div>
-          <div class="box"><strong>Client due diligence:</strong> you need exportable artifacts for external questions.</div>
-          <div class="box"><strong>Audit readiness gap:</strong> signals/retention/owners are not mapped.</div>
+          <div class="box"><strong>Go / no-go pressure:</strong> decision-grade evidence, not assurances.</div>
+          <div class="box"><strong>Permission sprawl risk:</strong> Copilot could amplify oversharing.</div>
+          <div class="box"><strong>Client due diligence:</strong> exportable artifacts for external questions.</div>
 
           <div class="section" style="margin-top:14px;">
             <div class="sectionTitle">Pricing (signal)</div>
@@ -477,10 +521,6 @@
           <div class="actions">
             <a class="btn" href="/gate/intake/?need=copilot-quickscan">Start intake</a>
           </div>
-
-          <div class="railNote">
-            Related: <a href="/copilot/">Copilot hub</a> · <a href="/trust-brief/">Trust Brief</a> · <a href="/gate/">Gate</a>
-          </div>
         </div>
       </aside>
     </section>
@@ -489,13 +529,21 @@
   <!-- injected footer -->
   <div id="nfFooter"></div>
 
+  <!-- Sticky single CTA bar -->
+  <div class="stickyCta" aria-label="Sticky call to action">
+    <div class="stickyInner">
+      <div class="stickyText">
+        <strong>Copilot QuickScan</strong> — board-ready evidence in 5–7 business days. Public intake is non-confidential.
+      </div>
+      <a class="btn" href="/gate/intake/?need=copilot-quickscan">Start intake</a>
+    </div>
+  </div>
+
   <!--
-  CHANGELOG (v8)
-  - Single dominant CTA aligned to /gate/intake/?need=copilot-quickscan (repeated twice only).
-  - Added “Public intake = non-confidential” trust line directly under hero lead.
-  - Combined board-safe Trust Brief-style layout with named deliverables (D0–D5) + 30/60/90 plan.
-  - Kept 5–7 day structure table and access requirements; condensed add-ons and limitations.
-  - Added pricing signal with CAD + “From” anchor for lower friction.
+  CHANGELOG (v9)
+  - Added objection-handling FAQ (confidentiality, deliverables, access, scope, readiness).
+  - Added sticky single-CTA bar to increase conversion on long scroll (no additional CTAs).
+  - Preserved v8 structure: D0–D5, 5–7 plan, access requirements, limitations, pricing signal.
   -->
 
   <!--
@@ -504,7 +552,8 @@
   - Assets return 200: /assets/noetfield-shell.css and /assets/noetfield-shell.js
   - Header/footer inject: #nfHeader and #nfFooter populated after load
   - Primary CTA works: /gate/intake/?need=copilot-quickscan
-  - Mobile: grid collapses to single column; table readable; buttons tappable
+  - Sticky CTA appears on scroll and does not overlap critical content
+  - Mobile: grid collapses; FAQ toggles work; buttons tappable
   -->
 </body>
 </html>

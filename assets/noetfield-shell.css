@@ -1,6 +1,30 @@
-/* ===== Noetfield Header/Footer App Patch (single-source) ===== */
+/* /assets/noetfield-shell.css
+   Noetfield Shell (single-source)
+   - Base tokens + global UI
+   - Header/Footer (v3) + RID UI
+   Version: locked-2025.12.17+shell-css-v1.0
+*/
 
 :root{
+  color-scheme: dark;
+
+  --bg0:#07070b;
+  --bg1:#0b0b11;
+
+  --text: rgba(255,255,255,.92);
+  --muted: rgba(255,255,255,.70);
+  --muted2: rgba(255,255,255,.58);
+
+  --gold: rgba(200,163,73,.95);
+  --blue: rgba(122,167,255,.90);
+
+  --radius: 16px;
+
+  --shadow: 0 14px 40px rgba(0,0,0,.44);
+  --shadow2: 0 10px 28px rgba(0,0,0,.34);
+
+  --focus: 0 0 0 3px rgba(200,163,73,.28);
+
   --navH: 64px;
   --glass: rgba(7,7,11,.62);
   --line: rgba(255,255,255,.10);
@@ -8,7 +32,124 @@
   --chip: rgba(255,255,255,.04);
 }
 
-/* Header container (sticky app bar) */
+/* reset */
+*{ box-sizing:border-box; }
+html,body{ height:100%; }
+body{
+  margin:0;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  background: var(--bg0);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* background */
+.bg{
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(1200px 520px at 18% 0%, rgba(200,163,73,.14), transparent 60%),
+    radial-gradient(1200px 520px at 88% 10%, rgba(122,167,255,.10), transparent 62%),
+    linear-gradient(180deg, rgba(255,255,255,.015), transparent 22%),
+    linear-gradient(180deg, var(--bg1), var(--bg0));
+}
+
+/* skip */
+.skip{
+  position:absolute;
+  left:-9999px;
+  top:auto;
+  width:1px;height:1px;
+  overflow:hidden;
+}
+.skip:focus{
+  left: 14px;
+  top: 10px;
+  width:auto;height:auto;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,.16);
+  background: rgba(7,7,11,.88);
+  box-shadow: var(--shadow);
+  z-index: 200;
+}
+
+/* layout */
+.wrap{
+  width: min(1180px, calc(100% - 28px));
+  margin: 0 auto;
+  padding: 16px 0 32px;
+}
+
+/* buttons */
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+
+  padding: 10px 14px;
+  border-radius: 14px;
+  border: 1px solid rgba(200,163,73,.38);
+  background: rgba(200,163,73,.12);
+  color: var(--text);
+  text-decoration:none;
+  font-size: 13.5px;
+  line-height: 1.1;
+  white-space: nowrap;
+}
+.btn:hover{
+  border-color: rgba(200,163,73,.58);
+  background: rgba(200,163,73,.16);
+}
+.btn.secondary{
+  border-color: rgba(255,255,255,.14);
+  background: rgba(255,255,255,.03);
+  color: var(--text);
+}
+.btn.secondary:hover{
+  border-color: rgba(200,163,73,.34);
+  background: rgba(200,163,73,.10);
+}
+.btn:focus-visible{ outline:none; box-shadow: var(--focus); }
+
+/* feedback tab */
+.feedbackTab{
+  position: fixed;
+  right: 14px;
+  bottom: 14px;
+  z-index: 70;
+
+  display:flex;
+  align-items:center;
+  gap:10px;
+
+  padding: 10px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.14);
+  background: rgba(7,7,11,.74);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: var(--text);
+  text-decoration:none;
+  box-shadow: var(--shadow2);
+  font-size: 13px;
+}
+.feedbackTab:hover{
+  border-color: rgba(200,163,73,.34);
+  background: rgba(7,7,11,.82);
+}
+.feedbackTab .spark{
+  width: 9px;
+  height: 9px;
+  border-radius: 999px;
+  background: var(--gold);
+  box-shadow: 0 0 0 3px rgba(200,163,73,.18);
+}
+
+/* ===== Header ===== */
 #nfHeader{ position: sticky; top: 0; z-index: 60; }
 #nfHeader .nav{
   height: var(--navH);
@@ -21,7 +162,6 @@
   -webkit-backdrop-filter: blur(10px);
 }
 
-/* Brand */
 #nfHeader .brand{
   display:flex; align-items:center; gap:12px;
   min-width: 0;
@@ -48,7 +188,6 @@
   max-width: 44vw;
 }
 
-/* Desktop menu */
 #nfHeader .menu{ display:flex; align-items:center; gap:14px; min-width:0; }
 #nfHeader .menuPrimary{ display:flex; gap:12px; align-items:center; }
 #nfHeader .menuPrimary a{
@@ -70,7 +209,6 @@
   background: rgba(200,163,73,.10);
 }
 
-/* Actions */
 #nfHeader .menuActions{ display:flex; gap:10px; align-items:center; }
 #nfHeader .pilltab{
   display:inline-flex; align-items:center; gap:8px;
@@ -91,8 +229,6 @@
   border-color: rgba(200,163,73,.45);
   background: rgba(200,163,73,.12);
 }
-
-/* Optional: buyer-first CTA styling if you add .primary to Start intake */
 #nfHeader .pilltab.primary{
   border-color: rgba(200,163,73,.40);
   background: rgba(200,163,73,.12);
@@ -102,7 +238,6 @@
   background: rgba(200,163,73,.16);
 }
 
-/* Login */
 #nfHeader .login{
   display:inline-flex; align-items:center;
   padding: 8px 11px;
@@ -119,15 +254,13 @@
   background: rgba(255,255,255,.04);
 }
 
-/* Dots */
 .statusDot, .goldDot{
   width: 8px; height: 8px; border-radius: 50%;
   box-shadow: 0 0 0 3px rgba(200,163,73,.16);
 }
-.goldDot{ background: rgba(200,163,73,.92); box-shadow: 0 0 0 3px rgba(200,163,73,.16); }
+.goldDot{ background: rgba(200,163,73,.92); }
 .statusDot{ background: rgba(122,167,255,.85); box-shadow: 0 0 0 3px rgba(122,167,255,.14); }
 
-/* Burger */
 #nfHeader .burger{
   display:none;
   width: 44px; height: 44px;
@@ -143,9 +276,8 @@
 }
 #nfHeader .burger:focus-visible{ outline:none; box-shadow: var(--focus); }
 
-/* Mobile panel as app drawer (works with shell.js toggling hidden + body.navOpen) */
+/* mobile panel */
 body.navOpen{ overflow: hidden; }
-
 #nfHeader .mobilePanel{
   position: fixed;
   left: 0; right: 0;
@@ -185,7 +317,7 @@ body.navOpen{ overflow: hidden; }
   background: rgba(200,163,73,.10);
 }
 
-/* Footer */
+/* ===== Footer ===== */
 #nfFooter{
   border-top: 1px solid rgba(255,255,255,.10);
   background: linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01));
@@ -222,14 +354,12 @@ body.navOpen{ overflow: hidden; }
 #nfFooter .fLinks{ display:flex; flex-direction:column; gap: 9px; }
 #nfFooter .fLinks a{ color: var(--muted); text-decoration:none; }
 #nfFooter .fLinks a:hover{ color: var(--text); }
-
 #nfFooter .ctaRow{
   display:flex;
   flex-wrap:wrap;
   gap:10px;
   margin-top: 12px;
 }
-
 #nfFooter .footerBottom{
   width: min(1180px, calc(100% - 28px));
   margin: 0 auto;
@@ -263,7 +393,7 @@ body.navOpen{ overflow: hidden; }
   background: rgba(200,163,73,.10);
 }
 
-/* ===== RID (Request ID) mini UI — SINGLE SOURCE (no duplicates) ===== */
+/* RID UI */
 .ridRow{
   display:flex;
   flex-wrap:wrap;
@@ -271,7 +401,6 @@ body.navOpen{ overflow: hidden; }
   align-items:center;
   margin-top:10px;
 }
-
 .ridRow code[data-rid]{
   display:inline-flex;
   align-items:center;
@@ -288,7 +417,6 @@ body.navOpen{ overflow: hidden; }
   text-overflow:ellipsis;
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
-
 .ridRow button[data-copy-rid]{
   appearance:none;
   border:1px solid rgba(255,255,255,.14);
@@ -302,31 +430,25 @@ body.navOpen{ overflow: hidden; }
   transition: background .15s ease, border-color .15s ease, color .15s ease, transform .06s ease;
   user-select:none;
 }
-
 .ridRow button[data-copy-rid]:hover{
   color: var(--text);
   border-color: rgba(200,163,73,.38);
   background: rgba(200,163,73,.10);
 }
-
 .ridRow button[data-copy-rid]:active{ transform: translateY(1px); }
-
 .ridRow button[data-copy-rid][data-copied="1"]{
   border-color: rgba(45,227,138,.55);
   background: rgba(45,227,138,.10);
   color: var(--text);
 }
-
 .ridRow button[data-copy-rid]:focus-visible{ outline:none; box-shadow: var(--focus); }
 
-/* Responsive */
+/* responsive */
 @media (max-width: 980px){
   #nfHeader .menu{ display:none; }
   #nfHeader .burger{ display:inline-flex; align-items:center; justify-content:center; }
   #nfFooter .footerTop{ grid-template-columns: 1fr; }
-  #nfFooter .fcol{ padding: 14px; }
 }
-
 @media (prefers-reduced-motion: reduce){
   .ridRow button[data-copy-rid]{ transition:none; }
 }

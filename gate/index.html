@@ -1,4 +1,4 @@
-<!-- /gate/index.html — Noetfield Gate v2 (Sales Hub + optional Router) -->
+<!-- /gate/index.html — Noetfield Gate v2.1 (Sales Hub + optional 60-second Router) -->
 <!doctype html>
 <html lang="en">
 <head>
@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <title>Noetfield — Gate</title>
-  <meta name="description" content="Purchase-ready entry to Noetfield packages. Clear options, direct checkout/intake, and an optional 60-second router for the right start point." />
+  <meta name="description" content="Purchase-ready entry to Noetfield packages. Clear options, direct intake for kickoff, and an optional 60-second router for the best start point." />
   <meta name="robots" content="index,follow" />
   <meta name="author" content="Noetfield Systems Inc." />
   <meta name="theme-color" content="#07070b" />
@@ -18,7 +18,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Noetfield" />
   <meta property="og:title" content="Noetfield — Gate" />
-  <meta property="og:description" content="Purchase-ready entry to Noetfield packages. Clear options, direct intake, optional 60-second router." />
+  <meta property="og:description" content="Purchase-ready entry to Noetfield packages. Direct intake + optional 60-second router." />
   <meta property="og:url" content="https://www.noetfield.com/gate/" />
   <meta property="og:image" content="https://www.noetfield.com/noetfield-og.png" />
 
@@ -131,7 +131,9 @@
       padding:14px;
       position:relative;
       overflow:hidden;
+      cursor: pointer;
     }
+    .nfOffer:focus-within{ outline: 2px solid rgba(200,163,73,.22); outline-offset: 2px; }
     .nfOfferTop{ display:flex; gap:10px; align-items:flex-start; justify-content:space-between; }
     .nfOfferName{ margin:0; font-size:16px; letter-spacing:-.2px; font-weight:950; }
     .nfOfferMeta{ display:flex; flex-wrap:wrap; gap:8px; margin-top:10px; }
@@ -186,10 +188,7 @@
     .nfTable tr:last-child td{ border-bottom:none; }
 
     /* Right rail: purchase panel */
-    .nfRail{
-      position: sticky;
-      top: 14px;
-    }
+    .nfRail{ position: sticky; top: 14px; }
     .nfRailBox{
       border-radius: var(--radius);
       border:1px solid rgba(255,255,255,.11);
@@ -250,6 +249,15 @@
     .nfRouterOpt .d{ color:var(--muted2); font-size:12.8px; line-height:1.55; margin-top:4px; }
     .nfRouterActions{ display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-top:12px; }
 
+    .nfRouterHint{
+      margin-top:10px;
+      color: var(--muted2);
+      font-size: 12.6px;
+      line-height: 1.55;
+      display:none;
+    }
+    .nfRouterHintShow{ display:block; }
+
     .nfRecoCard{
       margin-top:12px;
       border-radius:16px;
@@ -275,10 +283,8 @@
 
     /* Mobile bottom bar */
     .nfBottomBar{
-      position: sticky;
-      bottom: 0;
       z-index: 30;
-      padding: 10px 0;
+      padding: 10px 0 calc(10px + env(safe-area-inset-bottom));
       background: linear-gradient(180deg, rgba(7,7,11,0) 0%, rgba(7,7,11,.78) 22%, rgba(7,7,11,.92) 100%);
       backdrop-filter: blur(10px);
       border-top: 1px solid rgba(255,255,255,.08);
@@ -310,9 +316,14 @@
       .nfGateTitle{ font-size: 30px; }
     }
     @media (max-width: 760px){
-      .nfBottomBar{ display:block; }
       .nfGateHeroInner{ padding: 18px 14px; }
       .nfGateCardHd, .nfGateCardBd, .nfRailHd, .nfRailBd{ padding-left:14px; padding-right:14px; }
+      .nfBottomBar{
+        display:block;
+        position: fixed;
+        left: 0; right: 0; bottom: 0;
+      }
+      body{ padding-bottom: calc(74px + env(safe-area-inset-bottom)); }
     }
 
     @media (prefers-reduced-motion: reduce){
@@ -345,12 +356,12 @@
     <section class="nfGateHero" aria-label="Gate hero">
       <div class="nfGateHeroShell">
         <div class="nfGateHeroInner">
-          <div class="nfGateEyebrow"><span class="nfGateDot"></span> Quick entry • clear packages • direct start</div>
+          <div class="nfGateEyebrow"><span class="nfGateDot"></span> Purchase-ready entry • clear packages • direct start</div>
 
           <h1 class="nfGateTitle">Pick a package. Start cleanly.</h1>
 
           <p class="nfGateLead">
-            Clear offers, clear next steps. Each <strong>Start</strong> button routes to the package’s dedicated intake for purchase and kickoff.
+            Clear offers, clear next steps. Each <strong>Start</strong> button routes to the package’s dedicated intake for kickoff.
           </p>
 
           <div class="nfGateOnPage" aria-label="On this page">
@@ -361,7 +372,7 @@
           </div>
 
           <div class="nfGateNotice" role="note">
-            <strong>Quick note:</strong> For speed, use high-level context in forms. Access details and secure sharing are confirmed after kickoff.
+            <strong>Public intake = non-confidential.</strong> Do not submit secrets, credentials, private keys, or regulated personal data. Secure sharing is confirmed after kickoff.
           </div>
         </div>
       </div>
@@ -374,13 +385,13 @@
         <section class="nfGateCard" id="packages" aria-label="Packages">
           <div class="nfGateCardHd">
             <h2 class="nfGateCardTitle">Packages</h2>
-            <p class="nfGateMuted">Direct start points. Details are optional. Purchasing and kickoff happen through each package intake.</p>
+            <p class="nfGateMuted">Direct start points. Details are optional. Kickoff happens through each package intake.</p>
           </div>
 
           <div class="nfGateCardBd">
             <div class="nfOffers" aria-label="Offer cards">
               <!-- Copilot QuickScan -->
-              <article class="nfOffer" id="offer-quickscan" data-offer="quickscan">
+              <article class="nfOffer" id="offer-quickscan" data-offer="quickscan" tabindex="0" aria-label="Copilot QuickScan offer">
                 <div class="nfOfferTop">
                   <div>
                     <h3 class="nfOfferName">Copilot QuickScan</h3>
@@ -410,7 +421,7 @@
               </article>
 
               <!-- Trust Brief -->
-              <article class="nfOffer" id="offer-brief" data-offer="brief">
+              <article class="nfOffer" id="offer-brief" data-offer="brief" tabindex="0" aria-label="Trust Brief offer">
                 <div class="nfOfferTop">
                   <div>
                     <h3 class="nfOfferName">Trust Brief (6-week)</h3>
@@ -440,7 +451,7 @@
               </article>
 
               <!-- Trust Ledger -->
-              <article class="nfOffer" id="offer-ledger" data-offer="ledger">
+              <article class="nfOffer" id="offer-ledger" data-offer="ledger" tabindex="0" aria-label="Trust Ledger offer">
                 <div class="nfOfferTop">
                   <div>
                     <h3 class="nfOfferName">Trust Ledger</h3>
@@ -470,7 +481,7 @@
               </article>
 
               <!-- Playbook Pro -->
-              <article class="nfOffer" id="offer-playbook" data-offer="playbook">
+              <article class="nfOffer" id="offer-playbook" data-offer="playbook" tabindex="0" aria-label="Playbook Pro offer">
                 <div class="nfOfferTop">
                   <div>
                     <h3 class="nfOfferName">Playbook Pro (Agency / Pro)</h3>
@@ -574,7 +585,7 @@
             <div class="nfRouterWrap">
               <div class="nfRouterCard" id="nfRouterCard" hidden>
                 <div class="nfGateNotice" style="margin-top:0;">
-                  <strong>Guidance:</strong> Use safe, high-level selections here. Any access details are confirmed after kickoff.
+                  <strong>Public intake = non-confidential.</strong> Use safe, high-level selections. Secure sharing is confirmed after kickoff.
                 </div>
 
                 <!-- Q1 -->
@@ -637,9 +648,11 @@
                 </div>
 
                 <div class="nfRouterActions">
-                  <button class="btn" type="button" id="nfRouterFinishBtn">Get recommendation</button>
+                  <button class="btn" type="button" id="nfRouterFinishBtn" disabled>Get recommendation</button>
                   <button class="btn secondary" type="button" id="nfRouterResetBtn">Reset</button>
                 </div>
+
+                <div class="nfRouterHint" id="nfRouterHint" role="status">Select one option in each section to continue.</div>
 
                 <div class="nfRecoCard" id="nfRecoCard" hidden aria-label="Recommendation">
                   <div class="nfRecoBadge"><strong>Recommendation</strong> · next best start</div>
@@ -799,23 +812,36 @@
         // update bottom bar
         var bText = document.getElementById("nfBottomText");
         var bBtn = document.getElementById("nfBottomBtn");
-        if (bText) bText.innerHTML = "<strong>Start:</strong> " + o.name;
+        if (bText) bText.innerHTML = "<strong>Start:</strong> " + escapeHtml(o.name);
         if (bBtn) bBtn.href = o.primaryHref;
 
         // remember
         try { localStorage.setItem("nf_gate_focus", o.key); } catch(e){}
       }
 
-      // Clicking any primary CTA also selects offer (helps rail + bottom bar match intent)
+      // Select offer when clicking the card (mobile-friendly)
+      document.querySelectorAll("[data-offer]").forEach(function(card){
+        card.addEventListener("click", function(e){
+          // do not block link clicks
+          if (e.target && (e.target.closest("a") || e.target.closest("button"))) return;
+          selectOffer(card.getAttribute("data-offer"));
+        });
+        card.addEventListener("keydown", function(e){
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            selectOffer(card.getAttribute("data-offer"));
+          }
+        });
+      });
+
+      // Hover/focus on primary CTA keeps rail in sync
       document.querySelectorAll("[data-primary-cta]").forEach(function(a){
-        a.addEventListener("mouseenter", function(){
+        function sync(){
           var wrap = a.closest("[data-offer]");
           if (wrap) selectOffer(wrap.getAttribute("data-offer"));
-        });
-        a.addEventListener("focus", function(){
-          var wrap = a.closest("[data-offer]");
-          if (wrap) selectOffer(wrap.getAttribute("data-offer"));
-        });
+        }
+        a.addEventListener("mouseenter", sync);
+        a.addEventListener("focus", sync);
       });
 
       // Router open/close
@@ -842,13 +868,13 @@
         document.querySelectorAll('input[name="nf_situation"], input[name="nf_timing"]').forEach(function(i){ i.checked = false; });
         var rc = document.getElementById("nfRecoCard");
         if (rc) rc.hidden = true;
+        setRouterReady(false);
       }
 
       function recommend(){
         var situation = v("nf_situation");
         var timing = v("nf_timing");
 
-        // simple, predictable rules
         if (situation === "templates") return { key:"playbook", why:[
           "Best first step when templates are needed immediately.",
           "Reusable structure for teams or agencies.",
@@ -867,7 +893,6 @@
           "Sets up continuity into Trust Ledger."
         ]};
 
-        // default for urgency and Copilot rollout
         return { key:"quickscan", why:[
           "Fastest path to decision-ready outputs.",
           "Designed for rollout pressure and leadership review.",
@@ -875,21 +900,35 @@
         ]};
       }
 
-      // Router actions
       var finish = document.getElementById("nfRouterFinishBtn");
       var reset = document.getElementById("nfRouterResetBtn");
+      var hint = document.getElementById("nfRouterHint");
+
+      function setRouterReady(ready){
+        if (finish) finish.disabled = !ready;
+        if (hint) hint.classList.toggle("nfRouterHintShow", !ready);
+      }
+
+      function routerReady(){
+        return !!(v("nf_situation") && v("nf_timing"));
+      }
+
+      // Enable finish only when both answered
+      document.querySelectorAll('input[name="nf_situation"], input[name="nf_timing"]').forEach(function(i){
+        i.addEventListener("change", function(){
+          setRouterReady(routerReady());
+        });
+      });
+
       if (reset) reset.addEventListener("click", resetRouter);
 
       if (finish){
         finish.addEventListener("click", function(){
-          var situation = v("nf_situation");
-          var timing = v("nf_timing");
-          if (!situation || !timing) return;
+          if (!routerReady()) { setRouterReady(false); return; }
 
           var r = recommend();
           var o = offers[r.key] || offers.quickscan;
 
-          // render recommendation
           var rc = document.getElementById("nfRecoCard");
           var t = document.getElementById("nfRecoTitle");
           var d = document.getElementById("nfRecoDesc");
@@ -898,15 +937,14 @@
           var det = document.getElementById("nfRecoDetails");
 
           if (t) t.textContent = o.name;
-          if (d) d.textContent = "Recommended based on your selections. Start the package intake to purchase and schedule kickoff.";
+          if (d) d.textContent = "Recommended based on your selections. Start the package intake for kickoff.";
           if (w) w.innerHTML = (r.why || []).map(function(x){ return "<li>" + escapeHtml(x) + "</li>"; }).join("");
           if (p){ p.href = o.primaryHref; p.textContent = "Start"; }
           if (det){ det.href = o.detailsHref; det.textContent = "View details"; }
-
           if (rc) rc.hidden = false;
 
-          // sync UI focus
           selectOffer(o.key);
+          if (rc) rc.scrollIntoView({ behavior: "smooth", block: "start" });
         });
       }
 
@@ -930,19 +968,18 @@
       // Auto-open router if ?router=1
       if ((qs("router") || "") === "1"){
         setRouterOpen(true);
+        setRouterReady(routerReady());
       }
     })();
   </script>
 
   <!--
-    CHANGELOG (gate v2)
-    - Converted Gate into a clean sales hub: packages first, router optional.
-    - Added clear package cards (timing, typical price, highlights, Start + Details CTAs).
-    - Added short compare table for internal alignment.
-    - Added procurement/invoice guidance section.
-    - Added optional 60-second router (collapsible) with one recommendation.
-    - Added right purchase panel + mobile bottom CTA bar; recommendation syncs across UI.
-    - Removed jargon phrasing; kept language business-first and clean.
+    CHANGELOG (gate v2.1)
+    - Kept your v2 layout and visuals; tightened buyer-safety language (“Public intake = non-confidential”) to match site policy.
+    - Mobile: bottom bar is fixed (not sticky) + safe-area padding; added body padding to prevent overlap.
+    - Router: finish button disabled until both answers are selected; inline hint shown when incomplete.
+    - Offers: card click selects offer (better on mobile); keyboard support on cards.
+    - Rail/bottom bar remain synced via a single offers model.
 
     SMOKE TEST
     - GET /gate/ returns 200

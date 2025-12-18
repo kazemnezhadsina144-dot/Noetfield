@@ -1,23 +1,22 @@
-/* /assets/noetfield-shell.js (v4)
-   - Inject header/footer partials (single source)
-   - Mobile drawer + backdrop + scroll lock + Escape
+/* Noetfield Shell
+   - Inject header/footer partials
+   - Burger menu
    - Active links
    - Footer year
    - Feedback tab
-   - RID: generate/store/apply/copy + propagate to tagged links + inject into forms
-   Version: 20251218
+   - RID (Request ID): generate/store/display/copy + propagate to tagged links + inject into forms
+   Version: locked-2025.12.13+shell-v2.1
 */
 (function () {
   "use strict";
 
-  // Prevent double-boot if script loaded twice by mistake
-  if (document.documentElement.dataset.nfShellBooted === "1") return;
-  document.documentElement.dataset.nfShellBooted = "1";
-
-  var ASSET_VER = "20251218";
+  var SHELL_VERSION = "2025.12.13";
   var PARTIALS_BASE = "/assets/partials";
   var RID_KEY = "nf_rid";
 
+  /* -------------------------
+     Utilities
+  ------------------------- */
   function normPath(p) {
     if (!p) return "/";
     p = String(p).split("?")[0].split("#")[0];
@@ -39,6 +38,7 @@
         return u.pathname || "/";
       } catch (_) { return null; }
     }
+
     if (!href.startsWith("/")) return null;
     return href;
   }
@@ -51,13 +51,39 @@
   function sanitizeRID(x) {
     x = (x || "").trim();
     if (!x) return "";
+    // allow only safe chars; cap length
     x = x.replace(/[^a-zA-Z0-9\-_]/g, "").slice(0, 64);
+    // require minimum entropy/length
     if (x.length < 6) return "";
     return x;
   }
 
+  function buildUrlWithRID(href, rid) {
+    try {
+      var u = new URL(href, window.location.origin);
+      if (u.origin !== window.location.origin) return null;
+      u.searchParams.set("rid", rid);
+      var qs = u.searchParams.toString();
+      return u.pathname + (qs ? ("?" + qs) : "") + (u.hash || "");
+    } catch (_) {
+      return null;
+    }
+  }
+
+  /* -------------------------
+     RID (Request ID)
+     Policy:
+     1) if ?rid= exists -> sanitize -> store & use
+     2) else if localStorage has rid -> sanitize -> use
+     3) else generate -> store & use
+  ------------------------- */
   function generateRID() {
-    return ("RID-" + Date.now().toString(36) + "-" + Math.random().toString(36).slice(2, 8)).toUpperCase();
+    return (
+      "RID-" +
+      Date.now().toString(36) +
+      "-" +
+      Math.random().toString(36).slice(2, 8)
+    ).toUpperCase();
   }
 
   function getOrCreateRID() {
@@ -81,21 +107,12 @@
     return rid;
   }
 
-  function buildUrlWithRID(href, rid) {
-    try {
-      var u = new URL(href, window.location.origin);
-      if (u.origin !== window.location.origin) return null;
-      u.searchParams.set("rid", rid);
-      return u.pathname + "?" + u.searchParams.toString() + (u.hash || "");
-    } catch (_) {
-      return null;
-    }
-  }
-
   function copyText(text) {
+    // returns Promise<boolean>
     if (navigator.clipboard && navigator.clipboard.writeText) {
       return navigator.clipboard.writeText(text).then(function () { return true; }).catch(function () { return false; });
     }
+    // fallback
     return new Promise(function (resolve) {
       try {
         var ta = document.createElement("textarea");
@@ -108,17 +125,20 @@
         var ok = document.execCommand("copy");
         document.body.removeChild(ta);
         resolve(!!ok);
-      } catch (_) { resolve(false); }
+      } catch (_) {
+        resolve(false);
+      }
     });
   }
 
   function applyRID(rid) {
-    safeQueryAll("[data-rid]").forEach(function (el) { el.textContent = rid; });
+    // render RID into any element that declares data-rid
+    safeQueryAll("[data-rid]").forEach(function (el) {
+      el.textContent = rid;
+    });
 
+    // copy buttons
     safeQueryAll("[data-copy-rid]").forEach(function (btn) {
-      if (btn.dataset.nfBound === "1") return;
-      btn.dataset.nfBound = "1";
-
       btn.addEventListener("click", function () {
         copyText(rid).then(function (ok) {
           if (!ok) return;
@@ -128,6 +148,7 @@
       });
     });
 
+    // propagate to tagged links (keeps existing query + hash)
     safeQueryAll("a[data-rid-link]").forEach(function (a) {
       var href = (a.getAttribute("href") || "").trim();
       if (!href) return;
@@ -135,6 +156,10 @@
       if (out) a.setAttribute("href", out);
     });
 
+    // inject into forms:
+    // - if request_id exists -> set
+    // - if rid exists -> set
+    // - else add BOTH hidden inputs for consistency
     safeQueryAll("form").forEach(function (form) {
       var ridInput = form.querySelector('input[name="rid"]');
       var reqInput = form.querySelector('input[name="request_id"]');
@@ -157,8 +182,12 @@
     });
   }
 
+  /* -------------------------
+     Active links (Header + Mobile + Footer mini nav)
+  ------------------------- */
   function setActiveLinks() {
     var current = normPath(window.location.pathname);
+
     var selectors = [
       "#nfHeader .menuPrimary a",
       "#nfHeader .menuActions a",
@@ -186,43 +215,24 @@
     });
   }
 
+  /* -------------------------
+     Burger (robust)
+  ------------------------- */
   function initBurger() {
     var burger = document.getElementById("burger");
     var panel = document.getElementById("mobilePanel");
-    var backdrop = document.getElementById("navBackdrop");
-
-    if (!burger || !panel || !backdrop) return;
-    if (burger.dataset.nfBound === "1") return;
-    burger.dataset.nfBound = "1";
-
-    var lastFocus = null;
+    if (!burger || !panel) return;
 
     function openPanel() {
-      lastFocus = document.activeElement;
       burger.setAttribute("aria-expanded", "true");
-      burger.setAttribute("aria-label", "Close menu");
       panel.hidden = false;
-      panel.setAttribute("aria-hidden", "false");
-      backdrop.hidden = false;
-      backdrop.setAttribute("aria-hidden", "false");
       document.body.classList.add("navOpen");
-
-      // focus first link
-      setTimeout(function () {
-        var first = panel.querySelector("a, button");
-        if (first && first.focus) first.focus();
-      }, 0);
     }
 
     function closePanel() {
       burger.setAttribute("aria-expanded", "false");
-      burger.setAttribute("aria-label", "Open menu");
       panel.hidden = true;
-      panel.setAttribute("aria-hidden", "true");
-      backdrop.hidden = true;
-      backdrop.setAttribute("aria-hidden", "true");
       document.body.classList.remove("navOpen");
-      if (lastFocus && lastFocus.focus) lastFocus.focus();
     }
 
     function toggle() {
@@ -230,19 +240,23 @@
       if (isOpen) closePanel(); else openPanel();
     }
 
-    // baseline
     burger.setAttribute("aria-expanded", "false");
     panel.hidden = true;
-    panel.setAttribute("aria-hidden", "true");
-    backdrop.hidden = true;
-    backdrop.setAttribute("aria-hidden", "true");
     document.body.classList.remove("navOpen");
 
-    burger.addEventListener("click", function (e) { e.preventDefault(); toggle(); });
-    backdrop.addEventListener("click", function () { closePanel(); });
+    burger.addEventListener("click", function (e) {
+      e.preventDefault();
+      toggle();
+    });
 
     document.addEventListener("keydown", function (e) {
       if (e.key === "Escape" && burger.getAttribute("aria-expanded") === "true") closePanel();
+    });
+
+    document.addEventListener("click", function (e) {
+      if (burger.getAttribute("aria-expanded") !== "true") return;
+      var withinHeader = !!(e.target && e.target.closest && e.target.closest("#nfHeader"));
+      if (!withinHeader) closePanel();
     });
 
     panel.addEventListener("click", function (e) {
@@ -251,10 +265,27 @@
     });
 
     window.addEventListener("resize", function () {
-      if (window.innerWidth > 980 && burger.getAttribute("aria-expanded") === "true") closePanel();
+      if (window.innerWidth > 1140 && burger.getAttribute("aria-expanded") === "true") closePanel();
     });
   }
 
+  /* -------------------------
+     Footer CTA normalization (left box: Gate + Portal only)
+  ------------------------- */
+  function normalizeFooterCTA() {
+    var cta = document.querySelector("#nfFooter .ctaRow");
+    if (!cta) return;
+
+    var keep = { "/gate/": true, "/gate": true, "/portal/": true, "/portal": true };
+    Array.prototype.slice.call(cta.querySelectorAll("a")).forEach(function (a) {
+      var href = (a.getAttribute("href") || "").trim();
+      if (!keep[href]) a.parentNode && a.parentNode.removeChild(a);
+    });
+  }
+
+  /* -------------------------
+     Feedback tab (only if not on feedback page)
+  ------------------------- */
   function ensureFeedbackTab() {
     var p = normPath(window.location.pathname);
     if (p === "/feedback" || p.startsWith("/feedback/")) return;
@@ -274,43 +305,53 @@
     document.body.appendChild(a);
   }
 
+  /* -------------------------
+     Inject partials
+  ------------------------- */
   async function injectOne(targetId, partialName) {
     var el = document.getElementById(targetId);
     if (!el) return;
 
-    // Enforce empty container policy: clear if anything was hardcoded
-    if (el.children && el.children.length > 0) el.innerHTML = "";
+    // do not override if developer hardcoded markup
+    if (el.children && el.children.length > 0) return;
 
-    var url = PARTIALS_BASE + "/" + partialName + "?v=" + encodeURIComponent(ASSET_VER);
+    var url = PARTIALS_BASE + "/" + partialName + "?v=" + encodeURIComponent(SHELL_VERSION);
 
     try {
-      var res = await fetch(url, { credentials: "same-origin", cache: "force-cache" });
+      var res = await fetch(url, { credentials: "same-origin", cache: "reload" });
       if (!res.ok) return;
-      el.innerHTML = await res.text();
-    } catch (_) {}
+      var html = await res.text();
+      el.innerHTML = html;
+    } catch (_) {
+      // silent fail
+    }
   }
 
-  async function boot() {
+  async function injectShell() {
     await injectOne("nfHeader", "header.html");
     await injectOne("nfFooter", "footer.html");
+  }
 
+  /* -------------------------
+     Boot
+  ------------------------- */
+  async function boot() {
+    await injectShell();
+
+    // post-injection hooks
     setYear();
-
-    var rid = getOrCreateRID();
-    applyRID(rid);
-
     setActiveLinks();
     initBurger();
+    normalizeFooterCTA();
     ensureFeedbackTab();
 
-    // expose tiny debug info
-    try {
-      window.__NF_SHELL__ = { version: ASSET_VER, partialsBase: PARTIALS_BASE };
-    } catch (_) {}
+    // RID last (needs injected DOM)
+    var rid = getOrCreateRID();
+    applyRID(rid);
   }
 
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", boot);
+    document.addEventListener("DOMContentLoaded", function () { boot(); });
   } else {
     boot();
   }

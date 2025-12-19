@@ -1,11 +1,12 @@
-/* Noetfield Shell
+/* /assets/noetfield-shell.js — v2.2 (allow Sales CTA in footer normalization; minimal change)
+   Noetfield Shell:
    - Inject header/footer partials
    - Burger menu
    - Active links
    - Footer year
    - Feedback tab
    - RID (Request ID): generate/store/display/copy + propagate to tagged links + inject into forms
-   Version: locked-2025.12.18+shell-v2.2+sales-buy-offers-reserve
+   Version: locked-2025.12.18+sales-cta
 */
 (function () {
   "use strict";
@@ -14,9 +15,6 @@
   var PARTIALS_BASE = "/assets/partials";
   var RID_KEY = "nf_rid";
 
-  /* -------------------------
-     Utilities
-  ------------------------- */
   function normPath(p) {
     if (!p) return "/";
     p = String(p).split("?")[0].split("#")[0];
@@ -68,13 +66,6 @@
     }
   }
 
-  /* -------------------------
-     RID (Request ID)
-     Policy:
-     1) if ?rid= exists -> sanitize -> store & use
-     2) else if localStorage has rid -> sanitize -> use
-     3) else generate -> store & use
-  ------------------------- */
   function generateRID() {
     return (
       "RID-" +
@@ -107,9 +98,7 @@
 
   function copyText(text) {
     if (navigator.clipboard && navigator.clipboard.writeText) {
-      return navigator.clipboard.writeText(text)
-        .then(function () { return true; })
-        .catch(function () { return false; });
+      return navigator.clipboard.writeText(text).then(function () { return true; }).catch(function () { return false; });
     }
     return new Promise(function (resolve) {
       try {
@@ -173,9 +162,6 @@
     });
   }
 
-  /* -------------------------
-     Active links (Header + Mobile + Footer mini nav)
-  ------------------------- */
   function setActiveLinks() {
     var current = normPath(window.location.pathname);
 
@@ -206,9 +192,6 @@
     });
   }
 
-  /* -------------------------
-     Burger (robust)
-  ------------------------- */
   function initBurger() {
     var burger = document.getElementById("burger");
     var panel = document.getElementById("mobilePanel");
@@ -260,30 +243,23 @@
     });
   }
 
-  /* -------------------------
-     Footer CTA normalization (keep Sales/Buy/Offers/Reserve/Portal)
-  ------------------------- */
+  /* Footer CTA normalization (left box) */
   function normalizeFooterCTA() {
     var cta = document.querySelector("#nfFooter .ctaRow");
     if (!cta) return;
 
     var keep = {
+      "/gate/sales/": true, "/gate/sales": true,
       "/gate/": true, "/gate": true,
-      "/gate/offers/": true, "/gate/offers": true,
-      "/gate/intake/": true, "/gate/intake": true,
       "/portal/": true, "/portal": true
     };
 
     Array.prototype.slice.call(cta.querySelectorAll("a")).forEach(function (a) {
       var href = (a.getAttribute("href") || "").trim();
-      if (href && href.indexOf("/gate/intake/?") === 0) return;
       if (!keep[href]) a.parentNode && a.parentNode.removeChild(a);
     });
   }
 
-  /* -------------------------
-     Feedback tab (only if not on feedback page)
-  ------------------------- */
   function ensureFeedbackTab() {
     var p = normPath(window.location.pathname);
     if (p === "/feedback" || p.startsWith("/feedback/")) return;
@@ -303,9 +279,6 @@
     document.body.appendChild(a);
   }
 
-  /* -------------------------
-     Inject partials
-  ------------------------- */
   async function injectOne(targetId, partialName) {
     var el = document.getElementById(targetId);
     if (!el) return;
@@ -319,9 +292,7 @@
       if (!res.ok) return;
       var html = await res.text();
       el.innerHTML = html;
-    } catch (_) {
-      // silent fail
-    }
+    } catch (_) {}
   }
 
   async function injectShell() {
@@ -329,9 +300,6 @@
     await injectOne("nfFooter", "footer.html");
   }
 
-  /* -------------------------
-     Boot
-  ------------------------- */
   async function boot() {
     await injectShell();
 

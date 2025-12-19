@@ -1,4 +1,4 @@
-/* /assets/noetfield-shell.js — v2.2 (allow Sales CTA in footer normalization; minimal change)
+/* /assets/noetfield-shell.js — v2.3
    Noetfield Shell:
    - Inject header/footer partials
    - Burger menu
@@ -6,7 +6,7 @@
    - Footer year
    - Feedback tab
    - RID (Request ID): generate/store/display/copy + propagate to tagged links + inject into forms
-   Version: locked-2025.12.18+sales-cta
+   Version: locked-2025.12.18+playbook-header
 */
 (function () {
   "use strict";
@@ -243,7 +243,6 @@
     });
   }
 
-  /* Footer CTA normalization (left box) */
   function normalizeFooterCTA() {
     var cta = document.querySelector("#nfFooter .ctaRow");
     if (!cta) return;
@@ -282,7 +281,6 @@
   async function injectOne(targetId, partialName) {
     var el = document.getElementById(targetId);
     if (!el) return;
-
     if (el.children && el.children.length > 0) return;
 
     var url = PARTIALS_BASE + "/" + partialName + "?v=" + encodeURIComponent(SHELL_VERSION);

@@ -1,4 +1,4 @@
-<!-- /copilot/quickscan/index.html — Copilot QuickScan v2.2 (rebuilt to match /gate/sales structure + Stripe QuickScan Base enabled) -->
+<!-- /copilot/quickscan/index.html — Copilot QuickScan v2.3 (3-tier offers + Stripe Links + optional Buy Buttons + success redirect ready) -->
 <!doctype html>
 <html lang="en">
 <head>
@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <title>Noetfield — Copilot QuickScan</title>
-  <meta name="description" content="Copilot QuickScan: a fast, governance-first assessment that produces board-ready evidence for Microsoft 365 Copilot adoption in 5–7 business days. Clarifies scope, exposure paths, data boundaries, evidence readiness, and connector controls." />
+  <meta name="description" content="Copilot QuickScan: board-ready evidence for Microsoft 365 Copilot adoption in 5–7 business days. Surface oversharing exposure, sensitive-data boundaries, audit/retention posture, and extension/connector controls." />
   <meta name="robots" content="index,follow" />
   <meta name="author" content="Noetfield Systems Inc." />
   <meta name="theme-color" content="#07070b" />
@@ -32,6 +32,9 @@
   <!-- LOCKED SHELL -->
   <link rel="stylesheet" href="/assets/noetfield-shell.css" />
   <script src="/assets/noetfield-shell.js" defer></script>
+
+  <!-- Optional Stripe Buy Button (only needed if you render <stripe-buy-button> elements below) -->
+  <script async src="https://js.stripe.com/v3/buy-button.js"></script>
 
   <style>
     /* Minimal page-only styles; rely on shell tokens/components */
@@ -196,19 +199,34 @@
     .box strong{color:var(--text); font-weight:900}
     .box a{border-bottom:1px solid rgba(255,255,255,.18)}
 
-    .priceCard{
+    /* Offer cards (3-tier) */
+    .offerGrid{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:12px;
+      margin-top:12px;
+    }
+    .offer{
       border-radius:16px;
       border:1px solid rgba(255,255,255,.11);
       background:
         radial-gradient(900px 380px at 20% 0%, rgba(200,163,73,.16), transparent 60%),
         linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.022));
       padding:14px;
-      margin-top:12px;
       box-shadow: var(--shadow2);
     }
-    .priceTop{display:flex; justify-content:space-between; align-items:flex-start; gap:12px; flex-wrap:wrap}
-    .priceName{margin:0; font-size:15px; font-weight:950; letter-spacing:-.2px; color:var(--text)}
-    .priceTag{
+    .offer.top{
+      border-color: rgba(200,163,73,.32);
+      background:
+        radial-gradient(900px 380px at 20% 0%, rgba(200,163,73,.22), transparent 60%),
+        radial-gradient(800px 320px at 92% 18%, rgba(122,167,255,.10), transparent 62%),
+        linear-gradient(180deg, rgba(255,255,255,.065), rgba(255,255,255,.022));
+    }
+    .offerTop{
+      display:flex; justify-content:space-between; align-items:flex-start; gap:10px; flex-wrap:wrap;
+    }
+    .offerName{margin:0; font-size:15px; font-weight:950; letter-spacing:-.2px; color:var(--text)}
+    .badge{
       display:inline-flex; align-items:center; gap:8px;
       padding:7px 10px;
       border-radius:999px;
@@ -219,9 +237,12 @@
       white-space:nowrap;
     }
     .priceNum{margin:10px 0 0; font-size:28px; letter-spacing:-.6px; font-weight:950; color:var(--text)}
-    .priceSub{margin:6px 0 0; color:var(--muted2); font-size:12.8px; line-height:1.55}
-    .priceSub a{border-bottom:1px solid rgba(255,255,255,.18)}
+    .offerSub{margin:6px 0 0; color:var(--muted2); font-size:12.8px; line-height:1.55}
+    .offerSub a{border-bottom:1px solid rgba(255,255,255,.18)}
+    .miniList{margin:10px 0 0; padding-left:18px; color:var(--muted); line-height:1.85; font-size:13px}
+    .miniList li{margin:6px 0}
 
+    /* Sticky CTA */
     .stickyCta{
       position: sticky;
       bottom: 0;
@@ -267,7 +288,7 @@
     "name":"Copilot QuickScan",
     "provider":{"@type":"Organization","name":"Noetfield Systems Inc."},
     "areaServed":"CA",
-    "description":"A fast, governance-first assessment that produces board-ready evidence for Microsoft 365 Copilot adoption in 5–7 business days. Clarifies scope, exposure paths, data boundaries, evidence readiness, and connector controls.",
+    "description":"Board-ready evidence for Microsoft 365 Copilot adoption — delivered in 5–7 business days. Surfaces oversharing exposure, sensitive-data boundaries, audit/retention posture, and extension/connector controls.",
     "url":"https://www.noetfield.com/copilot/quickscan/"
   }
   </script>
@@ -281,7 +302,7 @@
   <header id="nfHeader"></header>
 
   <main id="main" class="wrap">
-    <!-- HERO (sales surface) -->
+    <!-- HERO -->
     <section class="hero" aria-label="Copilot QuickScan hero">
       <div class="heroShell">
         <div class="heroInner">
@@ -290,20 +311,20 @@
           <h1>Copilot QuickScan.</h1>
 
           <p class="lead">
-            A fast, evidence-first assessment that turns Copilot adoption into <strong>board-ready decisions</strong>.
-            Designed for Canadian procurement and workplace expectations: clear scope, clear outputs, and a defensible evidence trail.
+            Board-ready evidence for Microsoft 365 Copilot adoption — delivered in <strong>5–7 business days</strong>.
+            Surface oversharing exposure, sensitive-data boundaries, audit/retention posture, and connector/extension controls — in a buyer-safe package leadership can approve.
           </p>
 
           <div class="actions" aria-label="Primary actions">
-            <a class="btn primary" href="https://buy.stripe.com/7sY4gA6v681S2a6cDi1Nu00" rel="nofollow">Pay by card (QuickScan Base)</a>
+            <a class="btn primary" href="#purchase">See packages & pay</a>
             <a class="btn secondary" href="/gate/procurement/?focus=quickscan">Invoice / PO (Procurement)</a>
             <a class="btn secondary" href="/copilot/">Copilot hub</a>
           </div>
 
           <div class="metaRow" aria-label="Highlights">
             <div class="pill"><strong>5–7 days</strong> delivery</div>
+            <div class="pill"><strong>3 tiers</strong> (Base / Pro / Enterprise)</div>
             <div class="pill"><strong>Board-ready</strong> outputs</div>
-            <div class="pill"><strong>Evidence-first</strong> posture</div>
             <div class="pill"><strong>Procurement-friendly</strong> routing</div>
           </div>
 
@@ -320,7 +341,7 @@
       <section class="card" aria-label="QuickScan details">
         <div class="hd">
           <h2 class="cardTitle">What this solves</h2>
-          <p class="muted">Copilot value can be real, and so can unintended exposure. QuickScan makes the exposure paths visible and the proof producible.</p>
+          <p class="muted">Copilot value can be real — and so can unintended exposure. QuickScan makes the exposure paths legible and the proof producible.</p>
         </div>
 
         <div class="bd">
@@ -328,17 +349,17 @@
             <div class="kpi">
               <div class="t">Scope clarity</div>
               <div class="v">What is enabled, where, and for whom</div>
-              <div class="d">A clean map of Copilot surfaces and tenant posture, suitable for executive review.</div>
+              <div class="d">A clean map of Copilot surfaces and tenant posture suitable for executive review.</div>
             </div>
             <div class="kpi">
               <div class="t">Exposure paths</div>
-              <div class="v">Oversharing risk made legible</div>
-              <div class="d">High-signal exposure paths caused by permissions posture and content sprawl.</div>
+              <div class="v">Oversharing risk made visible</div>
+              <div class="d">High-signal exposure paths driven by permissions posture and content sprawl.</div>
             </div>
             <div class="kpi">
               <div class="t">Boundaries</div>
               <div class="v">Data boundaries and red-lines</div>
-              <div class="d">Practical boundary guidance: what belongs in Copilot reach, what requires controls first.</div>
+              <div class="d">Practical boundary guidance: what belongs in Copilot reach, what needs controls first.</div>
             </div>
             <div class="kpi">
               <div class="t">Evidence readiness</div>
@@ -348,8 +369,8 @@
           </div>
 
           <div class="section" id="deliverables">
-            <div class="sectionTitle">Deliverables</div>
-            <p class="sectionDesc">A compact set of artifacts that support go/no-go decisions and early governance controls.</p>
+            <div class="sectionTitle">Deliverables (all tiers)</div>
+            <p class="sectionDesc">A compact set of artifacts that support Go / Guardrails / Pause decisions and early governance controls.</p>
 
             <table class="table" aria-label="Deliverables table">
               <thead>
@@ -361,11 +382,11 @@
               <tbody>
                 <tr>
                   <td><strong>Executive Summary</strong> (1 page)</td>
-                  <td>RAG posture, decision requests, and immediate containment priorities.</td>
+                  <td>Posture rating, decision requests, and immediate containment priorities.</td>
                 </tr>
                 <tr>
                   <td><strong>Surface & Enablement Map</strong></td>
-                  <td>Which Copilot surfaces exist, where adoption is happening, and what governance is present.</td>
+                  <td>Which Copilot surfaces exist, where adoption is happening, and what governance exists.</td>
                 </tr>
                 <tr>
                   <td><strong>Oversharing Heatmap</strong></td>
@@ -381,11 +402,11 @@
                 </tr>
                 <tr>
                   <td><strong>Connector / Extension Controls</strong> (where relevant)</td>
-                  <td>Allowed/restricted posture and a governance model for exceptions.</td>
+                  <td>Allowed/restricted posture and an exception/approval model (tier-dependent depth).</td>
                 </tr>
                 <tr>
                   <td><strong>30/60/90 Plan</strong></td>
-                  <td>Owners, milestones, and the sequence that reduces exposure while enabling value.</td>
+                  <td>Owners, milestones, and a sequence that reduces exposure while enabling value.</td>
                 </tr>
               </tbody>
             </table>
@@ -393,7 +414,7 @@
 
           <div class="section" id="timeline">
             <div class="sectionTitle">Timeline</div>
-            <p class="sectionDesc">A practical delivery cadence designed for organisational reality.</p>
+            <p class="sectionDesc">A practical delivery cadence designed for organizational reality.</p>
             <table class="table" aria-label="Timeline table">
               <thead>
                 <tr>
@@ -412,13 +433,53 @@
 
           <div class="section" id="roles">
             <div class="sectionTitle">Who uses this internally</div>
-            <p class="sectionDesc">QuickScan is structured so each stakeholder gets usable information without friction.</p>
+            <p class="sectionDesc">Structured so each stakeholder gets usable information without friction.</p>
             <ul class="steps">
               <li><strong>IT / Admin:</strong> surfaces, enablement, connectors, and change control</li>
               <li><strong>Security / Compliance:</strong> exposure paths, boundaries, evidence readiness</li>
               <li><strong>Business owner:</strong> go/no-go posture, decision requests, 30/60/90 plan</li>
-              <li><strong>Procurement:</strong> clear scope + artifacts + start path (card or invoice/PO)</li>
+              <li><strong>Procurement:</strong> clear scope + artifacts + start paths (card or invoice/PO)</li>
             </ul>
+          </div>
+
+          <div class="section" id="purchase">
+            <div class="sectionTitle">Packages & pricing</div>
+            <p class="sectionDesc">Choose a tier based on how deep you need governance coverage and internal stakeholder coordination.</p>
+
+            <table class="table" aria-label="Package comparison table">
+              <thead>
+                <tr>
+                  <th>Tier</th>
+                  <th>Best for</th>
+                  <th>Includes (in addition to all-tier deliverables)</th>
+                  <th>Price</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Base</strong></td>
+                  <td>Fast posture + board-ready decision pack for early rollout or pre-scale check.</td>
+                  <td>Core posture mapping + top exposure paths + boundary guidance + evidence readiness.</td>
+                  <td><strong>$3,500 CAD</strong></td>
+                </tr>
+                <tr>
+                  <td><strong>Pro</strong></td>
+                  <td>Multiple business units, more connectors, higher sensitivity, or stricter internal controls.</td>
+                  <td>Deeper connector/extension governance, stronger “who owns what” mapping, more detailed control recommendations.</td>
+                  <td><strong>$5,000 CAD</strong></td>
+                </tr>
+                <tr>
+                  <td><strong>Enterprise</strong></td>
+                  <td>Regulated environments, complex permissions, formal governance expectations.</td>
+                  <td>Executive-ready governance memo depth, stakeholder-ready approval paths, expanded evidence plan and exception handling model.</td>
+                  <td><strong>$7,500 CAD</strong></td>
+                </tr>
+              </tbody>
+            </table>
+
+            <div class="notice" role="note">
+              <strong>Scope note:</strong> QuickScan provides assessment and evidence-readiness outputs. Implementation and remediation can be scoped separately when needed.
+            </div>
           </div>
 
           <div class="section" id="procurement">
@@ -434,7 +495,7 @@
               </thead>
               <tbody>
                 <tr><td>Service</td><td>Copilot QuickScan (5–7 business days)</td></tr>
-                <tr><td>Scope</td><td>Copilot surface posture, exposure paths, boundary guidance, evidence readiness, connectors/extensions (where relevant)</td></tr>
+                <tr><td>Scope</td><td>Copilot posture, exposure paths, boundary guidance, evidence readiness, connectors/extensions (tier-dependent depth)</td></tr>
                 <tr><td>Outputs</td><td>Executive Summary + Buyer Pack artifacts + 30/60/90 plan</td></tr>
                 <tr><td>Access</td><td>Read-only review preferred; posture-focused evidence</td></tr>
                 <tr><td>Data handling</td><td>Public intake is non-sensitive; secure sharing options confirmed after kickoff</td></tr>
@@ -442,53 +503,103 @@
             </table>
 
             <div class="actions" aria-label="Procurement actions">
-              <a class="btn primary" href="/gate/procurement/?focus=quickscan">Invoice / PO (Procurement)</a>
-              <a class="btn secondary" href="/gate/sales/">Purchase options</a>
+              <a class="btn secondary" href="/gate/procurement/?focus=quickscan">Invoice / PO (Procurement)</a>
+              <a class="btn secondary" href="/gate/sales/">Sales hub</a>
+              <a class="btn secondary" href="/status/">Status</a>
             </div>
-          </div>
-
-          <div class="actions" aria-label="Bottom actions">
-            <a class="btn primary" href="https://buy.stripe.com/7sY4gA6v681S2a6cDi1Nu00" rel="nofollow">Pay by card (QuickScan Base)</a>
-            <a class="btn secondary" href="/gate/procurement/?focus=quickscan">Invoice / PO (Procurement)</a>
-            <a class="btn secondary" href="/status/">Status</a>
-          </div>
-
-          <div class="notice" role="note">
-            <strong>Scope note:</strong> QuickScan provides assessment and evidence-readiness outputs. Implementation and remediation can be scoped separately when needed.
           </div>
         </div>
       </section>
 
-      <!-- RAIL (sales card + routes) -->
+      <!-- RAIL (3-tier purchase) -->
       <aside class="rail" aria-label="QuickScan purchase rail">
         <div class="card railBox">
           <div class="hd">
-            <h2 class="cardTitle">Purchase</h2>
-            <p class="muted">Clean start paths for card payment or invoice/PO.</p>
+            <h2 class="cardTitle">Pay by card</h2>
+            <p class="muted">Choose your tier. Stripe checkout opens in a new tab.</p>
           </div>
 
           <div class="bd">
-            <div class="priceCard" aria-label="QuickScan Base price card">
-              <div class="priceTop">
-                <h3 class="priceName">Copilot QuickScan (Base)</h3>
-                <span class="priceTag">5–7 business days</span>
+            <!-- OFFER: BASE -->
+            <div class="offer" aria-label="QuickScan Base offer">
+              <div class="offerTop">
+                <h3 class="offerName">QuickScan Base</h3>
+                <span class="badge">5–7 business days</span>
               </div>
-
               <div class="priceNum">$3,500 CAD</div>
-              <div class="priceSub">
-                Card payment is enabled for Base. Taxes apply as required at checkout.<br/>
-                Prefer invoice/PO? Use <a href="/gate/procurement/?focus=quickscan">Procurement</a>.
+              <div class="offerSub">Taxes apply at checkout. For invoice/PO, use <a href="/gate/procurement/?focus=quickscan">Procurement</a>.</div>
+              <ul class="miniList">
+                <li>Surface & enablement map</li>
+                <li>Oversharing heatmap</li>
+                <li>Data boundaries + evidence readiness</li>
+              </ul>
+              <div class="actions" style="margin-top:12px">
+                <a class="btn primary" href="https://buy.stripe.com/7sY4gA6v681S2a6cDi1Nu00" rel="nofollow noopener" target="_blank">Pay Base</a>
+                <a class="btn secondary" href="/copilot/quickscan/thanks/">After payment: next steps</a>
               </div>
 
+              <!-- OPTIONAL: Stripe buy button embed (commented out by default) -->
+              <!--
+              <div style="margin-top:12px">
+                <stripe-buy-button
+                  buy-button-id="buy_btn_1Sg0ESJ03eJkL57Ju6PFOiwj"
+                  publishable-key="pk_live_51SfSseJ03eJkL57JNU4voCGfUjjK4WDew62tPBWesZAejr03HX8uTonznYoWDVcpXwLATZpTvWSDfSU4zJbRIB6900xlpPcGSz">
+                </stripe-buy-button>
+              </div>
+              -->
+            </div>
+
+            <!-- OFFER: PRO -->
+            <div class="offer top" aria-label="QuickScan Pro offer">
+              <div class="offerTop">
+                <h3 class="offerName">QuickScan Pro</h3>
+                <span class="badge">Deeper governance</span>
+              </div>
+              <div class="priceNum">$5,000 CAD</div>
+              <div class="offerSub">For orgs with more connectors, more stakeholders, or higher sensitivity.</div>
+              <ul class="miniList">
+                <li>Expanded connector/extension governance</li>
+                <li>Clearer owner/approval mapping</li>
+                <li>More detailed control recommendations</li>
+              </ul>
               <div class="actions" style="margin-top:12px">
-                <a class="btn primary" href="https://buy.stripe.com/7sY4gA6v681S2a6cDi1Nu00" rel="nofollow">Pay by card</a>
+                <a class="btn primary" href="https://buy.stripe.com/14A4gAg5Gfuk2a646M1Nu01" rel="nofollow noopener" target="_blank">Pay Pro</a>
+                <a class="btn secondary" href="/gate/procurement/?focus=quickscan">Invoice / PO</a>
+              </div>
+
+              <!-- OPTIONAL: Stripe buy button embed (enable if desired) -->
+              <!--
+              <div style="margin-top:12px">
+                <stripe-buy-button
+                  buy-button-id="buy_btn_1Sg0FEJ03eJkL57JsejfI5wu"
+                  publishable-key="pk_live_51SfSseJ03eJkL57JNU4voCGfUjjK4WDew62tPBWesZAejr03HX8uTonznYoWDVcpXwLATZpTvWSDfSU4zJbRIB6900xlpPcGSz">
+                </stripe-buy-button>
+              </div>
+              -->
+            </div>
+
+            <!-- OFFER: ENTERPRISE -->
+            <div class="offer" aria-label="QuickScan Enterprise offer">
+              <div class="offerTop">
+                <h3 class="offerName">QuickScan Enterprise</h3>
+                <span class="badge">High-impact</span>
+              </div>
+              <div class="priceNum">$7,500 CAD</div>
+              <div class="offerSub">For regulated environments and formal governance expectations.</div>
+              <ul class="miniList">
+                <li>Expanded evidence plan + exception handling model</li>
+                <li>Stronger executive-ready governance memo depth</li>
+                <li>Stakeholder-ready approval routing guidance</li>
+              </ul>
+              <div class="actions" style="margin-top:12px">
+                <a class="btn primary" href="https://buy.stripe.com/fZu5kE7za81SdSO5aQ1Nu02" rel="nofollow noopener" target="_blank">Pay Enterprise</a>
                 <a class="btn secondary" href="/gate/procurement/?focus=quickscan">Invoice / PO</a>
               </div>
             </div>
 
             <div class="box">
-              <strong>When this is the right first step</strong><br/>
-              Copilot is being enabled (or already enabled), and leadership needs a defensible posture before scaling adoption.
+              <strong>Public intake</strong><br/>
+              Designed for non-sensitive details. Secure sharing options are confirmed after kickoff.
             </div>
 
             <div class="box">
@@ -496,10 +607,6 @@
               <a href="/trust-brief/">Trust Brief</a> ·
               <a href="/trust-ledger/">Trust Ledger</a> ·
               <a href="/gate/sales/">Sales</a>
-            </div>
-
-            <div class="notice">
-              <strong>Public intake:</strong> designed for non-sensitive details. Secure sharing options are confirmed after kickoff.
             </div>
           </div>
         </div>
@@ -510,32 +617,38 @@
   <!-- injected footer -->
   <footer id="nfFooter"></footer>
 
-  <!-- Sticky CTA (sales-first) -->
+  <!-- Sticky CTA -->
   <div class="stickyCta" aria-label="Sticky call to action">
     <div class="stickyInner">
       <div class="stickyText">
         <strong>Copilot QuickScan</strong> — board-ready evidence in 5–7 business days.
       </div>
       <div class="actions" style="margin:0">
-        <a class="btn primary" href="https://buy.stripe.com/7sY4gA6v681S2a6cDi1Nu00" rel="nofollow">Pay by card</a>
+        <a class="btn primary" href="#purchase">Choose tier</a>
         <a class="btn secondary" href="/gate/procurement/?focus=quickscan">Invoice / PO</a>
       </div>
     </div>
   </div>
 
   <!--
-    CHANGELOG (QuickScan v2.2)
-    - Rebuilt page as a sales surface aligned to /gate/sales: clear hero, purchase-first rail, procurement routing
-    - Removed ambiguous/internal phrases and kept buyer-safe, Canadian procurement-friendly language
-    - Enabled Stripe card payment CTA for QuickScan Base:
-      https://buy.stripe.com/7sY4gA6v681S2a6cDi1Nu00
-    - Kept Noetfield shell injection (header/footer) and canonical on https://www.noetfield.com/
+    CHANGELOG (QuickScan v2.3)
+    - Added 3-tier purchase rail (Base/Pro/Enterprise) with your Stripe payment links
+    - Kept Swiss-minimal + buyer-safe copy; clarified what changes by tier
+    - Included optional Stripe Buy Button embed (commented out); single script include only once
+    - Added “After payment” route to /copilot/quickscan/thanks/ for Base (you can mirror for Pro/Ent if you set redirects in Stripe)
+    - Kept Noetfield shell injection (header/footer) + canonical/OG
+
+    IMPORTANT SETUP NOTES
+    - Stripe payment links redirect is configured inside Stripe Payment Link settings (After successful payment → Redirect).
+      Set to: https://www.noetfield.com/copilot/quickscan/thanks/
+    - If you do NOT set Stripe redirect, customers will still see Stripe confirmation + receipt email, but won’t land on your thanks page.
 
     SMOKE TEST
     - GET /copilot/quickscan/ returns 200
+    - GET /copilot/quickscan/thanks/ returns 200
     - /assets/noetfield-shell.css returns 200 and styles apply
-    - /assets/noetfield-shell.js returns 200 and injects header/footer into #nfHeader/#nfFooter
-    - Stripe CTA opens correctly
+    - /assets/noetfield-shell.js returns 200 and injects header/footer
+    - Stripe Links open in new tab: Base/Pro/Enterprise
     - Procurement route resolves: /gate/procurement/?focus=quickscan
   -->
 </body>

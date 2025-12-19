@@ -1,53 +1,99 @@
-<!-- /trust-ledger/output/index.html -->
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Noetfield — Trust Ledger output specification</title>
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <meta name="description" content="Board-ready output specification for Trust Ledger deliveries: artefacts, structure, acceptance criteria, and scope boundaries." />
+  <title>Noetfield — Trust Ledger Intake</title>
+  <meta name="description" content="Start Trust Ledger. A maintained, board-ready register of AI systems, safeguards, evidence, and accountability over time." />
   <meta name="robots" content="index,follow" />
   <meta name="author" content="Noetfield Systems Inc." />
   <meta name="theme-color" content="#07070b" />
 
-  <link rel="canonical" href="https://www.noetfield.com/trust-ledger/output/" />
-
+  <link rel="canonical" href="https://www.noetfield.com/trust-ledger/intake/" />
   <link rel="icon" href="/noetfield-favicon-512.png" type="image/png" />
   <link rel="apple-touch-icon" href="/noetfield-favicon-512.png" />
 
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Noetfield" />
-  <meta property="og:title" content="Trust Ledger — Output specification" />
-  <meta property="og:description" content="Deliverables, acceptance criteria, and scope boundaries for board-ready Trust Ledger outputs." />
-  <meta property="og:url" content="https://www.noetfield.com/trust-ledger/output/" />
+  <meta property="og:title" content="Noetfield — Trust Ledger Intake" />
+  <meta property="og:description" content="Start Trust Ledger. A maintained, board-ready register of AI systems, safeguards, evidence, and accountability over time." />
+  <meta property="og:url" content="https://www.noetfield.com/trust-ledger/intake/" />
   <meta property="og:image" content="https://www.noetfield.com/noetfield-og.png" />
 
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Trust Ledger — Output specification" />
-  <meta name="twitter:description" content="Deliverables, acceptance criteria, and scope boundaries for board-ready Trust Ledger outputs." />
+  <meta name="twitter:title" content="Noetfield — Trust Ledger Intake" />
+  <meta name="twitter:description" content="Start Trust Ledger. Board-ready register of systems, safeguards, evidence, and accountability." />
   <meta name="twitter:image" content="https://www.noetfield.com/noetfield-og.png" />
 
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-
-  <!-- Locked shell -->
+  <!-- LOCKED SHELL -->
   <link rel="stylesheet" href="/assets/noetfield-shell.css" />
   <script src="/assets/noetfield-shell.js" defer></script>
 
   <style>
-    h1{margin:18px 0 8px; font-size:34px; letter-spacing:-0.7px}
-    .lead{margin:0; color:var(--muted); line-height:1.55; max-width: 980px}
-    .row{display:flex; gap:12px; flex-wrap:wrap; align-items:center; margin-top:12px}
-
-    .grid{
-      display:grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap:14px;
-      margin: 16px 0 16px;
+    /* Page-local styles (prefixed) */
+    .nfIntakeHero{padding:22px 0 10px}
+    .nfIntakeShell{
+      position:relative;
+      border-radius: calc(var(--radius) + 8px);
+      border: 1px solid rgba(255,255,255,.11);
+      background:
+        radial-gradient(980px 420px at 18% 0%, rgba(200,163,73,.18), transparent 60%),
+        radial-gradient(980px 420px at 90% 10%, rgba(122,167,255,.10), transparent 62%),
+        linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.022));
+      box-shadow: var(--shadow);
+      overflow:hidden;
     }
-    .card{
+    .nfIntakeShell::before{
+      content:"";
+      position:absolute; inset:-1px;
+      background: linear-gradient(120deg, rgba(200,163,73,.26), transparent 30%, rgba(255,255,255,.08) 68%, transparent);
+      opacity:.44;
+      pointer-events:none;
+      mask-image: linear-gradient(180deg, black 0%, black 58%, transparent 96%);
+    }
+    .nfIntakeInner{padding: 24px 22px}
+
+    .nfEyebrow{
+      display:inline-flex; gap:10px; align-items:center;
+      color:var(--muted);
+      font-size:13px;
+      padding:9px 12px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.13);
+      background: rgba(255,255,255,.035);
+    }
+    .nfDot{
+      width:8px; height:8px; border-radius:50%;
+      background: rgba(200,163,73,.97);
+      box-shadow: 0 0 0 3px rgba(200,163,73,.18);
+    }
+
+    .nfIntakeTitle{margin:14px 0 10px; font-size:40px; line-height:1.07; letter-spacing:-0.75px}
+    .nfLead{margin:0; color:var(--muted); font-size:16px; max-width: 980px; line-height:1.75}
+    .nfLead strong{color:var(--text); font-weight:900}
+
+    .nfInfo{
+      margin-top:12px;
+      padding:12px 12px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      color:var(--muted2);
+      font-size:12.8px;
+      line-height:1.6;
+    }
+    .nfInfo strong{color:var(--text); font-weight:900}
+    .nfInfo a{border-bottom:1px solid rgba(255,255,255,.18)}
+
+    .nfGrid{
+      display:grid;
+      grid-template-columns: 1.08fr .92fr;
+      gap:16px;
+      margin: 16px 0 34px;
+      align-items:start;
+    }
+    .nfCard{
       border-radius:var(--radius);
       border:1px solid rgba(255,255,255,.11);
       background: linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.022));
@@ -55,35 +101,113 @@
       overflow:hidden;
       min-width:0;
     }
-    .card .bd{padding:16px}
-    .card h2{margin:0 0 8px; font-size:17px; letter-spacing:-0.2px}
-    .list{margin:0; padding-left:18px; color:var(--muted); line-height:1.65}
+    .nfCard .hd{padding:18px 18px 0}
+    .nfCard .bd{padding:18px}
+    .nfCard h2{margin:0 0 8px; font-size:18px; letter-spacing:-0.2px}
+    .nfMuted{color:var(--muted); line-height:1.7; margin:0 0 12px}
 
-    .section{
-      margin: 14px 0;
-      border:1px solid rgba(255,255,255,.10);
+    .nfForm{
+      display:grid;
+      gap:12px;
+      margin-top:6px;
+    }
+    .nfRow2{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:12px;
+    }
+    .nfField label{
+      display:block;
+      font-size:12px;
+      letter-spacing:.20em;
+      text-transform:uppercase;
+      color:var(--muted2);
+      margin:0 0 6px;
+    }
+    .nfField input, .nfField select, .nfField textarea{
+      width:100%;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,.12);
       background: rgba(255,255,255,.03);
+      color: var(--text);
+      padding:12px;
+      outline:none;
+      min-height:44px;
+    }
+    .nfField textarea{min-height:110px; resize:vertical}
+    .nfHelp{
+      margin-top:6px;
+      color:var(--muted2);
+      font-size:12.6px;
+      line-height:1.55;
+    }
+
+    .nfActions{display:flex; gap:12px; flex-wrap:wrap; align-items:center; margin-top:14px}
+    .nfActions .btn{min-height:44px}
+
+    .nfPriceBox{
       border-radius:16px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.03);
       padding:14px;
     }
-    .kicker{font-weight:900; letter-spacing:-.2px; margin:0 0 6px; font-size:14px}
-    .sub{margin:0; color:var(--muted2); font-size:12.5px; line-height:1.55}
+    .nfPriceTop{
+      display:flex; justify-content:space-between; gap:10px; align-items:flex-start; flex-wrap:wrap;
+    }
+    .nfPriceLabel{
+      font-size:11px;
+      letter-spacing:.28em;
+      text-transform:uppercase;
+      color:var(--muted2);
+    }
+    .nfPrice{
+      font-size:26px;
+      font-weight:950;
+      letter-spacing:-.3px;
+      margin-top:6px;
+    }
+    .nfMini{margin-top:10px; color:var(--muted2); font-size:12.8px; line-height:1.6}
+    .nfMini a{border-bottom:1px solid rgba(255,255,255,.18)}
+
+    .nfList{
+      margin:10px 0 0;
+      padding-left:18px;
+      color:var(--muted);
+      line-height:1.7;
+    }
+    .nfList li{margin:6px 0}
+
+    .nfRid{
+      margin-top:12px;
+      padding:12px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      color:var(--muted2);
+      font-size:12.8px;
+      line-height:1.6;
+    }
+    .nfRid strong{color:var(--text); font-weight:900}
+
+    .nfOk{display:none}
+    .nfOk.show{display:block}
 
     @media (max-width: 980px){
-      .grid{grid-template-columns: 1fr}
-      h1{font-size:30px}
+      .nfGrid{grid-template-columns:1fr}
+      .nfIntakeTitle{font-size:30px}
+      .nfRow2{grid-template-columns:1fr}
     }
   </style>
 
   <script type="application/ld+json">
   {
     "@context":"https://schema.org",
-    "@type":"WebPage",
-    "name":"Noetfield — Trust Ledger output specification",
-    "url":"https://www.noetfield.com/trust-ledger/output/",
-    "description":"Board-ready output specification for Trust Ledger deliveries: artefacts, structure, acceptance criteria, and scope boundaries.",
-    "isPartOf":{"@type":"WebSite","name":"Noetfield","url":"https://www.noetfield.com/"},
-    "publisher":{"@type":"Organization","name":"Noetfield Systems Inc."}
+    "@type":"Service",
+    "name":"Trust Ledger",
+    "provider":{"@type":"Organization","name":"Noetfield Systems Inc."},
+    "areaServed":"CA",
+    "description":"A maintained, board-ready register of AI systems, safeguards, evidence, and accountability over time.",
+    "url":"https://www.noetfield.com/trust-ledger/intake/"
   }
   </script>
 </head>
@@ -95,83 +219,199 @@
   <header id="nfHeader"></header>
 
   <main id="main" class="wrap">
-    <h1>Output specification</h1>
-    <p class="lead">
-      What “board-ready Trust Ledger output” means: what is delivered, how it is structured, and how acceptance is assessed.
-    </p>
+    <section class="nfIntakeHero" aria-label="Trust Ledger Intake">
+      <div class="nfIntakeShell">
+        <div class="nfIntakeInner">
+          <div class="nfEyebrow"><span class="nfDot"></span> Trust Ledger • ongoing register</div>
 
-    <div class="row">
-      <a class="btn" href="/gate/intake/?need=trust-ledger" data-rid-link>Request via Gate</a>
-      <a class="btn secondary" href="/trust-ledger/" data-rid-link>Trust Ledger</a>
-      <a class="btn secondary" href="/vendor/" data-rid-link>Vendor pack</a>
-    </div>
+          <h1 class="nfIntakeTitle">Start Trust Ledger.</h1>
 
-    <section class="section" aria-label="Primary deliverables">
-      <div class="kicker">Primary deliverables</div>
-      <p class="sub">Delivered as versioned artefacts. Evidence links are explicit. Missing proofs are listed as gaps.</p>
+          <p class="nfLead">
+            A maintained register that keeps AI systems <strong>answer-ready</strong>:
+            safeguards, evidence, ownership, and change history — in a format leadership can use.
+          </p>
 
-      <div class="grid">
-        <div class="card"><div class="bd">
-          <h2>Board memo (PDF)</h2>
-          <ul class="list">
-            <li>Executive summary (decision + rationale)</li>
-            <li>Decision options and tradeoffs</li>
-            <li>Actions, owners, timelines</li>
-            <li>Scope, exclusions, assumptions</li>
-          </ul>
-        </div></div>
+          <div class="nfInfo">
+            <strong>How to use this page:</strong> share scope, teams involved, and evidence expectations. Keep details high-level; deep access happens after kickoff under the right controls.
+          </div>
 
-        <div class="card"><div class="bd">
-          <h2>Trust Ledger snapshot</h2>
-          <ul class="list">
-            <li>Use case / system identifiers</li>
-            <li>Owners and approvers (by role)</li>
-            <li>Controls and evidence pointers</li>
-            <li>Gaps and follow-ups</li>
-          </ul>
-        </div></div>
-
-        <div class="card"><div class="bd">
-          <h2>Controls map</h2>
-          <ul class="list">
-            <li>Risks ↔ controls ↔ proof linkage</li>
-            <li>Effectiveness notes (evidence-based)</li>
-            <li>Prioritized remediation actions</li>
-          </ul>
-        </div></div>
-
-        <div class="card"><div class="bd">
-          <h2>Evidence index</h2>
-          <ul class="list">
-            <li>Reviewed artefacts</li>
-            <li>Missing evidence list</li>
-            <li>Assumptions register</li>
-          </ul>
-        </div></div>
+          <div class="nfActions" style="margin-top:14px;">
+            <a class="btn" href="#intake">Start intake</a>
+            <a class="btn secondary" href="/trust-ledger/">View Trust Ledger details</a>
+            <a class="btn secondary" href="/gate/">Back to Gate</a>
+          </div>
+        </div>
       </div>
     </section>
 
-    <section class="section" aria-label="Acceptance criteria">
-      <div class="kicker">Acceptance criteria</div>
-      <ul class="list">
-        <li>Scope clarity and explicit exclusions</li>
-        <li>Ownership clarity (accountable roles)</li>
-        <li>Evidence linkage (or explicit assumptions)</li>
-        <li>Actionability (clear next steps)</li>
-        <li>Board readability (executive summary stands alone)</li>
-      </ul>
-    </section>
+    <section class="nfGrid" aria-label="Intake form and purchase options">
+      <!-- FORM -->
+      <div class="nfCard" id="intake">
+        <div class="hd">
+          <h2>Intake</h2>
+          <p class="nfMuted">Two minutes to confirm scope, cadence, and evidence expectations.</p>
+        </div>
 
-    <section class="section" aria-label="Scope boundaries">
-      <div class="kicker">Scope boundaries</div>
-      <ul class="list">
-        <li>Not legal representation; internal counsel retains final positions</li>
-        <li>Not forensic pentesting; evidence-based review within agreed access</li>
-        <li>Public intake is non-confidential by design</li>
-      </ul>
+        <div class="bd">
+          <form class="nfForm" id="nfIntakeForm"
+                action="https://formspree.io/xyzrdrpv"
+                method="POST"
+                accept-charset="UTF-8">
+
+            <!-- routing -->
+            <input type="hidden" name="package" value="trust-ledger" />
+            <input type="hidden" name="page" value="/trust-ledger/intake/" />
+            <input type="hidden" name="rid" value="" data-rid />
+
+            <div class="nfRow2">
+              <div class="nfField">
+                <label for="name">Name</label>
+                <input id="name" name="name" autocomplete="name" required />
+              </div>
+              <div class="nfField">
+                <label for="email">Work email</label>
+                <input id="email" name="email" type="email" autocomplete="email" required />
+              </div>
+            </div>
+
+            <div class="nfRow2">
+              <div class="nfField">
+                <label for="org">Organization</label>
+                <input id="org" name="organization" autocomplete="organization" required />
+              </div>
+              <div class="nfField">
+                <label for="cadence">Cadence</label>
+                <select id="cadence" name="cadence" required>
+                  <option value="" selected disabled>Select…</option>
+                  <option>Monthly register updates</option>
+                  <option>Quarterly updates</option>
+                  <option>Hybrid (monthly + incident-driven)</option>
+                  <option>Not sure yet</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="nfRow2">
+              <div class="nfField">
+                <label for="scope">Starting scope</label>
+                <select id="scope" name="scope" required>
+                  <option value="" selected disabled>Select…</option>
+                  <option>Copilot / M365 only</option>
+                  <option>1–3 AI tools/systems</option>
+                  <option>Multiple teams / multiple systems</option>
+                  <option>Enterprise-wide</option>
+                </select>
+              </div>
+              <div class="nfField">
+                <label for="proc">Procurement path</label>
+                <select id="proc" name="procurement">
+                  <option value="" selected>Optional</option>
+                  <option>Card payment possible</option>
+                  <option>Invoice / PO required</option>
+                  <option>Not sure yet</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="nfField">
+              <label for="need">What should the Ledger answer?</label>
+              <textarea id="need" name="need" placeholder="Example: board reporting, audit requests, client due diligence, change control, evidence exports, roles/owners…"></textarea>
+              <div class="nfHelp">Short bullets are perfect.</div>
+            </div>
+
+            <div class="nfActions">
+              <button class="btn" type="submit">Send intake</button>
+              <a class="btn secondary" href="mailto:ceo@noetfield.com?subject=Trust%20Ledger%20intake">Email instead</a>
+              <a class="btn secondary" href="/status/">Status</a>
+            </div>
+
+            <div class="nfRid">
+              <strong>Request ID:</strong> <span data-rid>—</span>
+              <span style="margin-left:10px;"><button class="btn secondary" type="button" data-copy-rid>Copy</button></span>
+            </div>
+
+            <div class="nfInfo">
+              <strong>Good inputs:</strong> systems in scope, owners, reporting cadence, evidence expectations.
+              <br/>
+              <strong>Avoid:</strong> credentials, private keys, sensitive personal data, internal case files.
+            </div>
+
+            <div class="nfOk" id="nfOk">
+              <div class="nfInfo">
+                <strong>Received.</strong> Next step is confirming scope + cadence and setting up the first register entry pack.
+              </div>
+            </div>
+
+          </form>
+        </div>
+      </div>
+
+      <!-- PURCHASE / OPTIONS -->
+      <aside class="nfCard" aria-label="Purchase options">
+        <div class="hd">
+          <h2>Purchase & kickoff</h2>
+          <p class="nfMuted">Designed for ongoing accountability and fast answers under scrutiny.</p>
+        </div>
+
+        <div class="bd">
+          <div class="nfPriceBox">
+            <div class="nfPriceTop">
+              <div>
+                <div class="nfPriceLabel">Trust Ledger</div>
+                <div class="nfPrice">Ongoing</div>
+              </div>
+              <div>
+                <div class="nfPriceLabel">Typical range</div>
+                <div class="nfPrice">$750–$3k CAD / mo</div>
+              </div>
+            </div>
+
+            <div class="nfMini">
+              Pricing varies by number of systems, cadence, and evidence depth. Taxes may apply where applicable.
+            </div>
+
+            <ul class="nfList">
+              <li>Board-ready register entries with owners and controls</li>
+              <li>Evidence linkage (exports, configs, logs) by design</li>
+              <li>Change history and accountability trail over time</li>
+              <li>Answer-ready posture for audits and client questions</li>
+            </ul>
+
+            <div class="nfActions" style="margin-top:14px;">
+              <a class="btn" href="#intake">Start intake</a>
+              <a class="btn secondary" href="mailto:ceo@noetfield.com?subject=Trust%20Ledger%20-%20Invoice%2FPO%20request">Request invoice / PO</a>
+            </div>
+          </div>
+
+          <div class="nfInfo" style="margin-top:12px;">
+            <strong>What happens next:</strong> confirm scope → confirm cadence → set up first entries → start reporting rhythm.
+          </div>
+        </div>
+      </aside>
     </section>
   </main>
 
   <footer id="nfFooter"></footer>
+
+  <script>
+    (function(){
+      var form = document.getElementById("nfIntakeForm");
+      var ok = document.getElementById("nfOk");
+      if (!form || !ok) return;
+
+      form.addEventListener("submit", function(){
+        try { ok.classList.add("show"); } catch(e){}
+      });
+    })();
+  </script>
+
+  <!--
+    SMOKE TEST
+    - GET /trust-ledger/intake/ returns 200
+    - /assets/noetfield-shell.css returns 200 and styles apply
+    - /assets/noetfield-shell.js returns 200 and header/footer load into #nfHeader/#nfFooter
+    - Form posts to Formspree endpoint
+    - Mailto fallback opens correctly
+  -->
 </body>
 </html>

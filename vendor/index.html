@@ -1,31 +1,30 @@
-<!-- /vendor/index.html — Noetfield Vendor v1.0 (Hybrid Sales + Procurement Rail) -->
+<!-- /vendor/index.html — Noetfield Vendor Pack v1.0 (Procurement + Security/Privacy + Sales Path, board-safe) -->
 <!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <title>Noetfield — Vendor Pack (Procurement, Security, Privacy)</title>
-  <meta name="description" content="Procurement-ready vendor pack: scope, deliverables, security posture summary, privacy boundaries, contracting path, and purchase-ready start points for Noetfield engagements." />
+  <title>Noetfield — Vendor Pack (procurement, security, privacy)</title>
+  <meta name="description" content="Procurement-ready vendor pack: offers, named deliverables, security/privacy posture summary, contracting path, and invoice/PO onboarding for Noetfield engagements." />
   <meta name="robots" content="index,follow" />
   <meta name="author" content="Noetfield Systems Inc." />
   <meta name="theme-color" content="#07070b" />
 
   <link rel="canonical" href="https://www.noetfield.com/vendor/" />
-
   <link rel="icon" href="/noetfield-favicon-512.png" type="image/png" />
   <link rel="apple-touch-icon" href="/noetfield-favicon-512.png" />
 
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Noetfield" />
   <meta property="og:title" content="Noetfield — Vendor Pack" />
-  <meta property="og:description" content="Procurement-ready overview: scope, deliverables, security posture summary, privacy boundaries, and contracting path." />
+  <meta property="og:description" content="Procurement-ready overview: offers, deliverables, security/privacy posture summary, and contracting path." />
   <meta property="og:url" content="https://www.noetfield.com/vendor/" />
   <meta property="og:image" content="https://www.noetfield.com/noetfield-og.png" />
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Noetfield — Vendor Pack" />
-  <meta name="twitter:description" content="Procurement-ready overview: scope, deliverables, security posture summary, privacy boundaries, and contracting path." />
+  <meta name="twitter:description" content="Procurement-ready overview: offers, deliverables, security/privacy posture summary, and contracting path." />
   <meta name="twitter:image" content="https://www.noetfield.com/noetfield-og.png" />
 
   <!-- LOCKED SHELL -->
@@ -33,15 +32,15 @@
   <script src="/assets/noetfield-shell.js" defer></script>
 
   <style>
-    /* Vendor page (prefixed to avoid collisions) */
+    /* Vendor pack page-only styles (prefixed) */
     .nfVendorHero{ padding: 18px 0 10px; }
     .nfVendorHeroShell{
       position:relative;
       border-radius: calc(var(--radius) + 10px);
       border: 1px solid rgba(255,255,255,.11);
       background:
-        radial-gradient(1000px 420px at 16% 0%, rgba(200,163,73,.18), transparent 60%),
-        radial-gradient(1000px 420px at 86% 10%, rgba(122,167,255,.10), transparent 62%),
+        radial-gradient(1000px 420px at 18% 0%, rgba(200,163,73,.18), transparent 60%),
+        radial-gradient(1000px 420px at 90% 10%, rgba(122,167,255,.10), transparent 62%),
         linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.022));
       box-shadow: var(--shadow);
       overflow:hidden;
@@ -69,14 +68,30 @@
       background: rgba(200,163,73,.97);
       box-shadow: 0 0 0 3px rgba(200,163,73,.18);
     }
-    .nfVendorTitle{ margin:12px 0 10px; font-size: 36px; line-height:1.07; letter-spacing:-0.75px; }
-    .nfVendorLead{ margin:0; color:var(--muted); font-size:15.6px; max-width: 980px; line-height:1.75; }
+    .nfVendorTitle{ margin:12px 0 10px; font-size: 38px; line-height:1.07; letter-spacing:-0.75px; }
+    .nfVendorLead{ margin:0; color:var(--muted); font-size:16px; max-width: 980px; line-height:1.75; }
     .nfVendorLead strong{ color: var(--text); font-weight: 900; }
     .nfVendorHeroCtas{
       display:flex; gap:10px; flex-wrap:wrap; align-items:center;
       margin-top:14px;
     }
     .nfVendorHeroCtas .btn{ min-height:46px; }
+    .nfVendorOnPage{
+      display:flex; flex-wrap:wrap; gap:10px; align-items:center;
+      margin-top:12px;
+    }
+    .nfVendorChip{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:8px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.03);
+      color:var(--muted);
+      font-size:12.6px;
+      text-decoration:none;
+      white-space:nowrap;
+    }
+    .nfVendorChip:hover{ filter:brightness(1.08); }
 
     .nfVendorNotice{
       margin-top:12px;
@@ -121,22 +136,20 @@
     .nfVendorCardTitle{ margin:0 0 8px; font-size:18px; letter-spacing:-0.2px; }
     .nfVendorMuted{ color:var(--muted); line-height:1.7; margin:0; }
 
-    /* Offer cards (vendor sales rail sync) */
-    .nfVOffers{ display:grid; gap:12px; }
-    .nfVOffer{
+    /* Offer cards */
+    .nfOffers{ display:grid; gap:12px; }
+    .nfOffer{
       border-radius:16px;
       border:1px solid rgba(255,255,255,.11);
       background: rgba(255,255,255,.03);
       padding:14px;
       position:relative;
       overflow:hidden;
-      cursor:pointer;
     }
-    .nfVOffer:focus-within{ outline: 2px solid rgba(200,163,73,.22); outline-offset: 2px; }
-    .nfVOfferTop{ display:flex; gap:10px; align-items:flex-start; justify-content:space-between; }
-    .nfVOfferName{ margin:0; font-size:16px; letter-spacing:-.2px; font-weight:950; }
-    .nfVOfferMeta{ display:flex; flex-wrap:wrap; gap:8px; margin-top:10px; }
-    .nfVTag{
+    .nfOfferTop{ display:flex; gap:10px; align-items:flex-start; justify-content:space-between; }
+    .nfOfferName{ margin:0; font-size:16px; letter-spacing:-.2px; font-weight:950; }
+    .nfOfferMeta{ display:flex; flex-wrap:wrap; gap:8px; margin-top:10px; }
+    .nfTag{
       display:inline-flex; align-items:center; gap:8px;
       padding:7px 10px;
       border-radius:999px;
@@ -146,28 +159,21 @@
       font-size:12.4px;
       white-space:nowrap;
     }
-    .nfVOfferDesc{ margin:10px 0 0; color:var(--muted); line-height:1.7; }
-    .nfVOfferBullets{ margin:10px 0 0; padding-left:18px; color:var(--muted2); line-height:1.6; }
-    .nfVOfferBullets li{ margin:6px 0; }
-    .nfVOfferActions{ display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-top:12px; }
-    .nfVOfferActions .btn{ min-height:44px; }
-    .nfVOfferSelected{
-      border-color: rgba(200,163,73,.32);
-      box-shadow: 0 0 0 1px rgba(200,163,73,.14), var(--shadow2);
-      background:
-        radial-gradient(700px 260px at 0% 0%, rgba(200,163,73,.12), transparent 55%),
-        rgba(255,255,255,.03);
-    }
+    .nfOfferDesc{ margin:10px 0 0; color:var(--muted); line-height:1.7; }
+    .nfOfferBullets{ margin:10px 0 0; padding-left:18px; color:var(--muted2); line-height:1.6; }
+    .nfOfferBullets li{ margin:6px 0; }
+    .nfOfferActions{ display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-top:12px; }
+    .nfOfferActions .btn{ min-height:44px; }
 
-    /* Procurement snapshot (collapsible) */
-    .nfVSnap{
+    /* Procurement snapshot */
+    .nfSnap{
       margin-top:12px;
       border-radius:14px;
       border:1px solid rgba(255,255,255,.10);
       background: rgba(255,255,255,.02);
       overflow:hidden;
     }
-    .nfVSnap summary{
+    .nfSnap summary{
       list-style:none;
       cursor:pointer;
       padding:12px;
@@ -175,10 +181,10 @@
       color: var(--muted);
       user-select:none;
     }
-    .nfVSnap summary::-webkit-details-marker{ display:none; }
-    .nfVSnap summary .k{ font-weight:900; color:var(--text); letter-spacing:-.2px; }
-    .nfVSnap summary .m{ color:var(--muted2); font-size:12.6px; line-height:1.4; }
-    .nfVSnap summary .chev{
+    .nfSnap summary::-webkit-details-marker{ display:none; }
+    .nfSnap summary .k{ font-weight:900; color:var(--text); letter-spacing:-.2px; }
+    .nfSnap summary .m{ color:var(--muted2); font-size:12.6px; line-height:1.4; }
+    .nfSnap summary .chev{
       width:34px; height:34px; border-radius:999px;
       border:1px solid rgba(255,255,255,.12);
       background: rgba(255,255,255,.03);
@@ -186,67 +192,70 @@
       color: var(--muted2);
       flex: 0 0 auto;
     }
-    .nfVSnap[open] summary .chev{ transform: rotate(180deg); }
-    .nfVSnap .bd{
+    .nfSnap[open] summary .chev{ transform: rotate(180deg); }
+    .nfSnap .bd{
       padding:0 12px 12px;
       border-top:1px solid rgba(255,255,255,.08);
       color: var(--muted2);
       font-size:12.8px;
       line-height:1.6;
     }
-    .nfVSnap .bd strong{ color:var(--text); font-weight:900; }
-
-    .nfVGrid1{ display:grid; grid-template-columns: 1fr; gap:10px; margin-top:10px; }
-    .nfVItem{
+    .nfSnap .bd strong{ color:var(--text); font-weight:900; }
+    .nfSnapGrid{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:10px;
+      margin-top:10px;
+    }
+    .nfSnapItem{
       border-radius:12px;
       border:1px solid rgba(255,255,255,.10);
       background: rgba(255,255,255,.03);
       padding:10px;
     }
-    .nfVItem .h{ font-weight:900; color:var(--text); margin:0 0 6px; }
-    .nfVItem ul{ margin:0; padding-left:18px; }
-    .nfVItem li{ margin:6px 0; }
-
-    /* Compare table */
-    .nfVTable{
-      width:100%;
-      border-collapse:separate;
-      border-spacing:0;
-      overflow:hidden;
-      border-radius:16px;
+    .nfSnapItem .h{ font-weight:900; color:var(--text); margin:0 0 6px; }
+    .nfSnapItem ul{ margin:0; padding-left:18px; }
+    .nfSnapItem li{ margin:6px 0; }
+    .nfSnapNote{
+      margin-top:10px;
+      padding:10px;
+      border-radius:12px;
       border:1px solid rgba(255,255,255,.10);
       background: rgba(255,255,255,.02);
-      margin-top:10px;
+      color: var(--muted2);
     }
-    .nfVTable th, .nfVTable td{
-      text-align:left;
-      padding:12px;
-      border-bottom:1px solid rgba(255,255,255,.08);
-      vertical-align:top;
-      font-size:13px;
+    .nfSnapNote a{ border-bottom:1px solid rgba(255,255,255,.18); }
+
+    /* Q/A blocks */
+    .nfQA{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:12px;
+      margin-top:12px;
     }
-    .nfVTable th{
-      color:var(--muted2);
-      font-size:11px;
-      letter-spacing:.28em;
-      text-transform:uppercase;
+    .nfQACard{
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.10);
       background: rgba(255,255,255,.03);
+      padding:14px;
+      min-width:0;
     }
-    .nfVTable tr:last-child td{ border-bottom:none; }
-    .nfVTable a{ border-bottom: 1px solid rgba(255,255,255,.18); }
+    .nfQACard .q{ margin:0 0 8px; font-weight:950; letter-spacing:-.2px; }
+    .nfQACard .a{ margin:0; color:var(--muted); line-height:1.7; }
+    .nfQACard .a strong{ color:var(--text); font-weight:900; }
 
     /* Right rail */
-    .nfVRail{ position: sticky; top: 14px; }
-    .nfVRailBox{
+    .nfRail{ position: sticky; top: 14px; }
+    .nfRailBox{
       border-radius: var(--radius);
       border:1px solid rgba(255,255,255,.11);
       background: linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.022));
       box-shadow: var(--shadow2);
       overflow:hidden;
     }
-    .nfVRailHd{ padding:18px 18px 0; }
-    .nfVRailBd{ padding:18px; }
-    .nfVRailKpi{
+    .nfRailHd{ padding:18px 18px 0; }
+    .nfRailBd{ padding:18px; }
+    .nfRailKpi{
       border-radius:16px;
       border:1px solid rgba(255,255,255,.10);
       background: rgba(255,255,255,.03);
@@ -256,22 +265,23 @@
       font-size:12.8px;
       line-height:1.6;
     }
-    .nfVRailKpi strong{ color:var(--text); font-weight:900; }
-    .nfVRailActions{ display:grid; gap:10px; margin-top:12px; }
-    .nfVRailActions .btn{ min-height:46px; }
-    .nfVRailMiniLinks{
+    .nfRailKpi strong{ color:var(--text); font-weight:900; }
+    .nfRailActions{ display:grid; gap:10px; margin-top:12px; }
+    .nfRailActions .btn{ min-height:46px; }
+    .nfRailMini{
       margin-top:10px;
       color:var(--muted2);
       font-size:12.6px;
       line-height:1.6;
     }
-    .nfVRailMiniLinks a{ border-bottom:1px solid rgba(255,255,255,.18); }
+    .nfRailMini a{ border-bottom:1px solid rgba(255,255,255,.18); }
 
-    /* Procurement email builder */
-    .nfVProcRow{ display:grid; gap:10px; grid-template-columns: repeat(12, minmax(0, 1fr)); }
-    .nfVProcField{ grid-column: span 6; min-width:0; }
-    .nfVProcField.full{ grid-column: span 12; }
-    .nfVLabel{
+    /* Procurement email builder (mailto) */
+    .nfProcForm{ margin-top:12px; }
+    .nfProcRow{ display:grid; gap:10px; grid-template-columns: repeat(12, minmax(0, 1fr)); }
+    .nfProcField{ grid-column: span 6; min-width:0; }
+    .nfProcField.full{ grid-column: span 12; }
+    .nfProcLabel{
       display:block;
       color: var(--muted2);
       font-size: 11px;
@@ -279,7 +289,7 @@
       text-transform: uppercase;
       margin: 0 0 6px;
     }
-    .nfVInput, .nfVSelect, .nfVTextarea{
+    .nfProcInput, .nfProcSelect, .nfProcTextarea{
       width:100%;
       padding:10px 11px;
       border-radius:12px;
@@ -289,11 +299,11 @@
       font-size:13px;
       outline:none;
     }
-    .nfVTextarea{ resize: vertical; min-height: 110px; }
-    .nfVProcNote{ margin-top: 12px; color: var(--muted2); font-size: 12.8px; line-height: 1.6; }
+    .nfProcTextarea{ resize: vertical; min-height: 100px; }
+    .nfProcNote{ margin-top: 10px; color: var(--muted2); font-size: 12.8px; line-height: 1.6; }
 
     /* Mobile bottom bar */
-    .nfVBottomBar{
+    .nfBottomBar{
       z-index: 30;
       padding: 10px 0 calc(10px + env(safe-area-inset-bottom));
       background: linear-gradient(180deg, rgba(7,7,11,0) 0%, rgba(7,7,11,.78) 22%, rgba(7,7,11,.92) 100%);
@@ -301,7 +311,7 @@
       border-top: 1px solid rgba(255,255,255,.08);
       display:none;
     }
-    .nfVBottomInner{
+    .nfBottomInner{
       display:flex;
       gap:10px;
       align-items:center;
@@ -310,7 +320,7 @@
       max-width: 1120px;
       margin: 0 auto;
     }
-    .nfVBottomText{
+    .nfBottomText{
       min-width:0;
       color:var(--muted);
       font-size:12.6px;
@@ -319,23 +329,28 @@
       text-overflow:ellipsis;
       white-space:nowrap;
     }
-    .nfVBottomText strong{ color:var(--text); font-weight:950; }
+    .nfBottomText strong{ color:var(--text); font-weight:950; }
 
     @media (max-width: 980px){
       .nfVendorGrid{ grid-template-columns: 1fr; }
-      .nfVRail{ position: relative; top: 0; }
+      .nfRail{ position: relative; top: 0; }
       .nfVendorTitle{ font-size: 30px; }
-      .nfVProcField{ grid-column: span 12; }
+      .nfQA{ grid-template-columns: 1fr; }
+      .nfProcField{ grid-column: span 12; }
     }
     @media (max-width: 760px){
       .nfVendorHeroInner{ padding: 18px 14px; }
-      .nfVendorCardHd, .nfVendorCardBd, .nfVRailHd, .nfVRailBd{ padding-left:14px; padding-right:14px; }
-      .nfVBottomBar{
+      .nfVendorCardHd, .nfVendorCardBd, .nfRailHd, .nfRailBd{ padding-left:14px; padding-right:14px; }
+      .nfBottomBar{
         display:block;
         position: fixed;
         left: 0; right: 0; bottom: 0;
       }
       body{ padding-bottom: calc(74px + env(safe-area-inset-bottom)); }
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      *{ scroll-behavior:auto !important; }
     }
   </style>
 
@@ -345,7 +360,7 @@
     "@type":"WebPage",
     "name":"Noetfield — Vendor Pack",
     "url":"https://www.noetfield.com/vendor/",
-    "description":"Procurement-ready vendor pack: scope, deliverables, security posture summary, privacy boundaries, and contracting path for Noetfield engagements.",
+    "description":"Procurement-ready vendor pack: offers, named deliverables, security/privacy posture summary, and contracting path for Noetfield engagements.",
     "isPartOf":{"@type":"WebSite","name":"Noetfield","url":"https://www.noetfield.com/"},
     "publisher":{"@type":"Organization","name":"Noetfield Systems Inc."}
   }
@@ -364,68 +379,78 @@
     <section class="nfVendorHero" aria-label="Vendor pack hero">
       <div class="nfVendorHeroShell">
         <div class="nfVendorHeroInner">
-          <div class="nfVendorEyebrow"><span class="nfVendorDot"></span> Vendor Pack • Procurement • Security • Privacy</div>
+          <div class="nfVendorEyebrow"><span class="nfVendorDot"></span> Procurement • Security • Privacy • Contracts</div>
 
           <h1 class="nfVendorTitle">Vendor pack</h1>
 
           <p class="nfVendorLead">
-            A purchase-ready vendor overview for evaluating Noetfield engagements: <strong>scope</strong>, <strong>deliverables</strong>, <strong>security posture (summary)</strong>,
-            <strong>privacy boundaries</strong>, and a clean <strong>invoice/PO path</strong>.
-            <strong>Public intake = non-confidential.</strong> Secure sharing is confirmed after kickoff.
+            A purchase-ready overview for evaluating Noetfield engagements: <strong>offers</strong>, <strong>named deliverables</strong>,
+            <strong>security/privacy posture</strong>, and a clear <strong>invoice/PO onboarding path</strong>.
+            Sensitive details are exchanged only after scope and a secure channel are agreed.
           </p>
 
-          <div class="nfVendorHeroCtas" aria-label="Vendor hero actions">
-            <a class="btn" href="/copilot/quickscan/intake/" data-primary-cta>Start Copilot QuickScan</a>
-            <a class="btn secondary" href="#procurement">Invoice / PO</a>
-            <a class="btn secondary" href="/gate/" data-rid-link>Gate home</a>
+          <div class="nfVendorHeroCtas" aria-label="Hero actions">
+            <a class="btn" href="/copilot/quickscan/intake/" data-rid-link>Start Copilot QuickScan</a>
+            <a class="btn secondary" href="#procurement" data-rid-link>Invoice / PO</a>
+            <a class="btn secondary" href="/gate/" data-rid-link>Use Gate wizard</a>
+          </div>
+
+          <div class="nfVendorOnPage" aria-label="On this page">
+            <a class="nfVendorChip" href="#offers">Offers</a>
+            <a class="nfVendorChip" href="#security">Security</a>
+            <a class="nfVendorChip" href="#privacy">Privacy</a>
+            <a class="nfVendorChip" href="#contracts">Contracts</a>
+            <a class="nfVendorChip" href="#procurement">Invoice / PO</a>
+            <a class="nfVendorChip" href="#links">Related</a>
           </div>
 
           <div class="nfVendorNotice" role="note">
             <strong>Public intake = non-confidential.</strong>
             Do not submit secrets, credentials, private keys, or regulated personal data.
             Secure sharing options are confirmed after kickoff.
+            <span style="display:block; margin-top:6px;">Reference: <code>/vendor/</code> is a public vendor overview; purchasing starts from package intakes.</span>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="nfVendorGrid" aria-label="Vendor page layout">
+    <section class="nfVendorGrid" aria-label="Vendor layout">
       <!-- LEFT -->
       <div>
         <!-- OFFERS -->
-        <section class="nfVendorCard" id="offers" aria-label="Purchase-ready start points">
+        <section class="nfVendorCard" id="offers" aria-label="Offers and deliverables">
           <div class="nfVendorCardHd">
-            <h2 class="nfVendorCardTitle">Purchase-ready start points</h2>
-            <p class="nfVendorMuted">Deliverable-led packages with a procurement snapshot on each card (named outputs, inputs, timeline rule, scope drivers).</p>
+            <h2 class="nfVendorCardTitle">Offers (named deliverables)</h2>
+            <p class="nfVendorMuted">Procurement-friendly summaries with deliverables, inputs, timeline rules, and scope drivers.</p>
           </div>
 
           <div class="nfVendorCardBd">
-            <div class="nfVOffers" aria-label="Offer cards">
+            <div class="nfOffers" aria-label="Offer cards">
               <!-- QuickScan -->
-              <article class="nfVOffer" data-offer="quickscan" tabindex="0" aria-label="Copilot QuickScan">
-                <div class="nfVOfferTop">
+              <article class="nfOffer" aria-label="Copilot QuickScan offer">
+                <div class="nfOfferTop">
                   <div>
-                    <h3 class="nfVOfferName">Copilot QuickScan</h3>
-                    <div class="nfVOfferMeta">
-                      <span class="nfVTag">5–7 business days</span>
-                      <span class="nfVTag">Decision-ready outputs</span>
-                      <span class="nfVTag">Base + fixed add-ons</span>
+                    <h3 class="nfOfferName">Copilot QuickScan</h3>
+                    <div class="nfOfferMeta">
+                      <span class="nfTag">5–7 business days</span>
+                      <span class="nfTag">Decision-ready pack</span>
+                      <span class="nfTag">Base + fixed add-ons</span>
                     </div>
                   </div>
-                  <span class="nfVTag" title="Best fit">Best for: rollout pressure</span>
+                  <span class="nfTag" title="Best fit">Best for: rollout pressure</span>
                 </div>
 
-                <p class="nfVOfferDesc">
-                  Fast Copilot governance and evidence pack: scope, oversharing exposure paths, boundaries, evidence readiness, and connector controls.
+                <p class="nfOfferDesc">
+                  Fast Copilot governance and evidence outputs: posture, oversharing exposure paths, boundary recommendations, and connector controls.
                 </p>
 
-                <ul class="nfVOfferBullets">
-                  <li>Executive memo + practical next steps</li>
-                  <li>Procurement-friendly named deliverables</li>
-                  <li>Email-first kickoff by default (call available if required)</li>
+                <ul class="nfOfferBullets">
+                  <li>Board-safe executive memo + practical next steps</li>
+                  <li>Procurement-ready named deliverables</li>
+                  <li>Email-first kickoff by default (scope call available if required)</li>
                 </ul>
 
-                <details class="nfVSnap">
+                <details class="nfSnap">
                   <summary>
                     <div>
                       <div class="k">Procurement snapshot</div>
@@ -434,32 +459,32 @@
                     <div class="chev" aria-hidden="true">⌄</div>
                   </summary>
                   <div class="bd">
-                    <div class="nfVGrid1">
-                      <div class="nfVItem">
+                    <div class="nfSnapGrid">
+                      <div class="nfSnapItem">
                         <div class="h">Deliverables (named)</div>
                         <ul>
                           <li><strong>Executive Memo</strong> (PDF) — posture, risks, decision options</li>
                           <li><strong>Exposure & Boundary Map</strong> (PDF) — oversharing paths + recommended boundaries</li>
                           <li><strong>Control Checklist</strong> (XLSX/CSV) — prioritized controls + owners</li>
-                          <li><strong>Connector/Extension Notes</strong> (PDF) — what to tighten first</li>
+                          <li><strong>Connector/Extension Notes</strong> (PDF) — tightening priorities</li>
                         </ul>
                       </div>
-                      <div class="nfVItem">
+                      <div class="nfSnapItem">
                         <div class="h">Inputs required (non-confidential)</div>
                         <ul>
                           <li>Rollout intent (pilot vs broad)</li>
-                          <li>High-level data types (HR, finance, client files)</li>
+                          <li>High-level data types (e.g., HR, finance, client files)</li>
                           <li>Policy posture (basic / partial / mature)</li>
                         </ul>
                       </div>
-                      <div class="nfVItem">
+                      <div class="nfSnapItem">
                         <div class="h">Timeline rule</div>
                         <ul>
                           <li>Clock starts after intake + scope confirmation</li>
                           <li>Default delivery window: <strong>5–7 business days</strong></li>
                         </ul>
                       </div>
-                      <div class="nfVItem">
+                      <div class="nfSnapItem">
                         <div class="h">Scope drivers</div>
                         <ul>
                           <li>Single tenant vs multi-entity rollout</li>
@@ -468,40 +493,44 @@
                         </ul>
                       </div>
                     </div>
+
+                    <div class="nfSnapNote">
+                      <strong>Invoice/PO:</strong> use <a href="#procurement">Invoice / PO</a> for onboarding steps.
+                    </div>
                   </div>
                 </details>
 
-                <div class="nfVOfferActions">
-                  <a class="btn" href="/copilot/quickscan/intake/" data-primary-cta>Start Copilot QuickScan</a>
-                  <a class="btn secondary" href="/copilot/quickscan/">View details</a>
+                <div class="nfOfferActions">
+                  <a class="btn" href="/copilot/quickscan/intake/" data-rid-link>Start Copilot QuickScan</a>
+                  <a class="btn secondary" href="/copilot/quickscan/" data-rid-link>View details</a>
                 </div>
               </article>
 
               <!-- Trust Brief -->
-              <article class="nfVOffer" data-offer="brief" tabindex="0" aria-label="Trust Brief">
-                <div class="nfVOfferTop">
+              <article class="nfOffer" aria-label="Trust Brief offer">
+                <div class="nfOfferTop">
                   <div>
-                    <h3 class="nfVOfferName">Trust Brief (6-week)</h3>
-                    <div class="nfVOfferMeta">
-                      <span class="nfVTag">6 weeks</span>
-                      <span class="nfVTag">Governance plan</span>
-                      <span class="nfVTag">Base + fixed add-ons</span>
+                    <h3 class="nfOfferName">Trust Brief (6-week)</h3>
+                    <div class="nfOfferMeta">
+                      <span class="nfTag">6 weeks</span>
+                      <span class="nfTag">Governance plan</span>
+                      <span class="nfTag">Base + fixed add-ons</span>
                     </div>
                   </div>
-                  <span class="nfVTag" title="Best fit">Best for: clarity + roadmap</span>
+                  <span class="nfTag" title="Best fit">Best for: clarity + roadmap</span>
                 </div>
 
-                <p class="nfVOfferDesc">
-                  Structured diagnostic that maps material AI use-cases, decision points, risks, and an initial operating model—ready for leadership review.
+                <p class="nfOfferDesc">
+                  A structured diagnostic that maps material AI use-cases, decision points, risks, and an initial operating model—ready for leadership review.
                 </p>
 
-                <ul class="nfVOfferBullets">
-                  <li>Owners, controls, decision gates</li>
-                  <li>Board-ready options and tradeoffs</li>
-                  <li>Sets up continuity into Trust Ledger</li>
+                <ul class="nfOfferBullets">
+                  <li>Defines owners, controls, and decision gates</li>
+                  <li>Creates board-ready options and tradeoffs</li>
+                  <li>Sets continuity into Trust Ledger</li>
                 </ul>
 
-                <details class="nfVSnap">
+                <details class="nfSnap">
                   <summary>
                     <div>
                       <div class="k">Procurement snapshot</div>
@@ -510,74 +539,78 @@
                     <div class="chev" aria-hidden="true">⌄</div>
                   </summary>
                   <div class="bd">
-                    <div class="nfVGrid1">
-                      <div class="nfVItem">
+                    <div class="nfSnapGrid">
+                      <div class="nfSnapItem">
                         <div class="h">Deliverables (named)</div>
                         <ul>
                           <li><strong>Trust Brief Report</strong> (PDF) — decisions, risks, controls, roadmap</li>
                           <li><strong>Use-Case Map</strong> (XLSX/CSV) — material use cases + owners</li>
-                          <li><strong>Decision Gate Set</strong> (PDF) — approvals required and why</li>
+                          <li><strong>Decision Gate Set</strong> (PDF) — approvals, owners, rationale</li>
                           <li><strong>Operating Model Draft</strong> (PDF) — roles, cadence, escalation</li>
                         </ul>
                       </div>
-                      <div class="nfVItem">
+                      <div class="nfSnapItem">
                         <div class="h">Inputs required (non-confidential)</div>
                         <ul>
                           <li>High-level inventory of AI/tool usage</li>
-                          <li>Org structure (IT, legal, security owners)</li>
-                          <li>Known constraints (regulatory, audit, client)</li>
+                          <li>Owner groups (IT / legal / security)</li>
+                          <li>Known constraints (regulatory, client, audit)</li>
                         </ul>
                       </div>
-                      <div class="nfVItem">
+                      <div class="nfSnapItem">
                         <div class="h">Timeline rule</div>
                         <ul>
                           <li>Starts after intake + kickoff alignment</li>
                           <li>Default delivery window: <strong>6 weeks</strong></li>
                         </ul>
                       </div>
-                      <div class="nfVItem">
+                      <div class="nfSnapItem">
                         <div class="h">Scope drivers</div>
                         <ul>
                           <li>Number of material use cases</li>
                           <li>Stakeholder groups involved</li>
-                          <li>Need for board memo variants</li>
+                          <li>Need for memo variants</li>
                         </ul>
                       </div>
+                    </div>
+
+                    <div class="nfSnapNote">
+                      <strong>Invoice/PO:</strong> use <a href="#procurement">Invoice / PO</a> for onboarding steps.
                     </div>
                   </div>
                 </details>
 
-                <div class="nfVOfferActions">
-                  <a class="btn" href="/trust-brief/intake/" data-primary-cta>Start Trust Brief</a>
-                  <a class="btn secondary" href="/trust-brief/">View details</a>
+                <div class="nfOfferActions">
+                  <a class="btn" href="/trust-brief/intake/" data-rid-link>Start Trust Brief</a>
+                  <a class="btn secondary" href="/trust-brief/" data-rid-link>View details</a>
                 </div>
               </article>
 
               <!-- Trust Ledger -->
-              <article class="nfVOffer" data-offer="ledger" tabindex="0" aria-label="Trust Ledger">
-                <div class="nfVOfferTop">
+              <article class="nfOffer" aria-label="Trust Ledger offer">
+                <div class="nfOfferTop">
                   <div>
-                    <h3 class="nfVOfferName">Trust Ledger</h3>
-                    <div class="nfVOfferMeta">
-                      <span class="nfVTag">Ongoing</span>
-                      <span class="nfVTag">Evidence continuity</span>
-                      <span class="nfVTag">Monthly base + add-ons</span>
+                    <h3 class="nfOfferName">Trust Ledger</h3>
+                    <div class="nfOfferMeta">
+                      <span class="nfTag">Ongoing</span>
+                      <span class="nfTag">Evidence continuity</span>
+                      <span class="nfTag">Monthly base + add-ons</span>
                     </div>
                   </div>
-                  <span class="nfVTag" title="Best fit">Best for: audit readiness</span>
+                  <span class="nfTag" title="Best fit">Best for: audit readiness</span>
                 </div>
 
-                <p class="nfVOfferDesc">
-                  Maintained register of AI systems, safeguards, sign-offs, and evidence—kept ready for recurring scrutiny (board, client, audit, regulator).
+                <p class="nfOfferDesc">
+                  A maintained register of AI systems, safeguards, sign-offs, and evidence—kept ready for recurring scrutiny (board, client, audit, regulator).
                 </p>
 
-                <ul class="nfVOfferBullets">
+                <ul class="nfOfferBullets">
                   <li>Repeatable exports and accountability mapping</li>
-                  <li>Change trail mindset (what changed, when, why)</li>
+                  <li>Change-trail mindset (what changed, when, why)</li>
                   <li>Reduces “answer-later” scrambling</li>
                 </ul>
 
-                <details class="nfVSnap">
+                <details class="nfSnap">
                   <summary>
                     <div>
                       <div class="k">Procurement snapshot</div>
@@ -586,31 +619,31 @@
                     <div class="chev" aria-hidden="true">⌄</div>
                   </summary>
                   <div class="bd">
-                    <div class="nfVGrid1">
-                      <div class="nfVItem">
+                    <div class="nfSnapGrid">
+                      <div class="nfSnapItem">
                         <div class="h">Deliverables (named)</div>
                         <ul>
                           <li><strong>Ledger Register</strong> (maintained) — systems, risks, controls, approvals</li>
                           <li><strong>Board Export</strong> (PDF) — periodic summary + changes since last cycle</li>
-                          <li><strong>Evidence Index</strong> (CSV/XLSX) — evidence present + gaps</li>
+                          <li><strong>Evidence Index</strong> (CSV/XLSX) — evidence pointers + gaps</li>
                         </ul>
                       </div>
-                      <div class="nfVItem">
+                      <div class="nfSnapItem">
                         <div class="h">Inputs required (non-confidential)</div>
                         <ul>
                           <li>High-level list of AI systems/tools</li>
-                          <li>Primary owners / accountable roles</li>
+                          <li>Accountable roles</li>
                           <li>Cadence preference (monthly/quarterly)</li>
                         </ul>
                       </div>
-                      <div class="nfVItem">
+                      <div class="nfSnapItem">
                         <div class="h">Timeline rule</div>
                         <ul>
                           <li>Ongoing service; first cycle begins after kickoff</li>
                           <li>Exports delivered on agreed cadence</li>
                         </ul>
                       </div>
-                      <div class="nfVItem">
+                      <div class="nfSnapItem">
                         <div class="h">Scope drivers</div>
                         <ul>
                           <li>Number of systems in scope</li>
@@ -619,173 +652,211 @@
                         </ul>
                       </div>
                     </div>
+
+                    <div class="nfSnapNote">
+                      <strong>Output spec:</strong> see <a href="/trust-ledger/output/" data-rid-link>/trust-ledger/output</a>.
+                    </div>
                   </div>
                 </details>
 
-                <div class="nfVOfferActions">
-                  <a class="btn" href="/trust-ledger/intake/" data-primary-cta>Start Trust Ledger</a>
-                  <a class="btn secondary" href="/trust-ledger/">View details</a>
+                <div class="nfOfferActions">
+                  <a class="btn" href="/trust-ledger/intake/" data-rid-link>Start Trust Ledger</a>
+                  <a class="btn secondary" href="/trust-ledger/" data-rid-link>View details</a>
+                </div>
+              </article>
+
+              <!-- Playbook -->
+              <article class="nfOffer" aria-label="Playbook Pro offer">
+                <div class="nfOfferTop">
+                  <div>
+                    <h3 class="nfOfferName">Playbook Pro</h3>
+                    <div class="nfOfferMeta">
+                      <span class="nfTag">One-time purchase</span>
+                      <span class="nfTag">Template kit</span>
+                      <span class="nfTag">Teams & agencies</span>
+                    </div>
+                  </div>
+                  <span class="nfTag" title="Best fit">Best for: templates first</span>
+                </div>
+
+                <p class="nfOfferDesc">
+                  A reusable governance kit for multi-client or multi-team work: intake → due diligence → incident patterns → client-ready briefs.
+                </p>
+
+                <ul class="nfOfferBullets">
+                  <li>Designed to support procurement questionnaires</li>
+                  <li>Reusable structure across engagements</li>
+                  <li>Upgrade path into Trust Brief / Trust Ledger</li>
+                </ul>
+
+                <div class="nfOfferActions">
+                  <a class="btn" href="/playbook/pro/" data-rid-link>Open Playbook Pro</a>
+                  <a class="btn secondary" href="/playbook/" data-rid-link>View Playbook</a>
                 </div>
               </article>
             </div>
-          </div>
-        </section>
-
-        <!-- COMPARE -->
-        <section class="nfVendorCard" id="compare" aria-label="Compare" style="margin-top:14px;">
-          <div class="nfVendorCardHd">
-            <h2 class="nfVendorCardTitle">Compare (quick)</h2>
-            <p class="nfVendorMuted">A short comparison for internal alignment.</p>
-          </div>
-          <div class="nfVendorCardBd">
-            <table class="nfVTable" aria-label="Compare table">
-              <thead>
-                <tr>
-                  <th>Item</th>
-                  <th>QuickScan</th>
-                  <th>Trust Brief</th>
-                  <th>Trust Ledger</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Best for</td>
-                  <td>Copilot rollout pressure</td>
-                  <td>Governance plan + roadmap</td>
-                  <td>Ongoing evidence continuity</td>
-                </tr>
-                <tr>
-                  <td>Timing</td>
-                  <td>5–7 business days</td>
-                  <td>6 weeks</td>
-                  <td>Ongoing</td>
-                </tr>
-                <tr>
-                  <td>Outcome</td>
-                  <td>Decision-ready pack</td>
-                  <td>Operating model + decisions</td>
-                  <td>Maintained register + exports</td>
-                </tr>
-                <tr>
-                  <td>Start</td>
-                  <td><a href="/copilot/quickscan/intake/">Intake</a></td>
-                  <td><a href="/trust-brief/intake/">Intake</a></td>
-                  <td><a href="/trust-ledger/intake/">Intake</a></td>
-                </tr>
-              </tbody>
-            </table>
 
             <div class="nfVendorNotice" style="margin-top:12px;">
-              <strong>Procurement tip:</strong> For invoice/PO onboarding, use the section below and the procurement email builder.
+              <strong>Procurement note:</strong> If internal approval requires a single file, publish a redacted vendor PDF at
+              <code>/vendor/vendor-pack.pdf</code> and link it from the rail.
             </div>
           </div>
         </section>
 
-        <!-- SECURITY / PRIVACY (PUBLIC SUMMARY) -->
-        <section class="nfVendorCard" id="security" aria-label="Security and privacy summary" style="margin-top:14px;">
+        <!-- SECURITY -->
+        <section class="nfVendorCard" id="security" aria-label="Security posture" style="margin-top:14px;">
           <div class="nfVendorCardHd">
-            <h2 class="nfVendorCardTitle">Security & privacy (public summary)</h2>
-            <p class="nfVendorMuted">A high-level posture summary for vendor evaluation. Engagement-specific details are confirmed in SOW/DPA where required.</p>
+            <h2 class="nfVendorCardTitle">Security posture (public summary)</h2>
+            <p class="nfVendorMuted">High-level answers suitable for initial vendor review. Detailed controls and evidence are scoped in the SOW/DPA phase.</p>
+          </div>
+          <div class="nfVendorCardBd">
+            <div class="nfQA" aria-label="Security Q&A">
+              <div class="nfQACard">
+                <p class="q">Access model</p>
+                <p class="a"><strong>Least-privilege</strong> and <strong>revocable access</strong> as required by scope. Data access is minimized and time-bounded where possible.</p>
+              </div>
+              <div class="nfQACard">
+                <p class="q">Evidence mindset</p>
+                <p class="a">Deliverables are <strong>evidence-first</strong>: explicit assumptions, named artefacts, and traceable outputs suitable for leadership review.</p>
+              </div>
+              <div class="nfQACard">
+                <p class="q">Incident response</p>
+                <p class="a">A defined response path is agreed per engagement. Contact is routed through procurement for onboarding, and escalations are confirmed at kickoff.</p>
+              </div>
+              <div class="nfQACard">
+                <p class="q">Security review depth</p>
+                <p class="a">If an organisation requires deeper review (questionnaires, annexes, or control mapping), the work is handled under the engagement scope.</p>
+              </div>
+            </div>
+
+            <div class="nfVendorNotice" style="margin-top:12px;">
+              <strong>Related:</strong> Trust Ledger output spec → <a href="/trust-ledger/output/" data-rid-link>/trust-ledger/output</a>.
+              Product context → <a href="/app/" data-rid-link>/app</a>.
+            </div>
+          </div>
+        </section>
+
+        <!-- PRIVACY -->
+        <section class="nfVendorCard" id="privacy" aria-label="Privacy boundaries" style="margin-top:14px;">
+          <div class="nfVendorCardHd">
+            <h2 class="nfVendorCardTitle">Privacy boundaries</h2>
+            <p class="nfVendorMuted">Public intake is routing-only. Sensitive artefacts are exchanged only after scope and a secure channel are agreed.</p>
+          </div>
+          <div class="nfVendorCardBd">
+            <div class="nfQA" aria-label="Privacy Q&A">
+              <div class="nfQACard">
+                <p class="q">Public intake</p>
+                <p class="a"><strong>Non-confidential only.</strong> No secrets, credentials, private keys, or regulated personal data.</p>
+              </div>
+              <div class="nfQACard">
+                <p class="q">Data minimization</p>
+                <p class="a">Default is to request <strong>only what is necessary</strong> for the deliverables, aligned to scope and buyer approvals.</p>
+              </div>
+              <div class="nfQACard">
+                <p class="q">Retention</p>
+                <p class="a">Retention and deletion are <strong>set per engagement</strong> (SOW/DPA-scoped), aligned to organisational requirements.</p>
+              </div>
+              <div class="nfQACard">
+                <p class="q">Sub-processors</p>
+                <p class="a">Sub-processors (if applicable) are <strong>disclosed in engagement documents</strong> and aligned to required contract terms.</p>
+              </div>
+            </div>
+
+            <div class="nfVendorNotice" style="margin-top:12px;">
+              Official policy page: <a href="/privacy/" data-rid-link>/privacy</a>.
+              Additional governance policies: <a href="/policies/" data-rid-link>/policies</a>.
+            </div>
+          </div>
+        </section>
+
+        <!-- CONTRACTS -->
+        <section class="nfVendorCard" id="contracts" aria-label="Contracting path" style="margin-top:14px;">
+          <div class="nfVendorCardHd">
+            <h2 class="nfVendorCardTitle">Contracting path</h2>
+            <p class="nfVendorMuted">A lightweight, purchase-ready path designed to reduce back-and-forth while staying compliant with organisational processes.</p>
+          </div>
+          <div class="nfVendorCardBd">
+            <div class="nfQA" aria-label="Contracting Q&A">
+              <div class="nfQACard">
+                <p class="q">Commercial documents</p>
+                <p class="a">Engagements are delivered under a scoped <strong>SOW</strong>. Contracting terms are confirmed per buyer requirements.</p>
+              </div>
+              <div class="nfQACard">
+                <p class="q">NDA / DPA</p>
+                <p class="a">If required, NDA and DPA steps are handled during onboarding. Detailed terms are confirmed once scope and parties are established.</p>
+              </div>
+              <div class="nfQACard">
+                <p class="q">Kickoff format</p>
+                <p class="a"><strong>Email-first by default</strong> to stay lightweight. A short call is available if scope confirmation requires it.</p>
+              </div>
+              <div class="nfQACard">
+                <p class="q">Timeline rule</p>
+                <p class="a">Delivery clocks start <strong>after intake + scope confirmation</strong>, with named deliverables and clear assumptions.</p>
+              </div>
+            </div>
+
+            <div class="nfVendorNotice" style="margin-top:12px;">
+              Terms: <a href="/terms/" data-rid-link>/terms</a>. Contact: <a href="/contact/" data-rid-link>/contact</a>.
+            </div>
+          </div>
+        </section>
+
+        <!-- PROCUREMENT / INVOICE-PO -->
+        <section class="nfVendorCard" id="procurement" aria-label="Invoice / PO procurement" style="margin-top:14px;">
+          <div class="nfVendorCardHd">
+            <h2 class="nfVendorCardTitle">Invoice / PO (procurement onboarding)</h2>
+            <p class="nfVendorMuted">For organisations purchasing via invoice, PO, or vendor onboarding steps.</p>
           </div>
           <div class="nfVendorCardBd">
             <div class="nfVendorNotice" style="margin-top:0;">
-              <strong>Data boundary:</strong> Public forms are routing-only and non-confidential. Secure sharing options are confirmed after kickoff.
-            </div>
-
-            <div style="display:grid; gap:12px; margin-top:12px;">
-              <div style="border:1px solid rgba(255,255,255,.10); background: rgba(255,255,255,.03); border-radius:14px; padding:12px;">
-                <div style="font-weight:900; letter-spacing:-.2px;">Access & handling</div>
-                <ul style="margin:8px 0 0; padding-left:18px; color:var(--muted2); line-height:1.6;">
-                  <li>Least-privilege by default; access is revocable and scoped.</li>
-                  <li>Client-provided access only where required for engagement scope.</li>
-                  <li>Evidence-first delivery (explicit assumptions + traceability where possible).</li>
-                </ul>
-              </div>
-
-              <div style="border:1px solid rgba(255,255,255,.10); background: rgba(255,255,255,.03); border-radius:14px; padding:12px;">
-                <div style="font-weight:900; letter-spacing:-.2px;">Retention & deletion</div>
-                <ul style="margin:8px 0 0; padding-left:18px; color:var(--muted2); line-height:1.6;">
-                  <li>Retention and deletion terms are set per engagement (SOW/DPA), aligned to client requirements.</li>
-                  <li>Non-confidential intake data is minimized.</li>
-                </ul>
-              </div>
-
-              <div style="border:1px solid rgba(255,255,255,.10); background: rgba(255,255,255,.03); border-radius:14px; padding:12px;">
-                <div style="font-weight:900; letter-spacing:-.2px;">Incident contact</div>
-                <div style="margin-top:8px; color:var(--muted2); line-height:1.6;">
-                  Security/privacy inquiries route via <a href="mailto:trust@noetfield.com">trust@noetfield.com</a>.
-                  Contracting/legal routes via <a href="mailto:legal@noetfield.com">legal@noetfield.com</a>.
-                </div>
-              </div>
-            </div>
-
-            <div class="nfVendorNotice" style="margin-top:12px;">
-              <strong>Sub-processors:</strong> disclosed in engagement documents (DPA/SOW) as applicable.
-            </div>
-          </div>
-        </section>
-
-        <!-- PROCUREMENT -->
-        <section class="nfVendorCard" id="procurement" aria-label="Invoice / PO" style="margin-top:14px;">
-          <div class="nfVendorCardHd">
-            <h2 class="nfVendorCardTitle">Invoice / PO (procurement)</h2>
-            <p class="nfVendorMuted">For organisations that purchase via invoice, PO, or vendor onboarding steps.</p>
-          </div>
-
-          <div class="nfVendorCardBd">
-            <div class="nfVendorNotice" style="margin-top:0;">
-              <strong>Procurement contacts</strong><br/>
+              <strong>Procurement contact:</strong> <a id="nfProcEmailLink" href="mailto:procurement@noetfield.com">procurement@noetfield.com</a><br/>
               <span style="display:block; margin-top:6px;">
-                PO, invoicing, onboarding: <a id="nfVProcMail" href="mailto:procurement@noetfield.com">procurement@noetfield.com</a>
-              </span>
-              <span style="display:block; margin-top:6px;">
-                Security/privacy: <a href="mailto:trust@noetfield.com">trust@noetfield.com</a>
-              </span>
-              <span style="display:block; margin-top:6px;">
-                NDA/DPA/MSA: <a href="mailto:legal@noetfield.com">legal@noetfield.com</a>
+                <strong>Billing:</strong> <a href="mailto:billing@noetfield.com">billing@noetfield.com</a> ·
+                <strong>Escalation:</strong> <a href="mailto:ceo@noetfield.com">ceo@noetfield.com</a>
               </span>
             </div>
 
             <div class="nfVendorNotice" style="margin-top:12px;">
-              <strong>Invoice / PO flow:</strong> start with the package intake and select “Invoice / PO” where available.
-              This page provides vendor-ready snapshots for internal approvals.
+              <strong>Fastest procurement start:</strong> begin from the package intake and select “Invoice / PO” where applicable.
+              If your environment restricts web submissions, use the email builder below.
             </div>
 
-            <form id="nfVProcForm" style="margin-top:12px;" novalidate>
-              <div class="nfVProcRow">
-                <div class="nfVProcField">
-                  <label class="nfVLabel" for="nfV_org">Organisation</label>
-                  <input class="nfVInput" id="nfV_org" type="text" placeholder="Company / institution name" autocomplete="organization" />
+            <form id="nfProcEmailForm" class="nfProcForm" novalidate>
+              <div class="nfProcRow">
+                <div class="nfProcField">
+                  <label class="nfProcLabel" for="nf_org">Organisation</label>
+                  <input class="nfProcInput" id="nf_org" type="text" placeholder="Company / institution name" autocomplete="organization" />
                 </div>
 
-                <div class="nfVProcField">
-                  <label class="nfVLabel" for="nfV_contact">Contact (optional)</label>
-                  <input class="nfVInput" id="nfV_contact" type="text" placeholder="Name" autocomplete="name" />
+                <div class="nfProcField">
+                  <label class="nfProcLabel" for="nf_contact">Contact (optional)</label>
+                  <input class="nfProcInput" id="nf_contact" type="text" placeholder="Name" autocomplete="name" />
                 </div>
 
-                <div class="nfVProcField">
-                  <label class="nfVLabel" for="nfV_role">Role / team (optional)</label>
-                  <input class="nfVInput" id="nfV_role" type="text" placeholder="e.g., Procurement, IT, Security" />
+                <div class="nfProcField">
+                  <label class="nfProcLabel" for="nf_role">Role / team (optional)</label>
+                  <input class="nfProcInput" id="nf_role" type="text" placeholder="e.g., Procurement, IT, Security" />
                 </div>
 
-                <div class="nfVProcField">
-                  <label class="nfVLabel" for="nfV_reply">Your email (optional)</label>
-                  <input class="nfVInput" id="nfV_reply" type="email" placeholder="So we can reply to the right address" autocomplete="email" inputmode="email" />
+                <div class="nfProcField">
+                  <label class="nfProcLabel" for="nf_reply">Your email (optional)</label>
+                  <input class="nfProcInput" id="nf_reply" type="email" placeholder="Reply address" autocomplete="email" inputmode="email" />
                 </div>
 
-                <div class="nfVProcField">
-                  <label class="nfVLabel" for="nfV_package">Package</label>
-                  <select class="nfVSelect" id="nfV_package">
+                <div class="nfProcField">
+                  <label class="nfProcLabel" for="nf_package">Offer</label>
+                  <select class="nfProcSelect" id="nf_package">
                     <option value="quickscan">Copilot QuickScan</option>
                     <option value="brief">Trust Brief (6-week)</option>
                     <option value="ledger">Trust Ledger</option>
+                    <option value="playbook">Playbook Pro</option>
                     <option value="other">Other / not sure</option>
                   </select>
                 </div>
 
-                <div class="nfVProcField">
-                  <label class="nfVLabel" for="nfV_path">Procurement path</label>
-                  <select class="nfVSelect" id="nfV_path">
+                <div class="nfProcField">
+                  <label class="nfProcLabel" for="nf_proc">Procurement path</label>
+                  <select class="nfProcSelect" id="nf_proc">
                     <option value="invoice">Invoice</option>
                     <option value="po">Purchase Order (PO)</option>
                     <option value="vendor">Vendor onboarding</option>
@@ -793,73 +864,103 @@
                   </select>
                 </div>
 
-                <div class="nfVProcField full">
-                  <label class="nfVLabel" for="nfV_timing">Timing (optional)</label>
-                  <input class="nfVInput" id="nfV_timing" type="text" placeholder="e.g., this week / this quarter / target date" />
+                <div class="nfProcField full">
+                  <label class="nfProcLabel" for="nf_timeline">Timing (optional)</label>
+                  <input class="nfProcInput" id="nf_timeline" type="text" placeholder="e.g., this week / this quarter / target date" />
                 </div>
 
-                <div class="nfVProcField full">
-                  <label class="nfVLabel" for="nfV_note">Short note (non-confidential)</label>
-                  <textarea class="nfVTextarea" id="nfV_note" placeholder="High-level context only. No secrets, credentials, or regulated personal data."></textarea>
+                <div class="nfProcField full">
+                  <label class="nfProcLabel" for="nf_note">Short note (non-confidential)</label>
+                  <textarea class="nfProcTextarea" id="nf_note" placeholder="High-level context only. No secrets, credentials, or regulated personal data."></textarea>
                 </div>
 
-                <div class="nfVProcField full" style="display:flex; gap:10px; flex-wrap:wrap;">
+                <div class="nfProcField full" style="display:flex; gap:10px; flex-wrap:wrap;">
                   <button class="btn" type="submit">Prepare procurement email</button>
-                  <a class="btn secondary" href="/gate/" data-rid-link>Open Gate</a>
-                  <a class="btn secondary" href="/copilot/quickscan/intake/">Start QuickScan</a>
+                  <a class="btn secondary" href="/gate/" data-rid-link>Gate wizard</a>
+                  <a class="btn secondary" href="/copilot/quickscan/intake/" data-rid-link>Start QuickScan</a>
                 </div>
               </div>
 
-              <p class="nfVProcNote">
-                Public intake = non-confidential. Secure sharing options (if needed) are confirmed after kickoff.
+              <p class="nfProcNote">
+                Public intake = non-confidential. Secure sharing options are confirmed after kickoff.
               </p>
             </form>
+          </div>
+        </section>
+
+        <!-- RELATED LINKS -->
+        <section class="nfVendorCard" id="links" aria-label="Related links" style="margin-top:14px;">
+          <div class="nfVendorCardHd">
+            <h2 class="nfVendorCardTitle">Related pages</h2>
+            <p class="nfVendorMuted">Supporting references frequently requested during vendor review.</p>
+          </div>
+          <div class="nfVendorCardBd">
+            <div class="nfVendorNotice" style="margin-top:0;">
+              <strong>Core:</strong>
+              <a href="/trust-ledger/output/" data-rid-link>/trust-ledger/output</a> ·
+              <a href="/app/" data-rid-link>/app</a> ·
+              <a href="/privacy/" data-rid-link>/privacy</a>
+              <span style="display:block; margin-top:8px;">
+                <strong>Legal & policy:</strong>
+                <a href="/terms/" data-rid-link>/terms</a> ·
+                <a href="/policies/" data-rid-link>/policies</a> ·
+                <a href="/contact/" data-rid-link>/contact</a>
+              </span>
+            </div>
+
+            <div class="nfVendorNotice" style="margin-top:12px;">
+              <strong>Navigation tip:</strong> If purchase is already approved, skip directly to the package intake:
+              <a href="/copilot/quickscan/intake/" data-rid-link>QuickScan</a> ·
+              <a href="/trust-brief/intake/" data-rid-link>Trust Brief</a> ·
+              <a href="/trust-ledger/intake/" data-rid-link>Trust Ledger</a>.
+            </div>
           </div>
         </section>
       </div>
 
       <!-- RIGHT RAIL -->
-      <aside class="nfVRail" aria-label="Purchase rail">
-        <div class="nfVRailBox">
-          <div class="nfVRailHd">
-            <h2 class="nfVendorCardTitle" style="margin-bottom:6px;">Purchase & kickoff</h2>
-            <p class="nfVendorMuted">Select a package to update this panel. Start the dedicated intake.</p>
+      <aside class="nfRail" aria-label="Vendor purchase rail">
+        <div class="nfRailBox">
+          <div class="nfRailHd">
+            <h2 class="nfVendorCardTitle" style="margin-bottom:6px;">Fast start</h2>
+            <p class="nfVendorMuted">Use direct intakes for kickoff. Procurement path is available below.</p>
           </div>
 
-          <div class="nfVRailBd">
-            <div class="nfVRailKpi" id="nfVRailKpi">
-              <strong>Current focus:</strong> Copilot QuickScan<br/>
-              Fastest path to decision-ready outputs · 5–7 business days
+          <div class="nfRailBd">
+            <div class="nfRailKpi">
+              <strong>Recommended first buy:</strong> Copilot QuickScan<br/>
+              Decision-ready outputs · 5–7 business days
             </div>
 
-            <div class="nfVRailActions" aria-label="Primary actions">
-              <a class="btn" id="nfVRailPrimaryBtn" href="/copilot/quickscan/intake/">Start Copilot QuickScan</a>
-              <a class="btn secondary" id="nfVRailSecondaryBtn" href="/copilot/quickscan/">View QuickScan details</a>
+            <div class="nfRailActions" aria-label="Primary actions">
+              <a class="btn" href="/copilot/quickscan/intake/" data-rid-link>Start Copilot QuickScan</a>
+              <a class="btn secondary" href="/copilot/quickscan/" data-rid-link>View details</a>
             </div>
 
-            <div class="nfVRailKpi" style="margin-top:12px;">
+            <div class="nfRailKpi">
+              <strong>Other offers</strong><br/>
+              Direct intakes for approved purchasing.
+            </div>
+
+            <div class="nfRailActions" aria-label="Other offers actions">
+              <a class="btn secondary" href="/trust-brief/intake/" data-rid-link>Start Trust Brief</a>
+              <a class="btn secondary" href="/trust-ledger/intake/" data-rid-link>Start Trust Ledger</a>
+              <a class="btn secondary" href="/playbook/pro/" data-rid-link>Open Playbook Pro</a>
+            </div>
+
+            <div class="nfRailKpi">
               <strong>Invoice / PO</strong><br/>
-              Vendor onboarding path available. Use the form on this page.
+              Vendor onboarding steps and procurement email builder.
             </div>
 
-            <div class="nfVRailActions" aria-label="Procurement actions">
-              <a class="btn secondary" href="#procurement">Invoice / PO section</a>
-              <a class="btn secondary" href="mailto:procurement@noetfield.com">procurement@noetfield.com</a>
+            <div class="nfRailActions" aria-label="Procurement rail actions">
+              <a class="btn secondary" href="#procurement">Open Invoice / PO section</a>
+              <a class="btn secondary" href="/gate/" data-rid-link>Gate wizard</a>
             </div>
 
-            <div class="nfVRailKpi" style="margin-top:12px;">
-              <strong>Security / Privacy</strong><br/>
-              Vendor evaluation questions routed to trust@.
-            </div>
-
-            <div class="nfVRailActions" aria-label="Trust actions">
-              <a class="btn secondary" href="#security">Security summary</a>
-              <a class="btn secondary" href="mailto:trust@noetfield.com">trust@noetfield.com</a>
-            </div>
-
-            <div class="nfVRailMiniLinks">
-              Also available: <a href="/gate/" data-rid-link>Gate</a> · <a href="/status/" data-rid-link>Status</a><br/>
-              Legal: <a href="mailto:legal@noetfield.com">legal@noetfield.com</a>
+            <div class="nfRailMini">
+              Status: <a href="/status/" data-rid-link>/status</a><br/>
+              Contact: <a href="/contact/" data-rid-link>/contact</a>
             </div>
           </div>
         </div>
@@ -871,209 +972,116 @@
   <footer id="nfFooter"></footer>
 
   <!-- Mobile bottom bar -->
-  <div class="nfVBottomBar" aria-label="Bottom call to action">
-    <div class="nfVBottomInner">
-      <div class="nfVBottomText" id="nfVBottomText"><strong>Start:</strong> Copilot QuickScan</div>
-      <a class="btn" id="nfVBottomBtn" href="/copilot/quickscan/intake/">Start</a>
+  <div class="nfBottomBar" aria-label="Bottom call to action">
+    <div class="nfBottomInner">
+      <div class="nfBottomText"><strong>Start:</strong> Copilot QuickScan</div>
+      <a class="btn" href="/copilot/quickscan/intake/" data-rid-link>Start</a>
       <a class="btn secondary" href="#procurement">Invoice / PO</a>
     </div>
   </div>
 
   <script>
-    (function(){
+    (function () {
+      // Procurement email builder (mailto). No network submit.
       var NF_PROC_EMAIL = "procurement@noetfield.com";
 
-      var offers = {
-        quickscan: {
-          key: "quickscan",
-          name: "Copilot QuickScan",
-          kpi: "<strong>Current focus:</strong> Copilot QuickScan<br/>Fastest path to decision-ready outputs · 5–7 business days",
-          primaryHref: "/copilot/quickscan/intake/",
-          primaryLabel: "Start Copilot QuickScan",
-          detailsHref: "/copilot/quickscan/",
-          detailsLabel: "View QuickScan details"
-        },
-        brief: {
-          key: "brief",
-          name: "Trust Brief (6-week)",
-          kpi: "<strong>Current focus:</strong> Trust Brief (6-week)<br/>Governance plan + roadmap · 6 weeks",
-          primaryHref: "/trust-brief/intake/",
-          primaryLabel: "Start Trust Brief",
-          detailsHref: "/trust-brief/",
-          detailsLabel: "View Trust Brief details"
-        },
-        ledger: {
-          key: "ledger",
-          name: "Trust Ledger",
-          kpi: "<strong>Current focus:</strong> Trust Ledger<br/>Ongoing evidence continuity · recurring exports",
-          primaryHref: "/trust-ledger/intake/",
-          primaryLabel: "Start Trust Ledger",
-          detailsHref: "/trust-ledger/",
-          detailsLabel: "View Trust Ledger details"
+      function getVal(id){
+        var el = document.getElementById(id);
+        return el ? (el.value || "").trim() : "";
+      }
+
+      function labelForPackage(v){
+        if (v === "quickscan") return "Copilot QuickScan";
+        if (v === "brief") return "Trust Brief (6-week)";
+        if (v === "ledger") return "Trust Ledger";
+        if (v === "playbook") return "Playbook Pro";
+        return "Other / not sure";
+      }
+
+      function labelForProc(v){
+        if (v === "invoice") return "Invoice";
+        if (v === "po") return "Purchase Order (PO)";
+        if (v === "vendor") return "Vendor onboarding";
+        return "Other";
+      }
+
+      function readRid(){
+        try {
+          return (
+            localStorage.getItem("nf_rid") ||
+            localStorage.getItem("nfRid") ||
+            localStorage.getItem("rid") ||
+            ""
+          ).trim();
+        } catch(e){ return ""; }
+      }
+
+      var form = document.getElementById("nfProcEmailForm");
+      if (!form) return;
+
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        var org = getVal("nf_org");
+        var contact = getVal("nf_contact");
+        var role = getVal("nf_role");
+        var reply = getVal("nf_reply");
+        var pkg = getVal("nf_package");
+        var proc = getVal("nf_proc");
+        var timeline = getVal("nf_timeline");
+        var note = getVal("nf_note");
+        var rid = readRid();
+
+        var pkgLabel = labelForPackage(pkg);
+        var procLabel = labelForProc(proc);
+
+        var subject = "Procurement — " + pkgLabel + (org ? " (" + org + ")" : "");
+
+        var body = [];
+        body.push("Hello Noetfield Procurement,");
+        body.push("");
+        body.push("Request: " + procLabel + " path for " + pkgLabel + ".");
+        body.push("");
+
+        if (org) body.push("Organisation: " + org);
+        if (contact) body.push("Contact: " + contact);
+        if (role) body.push("Role/team: " + role);
+        if (reply) body.push("Reply email: " + reply);
+        if (timeline) body.push("Timing: " + timeline);
+        if (rid) body.push("Request ID (if applicable): " + rid);
+
+        body.push("");
+        body.push("Vendor pack: " + (location.origin + "/vendor/"));
+        body.push("Procurement section: " + (location.origin + "/vendor/#procurement"));
+        body.push("Gate wizard: " + (location.origin + "/gate/"));
+
+        body.push("");
+        if (note) {
+          body.push("Note (non-confidential):");
+          body.push(note);
+          body.push("");
         }
-      };
 
-      function escapeHtml(s){
-        return String(s || "")
-          .replace(/&/g,"&amp;")
-          .replace(/</g,"&lt;")
-          .replace(/>/g,"&gt;")
-          .replace(/"/g,"&quot;")
-          .replace(/'/g,"&#039;");
-      }
+        body.push("Public intake is non-confidential. Secure sharing options are confirmed after kickoff.");
+        body.push("");
 
-      function clearSelected(){
-        document.querySelectorAll(".nfVOfferSelected").forEach(function(el){
-          el.classList.remove("nfVOfferSelected");
-        });
-      }
+        var mailto =
+          "mailto:" + encodeURIComponent(NF_PROC_EMAIL) +
+          "?subject=" + encodeURIComponent(subject) +
+          "&body=" + encodeURIComponent(body.join("\n"));
 
-      function syncProcPackage(key){
-        var sel = document.getElementById("nfV_package");
-        if (!sel) return;
-        if (key && (key === "quickscan" || key === "brief" || key === "ledger")) sel.value = key;
-      }
-
-      function selectOffer(key){
-        var o = offers[key] || offers.quickscan;
-
-        clearSelected();
-        var card = document.querySelector('[data-offer="'+ o.key +'"]');
-        if (card) card.classList.add("nfVOfferSelected");
-
-        var kpi = document.getElementById("nfVRailKpi");
-        var pBtn = document.getElementById("nfVRailPrimaryBtn");
-        var sBtn = document.getElementById("nfVRailSecondaryBtn");
-
-        if (kpi) kpi.innerHTML = o.kpi;
-        if (pBtn){ pBtn.href = o.primaryHref; pBtn.textContent = o.primaryLabel; }
-        if (sBtn){ sBtn.href = o.detailsHref; sBtn.textContent = o.detailsLabel; }
-
-        var bText = document.getElementById("nfVBottomText");
-        var bBtn = document.getElementById("nfVBottomBtn");
-        if (bText) bText.innerHTML = "<strong>Start:</strong> " + escapeHtml(o.name);
-        if (bBtn) bBtn.href = o.primaryHref;
-
-        syncProcPackage(o.key);
-
-        try { localStorage.setItem("nf_vendor_focus", o.key); } catch(e){}
-      }
-
-      document.querySelectorAll("[data-offer]").forEach(function(card){
-        card.addEventListener("click", function(e){
-          if (e.target && (e.target.closest("a") || e.target.closest("button") || e.target.closest("summary"))) return;
-          selectOffer(card.getAttribute("data-offer"));
-        });
-        card.addEventListener("keydown", function(e){
-          if (e.key === "Enter" || e.key === " ") {
-            e.preventDefault();
-            selectOffer(card.getAttribute("data-offer"));
-          }
-        });
+        window.location.href = mailto;
       });
-
-      // initial selection
-      var focus = "";
-      try { focus = (localStorage.getItem("nf_vendor_focus") || "").trim().toLowerCase(); } catch(e){}
-      if (!offers[focus]) focus = "quickscan";
-      selectOffer(focus);
-
-      // procurement email builder (mailto)
-      (function(){
-        var form = document.getElementById("nfVProcForm");
-        if (!form) return;
-
-        function getVal(id){
-          var el = document.getElementById(id);
-          return el ? (el.value || "").trim() : "";
-        }
-        function labelForPackage(v){
-          if (v === "quickscan") return "Copilot QuickScan";
-          if (v === "brief") return "Trust Brief (6-week)";
-          if (v === "ledger") return "Trust Ledger";
-          return "Other / not sure";
-        }
-        function labelForPath(v){
-          if (v === "invoice") return "Invoice";
-          if (v === "po") return "Purchase Order (PO)";
-          if (v === "vendor") return "Vendor onboarding";
-          return "Other";
-        }
-        function readRid(){
-          try {
-            return (
-              localStorage.getItem("nf_rid") ||
-              localStorage.getItem("nfRid") ||
-              localStorage.getItem("rid") ||
-              ""
-            ).trim();
-          } catch(e){ return ""; }
-        }
-
-        form.addEventListener("submit", function(e){
-          e.preventDefault();
-
-          var org = getVal("nfV_org");
-          var contact = getVal("nfV_contact");
-          var role = getVal("nfV_role");
-          var reply = getVal("nfV_reply");
-          var pkg = getVal("nfV_package");
-          var path = getVal("nfV_path");
-          var timing = getVal("nfV_timing");
-          var note = getVal("nfV_note");
-
-          var rid = readRid();
-
-          var pkgLabel = labelForPackage(pkg);
-          var pathLabel = labelForPath(path);
-
-          var subject = "Procurement — " + pkgLabel + (org ? " (" + org + ")" : "");
-
-          var body = [];
-          body.push("Hello Noetfield Procurement,");
-          body.push("");
-          body.push("Request: " + pathLabel + " path for " + pkgLabel + ".");
-          body.push("");
-
-          if (org) body.push("Organisation: " + org);
-          if (contact) body.push("Contact: " + contact);
-          if (role) body.push("Role/team: " + role);
-          if (reply) body.push("Reply email: " + reply);
-          if (timing) body.push("Timing: " + timing);
-          if (rid) body.push("Request ID (if applicable): " + rid);
-
-          body.push("");
-          body.push("Vendor pack: " + (location.origin + "/vendor/"));
-          body.push("Gate (general entry): " + (location.origin + "/gate/"));
-          body.push("");
-
-          if (note) {
-            body.push("Note (non-confidential):");
-            body.push(note);
-            body.push("");
-          }
-
-          body.push("Public intake is non-confidential. Secure sharing options are confirmed after kickoff.");
-          body.push("");
-
-          var mailto =
-            "mailto:" + encodeURIComponent(NF_PROC_EMAIL) +
-            "?subject=" + encodeURIComponent(subject) +
-            "&body=" + encodeURIComponent(body.join("\n"));
-
-          window.location.href = mailto;
-        });
-      })();
     })();
   </script>
 
   <!--
     CHANGELOG (vendor v1.0)
-    - Implemented option C: vendor page as a sales path + procurement rail.
-    - Added package cards with procurement snapshots and direct start links.
-    - Added sticky purchase rail + mobile bottom bar.
-    - Added procurement email builder (mailto) and role-based contacts (procurement/trust/legal).
-    - Kept locked shell assets and header/footer injection.
+    - Implemented A+B+C hybrid: procurement onboarding + security/privacy posture + direct sales starts (intakes).
+    - Added named deliverables + procurement snapshots for each offer.
+    - Added invoice/PO section with procurement email builder (mailto) and role-based contacts.
+    - Added related links section for /trust-ledger/output, /app, /privacy, /terms, /policies, /contact.
+    - Kept locked shell assets + header/footer injection.
 
     SMOKE TEST
     - GET /vendor/ returns 200
@@ -1083,9 +1091,10 @@
       - /copilot/quickscan/intake/
       - /trust-brief/intake/
       - /trust-ledger/intake/
-      - /gate/ and /status/
-    - Offer select: click card highlights and updates rail + bottom bar
-    - Procurement form: submit opens mail client with populated subject/body; no network submit
+      - /playbook/pro/
+      - /gate/ (wizard)
+      - /status/
+    - Procurement email builder: submit opens mail client with subject/body populated; no network submit
     - Mobile: bottom bar fixed, no overlap (body padding applied)
   -->
 </body>

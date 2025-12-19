@@ -1,17 +1,18 @@
-/* /assets/noetfield-shell.js — v2.2 (allow Sales CTA in footer normalization; minimal change)
+/* /assets/noetfield-shell.js — v2.3
    Noetfield Shell:
    - Inject header/footer partials
    - Burger menu
    - Active links
    - Footer year
    - Feedback tab
-   - RID (Request ID): generate/store/display/copy + propagate to tagged links + inject into forms
-   Version: locked-2025.12.18+sales-cta
+   - RID: generate/store/display/copy + propagate to tagged links + inject into forms
+   - Emits: window.__nf + event "nf:shell:ready"
+   Version: locked-2025.12.19
 */
 (function () {
   "use strict";
 
-  var SHELL_VERSION = "2025.12.18";
+  var SHELL_VERSION = "2025.12.19";
   var PARTIALS_BASE = "/assets/partials";
   var RID_KEY = "nf_rid";
 
@@ -36,7 +37,6 @@
         return u.pathname || "/";
       } catch (_) { return null; }
     }
-
     if (!href.startsWith("/")) return null;
     return href;
   }
@@ -243,20 +243,22 @@
     });
   }
 
-  /* Footer CTA normalization (left box) */
   function normalizeFooterCTA() {
     var cta = document.querySelector("#nfFooter .ctaRow");
     if (!cta) return;
 
-    var keep = {
-      "/gate/sales/": true, "/gate/sales": true,
-      "/gate/": true, "/gate": true,
-      "/portal/": true, "/portal": true
+    var keepPaths = {
+      "/gate/sales": true,
+      "/gate": true,
+      "/portal": true
     };
 
     Array.prototype.slice.call(cta.querySelectorAll("a")).forEach(function (a) {
-      var href = (a.getAttribute("href") || "").trim();
-      if (!keep[href]) a.parentNode && a.parentNode.removeChild(a);
+      var hrefRaw = (a.getAttribute("href") || "").trim();
+      var p = toInternalPath(hrefRaw);
+      if (!p) return;
+      var n = normPath(p);
+      if (!keepPaths[n]) a.parentNode && a.parentNode.removeChild(a);
     });
   }
 
@@ -282,7 +284,6 @@
   async function injectOne(targetId, partialName) {
     var el = document.getElementById(targetId);
     if (!el) return;
-
     if (el.children && el.children.length > 0) return;
 
     var url = PARTIALS_BASE + "/" + partialName + "?v=" + encodeURIComponent(SHELL_VERSION);
@@ -300,8 +301,23 @@
     await injectOne("nfFooter", "footer.html");
   }
 
+  function emitReady(rid) {
+    try {
+      window.__nf = { rid: rid, version: SHELL_VERSION };
+      var ev = new CustomEvent("nf:shell:ready", { detail: { rid: rid, version: SHELL_VERSION } });
+      window.dispatchEvent(ev);
+    } catch (_) {
+      window.__nf = window.__nf || {};
+      window.__nf.rid = rid;
+      window.__nf.version = SHELL_VERSION;
+    }
+  }
+
   async function boot() {
     await injectShell();
+
+    var rid = getOrCreateRID();
+    applyRID(rid);
 
     setYear();
     setActiveLinks();
@@ -309,8 +325,7 @@
     normalizeFooterCTA();
     ensureFeedbackTab();
 
-    var rid = getOrCreateRID();
-    applyRID(rid);
+    emitReady(rid);
   }
 
   if (document.readyState === "loading") {

@@ -1,578 +1,169 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Noetfield – AI Trust Ledger Sample Report</title>
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta
-    name="description"
-    content="Sample AI Trust Ledger report for boards and regulators – showing how critical AI decisions, safeguards, and accountability can be recorded in a concise, board-ready format."
-  />
+
+  <title>Noetfield — AI Trust Ledger Sample Report</title>
+  <meta name="description" content="Sample AI Trust Ledger artefacts for boards and regulators — illustrating how material AI decisions, safeguards, incidents, and accountability are recorded in a concise, board-ready format." />
   <meta name="robots" content="index,follow" />
   <meta name="author" content="Noetfield Systems Inc." />
+  <meta name="theme-color" content="#07070b" />
 
   <link rel="canonical" href="https://www.noetfield.com/trust-ledger/sample-report/" />
 
-  <!-- Favicon & app icons – هماهنگ با صفحه Trust Ledger -->
   <link rel="icon" href="/noetfield-favicon-512.png" type="image/png" />
   <link rel="apple-touch-icon" href="/noetfield-favicon-512.png" />
-  <meta name="theme-color" content="#05060a" />
 
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Noetfield" />
-  <meta property="og:title" content="Noetfield – AI Trust Ledger Sample Report" />
-  <meta
-    property="og:description"
-    content="A sample AI Trust Ledger report for boards, executives, and regulators – with 1-page Ledger entry and a structured board & regulator report."
-  />
+  <meta property="og:title" content="Noetfield — AI Trust Ledger Sample Report" />
+  <meta property="og:description" content="View an online sample board report and a 1-page ledger entry — designed for board packs, committees, and supervisory exchanges." />
   <meta property="og:url" content="https://www.noetfield.com/trust-ledger/sample-report/" />
   <meta property="og:image" content="https://www.noetfield.com/noetfield-og.png" />
 
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Noetfield – AI Trust Ledger Sample Report" />
-  <meta
-    name="twitter:description"
-    content="Download a 1-page Trust Ledger entry and a sample AI Trust Ledger board & regulator report."
-  />
+  <meta name="twitter:title" content="Noetfield — AI Trust Ledger Sample Report" />
+  <meta name="twitter:description" content="Sample AI Trust Ledger artefacts for boards and regulators." />
   <meta name="twitter:image" content="https://www.noetfield.com/noetfield-og.png" />
 
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
-    rel="stylesheet"
-  />
+  <!-- Shared shell assets -->
+  <link rel="stylesheet" href="/assets/noetfield-shell.css" />
+  <script defer src="/assets/noetfield-shell.js"></script>
 
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --bg: #05060a;
-      --bg-soft: #080911;
-      --border-soft: rgba(255,255,255,0.10);
-      --text-main: #f5f5f7;
-      --text-soft: #daddef;
-      --text-mute: #9ca3af;
-      --accent: #ffffff;
-      --accent-soft: #9ca3ff;
-    }
-
-    body {
-      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: radial-gradient(circle at top, #151827 0%, var(--bg) 55%);
-      color: var(--text-main);
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 32px 20px 40px;
-    }
-
-    a { color: inherit; text-decoration: none; }
-
-    .page {
-      width: 100%;
-      max-width: 1040px;
-      display: flex;
-      flex-direction: column;
-      min-height: calc(100vh - 72px);
-    }
-
-    header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 32px;
-      padding-bottom: 14px;
-      border-bottom: 1px solid var(--border-soft);
-      gap: 14px;
-    }
-
-    .brand-wrap {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .brand-logo {
-      width: 32px;
-      height: 32px;
-      border-radius: 999px;
-      background: radial-gradient(circle at 25% 0, #ffffff 0, #d4e0ff 18%, #818cf8 45%, #1f2937 70%, #020617 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 18px;
-      font-weight: 700;
-      color: #ffffff;
-      box-shadow: 0 10px 28px rgba(15,23,42,0.9);
-    }
-
-    .brand-text {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
-
-    .brand-name {
-      font-size: 16px;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
-    .brand-tagline {
-      font-size: 12px;
-      color: var(--text-mute);
-    }
-
-    nav {
-      display: flex;
-      gap: 18px;
-      font-size: 13px;
-      flex-wrap: wrap;
-    }
-
-    nav a {
-      opacity: 0.78;
-      padding-bottom: 2px;
-      border-bottom: 1px solid transparent;
-      position: relative;
-    }
-
-    nav a:hover {
-      opacity: 1;
-      border-bottom-color: rgba(209,213,219,0.6);
-    }
-
-    nav a.active {
-      opacity: 1;
-      border-bottom-color: rgba(255,255,255,0.85);
-      font-weight: 500;
-    }
-
-    main { width: 100%; }
-
-    .hero {
-      margin-bottom: 32px;
-    }
-
-    .hero-kicker {
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      color: var(--text-mute);
-      margin-bottom: 8px;
-    }
-
-    .hero-title {
-      font-size: clamp(26px, 3vw, 30px);
-      line-height: 1.15;
-      font-weight: 600;
-      margin-bottom: 14px;
-      letter-spacing: -0.02em;
-    }
-
-    .hero-title span {
-      background: linear-gradient(135deg, #ffffff, #a5b4fc);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
-
-    .hero-subtitle {
-      font-size: 15px;
-      line-height: 1.6;
-      color: #d0d3dd;
-      max-width: 680px;
-    }
-
-    .hero-cta-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 20px;
-    }
-
-    .btn-primary,
-    .btn-ghost {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 9px 18px;
-      border-radius: 999px;
-      font-size: 13px;
-      font-weight: 500;
-      cursor: pointer;
-      border: 1px solid transparent;
-      transition: background-color 0.16s ease, border-color 0.16s ease, color 0.16s ease, transform 0.06s ease;
-      white-space: nowrap;
-    }
-
-    .btn-primary {
-      background: linear-gradient(135deg, #f9fafb, #e5e7eb);
-      color: #050608;
-      box-shadow: 0 12px 32px rgba(15,23,42,0.9);
-    }
-
-    .btn-primary:hover {
-      background: #ffffff;
-      transform: translateY(-1px);
-    }
-
-    .btn-ghost {
-      background: rgba(15,23,42,0.9);
-      border-color: #4b4f5c;
-      color: #e1e3ea;
-    }
-
-    .btn-ghost:hover {
-      background: #111827;
-      border-color: #6c7080;
-    }
-
-    .section {
-      margin-bottom: 28px;
-    }
-
-    .section-title {
-      font-size: 18px;
-      font-weight: 600;
-      margin-bottom: 8px;
-    }
-
-    .section-subtitle {
-      font-size: 14px;
-      color: #a0a4ae;
-      margin-bottom: 10px;
-    }
-
-    .section p {
-      font-size: 14px;
-      line-height: 1.7;
-      color: #e1e3ea;
-      margin-bottom: 9px;
-    }
-
-    .grid-2 {
-      display: grid;
-      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
-      gap: 24px;
-      align-items: flex-start;
-    }
-
-    .card {
-      border-radius: 16px;
-      border: 1px solid #22252f;
-      background: radial-gradient(circle at top left, #191c2e 0, #0a0b10 52%, #050608 100%);
-      padding: 16px 16px 14px;
-    }
-
-    .card-title {
-      font-size: 14px;
-      font-weight: 600;
-      margin-bottom: 6px;
-    }
-
-    .card p {
-      font-size: 13px;
-      line-height: 1.6;
-      color: #daddef;
-      margin-bottom: 6px;
-    }
-
-    .tag-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-top: 4px;
-    }
-
-    .tag {
-      font-size: 11px;
-      border-radius: 999px;
-      border: 1px solid #343848;
-      padding: 3px 8px;
-      color: #b6bad1;
-    }
-
-    ul {
-      list-style: none;
-      margin-top: 4px;
-    }
-
-    li {
-      font-size: 14px;
-      line-height: 1.6;
-      color: #e1e3ea;
-      padding-left: 18px;
-      position: relative;
-      margin-bottom: 6px;
-    }
-
-    li::before {
-      content: "•";
-      position: absolute;
-      left: 4px;
-      color: var(--accent-soft);
-    }
-
-    .outline {
-      border-radius: 14px;
-      border: 1px solid #232633;
-      background: var(--bg-soft);
-      padding: 14px 16px 10px;
-    }
-
-    .outline-title {
-      font-size: 13px;
-      font-weight: 600;
-      margin-bottom: 6px;
-    }
-
-    .outline-item-title {
-      font-size: 12px;
-      font-weight: 600;
-      color: #e6e8f7;
-      margin-bottom: 2px;
-    }
-
-    .outline-item-text {
-      font-size: 12px;
-      color: #b6bad1;
-      line-height: 1.6;
-      margin-bottom: 6px;
-    }
-
-    footer {
-      margin-top: 32px;
-      font-size: 11px;
-      color: #737889;
-      display: flex;
-      justify-content: space-between;
-      gap: 12px;
-      flex-wrap: wrap;
-      align-items: center;
-    }
-
-    footer a {
-      color: #b6bad1;
-      text-decoration: none;
-    }
-
-    footer a:hover {
-      text-decoration: underline;
-    }
-
-    @media (max-width: 768px) {
-      body {
-        padding: 24px 16px 32px;
-      }
-
-      header {
-        align-items: flex-start;
-        flex-direction: column;
-        gap: 6px;
-      }
-
-      nav { justify-content: flex-start; }
-
-      .hero-title { font-size: 24px; }
-
-      .hero-subtitle { max-width: 100%; }
-
-      .grid-2 {
-        grid-template-columns: minmax(0, 1fr);
-      }
-
-      .hero-cta-row {
-        flex-direction: column;
-      }
-
-      .btn-primary,
-      .btn-ghost {
-        width: 100%;
-        justify-content: center;
-      }
-
-      footer {
-        flex-direction: column;
-        align-items: flex-start;
-      }
+    /* Page-scoped (safe) */
+    .nf-wrap{max-width:1040px;margin:0 auto;padding:26px 16px 40px;}
+    .nf-skip{position:absolute;left:-999px;top:auto;width:1px;height:1px;overflow:hidden}
+    .nf-skip:focus{left:16px;top:16px;width:auto;height:auto;z-index:9999;padding:10px 12px;border-radius:10px;background:rgba(15,23,42,.95);border:1px solid rgba(148,163,253,.35)}
+    .nf-hero{padding:18px 0 10px}
+    .nf-kicker{font-size:12px;letter-spacing:.16em;text-transform:uppercase;opacity:.72;margin-bottom:10px}
+    .nf-h1{font-size:clamp(28px,3.2vw,36px);line-height:1.12;margin:0 0 10px}
+    .nf-lead{max-width:720px;opacity:.86;line-height:1.65;margin:0 0 16px}
+    .nf-actions{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0 4px}
+    .nf-btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:10px 14px;border-radius:999px;border:1px solid rgba(148,163,253,.28);background:rgba(15,23,42,.65);text-decoration:none}
+    .nf-btnPrimary{background:linear-gradient(135deg,#f9fafb,#e5e7eb);color:#07070b;border-color:transparent}
+    .nf-btn:hover{transform:translateY(-1px)}
+    .nf-note{margin-top:10px;font-size:12px;opacity:.72}
+    .nf-grid{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:16px;margin-top:18px}
+    .nf-card{border-radius:16px;border:1px solid rgba(148,163,253,.18);background:rgba(3,7,18,.55);padding:14px 14px 12px}
+    .nf-card h2{font-size:14px;letter-spacing:.14em;text-transform:uppercase;opacity:.72;margin:0 0 8px}
+    .nf-card p{margin:0 0 8px;line-height:1.65;opacity:.86}
+    .nf-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+    .nf-tag{font-size:11px;letter-spacing:.12em;text-transform:uppercase;padding:4px 8px;border-radius:999px;border:1px solid rgba(148,163,253,.28);opacity:.82}
+    .nf-list{margin:8px 0 0;padding:0;list-style:none}
+    .nf-list li{position:relative;padding-left:14px;line-height:1.65;opacity:.86;margin:6px 0}
+    .nf-list li:before{content:"•";position:absolute;left:2px;top:0;opacity:.8}
+    .nf-divider{margin:20px 0;border:none;border-top:1px solid rgba(255,255,255,.10)}
+    .nf-footerMini{font-size:12px;opacity:.70;display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:space-between}
+    .nf-muted{opacity:.70}
+    @media (max-width: 860px){
+      .nf-grid{grid-template-columns:minmax(0,1fr)}
+      .nf-actions{flex-direction:column}
+      .nf-btn{width:100%}
     }
   </style>
 </head>
+
 <body>
-  <div class="page">
-    <header>
-      <a href="/" class="brand-wrap">
-        <div class="brand-logo">N</div>
-        <div class="brand-text">
-          <div class="brand-name">Noetfield</div>
-          <div class="brand-tagline">Trust Ledger for AI governance</div>
-        </div>
-      </a>
-      <nav aria-label="Primary navigation">
-        <a href="/">Home</a>
-        <a href="/trust-brief/">Trust Brief</a>
-        <a href="/trust-ledger/" class="active" aria-current="page">Trust Ledger</a>
-        <a href="/for-whom/">For Whom</a>
-        <a href="/gate/">Gate</a>
-        <a href="/about/">About</a>
-        <a href="/contact/">Contact</a>
-        <a href="/playbook/">Playbook</a>
-        <a href="/partners/">Partners</a>
-      </nav>
-    </header>
+  <a class="nf-skip" href="#main">Skip to content</a>
 
-    <main>
-      <section class="hero">
-        <div class="hero-kicker">Sample artefacts</div>
-        <h1 class="hero-title">
-          How an <span>AI Trust Ledger</span> looks in practice.
-        </h1>
-        <p class="hero-subtitle">
-          This page collects two sample artefacts: a 1-page Trust Ledger entry and a short AI Trust Ledger
-          board & regulator report. Both are designed to show how critical AI decisions, safeguards, and accountability
-          can be recorded in a way that is answer-ready for boards and supervisors.
-        </p>
-        <div class="hero-cta-row">
-          <a href="/trust-ledger/sample-report/online/" class="btn-primary" target="_blank" rel="noopener">
-            View 1-page Trust Ledger entry (online)
-          </a>
-          <a href="/gate/" class="btn-ghost" target="_blank" rel="noopener">
-            Request AI Trust Ledger report sample (PDF)
-          </a>
-        </div>
-      </section>
+  <!-- Header injected by shell.js (ids + data attrs for compatibility) -->
+  <div id="siteHeader" data-include="/assets/partials/header.html"></div>
 
-      <section class="section grid-2">
-        <div>
-          <h2 class="section-title">What these samples are designed to show</h2>
-          <p class="section-subtitle">
-            Enough structure for serious scrutiny, without drowning directors in technical detail.
-          </p>
-          <p>
-            The 1-page Trust Ledger entry compresses a single material AI decision – for example, a credit decision
-            or triage threshold – into a concise record of decision, safeguards, accountability, and evidence. It is
-            built to sit comfortably in a board pack or supervisory exchange.
-          </p>
-          <p>
-            The AI Trust Ledger report sample shows how those entries can be wrapped into a short narrative for boards
-            and regulators: why the organisation uses AI, which decisions are in scope, how safeguards and ownership
-            are structured, and how incidents or near-misses are surfaced.
-          </p>
-          <p>
-            In practice, clients adapt these templates to their own governance language, risk frameworks, and regulatory
-            expectations – the pattern stays consistent, while details localise.
-          </p>
-        </div>
-        <aside class="card">
-          <div class="card-title">Included in this page</div>
-          <p>
-            • 1-page Trust Ledger entry for a material AI decision (e.g. credit limits).  
-            • 6–8 page AI Trust Ledger report template tailored for boards, committees, and supervisors.
-          </p>
-          <div class="tag-row">
-            <div class="tag">Board-ready</div>
-            <div class="tag">Regulator-facing</div>
-            <div class="tag">Governance-first</div>
-          </div>
-        </aside>
-      </section>
+  <main id="main" class="nf-wrap" aria-label="AI Trust Ledger sample report">
+    <section class="nf-hero">
+      <div class="nf-kicker">Sample artefacts</div>
+      <h1 class="nf-h1">How an <span style="opacity:.92">AI Trust Ledger</span> looks in practice</h1>
+      <p class="nf-lead">
+        This page contains public, illustrative samples designed for boards, committees, and supervisors.
+        They demonstrate the structure — not your data. No confidential content is required to review these samples.
+      </p>
 
-      <section class="section">
-        <h2 class="section-title">Outline of the AI Trust Ledger report sample</h2>
-        <p class="section-subtitle">
-          A condensed view of the sections your board, executives, and supervisors will typically expect.
-        </p>
-        <div class="outline">
-          <div class="outline-title">Section overview</div>
-
-          <div class="outline-item">
-            <div class="outline-item-title">1. Purpose and scope</div>
-            <div class="outline-item-text">
-              Why the report exists, which AI-enabled decisions are in scope, and how the organisation defines
-              “material” AI use cases.
-            </div>
-          </div>
-
-          <div class="outline-item">
-            <div class="outline-item-title">2. Context and regulatory environment</div>
-            <div class="outline-item-text">
-              A short summary of the regulatory and supervisory landscape relevant to the organisation’s AI usage,
-              including key expectations from boards and executives.
-            </div>
-          </div>
-
-          <div class="outline-item">
-            <div class="outline-item-title">3. Inventory of material AI decisions</div>
-            <div class="outline-item-text">
-              A curated list of AI-influenced decisions that move risk, money, or customers – the backbone for
-              Trust Ledger entries.
-            </div>
-          </div>
-
-          <div class="outline-item">
-            <div class="outline-item-title">4. Example Trust Ledger entries</div>
-            <div class="outline-item-text">
-              Selected entries, each describing a specific AI decision, its safeguards, accountability, and links
-              to underlying documentation and controls.
-            </div>
-          </div>
-
-          <div class="outline-item">
-            <div class="outline-item-title">5. Governance, roles, and ownership</div>
-            <div class="outline-item-text">
-              How responsibilities are allocated between model owners, risk owners, committees, and the board – and
-              how the Trust Ledger sits above existing risk and control frameworks.
-            </div>
-          </div>
-
-          <div class="outline-item">
-            <div class="outline-item-title">6. Safeguards, limits, and monitoring</div>
-            <div class="outline-item-text">
-              The organisation’s approach to setting thresholds, overrides, human-in-the-loop steps, and automated
-              rollbacks for material AI systems.
-            </div>
-          </div>
-
-          <div class="outline-item">
-            <div class="outline-item-title">7. Incidents, near-misses, and lessons</div>
-            <div class="outline-item-text">
-              How AI-related incidents and near-misses are captured, escalated, and used to update both controls
-              and Trust Ledger entries over time.
-            </div>
-          </div>
-
-          <div class="outline-item">
-            <div class="outline-item-title">8. Next steps and maturity path</div>
-            <div class="outline-item-text">
-              A forward-looking view of how the organisation plans to extend and deepen its AI governance, including
-              how often the Trust Ledger will be refreshed for the board and supervisors.
-            </div>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <footer>
-      <div>© <span id="year"></span> Noetfield Systems Inc. All rights reserved.</div>
-      <div>
-        <a href="/">Home</a> ·
-        <a href="/trust-brief/">Trust Brief</a> ·
-        <a href="/trust-ledger/">Trust Ledger</a> ·
-        <a href="/for-whom/">For Whom</a> ·
-        <a href="/gate/">Gate</a> ·
-        <a href="/about/">About</a> ·
-        <a href="/contact/">Contact</a> ·
-        <a href="/playbook/">Playbook</a> ·
-        <a href="/partners/">Partners</a> ·
-        <a href="/structure/">Structure</a>
+      <div class="nf-actions">
+        <a class="nf-btn nf-btnPrimary" href="/trust-ledger/online-report/" target="_blank" rel="noopener">
+          View sample board report (online)
+        </a>
+        <a class="nf-btn" href="/trust-ledger/sample-report/online/" aria-label="Legacy path sample board report (online)">
+          Legacy link (if referenced)
+        </a>
+        <a class="nf-btn" href="/gate/" target="_blank" rel="noopener">
+          Request a tailored sample pack via Gate
+        </a>
       </div>
-    </footer>
-  </div>
+
+      <div class="nf-note">
+        Public page. Non-confidential. Illustrative metrics and identifiers.
+      </div>
+    </section>
+
+    <hr class="nf-divider" />
+
+    <section class="nf-grid" aria-label="What is included">
+      <div class="nf-card">
+        <h2>What these samples show</h2>
+        <p>
+          A board-safe way to record one material AI decision: scope, accountability, safeguards, evidence, and
+          how incidents and changes are carried forward into board actions.
+        </p>
+        <ul class="nf-list">
+          <li>Human-readable, decision-first formatting (no deep technical detail required).</li>
+          <li>Clear ownership: business owner, risk owner, governance function.</li>
+          <li>Change and incident visibility across a reporting period.</li>
+          <li>Board actions: approvals, conditions, and follow-ups.</li>
+        </ul>
+        <div class="nf-tags">
+          <span class="nf-tag">Board-ready</span>
+          <span class="nf-tag">Regulator-facing</span>
+          <span class="nf-tag">Governance-first</span>
+        </div>
+      </div>
+
+      <aside class="nf-card">
+        <h2>Included on this page</h2>
+        <ul class="nf-list">
+          <li><strong>Online board report</strong> (multi-section) — the standard “what changed, what happened, what is requested.”</li>
+          <li><strong>Legacy path</strong> retained temporarily for existing references.</li>
+          <li><strong>Gate request</strong> for a tailored sample pack aligned to your governance language.</li>
+        </ul>
+        <p class="nf-muted" style="margin-top:10px">
+          For implementation, samples are adapted to the organisation’s risk taxonomy, committee structure,
+          regulatory context, and evidence repositories.
+        </p>
+      </aside>
+    </section>
+
+    <hr class="nf-divider" />
+
+    <section class="nf-card" aria-label="Outline">
+      <h2>Typical report outline</h2>
+      <ul class="nf-list">
+        <li>Executive Summary (headlines + board decisions requested)</li>
+        <li>Material AI inventory snapshot</li>
+        <li>Significant changes (new / changed / decommissioned)</li>
+        <li>Incidents, exceptions, near-misses</li>
+        <li>Controls & testing (what exists, how often tested, results)</li>
+        <li>Provider & infrastructure view (where third parties matter)</li>
+        <li>Board actions & approvals (items, deadlines, conditions)</li>
+        <li>Annex (system profiles, mappings, glossary)</li>
+      </ul>
+    </section>
+
+    <hr class="nf-divider" />
+
+    <div class="nf-footerMini" aria-label="Page footer">
+      <div>© <span id="year"></span> Noetfield Systems Inc.</div>
+      <div class="nf-muted">
+        Prefer a guided start? Begin with <a href="/trust-brief/">Trust Brief</a> or enter via <a href="/gate/">Gate</a>.
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer injected by shell.js -->
+  <div id="siteFooter" data-include="/assets/partials/footer.html"></div>
 
   <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
+    document.getElementById("year").textContent = new Date().getFullYear();
   </script>
 </body>
 </html>

@@ -1,4 +1,3 @@
-/* /assets/noetfield-shell.js */
 /* Noetfield Shell
    - Inject header/footer partials
    - Burger menu
@@ -6,12 +5,12 @@
    - Footer year
    - Feedback tab
    - RID (Request ID): generate/store/display/copy + propagate to tagged links + inject into forms
-   Version: locked-2025.12.13+shell-v2.1
+   Version: locked-2025.12.18+shell-v2.2+sales-buy-offers-reserve
 */
 (function () {
   "use strict";
 
-  var SHELL_VERSION = "2025.12.13";
+  var SHELL_VERSION = "2025.12.18";
   var PARTIALS_BASE = "/assets/partials";
   var RID_KEY = "nf_rid";
 
@@ -52,9 +51,7 @@
   function sanitizeRID(x) {
     x = (x || "").trim();
     if (!x) return "";
-    // allow only safe chars; cap length
     x = x.replace(/[^a-zA-Z0-9\-_]/g, "").slice(0, 64);
-    // require minimum entropy/length
     if (x.length < 6) return "";
     return x;
   }
@@ -109,11 +106,11 @@
   }
 
   function copyText(text) {
-    // returns Promise<boolean>
     if (navigator.clipboard && navigator.clipboard.writeText) {
-      return navigator.clipboard.writeText(text).then(function () { return true; }).catch(function () { return false; });
+      return navigator.clipboard.writeText(text)
+        .then(function () { return true; })
+        .catch(function () { return false; });
     }
-    // fallback
     return new Promise(function (resolve) {
       try {
         var ta = document.createElement("textarea");
@@ -133,12 +130,10 @@
   }
 
   function applyRID(rid) {
-    // render RID into any element that declares data-rid
     safeQueryAll("[data-rid]").forEach(function (el) {
       el.textContent = rid;
     });
 
-    // copy buttons
     safeQueryAll("[data-copy-rid]").forEach(function (btn) {
       btn.addEventListener("click", function () {
         copyText(rid).then(function (ok) {
@@ -149,7 +144,6 @@
       });
     });
 
-    // propagate to tagged links (keeps existing query + hash)
     safeQueryAll("a[data-rid-link]").forEach(function (a) {
       var href = (a.getAttribute("href") || "").trim();
       if (!href) return;
@@ -157,10 +151,6 @@
       if (out) a.setAttribute("href", out);
     });
 
-    // inject into forms:
-    // - if request_id exists -> set
-    // - if rid exists -> set
-    // - else add BOTH hidden inputs for consistency
     safeQueryAll("form").forEach(function (form) {
       var ridInput = form.querySelector('input[name="rid"]');
       var reqInput = form.querySelector('input[name="request_id"]');
@@ -271,15 +261,22 @@
   }
 
   /* -------------------------
-     Footer CTA normalization (left box: Gate + Portal only)
+     Footer CTA normalization (keep Sales/Buy/Offers/Reserve/Portal)
   ------------------------- */
   function normalizeFooterCTA() {
     var cta = document.querySelector("#nfFooter .ctaRow");
     if (!cta) return;
 
-    var keep = { "/gate/": true, "/gate": true, "/portal/": true, "/portal": true };
+    var keep = {
+      "/gate/": true, "/gate": true,
+      "/gate/offers/": true, "/gate/offers": true,
+      "/gate/intake/": true, "/gate/intake": true,
+      "/portal/": true, "/portal": true
+    };
+
     Array.prototype.slice.call(cta.querySelectorAll("a")).forEach(function (a) {
       var href = (a.getAttribute("href") || "").trim();
+      if (href && href.indexOf("/gate/intake/?") === 0) return;
       if (!keep[href]) a.parentNode && a.parentNode.removeChild(a);
     });
   }
@@ -313,7 +310,6 @@
     var el = document.getElementById(targetId);
     if (!el) return;
 
-    // do not override if developer hardcoded markup
     if (el.children && el.children.length > 0) return;
 
     var url = PARTIALS_BASE + "/" + partialName + "?v=" + encodeURIComponent(SHELL_VERSION);
@@ -339,14 +335,12 @@
   async function boot() {
     await injectShell();
 
-    // post-injection hooks
     setYear();
     setActiveLinks();
     initBurger();
     normalizeFooterCTA();
     ensureFeedbackTab();
 
-    // RID last (needs injected DOM)
     var rid = getOrCreateRID();
     applyRID(rid);
   }

@@ -1,163 +1,168 @@
-<!DOCTYPE html>
+<!-- /gate/sales/index.html — Noetfield Sales v1.0 (Scenario B: Offers + Direct Start + Procurement Link) -->
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Noetfield – Status</title>
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <meta name="description" content="Operational status, response windows, and high-level security posture for Noetfield Gate and governance artefact routing." />
+  <title>Noetfield — Sales</title>
+  <meta name="description" content="Direct purchase/start page for buyers who already know what they want. Offers, start links, and a procurement (Invoice/PO) path." />
   <meta name="robots" content="index,follow" />
   <meta name="author" content="Noetfield Systems Inc." />
-  <link rel="canonical" href="https://www.noetfield.com/status/" />
+  <meta name="theme-color" content="#07070b" />
 
+  <link rel="canonical" href="https://www.noetfield.com/gate/sales/" />
   <link rel="icon" href="/noetfield-favicon-512.png" type="image/png" />
   <link rel="apple-touch-icon" href="/noetfield-favicon-512.png" />
-  <meta name="theme-color" content="#07070b" />
 
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Noetfield" />
-  <meta property="og:title" content="Noetfield Status" />
-  <meta property="og:description" content="Operational status, response windows, and routing posture." />
-  <meta property="og:url" content="https://www.noetfield.com/status/" />
+  <meta property="og:title" content="Noetfield — Sales" />
+  <meta property="og:description" content="Direct purchase/start page. Offers + direct starts + Invoice/PO path." />
+  <meta property="og:url" content="https://www.noetfield.com/gate/sales/" />
   <meta property="og:image" content="https://www.noetfield.com/noetfield-og.png" />
 
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Noetfield Status" />
-  <meta name="twitter:description" content="Operational status, response windows, and routing posture." />
+  <meta name="twitter:title" content="Noetfield — Sales" />
+  <meta name="twitter:description" content="Direct purchase/start page. Offers + direct starts + Invoice/PO path." />
   <meta name="twitter:image" content="https://www.noetfield.com/noetfield-og.png" />
 
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <!-- LOCKED SHELL -->
+  <link rel="stylesheet" href="/assets/noetfield-shell.css" />
+  <script src="/assets/noetfield-shell.js" defer></script>
 
   <style>
-    /* Reuse the same tokens/layout as Gate (kept minimal here) */
-    :root{
-      --bg0:#07070b; --bg1:#0b0b14;
-      --text:#eff0f7; --muted:#b9bbcf; --muted2:#8e91ad;
-      --gold:#c8a349; --radius:18px; --max:1120px;
-      --shadow: 0 28px 80px rgba(0,0,0,.62);
-      --shadow2: 0 14px 50px rgba(0,0,0,.50);
-      --focus: 0 0 0 4px rgba(200,163,73,.18);
-      --navH: 66px;
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      color: var(--text);
-      background: linear-gradient(180deg, var(--bg0), var(--bg1));
-      overflow-x:hidden;
-      -webkit-font-smoothing: antialiased;
-      text-rendering: optimizeLegibility;
-    }
-    a{color:inherit; text-decoration:none}
-    a:focus-visible, button:focus-visible{outline:none; box-shadow:var(--focus)}
-    .bg{
-      position:fixed; inset:0; z-index:-3; pointer-events:none;
+    .nfSHero { padding: 18px 0 10px; }
+    .nfSHeroShell{
+      position:relative;
+      border-radius: calc(var(--radius) + 8px);
+      border: 1px solid rgba(255,255,255,.11);
       background:
-        radial-gradient(1400px 820px at 10% -10%, rgba(200,163,73,.16), transparent 58%),
-        radial-gradient(1200px 820px at 100% 0%, rgba(122,167,255,.10), transparent 60%),
-        linear-gradient(180deg, var(--bg0), var(--bg1));
-      filter:saturate(1.05);
+        radial-gradient(1000px 420px at 18% 0%, rgba(200,163,73,.16), transparent 60%),
+        radial-gradient(1000px 420px at 90% 10%, rgba(122,167,255,.08), transparent 62%),
+        linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.022));
+      box-shadow: var(--shadow);
+      overflow:hidden;
     }
-    .wrap{max-width:var(--max); margin:0 auto; padding:24px}
-    header{
-      position:sticky; top:0; z-index:60;
-      backdrop-filter: blur(16px);
-      background: rgba(8,8,12,.60);
-      border-bottom: 1px solid rgba(255,255,255,.10);
+    .nfSHeroInner{ padding: 22px 18px; position:relative; z-index:1; }
+    .nfSEyebrow{
+      display:inline-flex; gap:10px; align-items:center;
+      color:var(--muted);
+      font-size:13px;
+      padding:9px 12px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.13);
+      background: rgba(255,255,255,.035);
     }
-    .nav{
-      max-width:var(--max); margin:0 auto;
-      padding: 12px 18px;
-      display:flex; align-items:center; justify-content:space-between;
-      gap:14px;
-      min-height: var(--navH);
+    .nfSDot{
+      width:8px; height:8px; border-radius:50%;
+      background: rgba(200,163,73,.97);
+      box-shadow: 0 0 0 3px rgba(200,163,73,.18);
     }
-    .brand{display:flex; align-items:center; gap:12px; min-width: 220px;}
-    .brand img{width:38px; height:38px; border-radius:12px; border:1px solid rgba(255,255,255,.12); box-shadow:0 12px 26px rgba(0,0,0,.55)}
-    .brand .name{font-weight:720}
-    .brand .tag{font-size:12px; color:var(--muted2); margin-top:2px}
-    .menu{display:flex; gap:10px; flex-wrap:wrap; margin-left:auto; font-size:13px;}
-    .menu a{color:var(--muted); padding:9px 11px; border-radius:14px; border:1px solid transparent}
-    .menu a:hover{color:var(--text); border-color:rgba(255,255,255,.10); background:rgba(255,255,255,.045)}
-    .menu a.active, .menu a[aria-current="page"]{
-      color:var(--text);
-      border-color:rgba(200,163,73,.38);
-      background: linear-gradient(180deg, rgba(200,163,73,.22), rgba(200,163,73,.10));
+    .nfSTitle{ margin:12px 0 10px; font-size: 34px; line-height:1.07; letter-spacing:-0.75px; }
+    .nfSLead{ margin:0; color:var(--muted); font-size:16px; max-width: 980px; line-height:1.75; }
+    .nfSLead strong{ color: var(--text); font-weight: 900; }
+
+    .nfNotice{
+      margin-top:12px;
+      padding:12px 12px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      color:var(--muted2);
+      font-size:12.8px;
+      line-height:1.6;
     }
-    .ctaRow{display:flex; align-items:center; gap:10px; margin-left:12px;}
-    .cta{
-      display:inline-flex; align-items:center; justify-content:center;
-      padding:10px 12px; border-radius:14px; font-size:13px; font-weight:700;
-      border:1px solid rgba(255,255,255,.14); background: rgba(255,255,255,.04);
+    .nfNotice strong{ color:var(--text); font-weight:900; }
+    .nfNotice a{ border-bottom:1px solid rgba(255,255,255,.18); }
+
+    .nfGrid{
+      display:grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap:16px;
+      margin: 14px 0 36px;
+      align-items:start;
     }
-    .cta.primary{border-color:rgba(200,163,73,.62); background: linear-gradient(180deg, rgba(200,163,73,.24), rgba(200,163,73,.11));}
-    .cta.secondary{border-color:rgba(255,255,255,.16);}
-    .card{
-      margin-top:16px;
+
+    .nfCard{
       border-radius:var(--radius);
       border:1px solid rgba(255,255,255,.11);
       background: linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.022));
       box-shadow: var(--shadow2);
       overflow:hidden;
+      min-width:0;
     }
-    .card .hd{padding:18px 18px 0}
-    .card .bd{padding:18px}
-    h1{margin:0; font-size:34px; letter-spacing:-.6px}
-    p{color:var(--muted); margin:10px 0 0}
-    .badge{
-      display:inline-flex; align-items:center; gap:10px;
-      padding:9px 12px; border-radius:999px;
-      border:1px solid rgba(255,255,255,.13); background: rgba(255,255,255,.035);
-      color:var(--muted); font-size:13px; margin-top:14px;
+    .nfCardHd{ padding:18px 18px 0; }
+    .nfCardBd{ padding:18px; }
+    .nfCardTitle{ margin:0 0 8px; font-size:18px; letter-spacing:-0.2px; }
+    .nfMuted{ color:var(--muted); line-height:1.7; margin:0; }
+
+    .nfOffers{ display:grid; gap:12px; margin-top:12px; }
+    .nfOffer{
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.11);
+      background: rgba(255,255,255,.03);
+      padding:14px;
+      overflow:hidden;
     }
-    .dot{width:8px; height:8px; border-radius:50%; background: rgba(122,255,170,.95); box-shadow:0 0 0 3px rgba(122,255,170,.16)}
-    .table{
-      width:100%;
-      border-collapse:separate; border-spacing:0;
-      margin-top:10px;
-      font-size:14px;
-    }
-    .table th,.table td{
-      padding:12px 12px;
-      border-bottom:1px solid rgba(255,255,255,.10);
-      vertical-align:top;
-    }
-    .table th{color:var(--muted2); font-weight:650; text-align:left; font-size:12px; letter-spacing:.2px; text-transform:uppercase}
-    .statusPill{
-      display:inline-flex; padding:7px 10px; border-radius:999px;
-      border:1px solid rgba(255,255,255,.12); background: rgba(255,255,255,.03);
-      color:var(--muted);
-      font-size:12px;
+    .nfOfferTop{ display:flex; gap:10px; align-items:flex-start; justify-content:space-between; flex-wrap:wrap; }
+    .nfOffer h3{ margin:0; font-size:16px; letter-spacing:-.2px; font-weight:950; }
+    .nfTag{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:7px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.03);
+      color:var(--muted2);
+      font-size:12.4px;
       white-space:nowrap;
     }
-    .statusPill.ok{border-color: rgba(122,255,170,.28); background: rgba(122,255,170,.08); color:#dfffea}
-    .note{margin-top:12px; color:var(--muted2); font-size:12px; line-height:1.55}
-    footer{
-      border-top:1px solid rgba(255,255,255,.10);
-      padding: 18px 0 22px;
-      color:var(--muted2);
-      margin-top:34px;
-      background: rgba(8,8,12,.35);
-      backdrop-filter: blur(10px);
+    .nfOffer p{ margin:10px 0 0; color:var(--muted); line-height:1.7; }
+    .nfOffer ul{ margin:10px 0 0; padding-left:18px; color:var(--muted2); line-height:1.6; }
+    .nfOffer li{ margin:6px 0; }
+    .nfActionsRow{ display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-top:12px; }
+    .nfActionsRow .btn{ min-height:44px; }
+
+    .nfRail{ position: sticky; top: 14px; }
+    .nfRailBox{
+      border-radius: var(--radius);
+      border:1px solid rgba(255,255,255,.11);
+      background: linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.022));
+      box-shadow: var(--shadow2);
+      overflow:hidden;
     }
-    .foot{max-width:var(--max); margin:0 auto; padding:0 18px; display:flex; flex-wrap:wrap; gap:12px 18px; align-items:center; justify-content:space-between;}
-    .footNav{display:flex; flex-wrap:wrap; gap:10px 12px; align-items:center;}
-    .footNav a{color:var(--muted); padding:8px 10px; border-radius:14px; border:1px solid rgba(255,255,255,.10); background: rgba(255,255,255,.03); font-size:13px;}
-    .footNav a:hover{color:var(--text); border-color:rgba(255,255,255,.16); background:rgba(255,255,255,.05)}
-    @media (max-width: 860px){.menu{display:none}}
-    @media (max-width: 760px){.wrap{padding:16px}.brand .tag{display:none}}
+    .nfRailHd{ padding:18px 18px 0; }
+    .nfRailBd{ padding:18px; }
+    .nfKpi{
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      padding:12px;
+      margin-top:12px;
+      color:var(--muted2);
+      font-size:12.8px;
+      line-height:1.6;
+    }
+    .nfKpi strong{ color:var(--text); font-weight:900; }
+    .nfRailActions{ display:grid; gap:10px; margin-top:12px; }
+    .nfRailActions .btn{ min-height:46px; }
+    .nfMini{ margin-top:10px; color:var(--muted2); font-size:12.6px; line-height:1.6; }
+    .nfMini a{ border-bottom:1px solid rgba(255,255,255,.18); }
+
+    @media (max-width: 980px){
+      .nfGrid{ grid-template-columns: 1fr; }
+      .nfRail{ position: relative; top: 0; }
+      .nfSTitle{ font-size: 28px; }
+    }
   </style>
 
   <script type="application/ld+json">
   {
     "@context":"https://schema.org",
     "@type":"WebPage",
-    "name":"Noetfield Status",
-    "url":"https://www.noetfield.com/status/",
+    "name":"Noetfield — Sales",
+    "url":"https://www.noetfield.com/gate/sales/",
+    "description":"Direct purchase/start page for buyers who already know what they want.",
     "isPartOf":{"@type":"WebSite","name":"Noetfield","url":"https://www.noetfield.com/"},
     "publisher":{"@type":"Organization","name":"Noetfield Systems Inc."}
   }
@@ -166,144 +171,178 @@
 
 <body>
   <div class="bg" aria-hidden="true"></div>
+  <a class="skip" href="#main">Skip to content</a>
 
-  <header>
-    <div class="nav">
-      <a class="brand" href="/" aria-label="Noetfield home">
-        <img src="/noetfield-favicon-512.png" alt="Noetfield mark" />
-        <div>
-          <div class="name">Noetfield</div>
-          <div class="tag">Trust &amp; Stewardship in the Age of AI</div>
-        </div>
-      </a>
+  <!-- injected header -->
+  <header id="nfHeader"></header>
 
-      <nav class="menu" aria-label="Primary navigation">
-        <a href="/trust-ledger/">Trust Ledger</a>
-        <a href="/trust-brief/">Trust Brief</a>
-        <a href="/playbook/">Playbook</a>
-        <a href="/copilot-cost-governance/">Copilot</a>
-        <a href="/for-whom/">For Whom</a>
-        <a href="/status/">Status</a>
-      </nav>
+  <main id="main" class="wrap">
+    <section class="nfSHero" aria-label="Sales hero">
+      <div class="nfSHeroShell">
+        <div class="nfSHeroInner">
+          <div class="nfSEyebrow"><span class="nfSDot"></span> Sales • direct start • scenario B</div>
+          <h1 class="nfSTitle">Sales (direct starts)</h1>
+          <p class="nfSLead">
+            For buyers who already know what they want. Use the direct start links below.
+            If your organisation requires invoice/PO, use <strong>Procurement</strong>.
+          </p>
 
-      <div class="ctaRow" aria-label="Primary actions">
-        <a class="cta primary" href="/gate/">Gate</a>
-        <a class="cta secondary" href="/portal/">Portal</a>
-      </div>
-    </div>
-  </header>
-
-  <main class="wrap">
-    <section class="card">
-      <div class="hd">
-        <h1>Status</h1>
-        <p>Operational posture and response windows for Gate routing. High-level by design.</p>
-        <div class="badge"><span class="dot"></span> Overall status: Operational</div>
-      </div>
-
-      <div class="bd">
-        <table class="table" aria-label="Service status">
-          <thead>
-            <tr>
-              <th>Component</th>
-              <th>Status</th>
-              <th>Notes</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Website</td>
-              <td><span class="statusPill ok">Operational</span></td>
-              <td>Public pages and navigation available.</td>
-            </tr>
-            <tr>
-              <td>Gate intake (public)</td>
-              <td><span class="statusPill ok">Operational</span></td>
-              <td>Non-confidential routing only.</td>
-            </tr>
-            <tr>
-              <td>Routing review</td>
-              <td><span class="statusPill">Human review</span></td>
-              <td>Fit check, then channel proposal.</td>
-            </tr>
-            <tr>
-              <td>Secure exchange</td>
-              <td><span class="statusPill">By approval</span></td>
-              <td>Proposed after fit (e.g., NDA / secure share).</td>
-            </tr>
-            <tr>
-              <td>Portal</td>
-              <td><span class="statusPill">Controlled access</span></td>
-              <td>Invitation-based. Not a public support channel.</td>
-            </tr>
-          </tbody>
-        </table>
-
-        <div class="note">
-          <strong>Response windows (America/Vancouver):</strong><br />
-          Initial acknowledgement: 1 business day (typical).<br />
-          Routing decision: 1–2 business days (typical).<br />
-          Board/regulator urgency: handled case-by-case when clearly stated.
-        </div>
-
-        <div class="note">
-          <strong>Security posture (high-level):</strong><br />
-          Do not submit confidential, customer, or security-sensitive details via public forms.<br />
-          If fit, a safer channel will be proposed (NDA / secure exchange).
-        </div>
-
-        <div class="note">
-          <strong>Updates:</strong><br />
-          • Gate navigation upgraded (CTA + controlled access).<br />
-          • Status page introduced for transparency posture.
-        </div>
-
-        <div class="note" style="margin-top:14px;">
-          <a href="/privacy/">Privacy</a> · <a href="/terms/">Terms</a> · <a href="/gate/">Gate</a>
+          <div class="nfNotice" role="note">
+            <strong>Public intake = non-confidential.</strong>
+            Do not submit secrets, credentials, private keys, or regulated personal data. Secure sharing options are confirmed after kickoff.
+          </div>
         </div>
       </div>
     </section>
 
-    <footer>
-      <div class="foot">
-        <div>© <span id="y"></span> Noetfield Systems Inc.</div>
-        <div class="footNav" aria-label="Footer navigation">
-          <a href="/">Home</a>
-          <a href="/trust-ledger/">Trust Ledger</a>
-          <a href="/trust-brief/">Trust Brief</a>
-          <a href="/playbook/">Playbook</a>
-          <a href="/copilot-cost-governance/">Copilot</a>
-          <a href="/for-whom/">For Whom</a>
-          <a href="/status/">Status</a>
-          <a href="/gate/">Gate</a>
-          <a href="/portal/">Portal</a>
-          <a href="/privacy/">Privacy</a>
-          <a href="/terms/">Terms</a>
-        </div>
+    <section class="nfGrid" aria-label="Sales layout">
+      <!-- LEFT -->
+      <div>
+        <section class="nfCard" aria-label="Offers">
+          <div class="nfCardHd">
+            <h2 class="nfCardTitle">Offers</h2>
+            <p class="nfMuted">Each offer has a direct start link. Procurement buyers can route via Invoice/PO without returning to Gate routing.</p>
+          </div>
+          <div class="nfCardBd">
+            <div class="nfOffers">
+              <!-- QuickScan -->
+              <article class="nfOffer" aria-label="Copilot QuickScan">
+                <div class="nfOfferTop">
+                  <h3>Copilot QuickScan</h3>
+                  <span class="nfTag">5–7 business days</span>
+                </div>
+                <p>Fast Copilot governance and evidence pack: posture, oversharing exposure paths, boundaries, and decision options.</p>
+                <ul>
+                  <li>Decision-ready executive memo</li>
+                  <li>Boundary and exposure map</li>
+                  <li>Prioritized control checklist</li>
+                </ul>
+                <div class="nfActionsRow">
+                  <a class="btn" href="/copilot/quickscan/intake/">Start QuickScan</a>
+                  <a class="btn secondary" href="/copilot/quickscan/">View details</a>
+                  <a class="btn secondary" href="/gate/procurement/?focus=quickscan">Invoice / PO</a>
+                </div>
+              </article>
+
+              <!-- Trust Brief -->
+              <article class="nfOffer" aria-label="Trust Brief">
+                <div class="nfOfferTop">
+                  <h3>Trust Brief (6-week)</h3>
+                  <span class="nfTag">6 weeks</span>
+                </div>
+                <p>Structured diagnostic to map material AI use-cases, decision points, risks, and an initial operating model—ready for leadership review.</p>
+                <ul>
+                  <li>Use-case map + owners</li>
+                  <li>Decision gates + operating model draft</li>
+                  <li>Board-ready roadmap</li>
+                </ul>
+                <div class="nfActionsRow">
+                  <a class="btn" href="/trust-brief/intake/">Start Trust Brief</a>
+                  <a class="btn secondary" href="/trust-brief/">View details</a>
+                  <a class="btn secondary" href="/gate/procurement/?focus=brief">Invoice / PO</a>
+                </div>
+              </article>
+
+              <!-- Trust Ledger -->
+              <article class="nfOffer" aria-label="Trust Ledger">
+                <div class="nfOfferTop">
+                  <h3>Trust Ledger</h3>
+                  <span class="nfTag">Ongoing</span>
+                </div>
+                <p>Maintained register of AI systems, safeguards, sign-offs, and evidence—kept ready for recurring scrutiny (board, client, audit, regulator).</p>
+                <ul>
+                  <li>Ledger register + evidence index</li>
+                  <li>Board export on agreed cadence</li>
+                  <li>Change trail mindset</li>
+                </ul>
+                <div class="nfActionsRow">
+                  <a class="btn" href="/trust-ledger/intake/">Start Trust Ledger</a>
+                  <a class="btn secondary" href="/trust-ledger/">View details</a>
+                  <a class="btn secondary" href="/gate/procurement/?focus=ledger">Invoice / PO</a>
+                </div>
+              </article>
+
+              <!-- Playbook -->
+              <article class="nfOffer" aria-label="Playbook Pro">
+                <div class="nfOfferTop">
+                  <h3>Playbook Pro (Agency / Pro)</h3>
+                  <span class="nfTag">One-time purchase</span>
+                </div>
+                <p>Reusable governance kit for teams or agencies: intake → due diligence → incident patterns → client-ready brief structures.</p>
+                <ul>
+                  <li>Templates for policy/control/risk formats</li>
+                  <li>Client-ready brief structures</li>
+                  <li>Upgrade path into delivery packages</li>
+                </ul>
+                <div class="nfActionsRow">
+                  <a class="btn" href="/playbook/pro/">Open Playbook Pro</a>
+                  <a class="btn secondary" href="/playbook/">View Playbook</a>
+                  <a class="btn secondary" href="/gate/procurement/?focus=playbook">Invoice / PO</a>
+                </div>
+              </article>
+            </div>
+
+            <div class="nfNotice" style="margin-top:12px;">
+              <strong>Optional payment links:</strong> If you later add Stripe/checkout links, place them as the first CTA per offer (e.g., “Pay by card”), while keeping “Start intake” as the second CTA.
+            </div>
+          </div>
+        </section>
       </div>
-    </footer>
+
+      <!-- RIGHT -->
+      <aside class="nfRail" aria-label="Sales shortcuts">
+        <div class="nfRailBox">
+          <div class="nfRailHd">
+            <h2 class="nfCardTitle" style="margin-bottom:6px;">Shortcuts</h2>
+            <p class="nfMuted">Fast route for procurement and routing if needed.</p>
+          </div>
+          <div class="nfRailBd">
+            <div class="nfKpi">
+              <strong>Invoice / PO required?</strong><br/>
+              Use procurement onboarding and vendor snapshot.
+            </div>
+            <div class="nfRailActions">
+              <a class="btn" href="/gate/procurement/">Open Procurement</a>
+              <a class="btn secondary" href="/vendor/">Vendor page</a>
+            </div>
+
+            <div class="nfKpi">
+              <strong>Not sure?</strong><br/>
+              Use the 2-question wizard router.
+            </div>
+            <div class="nfRailActions">
+              <a class="btn secondary" href="/gate/#wizard">Open Wizard</a>
+              <a class="btn secondary" href="/gate/">Back to Gate</a>
+            </div>
+
+            <div class="nfMini">
+              Sales contact: <a href="mailto:sales@noetfield.com">sales@noetfield.com</a><br/>
+              Procurement: <a href="mailto:procurement@noetfield.com">procurement@noetfield.com</a>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </section>
   </main>
 
-  <script>
-    document.getElementById("y").textContent = new Date().getFullYear();
-    (function () {
-      function normPath(p) {
-        if (!p) return "/";
-        p = p.split("?")[0].split("#")[0];
-        if (p.length > 1 && p.endsWith("/")) p = p.slice(0, -1);
-        return p.toLowerCase();
-      }
-      var current = normPath(window.location.pathname);
-      var links = document.querySelectorAll('nav[aria-label="Primary navigation"] a, footer a, .ctaRow a');
-      links.forEach(function (a) {
-        var href = a.getAttribute("href") || "";
-        if (!href.startsWith("/")) return;
-        var target = normPath(href);
-        var isActive = (target === "/" && current === "/") || (target !== "/" && (current === target || current.startsWith(target + "/")));
-        if (isActive) { a.classList.add("active"); a.setAttribute("aria-current","page"); }
-        else { a.classList.remove("active"); a.removeAttribute("aria-current"); }
-      });
-    })();
-  </script>
+  <!-- injected footer -->
+  <footer id="nfFooter"></footer>
+
+  <!--
+    CHANGELOG (sales v1.0)
+    - Dedicated direct-start page for Scenario B (no routing required).
+    - Each offer includes a procurement link to /gate/procurement/ with focus param.
+
+    SMOKE TEST
+    - GET /gate/sales/ returns 200
+    - /assets/noetfield-shell.css returns 200 and styles apply
+    - /assets/noetfield-shell.js returns 200 and header/footer load into #nfHeader/#nfFooter
+    - Offer CTAs route to:
+      - /copilot/quickscan/intake/
+      - /trust-brief/intake/
+      - /trust-ledger/intake/
+      - /playbook/pro/
+      - /gate/procurement/
+  -->
 </body>
 </html>

@@ -1,3 +1,4 @@
+<!-- /trust-ledger/intake/index.html — Trust Ledger Intake (vNext: quote builder + procurement email builder + RID continuity) -->
 <!doctype html>
 <html lang="en">
 <head>
@@ -33,12 +34,11 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
 
-  <!-- LOCKED SHELL (must match Trust Brief/Trust Ledger pages) -->
+  <!-- LOCKED SHELL -->
   <link rel="stylesheet" href="/assets/noetfield-shell.css" />
   <script src="/assets/noetfield-shell.js" defer></script>
 
   <style>
-    /* Page-local styles (prefixed) */
     .nfIntakeHero{padding:22px 0 10px}
     .nfIntakeShell{
       position:relative;
@@ -151,19 +151,18 @@
 
     .nfActions{display:flex; gap:12px; flex-wrap:wrap; align-items:center; margin-top:14px}
 
-    .nfPriceBox{
+    .nfBox{
       border-radius:16px;
       border:1px solid rgba(255,255,255,.12);
       background: rgba(255,255,255,.03);
       padding:14px;
+      margin-top:12px;
     }
-    .nfPriceTop{display:flex; justify-content:space-between; gap:10px; align-items:flex-start; flex-wrap:wrap}
-    .nfPriceLabel{font-size:11px; letter-spacing:.28em; text-transform:uppercase; color:var(--muted2)}
+
+    .nfQuoteTop{display:flex; justify-content:space-between; gap:10px; align-items:flex-start; flex-wrap:wrap}
+    .nfLabel{font-size:11px; letter-spacing:.28em; text-transform:uppercase; color:var(--muted2)}
     .nfPrice{font-size:26px; font-weight:950; letter-spacing:-.3px; margin-top:6px}
-    .nfMini{margin-top:10px; color:var(--muted2); font-size:12.8px; line-height:1.6}
-    .nfMini a{border-bottom:1px solid rgba(255,255,255,.18)}
-    .nfList{margin:10px 0 0; padding-left:18px; color:var(--muted); line-height:1.7}
-    .nfList li{margin:6px 0}
+    .mono{font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace}
 
     .nfRid{
       margin-top:12px;
@@ -177,13 +176,11 @@
     }
     .nfRid strong{color:var(--text); font-weight:900}
     .nfRidRow{display:flex; flex-wrap:wrap; gap:10px; align-items:center; justify-content:space-between}
-    .nfRidCode{font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace}
     .nfRidBtns{display:flex; gap:10px; flex-wrap:wrap; align-items:center}
 
     .nfOk{display:none}
     .nfOk.show{display:block}
 
-    /* Minimal local button safety (in case shell button classes differ) */
     .btn{
       display:inline-flex;
       align-items:center;
@@ -197,6 +194,7 @@
       text-decoration:none;
       transition: transform .12s ease;
       min-height:44px;
+      cursor:pointer;
     }
     .btn:hover{transform: translateY(-1px)}
     .btn.secondary{opacity:.92}
@@ -204,10 +202,9 @@
       border-color: transparent;
       background: linear-gradient(135deg,#f9fafb,#e5e7eb);
       color:#07070b;
-      font-weight:800;
+      font-weight:850;
     }
 
-    /* Desktop-only: floating/boxed header like /status (match Trust Brief reference) */
     @media (min-width: 981px){
       #nfHeader{
         position: sticky;
@@ -255,11 +252,9 @@
   <div class="bg" aria-hidden="true"></div>
   <a class="skip" href="#main">Skip to content</a>
 
-  <!-- Injected header -->
   <header id="nfHeader"></header>
 
   <main id="main" class="wrap">
-    <!-- HERO -->
     <section class="nfIntakeHero" aria-label="Trust Ledger Intake">
       <div class="nfIntakeShell">
         <div class="nfIntakeInner">
@@ -275,7 +270,7 @@
             <div class="nfPill"><strong>2–4 min</strong> intake</div>
             <div class="nfPill"><strong>Non-confidential</strong> inputs</div>
             <div class="nfPill"><strong>Scope</strong> + cadence</div>
-            <div class="nfPill"><strong>Procurement</strong> path</div>
+            <div class="nfPill"><strong>Evidence</strong> depth</div>
             <div class="nfPill"><strong>Request ID</strong> tracking</div>
           </div>
 
@@ -307,7 +302,6 @@
                 method="POST"
                 accept-charset="UTF-8">
 
-            <!-- routing -->
             <input type="hidden" name="package" value="trust-ledger" />
             <input type="hidden" name="page" value="/trust-ledger/intake/" />
             <input type="hidden" name="rid" value="" data-rid-field />
@@ -345,27 +339,25 @@
 
             <div class="nfRow2">
               <div class="nfField">
-                <label for="scope">Starting scope</label>
-                <select id="scope" name="scope" required>
+                <label for="entries">Active entries (starting)</label>
+                <select id="entries" name="active_entries" required>
                   <option value="" selected disabled>Select…</option>
-                  <option>Copilot / M365 only</option>
-                  <option>1–3 AI tools/systems</option>
-                  <option>Multiple teams / multiple systems</option>
-                  <option>Enterprise-wide</option>
+                  <option value="1-5">1–5</option>
+                  <option value="6-10">6–10</option>
+                  <option value="11-20">11–20</option>
+                  <option value="21+">21+</option>
                 </select>
-                <div class="nfHelp">Choose the smallest truthful scope for week 1. Expand later.</div>
+                <div class="nfHelp">Used to recommend a plan and estimate.</div>
               </div>
-
               <div class="nfField">
                 <label for="cadence">Cadence</label>
                 <select id="cadence" name="cadence" required>
                   <option value="" selected disabled>Select…</option>
-                  <option>Monthly register updates</option>
-                  <option>Quarterly updates</option>
-                  <option>Hybrid (monthly + incident-driven)</option>
-                  <option>Not sure yet</option>
+                  <option value="quarterly">Quarterly updates</option>
+                  <option value="monthly">Monthly register updates</option>
+                  <option value="hybrid">Hybrid (monthly + incident-driven)</option>
+                  <option value="unsure">Not sure yet</option>
                 </select>
-                <div class="nfHelp">Cadence drives effort and evidence freshness.</div>
               </div>
             </div>
 
@@ -374,24 +366,23 @@
                 <label for="evidence">Evidence depth</label>
                 <select id="evidence" name="evidence_depth" required>
                   <option value="" selected disabled>Select…</option>
-                  <option>Light (policies + approvals; minimal exports)</option>
-                  <option>Standard (exports/configs where possible)</option>
-                  <option>Deep (logs + configs + repeatable proof bundles)</option>
-                  <option>Not sure yet</option>
+                  <option value="light">Light (policies + approvals)</option>
+                  <option value="standard">Standard (exports/configs where possible)</option>
+                  <option value="deep">Deep (logs + repeatable proof bundles)</option>
+                  <option value="unsure">Not sure yet</option>
                 </select>
-                <div class="nfHelp">“Deep” is only after kickoff under proper access controls.</div>
+                <div class="nfHelp">“Deep” happens after kickoff under proper access controls.</div>
               </div>
 
               <div class="nfField">
                 <label for="proc">Procurement path</label>
                 <select id="proc" name="procurement">
                   <option value="" selected>Optional</option>
-                  <option>Card payment possible</option>
-                  <option>Invoice / PO required</option>
-                  <option>Vendor onboarding required</option>
-                  <option>Not sure yet</option>
+                  <option value="card">Card payment possible</option>
+                  <option value="po">Invoice / PO required</option>
+                  <option value="onboarding">Vendor onboarding required</option>
+                  <option value="unsure">Not sure yet</option>
                 </select>
-                <div class="nfHelp">If PO required, request invoice below.</div>
               </div>
             </div>
 
@@ -409,7 +400,7 @@
 
             <div class="nfActions">
               <button class="btn primary" type="submit">Send intake</button>
-              <a class="btn secondary" href="mailto:ceo@noetfield.com?subject=Trust%20Ledger%20intake&body=Hello%20Noetfield%2C%0A%0ARequest%20ID%3A%20%0AOrganization%3A%20%0ARole%3A%20%0AScope%3A%20%0ACadence%3A%20%0AEvidence%20depth%3A%20%0AProcurement%3A%20%0AWhat%20the%20Ledger%20must%20answer%3A%20%0ASystems%20in%20scope%3A%20%0A">Email instead</a>
+              <a class="btn secondary" id="emailFallback" href="mailto:ceo@noetfield.com">Email instead</a>
               <a class="btn secondary" href="/status/">Status</a>
             </div>
 
@@ -417,7 +408,7 @@
               <div class="nfRidRow">
                 <div>
                   <strong>Request ID:</strong>
-                  <span class="nfRidCode" data-rid-text>—</span>
+                  <span class="mono" data-rid-text>—</span>
                 </div>
                 <div class="nfRidBtns">
                   <button class="btn secondary" type="button" data-copy-rid>Copy</button>
@@ -430,8 +421,7 @@
             </div>
 
             <div class="nfInfo">
-              <strong>Good inputs:</strong> systems in scope, owners, reporting cadence, evidence expectations.
-              <br/>
+              <strong>Good inputs:</strong> systems in scope, owners, reporting cadence, evidence expectations.<br/>
               <strong>Avoid:</strong> credentials, private keys, sensitive personal data, internal case files, full contract text.
             </div>
 
@@ -444,107 +434,194 @@
         </div>
       </div>
 
-      <!-- OPTIONS -->
-      <aside class="nfCard" aria-label="Kickoff options">
+      <!-- QUOTE + PROCUREMENT EMAIL -->
+      <aside class="nfCard" aria-label="Quote and procurement">
         <div class="hd">
-          <h2>Kickoff</h2>
-          <p class="nfMuted">Designed for ongoing accountability and fast answers under scrutiny.</p>
+          <h2>Quote (estimate)</h2>
+          <p class="nfMuted">Plan recommendation + monthly estimate + procurement-ready email text.</p>
         </div>
 
         <div class="bd">
-          <div class="nfPriceBox">
-            <div class="nfPriceTop">
+          <div class="nfBox">
+            <div class="nfQuoteTop">
               <div>
-                <div class="nfPriceLabel">Trust Ledger</div>
-                <div class="nfPrice">Ongoing</div>
+                <div class="nfLabel">Recommended plan</div>
+                <div class="nfPrice" id="planName">—</div>
               </div>
               <div>
-                <div class="nfPriceLabel">Typical range</div>
-                <div class="nfPrice">$750–$3k CAD / mo</div>
+                <div class="nfLabel">Estimate</div>
+                <div class="nfPrice" id="planPrice">—</div>
               </div>
             </div>
-
-            <div class="nfMini">
-              Pricing varies by number of systems, cadence, and evidence depth. Taxes may apply where applicable.
-              For a fixed-start diagnostic, use <a href="/trust-brief/">Trust Brief</a>.
+            <div class="nfHelp" id="planLine" style="margin-top:10px">
+              Select “Active entries”, “Cadence”, and “Evidence depth” to generate.
             </div>
 
-            <ul class="nfList">
-              <li>Board-ready ledger entries with owners and controls</li>
-              <li>Evidence linkage (exports, configs, logs) by design</li>
-              <li>Change history and accountability trail over time</li>
-              <li>Answer-ready posture for audits and client due diligence</li>
-            </ul>
+            <div class="nfActions" style="margin-top:12px">
+              <button class="btn primary" type="button" id="buildQuote">Build estimate</button>
+              <button class="btn secondary" type="button" id="copyQuote">Copy quote</button>
+              <a class="btn secondary" id="emailQuote" href="mailto:ceo@noetfield.com">Email quote</a>
+              <a class="btn secondary" id="emailPO" href="mailto:procurement@noetfield.com">Request PO / invoice</a>
+            </div>
 
-            <div class="nfActions" style="margin-top:14px;">
-              <a class="btn primary" href="#intake">Start intake</a>
-              <a class="btn secondary" href="mailto:ceo@noetfield.com?subject=Trust%20Ledger%20-%20Invoice%2FPO%20request">Request invoice / PO</a>
+            <div class="nfInfo" style="margin-top:12px">
+              <strong>Disclosure:</strong> estimate only; final quote confirmed after intake. Taxes may apply where applicable.
             </div>
           </div>
 
           <div class="nfInfo" style="margin-top:12px;">
-            <strong>What happens next:</strong> confirm scope → confirm cadence → set up first entries → establish reporting rhythm.
+            <strong>If scope is unclear:</strong> start with <a href="/trust-brief/">Trust Brief</a> (6-week diagnostic) to generate the first starter entries and board options.
           </div>
 
           <div class="nfInfo" style="margin-top:12px;">
-            <strong>If Copilot is the trigger:</strong> start with <a href="/copilot/quickscan/">Copilot QuickScan</a> (fast evidence posture), then roll into Trust Ledger cadence.
+            <strong>If Copilot is the trigger:</strong> start with <a href="/copilot/quickscan/">Copilot QuickScan</a>, then roll into Trust Ledger cadence.
           </div>
         </div>
       </aside>
     </section>
   </main>
 
-  <!-- Injected footer -->
   <footer id="nfFooter"></footer>
 
   <script>
     (function(){
-      var form = document.getElementById("nfIntakeForm");
-      var ok = document.getElementById("nfOk");
-
       function ridNew(){
-        // short, non-sensitive, URL/email friendly
         var ts = Date.now().toString(36);
         var rnd = Math.random().toString(36).slice(2, 8);
         return ("NF-" + ts + "-" + rnd).toUpperCase();
       }
-
+      function ridGet(){
+        try { return localStorage.getItem("nf_rid") || ""; } catch(e){ return ""; }
+      }
       function ridSet(val){
+        try { localStorage.setItem("nf_rid", val); } catch(e){}
         try {
-          var txt = document.querySelector("[data-rid-text]");
-          var hid = document.querySelector("[data-rid-field]");
-          if (txt) txt.textContent = val;
-          if (hid) hid.value = val;
-
-          // also keep in localStorage for continuity across pages
-          try { localStorage.setItem("nf_rid", val); } catch(e) {}
-        } catch(e) {}
+          document.querySelectorAll("[data-rid-text]").forEach(function(n){ n.textContent = val; });
+          document.querySelectorAll("[data-rid-field]").forEach(function(n){ n.value = val; });
+        } catch(e){}
       }
-
-      function ridGetFromUrl(){
-        try{
-          var p = new URLSearchParams(location.search);
-          var r = p.get("rid");
-          if (r && r.length >= 6) return r;
-        } catch(e) {}
-        return "";
-      }
-
       function ridInit(){
-        var existing = "";
-        try { existing = localStorage.getItem("nf_rid") || ""; } catch(e) {}
-        var fromUrl = ridGetFromUrl();
-        var val = fromUrl || existing || ridNew();
-        ridSet(val);
+        var existing = ridGet();
+        var fromUrl = "";
+        try{
+          var sp = new URLSearchParams(location.search);
+          fromUrl = sp.get("rid") || "";
+        } catch(e){}
+        ridSet((fromUrl && fromUrl.length >= 6) ? fromUrl : (existing || ridNew()));
       }
-
       function copyRid(){
         try{
-          var txt = document.querySelector("[data-rid-text]");
-          var val = txt ? (txt.textContent || "") : "";
+          var val = (document.querySelector("[data-rid-text]")||{}).textContent || "";
           if (!val || val === "—") return;
           navigator.clipboard.writeText(val);
-        } catch(e) {}
+        } catch(e){}
+      }
+
+      function fmtCAD(n){
+        try{
+          return new Intl.NumberFormat("en-CA", { style:"currency", currency:"CAD", maximumFractionDigits:0 }).format(n);
+        } catch(e){
+          return "$" + Math.round(n).toString() + " CAD";
+        }
+      }
+
+      function mailto(to, subject, body){
+        function enc(s){ return encodeURIComponent(s || ""); }
+        return "mailto:" + enc(to) + "?subject=" + enc(subject) + "&body=" + enc(body);
+      }
+
+      // Trust Ledger pricing model (anchored to published tiers; small adjustments by cadence/evidence)
+      function planFromEntries(v){
+        if (v === "1-5") return { name:"TL — Maintain", mo:1500, setup:2500, cap:"Up to 5 active entries" };
+        if (v === "6-10") return { name:"TL — Govern", mo:2750, setup:4500, cap:"Up to 10 active entries" };
+        if (v === "11-20") return { name:"TL — Assure", mo:4750, setup:7500, cap:"Up to 20 active entries" };
+        return { name:"TL — Custom", mo:4750, setup:7500, cap:"21+ active entries (custom)" };
+      }
+
+      function cadenceMult(v){
+        if (v === "quarterly") return 0.85;  // lower effort vs monthly
+        if (v === "hybrid") return 1.20;     // incident-driven overhead
+        return 1.00; // monthly/unsure
+      }
+
+      function evidenceMult(v){
+        if (v === "deep") return 1.15;
+        return 1.00; // light/standard/unsure
+      }
+
+      function buildQuote(){
+        var rid = ridGet() || "—";
+        var entries = (document.getElementById("entries")||{}).value || "";
+        var cadence = (document.getElementById("cadence")||{}).value || "";
+        var evidence = (document.getElementById("evidence")||{}).value || "";
+        var proc = (document.getElementById("proc")||{}).value || "";
+        var need = (document.getElementById("need")||{}).value || "";
+        var systems = (document.getElementById("systems")||{}).value || "";
+
+        if (!entries || !cadence || !evidence) return null;
+
+        var plan = planFromEntries(entries);
+
+        var mo = Math.round(plan.mo * cadenceMult(cadence) * evidenceMult(evidence));
+        var setup = plan.setup;
+
+        var line =
+          plan.cap +
+          " • Cadence: " + cadence +
+          " • Evidence: " + evidence +
+          (proc ? (" • Procurement: " + proc) : "");
+
+        var quoteText =
+          "Noetfield — Trust Ledger (Estimate)\n" +
+          "Request ID: " + rid + "\n" +
+          "Recommended plan: " + plan.name + "\n" +
+          "Estimated retainer: " + fmtCAD(mo) + " / month\n" +
+          "Estimated setup: " + fmtCAD(setup) + "\n" +
+          "Inputs: Active entries " + entries + ", Cadence " + cadence + ", Evidence depth " + evidence + "\n" +
+          "What the Ledger must answer (high-level): " + (need || "—") + "\n" +
+          "Systems/tools in scope (high-level): " + (systems || "—") + "\n" +
+          "Disclosure: Estimate only; final quote confirmed after intake. Public intake is non-confidential.\n";
+
+        return { rid: rid, plan: plan.name, mo: mo, setup: setup, line: line, quoteText: quoteText };
+      }
+
+      function applyQuote(){
+        var q = buildQuote();
+        var n = document.getElementById("planName");
+        var p = document.getElementById("planPrice");
+        var l = document.getElementById("planLine");
+        var emailQuote = document.getElementById("emailQuote");
+        var emailPO = document.getElementById("emailPO");
+        var emailFallback = document.getElementById("emailFallback");
+
+        if (!q){
+          if (n) n.textContent = "—";
+          if (p) p.textContent = "—";
+          if (l) l.textContent = "Select “Active entries”, “Cadence”, and “Evidence depth” to generate.";
+          return;
+        }
+
+        if (n) n.textContent = q.plan;
+        if (p) p.textContent = fmtCAD(q.mo) + " / mo + " + fmtCAD(q.setup) + " setup";
+        if (l) l.textContent = q.line;
+
+        var subj = "Noetfield — Trust Ledger Quote Request (" + q.rid + ")";
+        var body = q.quoteText;
+
+        if (emailQuote) emailQuote.href = mailto("ceo@noetfield.com", subj, body);
+        if (emailPO) emailPO.href = mailto("procurement@noetfield.com", "Noetfield — Trust Ledger | Invoice/PO Request (" + q.rid + ")", body + "\nProcurement path: Invoice/PO required.\n");
+        if (emailFallback) emailFallback.href = mailto("ceo@noetfield.com", "Noetfield — Trust Ledger Intake (" + q.rid + ")", body);
+
+        try { window.__tlQuoteText = q.quoteText; } catch(e){}
+      }
+
+      function copyQuote(){
+        try{
+          var t = window.__tlQuoteText || "";
+          if (!t) { applyQuote(); t = window.__tlQuoteText || ""; }
+          if (!t) return;
+          navigator.clipboard.writeText(t);
+        } catch(e){}
       }
 
       ridInit();
@@ -553,24 +630,44 @@
       if (copyBtn) copyBtn.addEventListener("click", copyRid);
 
       var newBtn = document.querySelector("[data-new-rid]");
-      if (newBtn) newBtn.addEventListener("click", function(){ ridSet(ridNew()); });
+      if (newBtn) newBtn.addEventListener("click", function(){ ridSet(ridNew()); applyQuote(); });
 
+      var buildBtn = document.getElementById("buildQuote");
+      var copyQBtn = document.getElementById("copyQuote");
+      if (buildBtn) buildBtn.addEventListener("click", applyQuote);
+      if (copyQBtn) copyQBtn.addEventListener("click", copyQuote);
+
+      ["entries","cadence","evidence","proc","need","systems"].forEach(function(id){
+        var el = document.getElementById(id);
+        if (el) el.addEventListener("change", applyQuote);
+      });
+
+      var form = document.getElementById("nfIntakeForm");
+      var ok = document.getElementById("nfOk");
       if (form && ok){
         form.addEventListener("submit", function(){
           try { ok.classList.add("show"); } catch(e){}
         });
       }
+
+      // initial compute if fields prefilled
+      applyQuote();
     })();
   </script>
 
   <!--
+    CHANGELOG
+    - Added RID continuity + copy/new controls (localStorage + URL rid support).
+    - Added estimate builder with plan recommendation (Maintain/Govern/Assure) and adjusted estimate by cadence/evidence.
+    - Added procurement-ready mailto builders (quote + PO/invoice).
+    - Preserved shell, header/footer injection, and non-confidential warnings.
+
     SMOKE TEST
     - GET /trust-ledger/intake/ returns 200
-    - /assets/noetfield-shell.css returns 200 and styles apply
-    - /assets/noetfield-shell.js returns 200 and header/footer load into #nfHeader/#nfFooter
-    - RID appears (and persists via localStorage)
-    - Form posts to Formspree endpoint
-    - Mailto fallback opens correctly
+    - /assets/noetfield-shell.css and /assets/noetfield-shell.js return 200; header/footer load
+    - RID appears, copies, regenerates, persists
+    - Quote builder populates plan + estimate and mailto links
+    - Form posts to Formspree endpoint; success state shows
   -->
 </body>
 </html>

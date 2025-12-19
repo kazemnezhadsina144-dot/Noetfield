@@ -1,3 +1,4 @@
+/* /assets/noetfield-shell.css */
 /* Noetfield Shell (Header + Mobile Nav + Footer) */
 /* Version: locked-2025.12.13+gate-intake+faq+offers */
 
@@ -83,11 +84,35 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 }
 .skip:focus{left:10px}
 
+/* ===== Global buttons (needed for footer CTA) ===== */
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  padding:10px 14px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.03);
+  color: var(--text);
+  text-decoration:none;
+  transition: background .15s ease, border-color .15s ease, transform .12s ease, filter .12s ease;
+  line-height:1;
+  font-size:13px;
+}
+.btn:hover{
+  border-color: rgba(255,255,255,.16);
+  background: rgba(255,255,255,.05);
+  transform: translateY(-1px);
+}
+.btn:active{transform: translateY(0)}
+.btn.secondary{opacity:.92}
 
 /* ===== Header ===== */
 header{
   position:sticky; top:0; z-index:60;
   backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   background: rgba(8,8,12,.62);
   border-bottom: 1px solid rgba(255,255,255,.10);
 }
@@ -216,6 +241,7 @@ header{
   border-top:1px solid rgba(255,255,255,.10);
   background: rgba(8,8,12,.74);
   backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
 }
 .mobileInner{max-width:var(--max); margin:0 auto; padding:12px 14px 16px;}
 .mobileGrid{
@@ -249,13 +275,13 @@ header{
     rgba(200,163,73,.10);
 }
 
-
 /* ===== Footer (LOCKED – 4-column + bottom right rail) ===== */
 footer{
   border-top:1px solid rgba(255,255,255,.10);
   margin-top:34px;
   background: rgba(8,8,12,.35);
   backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   color:var(--muted2);
 }
 
@@ -311,6 +337,44 @@ footer{
   font-size:12px;
   line-height:1.65;
   margin:10px 0 0;
+}
+
+/* Request ID row (responsive + styled) */
+.ridRow{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:10px;
+  margin-top:12px;
+  color: var(--muted2);
+  font-size:12.5px;
+}
+.ridRow code{
+  padding:7px 10px;
+  border-radius:12px;
+  border:1px solid rgba(255,255,255,.10);
+  background: rgba(255,255,255,.03);
+  color: var(--text);
+  font-size:12px;
+}
+.ridRow button{
+  padding:8px 10px;
+  border-radius:12px;
+  border:1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.03);
+  color: var(--muted);
+  cursor:pointer;
+  transition: background .15s ease, border-color .15s ease, color .15s ease, filter .15s ease;
+}
+.ridRow button:hover{
+  color: var(--text);
+  border-color: rgba(255,255,255,.18);
+  background: rgba(255,255,255,.05);
+}
+.ridRow button[data-copied="1"]{
+  border-color: rgba(45,227,138,.55);
+  background: rgba(45,227,138,.12);
+  color: var(--text);
 }
 
 /* Footer bottom */
@@ -384,6 +448,7 @@ footer{
   border:1px solid rgba(255,255,255,.14);
   background: rgba(8,8,12,.62);
   backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   color: var(--muted);
   font-size:13px;
   display:inline-flex;

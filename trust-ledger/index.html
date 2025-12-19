@@ -1,8 +1,8 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Noetfield – Trust Ledger</title>
+  <title>Noetfield — Trust Ledger</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta
@@ -21,7 +21,7 @@
   <!-- OG -->
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Noetfield" />
-  <meta property="og:title" content="Noetfield – Trust Ledger" />
+  <meta property="og:title" content="Noetfield — Trust Ledger" />
   <meta
     property="og:description"
     content="Board-ready AI governance ledger: entries with owners, controls, risks, and evidence links — readable and defensible."
@@ -31,7 +31,7 @@
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Noetfield – Trust Ledger" />
+  <meta name="twitter:title" content="Noetfield — Trust Ledger" />
   <meta
     name="twitter:description"
     content="Board-ready AI governance ledger: entries with owners, controls, risks, and evidence links — readable and defensible."
@@ -50,8 +50,14 @@
   <link rel="stylesheet" href="/assets/noetfield-shell.css" />
   <script src="/assets/noetfield-shell.js" defer></script>
 
-  <!-- Page-only styles -->
+  <!-- Page-only styles (upgraded, structure preserved) -->
   <style>
+    /* a11y */
+    .skip{position:absolute;left:-999px;top:auto;width:1px;height:1px;overflow:hidden}
+    .skip:focus{left:16px;top:16px;width:auto;height:auto;z-index:9999;padding:10px 12px;border-radius:10px;background:rgba(15,23,42,.95);border:1px solid rgba(148,163,253,.35)}
+    .btn:focus-visible,.btn.secondary:focus-visible,a:focus-visible{outline:2px solid rgba(200,163,73,.85);outline-offset:3px;border-radius:12px}
+
+    /* hero */
     .hero{padding:22px 0 14px}
     .heroShell{
       position:relative;
@@ -106,6 +112,7 @@
     }
     .pill strong{color:var(--text); font-weight:800}
 
+    /* layout */
     .grid{
       display:grid;
       grid-template-columns: 1.1fr .9fr;
@@ -113,6 +120,7 @@
       margin: 18px 0 34px;
       align-items:start;
     }
+
     .card{
       border-radius:var(--radius);
       border:1px solid rgba(255,255,255,.11);
@@ -126,6 +134,7 @@
     .card p{margin:0 0 12px; color:var(--muted); line-height:1.7}
     .card .bd{padding:18px}
 
+    /* KPI grid */
     .kpiGrid{
       display:grid;
       grid-template-columns: 1fr 1fr;
@@ -143,6 +152,7 @@
     .kpi .v{margin-top:8px; font-weight:900; letter-spacing:-.2px}
     .kpi .d{margin-top:6px; color:var(--muted2); font-size:12.6px; line-height:1.55}
 
+    /* sections */
     .section{
       border:1px solid rgba(255,255,255,.10);
       background: rgba(255,255,255,.03);
@@ -166,6 +176,32 @@
     .row{display:flex; gap:12px; flex-wrap:wrap; align-items:center}
     .actions{display:flex; gap:12px; flex-wrap:wrap; align-items:center; margin-top:12px}
 
+    /* improved CTA consistency with shell */
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding:10px 14px;
+      border-radius:999px;
+      border:1px solid rgba(148,163,253,.28);
+      background: rgba(15,23,42,.65);
+      text-decoration:none;
+      color:inherit;
+      transition: transform .12s ease, background .12s ease, border-color .12s ease;
+      will-change: transform;
+    }
+    .btn:hover{transform:translateY(-1px)}
+    .btn.secondary{
+      background: rgba(255,255,255,.03);
+      border-color: rgba(255,255,255,.12);
+    }
+    .btn.primary{
+      background: linear-gradient(135deg,#f9fafb,#e5e7eb);
+      color:#07070b;
+      border-color: transparent;
+    }
+
     .box{
       margin-top:12px;
       padding:12px 12px;
@@ -177,20 +213,25 @@
       line-height:1.6;
     }
     .box strong{color:var(--text); font-weight:800}
-    .box a{border-bottom:1px solid rgba(255,255,255,.18)}
+    .box a{border-bottom:1px solid rgba(255,255,255,.18); text-decoration:none}
 
     .steps{margin:0; padding-left:18px; color:var(--muted); line-height:1.8}
     .steps li{margin:6px 0}
 
-    .table{
-      width:100%;
-      border-collapse:separate;
-      border-spacing:0;
-      overflow:hidden;
+    /* table */
+    .tableWrap{
+      overflow:auto;
       border-radius:16px;
       border:1px solid rgba(255,255,255,.10);
       background: rgba(255,255,255,.02);
       margin-top:10px;
+      -webkit-overflow-scrolling: touch;
+    }
+    .table{
+      width:100%;
+      border-collapse:separate;
+      border-spacing:0;
+      min-width: 760px;
     }
     .table th, .table td{
       text-align:left;
@@ -205,8 +246,12 @@
       letter-spacing:.28em;
       text-transform:uppercase;
       background: rgba(255,255,255,.03);
+      position: sticky;
+      top: 0;
+      z-index: 1;
     }
     .table tr:last-child td{border-bottom:none}
+
     .tag{
       display:inline-flex;
       align-items:center;
@@ -221,13 +266,20 @@
     }
     .tag strong{color:var(--text); font-weight:800}
 
+    /* responsive */
     @media (max-width: 980px){
       .grid{grid-template-columns:1fr}
       .kpiGrid{grid-template-columns:1fr}
+      .table{min-width: 680px}
     }
     @media (max-width: 760px){
       h1{font-size:30px}
+      .heroInner{padding:20px 16px}
+      .card .hd{padding:16px 16px 0}
+      .card .bd{padding:16px}
       .table th, .table td{padding:10px}
+      .actions{flex-direction:column; align-items:stretch}
+      .btn{width:100%}
     }
   </style>
 
@@ -235,7 +287,7 @@
   {
     "@context": "https://schema.org",
     "@type": "WebPage",
-    "name": "Noetfield – Trust Ledger",
+    "name": "Noetfield — Trust Ledger",
     "url": "https://www.noetfield.com/trust-ledger/",
     "description": "The Noetfield Trust Ledger turns scattered AI artefacts into board-ready, evidence-linked entries: use cases, controls, risks, owners, and proofs — readable by executives and defensible for regulators.",
     "isPartOf": {"@type":"WebSite","name":"Noetfield","url":"https://www.noetfield.com/"},
@@ -248,8 +300,8 @@
   <div class="bg" aria-hidden="true"></div>
   <a class="skip" href="#main">Skip to content</a>
 
-  <!-- injected header -->
-  <div id="nfHeader"></div>
+  <!-- Header injected by shell.js (standardized ids) -->
+  <div id="siteHeader" data-include="/assets/partials/header.html"></div>
 
   <main id="main" class="wrap">
     <!-- HERO -->
@@ -270,6 +322,17 @@
             <div class="pill"><strong>Owners & approvals</strong></div>
             <div class="pill"><strong>Proof links</strong></div>
             <div class="pill"><strong>Audit-ready</strong></div>
+          </div>
+
+          <!-- Added: primary CTA above the fold (content preserved; only placement improved) -->
+          <div class="actions" aria-label="Primary actions">
+            <a class="btn primary" href="/gate/intake/?need=trust-ledger">Start via Gate</a>
+            <a class="btn secondary" href="/trust-ledger/sample-report/">View sample artefacts</a>
+            <a class="btn secondary" href="/trust-brief/">See Trust Brief</a>
+          </div>
+
+          <div class="box" style="margin-top:12px">
+            <strong>Public intake = non-confidential.</strong> Do not submit secrets, credentials, or regulated personal data on public forms.
           </div>
         </div>
       </div>
@@ -314,47 +377,49 @@
             <div class="sectionTitle">What a ledger entry contains</div>
             <p class="sectionDesc">A single “entry” is a governed snapshot of one material AI use case.</p>
 
-            <table class="table" aria-label="Ledger entry fields">
-              <thead>
-                <tr>
-                  <th>Field</th>
-                  <th>What it answers</th>
-                  <th>Proof</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><span class="tag"><strong>Use case</strong></span></td>
-                  <td>What AI does, where it runs, who uses it, and what it affects.</td>
-                  <td>System mapping, vendor docs, app inventory.</td>
-                </tr>
-                <tr>
-                  <td><span class="tag"><strong>Material impact</strong></span></td>
-                  <td>Why this matters (money, safety, rights, decisions, public risk).</td>
-                  <td>Decision memo, risk statement, board thresholds.</td>
-                </tr>
-                <tr>
-                  <td><span class="tag"><strong>Risks</strong></span></td>
-                  <td>Failure modes: privacy, security, bias, fraud, IP, operational risk.</td>
-                  <td>Risk notes + incidents + test results (when available).</td>
-                </tr>
-                <tr>
-                  <td><span class="tag"><strong>Controls</strong></span></td>
-                  <td>What prevents/limits harm: access, DLP, logging, review, approvals.</td>
-                  <td>Config exports, screenshots, policy references, logs.</td>
-                </tr>
-                <tr>
-                  <td><span class="tag"><strong>Owners</strong></span></td>
-                  <td>Who is accountable; who approves changes; who maintains evidence.</td>
-                  <td>RACI, approvals, change control record.</td>
-                </tr>
-                <tr>
-                  <td><span class="tag"><strong>Evidence links</strong></span></td>
-                  <td>Where the proof lives and how it stays readable over time.</td>
-                  <td>Links to sanitized artefacts, log pipelines, audit bundles.</td>
-                </tr>
-              </tbody>
-            </table>
+            <div class="tableWrap" role="region" aria-label="Ledger entry fields (scrollable)" tabindex="0">
+              <table class="table" aria-label="Ledger entry fields">
+                <thead>
+                  <tr>
+                    <th>Field</th>
+                    <th>What it answers</th>
+                    <th>Proof</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="tag"><strong>Use case</strong></span></td>
+                    <td>What AI does, where it runs, who uses it, and what it affects.</td>
+                    <td>System mapping, vendor docs, app inventory.</td>
+                  </tr>
+                  <tr>
+                    <td><span class="tag"><strong>Material impact</strong></span></td>
+                    <td>Why this matters (money, safety, rights, decisions, public risk).</td>
+                    <td>Decision memo, risk statement, board thresholds.</td>
+                  </tr>
+                  <tr>
+                    <td><span class="tag"><strong>Risks</strong></span></td>
+                    <td>Failure modes: privacy, security, bias, fraud, IP, operational risk.</td>
+                    <td>Risk notes + incidents + test results (when available).</td>
+                  </tr>
+                  <tr>
+                    <td><span class="tag"><strong>Controls</strong></span></td>
+                    <td>What prevents/limits harm: access, DLP, logging, review, approvals.</td>
+                    <td>Config exports, screenshots, policy references, logs.</td>
+                  </tr>
+                  <tr>
+                    <td><span class="tag"><strong>Owners</strong></span></td>
+                    <td>Who is accountable; who approves changes; who maintains evidence.</td>
+                    <td>RACI, approvals, change control record.</td>
+                  </tr>
+                  <tr>
+                    <td><span class="tag"><strong>Evidence links</strong></span></td>
+                    <td>Where the proof lives and how it stays readable over time.</td>
+                    <td>Links to sanitized artefacts, log pipelines, audit bundles.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
 
           <div class="section">
@@ -368,8 +433,8 @@
             </ol>
           </div>
 
-          <div class="actions">
-            <a class="btn" href="/gate/intake/">Start intake</a>
+          <div class="actions" aria-label="Actions">
+            <a class="btn primary" href="/gate/intake/?need=trust-ledger">Start via Gate</a>
             <a class="btn secondary" href="/trust-brief/">See Trust Brief</a>
             <a class="btn secondary" href="/gate/">Gate</a>
           </div>
@@ -411,12 +476,21 @@
             <strong>Partners:</strong> if you deliver integration, channel, or delivery capacity, use
             <a href="/gate/partners/">Partners Gate</a>.
           </div>
+
+          <div class="section" style="margin-top:14px;">
+            <div class="sectionTitle">Proof</div>
+            <p class="sectionDesc">See the format before buying.</p>
+            <div class="actions">
+              <a class="btn secondary" href="/trust-ledger/sample-report/">Sample artefacts</a>
+              <a class="btn secondary" href="/trust-ledger/online-report/">Sample board report</a>
+            </div>
+          </div>
         </div>
       </aside>
     </section>
   </main>
 
-  <!-- injected footer -->
-  <div id="nfFooter"></div>
+  <!-- Footer injected by shell.js -->
+  <div id="siteFooter" data-include="/assets/partials/footer.html"></div>
 </body>
 </html>

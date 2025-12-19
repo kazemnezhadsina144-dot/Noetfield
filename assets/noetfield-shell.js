@@ -1,3 +1,4 @@
+/* /assets/noetfield-shell.js */
 /* Noetfield Shell
    - Inject header/footer partials
    - Burger menu

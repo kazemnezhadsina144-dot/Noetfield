@@ -1,7 +1,7 @@
+/* /assets/noetfield-shell.css — v2.2 (adds primary CTA styles + Sales CTA hooks; minimal change) */
 /* Noetfield Shell (Header + Mobile Nav + Footer) */
-/* Version: locked-2025.12.18+sales-buy-offers-reserve */
+/* Version: locked-2025.12.18+sales-cta */
 
-/* ===== Root + Base ===== */
 :root{
   --bg0:#07070b; --bg1:#0b0b14;
 
@@ -42,6 +42,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 }
 [hidden]{display:none !important;}
 
+/* Optional background element: <div class="bg" aria-hidden="true"></div> */
 .bg{
   position:fixed; inset:0; z-index:-3; pointer-events:none;
   background:
@@ -82,10 +83,50 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 }
 .skip:focus{left:10px}
 
+/* ===== Global buttons (needed across pages + footer CTA) ===== */
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  padding:10px 14px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.03);
+  color: var(--text);
+  text-decoration:none;
+  transition: background .15s ease, border-color .15s ease, transform .12s ease, filter .12s ease;
+  line-height:1;
+  font-size:13px;
+  min-height:40px;
+}
+.btn:hover{
+  border-color: rgba(255,255,255,.16);
+  background: rgba(255,255,255,.05);
+  transform: translateY(-1px);
+}
+.btn:active{transform: translateY(0)}
+.btn.secondary{opacity:.92}
+
+/* Primary CTA (gold, procurement-safe, matches your pages using .btn.primary) */
+.btn.primary{
+  border:1px solid rgba(200,163,73,.62);
+  background:
+    radial-gradient(260px 100px at 35% 0%, rgba(255,255,255,.12), transparent 62%),
+    linear-gradient(180deg, rgba(200,163,73,.24), rgba(200,163,73,.11));
+  font-weight:850;
+  letter-spacing:.1px;
+}
+.btn.primary:hover{
+  border-color: rgba(200,163,73,.88);
+  filter: brightness(1.06);
+}
+
 /* ===== Header ===== */
 header{
   position:sticky; top:0; z-index:60;
   backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   background: rgba(8,8,12,.62);
   border-bottom: 1px solid rgba(255,255,255,.10);
 }
@@ -143,7 +184,7 @@ header{
   border-radius:14px;
   border:1px solid transparent;
   background: transparent;
-  transition: background .15s ease, border-color .15s ease, color .15s ease, transform .06s ease, filter .15s ease;
+  transition: background .15s ease, border-color .15s ease, color .15s ease, transform .06s ease;
   white-space:nowrap;
   font-size:12.75px;
   line-height:1;
@@ -166,6 +207,20 @@ header{
 .menu a.pilltab{
   border:1px solid rgba(255,255,255,.14);
   background: rgba(255,255,255,.03);
+}
+
+/* Sales CTA pill in header */
+.menu a.pilltab.cta{
+  border:1px solid rgba(200,163,73,.62);
+  background:
+    radial-gradient(260px 100px at 35% 0%, rgba(255,255,255,.12), transparent 62%),
+    linear-gradient(180deg, rgba(200,163,73,.24), rgba(200,163,73,.11));
+  color: var(--text);
+  font-weight:850;
+}
+.menu a.pilltab.cta:hover{
+  border-color: rgba(200,163,73,.88);
+  filter: brightness(1.06);
 }
 
 .menu a.login{
@@ -193,35 +248,6 @@ header{
   box-shadow: 0 0 0 3px var(--okGlow);
 }
 
-/* ===== Sales/Buy/Reserve CTA ===== */
-.menu a.buyCta,
-.mobileGrid a.buyCta{
-  border: 1px solid rgba(200,163,73,.78);
-  background:
-    radial-gradient(220px 90px at 40% 0%, rgba(255,255,255,.12), transparent 62%),
-    linear-gradient(180deg, rgba(200,163,73,.26), rgba(200,163,73,.12));
-  color: var(--text);
-  font-weight: 850;
-}
-.menu a.buyCta:hover,
-.mobileGrid a.buyCta:hover{
-  border-color: rgba(200,163,73,.92);
-  filter: brightness(1.06);
-}
-
-.menu a.reserveLink,
-.mobileGrid a.reserveLink{
-  border: 1px solid rgba(200,163,73,.32);
-  background: rgba(200,163,73,.08);
-  color: var(--text);
-}
-
-.menu a.salesLink,
-.mobileGrid a.salesLink{
-  border: 1px solid rgba(255,255,255,.14);
-  background: rgba(255,255,255,.03);
-}
-
 /* Mobile menu */
 .burger{
   display:none; align-items:center; justify-content:center;
@@ -243,6 +269,7 @@ header{
   border-top:1px solid rgba(255,255,255,.10);
   background: rgba(8,8,12,.74);
   backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
 }
 .mobileInner{max-width:var(--max); margin:0 auto; padding:12px 14px 16px;}
 .mobileGrid{
@@ -257,7 +284,7 @@ header{
   background: rgba(255,255,255,.04);
   color: var(--muted);
   font-size:14px;
-  transition: background .15s ease, border-color .15s ease, color .15s ease, filter .15s ease;
+  transition: background .15s ease, border-color .15s ease, color .15s ease;
   display:flex;
   align-items:center;
   justify-content:center;
@@ -276,30 +303,24 @@ header{
     rgba(200,163,73,.10);
 }
 
-/* ===== Buttons (used in footer CTA row) ===== */
-.btn{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  gap:10px;
-  padding:10px 14px;
-  border-radius:999px;
-  border:1px solid rgba(255,255,255,.12);
-  background: rgba(255,255,255,.03);
+/* Mobile dominant CTA */
+.mobileGrid a.mobileCTA{
+  grid-column: 1 / -1;
+  border:1px solid rgba(200,163,73,.62);
+  background:
+    radial-gradient(260px 100px at 35% 0%, rgba(255,255,255,.12), transparent 62%),
+    linear-gradient(180deg, rgba(200,163,73,.24), rgba(200,163,73,.11));
   color: var(--text);
-  text-decoration:none;
-  transition: transform .12s ease, filter .15s ease, border-color .15s ease, background .15s ease;
+  font-weight:900;
 }
-.btn:hover{transform: translateY(-1px)}
-.btn.secondary{opacity:.92}
-.btn.secondary:hover{opacity:1}
 
-/* ===== Footer ===== */
+/* ===== Footer (LOCKED – 4-column + bottom right rail) ===== */
 footer{
   border-top:1px solid rgba(255,255,255,.10);
   margin-top:34px;
   background: rgba(8,8,12,.35);
   backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   color:var(--muted2);
 }
 
@@ -325,7 +346,6 @@ footer{
   background: rgba(255,255,255,.03);
 }
 .footBrand:hover{color:var(--text)}
-.footBrandName{font-weight:850; color:var(--text);}
 
 .fTitle{
   font-weight:850;
@@ -350,7 +370,6 @@ footer{
   background:rgba(255,255,255,.05);
 }
 
-/* footer note */
 .fNote{
   color:var(--muted2);
   font-size:12px;
@@ -358,59 +377,43 @@ footer{
   margin:10px 0 0;
 }
 
-/* RID row (professional + compact) */
 .ridRow{
-  margin-top:12px;
   display:flex;
   flex-wrap:wrap;
-  gap:8px;
   align-items:center;
-  padding:10px 10px;
-  border-radius:14px;
-  border:1px solid rgba(255,255,255,.10);
-  background: rgba(255,255,255,.02);
+  gap:10px;
+  margin-top:12px;
+  color: var(--muted2);
+  font-size:12.5px;
 }
-.ridLabel{color:var(--muted2); font-size:12px}
-.ridCode{
-  color:var(--text);
-  font-size:12px;
-  padding:6px 8px;
-  border-radius:10px;
+.ridRow code{
+  padding:7px 10px;
+  border-radius:12px;
   border:1px solid rgba(255,255,255,.10);
   background: rgba(255,255,255,.03);
+  color: var(--text);
+  font-size:12px;
 }
-.ridCopy{
-  appearance:none;
+.ridRow button{
+  padding:8px 10px;
+  border-radius:12px;
   border:1px solid rgba(255,255,255,.12);
   background: rgba(255,255,255,.03);
   color: var(--muted);
-  padding:7px 10px;
-  border-radius:12px;
   cursor:pointer;
-  font-size:12.5px;
-  transition: background .15s ease, border-color .15s ease, color .15s ease, transform .06s ease;
+  transition: background .15s ease, border-color .15s ease, color .15s ease, filter .15s ease;
 }
-.ridCopy:hover{
+.ridRow button:hover{
   color: var(--text);
   border-color: rgba(255,255,255,.18);
   background: rgba(255,255,255,.05);
 }
-.ridCopy:active{transform: translateY(1px)}
-.ridCopy[data-copied="1"]{
-  border-color: rgba(45,227,138,.45);
-  background: rgba(45,227,138,.10);
+.ridRow button[data-copied="1"]{
+  border-color: rgba(45,227,138,.55);
+  background: rgba(45,227,138,.12);
   color: var(--text);
 }
 
-/* Footer CTA row */
-.ctaRow{
-  margin-top:12px;
-  display:flex;
-  flex-wrap:wrap;
-  gap:10px;
-}
-
-/* Footer bottom */
 .footerBottom{
   border-top:1px solid rgba(255,255,255,.10);
   max-width:var(--max);
@@ -424,7 +427,6 @@ footer{
   color:var(--muted2);
 }
 
-/* Bottom-right rail */
 .footerMiniNav{display:flex; flex-wrap:wrap; gap:10px; align-items:center}
 .footerMiniNav a{
   color:var(--muted);
@@ -446,7 +448,6 @@ footer{
   background: rgba(200,163,73,.10);
 }
 
-/* Partner intake as gold CTA */
 .footerMiniNav a.partnerIntakeLink{
   display:inline-flex;
   align-items:center;
@@ -469,7 +470,7 @@ footer{
   box-shadow: 0 0 0 3px rgba(200,163,73,.18);
 }
 
-/* ===== Floating Feedback Tab ===== */
+/* Floating Feedback Tab */
 .feedbackTab{
   position:fixed;
   right:16px;
@@ -480,6 +481,7 @@ footer{
   border:1px solid rgba(255,255,255,.14);
   background: rgba(8,8,12,.62);
   backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   color: var(--muted);
   font-size:13px;
   display:inline-flex;
@@ -519,4 +521,10 @@ footer{
 }
 @media (max-width: 420px){
   .mobileGrid{grid-template-columns:1fr}
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce){
+  *{scroll-behavior:auto !important;}
+  .btn, .menu a, .mobileGrid a, .feedbackTab{transition:none !important;}
 }

@@ -1,14 +1,12 @@
-<!DOCTYPE html>
+<!-- /for-whom/index.html — Noetfield For Whom (upgraded to reference structure + board-level routing clarity) -->
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Noetfield – For Whom</title>
+  <meta charset="utf-8" />
+  <title>Noetfield — For Whom</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <meta
-    name="description"
-    content="Who Noetfield is built for: boards, executives, and operators in real organizations where AI influences material decisions, requiring evidence-ready governance and defensible controls."
-  />
+  <meta name="description" content="Who Noetfield is built for: boards, executives, and operators where AI influences material decisions and requires evidence-ready governance, defensible controls, and board-safe reporting." />
   <meta name="robots" content="index,follow" />
   <meta name="author" content="Noetfield Systems Inc." />
   <meta name="theme-color" content="#07070b" />
@@ -21,30 +19,21 @@
   <!-- OG -->
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Noetfield" />
-  <meta property="og:title" content="Noetfield – For Whom" />
-  <meta
-    property="og:description"
-    content="Boards, executives, and operators in real organizations where AI needs evidence-ready governance and defensible controls."
-  />
+  <meta property="og:title" content="Noetfield — For Whom" />
+  <meta property="og:description" content="Boards, executives, and operators where AI needs evidence-ready governance and defensible controls." />
   <meta property="og:url" content="https://www.noetfield.com/for-whom/" />
   <meta property="og:image" content="https://www.noetfield.com/noetfield-og.png" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Noetfield – For Whom" />
-  <meta
-    name="twitter:description"
-    content="Boards, executives, and operators in real organizations where AI needs evidence-ready governance and defensible controls."
-  />
+  <meta name="twitter:title" content="Noetfield — For Whom" />
+  <meta name="twitter:description" content="Boards, executives, and operators where AI needs evidence-ready governance and defensible controls." />
   <meta name="twitter:image" content="https://www.noetfield.com/noetfield-og.png" />
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
-    rel="stylesheet"
-  />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
 
   <!-- LOCKED SHELL -->
   <link rel="stylesheet" href="/assets/noetfield-shell.css" />
@@ -90,8 +79,9 @@
     }
 
     h1{margin:14px 0 10px; font-size:40px; line-height:1.07; letter-spacing:-0.75px}
-    .lead{margin:0; color:var(--muted); font-size:16px; max-width: 1080px; line-height:1.75}
-    .lead strong{color:var(--text); font-weight:800}
+    .lead{margin:0; color:var(--muted); font-size:16px; max-width: 1100px; line-height:1.75}
+    .lead strong{color:var(--text); font-weight:900}
+    .lead a{border-bottom:1px solid rgba(255,255,255,.18)}
 
     .metaRow{display:flex; flex-wrap:wrap; gap:10px; margin-top:14px}
     .pill{
@@ -104,11 +94,11 @@
       font-size:13px;
       white-space:nowrap;
     }
-    .pill strong{color:var(--text); font-weight:800}
+    .pill strong{color:var(--text); font-weight:900}
 
     .grid{
       display:grid;
-      grid-template-columns: 1.1fr .9fr;
+      grid-template-columns: 1.12fr .88fr;
       gap:18px;
       margin: 18px 0 34px;
       align-items:start;
@@ -159,9 +149,24 @@
       padding:12px;
       min-width:0;
     }
-    .aud h3{margin:0 0 8px; font-size:14px; letter-spacing:-.2px}
+    .aud .k{
+      display:flex; align-items:center; justify-content:space-between; gap:10px;
+      margin-bottom:10px;
+    }
+    .aud .k h3{margin:0; font-size:14px; letter-spacing:-.2px}
+    .badge{
+      font-size:11px;
+      letter-spacing:.28em;
+      text-transform:uppercase;
+      color:var(--muted2);
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.03);
+      white-space:nowrap;
+    }
     .aud p{margin:0; color:var(--muted); line-height:1.75}
-    .aud strong{color:var(--text); font-weight:800}
+    .aud strong{color:var(--text); font-weight:900}
 
     .list{
       margin:0; padding-left:18px;
@@ -169,7 +174,7 @@
       line-height:1.9;
     }
     .list li{margin:8px 0}
-    .list strong{color:var(--text); font-weight:800}
+    .list strong{color:var(--text); font-weight:900}
 
     .table{
       width:100%;
@@ -197,6 +202,18 @@
     }
     .table tr:last-child td{border-bottom:none}
 
+    .tag{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:7px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.03);
+      color:var(--muted);
+      font-size:12px;
+      white-space:nowrap;
+    }
+    .tag strong{color:var(--text); font-weight:900}
+
     .box{
       margin-top:12px;
       padding:12px 12px;
@@ -207,7 +224,7 @@
       font-size:12.8px;
       line-height:1.6;
     }
-    .box strong{color:var(--text); font-weight:800}
+    .box strong{color:var(--text); font-weight:900}
     .box a{border-bottom:1px solid rgba(255,255,255,.18)}
 
     .actions{display:flex; gap:12px; flex-wrap:wrap; align-items:center; margin-top:12px}
@@ -231,6 +248,30 @@
     .toc span{color:var(--muted)}
     .arrow{opacity:.8}
 
+    /* Desktop-only: floating/boxed header like /status */
+    @media (min-width: 981px){
+      #nfHeader{
+        position: sticky;
+        top: 0;
+        z-index: 60;
+        padding: 12px 16px 0;
+        background: transparent !important;
+        border: 0 !important;
+        box-shadow: none !important;
+      }
+      #nfHeader::before, #nfHeader::after{content:none !important; display:none !important;}
+      #nfHeader .nav{
+        width: min(1200px, calc(100% - 32px));
+        margin: 0 auto;
+        border-radius: 18px;
+        border: 1px solid rgba(255,255,255,.11);
+        background: rgba(10,10,16,.55);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        box-shadow: var(--shadow2);
+      }
+    }
+
     @media (max-width: 980px){
       .grid{grid-template-columns:1fr}
       .audGrid{grid-template-columns:1fr}
@@ -243,13 +284,13 @@
 
   <script type="application/ld+json">
   {
-    "@context": "https://schema.org",
-    "@type": "WebPage",
-    "name": "Noetfield – For Whom",
-    "url": "https://www.noetfield.com/for-whom/",
-    "description": "Who Noetfield is built for: boards, executives, and operators in real organizations where AI influences material decisions, requiring evidence-ready governance and defensible controls.",
-    "isPartOf": {"@type":"WebSite","name":"Noetfield","url":"https://www.noetfield.com/"},
-    "publisher": {"@type":"Organization","name":"Noetfield Systems Inc."}
+    "@context":"https://schema.org",
+    "@type":"WebPage",
+    "name":"Noetfield — For Whom",
+    "url":"https://www.noetfield.com/for-whom/",
+    "description":"Who Noetfield is built for: boards, executives, and operators where AI influences material decisions and requires evidence-ready governance, defensible controls, and board-safe reporting.",
+    "isPartOf":{"@type":"WebSite","name":"Noetfield","url":"https://www.noetfield.com/"},
+    "publisher":{"@type":"Organization","name":"Noetfield Systems Inc."}
   }
   </script>
 </head>
@@ -259,27 +300,39 @@
   <a class="skip" href="#main">Skip to content</a>
 
   <!-- injected header -->
-  <div id="nfHeader"></div>
+  <header id="nfHeader"></header>
 
   <main id="main" class="wrap">
     <!-- HERO -->
     <section class="hero">
       <div class="heroShell">
         <div class="heroInner">
-          <div class="eyebrow"><span class="dot"></span> Audience • fit • routing</div>
+          <div class="eyebrow"><span class="dot"></span> audience • fit • routing</div>
           <h1>For whom.</h1>
+
           <p class="lead">
-            Noetfield is built for <strong>real organizations</strong> where AI influences <strong>material decisions</strong> —
-            and the organization must be able to show <strong>who decided</strong>, <strong>what controls existed</strong>,
+            Noetfield is built for <strong>real organisations</strong> where AI influences <strong>material decisions</strong> —
+            and leaders must be able to show <strong>who decided</strong>, <strong>what controls applied</strong>,
             and <strong>what evidence proves it</strong>.
+            Outputs are designed for reuse in <strong>board packs</strong>, <strong>audit files</strong>, and <strong>supervisory reviews</strong>.
           </p>
 
           <div class="metaRow" aria-label="Fit signals">
             <div class="pill"><strong>Board exposure</strong></div>
-            <div class="pill"><strong>Regulatory pressure</strong></div>
-            <div class="pill"><strong>Operational risk</strong></div>
+            <div class="pill"><strong>Audit pressure</strong></div>
+            <div class="pill"><strong>Vendor AI sprawl</strong></div>
+            <div class="pill"><strong>Copilot adoption</strong></div>
             <div class="pill"><strong>Evidence requirement</strong></div>
-            <div class="pill"><strong>AI everywhere</strong></div>
+          </div>
+
+          <div class="actions" style="margin-top:14px">
+            <a class="btn" href="/gate/intake/?need=for-whom">Start intake</a>
+            <a class="btn secondary" href="/trust-brief/">Trust Brief</a>
+            <a class="btn secondary" href="/status/">Status</a>
+          </div>
+
+          <div class="box">
+            <strong>Public intake = non-confidential.</strong> Use a sanitized summary to start; secure exchange follows contracting/procurement.
           </div>
         </div>
       </div>
@@ -290,207 +343,40 @@
       <div class="card">
         <div class="hd">
           <h2>Primary audiences</h2>
-          <p>
-            These are the roles that need governance artefacts that can survive scrutiny (not just policies that read well).
-          </p>
+          <p>Roles that need governance artefacts that can survive scrutiny (not just policies that read well).</p>
         </div>
 
         <div class="bd">
           <div class="section" id="audiences">
             <div class="sectionTitle">Who this is for</div>
-            <p class="sectionDesc">
-              If you own decisions, risk, or delivery, you need defensible AI governance.
-            </p>
+            <p class="sectionDesc">If accountability, risk, or delivery is owned, defensible AI governance is required.</p>
 
             <div class="audGrid" aria-label="Audience cards">
               <div class="aud">
-                <h3>Boards & committees</h3>
-                <p>
-                  Need <strong>decision memos</strong>, clear options, and confidence that controls are real and evidenced.
-                </p>
+                <div class="k">
+                  <h3>Boards & committees</h3>
+                  <span class="badge">STEWARDS</span>
+                </div>
+                <p>Need <strong>decision options</strong>, approval boundaries, and confidence that controls exist and are evidenced.</p>
               </div>
+
               <div class="aud">
-                <h3>Executives (CEO/COO/CFO)</h3>
-                <p>
-                  Need <strong>cost + risk visibility</strong> and a practical baseline that doesn’t stall operations.
-                </p>
+                <div class="k">
+                  <h3>Executives (CEO/COO/CFO)</h3>
+                  <span class="badge">OWNERS</span>
+                </div>
+                <p>Need <strong>cost + risk visibility</strong>, practical baselines, and pace without governance drift.</p>
               </div>
+
               <div class="aud">
-                <h3>CISO / security leadership</h3>
-                <p>
-                  Need <strong>identity, logging, DLP</strong>, and evidence trails aligned to audit and incident response.
-                </p>
+                <div class="k">
+                  <h3>Security leadership (CISO)</h3>
+                  <span class="badge">GUARDS</span>
+                </div>
+                <p>Need <strong>identity, logging, DLP</strong>, and evidence trails aligned to audit and incident response.</p>
               </div>
+
               <div class="aud">
-                <h3>Legal, privacy, compliance</h3>
-                <p>
-                  Need <strong>traceability</strong>: policies tied to controls and artefacts, not “trust us” statements.
-                </p>
-              </div>
-              <div class="aud">
-                <h3>Operators (real-economy)</h3>
-                <p>
-                  Need AI governance that works in production—where errors have <strong>real-world impact</strong>.
-                </p>
-              </div>
-              <div class="aud">
-                <h3>Implementation partners</h3>
-                <p>
-                  Need a governed routing system to deliver evidence-ready outcomes (not random tooling).
-                </p>
-              </div>
-            </div>
-
-            <div class="box">
-              <strong>Bottom line:</strong> if your AI can move money, approvals, access, service eligibility, safety outcomes,
-              or regulated decisions, you are in Noetfield territory.
-            </div>
-          </div>
-
-          <div class="section" id="fit">
-            <div class="sectionTitle">Strong fit signals</div>
-            <p class="sectionDesc">
-              If multiple items below are true, you should use Gate + intake and route into the right track.
-            </p>
-
-            <ul class="list">
-              <li>AI is already used across teams (officially or shadow usage).</li>
-              <li>Decisions are auditable or regulated (finance, privacy, safety, public sector, critical operations).</li>
-              <li>You need <strong>evidence trails</strong> (logs, exports, approvals) that can be reconstructed later.</li>
-              <li>You must show <strong>who approved</strong> which model/tool and under what boundaries.</li>
-              <li>AI touches <strong>identity, access, or sensitive data</strong> (customer, employee, citizen, patient).</li>
-              <li>Security/compliance is under-resourced; you need a <strong>baseline</strong> you can actually enforce.</li>
-              <li>Leadership wants speed — but with a defensible operating posture.</li>
-            </ul>
-
-            <div class="actions">
-              <a class="btn" href="/gate/">Open Gate</a>
-              <a class="btn secondary" href="/gate/intake/">Start intake</a>
-              <a class="btn secondary" href="/status/">Status</a>
-            </div>
-          </div>
-
-          <div class="section" id="not-fit">
-            <div class="sectionTitle">Not a fit (yet)</div>
-            <p class="sectionDesc">
-              This is not a general AI agency or a chatbot feature shop. If your goal is “ship an AI toy fast,” use a different path.
-            </p>
-
-            <table class="table" aria-label="Fit vs not fit">
-              <thead>
-                <tr>
-                  <th>Not fit</th>
-                  <th>Why</th>
-                  <th>Better next step</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Pure marketing chatbots</td>
-                  <td>Low governance requirement; weak evidence needs</td>
-                  <td>Standard product/vendor evaluation</td>
-                </tr>
-                <tr>
-                  <td>Prototype-only teams</td>
-                  <td>No production impact yet</td>
-                  <td>Start with a minimal baseline + Playbook</td>
-                </tr>
-                <tr>
-                  <td>No logging / no IdP discipline</td>
-                  <td>Cannot defend claims without evidence</td>
-                  <td>Integration lane first (identity/logs/DLP)</td>
-                </tr>
-              </tbody>
-            </table>
-
-            <div class="box">
-              <strong>Fast path:</strong> if you need a concrete baseline and artefacts in weeks,
-              the <a href="/trust-brief/">Trust Brief</a> is the shortest path to board-ready clarity.
-            </div>
-          </div>
-
-          <div class="section" id="routing">
-            <div class="sectionTitle">How you route into Noetfield</div>
-            <p class="sectionDesc">
-              Pick the path that matches your situation. Gate is the governed entry point.
-            </p>
-
-            <table class="table" aria-label="Routing table">
-              <thead>
-                <tr>
-                  <th>Situation</th>
-                  <th>Route</th>
-                  <th>Outcome</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Need board-ready decision options + baseline fast</td>
-                  <td><a href="/trust-brief/">Trust Brief</a></td>
-                  <td>6-week diagnostic + artefacts + routing</td>
-                </tr>
-                <tr>
-                  <td>Need defensible evidence packs and governance records</td>
-                  <td><a href="/trust-ledger/">Trust Ledger</a></td>
-                  <td>Ledger entries tied to proof and owners</td>
-                </tr>
-                <tr>
-                  <td>Need controlled access + intake and tracking</td>
-                  <td><a href="/gate/intake/">Gate intake</a></td>
-                  <td>Track + lane selection + Request ID</td>
-                </tr>
-                <tr>
-                  <td>Need implementation capacity (IdP/logs/DLP)</td>
-                  <td><a href="/gate/partners/">Partners</a></td>
-                  <td>Routed partner lanes with evidence discipline</td>
-                </tr>
-              </tbody>
-            </table>
-
-            <div class="box">
-              <strong>Reminder:</strong> Noetfield’s output is not “a policy.”
-              It is a <strong>decision record</strong> + <strong>control baseline</strong> + <strong>evidence trail</strong>.
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- ASIDE -->
-      <aside class="card">
-        <div class="hd">
-          <h2>Quick navigation</h2>
-          <p>Jump to sections.</p>
-        </div>
-        <div class="bd">
-          <div class="toc" aria-label="On-page navigation">
-            <a href="#audiences"><span>Primary</span><strong>Audiences</strong><span class="arrow">→</span></a>
-            <a href="#fit"><span>Strong</span><strong>Fit</strong><span class="arrow">→</span></a>
-            <a href="#not-fit"><span>Not a</span><strong>Fit</strong><span class="arrow">→</span></a>
-            <a href="#routing"><span>How to</span><strong>Route</strong><span class="arrow">→</span></a>
-          </div>
-
-          <div class="box" style="margin-top:14px;">
-            <strong>Best next step:</strong><br/>
-            If you’re unsure, start at <a href="/gate/intake/">/gate/intake/</a>. You’ll get routing + a Request ID.
-          </div>
-
-          <div class="box" style="margin-top:14px;">
-            <strong>Reference:</strong><br/>
-            <a href="/playbook/">Playbook</a> ·
-            <a href="/copilot/">Copilot</a> ·
-            <a href="/mandate/">Mandate</a>
-          </div>
-
-          <div class="actions" style="margin-top:14px;">
-            <a class="btn" href="/gate/intake/">Start intake</a>
-            <a class="btn secondary" href="/gate/">Gate</a>
-          </div>
-        </div>
-      </aside>
-    </section>
-  </main>
-
-  <!-- injected footer -->
-  <div id="nfFooter"></div>
-</body>
-</html>
+                <div class="k">
+                  <h3>Legal, privacy, compliance</h3>
+                  <span class="badge">ASSURE</span

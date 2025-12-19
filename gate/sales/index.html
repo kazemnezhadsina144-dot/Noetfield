@@ -1,12 +1,12 @@
-<!-- /gate/sales/index.html — Noetfield Sales v2.2.0 (QuickScan Base/Pro/Enterprise enabled + cleaner buyer UX + unified shell) -->
+<!-- /gate/sales/index.html — Noetfield Sales v2.2 (QuickScan tiers + procurement pack + cleaner CTAs + RID loop) -->
 <!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
 
   <title>Noetfield — Purchase</title>
-  <meta name="description" content="Purchase/start page. Card payment for Copilot QuickScan (Base/Pro/Enterprise), Gate-first starts for tailored scope, and an invoice/PO procurement path with a ready internal summary." />
+  <meta name="description" content="Purchase options for Noetfield. Card checkout for Copilot QuickScan tiers (Base/Pro/Enterprise), invoice/PO procurement routing with internal summaries, and Gate intake for tailored scope." />
   <meta name="robots" content="index,follow" />
   <meta name="author" content="Noetfield Systems Inc." />
   <meta name="theme-color" content="#07070b" />
@@ -19,14 +19,14 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Noetfield" />
   <meta property="og:title" content="Noetfield — Purchase" />
-  <meta property="og:description" content="Card payment for Copilot QuickScan (Base/Pro/Enterprise), Gate-first starts for tailored scope, and invoice/PO procurement path." />
+  <meta property="og:description" content="QuickScan card checkout (Base/Pro/Enterprise), invoice/PO procurement routing, and Gate-first starts for tailored scope." />
   <meta property="og:url" content="https://www.noetfield.com/gate/sales/" />
   <meta property="og:image" content="https://www.noetfield.com/noetfield-og.png" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Noetfield — Purchase" />
-  <meta name="twitter:description" content="Card payment for Copilot QuickScan (Base/Pro/Enterprise), Gate-first starts for tailored scope, and invoice/PO procurement path." />
+  <meta name="twitter:description" content="QuickScan card checkout (Base/Pro/Enterprise), invoice/PO procurement routing, and Gate-first starts for tailored scope." />
   <meta name="twitter:image" content="https://www.noetfield.com/noetfield-og.png" />
 
   <!-- LOCKED SHELL -->
@@ -34,7 +34,6 @@
   <script src="/assets/noetfield-shell.js" defer></script>
 
   <style>
-    /* Hero */
     .hero{padding:18px 0 12px}
     .heroShell{
       position:relative;
@@ -89,12 +88,11 @@
     }
     .pill strong{color:var(--text); font-weight:900}
 
-    /* Layout */
     .grid{
       display:grid;
       grid-template-columns: 1.12fr .88fr;
       gap:16px;
-      margin: 14px 0 64px;
+      margin: 14px 0 34px;
       align-items:start;
     }
 
@@ -124,7 +122,6 @@
     .notice strong{ color:var(--text); font-weight:900; }
     .notice a{ border-bottom:1px solid rgba(255,255,255,.18); }
 
-    /* Buttons */
     .actions{display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-top:12px}
     .btn{
       display:inline-flex;
@@ -156,7 +153,6 @@
       border-color: rgba(255,255,255,.16);
     }
 
-    /* Offer cards */
     .offers{ display:grid; gap:12px; margin-top:12px; }
     .offer{
       border-radius:16px;
@@ -173,6 +169,7 @@
       box-shadow: 0 0 0 3px rgba(200,163,73,.10);
       background: rgba(255,255,255,.045);
     }
+
     .offerTop{ display:flex; gap:10px; align-items:flex-start; justify-content:space-between; flex-wrap:wrap; }
     .offer h3{ margin:0; font-size:16px; letter-spacing:-.2px; font-weight:950; }
     .tag{
@@ -205,7 +202,34 @@
     .offerActions{ display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-top:12px; }
     .offerActions .btn{ min-height:44px; }
 
-    /* Buyer split toggle */
+    /* Tier selector (QuickScan) */
+    .tierRow{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:10px;
+      margin-top:12px;
+    }
+    .tier{
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.02);
+      padding:12px;
+      cursor:pointer;
+      transition: border-color .15s ease, background .15s ease, transform .06s ease;
+      min-width:0;
+    }
+    .tier:hover{border-color:rgba(255,255,255,.22); background:rgba(255,255,255,.04)}
+    .tier:active{transform: translateY(1px)}
+    .tier.isOn{
+      border-color: rgba(200,163,73,.34);
+      box-shadow: 0 0 0 3px rgba(200,163,73,.10);
+      background: rgba(255,255,255,.045);
+    }
+    .tier .k{font-size:11px; letter-spacing:.28em; text-transform:uppercase; color:var(--muted2)}
+    .tier .n{margin-top:8px; font-weight:950; letter-spacing:-.2px; color:var(--text)}
+    .tier .d{margin-top:6px; color:var(--muted2); font-size:12.6px; line-height:1.55}
+
+    /* Buyer toggle */
     .seg{
       display:flex; gap:0;
       border-radius:999px;
@@ -227,6 +251,7 @@
       align-items:center;
       justify-content:center;
       gap:8px;
+      width:50%;
     }
     .seg button strong{ color:var(--text); font-weight:900; }
     .seg button.isOn{
@@ -257,7 +282,7 @@
     .mini{ margin-top:10px; color:var(--muted2); font-size:12.6px; line-height:1.6; }
     .mini a{ border-bottom:1px solid rgba(255,255,255,.18); }
 
-    /* Summary builder */
+    /* Procurement builder */
     .refBox{
       margin-top:10px;
       padding:10px 12px;
@@ -287,42 +312,27 @@
       outline:none;
       font-size:14px;
     }
-    textarea{ min-height: 132px; resize: vertical; line-height:1.55; color: var(--muted2); }
+    textarea{ min-height: 148px; resize: vertical; line-height:1.55; color: var(--muted2); }
 
-    /* Sticky CTA */
-    .stickyCta{
-      position: sticky;
-      bottom: 0;
-      z-index: 20;
-      padding: 10px 0;
-      background: linear-gradient(180deg, rgba(7,7,11,0) 0%, rgba(7,7,11,.78) 22%, rgba(7,7,11,.92) 100%);
-      backdrop-filter: blur(10px);
-      border-top: 1px solid rgba(255,255,255,.08);
+    .subrow{ display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-top:10px; }
+    .subpill{
+      display:inline-flex; gap:8px; align-items:center;
+      padding:8px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.02);
+      color:var(--muted2);
+      font-size:12.4px;
+      white-space:nowrap;
     }
-    .stickyInner{
-      display:flex;
-      gap:12px;
-      align-items:center;
-      justify-content:space-between;
-      padding: 0 16px;
-      max-width: 1120px;
-      margin: 0 auto;
-    }
-    .stickyText{
-      min-width:0;
-      color:var(--muted);
-      font-size:12.6px;
-      line-height:1.4;
-    }
-    .stickyText strong{ color:var(--text); font-weight:950; }
+    .subpill strong{color:var(--text); font-weight:900}
 
     @media (max-width: 980px){
       .grid{ grid-template-columns: 1fr; }
       .rail{ position: relative; top: 0; }
       h1{ font-size: 30px; }
-    }
-    @media (max-width: 760px){
-      .stickyText{display:none}
+      .tierRow{ grid-template-columns: 1fr; }
+      .seg button{ width:50%; }
     }
   </style>
 
@@ -332,493 +342,563 @@
     "@type":"WebPage",
     "name":"Noetfield — Purchase",
     "url":"https://www.noetfield.com/gate/sales/",
-    "description":"Purchase/start page. Card payment for Copilot QuickScan (Base/Pro/Enterprise), Gate-first starts for tailored scope, and an invoice/PO procurement path with a ready internal summary.",
+    "description":"Purchase options for Noetfield. Card checkout for Copilot QuickScan tiers (Base/Pro/Enterprise), invoice/PO procurement routing with internal summaries, and Gate intake for tailored scope.",
     "isPartOf":{"@type":"WebSite","name":"Noetfield","url":"https://www.noetfield.com/"},
     "publisher":{"@type":"Organization","name":"Noetfield Systems Inc."}
   }
   </script>
 
   <script>
-    (function(){
-      /* ===========================
-         CONFIG: checkout links
-         =========================== */
-      var NF_CHECKOUT = {
-        quickscan_base: "https://buy.stripe.com/7sY4gA6v681S2a6cDi1Nu00",
-        quickscan_pro:  "https://buy.stripe.com/14A4gAg5Gfuk2a646M1Nu01",
-        quickscan_ent:  "https://buy.stripe.com/fZu5kE7za81SdSO5aQ1Nu02",
-        trustbrief: "",
-        trustledger: "",
-        playbook: ""
-      };
+  (function(){
+    /* ===========================
+       CONFIG: checkout links
+       =========================== */
+    var NF_CHECKOUT = {
+      /* QuickScan tiers */
+      quickscan_base: "https://buy.stripe.com/7sY4gA6v681S2a6cDi1Nu00",
+      quickscan_pro:  "https://buy.stripe.com/14A4gAg5Gfuk2a646M1Nu01",
+      quickscan_ent:  "https://buy.stripe.com/fZu5kE7za81SdSO5aQ1Nu02",
 
-      /* Offer model */
-      var OFFERS = {
-        quickscan_base: {
-          key:"quickscan_base",
-          name:"Copilot QuickScan (Base)",
-          timeline:"5–7 business days",
-          indicative:"$3,500 CAD (pre-tax)",
-          need:"quickscan",
-          focus:"quickscan",
-          tier:"base",
-          details:"/copilot/quickscan/",
-          bullets:[
-            "Executive summary (decision posture)",
-            "Surface & enablement map",
-            "Oversharing exposure themes + priorities"
-          ],
-          bestFor:"A fast, board-safe baseline before wider Copilot rollout."
-        },
-        quickscan_pro: {
-          key:"quickscan_pro",
-          name:"Copilot QuickScan (Pro)",
-          timeline:"5–7 business days (expanded scope confirmed at kickoff)",
-          indicative:"$9,500 CAD (pre-tax)",
-          need:"quickscan",
-          focus:"quickscan",
-          tier:"pro",
-          details:"/copilot/quickscan/",
-          bullets:[
-            "Deeper boundary guidance + red-lines",
-            "Evidence readiness + owner mapping",
-            "Control checklist + early operating cadence"
-          ],
-          bestFor:"Higher scrutiny environments that need stronger defensibility."
-        },
-        quickscan_ent: {
-          key:"quickscan_ent",
-          name:"Copilot QuickScan (Enterprise)",
-          timeline:"Delivery window confirmed at kickoff",
-          indicative:"$25,000 CAD (pre-tax)",
-          need:"quickscan",
-          focus:"quickscan",
-          tier:"enterprise",
-          details:"/copilot/quickscan/",
-          bullets:[
-            "Stakeholder-ready governance pack",
-            "Exception / connector control model (where relevant)",
-            "Board-ready briefing pack for leadership review"
-          ],
-          bestFor:"Enterprise procurement/security posture and multi-stakeholder alignment."
-        },
-        trustbrief: {
-          key:"trustbrief",
-          name:"Trust Brief (6-week)",
-          timeline:"6 weeks",
-          indicative:"$12,000–$35,000 CAD (pre-tax)",
-          need:"trustbrief",
-          focus:"brief",
-          tier:"",
-          details:"/trust-brief/",
-          bullets:[
-            "Material AI use-case map + owners",
-            "Decision gates + operating model draft",
-            "Board-ready roadmap + first ledger entries"
-          ],
-          bestFor:"Clarity under leadership scrutiny and higher materiality."
-        },
-        trustledger: {
-          key:"trustledger",
-          name:"Trust Ledger",
-          timeline:"Setup + cadence",
-          indicative:"Setup + monthly cadence (pre-tax)",
-          need:"trustledger",
-          focus:"ledger",
-          tier:"",
-          details:"/trust-ledger/",
-          bullets:[
-            "Ledger register + evidence index",
-            "Board export cadence (agreed)",
-            "Change trail + exception discipline"
-          ],
-          bestFor:"Ongoing governance operations and recurring scrutiny."
-        },
-        playbook: {
-          key:"playbook",
-          name:"Playbook Pro",
-          timeline:"One-time (upgrade path)",
-          indicative:"$250–$8,000 CAD (pre-tax)",
-          need:"playbook-pro",
-          focus:"playbook",
-          tier:"",
-          details:"/playbook/pro/",
-          bullets:[
-            "Reusable governance templates",
-            "Board-ready brief structures",
-            "Routes into delivery packages"
-          ],
-          bestFor:"Enablement for teams and agencies."
-        }
-      };
+      /* Other offers (enable later) */
+      trustbrief: "",
+      trustledger: "",
+      playbook: ""
+    };
 
-      /* Utilities */
-      function pad(n){ return String(n).padStart(2,'0'); }
-      function todayStamp(){
-        var d = new Date();
-        return d.getFullYear() + pad(d.getMonth()+1) + pad(d.getDate());
+    /* Offer model */
+    var OFFERS = {
+      quickscan: {
+        key:"quickscan",
+        name:"Copilot QuickScan",
+        timeline:"5–7 business days",
+        indicative:"From $3,500 CAD (pre-tax)",
+        need:"quickscan",
+        focus:"quickscan",
+        details:"/copilot/quickscan/",
+        bullets:[
+          "Executive memo (decision options)",
+          "Boundary + exposure map",
+          "Prioritized control checklist",
+          "30/60/90 plan (baseline)"
+        ],
+        bestFor:"A fast, board-ready starting point for Copilot governance."
+      },
+      trustbrief: {
+        key:"trustbrief",
+        name:"Trust Brief (6-week)",
+        timeline:"6 weeks",
+        indicative:"$12,000–$35,000 CAD (pre-tax)",
+        need:"trustbrief",
+        focus:"brief",
+        details:"/trust-brief/",
+        bullets:[
+          "Material AI use-case map + owners",
+          "Decision gates + operating model draft",
+          "Board-ready roadmap + first ledger entries"
+        ],
+        bestFor:"Clarity under leadership scrutiny and higher materiality."
+      },
+      trustledger: {
+        key:"trustledger",
+        name:"Trust Ledger",
+        timeline:"Setup + cadence",
+        indicative:"Setup + monthly cadence (pre-tax)",
+        need:"trustledger",
+        focus:"ledger",
+        details:"/trust-ledger/",
+        bullets:[
+          "Ledger register + evidence index",
+          "Board export cadence (agreed)",
+          "Change trail + exception discipline"
+        ],
+        bestFor:"Ongoing governance operations and recurring scrutiny."
+      },
+      playbook: {
+        key:"playbook",
+        name:"Playbook Pro",
+        timeline:"One-time (upgrade path)",
+        indicative:"$250–$8,000 CAD (pre-tax)",
+        need:"playbook-pro",
+        focus:"playbook",
+        details:"/playbook/pro/",
+        bullets:[
+          "Reusable governance templates",
+          "Board-ready brief structures",
+          "Routes into delivery packages"
+        ],
+        bestFor:"Enablement for teams and agencies."
       }
-      function rand6(){
-        var chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
-        var out = "";
-        for (var i=0;i<6;i++) out += chars.charAt(Math.floor(Math.random()*chars.length));
-        return out;
-      }
-      function esc(s){
-        return String(s || "")
-          .replace(/&/g,"&amp;")
-          .replace(/</g,"&lt;")
-          .replace(/>/g,"&gt;")
-          .replace(/"/g,"&quot;");
-      }
-      function getQS(name){
-        var p = new URLSearchParams(location.search);
-        return p.get(name);
-      }
-      function setQS(name,val){
-        var u = new URL(location.href);
-        u.searchParams.set(name,val);
-        history.replaceState({}, "", u.toString());
-      }
-      function ensureRID(){
-        var rid = getQS("rid") || localStorage.getItem("nf_rid");
-        if(!rid){ rid = "NF-" + todayStamp() + "-" + rand6(); }
-        localStorage.setItem("nf_rid", rid);
-        if(!getQS("rid")) setQS("rid", rid);
-        return rid;
-      }
-      function appendRID(href, rid){
-        try{
-          var url = new URL(href, location.origin);
-          if(!url.searchParams.get("rid")) url.searchParams.set("rid", rid);
-          return url.pathname + url.search + url.hash;
-        }catch(e){
-          return href;
-        }
-      }
-      function copyText(text){
-        if(!text) return;
-        if(navigator.clipboard && navigator.clipboard.writeText){
-          navigator.clipboard.writeText(text).catch(function(){});
-        }else{
-          var tmp = document.createElement("textarea");
-          tmp.value = text;
-          document.body.appendChild(tmp);
-          tmp.select();
-          try{ document.execCommand("copy"); }catch(e){}
-          document.body.removeChild(tmp);
-        }
-      }
+    };
 
-      /* Buyer type: "card" | "proc" */
-      function getBuyer(){ return localStorage.getItem("nf_buyer") || "card"; }
-      function setBuyer(b){ localStorage.setItem("nf_buyer", b); }
+    /* QuickScan tier model */
+    var QS_TIERS = {
+      base: {
+        key:"base",
+        label:"Base",
+        timeline:"5–7 business days",
+        price:"$3,500 CAD",
+        best:"Standard baseline for most orgs starting Copilot governance.",
+        checkoutKey:"quickscan_base"
+      },
+      pro: {
+        key:"pro",
+        label:"Pro",
+        timeline:"5–7 business days",
+        price:"$6,500 CAD",
+        best:"More depth + more stakeholders; stronger evidence pack.",
+        checkoutKey:"quickscan_pro"
+      },
+      ent: {
+        key:"ent",
+        label:"Enterprise",
+        timeline:"5–7 business days",
+        price:"$9,500 CAD",
+        best:"Highest scrutiny environments; strongest procurement posture.",
+        checkoutKey:"quickscan_ent"
+      }
+    };
 
-      /* Procurement summary */
-      function buildProcSummary(rid, offerKey){
-        var o = OFFERS[offerKey] || OFFERS.quickscan_base;
-        var lines = [];
-        lines.push("Noetfield — Procurement Summary");
-        lines.push("Reference: " + rid);
-        lines.push("Selected offer: " + o.name);
-        lines.push("Timeline: " + o.timeline);
-        lines.push("Indicative pricing: " + o.indicative);
-        lines.push("Tax: applied as required at invoicing.");
-        lines.push("");
-        lines.push("Included (typical):");
+    function pad(n){ return String(n).padStart(2,'0'); }
+    function todayStamp(){
+      var d = new Date();
+      return d.getFullYear() + pad(d.getMonth()+1) + pad(d.getDate());
+    }
+    function rand6(){
+      var chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+      var out = "";
+      for (var i=0;i<6;i++) out += chars.charAt(Math.floor(Math.random()*chars.length));
+      return out;
+    }
+    function esc(s){
+      return String(s || "")
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;");
+    }
+    function getQS(name){
+      var p = new URLSearchParams(location.search);
+      return p.get(name);
+    }
+    function setQS(name,val){
+      var u = new URL(location.href);
+      u.searchParams.set(name,val);
+      history.replaceState({}, "", u.toString());
+    }
+    function ensureRID(){
+      var rid = getQS("rid") || localStorage.getItem("nf_rid");
+      if(!rid){ rid = "NF-" + todayStamp() + "-" + rand6(); }
+      localStorage.setItem("nf_rid", rid);
+      if(!getQS("rid")) setQS("rid", rid);
+      return rid;
+    }
+    function appendRID(href, rid){
+      try{
+        var url = new URL(href, location.origin);
+        if(!url.searchParams.get("rid")) url.searchParams.set("rid", rid);
+        return url.pathname + url.search + url.hash;
+      }catch(e){
+        return href;
+      }
+    }
+    function copyText(text){
+      if(!text) return;
+      if(navigator.clipboard && navigator.clipboard.writeText){
+        navigator.clipboard.writeText(text).catch(function(){});
+      }else{
+        var tmp = document.createElement("textarea");
+        tmp.value = text;
+        document.body.appendChild(tmp);
+        tmp.select();
+        try{ document.execCommand("copy"); }catch(e){}
+        document.body.removeChild(tmp);
+      }
+    }
+
+    function getBuyer(){
+      return localStorage.getItem("nf_buyer") || "card";
+    }
+    function setBuyer(b){
+      localStorage.setItem("nf_buyer", b);
+    }
+
+    function getQuickScanTier(){
+      return localStorage.getItem("nf_qs_tier") || "base";
+    }
+    function setQuickScanTier(t){
+      if(!QS_TIERS[t]) t = "base";
+      localStorage.setItem("nf_qs_tier", t);
+    }
+
+    /* Checkout with RID (best-effort; Stripe may ignore unknown params, but safe to append) */
+    function checkoutHref(checkoutKey, rid){
+      var u = NF_CHECKOUT[checkoutKey] || "";
+      if(!u) return "";
+      try{
+        var url = new URL(u);
+        if(!url.searchParams.get("rid")) url.searchParams.set("rid", rid);
+        return url.toString();
+      }catch(e){
+        return u;
+      }
+    }
+
+    /* Procurement summary */
+    function buildProcSummary(rid, offerKey){
+      var o = OFFERS[offerKey] || OFFERS.quickscan;
+      var tier = getQuickScanTier();
+      var tierObj = QS_TIERS[tier] || QS_TIERS.base;
+
+      var lines = [];
+      lines.push("Noetfield — Procurement Summary");
+      lines.push("Reference: " + rid);
+      lines.push("Selected offer: " + o.name + (offerKey==="quickscan" ? (" ("+tierObj.label+")") : ""));
+      lines.push("Timeline: " + (offerKey==="quickscan" ? tierObj.timeline : o.timeline));
+      lines.push("Price (CAD): " + (offerKey==="quickscan" ? tierObj.price : o.indicative));
+      lines.push("Tax: applied as required at invoicing or checkout.");
+      lines.push("");
+
+      lines.push("Included (typical):");
+      if(offerKey==="quickscan"){
+        lines.push("- Executive memo (decision options)");
+        lines.push("- Surface/boundary posture + top exposure paths");
+        lines.push("- Prioritized control checklist (baseline)");
+        lines.push("- 30/60/90 plan (baseline)");
+      }else{
         for(var i=0;i<o.bullets.length;i++) lines.push("- " + o.bullets[i]);
-        lines.push("");
-        lines.push("Start (Gate intake):");
-        var intake = "/gate/intake/?need=" + encodeURIComponent(o.need);
-        if(o.tier) intake += "&tier=" + encodeURIComponent(o.tier);
-        lines.push(location.origin + appendRID(intake, rid));
-        lines.push("");
-        lines.push("Invoice / PO (Procurement):");
-        var proc = "/gate/procurement/?focus=" + encodeURIComponent(o.focus);
-        if(o.tier) proc += "&tier=" + encodeURIComponent(o.tier);
-        lines.push(location.origin + appendRID(proc, rid));
-        return lines.join("\n");
       }
 
-      function mailtoProc(rid, offerKey){
-        var o = OFFERS[offerKey] || OFFERS.quickscan_base;
-        var subject = "Noetfield procurement — " + o.name + " — " + rid;
-        var body = buildProcSummary(rid, offerKey);
-        return "mailto:procurement@noetfield.com?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
+      lines.push("");
+      lines.push("Start (Gate intake — public, non-confidential):");
+      var need = (offerKey==="quickscan") ? "quickscan" : o.need;
+      lines.push(location.origin + appendRID("/gate/intake/?need=" + encodeURIComponent(need) + (offerKey==="quickscan" ? ("&tier="+encodeURIComponent(tier)) : ""), rid));
+
+      lines.push("");
+      lines.push("Invoice / PO (Procurement):");
+      lines.push(location.origin + appendRID("/gate/procurement/?focus=" + encodeURIComponent(o.focus) + (offerKey==="quickscan" ? ("&tier="+encodeURIComponent(tier)) : ""), rid));
+
+      lines.push("");
+      lines.push("Vendor contacts:");
+      lines.push("- Sales: sales@noetfield.com");
+      lines.push("- Procurement: procurement@noetfield.com");
+      lines.push("- Billing: billing@noetfield.com");
+      lines.push("- Trust/Security: trust@noetfield.com");
+
+      return lines.join("\n");
+    }
+
+    function mailtoProc(rid, offerKey){
+      var o = OFFERS[offerKey] || OFFERS.quickscan;
+      var tier = getQuickScanTier();
+      var tierObj = QS_TIERS[tier] || QS_TIERS.base;
+      var subject = "Noetfield procurement — " + o.name + (offerKey==="quickscan" ? (" ("+tierObj.label+")") : "") + " — " + rid;
+      var body = buildProcSummary(rid, offerKey);
+      return "mailto:procurement@noetfield.com?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
+    }
+
+    function onePagerHref(rid, offerKey){
+      var tier = getQuickScanTier();
+      var u = "/gate/procurement/onepager/?offer=" + encodeURIComponent(offerKey) + "&tier=" + encodeURIComponent(tier);
+      return appendRID(u, rid);
+    }
+
+    function renderRef(rid){
+      var el = document.getElementById("nfRID");
+      if(!el) return;
+      el.innerHTML = 'Reference (optional): <code>' + esc(rid) + '</code><br/>Keeps starts and procurement notes aligned.';
+    }
+
+    function wireRID(rid){
+      var links = document.querySelectorAll("a[data-rid='1']");
+      for (var i=0;i<links.length;i++){
+        links[i].setAttribute("href", appendRID(links[i].getAttribute("href"), rid));
       }
+    }
 
-      /* Card checkout link (RID appended if possible) */
-      function checkoutHref(offerKey, rid){
-        var u = NF_CHECKOUT[offerKey] || "";
-        if(!u) return "";
-        try{
-          var url = new URL(u);
-          if(!url.searchParams.get("rid")) url.searchParams.set("rid", rid);
-          return url.toString();
-        }catch(e){
-          return u;
-        }
+    function renderBuyerUI(){
+      var buyer = getBuyer();
+      var bCard = document.getElementById("nfBuyerCard");
+      var bProc = document.getElementById("nfBuyerProc");
+      if(bCard) bCard.classList.toggle("isOn", buyer === "card");
+      if(bProc) bProc.classList.toggle("isOn", buyer === "proc");
+
+      var bNote = document.getElementById("nfBuyerNote");
+      if(bNote){
+        bNote.innerHTML = (buyer === "proc")
+          ? "<strong>Invoice / PO:</strong> procurement routing, one-pager, and internal summary are available."
+          : "<strong>Card checkout:</strong> available for Copilot QuickScan tiers (Base/Pro/Enterprise).";
       }
+    }
 
-      /* UI state */
-      function renderBuyerUI(){
-        var buyer = getBuyer();
-        var bCard = document.getElementById("nfBuyerCard");
-        var bProc = document.getElementById("nfBuyerProc");
-        if(bCard){
-          bCard.classList.toggle("isOn", buyer === "card");
-          bCard.setAttribute("aria-selected", buyer === "card" ? "true" : "false");
-        }
-        if(bProc){
-          bProc.classList.toggle("isOn", buyer === "proc");
-          bProc.setAttribute("aria-selected", buyer === "proc" ? "true" : "false");
-        }
-
-        var bNote = document.getElementById("nfBuyerNote");
-        if(bNote){
-          if(buyer === "proc"){
-            bNote.innerHTML = "<strong>Invoice / PO:</strong> a procurement note and a clean routing path are available.";
-          }else{
-            bNote.innerHTML = "<strong>Card payment:</strong> available for Copilot QuickScan tiers (Base/Pro/Enterprise).";
-          }
-        }
+    function renderQuickScanTierUI(){
+      var tier = getQuickScanTier();
+      var keys = ["base","pro","ent"];
+      for(var i=0;i<keys.length;i++){
+        var k = keys[i];
+        var el = document.querySelector("[data-tier='"+k+"']");
+        if(el) el.classList.toggle("isOn", k === tier);
       }
+      var pill = document.getElementById("nfTierPill");
+      if(pill){
+        var t = QS_TIERS[tier] || QS_TIERS.base;
+        pill.innerHTML = "<strong>QuickScan tier:</strong> " + esc(t.label) + " · " + esc(t.price);
+      }
+    }
 
-      function updateRailPrimaryCTA(activeKey){
-        var buyer = getBuyer();
-        var rid = localStorage.getItem("nf_rid") || "";
-        var o = OFFERS[activeKey] || OFFERS.quickscan_base;
-
-        var railPrimary = document.getElementById("nfRailPrimary");
-        var railSecondary = document.getElementById("nfRailSecondary");
-        var railTertiary = document.getElementById("nfRailTertiary");
-
-        if(!railPrimary || !railSecondary || !railTertiary) return;
-
-        var intake = "/gate/intake/?need=" + encodeURIComponent(o.need) + (o.tier ? ("&tier=" + encodeURIComponent(o.tier)) : "");
-        var proc = "/gate/procurement/?focus=" + encodeURIComponent(o.focus) + (o.tier ? ("&tier=" + encodeURIComponent(o.tier)) : "");
-
-        railSecondary.setAttribute("href", appendRID(intake, rid));
-        railTertiary.setAttribute("href", appendRID(proc, rid));
-
-        if(buyer === "proc"){
-          railPrimary.textContent = "Invoice / PO (Procurement)";
-          railPrimary.setAttribute("href", appendRID(proc, rid));
-          railPrimary.setAttribute("rel", "");
+    function updateOfferCards(activeKey){
+      var cards = document.querySelectorAll("[data-offer]");
+      for(var i=0;i<cards.length;i++){
+        var k = cards[i].getAttribute("data-offer");
+        cards[i].classList.toggle("isActive", k === activeKey);
+      }
+      var selLbl = document.getElementById("nfSelected");
+      if(selLbl){
+        var name = (OFFERS[activeKey] || OFFERS.quickscan).name;
+        if(activeKey==="quickscan"){
+          var t = QS_TIERS[getQuickScanTier()] || QS_TIERS.base;
+          selLbl.innerHTML = "<strong>Selected:</strong> " + esc(name) + " (" + esc(t.label) + ")";
         }else{
-          var ch = checkoutHref(activeKey, rid);
-          if(ch){
-            railPrimary.textContent = "Pay by card (" + o.name.replace("Copilot QuickScan ","") + ")";
-            railPrimary.setAttribute("href", ch);
-            railPrimary.setAttribute("rel", "nofollow");
-          }else{
-            railPrimary.textContent = "Start (Gate intake)";
-            railPrimary.setAttribute("href", appendRID(intake, rid));
-            railPrimary.setAttribute("rel", "");
-          }
+          selLbl.innerHTML = "<strong>Selected:</strong> " + esc(name);
         }
       }
+    }
 
-      function updateOfferCTAEmphasis(activeKey){
-        var buyer = getBuyer();
-        var rid = localStorage.getItem("nf_rid") || "";
+    function updateRailCTAs(activeKey){
+      var buyer = getBuyer();
+      var rid = localStorage.getItem("nf_rid") || "";
+      var o = OFFERS[activeKey] || OFFERS.quickscan;
 
-        var keys = Object.keys(OFFERS);
-        for(var i=0;i<keys.length;i++){
-          var k = keys[i];
-          var box = document.querySelector("[data-offer='"+k+"']");
-          if(!box) continue;
+      var railPrimary = document.getElementById("nfRailPrimary");
+      var railSecondary = document.getElementById("nfRailSecondary");
+      var railTertiary = document.getElementById("nfRailTertiary");
+      var railOnePager = document.getElementById("nfRailOnePager");
+      if(!railPrimary || !railSecondary || !railTertiary) return;
 
-          var payA = box.querySelector("a[data-cta='pay']");
-          var startA = box.querySelector("a[data-cta='start']");
-          var poA = box.querySelector("a[data-cta='po']");
+      var need = (activeKey==="quickscan") ? "quickscan" : o.need;
+      var tier = getQuickScanTier();
 
-          var href = checkoutHref(k, rid);
+      railSecondary.setAttribute("href", appendRID("/gate/intake/?need=" + encodeURIComponent(need) + (activeKey==="quickscan" ? ("&tier="+encodeURIComponent(tier)) : ""), rid));
+      railTertiary.setAttribute("href", appendRID("/gate/procurement/?focus=" + encodeURIComponent(o.focus) + (activeKey==="quickscan" ? ("&tier="+encodeURIComponent(tier)) : ""), rid));
 
-          /* Show card button only where checkout exists */
-          if(payA){
-            if(href){
-              payA.style.display = "inline-flex";
-              payA.setAttribute("href", href);
-              payA.setAttribute("rel","nofollow");
-              payA.textContent = "Pay by card";
-            }else{
-              payA.style.display = "none";
-            }
-          }
-
-          if(buyer === "proc"){
-            if(poA){ poA.classList.add("primary"); poA.classList.remove("secondary","ghost"); }
-            if(startA){ startA.classList.add("secondary"); startA.classList.remove("primary","ghost"); }
-            if(payA && href){ payA.classList.add("ghost"); payA.classList.remove("primary"); }
-          }else{
-            if(href){
-              if(payA){ payA.classList.add("primary"); payA.classList.remove("secondary","ghost"); }
-              if(startA){ startA.classList.add("secondary"); startA.classList.remove("primary","ghost"); }
-              if(poA){ poA.classList.add("secondary"); poA.classList.remove("primary","ghost"); }
-            }else{
-              if(startA){ startA.classList.add("primary"); startA.classList.remove("secondary","ghost"); }
-              if(poA){ poA.classList.add("secondary"); poA.classList.remove("primary","ghost"); }
-            }
-          }
-        }
+      if(railOnePager){
+        railOnePager.setAttribute("href", onePagerHref(rid, activeKey));
       }
 
-      function setActiveOffer(offerKey){
-        if(!OFFERS[offerKey]) offerKey = "quickscan_base";
-
-        var cards = document.querySelectorAll("[data-offer]");
-        for(var i=0;i<cards.length;i++){
-          var k = cards[i].getAttribute("data-offer");
-          cards[i].classList.toggle("isActive", k === offerKey);
-        }
-
-        var sel = document.getElementById("nfOfferSelect");
-        if(sel) sel.value = offerKey;
-
-        var selLbl = document.getElementById("nfSelected");
-        if(selLbl) selLbl.innerHTML = "<strong>Selected:</strong> " + esc(OFFERS[offerKey].name);
-
-        var rid = localStorage.getItem("nf_rid") || "";
-        var ta = document.getElementById("nfSummary");
-        if(ta) ta.value = buildProcSummary(rid, offerKey);
-
-        updateRailPrimaryCTA(offerKey);
-        updateOfferCTAEmphasis(offerKey);
-
-        try{ setQS("offer", offerKey); }catch(e){}
+      if(buyer === "proc"){
+        railPrimary.textContent = "Invoice / PO (Procurement)";
+        railPrimary.setAttribute("href", railTertiary.getAttribute("href"));
+        railPrimary.setAttribute("rel", "");
+        return;
       }
 
-      function wireRID(rid){
-        var links = document.querySelectorAll("a[data-rid='1']");
-        for (var i=0;i<links.length;i++){
-          links[i].setAttribute("href", appendRID(links[i].getAttribute("href"), rid));
-        }
+      /* Card path */
+      if(activeKey === "quickscan"){
+        var t = QS_TIERS[tier] || QS_TIERS.base;
+        var ch = checkoutHref(t.checkoutKey, rid);
+        railPrimary.textContent = "Pay by card (QuickScan " + t.label + ")";
+        railPrimary.setAttribute("href", ch || railSecondary.getAttribute("href"));
+        railPrimary.setAttribute("rel", ch ? "nofollow" : "");
+      }else{
+        /* No checkout enabled for these yet -> primary becomes Start (Gate intake) */
+        railPrimary.textContent = "Start (Gate intake)";
+        railPrimary.setAttribute("href", railSecondary.getAttribute("href"));
+        railPrimary.setAttribute("rel", "");
+      }
+    }
+
+    function updateProcNote(activeKey){
+      var rid = localStorage.getItem("nf_rid") || "";
+      var ta = document.getElementById("nfSummary");
+      if(ta) ta.value = buildProcSummary(rid, activeKey);
+    }
+
+    function setActiveOffer(offerKey){
+      if(!OFFERS[offerKey]) offerKey = "quickscan";
+      localStorage.setItem("nf_offer", offerKey);
+
+      var sel = document.getElementById("nfOfferSelect");
+      if(sel) sel.value = offerKey;
+
+      updateOfferCards(offerKey);
+      updateRailCTAs(offerKey);
+      updateProcNote(offerKey);
+
+      try{ setQS("offer", offerKey); }catch(e){}
+    }
+
+    function updateQuickScanCTAsInCard(){
+      var rid = localStorage.getItem("nf_rid") || "";
+      var tier = getQuickScanTier();
+      var t = QS_TIERS[tier] || QS_TIERS.base;
+
+      /* Update QuickScan card CTAs */
+      var payA = document.getElementById("qsPay");
+      var poA  = document.getElementById("qsPO");
+      var intakeA = document.getElementById("qsIntake");
+      var onePagerA = document.getElementById("qsOnePager");
+
+      if(payA){
+        var ch = checkoutHref(t.checkoutKey, rid);
+        payA.setAttribute("href", ch || "#");
+        payA.textContent = "Pay by card (" + t.label + ")";
+        payA.style.display = ch ? "inline-flex" : "none";
+        if(ch) payA.setAttribute("rel","nofollow");
+      }
+      if(poA){
+        poA.setAttribute("href", appendRID("/gate/procurement/?focus=quickscan&tier=" + encodeURIComponent(tier), rid));
+      }
+      if(intakeA){
+        intakeA.setAttribute("href", appendRID("/gate/intake/?need=quickscan&tier=" + encodeURIComponent(tier), rid));
+      }
+      if(onePagerA){
+        onePagerA.setAttribute("href", onePagerHref(rid, "quickscan"));
       }
 
-      function renderRef(rid){
-        var el = document.getElementById("nfRID");
-        if(!el) return;
-        el.innerHTML = 'Reference (optional): <code>' + esc(rid) + '</code><br/>Keeps starts and procurement notes aligned.';
+      /* Update helper text */
+      var qsHint = document.getElementById("qsTierHint");
+      if(qsHint){
+        qsHint.innerHTML = "<strong>Selected tier:</strong> " + esc(t.label) + " · " + esc(t.price) + " · " + esc(t.timeline);
+      }
+    }
+
+    function applyBuyerEmphasis(){
+      var buyer = getBuyer();
+      /* QuickScan card emphasis */
+      var payA = document.getElementById("qsPay");
+      var poA  = document.getElementById("qsPO");
+      var intakeA = document.getElementById("qsIntake");
+
+      if(buyer === "proc"){
+        if(poA){ poA.classList.add("primary"); poA.classList.remove("secondary","ghost"); }
+        if(intakeA){ intakeA.classList.add("secondary"); intakeA.classList.remove("primary","ghost"); }
+        if(payA){ payA.classList.add("ghost"); payA.classList.remove("primary"); }
+      }else{
+        if(payA){ payA.classList.add("primary"); payA.classList.remove("secondary","ghost"); }
+        if(poA){ poA.classList.add("secondary"); poA.classList.remove("primary","ghost"); }
+        if(intakeA){ intakeA.classList.add("secondary"); intakeA.classList.remove("primary","ghost"); }
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", function(){
+      var rid = ensureRID();
+      renderRef(rid);
+      wireRID(rid);
+
+      /* buyer from QS */
+      var qb = (getQS("buyer") || "").toLowerCase();
+      if(qb === "card" || qb === "proc"){ setBuyer(qb); }
+
+      /* offer from QS */
+      var defaultOffer = getQS("offer") || localStorage.getItem("nf_offer") || "quickscan";
+      if(!OFFERS[defaultOffer]) defaultOffer = "quickscan";
+
+      /* tier from QS */
+      var qt = (getQS("tier") || "").toLowerCase();
+      if(qt && QS_TIERS[qt]) setQuickScanTier(qt);
+
+      /* wire buyer toggle */
+      var bCard = document.getElementById("nfBuyerCard");
+      var bProc = document.getElementById("nfBuyerProc");
+      if(bCard){
+        bCard.addEventListener("click", function(){
+          setBuyer("card");
+          renderBuyerUI();
+          applyBuyerEmphasis();
+          updateRailCTAs(localStorage.getItem("nf_offer") || defaultOffer);
+          try{ setQS("buyer","card"); }catch(e){}
+        });
+      }
+      if(bProc){
+        bProc.addEventListener("click", function(){
+          setBuyer("proc");
+          renderBuyerUI();
+          applyBuyerEmphasis();
+          updateRailCTAs(localStorage.getItem("nf_offer") || defaultOffer);
+          try{ setQS("buyer","proc"); }catch(e){}
+        });
       }
 
-      function setStickyCTAFromOffer(activeKey){
-        var rid = localStorage.getItem("nf_rid") || "";
-        var o = OFFERS[activeKey] || OFFERS.quickscan_base;
-
-        var sText = document.getElementById("nfStickyText");
-        var sPrimary = document.getElementById("nfStickyPrimary");
-        var sProc = document.getElementById("nfStickyProc");
-        if(!sText || !sPrimary || !sProc) return;
-
-        sText.innerHTML = "<strong>" + esc(o.name) + "</strong> — " + esc(o.timeline) + ".";
-
-        var ch = checkoutHref(activeKey, rid);
-        if(ch){
-          sPrimary.textContent = "Pay by card";
-          sPrimary.setAttribute("href", ch);
-          sPrimary.setAttribute("rel","nofollow");
-        }else{
-          var intake = "/gate/intake/?need=" + encodeURIComponent(o.need) + (o.tier ? ("&tier=" + encodeURIComponent(o.tier)) : "");
-          sPrimary.textContent = "Start (Gate)";
-          sPrimary.setAttribute("href", appendRID(intake, rid));
-          sPrimary.setAttribute("rel","");
-        }
-
-        var proc = "/gate/procurement/?focus=" + encodeURIComponent(o.focus) + (o.tier ? ("&tier=" + encodeURIComponent(o.tier)) : "");
-        sProc.setAttribute("href", appendRID(proc, rid));
-      }
-
-      document.addEventListener("DOMContentLoaded", function(){
-        var rid = ensureRID();
-        renderRef(rid);
-        wireRID(rid);
-
-        var qb = (getQS("buyer") || "").toLowerCase();
-        if(qb === "card" || qb === "proc"){ setBuyer(qb); }
-
-        var defaultOffer = getQS("offer") || "quickscan_base";
-        if(!OFFERS[defaultOffer]) defaultOffer = "quickscan_base";
-
-        var bCard = document.getElementById("nfBuyerCard");
-        var bProc = document.getElementById("nfBuyerProc");
-        if(bCard){
-          bCard.addEventListener("click", function(){
-            setBuyer("card");
-            renderBuyerUI();
-            setActiveOffer(defaultOffer);
-            setStickyCTAFromOffer(defaultOffer);
-            try{ setQS("buyer","card"); }catch(e){}
+      /* wire offer cards */
+      var cards = document.querySelectorAll("[data-offer]");
+      for(var i=0;i<cards.length;i++){
+        (function(el){
+          el.addEventListener("click", function(e){
+            var t = e.target;
+            if(t && (t.tagName === "A" || t.tagName === "BUTTON" || t.tagName === "SELECT" || t.tagName === "TEXTAREA")) return;
+            var k = el.getAttribute("data-offer");
+            setActiveOffer(k);
           });
-        }
-        if(bProc){
-          bProc.addEventListener("click", function(){
-            setBuyer("proc");
-            renderBuyerUI();
-            setActiveOffer(defaultOffer);
-            setStickyCTAFromOffer(defaultOffer);
-            try{ setQS("buyer","proc"); }catch(e){}
+        })(cards[i]);
+      }
+
+      /* offer select */
+      var sel = document.getElementById("nfOfferSelect");
+      if(sel){
+        sel.addEventListener("change", function(){ setActiveOffer(sel.value); });
+      }
+
+      /* tier cards */
+      var tierNodes = document.querySelectorAll("[data-tier]");
+      for(var j=0;j<tierNodes.length;j++){
+        (function(el){
+          el.addEventListener("click", function(){
+            var t = el.getAttribute("data-tier");
+            setQuickScanTier(t);
+            renderQuickScanTierUI();
+            updateQuickScanCTAsInCard();
+            updateRailCTAs(localStorage.getItem("nf_offer") || defaultOffer);
+            updateProcNote(localStorage.getItem("nf_offer") || defaultOffer);
+            try{ setQS("tier", t); }catch(e){}
           });
-        }
+        })(tierNodes[j]);
+      }
 
-        var cards = document.querySelectorAll("[data-offer]");
-        for(var i=0;i<cards.length;i++){
-          (function(el){
-            el.addEventListener("click", function(e){
-              var t = e.target;
-              if(t && (t.tagName === "A" || t.tagName === "BUTTON" || t.tagName === "SELECT" || t.tagName === "TEXTAREA")) return;
-              var k = el.getAttribute("data-offer");
-              defaultOffer = k;
-              setActiveOffer(k);
-              setStickyCTAFromOffer(k);
-            });
-          })(cards[i]);
-        }
+      /* procurement actions */
+      var copyBtn = document.getElementById("nfCopy");
+      if(copyBtn){
+        copyBtn.addEventListener("click", function(){
+          var ta = document.getElementById("nfSummary");
+          if(ta) copyText(ta.value);
+        });
+      }
+      var emailBtn = document.getElementById("nfEmail");
+      if(emailBtn){
+        emailBtn.addEventListener("click", function(){
+          var offerKey = (document.getElementById("nfOfferSelect")||{}).value || "quickscan";
+          location.href = mailtoProc(rid, offerKey);
+        });
+      }
 
-        var sel = document.getElementById("nfOfferSelect");
-        if(sel){
-          sel.addEventListener("change", function(){
-            defaultOffer = sel.value;
-            setActiveOffer(sel.value);
-            setStickyCTAFromOffer(sel.value);
-          });
-        }
+      /* quickscan copy button */
+      var qsCopy = document.getElementById("qsCopy");
+      if(qsCopy){
+        qsCopy.addEventListener("click", function(e){
+          e.preventDefault();
+          setActiveOffer("quickscan");
+          copyText(buildProcSummary(rid, "quickscan"));
+        });
+      }
 
-        var copyBtn = document.getElementById("nfCopy");
-        if(copyBtn){
-          copyBtn.addEventListener("click", function(){
-            var ta = document.getElementById("nfSummary");
-            if(ta) copyText(ta.value);
-          });
-        }
-        var emailBtn = document.getElementById("nfEmail");
-        if(emailBtn){
-          emailBtn.addEventListener("click", function(){
-            var offerKey = (document.getElementById("nfOfferSelect")||{}).value || "quickscan_base";
-            location.href = mailtoProc(rid, offerKey);
-          });
-        }
+      /* init */
+      renderBuyerUI();
+      renderQuickScanTierUI();
+      updateQuickScanCTAsInCard();
+      applyBuyerEmphasis();
+      setActiveOffer(defaultOffer);
 
-        var perCopy = document.querySelectorAll("[data-copy-offer]");
-        for(var j=0;j<perCopy.length;j++){
-          (function(btn){
-            btn.addEventListener("click", function(e){
-              e.preventDefault();
-              e.stopPropagation();
-              var offerKey = btn.getAttribute("data-copy-offer");
-              copyText(buildProcSummary(rid, offerKey));
-              defaultOffer = offerKey;
-              setActiveOffer(offerKey);
-              setStickyCTAFromOffer(offerKey);
-            });
-          })(perCopy[j]);
-        }
+      /* show tier pill */
+      var tierPill = document.getElementById("nfTierPill");
+      if(tierPill) tierPill.style.display = (defaultOffer === "quickscan") ? "inline-flex" : "none";
 
-        renderBuyerUI();
-        setActiveOffer(defaultOffer);
-        setStickyCTAFromOffer(defaultOffer);
+      /* Keep tier pill visibility aligned on offer change */
+      var obs = new MutationObserver(function(){
+        var ok = localStorage.getItem("nf_offer") || "quickscan";
+        if(tierPill) tierPill.style.display = (ok === "quickscan") ? "inline-flex" : "none";
       });
-    })();
+      var selBox = document.getElementById("nfSelected");
+      if(selBox) obs.observe(selBox, {childList:true, subtree:true});
+    });
+  })();
   </script>
 </head>
 
@@ -834,21 +914,22 @@
     <section class="hero" aria-label="Purchase hero">
       <div class="heroShell">
         <div class="heroInner">
-          <div class="eyebrow"><span class="dot"></span> Purchase • card or invoice/PO • procurement-ready starts</div>
+          <div class="eyebrow"><span class="dot"></span> Purchase • card or invoice/PO • clean start</div>
 
           <h1>Purchase options.</h1>
 
           <p class="lead">
-            Card payment is enabled for <strong>Copilot QuickScan</strong> tiers (Base, Pro, Enterprise).
-            For invoice/PO, use the procurement path and a ready internal summary.
-            Gate intake is available when scope needs a tailored start.
+            Card checkout is enabled for <strong>Copilot QuickScan</strong> tiers.
+            For invoice/PO, use the procurement path with a printable one-pager and an internal approval summary.
+            Use Gate intake when scope needs a tailored start.
           </p>
 
           <div class="metaRow" aria-label="Purchase facts">
-            <div class="pill"><strong>Public intake</strong> form</div>
-            <div class="pill"><strong>Procurement</strong> path</div>
-            <div class="pill"><strong>Tax</strong> applied as required</div>
-            <div class="pill"><strong>Reference</strong> carried across</div>
+            <div class="pill"><strong>Public intake</strong> (non-confidential)</div>
+            <div class="pill"><strong>Procurement-ready</strong> routing</div>
+            <div class="pill"><strong>CAD</strong> pricing</div>
+            <div class="pill"><strong>Tax</strong> as required</div>
+            <div class="pill" id="nfTierPill" style="display:none"><strong>QuickScan tier:</strong> Base · $3,500 CAD</div>
           </div>
 
           <div class="actions" aria-label="Hero actions">
@@ -859,7 +940,7 @@
 
           <div class="notice" role="note">
             <strong>Public forms are designed for non-sensitive details.</strong>
-            For secure sharing, the engagement path is confirmed after kickoff.
+            Secure sharing options (if needed) are confirmed after kickoff.
           </div>
         </div>
       </div>
@@ -871,92 +952,62 @@
         <section class="card" aria-label="Offers">
           <div class="hd">
             <h2 class="cardTitle">Offers</h2>
-            <p class="muted">Choose an offer. Where card payment is enabled, it appears as a first action. Invoice/PO and Gate start are always available.</p>
+            <p class="muted">Select an offer. For QuickScan, choose a tier. Card checkout appears only where enabled. Invoice/PO and Gate intake remain available.</p>
           </div>
 
           <div class="bd">
             <div class="offers" aria-label="Offer list">
-              <!-- QuickScan Base -->
-              <article class="offer" data-offer="quickscan_base" aria-label="Copilot QuickScan Base">
+
+              <!-- QuickScan -->
+              <article class="offer" data-offer="quickscan" aria-label="Copilot QuickScan">
                 <div class="offerTop">
-                  <h3>Copilot QuickScan (Base)</h3>
+                  <h3>Copilot QuickScan</h3>
                   <span class="tag">5–7 business days</span>
                 </div>
-                <p>Fast Copilot governance baseline: posture, surface map, and exposure priorities for board-safe decisions.</p>
+                <p>Governance-first Copilot evidence pack: posture, boundaries, top exposure paths, and decision options—ready for procurement.</p>
+
+                <!-- Tier compare -->
+                <div class="tierRow" aria-label="QuickScan tiers">
+                  <div class="tier isOn" data-tier="base" role="button" tabindex="0" aria-label="QuickScan Base">
+                    <div class="k">Base</div>
+                    <div class="n">$3,500 CAD</div>
+                    <div class="d">Standard baseline. Best first step for most orgs.</div>
+                  </div>
+                  <div class="tier" data-tier="pro" role="button" tabindex="0" aria-label="QuickScan Pro">
+                    <div class="k">Pro</div>
+                    <div class="n">$6,500 CAD</div>
+                    <div class="d">More depth + stronger evidence pack.</div>
+                  </div>
+                  <div class="tier" data-tier="ent" role="button" tabindex="0" aria-label="QuickScan Enterprise">
+                    <div class="k">Enterprise</div>
+                    <div class="n">$9,500 CAD</div>
+                    <div class="d">Highest scrutiny environments. Strongest procurement posture.</div>
+                  </div>
+                </div>
 
                 <div class="offerMeta">
-                  <div class="kv"><strong>Price:</strong> $3,500 CAD</div>
-                  <div class="kv"><strong>Tier:</strong> Base</div>
+                  <div class="kv" id="qsTierHint"><strong>Selected tier:</strong> Base · $3,500 CAD · 5–7 business days</div>
+                  <div class="kv"><strong>Details:</strong> scope + deliverables</div>
                 </div>
 
                 <ul>
-                  <li>Executive summary (decision posture)</li>
-                  <li>Surface & enablement map</li>
-                  <li>Oversharing exposure themes + priorities</li>
+                  <li>Executive memo (decision options)</li>
+                  <li>Boundary + exposure map</li>
+                  <li>Prioritized control checklist</li>
+                  <li>30/60/90 plan (baseline)</li>
                 </ul>
 
                 <div class="offerActions">
-                  <a class="btn" data-cta="pay" href="#" rel="nofollow">Pay by card</a>
-                  <a class="btn" data-cta="start" data-rid="1" href="/gate/intake/?need=quickscan&tier=base">Start (Gate intake)</a>
-                  <a class="btn" data-cta="po" data-rid="1" href="/gate/procurement/?focus=quickscan&tier=base">Invoice / PO</a>
-                  <a class="btn ghost" href="#" data-copy-offer="quickscan_base">Copy procurement note</a>
+                  <a class="btn" id="qsPay" href="https://buy.stripe.com/7sY4gA6v681S2a6cDi1Nu00" rel="nofollow">Pay by card (Base)</a>
+                  <a class="btn" id="qsPO" data-rid="1" href="/gate/procurement/?focus=quickscan&tier=base">Invoice / PO</a>
+                  <a class="btn secondary" id="qsIntake" data-rid="1" href="/gate/intake/?need=quickscan&tier=base">Start (Gate intake)</a>
+                  <a class="btn ghost" id="qsOnePager" data-rid="1" href="/gate/procurement/onepager/?offer=quickscan&tier=base">Printable one-pager</a>
+                  <a class="btn ghost" id="qsCopy" href="#">Copy internal summary</a>
                   <a class="btn ghost" href="/copilot/quickscan/">View details</a>
                 </div>
-              </article>
 
-              <!-- QuickScan Pro -->
-              <article class="offer" data-offer="quickscan_pro" aria-label="Copilot QuickScan Pro">
-                <div class="offerTop">
-                  <h3>Copilot QuickScan (Pro)</h3>
-                  <span class="tag">5–7 business days</span>
-                </div>
-                <p>Expanded defensibility: boundaries, evidence readiness, and a stronger control checklist for higher scrutiny.</p>
-
-                <div class="offerMeta">
-                  <div class="kv"><strong>Price:</strong> $9,500 CAD</div>
-                  <div class="kv"><strong>Tier:</strong> Pro</div>
-                </div>
-
-                <ul>
-                  <li>Boundary guidance + red-lines (practical)</li>
-                  <li>Evidence readiness + owner mapping</li>
-                  <li>Control checklist + early cadence</li>
-                </ul>
-
-                <div class="offerActions">
-                  <a class="btn" data-cta="pay" href="#" rel="nofollow">Pay by card</a>
-                  <a class="btn" data-cta="start" data-rid="1" href="/gate/intake/?need=quickscan&tier=pro">Start (Gate intake)</a>
-                  <a class="btn" data-cta="po" data-rid="1" href="/gate/procurement/?focus=quickscan&tier=pro">Invoice / PO</a>
-                  <a class="btn ghost" href="#" data-copy-offer="quickscan_pro">Copy procurement note</a>
-                  <a class="btn ghost" href="/copilot/quickscan/">View details</a>
-                </div>
-              </article>
-
-              <!-- QuickScan Enterprise -->
-              <article class="offer" data-offer="quickscan_ent" aria-label="Copilot QuickScan Enterprise">
-                <div class="offerTop">
-                  <h3>Copilot QuickScan (Enterprise)</h3>
-                  <span class="tag">Kickoff-confirmed timeline</span>
-                </div>
-                <p>Enterprise procurement/security posture and multi-stakeholder alignment with a board-ready briefing pack.</p>
-
-                <div class="offerMeta">
-                  <div class="kv"><strong>Price:</strong> $25,000 CAD</div>
-                  <div class="kv"><strong>Tier:</strong> Enterprise</div>
-                </div>
-
-                <ul>
-                  <li>Governance pack (stakeholder-ready)</li>
-                  <li>Exception / connector control model (where relevant)</li>
-                  <li>Board-ready briefing pack</li>
-                </ul>
-
-                <div class="offerActions">
-                  <a class="btn" data-cta="pay" href="#" rel="nofollow">Pay by card</a>
-                  <a class="btn" data-cta="start" data-rid="1" href="/gate/intake/?need=quickscan&tier=enterprise">Start (Gate intake)</a>
-                  <a class="btn" data-cta="po" data-rid="1" href="/gate/procurement/?focus=quickscan&tier=enterprise">Invoice / PO</a>
-                  <a class="btn ghost" href="#" data-copy-offer="quickscan_ent">Copy procurement note</a>
-                  <a class="btn ghost" href="/copilot/quickscan/">View details</a>
+                <div class="notice">
+                  <strong>Why tiers:</strong> same delivery window, different depth and stakeholder coverage. If unsure, start with <strong>Base</strong>.
                 </div>
               </article>
 
@@ -970,7 +1021,7 @@
 
                 <div class="offerMeta">
                   <div class="kv"><strong>Indicative:</strong> $12,000–$35,000 CAD</div>
-                  <div class="kv"><strong>Focus:</strong> decision clarity</div>
+                  <div class="kv"><strong>Start:</strong> Gate-first</div>
                 </div>
 
                 <ul>
@@ -980,11 +1031,14 @@
                 </ul>
 
                 <div class="offerActions">
-                  <a class="btn" data-cta="pay" href="#" rel="nofollow">Pay by card</a>
-                  <a class="btn" data-cta="start" data-rid="1" href="/gate/intake/?need=trustbrief">Start (Gate intake)</a>
-                  <a class="btn" data-cta="po" data-rid="1" href="/gate/procurement/?focus=brief">Invoice / PO</a>
-                  <a class="btn ghost" href="#" data-copy-offer="trustbrief">Copy procurement note</a>
+                  <a class="btn primary" data-rid="1" href="/gate/intake/?need=trustbrief">Start (Gate intake)</a>
+                  <a class="btn secondary" data-rid="1" href="/gate/procurement/?focus=brief">Invoice / PO</a>
+                  <a class="btn ghost" data-rid="1" href="/gate/procurement/onepager/?offer=trustbrief">Printable one-pager</a>
                   <a class="btn ghost" href="/trust-brief/">View details</a>
+                </div>
+
+                <div class="notice">
+                  <strong>Card payment:</strong> not enabled for this offer. Start via Gate or invoice/PO.
                 </div>
               </article>
 
@@ -998,7 +1052,7 @@
 
                 <div class="offerMeta">
                   <div class="kv"><strong>Indicative:</strong> setup + cadence</div>
-                  <div class="kv"><strong>Focus:</strong> ongoing operations</div>
+                  <div class="kv"><strong>Start:</strong> Gate-first</div>
                 </div>
 
                 <ul>
@@ -1008,11 +1062,14 @@
                 </ul>
 
                 <div class="offerActions">
-                  <a class="btn" data-cta="pay" href="#" rel="nofollow">Pay by card</a>
-                  <a class="btn" data-cta="start" data-rid="1" href="/gate/intake/?need=trustledger">Start (Gate intake)</a>
-                  <a class="btn" data-cta="po" data-rid="1" href="/gate/procurement/?focus=ledger">Invoice / PO</a>
-                  <a class="btn ghost" href="#" data-copy-offer="trustledger">Copy procurement note</a>
+                  <a class="btn primary" data-rid="1" href="/gate/intake/?need=trustledger">Start (Gate intake)</a>
+                  <a class="btn secondary" data-rid="1" href="/gate/procurement/?focus=ledger">Invoice / PO</a>
+                  <a class="btn ghost" data-rid="1" href="/gate/procurement/onepager/?offer=trustledger">Printable one-pager</a>
                   <a class="btn ghost" href="/trust-ledger/">View details</a>
+                </div>
+
+                <div class="notice">
+                  <strong>Card payment:</strong> not enabled for this offer. Start via Gate or invoice/PO.
                 </div>
               </article>
 
@@ -1026,7 +1083,7 @@
 
                 <div class="offerMeta">
                   <div class="kv"><strong>Indicative:</strong> $250–$8,000 CAD</div>
-                  <div class="kv"><strong>Focus:</strong> enablement</div>
+                  <div class="kv"><strong>Start:</strong> Gate-first</div>
                 </div>
 
                 <ul>
@@ -1036,23 +1093,25 @@
                 </ul>
 
                 <div class="offerActions">
-                  <a class="btn" data-cta="pay" href="#" rel="nofollow">Pay by card</a>
-                  <a class="btn" data-cta="start" data-rid="1" href="/gate/intake/?need=playbook-pro">Start (Gate intake)</a>
-                  <a class="btn" data-cta="po" data-rid="1" href="/gate/procurement/?focus=playbook">Invoice / PO</a>
-                  <a class="btn ghost" href="#" data-copy-offer="playbook">Copy procurement note</a>
+                  <a class="btn primary" data-rid="1" href="/gate/intake/?need=playbook-pro">Start (Gate intake)</a>
+                  <a class="btn secondary" data-rid="1" href="/gate/procurement/?focus=playbook">Invoice / PO</a>
+                  <a class="btn ghost" data-rid="1" href="/gate/procurement/onepager/?offer=playbook">Printable one-pager</a>
                   <a class="btn ghost" href="/playbook/pro/">View details</a>
                 </div>
+
+                <div class="notice">
+                  <strong>Card payment:</strong> not enabled for this offer. Start via Gate or invoice/PO.
+                </div>
               </article>
+
             </div>
 
             <div class="notice">
-              <strong>Scope approach:</strong>
-              QuickScan tiers support a clean card start (Base/Pro/Enterprise).
-              Gate intake supports tailored scope and clean kickoff alignment.
+              <strong>Pricing & tax (Canada):</strong> amounts shown in CAD. Taxes are applied as required (at checkout or invoicing).
             </div>
 
             <div class="notice">
-              <strong>Tax:</strong> applied as required at invoicing or checkout.
+              <strong>Tailored scope:</strong> if scope is uncertain, start via Gate intake. It keeps kickoff aligned and avoids back-and-forth.
             </div>
           </div>
         </section>
@@ -1068,7 +1127,7 @@
 
           <div class="bd">
             <div class="seg" role="tablist" aria-label="Purchase style">
-              <button id="nfBuyerCard" type="button" role="tab" aria-selected="true"><strong>Card</strong> payment</button>
+              <button id="nfBuyerCard" type="button" role="tab" aria-selected="true"><strong>Card</strong> checkout</button>
               <button id="nfBuyerProc" type="button" role="tab" aria-selected="false"><strong>Invoice</strong> / PO</button>
             </div>
 
@@ -1084,37 +1143,46 @@
               <strong>Next step</strong><br/>
               A primary action is provided based on the selected purchase path.
               <div class="actions" style="margin-top:10px">
-                <a class="btn primary" id="nfRailPrimary" href="#" rel="nofollow">Pay by card</a>
+                <a class="btn primary" id="nfRailPrimary" href="#" rel="nofollow">Pay by card (QuickScan Base)</a>
                 <a class="btn secondary" id="nfRailSecondary" data-rid="1" href="/gate/intake/?need=quickscan&tier=base">Start (Gate intake)</a>
                 <a class="btn secondary" id="nfRailTertiary" data-rid="1" href="/gate/procurement/?focus=quickscan&tier=base">Invoice / PO</a>
               </div>
+
+              <div class="subrow" aria-label="Shortcuts">
+                <a class="btn ghost" id="nfRailOnePager" data-rid="1" href="/gate/procurement/onepager/?offer=quickscan&tier=base">Printable one-pager</a>
+                <a class="btn ghost" data-rid="1" href="/status/">Status</a>
+              </div>
+
               <div class="mini" style="margin-top:10px">
                 Sales: <a href="mailto:sales@noetfield.com">sales@noetfield.com</a><br/>
-                Procurement: <a href="mailto:procurement@noetfield.com">procurement@noetfield.com</a>
+                Procurement: <a href="mailto:procurement@noetfield.com">procurement@noetfield.com</a><br/>
+                Billing: <a href="mailto:billing@noetfield.com">billing@noetfield.com</a><br/>
+                Trust/Security: <a href="mailto:trust@noetfield.com">trust@noetfield.com</a>
               </div>
             </div>
 
-            <div class="kpi" aria-label="Procurement note">
-              <strong>Procurement note</strong><br/>
-              Copy or email an internal approval summary.
+            <div class="kpi" aria-label="Procurement pack">
+              <strong>Procurement pack (1 minute)</strong><br/>
+              Copy/email an internal approval summary and generate a printable one-pager.
               <div class="field">
                 <label for="nfOfferSelect">Offer</label>
                 <select id="nfOfferSelect">
-                  <option value="quickscan_base">Copilot QuickScan (Base)</option>
-                  <option value="quickscan_pro">Copilot QuickScan (Pro)</option>
-                  <option value="quickscan_ent">Copilot QuickScan (Enterprise)</option>
+                  <option value="quickscan">Copilot QuickScan</option>
                   <option value="trustbrief">Trust Brief (6-week)</option>
                   <option value="trustledger">Trust Ledger</option>
                   <option value="playbook">Playbook Pro</option>
                 </select>
               </div>
               <div class="field">
-                <label for="nfSummary">Summary</label>
+                <label for="nfSummary">Internal summary</label>
                 <textarea id="nfSummary" readonly></textarea>
               </div>
               <div class="actions" aria-label="Procurement actions">
-                <button class="btn secondary" id="nfCopy" type="button">Copy note</button>
+                <button class="btn secondary" id="nfCopy" type="button">Copy summary</button>
                 <button class="btn primary" id="nfEmail" type="button">Email procurement</button>
+              </div>
+              <div class="mini" style="margin-top:10px">
+                Tip: for QuickScan, select the tier on the left first—your summary updates automatically.
               </div>
             </div>
 
@@ -1130,42 +1198,23 @@
   <!-- injected footer -->
   <footer id="nfFooter"></footer>
 
-  <!-- Sticky CTA (mobile-friendly) -->
-  <div class="stickyCta" aria-label="Sticky call to action">
-    <div class="stickyInner">
-      <div class="stickyText" id="nfStickyText">
-        <strong>Copilot QuickScan (Base)</strong> — 5–7 business days.
-      </div>
-      <div class="actions" style="margin:0">
-        <a class="btn primary" id="nfStickyPrimary" href="#" rel="nofollow">Pay by card</a>
-        <a class="btn secondary" id="nfStickyProc" data-rid="1" href="/gate/procurement/?focus=quickscan&tier=base">Invoice / PO</a>
-      </div>
-    </div>
-  </div>
-
   <!--
-    CHANGELOG (Sales v2.2.0)
-    - Enabled three paid tiers for Copilot QuickScan with Stripe Checkout links:
-      - Base: https://buy.stripe.com/7sY4gA6v681S2a6cDi1Nu00
-      - Pro:  https://buy.stripe.com/14A4gAg5Gfuk2a646M1Nu01
-      - Ent:  https://buy.stripe.com/fZu5kE7za81SdSO5aQ1Nu02
-    - Converted QuickScan into three explicit buyer-facing offers (Base/Pro/Enterprise) to reduce ambiguity.
-    - Kept “Pay by card” hidden for offers without checkout enabled (Trust Brief/Ledger/Playbook).
-    - Unified header behavior (removed page-specific header boxing overrides) to keep shell consistency.
-    - Carried optional Reference (RID) across internal links and procurement notes; appended to Stripe checkout as query param.
+    CHANGELOG (Sales v2.2)
+    - Added QuickScan tier compare (Base/Pro/Enterprise) with tier-aware card checkout + procurement routing.
+    - Reduced CTA complexity: for non-checkout offers, primary is Gate intake; procurement remains available.
+    - Added Procurement pack UX: internal summary + printable one-pager shortcut.
+    - Kept RID loop (localStorage + URL rid) to align starts, procurement, thanks, and status.
+    - Added explicit Canada pricing/tax note (CAD + taxes as required).
 
     SMOKE TEST
-    - GET /gate/sales/ returns 200
-    - /assets/noetfield-shell.css returns 200 and styles apply
-    - /assets/noetfield-shell.js returns 200 and injects header/footer into #nfHeader/#nfFooter
-    - Stripe CTAs open correctly:
-      - QuickScan Base/Pro/Enterprise “Pay by card”
-    - Buyer toggle:
-      - Card: Rail primary uses Stripe where available
-      - Invoice/PO: Rail primary routes to Procurement
-    - Procurement note:
-      - Copy note works
-      - Email procurement opens mail client with populated summary
+    - GET /gate/sales/ => 200
+    - /assets/noetfield-shell.css => 200
+    - /assets/noetfield-shell.js => 200 and injects header/footer into #nfHeader/#nfFooter
+    - QuickScan tiers:
+      - Select tier -> rail + summary + CTAs update
+      - Card path -> Stripe checkout opens for Base/Pro/Enterprise
+      - Invoice/PO -> /gate/procurement/?focus=quickscan&tier=...
+    - Printable one-pager opens: /gate/procurement/onepager/?offer=...&tier=...&rid=...
   -->
 </body>
 </html>

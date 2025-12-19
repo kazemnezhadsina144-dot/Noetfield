@@ -1,4 +1,4 @@
-<!-- /gate/sales/index.html — Noetfield Sales v2.3.0 (QuickScan + Playbook checkout links added + prices updated + cleaner buyer UX) -->
+<!-- /gate/sales/index.html — Noetfield Sales v2.3.0 (Stripe links + price corrections + Playbook tiers + optional inline Buy Buttons) -->
 <!doctype html>
 <html lang="en">
 <head>
@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <title>Noetfield — Purchase</title>
-  <meta name="description" content="Purchase/start page. Card payment for Copilot QuickScan (Base/Pro/Enterprise) and Playbook (Standard/Pro). Gate-first starts for tailored scope, and an invoice/PO procurement path with a ready internal summary." />
+  <meta name="description" content="Purchase/start page. Card payment for Copilot QuickScan (Base/Pro/Enterprise), Playbook tiers, Gate-first starts for tailored scope, and an invoice/PO procurement path with a ready internal summary." />
   <meta name="robots" content="index,follow" />
   <meta name="author" content="Noetfield Systems Inc." />
   <meta name="theme-color" content="#07070b" />
@@ -19,14 +19,14 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Noetfield" />
   <meta property="og:title" content="Noetfield — Purchase" />
-  <meta property="og:description" content="Card payment for Copilot QuickScan and Playbook. Gate-first starts for tailored scope, and invoice/PO procurement path." />
+  <meta property="og:description" content="Card payment for Copilot QuickScan (Base/Pro/Enterprise) + procurement-ready invoice/PO path." />
   <meta property="og:url" content="https://www.noetfield.com/gate/sales/" />
   <meta property="og:image" content="https://www.noetfield.com/noetfield-og.png" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Noetfield — Purchase" />
-  <meta name="twitter:description" content="Card payment for Copilot QuickScan and Playbook. Gate-first starts for tailored scope, and invoice/PO procurement path." />
+  <meta name="twitter:description" content="Card payment for Copilot QuickScan (Base/Pro/Enterprise) + procurement-ready invoice/PO path." />
   <meta name="twitter:image" content="https://www.noetfield.com/noetfield-og.png" />
 
   <!-- LOCKED SHELL -->
@@ -155,20 +155,6 @@
       background: transparent;
       border-color: rgba(255,255,255,.16);
     }
-
-    /* Section chips */
-    .sectionRow{display:flex; flex-wrap:wrap; gap:10px; align-items:center; margin: 2px 0 12px}
-    .chip{
-      display:inline-flex; align-items:center; gap:8px;
-      padding:8px 10px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.03);
-      color:var(--muted2);
-      font-size:12.4px;
-      white-space:nowrap;
-    }
-    .chip strong{ color:var(--text); font-weight:900; }
 
     /* Offer cards */
     .offers{ display:grid; gap:12px; margin-top:12px; }
@@ -303,24 +289,17 @@
     }
     textarea{ min-height: 132px; resize: vertical; line-height:1.55; color: var(--muted2); }
 
-    /* Payment links mini list */
-    .linkList{ margin-top:10px; display:grid; gap:10px; }
-    .linkItem{
-      border-radius:14px;
+    /* Inline Stripe rail (optional) */
+    .stripeRail{
+      margin-top:10px;
+      border-radius:16px;
       border:1px solid rgba(255,255,255,.10);
       background: rgba(255,255,255,.02);
-      padding:10px 12px;
-      color:var(--muted2);
-      font-size:12.8px;
-      line-height:1.55;
-      word-break:break-word;
+      padding:10px;
     }
-    .linkItem strong{ color:var(--text); font-weight:900; }
-    .linkItem a{ border-bottom:1px solid rgba(255,255,255,.18); }
-
-    details{ border-radius:14px; border:1px solid rgba(255,255,255,.10); background: rgba(255,255,255,.02); padding:10px 12px; margin-top:12px; }
-    summary{ cursor:pointer; color:var(--text); font-weight:900; }
-    .detailsBody{ margin-top:10px; color:var(--muted2); font-size:12.8px; line-height:1.6; }
+    .stripeRail .mini{ margin-top:8px; }
+    .stripeSlot{ display:none; }
+    .stripeSlot.isOn{ display:block; }
 
     /* Sticky CTA */
     .stickyCta{
@@ -365,7 +344,7 @@
     "@type":"WebPage",
     "name":"Noetfield — Purchase",
     "url":"https://www.noetfield.com/gate/sales/",
-    "description":"Purchase/start page. Card payment for Copilot QuickScan (Base/Pro/Enterprise) and Playbook (Standard/Pro). Gate-first starts for tailored scope, and an invoice/PO procurement path with a ready internal summary.",
+    "description":"Purchase/start page. Card payment for Copilot QuickScan (Base/Pro/Enterprise), Playbook tiers, Gate-first starts for tailored scope, and an invoice/PO procurement path with a ready internal summary.",
     "isPartOf":{"@type":"WebSite","name":"Noetfield","url":"https://www.noetfield.com/"},
     "publisher":{"@type":"Organization","name":"Noetfield Systems Inc."}
   }
@@ -374,27 +353,34 @@
   <script>
     (function(){
       /* ===========================
-         CONFIG: checkout links
+         CONFIG: Stripe checkout links
          =========================== */
       var NF_CHECKOUT = {
-        /* Copilot QuickScan */
         quickscan_base: "https://buy.stripe.com/7sY4gA6v681S2a6cDi1Nu00",
         quickscan_pro:  "https://buy.stripe.com/14A4gAg5Gfuk2a646M1Nu01",
         quickscan_ent:  "https://buy.stripe.com/fZu5kE7za81SdSO5aQ1Nu02",
 
-        /* Playbook */
-        playbook_standard: "https://buy.stripe.com/9B69AU8De95W2a6cDi1Nu03",
-        playbook_pro:      "https://buy.stripe.com/28EfZicTuaa0dSO7iY1Nu04"
+        /* Add when available */
+        playbook_standard: "",
+        playbook_pro: ""
+      };
 
-        /* Trust Brief / Trust Ledger intentionally not card-enabled here */
+      /* ===========================
+         CONFIG: Stripe Buy Buttons (optional inline rail)
+         =========================== */
+      var NF_STRIPE_BUY = {
+        publishable_key: "pk_live_51SfSseJ03eJkL57JNU4voCGfUjjK4WDew62tPBWesZAejr03HX8uTonznYoWDVcpXwLATZpTvWSDfSU4zJbRIB6900xlpPcGSz",
+        ids: {
+          quickscan_base: "buy_btn_1Sg1q9J03eJkL57J8NIjy5v8",
+          quickscan_pro:  "buy_btn_1Sg0FEJ03eJkL57JsejfI5wu",
+          quickscan_ent:  "buy_btn_1Sg0ESJ03eJkL57Ju6PFOiwj"
+        }
       };
 
       /* Offer model */
       var OFFERS = {
-        /* Copilot QuickScan */
         quickscan_base: {
           key:"quickscan_base",
-          group:"Copilot QuickScan",
           name:"Copilot QuickScan (Base)",
           timeline:"5–7 business days",
           indicative:"$3,500 CAD (pre-tax)",
@@ -407,32 +393,28 @@
             "Surface & enablement map",
             "Oversharing exposure themes + priorities"
           ],
-          bestFor:"A fast, board-safe baseline before wider Copilot rollout.",
-          notes:["Digital delivery. Not legal advice."]
+          bestFor:"A fast, board-safe baseline before wider Copilot rollout."
         },
         quickscan_pro: {
           key:"quickscan_pro",
-          group:"Copilot QuickScan",
           name:"Copilot QuickScan (Pro)",
-          timeline:"5–7 business days",
-          indicative:"$5,500 CAD (pre-tax)",
+          timeline:"5–7 business days (expanded scope confirmed at kickoff)",
+          indicative:"$5,000 CAD (pre-tax)",
           need:"quickscan",
           focus:"quickscan",
           tier:"pro",
           details:"/copilot/quickscan/",
           bullets:[
-            "Deeper boundary guidance + red-lines",
+            "Boundary guidance + red-lines (practical)",
             "Evidence readiness + owner mapping",
             "Control checklist + early operating cadence"
           ],
-          bestFor:"Higher scrutiny environments that need stronger defensibility.",
-          notes:["Digital delivery. Not legal advice."]
+          bestFor:"Higher scrutiny environments that need stronger defensibility."
         },
         quickscan_ent: {
           key:"quickscan_ent",
-          group:"Copilot QuickScan",
           name:"Copilot QuickScan (Enterprise)",
-          timeline:"Kickoff-confirmed timeline (typically 5–10 business days)",
+          timeline:"Kickoff-confirmed timeline",
           indicative:"$7,500 CAD (pre-tax)",
           need:"quickscan",
           focus:"quickscan",
@@ -443,55 +425,14 @@
             "Exception / connector control model (where relevant)",
             "Board-ready briefing pack for leadership review"
           ],
-          bestFor:"Enterprise procurement/security posture and multi-stakeholder alignment.",
-          notes:["Digital delivery. Not legal advice."]
+          bestFor:"Enterprise procurement/security posture and multi-stakeholder alignment."
         },
 
-        /* Playbook */
-        playbook_standard: {
-          key:"playbook_standard",
-          group:"Playbook",
-          name:"Playbook — Standard",
-          timeline:"Immediate (digital delivery)",
-          indicative:"$249 CAD (pre-tax)",
-          need:"playbook-standard",
-          focus:"playbook",
-          tier:"standard",
-          details:"/playbook/standard/",
-          bullets:[
-            "0–90 day governance rollout pattern (one organization)",
-            "Templates + checklists + board/procurement brief structure",
-            "Upgrade path into delivery services (optional)"
-          ],
-          bestFor:"Teams that need a clean governance baseline and fast internal alignment.",
-          notes:["Digital product. Not legal advice."]
-        },
-        playbook_pro: {
-          key:"playbook_pro",
-          group:"Playbook",
-          name:"Playbook — Pro (Agency/Broker)",
-          timeline:"Immediate (digital delivery)",
-          indicative:"$749 CAD (pre-tax)",
-          need:"playbook-pro",
-          focus:"playbook",
-          tier:"pro",
-          details:"/playbook/pro/",
-          bullets:[
-            "Agency/advisor license (multi-client use)",
-            "Reusable templates + due diligence kit",
-            "Client-ready procurement/board brief structures"
-          ],
-          bestFor:"Advisors, agencies, and brokers delivering governance enablement across clients.",
-          notes:["Digital product. Not legal advice."]
-        },
-
-        /* Services (no card checkout here) */
         trustbrief: {
           key:"trustbrief",
-          group:"Services",
           name:"Trust Brief (6-week)",
           timeline:"6 weeks",
-          indicative:"Scoped at kickoff (pre-tax)",
+          indicative:"$12,000–$35,000 CAD (pre-tax)",
           need:"trustbrief",
           focus:"brief",
           tier:"",
@@ -501,12 +442,11 @@
             "Decision gates + operating model draft",
             "Board-ready roadmap + first ledger entries"
           ],
-          bestFor:"Clarity under leadership scrutiny and higher materiality.",
-          notes:["Engagement scoped at kickoff. Not legal advice."]
+          bestFor:"Clarity under leadership scrutiny and higher materiality."
         },
+
         trustledger: {
           key:"trustledger",
-          group:"Services",
           name:"Trust Ledger",
           timeline:"Setup + cadence",
           indicative:"Setup + monthly cadence (pre-tax)",
@@ -519,8 +459,40 @@
             "Board export cadence (agreed)",
             "Change trail + exception discipline"
           ],
-          bestFor:"Ongoing governance operations and recurring scrutiny.",
-          notes:["Engagement scoped at kickoff. Not legal advice."]
+          bestFor:"Ongoing governance operations and recurring scrutiny."
+        },
+
+        playbook_standard: {
+          key:"playbook_standard",
+          name:"Playbook — Standard",
+          timeline:"Digital delivery",
+          indicative:"$249 CAD (pre-tax)",
+          need:"playbook",
+          focus:"playbook",
+          tier:"standard",
+          details:"/playbook/standard/",
+          bullets:[
+            "0–90 day AI governance rollout pattern",
+            "Templates + checklists",
+            "Board/procurement-ready brief (downloadable)"
+          ],
+          bestFor:"One organization adopting AI with clear, board-safe basics."
+        },
+        playbook_pro: {
+          key:"playbook_pro",
+          name:"Playbook — Pro (Agency/Broker)",
+          timeline:"Digital delivery",
+          indicative:"$749 CAD (pre-tax)",
+          need:"playbook",
+          focus:"playbook",
+          tier:"pro",
+          details:"/playbook/pro/",
+          bullets:[
+            "Multi-client reuse license (advisor/agency)",
+            "Client-ready templates + due diligence kit",
+            "Procurement-ready summary + delivery guidance"
+          ],
+          bestFor:"Advisors and agencies running repeatable governance starts."
         }
       };
 
@@ -594,16 +566,11 @@
         lines.push("Reference: " + rid);
         lines.push("Selected offer: " + o.name);
         lines.push("Timeline: " + o.timeline);
-        lines.push("Indicative pricing: " + o.indicative);
+        lines.push("Pricing: " + o.indicative);
         lines.push("Tax: applied as required at invoicing or checkout.");
         lines.push("");
         lines.push("Included (typical):");
         for(var i=0;i<o.bullets.length;i++) lines.push("- " + o.bullets[i]);
-        if(o.notes && o.notes.length){
-          lines.push("");
-          lines.push("Notes:");
-          for(var j=0;j<o.notes.length;j++) lines.push("- " + o.notes[j]);
-        }
         lines.push("");
         lines.push("Start (Gate intake):");
         var intake = "/gate/intake/?need=" + encodeURIComponent(o.need);
@@ -637,7 +604,7 @@
         }
       }
 
-      /* UI state */
+      /* Buyer UI */
       function renderBuyerUI(){
         var buyer = getBuyer();
         var bCard = document.getElementById("nfBuyerCard");
@@ -656,8 +623,25 @@
           if(buyer === "proc"){
             bNote.innerHTML = "<strong>Invoice / PO:</strong> a procurement note and a clean routing path are available.";
           }else{
-            bNote.innerHTML = "<strong>Card payment:</strong> enabled for Copilot QuickScan and Playbook tiers.";
+            bNote.innerHTML = "<strong>Card payment:</strong> enabled for Copilot QuickScan tiers (Base/Pro/Enterprise).";
           }
+        }
+      }
+
+      function updateStripeRail(activeKey){
+        var rail = document.getElementById("nfStripeRail");
+        if(!rail) return;
+
+        var buyer = getBuyer();
+        var hasBuy = !!(NF_STRIPE_BUY.ids && NF_STRIPE_BUY.ids[activeKey]);
+
+        /* show only for card buyer + supported tier */
+        rail.style.display = (buyer === "card" && hasBuy) ? "block" : "none";
+
+        var slots = rail.querySelectorAll("[data-stripe-slot]");
+        for(var i=0;i<slots.length;i++){
+          var k = slots[i].getAttribute("data-stripe-slot");
+          slots[i].classList.toggle("isOn", k === activeKey);
         }
       }
 
@@ -685,7 +669,7 @@
         }else{
           var ch = checkoutHref(activeKey, rid);
           if(ch){
-            railPrimary.textContent = "Pay by card";
+            railPrimary.textContent = "Open secure checkout";
             railPrimary.setAttribute("href", ch);
             railPrimary.setAttribute("rel", "nofollow");
           }else{
@@ -694,6 +678,8 @@
             railPrimary.setAttribute("rel", "");
           }
         }
+
+        updateStripeRail(activeKey);
       }
 
       function updateOfferCTAEmphasis(activeKey){
@@ -806,36 +792,10 @@
         sProc.setAttribute("href", appendRID(proc, rid));
       }
 
-      function setPaymentLinksBox(rid){
-        var box = document.getElementById("nfPayLinks");
-        if(!box) return;
-
-        function li(label, key){
-          var raw = NF_CHECKOUT[key] || "";
-          if(!raw) return "";
-          var href = checkoutHref(key, rid);
-          return (
-            '<div class="linkItem">' +
-              '<strong>' + esc(label) + '</strong><br/>' +
-              '<a href="' + esc(href) + '" rel="nofollow" target="_blank">Open Stripe checkout</a><br/>' +
-              '<span style="opacity:.92;">' + esc(raw) + '</span>' +
-            '</div>'
-          );
-        }
-
-        box.innerHTML =
-          li("Copilot QuickScan (Base) — $3,500 CAD", "quickscan_base") +
-          li("Copilot QuickScan (Pro) — $5,500 CAD", "quickscan_pro") +
-          li("Copilot QuickScan (Enterprise) — $7,500 CAD", "quickscan_ent") +
-          li("Playbook — Standard — $249 CAD", "playbook_standard") +
-          li("Playbook — Pro (Agency/Broker) — $749 CAD", "playbook_pro");
-      }
-
       document.addEventListener("DOMContentLoaded", function(){
         var rid = ensureRID();
         renderRef(rid);
         wireRID(rid);
-        setPaymentLinksBox(rid);
 
         var qb = (getQS("buyer") || "").toLowerCase();
         if(qb === "card" || qb === "proc"){ setBuyer(qb); }
@@ -869,7 +829,7 @@
           (function(el){
             el.addEventListener("click", function(e){
               var t = e.target;
-              if(t && (t.tagName === "A" || t.tagName === "BUTTON" || t.tagName === "SELECT" || t.tagName === "TEXTAREA" || t.tagName === "SUMMARY")) return;
+              if(t && (t.tagName === "A" || t.tagName === "BUTTON" || t.tagName === "SELECT" || t.tagName === "TEXTAREA")) return;
               var k = el.getAttribute("data-offer");
               defaultOffer = k;
               setActiveOffer(k);
@@ -917,21 +877,22 @@
           })(perCopy[j]);
         }
 
-        var copyLinks = document.getElementById("nfCopyPayLinks");
-        if(copyLinks){
-          copyLinks.addEventListener("click", function(){
-            var lines = [];
-            lines.push("Noetfield — Payment links");
-            lines.push("Reference: " + rid);
-            lines.push("");
-            lines.push("Copilot QuickScan (Base): " + checkoutHref("quickscan_base", rid));
-            lines.push("Copilot QuickScan (Pro): " + checkoutHref("quickscan_pro", rid));
-            lines.push("Copilot QuickScan (Enterprise): " + checkoutHref("quickscan_ent", rid));
-            lines.push("Playbook — Standard: " + checkoutHref("playbook_standard", rid));
-            lines.push("Playbook — Pro (Agency/Broker): " + checkoutHref("playbook_pro", rid));
-            copyText(lines.join("\n"));
-          });
-        }
+        /* Render optional inline Stripe buy buttons */
+        (function(){
+          var rail = document.getElementById("nfStripeRail");
+          if(!rail) return;
+          var pk = NF_STRIPE_BUY.publishable_key;
+          var ids = NF_STRIPE_BUY.ids || {};
+          var keys = Object.keys(ids);
+          for(var i=0;i<keys.length;i++){
+            var k = keys[i];
+            var slot = rail.querySelector("[data-stripe-slot='"+k+"']");
+            if(!slot) continue;
+            slot.innerHTML =
+              '<stripe-buy-button buy-button-id="' + esc(ids[k]) + '" publishable-key="' + esc(pk) + '"></stripe-buy-button>' +
+              '<div class="mini">If procurement requires invoice/PO, use <a data-rid="1" href="/gate/procurement/?focus=quickscan&tier=' + esc((OFFERS[k]||{}).tier||"") + '">Procurement</a>.</div>';
+          }
+        })();
 
         renderBuyerUI();
         setActiveOffer(defaultOffer);
@@ -958,9 +919,9 @@
           <h1>Purchase options.</h1>
 
           <p class="lead">
-            Card payment is enabled for <strong>Copilot QuickScan</strong> (Base, Pro, Enterprise) and <strong>Playbook</strong> (Standard, Pro).
+            Card payment is enabled for <strong>Copilot QuickScan</strong> tiers (Base, Pro, Enterprise).
             For invoice/PO, use the procurement path and a ready internal summary.
-            Gate intake remains available when scope needs a tailored start.
+            Gate intake is available when scope needs a tailored start.
           </p>
 
           <div class="metaRow" aria-label="Purchase facts">
@@ -978,7 +939,7 @@
 
           <div class="notice" role="note">
             <strong>Public forms are designed for non-sensitive details.</strong>
-            For secure sharing, the engagement path is confirmed after kickoff.
+            Secure sharing options are confirmed after kickoff.
           </div>
         </div>
       </div>
@@ -991,11 +952,6 @@
           <div class="hd">
             <h2 class="cardTitle">Offers</h2>
             <p class="muted">Choose an offer. Where card payment is enabled, it appears as a first action. Invoice/PO and Gate start are always available.</p>
-            <div class="sectionRow" aria-label="Offer groups">
-              <div class="chip"><strong>Copilot QuickScan</strong> • service</div>
-              <div class="chip"><strong>Playbook</strong> • digital</div>
-              <div class="chip"><strong>Trust Brief / Ledger</strong> • engagement</div>
-            </div>
           </div>
 
           <div class="bd">
@@ -1037,12 +993,12 @@
                 <p>Expanded defensibility: boundaries, evidence readiness, and a stronger control checklist for higher scrutiny.</p>
 
                 <div class="offerMeta">
-                  <div class="kv"><strong>Price:</strong> $5,500 CAD</div>
+                  <div class="kv"><strong>Price:</strong> $5,000 CAD</div>
                   <div class="kv"><strong>Tier:</strong> Pro</div>
                 </div>
 
                 <ul>
-                  <li>Deeper boundary guidance + red-lines</li>
+                  <li>Boundary guidance + red-lines (practical)</li>
                   <li>Evidence readiness + owner mapping</li>
                   <li>Control checklist + early cadence</li>
                 </ul>
@@ -1072,7 +1028,7 @@
                 <ul>
                   <li>Stakeholder-ready governance pack</li>
                   <li>Exception / connector control model (where relevant)</li>
-                  <li>Board-ready briefing pack</li>
+                  <li>Board-ready briefing pack for leadership review</li>
                 </ul>
 
                 <div class="offerActions">
@@ -1081,62 +1037,6 @@
                   <a class="btn" data-cta="po" data-rid="1" href="/gate/procurement/?focus=quickscan&tier=enterprise">Invoice / PO</a>
                   <a class="btn ghost" href="#" data-copy-offer="quickscan_ent">Copy procurement note</a>
                   <a class="btn ghost" href="/copilot/quickscan/">View details</a>
-                </div>
-              </article>
-
-              <!-- Playbook Standard -->
-              <article class="offer" data-offer="playbook_standard" aria-label="Playbook Standard">
-                <div class="offerTop">
-                  <h3>Playbook — Standard</h3>
-                  <span class="tag">Digital delivery</span>
-                </div>
-                <p>AI governance playbook for one organization (0–90 day rollout). Templates + checklists + board/procurement-ready brief.</p>
-
-                <div class="offerMeta">
-                  <div class="kv"><strong>Price:</strong> $249 CAD</div>
-                  <div class="kv"><strong>Type:</strong> Digital</div>
-                </div>
-
-                <ul>
-                  <li>0–90 day rollout pattern</li>
-                  <li>Templates + checklists</li>
-                  <li>Board/procurement brief structure</li>
-                </ul>
-
-                <div class="offerActions">
-                  <a class="btn" data-cta="pay" href="#" rel="nofollow">Pay by card</a>
-                  <a class="btn" data-cta="start" data-rid="1" href="/gate/intake/?need=playbook-standard&tier=standard">Start (Gate intake)</a>
-                  <a class="btn" data-cta="po" data-rid="1" href="/gate/procurement/?focus=playbook&tier=standard">Invoice / PO</a>
-                  <a class="btn ghost" href="#" data-copy-offer="playbook_standard">Copy procurement note</a>
-                  <a class="btn ghost" href="/playbook/standard/">View details</a>
-                </div>
-              </article>
-
-              <!-- Playbook Pro -->
-              <article class="offer" data-offer="playbook_pro" aria-label="Playbook Pro (Agency/Broker)">
-                <div class="offerTop">
-                  <h3>Playbook — Pro (Agency/Broker)</h3>
-                  <span class="tag">Digital delivery</span>
-                </div>
-                <p>Agency/advisor license for multi-client use. Reusable governance playbook (0–90 day rollout) with client-ready templates + due diligence kit.</p>
-
-                <div class="offerMeta">
-                  <div class="kv"><strong>Price:</strong> $749 CAD</div>
-                  <div class="kv"><strong>Type:</strong> Digital</div>
-                </div>
-
-                <ul>
-                  <li>Multi-client license</li>
-                  <li>Reusable templates + due diligence kit</li>
-                  <li>Client-ready brief structures</li>
-                </ul>
-
-                <div class="offerActions">
-                  <a class="btn" data-cta="pay" href="#" rel="nofollow">Pay by card</a>
-                  <a class="btn" data-cta="start" data-rid="1" href="/gate/intake/?need=playbook-pro&tier=pro">Start (Gate intake)</a>
-                  <a class="btn" data-cta="po" data-rid="1" href="/gate/procurement/?focus=playbook&tier=pro">Invoice / PO</a>
-                  <a class="btn ghost" href="#" data-copy-offer="playbook_pro">Copy procurement note</a>
-                  <a class="btn ghost" href="/playbook/pro/">View details</a>
                 </div>
               </article>
 
@@ -1149,7 +1049,7 @@
                 <p>Structured diagnostic to map material AI use-cases, decision points, and an initial operating model—ready for leadership review.</p>
 
                 <div class="offerMeta">
-                  <div class="kv"><strong>Indicative:</strong> scoped at kickoff</div>
+                  <div class="kv"><strong>Indicative:</strong> $12,000–$35,000 CAD</div>
                   <div class="kv"><strong>Focus:</strong> decision clarity</div>
                 </div>
 
@@ -1195,11 +1095,76 @@
                   <a class="btn ghost" href="/trust-ledger/">View details</a>
                 </div>
               </article>
+
+              <!-- Playbook Standard -->
+              <article class="offer" data-offer="playbook_standard" aria-label="Playbook Standard">
+                <div class="offerTop">
+                  <h3>Playbook — Standard</h3>
+                  <span class="tag">Digital delivery</span>
+                </div>
+                <p>AI governance playbook for one organization (0–90 day rollout). Templates + checklists + board/procurement-ready brief.</p>
+
+                <div class="offerMeta">
+                  <div class="kv"><strong>Price:</strong> $249 CAD</div>
+                  <div class="kv"><strong>License:</strong> single org</div>
+                </div>
+
+                <ul>
+                  <li>0–90 day rollout pattern</li>
+                  <li>Templates + checklists</li>
+                  <li>Board/procurement-ready brief</li>
+                </ul>
+
+                <div class="offerActions">
+                  <a class="btn" data-cta="pay" href="#" rel="nofollow">Pay by card</a>
+                  <a class="btn" data-cta="start" data-rid="1" href="/gate/intake/?need=playbook&tier=standard">Start (Gate intake)</a>
+                  <a class="btn" data-cta="po" data-rid="1" href="/gate/procurement/?focus=playbook&tier=standard">Invoice / PO</a>
+                  <a class="btn ghost" href="#" data-copy-offer="playbook_standard">Copy procurement note</a>
+                  <a class="btn ghost" href="/playbook/standard/">View details</a>
+                </div>
+
+                <div class="notice" style="margin-top:12px">
+                  <strong>Card link:</strong> not set on this page yet. Add Stripe payment link to <code>NF_CHECKOUT.playbook_standard</code> when ready.
+                </div>
+              </article>
+
+              <!-- Playbook Pro -->
+              <article class="offer" data-offer="playbook_pro" aria-label="Playbook Pro Agency/Broker">
+                <div class="offerTop">
+                  <h3>Playbook — Pro (Agency/Broker)</h3>
+                  <span class="tag">Digital delivery</span>
+                </div>
+                <p>Agency/advisor license for multi-client use. Reusable playbook (0–90 day rollout) with client-ready templates + due diligence kit.</p>
+
+                <div class="offerMeta">
+                  <div class="kv"><strong>Price:</strong> $749 CAD</div>
+                  <div class="kv"><strong>License:</strong> multi-client</div>
+                </div>
+
+                <ul>
+                  <li>Reusable templates + due diligence kit</li>
+                  <li>Client-ready brief structures</li>
+                  <li>Procurement-ready summary pack</li>
+                </ul>
+
+                <div class="offerActions">
+                  <a class="btn" data-cta="pay" href="#" rel="nofollow">Pay by card</a>
+                  <a class="btn" data-cta="start" data-rid="1" href="/gate/intake/?need=playbook&tier=pro">Start (Gate intake)</a>
+                  <a class="btn" data-cta="po" data-rid="1" href="/gate/procurement/?focus=playbook&tier=pro">Invoice / PO</a>
+                  <a class="btn ghost" href="#" data-copy-offer="playbook_pro">Copy procurement note</a>
+                  <a class="btn ghost" href="/playbook/pro/">View details</a>
+                </div>
+
+                <div class="notice" style="margin-top:12px">
+                  <strong>Card link:</strong> not set on this page yet. Add Stripe payment link to <code>NF_CHECKOUT.playbook_pro</code> when ready.
+                </div>
+              </article>
             </div>
 
             <div class="notice">
-              <strong>Card-enabled:</strong> QuickScan (Base/Pro/Enterprise) and Playbook (Standard/Pro).
-              Trust Brief and Trust Ledger default to Gate/procurement starts to confirm scope and cadence.
+              <strong>Scope approach:</strong>
+              QuickScan tiers support a clean card start (Base/Pro/Enterprise).
+              Gate intake supports tailored scope and clean kickoff alignment.
             </div>
 
             <div class="notice">
@@ -1235,10 +1200,19 @@
               <strong>Next step</strong><br/>
               A primary action is provided based on the selected purchase path.
               <div class="actions" style="margin-top:10px">
-                <a class="btn primary" id="nfRailPrimary" href="#" rel="nofollow">Pay by card</a>
+                <a class="btn primary" id="nfRailPrimary" href="#" rel="nofollow">Open secure checkout</a>
                 <a class="btn secondary" id="nfRailSecondary" data-rid="1" href="/gate/intake/?need=quickscan&tier=base">Start (Gate intake)</a>
                 <a class="btn secondary" id="nfRailTertiary" data-rid="1" href="/gate/procurement/?focus=quickscan&tier=base">Invoice / PO</a>
               </div>
+
+              <!-- Optional inline Stripe buy buttons (only for QuickScan tiers + Card buyer) -->
+              <div class="stripeRail" id="nfStripeRail" style="display:none" aria-label="Inline card payment">
+                <div class="mini"><strong>Inline payment (optional):</strong> secure Stripe Buy Button for the selected QuickScan tier.</div>
+                <div class="stripeSlot" data-stripe-slot="quickscan_base"></div>
+                <div class="stripeSlot" data-stripe-slot="quickscan_pro"></div>
+                <div class="stripeSlot" data-stripe-slot="quickscan_ent"></div>
+              </div>
+
               <div class="mini" style="margin-top:10px">
                 Sales: <a href="mailto:sales@noetfield.com">sales@noetfield.com</a><br/>
                 Procurement: <a href="mailto:procurement@noetfield.com">procurement@noetfield.com</a>
@@ -1254,10 +1228,10 @@
                   <option value="quickscan_base">Copilot QuickScan (Base)</option>
                   <option value="quickscan_pro">Copilot QuickScan (Pro)</option>
                   <option value="quickscan_ent">Copilot QuickScan (Enterprise)</option>
-                  <option value="playbook_standard">Playbook — Standard</option>
-                  <option value="playbook_pro">Playbook — Pro (Agency/Broker)</option>
                   <option value="trustbrief">Trust Brief (6-week)</option>
                   <option value="trustledger">Trust Ledger</option>
+                  <option value="playbook_standard">Playbook — Standard</option>
+                  <option value="playbook_pro">Playbook — Pro (Agency/Broker)</option>
                 </select>
               </div>
               <div class="field">
@@ -1268,63 +1242,6 @@
                 <button class="btn secondary" id="nfCopy" type="button">Copy note</button>
                 <button class="btn primary" id="nfEmail" type="button">Email procurement</button>
               </div>
-            </div>
-
-            <div class="kpi" aria-label="Payment links">
-              <strong>Payment links</strong><br/>
-              All card-enabled checkout links (with Reference appended).
-              <div class="actions" style="margin-top:10px">
-                <button class="btn secondary" id="nfCopyPayLinks" type="button">Copy links</button>
-              </div>
-              <div class="linkList" id="nfPayLinks"></div>
-
-              <details>
-                <summary>Optional Stripe buy buttons (embedded)</summary>
-                <div class="detailsBody">
-                  If embedded buttons do not render, use the checkout links above.
-                  <div style="margin-top:10px;">
-                    <script async src="https://js.stripe.com/v3/buy-button.js"></script>
-
-                    <div style="display:grid; gap:12px; margin-top:10px;">
-                      <!-- Playbook Standard -->
-                      <div class="linkItem">
-                        <strong>Playbook — Standard</strong>
-                        <stripe-buy-button
-                          buy-button-id="buy_btn_1Sg0xKJ03eJkL57JlmNAwxvv"
-                          publishable-key="pk_live_51SfSseJ03eJkL57JNU4voCGfUjjK4WDew62tPBWesZAejr03HX8uTonznYoWDVcpXwLATZpTvWSDfSU4zJbRIB6900xlpPcGSz">
-                        </stripe-buy-button>
-                      </div>
-
-                      <!-- Playbook Pro -->
-                      <div class="linkItem">
-                        <strong>Playbook — Pro (Agency/Broker)</strong>
-                        <stripe-buy-button
-                          buy-button-id="buy_btn_1Sg0zCJ03eJkL57JBeMK8Jpo"
-                          publishable-key="pk_live_51SfSseJ03eJkL57JNU4voCGfUjjK4WDew62tPBWesZAejr03HX8uTonznYoWDVcpXwLATZpTvWSDfSU4zJbRIB6900xlpPcGSz">
-                        </stripe-buy-button>
-                      </div>
-
-                      <!-- QuickScan Pro (provided embed id) -->
-                      <div class="linkItem">
-                        <strong>Copilot QuickScan (Pro)</strong>
-                        <stripe-buy-button
-                          buy-button-id="buy_btn_1Sg0ESJ03eJkL57Ju6PFOiwj"
-                          publishable-key="pk_live_51SfSseJ03eJkL57JNU4voCGfUjjK4WDew62tPBWesZAejr03HX8uTonznYoWDVcpXwLATZpTvWSDfSU4zJbRIB6900xlpPcGSz">
-                        </stripe-buy-button>
-                      </div>
-
-                      <!-- QuickScan Enterprise (embed id provided by user) -->
-                      <div class="linkItem">
-                        <strong>Copilot QuickScan (Enterprise)</strong>
-                        <stripe-buy-button
-                          buy-button-id="buy_btn_1Sg0ESJ03eJkL57Ju6PFOiwj"
-                          publishable-key="pk_live_51SfSseJ03eJkL57JNU4voCGfUjjK4WDew62tPBWesZAejr03HX8uTonznYoWDVcpXwLATZpTvWSDfSU4zJbRIB6900xlpPcGSz">
-                        </stripe-buy-button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </details>
             </div>
 
             <div class="notice" role="note" style="margin-top:12px;">
@@ -1352,31 +1269,38 @@
     </div>
   </div>
 
+  <!-- Stripe Buy Button (loaded once) -->
+  <script async src="https://js.stripe.com/v3/buy-button.js"></script>
+
   <!--
     CHANGELOG (Sales v2.3.0)
-    - Updated prices:
-      - Copilot QuickScan: Base $3,500 CAD, Pro $5,500 CAD, Enterprise $7,500 CAD (pre-tax)
-      - Playbook: Standard $249 CAD, Pro (Agency/Broker) $749 CAD (pre-tax)
-    - Added card payment links for Playbook Standard/Pro alongside QuickScan tiers.
-    - Added “Payment links” box in rail with copy-to-clipboard (links include Reference param).
-    - Expanded offer catalog to separate Playbook (digital) from services (Trust Brief/Ledger).
-    - Kept card CTAs hidden for offers without checkout (Trust Brief/Ledger).
+    - Corrected Copilot QuickScan prices:
+      - Base: $3,500 CAD
+      - Pro: $5,000 CAD
+      - Enterprise: $7,500 CAD
+    - Kept Stripe payment links for QuickScan tiers:
+      - Base: https://buy.stripe.com/7sY4gA6v681S2a6cDi1Nu00
+      - Pro:  https://buy.stripe.com/14A4gAg5Gfuk2a646M1Nu01
+      - Ent:  https://buy.stripe.com/fZu5kE7za81SdSO5aQ1Nu02
+    - Added Playbook tiers and pricing:
+      - Playbook — Standard: $249 CAD
+      - Playbook — Pro (Agency/Broker): $749 CAD
+      (Stripe card links can be pasted into NF_CHECKOUT.playbook_standard / NF_CHECKOUT.playbook_pro when available.)
+    - Added optional inline Stripe Buy Buttons in the rail for QuickScan tiers (card buyer + supported tier).
+    - Expanded procurement note dropdown to include Playbook tiers.
 
     SMOKE TEST
     - GET /gate/sales/ returns 200
     - /assets/noetfield-shell.css returns 200 and styles apply
     - /assets/noetfield-shell.js returns 200 and injects header/footer into #nfHeader/#nfFooter
-    - Card CTAs open correctly (with rid appended):
-      - QuickScan Base/Pro/Enterprise
-      - Playbook Standard/Pro
+    - Stripe CTAs open correctly:
+      - QuickScan Base/Pro/Enterprise “Pay by card” links
     - Buyer toggle:
-      - Card: Rail primary uses Stripe where available
+      - Card: Rail primary uses Stripe checkout link where available; inline buy button appears for QuickScan tiers
       - Invoice/PO: Rail primary routes to Procurement
     - Procurement note:
       - Copy note works
       - Email procurement opens mail client with populated summary
-    - Payment links:
-      - “Copy links” copies all 5 checkout URLs with the same Reference
   -->
 </body>
 </html>

@@ -1,3 +1,4 @@
+<!-- /trust-brief/index.html — Noetfield Trust Brief (vNext: pricing tiers + quote builder + procurement email builder) -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,16 +6,12 @@
   <title>Noetfield — Trust Brief</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <meta
-    name="description"
-    content="The Noetfield Trust Brief is a 6-week governance-first diagnostic that maps material AI use cases and produces board-ready Trust Ledger entries, risks, controls, and decision options."
-  />
+  <meta name="description" content="The Noetfield Trust Brief is a 6-week governance-first diagnostic that maps material AI use cases and produces board-ready Trust Ledger entries, risks, controls, and decision options." />
   <meta name="robots" content="index,follow" />
   <meta name="author" content="Noetfield Systems Inc." />
   <meta name="theme-color" content="#07070b" />
 
   <link rel="canonical" href="https://www.noetfield.com/trust-brief/" />
-
   <link rel="icon" href="/noetfield-favicon-512.png" type="image/png" />
   <link rel="apple-touch-icon" href="/noetfield-favicon-512.png" />
 
@@ -22,35 +19,25 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Noetfield" />
   <meta property="og:title" content="Noetfield — Trust Brief" />
-  <meta
-    property="og:description"
-    content="A 6-week AI governance diagnostic producing board-ready Trust Ledger entries, risks, controls, and decision options."
-  />
+  <meta property="og:description" content="A 6-week AI governance diagnostic producing board-ready Trust Ledger entries, risks, controls, and decision options." />
   <meta property="og:url" content="https://www.noetfield.com/trust-brief/" />
   <meta property="og:image" content="https://www.noetfield.com/noetfield-og.png" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Noetfield — Trust Brief" />
-  <meta
-    name="twitter:description"
-    content="A 6-week AI governance diagnostic producing board-ready Trust Ledger entries, risks, controls, and decision options."
-  />
+  <meta name="twitter:description" content="A 6-week AI governance diagnostic producing board-ready Trust Ledger entries, risks, controls, and decision options." />
   <meta name="twitter:image" content="https://www.noetfield.com/noetfield-og.png" />
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
-    rel="stylesheet"
-  />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
 
   <!-- LOCKED SHELL -->
   <link rel="stylesheet" href="/assets/noetfield-shell.css" />
   <script src="/assets/noetfield-shell.js" defer></script>
 
-  <!-- Page-only styles (kept tight; no global overrides except header float box on desktop) -->
   <style>
     .hero{padding:22px 0 14px}
     .heroShell{
@@ -73,7 +60,6 @@
       mask-image: linear-gradient(180deg, black 0%, black 58%, transparent 96%);
     }
     .heroInner{padding: 24px 22px}
-
     .eyebrow{
       display:inline-flex; gap:10px; align-items:center;
       color:var(--muted);
@@ -88,7 +74,6 @@
       background: rgba(200,163,73,.97);
       box-shadow: 0 0 0 3px rgba(200,163,73,.18);
     }
-
     h1{margin:14px 0 10px; font-size:40px; line-height:1.07; letter-spacing:-0.75px}
     .lead{margin:0; color:var(--muted); font-size:16px; max-width: 1020px; line-height:1.75}
     .lead strong{color:var(--text); font-weight:900}
@@ -212,11 +197,12 @@
     .box a{border-bottom:1px solid rgba(255,255,255,.18)}
 
     .priceRow{
-      display:flex; gap:12px; flex-wrap:wrap; align-items:stretch;
+      display:grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap:12px;
       margin-top:12px;
     }
     .priceCard{
-      flex:1 1 220px;
       border-radius:16px;
       border:1px solid rgba(255,255,255,.10);
       background: rgba(255,255,255,.03);
@@ -224,10 +210,75 @@
       min-width:0;
     }
     .priceCard .name{font-weight:900; letter-spacing:-.2px}
-    .priceCard .amt{margin-top:8px; font-size:22px; font-weight:900; letter-spacing:-.4px}
+    .priceCard .amt{margin-top:8px; font-size:22px; font-weight:950; letter-spacing:-.4px}
     .priceCard .sub{margin-top:6px; color:var(--muted2); font-size:12.6px; line-height:1.55}
+    .priceCard ul{margin:10px 0 0; padding-left:18px; color:var(--muted); line-height:1.65}
+    .priceCard li{margin:6px 0}
 
-    /* Desktop-only: floating/boxed header like /status (no full-width strip) */
+    .form{
+      display:grid;
+      gap:12px;
+      margin-top:10px;
+    }
+    .row2{display:grid; grid-template-columns: 1fr 1fr; gap:12px}
+    .field label{
+      display:block;
+      font-size:12px;
+      letter-spacing:.20em;
+      text-transform:uppercase;
+      color:var(--muted2);
+      margin:0 0 6px;
+    }
+    .field input, .field select, .field textarea{
+      width:100%;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.03);
+      color: var(--text);
+      padding:12px;
+      outline:none;
+      min-height:44px;
+    }
+    .field textarea{min-height:96px; resize:vertical}
+    .help{margin-top:6px; color:var(--muted2); font-size:12.6px; line-height:1.55}
+
+    .quoteOut{
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      padding:12px;
+      margin-top:12px;
+    }
+    .qTop{display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap; align-items:flex-start}
+    .qLabel{font-size:11px; letter-spacing:.28em; text-transform:uppercase; color:var(--muted2)}
+    .qPrice{font-size:26px; font-weight:950; letter-spacing:-.3px; margin-top:6px}
+    .mono{font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace}
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding:10px 14px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.03);
+      color: var(--text);
+      text-decoration:none;
+      transition: transform .12s ease;
+      min-height:44px;
+      cursor:pointer;
+    }
+    .btn:hover{transform: translateY(-1px)}
+    .btn.secondary{opacity:.92}
+    .btn.primary{
+      border-color: transparent;
+      background: linear-gradient(135deg,#f9fafb,#e5e7eb);
+      color:#07070b;
+      font-weight:850;
+    }
+
+    /* Desktop-only: floating/boxed header like /status */
     @media (min-width: 981px){
       #nfHeader{
         position: sticky;
@@ -252,11 +303,10 @@
     }
     @media (max-width: 980px){
       #nfHeader{padding:0}
-    }
-
-    @media (max-width: 980px){
       .grid{grid-template-columns:1fr}
       .kpiGrid{grid-template-columns:1fr}
+      .priceRow{grid-template-columns:1fr}
+      .row2{grid-template-columns:1fr}
     }
     @media (max-width: 760px){
       h1{font-size:30px}
@@ -266,13 +316,13 @@
 
   <script type="application/ld+json">
   {
-    "@context": "https://schema.org",
-    "@type": "WebPage",
-    "name": "Noetfield — Trust Brief",
-    "url": "https://www.noetfield.com/trust-brief/",
-    "description": "The Noetfield Trust Brief is a 6-week governance-first diagnostic that maps material AI use cases and produces board-ready Trust Ledger entries, risks, controls, and decision options.",
-    "isPartOf": {"@type":"WebSite","name":"Noetfield","url":"https://www.noetfield.com/"},
-    "publisher": {"@type":"Organization","name":"Noetfield Systems Inc."}
+    "@context":"https://schema.org",
+    "@type":"Service",
+    "name":"Trust Brief",
+    "provider":{"@type":"Organization","name":"Noetfield Systems Inc."},
+    "areaServed":"CA",
+    "description":"A 6-week governance-first diagnostic that maps material AI use cases and produces board-ready Trust Ledger entries, risks, controls, and decision options.",
+    "url":"https://www.noetfield.com/trust-brief/"
   }
   </script>
 </head>
@@ -292,7 +342,7 @@
           <h1>Trust Brief.</h1>
           <p class="lead">
             A governance-first diagnostic designed to get you to a <strong>board-readable</strong> posture fast:
-            we map material AI use cases, define the control baseline, and produce a first set of
+            map material AI use cases, define the control baseline, and produce a first set of
             <strong>Trust Ledger</strong> entries with evidence expectations and decision options.
           </p>
 
@@ -301,19 +351,30 @@
             <div class="pill"><strong>Use-case map</strong> (material AI)</div>
             <div class="pill"><strong>Control baseline</strong> (minimum viable)</div>
             <div class="pill"><strong>Board memo</strong> + options</div>
-            <div class="pill"><strong>First ledger entries</strong></div>
+            <div class="pill"><strong>Starter ledger pack</strong></div>
+          </div>
+
+          <div class="actions" style="margin-top:14px">
+            <a class="btn primary" href="/gate/intake/?need=trust-brief">Start intake</a>
+            <a class="btn secondary" href="/trust-ledger/">See Trust Ledger</a>
+            <a class="btn secondary" href="/gate/">Gate</a>
+          </div>
+
+          <div class="box">
+            <strong>Public intake = non-confidential.</strong> Do not submit secrets, credentials, private keys, regulated personal data, internal case files, or contract attachments on public forms.
           </div>
         </div>
       </div>
     </section>
 
     <section class="grid">
+      <!-- MAIN -->
       <div class="card">
         <div class="hd">
           <h2>What you get</h2>
           <p>
-            The Trust Brief converts “we use AI” into a governable, provable reality: clear scope,
-            accountable owners, and a short list of controls that actually holds under audit pressure.
+            The Trust Brief converts “we use AI” into a governable, provable reality: clear scope, accountable owners,
+            and a short list of controls that holds under audit and procurement pressure.
           </p>
         </div>
 
@@ -327,63 +388,35 @@
             <div class="kpi">
               <div class="t">Deliverable</div>
               <div class="v">Control baseline</div>
-              <div class="d">A minimum viable set of controls + owners + evidence expectations.</div>
+              <div class="d">Minimum viable controls + owners + evidence expectations (what counts as proof).</div>
             </div>
             <div class="kpi">
               <div class="t">Deliverable</div>
-              <div class="v">Ledger entries (starter set)</div>
+              <div class="v">Starter ledger pack</div>
               <div class="d">Initial Trust Ledger entries for the highest-impact use cases.</div>
             </div>
             <div class="kpi">
               <div class="t">Deliverable</div>
               <div class="v">Board decision memo</div>
-              <div class="d">Options, trade-offs, priorities, and next-step recommendations.</div>
+              <div class="d">Options, priorities, trade-offs, and a next-step governance cadence.</div>
             </div>
           </div>
 
           <div class="section">
             <div class="sectionTitle">6-week structure</div>
-            <p class="sectionDesc">Designed to be decisive: mapping → controls → entries → board options.</p>
+            <p class="sectionDesc">Mapping → controls → entries → board options. Designed to be decisive.</p>
 
             <table class="table" aria-label="6-week plan">
               <thead>
-                <tr>
-                  <th>Week</th>
-                  <th>Focus</th>
-                  <th>Output</th>
-                </tr>
+                <tr><th>Week</th><th>Focus</th><th>Output</th></tr>
               </thead>
               <tbody>
-                <tr>
-                  <td><span class="tag"><strong>1</strong></span></td>
-                  <td>Scope + materiality thresholds</td>
-                  <td>Intake, objectives, decision boundaries, initial inventory</td>
-                </tr>
-                <tr>
-                  <td><span class="tag"><strong>2</strong></span></td>
-                  <td>Use-case mapping</td>
-                  <td>Material AI map + owners + where data moves</td>
-                </tr>
-                <tr>
-                  <td><span class="tag"><strong>3</strong></span></td>
-                  <td>Risk & control baseline</td>
-                  <td>Control baseline + evidence expectations (what counts as proof)</td>
-                </tr>
-                <tr>
-                  <td><span class="tag"><strong>4</strong></span></td>
-                  <td>Ledger entry build</td>
-                  <td>First ledger entries for highest-impact use cases</td>
-                </tr>
-                <tr>
-                  <td><span class="tag"><strong>5</strong></span></td>
-                  <td>Board memo draft</td>
-                  <td>Options, prioritization, quick wins, and governance cadence</td>
-                </tr>
-                <tr>
-                  <td><span class="tag"><strong>6</strong></span></td>
-                  <td>Finalize + handoff</td>
-                  <td>Board-ready brief + ledger pack + next-step plan</td>
-                </tr>
+                <tr><td><span class="tag"><strong>1</strong></span></td><td>Scope + materiality thresholds</td><td>Objectives, decision boundaries, initial inventory</td></tr>
+                <tr><td><span class="tag"><strong>2</strong></span></td><td>Use-case mapping</td><td>Material AI map + owners + data movement</td></tr>
+                <tr><td><span class="tag"><strong>3</strong></span></td><td>Risk & control baseline</td><td>Baseline controls + evidence expectations</td></tr>
+                <tr><td><span class="tag"><strong>4</strong></span></td><td>Ledger entry build</td><td>First ledger entries for highest-impact use cases</td></tr>
+                <tr><td><span class="tag"><strong>5</strong></span></td><td>Board memo draft</td><td>Options, priorities, quick wins, cadence</td></tr>
+                <tr><td><span class="tag"><strong>6</strong></span></td><td>Finalize + handoff</td><td>Board-ready brief + ledger pack + next-step plan</td></tr>
               </tbody>
             </table>
           </div>
@@ -394,54 +427,179 @@
             <ol class="steps">
               <li>Point of contact for AI usage + IT/security context.</li>
               <li>Basic inventory of AI tools/vendors and key workflows.</li>
-              <li>Access to sanitized artefacts (policies, screenshots, exports) when available.</li>
+              <li>Sanitized artefacts when available (policies, screenshots, exports).</li>
               <li>Agreement on what “material impact” means in your context.</li>
             </ol>
           </div>
 
           <div class="actions">
-            <a class="btn" href="/gate/intake/?need=trust-brief">Start intake</a>
+            <a class="btn primary" href="/gate/intake/?need=trust-brief">Start intake</a>
             <a class="btn secondary" href="/trust-ledger/">See Trust Ledger</a>
-            <a class="btn secondary" href="/gate/">Gate</a>
+            <a class="btn secondary" href="/status/">Status</a>
           </div>
 
           <div class="box">
-            <strong>Outcome:</strong> a board-ready posture without pretending a full compliance department exists.
+            <strong>Outcome:</strong> board-ready posture without pretending a full compliance department exists.
           </div>
         </div>
       </div>
 
+      <!-- ASIDE -->
       <aside class="card">
         <div class="hd">
-          <h2>When to use this</h2>
-          <p>Common situations where Trust Brief is the fastest, safest next step.</p>
+          <h2>Pricing</h2>
+          <p>Clear anchors for procurement. Final quote confirmed after intake.</p>
         </div>
         <div class="bd">
-          <div class="box"><strong>Copilot adoption:</strong> you need guardrails and evidence trails before scaling.</div>
-          <div class="box"><strong>Vendor AI everywhere:</strong> procurement outpaced governance.</div>
-          <div class="box"><strong>Audit pressure:</strong> you need readable posture and proof quickly.</div>
-          <div class="box"><strong>Incident/near-miss:</strong> you want to prevent repetition with real controls.</div>
-
-          <div class="section" style="margin-top:14px;">
-            <div class="sectionTitle">Pricing signal</div>
-            <p class="sectionDesc">You can adjust later; start with a clear anchor for buyers.</p>
-
-            <div class="priceRow" aria-label="Pricing">
-              <div class="priceCard">
-                <div class="name">Trust Brief</div>
-                <div class="amt">3–10k</div>
-                <div class="sub">Typical range depending on scope and number of material use cases.</div>
-              </div>
-              <div class="priceCard">
-                <div class="name">Next step</div>
-                <div class="amt">Ledger build</div>
-                <div class="sub">Convert starter entries into an operational Trust Ledger cadence.</div>
-              </div>
+          <div class="priceRow" aria-label="Trust Brief pricing tiers">
+            <div class="priceCard">
+              <div class="name">TB — Base</div>
+              <div class="amt">12,500 CAD</div>
+              <div class="sub">Single team • 1–3 material use cases • starter ledger pack.</div>
+              <ul>
+                <li>Board memo + options</li>
+                <li>Control baseline + owners</li>
+                <li>~4–6 starter entries</li>
+              </ul>
+            </div>
+            <div class="priceCard">
+              <div class="name">TB — Pro</div>
+              <div class="amt">18,500 CAD</div>
+              <div class="sub">2–3 teams • 4–8 use cases • deeper evidence expectations.</div>
+              <ul>
+                <li>Board memo + options</li>
+                <li>Procurement snapshot</li>
+                <li>~6–10 starter entries</li>
+              </ul>
+            </div>
+            <div class="priceCard">
+              <div class="name">TB — Enterprise</div>
+              <div class="amt">27,500 CAD</div>
+              <div class="sub">Enterprise-wide • 9–15 use cases • board + procurement pack.</div>
+              <ul>
+                <li>Cadence plan</li>
+                <li>~10–15 starter entries</li>
+                <li>Enterprise decision trail</li>
+              </ul>
             </div>
           </div>
 
-          <div class="box" style="margin-top:14px;">
-            <strong>Policy-ready references:</strong><br/>
+          <div class="box" style="margin-top:12px">
+            <strong>Standard add-ons:</strong> +900 CAD per extra use case, +2,500 CAD per extra team, regulated scope multiplier (1.25–1.5×), rush delivery (+20–35%).
+          </div>
+
+          <div class="section">
+            <div class="sectionTitle">Quick Quote + Email Builder</div>
+            <p class="sectionDesc">Generates an estimate + procurement-ready email text (non-confidential).</p>
+
+            <form class="form" id="tbQuoteForm">
+              <input type="hidden" name="rid" value="" data-rid-field />
+              <div class="row2">
+                <div class="field">
+                  <label for="tbTier">Tier</label>
+                  <select id="tbTier" name="tier" required>
+                    <option value="" selected disabled>Select…</option>
+                    <option value="auto">Auto (recommended)</option>
+                    <option value="base">TB — Base</option>
+                    <option value="pro">TB — Pro</option>
+                    <option value="ent">TB — Enterprise</option>
+                  </select>
+                  <div class="help">Auto chooses tier from use-case band.</div>
+                </div>
+                <div class="field">
+                  <label for="tbUseCasesBand">Use cases</label>
+                  <select id="tbUseCasesBand" name="usecases_band" required>
+                    <option value="" selected disabled>Select…</option>
+                    <option value="1-3">1–3</option>
+                    <option value="4-8">4–8</option>
+                    <option value="9-15">9–15</option>
+                    <option value="16+">16+</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="row2">
+                <div class="field">
+                  <label for="tbTeams">Teams in scope</label>
+                  <select id="tbTeams" name="teams" required>
+                    <option value="" selected disabled>Select…</option>
+                    <option value="1">1 team</option>
+                    <option value="2-3">2–3 teams</option>
+                    <option value="4+">4+ teams</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label for="tbRisk">Risk tier</label>
+                  <select id="tbRisk" name="risk" required>
+                    <option value="" selected disabled>Select…</option>
+                    <option value="standard">Standard</option>
+                    <option value="regulated">Regulated (×1.25)</option>
+                    <option value="high">Highly regulated (×1.5)</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="row2">
+                <div class="field">
+                  <label for="tbEvidence">Evidence depth</label>
+                  <select id="tbEvidence" name="evidence" required>
+                    <option value="" selected disabled>Select…</option>
+                    <option value="light">Light</option>
+                    <option value="standard">Standard</option>
+                    <option value="deep">Deep (+15%)</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label for="tbTempo">Tempo</label>
+                  <select id="tbTempo" name="tempo" required>
+                    <option value="" selected disabled>Select…</option>
+                    <option value="standard">Standard (6 weeks)</option>
+                    <option value="rush">Rush (+25%)</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="field">
+                <label for="tbNotes">Notes for scope</label>
+                <textarea id="tbNotes" name="notes" placeholder="High-level: what is driving this (audit, Copilot, vendor AI, regulator questions), key teams involved, and what the board must be able to answer."></textarea>
+                <div class="help">Avoid confidential details. Public intake = non-confidential.</div>
+              </div>
+
+              <div class="quoteOut" aria-label="Quote output">
+                <div class="qTop">
+                  <div>
+                    <div class="qLabel">Request ID</div>
+                    <div class="mono" data-rid-text>—</div>
+                  </div>
+                  <div>
+                    <div class="qLabel">Estimated fixed fee</div>
+                    <div class="qPrice" id="tbQuotePrice">—</div>
+                  </div>
+                </div>
+                <div class="help" id="tbQuoteLine" style="margin-top:10px">
+                  Select inputs to generate an estimate.
+                </div>
+
+                <div class="actions" style="margin-top:12px">
+                  <button class="btn primary" type="button" id="tbBuild">Build estimate</button>
+                  <button class="btn secondary" type="button" id="tbCopy">Copy quote</button>
+                  <a class="btn secondary" id="tbEmailQuote" href="mailto:ceo@noetfield.com">Email quote</a>
+                  <a class="btn secondary" id="tbEmailPO" href="mailto:procurement@noetfield.com">Request PO / invoice</a>
+                </div>
+
+                <div class="box" style="margin-top:12px">
+                  <strong>Estimate only.</strong> Final quote confirmed after intake. Taxes may apply where applicable.
+                </div>
+              </div>
+            </form>
+          </div>
+
+          <div class="box" style="margin-top:14px">
+            <strong>Next:</strong> after Trust Brief, move into <a href="/trust-ledger/">Trust Ledger</a> for ongoing cadence and evidence freshness.
+          </div>
+
+          <div class="box" style="margin-top:14px">
+            <strong>References:</strong><br/>
             <a href="/playbook/">Playbook</a> ·
             <a href="/copilot/">Copilot</a> ·
             <a href="/for-whom/">For Whom</a>
@@ -453,5 +611,208 @@
 
   <!-- Injected footer -->
   <footer id="nfFooter"></footer>
+
+  <script>
+    (function(){
+      function ridNew(){
+        var ts = Date.now().toString(36);
+        var rnd = Math.random().toString(36).slice(2, 8);
+        return ("NF-" + ts + "-" + rnd).toUpperCase();
+      }
+      function ridGet(){
+        try { return localStorage.getItem("nf_rid") || ""; } catch(e){ return ""; }
+      }
+      function ridSet(val){
+        try { localStorage.setItem("nf_rid", val); } catch(e){}
+        try {
+          var txt = document.querySelectorAll("[data-rid-text]");
+          var hid = document.querySelectorAll("[data-rid-field]");
+          txt.forEach(function(n){ n.textContent = val; });
+          hid.forEach(function(n){ n.value = val; });
+        } catch(e){}
+      }
+      function ridInit(){
+        var existing = ridGet();
+        var p = "";
+        try{
+          var sp = new URLSearchParams(location.search);
+          p = sp.get("rid") || "";
+        } catch(e){}
+        ridSet((p && p.length >= 6) ? p : (existing || ridNew()));
+      }
+
+      function fmtCAD(n){
+        try{
+          return new Intl.NumberFormat("en-CA", { style:"currency", currency:"CAD", maximumFractionDigits:0 }).format(n);
+        } catch(e){
+          return "$" + Math.round(n).toString() + " CAD";
+        }
+      }
+
+      // Trust Brief calculator
+      function baseFromBand(band){
+        if (band === "1-3") return { tier:"TB — Base", price:12500, ucIncluded:3, teamsIncluded:1 };
+        if (band === "4-8") return { tier:"TB — Pro", price:18500, ucIncluded:8, teamsIncluded:3 };
+        if (band === "9-15") return { tier:"TB — Enterprise", price:27500, ucIncluded:15, teamsIncluded:4 };
+        return { tier:"TB — Enterprise (custom)", price:27500, ucIncluded:15, teamsIncluded:4, custom:true };
+      }
+
+      function parseBandMax(band){
+        if (band === "1-3") return 3;
+        if (band === "4-8") return 8;
+        if (band === "9-15") return 15;
+        return 16;
+      }
+
+      function teamCountFromSel(v){
+        if (v === "1") return 1;
+        if (v === "2-3") return 3; // use upper bound for estimate
+        return 4; // 4+
+      }
+
+      function multiplierRisk(v){
+        if (v === "regulated") return 1.25;
+        if (v === "high") return 1.5;
+        return 1.0;
+      }
+
+      function multiplierEvidence(v){
+        if (v === "deep") return 1.15;
+        return 1.0;
+      }
+
+      function multiplierTempo(v){
+        if (v === "rush") return 1.25;
+        return 1.0;
+      }
+
+      function buildTBQuote(){
+        var rid = ridGet() || "—";
+        var tier = (document.getElementById("tbTier")||{}).value || "";
+        var band = (document.getElementById("tbUseCasesBand")||{}).value || "";
+        var teamsSel = (document.getElementById("tbTeams")||{}).value || "";
+        var risk = (document.getElementById("tbRisk")||{}).value || "";
+        var evidence = (document.getElementById("tbEvidence")||{}).value || "";
+        var tempo = (document.getElementById("tbTempo")||{}).value || "";
+        var notes = (document.getElementById("tbNotes")||{}).value || "";
+
+        if (!band || !teamsSel || !risk || !evidence || !tempo) return null;
+
+        var base = baseFromBand(band);
+        var baseTier = base.tier;
+        var basePrice = base.price;
+
+        // If user forces tier, override base but keep included thresholds aligned with that tier.
+        if (tier && tier !== "auto"){
+          if (tier === "base"){ baseTier = "TB — Base"; basePrice = 12500; base.ucIncluded = 3; base.teamsIncluded = 1; }
+          if (tier === "pro"){ baseTier = "TB — Pro"; basePrice = 18500; base.ucIncluded = 8; base.teamsIncluded = 3; }
+          if (tier === "ent"){ baseTier = "TB — Enterprise"; basePrice = 27500; base.ucIncluded = 15; base.teamsIncluded = 4; }
+        }
+
+        var estUseCases = parseBandMax(band);
+        var estTeams = teamCountFromSel(teamsSel);
+
+        var extraUC = Math.max(0, estUseCases - base.ucIncluded);
+        var extraTeams = Math.max(0, estTeams - base.teamsIncluded);
+
+        var addUC = extraUC * 900;
+        var addTeams = extraTeams * 2500;
+
+        var subtotal = basePrice + addUC + addTeams;
+        var mult = multiplierRisk(risk) * multiplierEvidence(evidence) * multiplierTempo(tempo);
+        var total = Math.round(subtotal * mult);
+
+        var line = baseTier +
+          " • Use cases: " + band +
+          " • Teams: " + teamsSel +
+          " • Risk: " + risk +
+          " • Evidence: " + evidence +
+          " • Tempo: " + tempo +
+          (extraUC ? (" • +"+extraUC+" extra use case(s)") : "") +
+          (extraTeams ? (" • +"+extraTeams+" extra team(s)") : "");
+
+        var quoteText =
+          "Noetfield — Trust Brief (Estimate)\n" +
+          "Request ID: " + rid + "\n" +
+          "Tier: " + baseTier + "\n" +
+          "Inputs: Use cases " + band + ", Teams " + teamsSel + ", Risk " + risk + ", Evidence " + evidence + ", Tempo " + tempo + "\n" +
+          "Estimated fee: " + fmtCAD(total) + "\n" +
+          "Notes (high-level): " + (notes || "—") + "\n" +
+          "Disclosure: Estimate only; final quote confirmed after intake. Public intake is non-confidential.\n";
+
+        return { rid: rid, total: total, line: line, quoteText: quoteText };
+      }
+
+      function mailto(to, subject, body){
+        function enc(s){ return encodeURIComponent(s || ""); }
+        return "mailto:" + enc(to) + "?subject=" + enc(subject) + "&body=" + enc(body);
+      }
+
+      function applyTBQuote(){
+        var q = buildTBQuote();
+        var priceEl = document.getElementById("tbQuotePrice");
+        var lineEl = document.getElementById("tbQuoteLine");
+        var emailQuote = document.getElementById("tbEmailQuote");
+        var emailPO = document.getElementById("tbEmailPO");
+
+        if (!q){
+          if (priceEl) priceEl.textContent = "—";
+          if (lineEl) lineEl.textContent = "Select inputs to generate an estimate.";
+          return;
+        }
+
+        if (priceEl) priceEl.textContent = fmtCAD(q.total);
+        if (lineEl) lineEl.textContent = q.line;
+
+        var subj = "Noetfield — Trust Brief Quote Request (" + q.rid + ")";
+        var body = q.quoteText;
+
+        if (emailQuote) emailQuote.href = mailto("ceo@noetfield.com", subj, body);
+        if (emailPO) emailPO.href = mailto(
+          "procurement@noetfield.com",
+          "Noetfield — Trust Brief | Invoice/PO Request (" + q.rid + ")",
+          body + "\nProcurement path: Invoice/PO required.\n"
+        );
+
+        // store latest text
+        try { window.__tbQuoteText = q.quoteText; } catch(e){}
+      }
+
+      function copyTB(){
+        try{
+          var t = window.__tbQuoteText || "";
+          if (!t) { applyTBQuote(); t = window.__tbQuoteText || ""; }
+          if (!t) return;
+          navigator.clipboard.writeText(t);
+        } catch(e){}
+      }
+
+      ridInit();
+
+      var buildBtn = document.getElementById("tbBuild");
+      var copyBtn = document.getElementById("tbCopy");
+      if (buildBtn) buildBtn.addEventListener("click", applyTBQuote);
+      if (copyBtn) copyBtn.addEventListener("click", copyTB);
+
+      // auto-recalc on change
+      ["tbTier","tbUseCasesBand","tbTeams","tbRisk","tbEvidence","tbTempo","tbNotes"].forEach(function(id){
+        var el = document.getElementById(id);
+        if (el) el.addEventListener("change", applyTBQuote);
+      });
+    })();
+  </script>
+
+  <!--
+    CHANGELOG
+    - Replaced “3–10k” signal with 3-tier Trust Brief anchors (Base/Pro/Enterprise).
+    - Added Quick Quote + Email Builder (estimate + procurement-ready mailto) and RID propagation.
+    - Preserved locked shell + header floating box behavior.
+
+    SMOKE TEST
+    - GET /trust-brief/ returns 200
+    - /assets/noetfield-shell.css and /assets/noetfield-shell.js return 200
+    - header/footer load into #nfHeader/#nfFooter
+    - Quote builder: selects -> estimate appears -> copy works -> mailto links populate
+  -->
 </body>
 </html>

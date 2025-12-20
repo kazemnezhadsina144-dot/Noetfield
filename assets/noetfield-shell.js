@@ -1,18 +1,18 @@
-/* /assets/noetfield-shell.js — v2.3
+/* /assets/noetfield-shell.js — v2.4
    Noetfield Shell:
    - Inject header/footer partials
-   - Burger menu
+   - Burger menu (with iOS-safe scroll lock + focus handling)
    - Active links
    - Footer year
    - Feedback tab
    - RID: generate/store/display/copy + propagate to tagged links + inject into forms
    - Emits: window.__nf + event "nf:shell:ready"
-   Version: locked-2025.12.19
+   Version: 2025.12.19.2
 */
 (function () {
   "use strict";
 
-  var SHELL_VERSION = "2025.12.19";
+  var SHELL_VERSION = "2025.12.19.2";
   var PARTIALS_BASE = "/assets/partials";
   var RID_KEY = "nf_rid";
 
@@ -29,7 +29,6 @@
 
   function toInternalPath(href) {
     if (!href) return null;
-
     if (href.startsWith("http")) {
       try {
         var u = new URL(href, window.location.origin);
@@ -192,21 +191,83 @@
     });
   }
 
+  // ===== iOS-safe scroll lock + focus handling =====
+  var __scrollY = 0;
+  function lockScroll() {
+    try {
+      __scrollY = window.scrollY || window.pageYOffset || 0;
+      document.body.style.position = "fixed";
+      document.body.style.top = "-" + __scrollY + "px";
+      document.body.style.left = "0";
+      document.body.style.right = "0";
+      document.body.style.width = "100%";
+      document.body.classList.add("navOpen");
+    } catch (_) {
+      document.body.classList.add("navOpen");
+    }
+  }
+  function unlockScroll() {
+    try {
+      document.body.classList.remove("navOpen");
+      document.body.style.position = "";
+      document.body.style.top = "";
+      document.body.style.left = "";
+      document.body.style.right = "";
+      document.body.style.width = "";
+      window.scrollTo(0, __scrollY || 0);
+    } catch (_) {
+      document.body.classList.remove("navOpen");
+    }
+  }
+
+  function trapFocus(container, e) {
+    if (!container) return;
+    if (e.key !== "Tab") return;
+
+    var focusables = container.querySelectorAll('a, button, input, select, textarea, [tabindex]:not([tabindex="-1"])');
+    if (!focusables || !focusables.length) return;
+
+    var first = focusables[0];
+    var last = focusables[focusables.length - 1];
+
+    if (e.shiftKey && document.activeElement === first) {
+      e.preventDefault();
+      last.focus();
+    } else if (!e.shiftKey && document.activeElement === last) {
+      e.preventDefault();
+      first.focus();
+    }
+  }
+
   function initBurger() {
     var burger = document.getElementById("burger");
     var panel = document.getElementById("mobilePanel");
     if (!burger || !panel) return;
 
+    var lastFocus = null;
+
     function openPanel() {
+      lastFocus = document.activeElement || burger;
       burger.setAttribute("aria-expanded", "true");
       panel.hidden = false;
-      document.body.classList.add("navOpen");
+      lockScroll();
+
+      // focus first item for accessibility
+      setTimeout(function () {
+        var firstLink = panel.querySelector("a, button");
+        if (firstLink && firstLink.focus) firstLink.focus();
+      }, 0);
     }
 
     function closePanel() {
       burger.setAttribute("aria-expanded", "false");
       panel.hidden = true;
-      document.body.classList.remove("navOpen");
+      unlockScroll();
+
+      // restore focus
+      setTimeout(function () {
+        if (lastFocus && lastFocus.focus) lastFocus.focus();
+      }, 0);
     }
 
     function toggle() {
@@ -216,7 +277,6 @@
 
     burger.setAttribute("aria-expanded", "false");
     panel.hidden = true;
-    document.body.classList.remove("navOpen");
 
     burger.addEventListener("click", function (e) {
       e.preventDefault();
@@ -225,6 +285,7 @@
 
     document.addEventListener("keydown", function (e) {
       if (e.key === "Escape" && burger.getAttribute("aria-expanded") === "true") closePanel();
+      if (burger.getAttribute("aria-expanded") === "true") trapFocus(panel, e);
     });
 
     document.addEventListener("click", function (e) {
@@ -247,11 +308,7 @@
     var cta = document.querySelector("#nfFooter .ctaRow");
     if (!cta) return;
 
-    var keepPaths = {
-      "/gate/sales": true,
-      "/gate": true,
-      "/portal": true
-    };
+    var keepPaths = { "/gate/sales": true, "/gate": true, "/portal": true };
 
     Array.prototype.slice.call(cta.querySelectorAll("a")).forEach(function (a) {
       var hrefRaw = (a.getAttribute("href") || "").trim();

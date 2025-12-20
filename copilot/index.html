@@ -1,12 +1,12 @@
-<!-- /copilot/index.html — Noetfield Copilot Governance (v2: buyer-first, numbered, nav + procurement-safe) -->
+<!-- /copilot/index.html — Noetfield Copilot v3.0 (Readiness-first • market-mirror SKUs • QuickScan as lead-in) -->
 <!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <title>Noetfield — Copilot Governance</title>
-  <meta name="description" content="Copilot governance and decision-ready evidence for Microsoft 365: QuickScan buyer pack, governance baseline, and remediation paths — built for executives, security, and procurement." />
+  <title>Noetfield — Microsoft 365 Copilot</title>
+  <meta name="description" content="Microsoft 365 Copilot governance + readiness. Flagship Readiness Assessment (2/4/6 weeks) and Rapid QuickScan (5–7 business days) with procurement-ready evidence." />
   <meta name="robots" content="index,follow" />
   <meta name="author" content="Noetfield Systems Inc." />
   <meta name="theme-color" content="#07070b" />
@@ -17,14 +17,14 @@
 
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Noetfield" />
-  <meta property="og:title" content="Noetfield — Copilot Governance" />
-  <meta property="og:description" content="Copilot governance and decision-ready evidence: QuickScan buyer pack, baseline, and remediation paths." />
+  <meta property="og:title" content="Noetfield — Microsoft 365 Copilot" />
+  <meta property="og:description" content="Readiness Assessment (2/4/6 weeks) + QuickScan (5–7 days). Decision-ready governance and evidence artifacts." />
   <meta property="og:url" content="https://www.noetfield.com/copilot/" />
   <meta property="og:image" content="https://www.noetfield.com/noetfield-og.png" />
 
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Noetfield — Copilot Governance" />
-  <meta name="twitter:description" content="Board-ready Copilot governance and evidence packs." />
+  <meta name="twitter:title" content="Noetfield — Microsoft 365 Copilot" />
+  <meta name="twitter:description" content="Copilot readiness + governance with procurement-ready evidence packs." />
   <meta name="twitter:image" content="https://www.noetfield.com/noetfield-og.png" />
 
   <!-- LOCKED SHELL -->
@@ -32,7 +32,6 @@
   <script src="/assets/noetfield-shell.js" defer></script>
 
   <style>
-    /* Page layout */
     .hero{padding:24px 0 12px}
     .heroShell{
       position:relative;
@@ -53,7 +52,7 @@
       pointer-events:none;
       mask-image: linear-gradient(180deg, black 0%, black 62%, transparent 96%);
     }
-    .heroInner{padding: 26px 24px}
+    .heroInner{padding: 26px 22px}
 
     .eyebrow{
       display:inline-flex; gap:10px; align-items:center;
@@ -101,6 +100,72 @@
     }
     .pill strong{color:var(--text); font-weight:950}
 
+    .layout{
+      display:grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr);
+      gap:16px;
+      margin: 16px 0 42px;
+      align-items:start;
+    }
+    .card{
+      border-radius:var(--radius);
+      border:1px solid rgba(255,255,255,.11);
+      background: linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.020));
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+      min-width:0;
+    }
+    .hd{padding:18px 18px 0}
+    .bd{padding:18px}
+
+    .kicker{
+      color:var(--muted2);
+      font-size:12px;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      margin: 0 0 10px;
+    }
+    h2{margin:0 0 8px; font-size:18px; letter-spacing:-0.2px}
+    p{margin:0 0 12px; color:var(--muted); line-height:1.7}
+
+    .cards2{display:grid; grid-template-columns: 1fr 1fr; gap:12px; margin-top:12px}
+    .mini{
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      padding:12px;
+      min-width:0;
+    }
+    .mini .name{font-weight:950; letter-spacing:-.2px}
+    .mini .meta{margin-top:6px; color:var(--muted2); font-size:12.6px; line-height:1.55}
+    .mini .cta{margin-top:10px; display:flex; gap:10px; flex-wrap:wrap}
+
+    .table{
+      width:100%;
+      border-collapse:separate;
+      border-spacing:0;
+      overflow:hidden;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.02);
+      margin-top:10px;
+    }
+    .table th, .table td{
+      text-align:left;
+      padding:12px;
+      border-bottom:1px solid rgba(255,255,255,.08);
+      vertical-align:top;
+      font-size:13px;
+    }
+    .table th{
+      color:var(--muted2);
+      font-size:11px;
+      letter-spacing:.28em;
+      text-transform:uppercase;
+      background: rgba(255,255,255,.03);
+    }
+    .table tr:last-child td{border-bottom:none}
+
     .box{
       margin-top:12px;
       padding:12px 12px;
@@ -114,63 +179,11 @@
     .box strong{color:var(--text); font-weight:950}
     .box a{border-bottom:1px solid rgba(255,255,255,.18)}
 
-    .layout{
-      display:grid;
-      grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr);
-      gap:18px;
-      margin: 18px 0 42px;
-      align-items:start;
-    }
-
-    .card{
-      border-radius:var(--radius);
-      border:1px solid rgba(255,255,255,.11);
-      background: linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.020));
-      box-shadow: var(--shadow2);
-      overflow:hidden;
-      min-width:0;
-    }
-    .card .hd{padding:18px 18px 0}
-    .card .bd{padding:18px}
-    .kicker{
-      color:var(--muted2);
-      font-size:12px;
-      letter-spacing:.12em;
-      text-transform:uppercase;
-      margin: 0 0 10px;
-    }
-    .card h2{margin:0 0 8px; font-size:18px; letter-spacing:-0.2px}
-    .card p{margin:0 0 12px; color:var(--muted); line-height:1.7}
-
-    .list{margin:0; padding-left:18px; color:var(--muted); line-height:1.85}
-    .list li{margin:6px 0}
-    .divider{height:1px; background: rgba(255,255,255,.10); margin: 14px 0}
-
-    .cards2{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap:12px;
-      margin-top:12px;
-    }
-    .mini{
-      border-radius:16px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.03);
-      padding:12px;
-      min-width:0;
-    }
-    .mini .name{font-weight:950; letter-spacing:-.2px}
-    .mini .meta{margin-top:6px; color:var(--muted2); font-size:12.6px; line-height:1.55}
-    .mini .cta{margin-top:10px; display:flex; gap:10px; flex-wrap:wrap}
-
-    /* Aside nav */
+    .stickyAside{position: sticky; top: 14px}
     .navgrid{display:grid; gap:8px; margin-top:10px}
     .navgrid a{color: rgba(255,255,255,.86); text-decoration:none}
     .navgrid a:hover{text-decoration:underline}
-    .stickyAside{position: sticky; top: 14px}
-    .small{font-size:12.5px; color:var(--muted2); line-height:1.6}
 
-    /* Sticky CTA */
     .stickyCta{
       position: sticky;
       bottom: 0;
@@ -189,13 +202,8 @@
       max-width: 1120px;
       margin: 0 auto;
     }
-    .stickyText{
-      min-width:0;
-      color:var(--muted);
-      font-size:12.6px;
-      line-height:1.4;
-    }
-    .stickyText strong{ color:var(--text); font-weight:950; }
+    .stickyText{min-width:0; color:var(--muted); font-size:12.6px; line-height:1.4}
+    .stickyText strong{color:var(--text); font-weight:950}
 
     @media (max-width: 980px){
       .layout{grid-template-columns:1fr}
@@ -205,6 +213,7 @@
     @media (max-width: 760px){
       .stickyText{display:none}
       .heroInner{padding: 22px 18px}
+      .table th, .table td{padding:10px}
     }
   </style>
 
@@ -212,9 +221,9 @@
   {
     "@context":"https://schema.org",
     "@type":"CollectionPage",
-    "name":"Noetfield — Copilot Governance",
+    "name":"Noetfield — Microsoft 365 Copilot",
     "url":"https://www.noetfield.com/copilot/",
-    "description":"Copilot governance and decision-ready evidence packs for Microsoft 365: QuickScan buyer pack, governance baseline, and remediation paths.",
+    "description":"Copilot readiness + governance with procurement-ready evidence packs.",
     "isPartOf":{"@type":"WebSite","name":"Noetfield","url":"https://www.noetfield.com/"},
     "publisher":{"@type":"Organization","name":"Noetfield Systems Inc."}
   }
@@ -225,317 +234,164 @@
   <div class="bg" aria-hidden="true"></div>
   <a class="skip" href="#main">Skip to content</a>
 
-  <!-- Injected header -->
   <header id="nfHeader"></header>
 
   <main id="main" class="wrap">
-    <!-- HERO -->
-    <section class="hero" aria-label="Copilot governance hero">
+    <section class="hero" aria-label="Copilot hub hero">
       <div class="heroShell">
         <div class="heroInner">
-          <div class="eyebrow"><span class="dot"></span> Microsoft 365 Copilot • governance + evidence</div>
+          <div class="eyebrow"><span class="dot"></span> Microsoft 365 Copilot • readiness + evidence</div>
 
-          <h1 class="title">Copilot adoption, but decision-ready.</h1>
+          <h1 class="title">Copilot adoption, but procurement-proof.</h1>
 
           <p class="lead">
-            Reduce uncertainty fast: start with a paid <strong>QuickScan</strong>, align stakeholders with a <strong>baseline</strong>,
-            then execute remediation with clear owners and proof that procurement can file.
+            The enterprise path is market-standard: <strong>Readiness Assessment (2/4/6 weeks)</strong>.
+            If you need a fast signal first, start with <strong>QuickScan (5–7 business days)</strong>.
           </p>
 
-          <div class="actions" aria-label="Primary calls to action">
-            <a class="btn" href="/copilot/quickscan/">Start with QuickScan</a>
-            <a class="btn secondary" href="/gate/intake/?need=copilot-quickscan">Start intake</a>
-            <a class="btn secondary" href="/trust-ledger/">Trust Ledger</a>
+          <div class="actions" aria-label="Primary CTAs">
+            <a class="btn" href="/copilot/readiness/">Readiness Assessment (Flagship)</a>
+            <a class="btn secondary" href="/copilot/quickscan/">QuickScan (5–7 days)</a>
+            <a class="btn secondary" href="/gate/procurement/?focus=copilot">Procurement lane</a>
           </div>
 
           <div class="metaRow" aria-label="Quick facts">
-            <div class="pill"><strong>5–7 days</strong> typical QuickScan</div>
-            <div class="pill"><strong>Procurement</strong> friendly outputs</div>
-            <div class="pill"><strong>Oversharing</strong> exposure control</div>
-            <div class="pill"><strong>Evidence</strong> exportability</div>
+            <div class="pill"><strong>Standard</strong> 4w • 15k CAD</div>
+            <div class="pill"><strong>Fixed tiers</strong> 2/4/6</div>
+            <div class="pill"><strong>Evidence</strong> first</div>
+            <div class="pill"><strong>Board-ready</strong> outputs</div>
           </div>
 
           <div class="box">
-            <strong>Public intake = non-confidential.</strong> No secrets, customer data, or identifiers in the first step.
-            If there is a fit, a secure channel and access plan follows.
+            <strong>Boundary rule:</strong> public intake is non-confidential. Avoid secrets, customer data, or identifiers.
           </div>
         </div>
       </div>
     </section>
 
-    <!-- BODY -->
-    <section class="layout" aria-label="Copilot governance content">
+    <section class="layout" aria-label="Copilot hub content">
       <!-- MAIN -->
       <div style="min-width:0;">
-
-        <!-- 1) ABOUT -->
-        <article class="card" id="about">
+        <article class="card" id="offers">
           <div class="hd">
-            <div class="kicker">1) What this page is</div>
-            <h2>One hub for buyers</h2>
-            <p>
-              This page exists to make Copilot purchase and rollout <em>obvious</em>: start point, deliverables, timeline, and procurement notes.
-              It is not a marketing brochure and not a deep technical guide.
-            </p>
+            <div class="kicker">1) Offers</div>
+            <h2>Two entry motions (enterprise-first)</h2>
+            <p>Keep the outside market-standard; keep the inside Noetfield-proof.</p>
           </div>
           <div class="bd">
-            <div class="box">
-              <strong>Primary buyer outcome:</strong> decision-ready artifacts that reduce internal friction between IT, Security, Legal, and Procurement.
-            </div>
-          </div>
-        </article>
-
-        <!-- 2) START POINTS -->
-        <article class="card" id="start-points" style="margin-top:14px;">
-          <div class="hd">
-            <div class="kicker">2) Start points</div>
-            <h2>Minimal paths (reading optional)</h2>
-            <p>Choose one. The rest can follow only if needed.</p>
-          </div>
-          <div class="bd">
-            <div class="cards2" aria-label="Start point cards">
+            <div class="cards2" aria-label="Offer cards">
               <div class="mini">
-                <div class="name">Copilot QuickScan (paid)</div>
-                <div class="meta">5–7 business days. Buyer Pack: scope lock, oversharing heatmap, sensitive boundaries, evidence readiness, connector/extension controls.</div>
+                <div class="name">Microsoft 365 Copilot Readiness Assessment</div>
+                <div class="meta">2/4/6 weeks. Board/procurement-ready governance + evidence pack. Standard (4w) is the default enterprise tier.</div>
                 <div class="cta">
-                  <a class="btn" href="/copilot/quickscan/">View QuickScan</a>
+                  <a class="btn" href="/copilot/readiness/">View Readiness</a>
+                  <a class="btn secondary" href="/gate/intake/?need=copilot-readiness-standard">Start Standard intake</a>
+                </div>
+              </div>
+
+              <div class="mini">
+                <div class="name">Copilot QuickScan</div>
+                <div class="meta">5–7 business days. Rapid snapshot to surface exposure themes and boundaries, then upgrade into Readiness if needed.</div>
+                <div class="cta">
+                  <a class="btn secondary" href="/copilot/quickscan/">View QuickScan</a>
                   <a class="btn secondary" href="/gate/intake/?need=copilot-quickscan">Start intake</a>
                 </div>
               </div>
-
-              <div class="mini">
-                <div class="name">Governance Baseline</div>
-                <div class="meta">Policy + controls + ownership. A compact baseline to align stakeholders and reduce “we’ll figure it out later” risk.</div>
-                <div class="cta">
-                  <a class="btn secondary" href="/copilot/governance/">View baseline</a>
-                  <a class="btn secondary" href="/gate/intake/?need=copilot-governance">Start baseline</a>
-                </div>
-              </div>
-
-              <div class="mini">
-                <div class="name">Remediation Sprint</div>
-                <div class="meta">Post-QuickScan implementation (typ. 2–3 weeks): fixes + re-scan + updated evidence pack with owners.</div>
-                <div class="cta">
-                  <a class="btn secondary" href="/gate/intake/?need=copilot-remediation">Request scope</a>
-                  <a class="btn secondary" href="/gate/partners/">Partner lane</a>
-                </div>
-              </div>
-
-              <div class="mini">
-                <div class="name">Trust Ledger integration</div>
-                <div class="meta">If governance needs an ongoing system of record: controls, decisions, and evidence mapped into a board-ready ledger format.</div>
-                <div class="cta">
-                  <a class="btn secondary" href="/trust-ledger/">View Trust Ledger</a>
-                  <a class="btn secondary" href="/gate/intake/?need=trust-ledger">Start intake</a>
-                </div>
-              </div>
             </div>
 
-            <div class="box" style="margin-top:12px;">
-              <strong>Default buyer path:</strong> QuickScan → (optional) Baseline → (optional) Remediation → (optional) Trust Ledger.
-            </div>
-          </div>
-        </article>
+            <table class="table" aria-label="Comparison table">
+              <thead>
+                <tr>
+                  <th>Option</th>
+                  <th>Best when</th>
+                  <th>Duration</th>
+                  <th>Commercial</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Readiness (Standard)</strong></td>
+                  <td>Enterprise buyer needs governance + evidence, not just a snapshot</td>
+                  <td>4 weeks</td>
+                  <td><strong>$15,000 CAD</strong></td>
+                </tr>
+                <tr>
+                  <td><strong>QuickScan</strong></td>
+                  <td>You need fast signal before committing to the full readiness motion</td>
+                  <td>5–7 business days</td>
+                  <td>3.5k / 5k / 7.5k CAD tiers</td>
+                </tr>
+              </tbody>
+            </table>
 
-        <!-- 3) DELIVERABLES -->
-        <article class="card" id="deliverables" style="margin-top:14px;">
-          <div class="hd">
-            <div class="kicker">3) What you get (QuickScan deliverables)</div>
-            <h2>Procurement-ready, not slide-heavy</h2>
-            <p>Deliverables are designed to be filed, forwarded, and actioned.</p>
-          </div>
-          <div class="bd">
-            <ul class="list">
-              <li><strong>Scope lock:</strong> Copilot rollout boundary (who/where/what) with explicit assumptions.</li>
-              <li><strong>Oversharing exposure map:</strong> high-risk data surfaces (SharePoint, Teams, OneDrive patterns) and priority hotspots.</li>
-              <li><strong>Sensitive-data boundaries:</strong> what must not be exposed + guardrails for prompts and access behavior.</li>
-              <li><strong>Connector / extension control notes:</strong> what to allow, block, or review first.</li>
-              <li><strong>Evidence pack:</strong> what exists today vs what is missing for audit/procurement confidence.</li>
-              <li><strong>30/60/90 plan:</strong> owners, sequencing, and decision points (proceed / pause / remediate).</li>
-            </ul>
-            <div class="divider"></div>
             <div class="box">
-              <strong>Measured on outcomes:</strong> confirmed risk reduction actions + decision readiness, not document volume.
+              <strong>Default enterprise path:</strong> Readiness (Standard) → (optional) remediation sprint → (optional) Trust Ledger retainer.
             </div>
           </div>
         </article>
 
-        <!-- 4) TIMELINE -->
-        <article class="card" id="timeline" style="margin-top:14px;">
+        <article class="card" id="procurement" style="margin-top:14px;">
           <div class="hd">
-            <div class="kicker">4) Timeline</div>
-            <h2>Fast by design</h2>
-            <p>QuickScan is built to compress uncertainty quickly.</p>
-          </div>
-          <div class="bd">
-            <ul class="list">
-              <li><strong>Day 0:</strong> non-confidential intake → scope lock + access readiness plan.</li>
-              <li><strong>Days 1–4:</strong> evidence collection + stakeholder alignment checkpoints (minimal meetings).</li>
-              <li><strong>Days 5–7:</strong> deliverables packaged + decision options + next-step plan.</li>
-            </ul>
-            <div class="box">
-              <strong>What slows it down:</strong> unclear scope, unclear owners, and no access plan. QuickScan exists to fix those first.
-            </div>
-          </div>
-        </article>
-
-        <!-- 5) COMMERCIALS -->
-        <article class="card" id="commercials" style="margin-top:14px;">
-          <div class="hd">
-            <div class="kicker">5) Commercials</div>
-            <h2>Buyable entry, fixed-scope motion</h2>
-            <p>Designed for procurement and finance to say “yes” quickly.</p>
-          </div>
-          <div class="bd">
-            <ul class="list">
-              <li><strong>QuickScan:</strong> fixed-scope, buyer-first package.</li>
-              <li><strong>Pricing:</strong> shared after scope lock; typical range <em>(illustrative)</em> CAD 3k–10k depending on environment size and access posture.</li>
-              <li><strong>Output format:</strong> board/procurement-friendly brief + evidence checklist + action plan.</li>
-            </ul>
-            <div class="box">
-              <strong>Fast start:</strong> use <a href="/gate/intake/?need=copilot-quickscan">non-confidential intake</a> to lock scope and receive the next-step email.
-            </div>
-          </div>
-        </article>
-
-        <!-- 6) WHO IT'S FOR -->
-        <article class="card" id="fit" style="margin-top:14px;">
-          <div class="hd">
-            <div class="kicker">6) Who it’s for</div>
-            <h2>Teams under real pressure</h2>
-            <p>Copilot creates governance load. This is for teams that need clarity.</p>
-          </div>
-          <div class="bd">
-            <div class="cards2">
-              <div class="mini">
-                <div class="name">Good fit</div>
-                <div class="meta">
-                  Executives, Security, IT, Legal, Procurement — when a rollout is planned (or already happening) and evidence is fragmented.
-                </div>
-              </div>
-              <div class="mini">
-                <div class="name">Not a fit</div>
-                <div class="meta">
-                  Pure “AI experimentation” with no buyers, no owners, and no intention to produce decision-grade artifacts.
-                </div>
-              </div>
-            </div>
-          </div>
-        </article>
-
-        <!-- 7) FAQ -->
-        <article class="card" id="faq" style="margin-top:14px;">
-          <div class="hd">
-            <div class="kicker">7) FAQ</div>
-            <h2>Common buyer questions</h2>
-          </div>
-          <div class="bd">
-            <ul class="list">
-              <li><strong>Is the first intake confidential?</strong> No. Public intake is non-confidential by design. A secure channel follows if there is a fit.</li>
-              <li><strong>Do we need deep access on day one?</strong> Not necessarily. QuickScan starts with scope lock + access readiness and escalates only as required.</li>
-              <li><strong>Is this a technical implementation service?</strong> QuickScan is decision + evidence first. Remediation Sprint handles execution if requested.</li>
-              <li><strong>Can procurement use the outputs?</strong> Yes — outputs are designed to be forwarded, filed, and referenced in procurement workflows.</li>
-            </ul>
-          </div>
-        </article>
-
-        <!-- 8) NEXT STEP -->
-        <article class="card" id="next-step" style="margin-top:14px;">
-          <div class="hd">
-            <div class="kicker">8) Next step</div>
-            <h2>Start QuickScan</h2>
-            <p>Fastest path to board-ready Copilot evidence and a clean 30/60/90 plan.</p>
+            <div class="kicker">2) Procurement</div>
+            <h2>Invoice/PO lane is always available</h2>
+            <p>Use procurement when card pay is not preferred or approvals require internal routing.</p>
           </div>
           <div class="bd">
             <div class="actions">
-              <a class="btn" href="/copilot/quickscan/">View QuickScan</a>
-              <a class="btn secondary" href="/gate/intake/?need=copilot-quickscan">Start intake</a>
-              <a class="btn secondary" href="/gate/">Gate</a>
+              <a class="btn secondary" href="/gate/procurement/?focus=copilot-readiness-standard">Procurement: Readiness (Standard)</a>
+              <a class="btn secondary" href="/gate/procurement/?focus=quickscan">Procurement: QuickScan</a>
+              <a class="btn secondary" href="/gate/sales/">Sales hub</a>
             </div>
-            <p class="small" style="margin-top:10px;">
-              Reminder: avoid secrets, customer data, or identifiers in the first message.
-            </p>
+            <div class="box">
+              <strong>Note:</strong> outputs are designed to be filed, forwarded, and referenced (not slide-heavy marketing).
+            </div>
           </div>
         </article>
-
       </div>
 
       <!-- ASIDE -->
       <aside style="min-width:0;">
-        <div class="card stickyAside" aria-label="On this page">
+        <div class="card stickyAside" aria-label="Copilot hub nav">
           <div class="hd">
             <div class="kicker">On this page</div>
             <h2 style="margin:0 0 6px; font-size:16px;">Navigate</h2>
-            <p class="small" style="margin:0;">Scan fast. Choose a start point.</p>
+            <p style="margin:0; color:var(--muted2); font-size:12.6px; line-height:1.6">Readiness-first. QuickScan is the lead-in.</p>
           </div>
           <div class="bd">
             <div class="navgrid">
-              <a href="#about">1) About</a>
-              <a href="#start-points">2) Start points</a>
-              <a href="#deliverables">3) Deliverables</a>
-              <a href="#timeline">4) Timeline</a>
-              <a href="#commercials">5) Commercials</a>
-              <a href="#fit">6) Fit</a>
-              <a href="#faq">7) FAQ</a>
-              <a href="#next-step">8) Next step</a>
+              <a href="#offers">1) Offers</a>
+              <a href="#procurement">2) Procurement</a>
             </div>
 
-            <div class="divider"></div>
-
-            <div class="kicker">Quick facts</div>
-            <div class="metaRow" style="margin-top:10px;">
-              <div class="pill"><strong>Buyer-first</strong></div>
-              <div class="pill"><strong>Non-confidential</strong> intake</div>
-              <div class="pill"><strong>5–7 days</strong> typical</div>
-              <div class="pill"><strong>Procurement</strong> ready</div>
+            <div class="box">
+              <strong>Start now</strong><br/>
+              <a href="/copilot/readiness/">Readiness Assessment</a> ·
+              <a href="/copilot/quickscan/">QuickScan</a>
             </div>
 
-            <div class="divider"></div>
-
-            <div class="actions">
-              <a class="btn" href="/copilot/quickscan/">Start with QuickScan</a>
-              <a class="btn secondary" href="/gate/intake/?need=copilot-quickscan">Start intake</a>
+            <div class="box">
+              <strong>Related</strong><br/>
+              <a href="/trust-ledger/">Trust Ledger</a> ·
+              <a href="/trust-brief/">Trust Brief</a>
             </div>
-
-            <p class="small" style="margin-top:10px;">
-              If procurement requires a one-page summary, use QuickScan as the entry artifact.
-            </p>
           </div>
         </div>
       </aside>
     </section>
   </main>
 
-  <!-- Injected footer -->
   <footer id="nfFooter"></footer>
 
-  <!-- Sticky CTA -->
-  <div class="stickyCta" aria-label="Sticky call to action">
+  <div class="stickyCta" aria-label="Sticky CTA">
     <div class="stickyInner">
       <div class="stickyText">
-        <strong>Copilot QuickScan</strong> — fastest path to decision-ready Copilot evidence.
+        <strong>Readiness (Standard)</strong> — 4 weeks — 15,000 CAD. Enterprise default.
       </div>
-      <a class="btn" href="/copilot/quickscan/">Start with QuickScan</a>
+      <div class="actions" style="margin:0">
+        <a class="btn" href="/copilot/readiness/">View Readiness</a>
+        <a class="btn secondary" href="/gate/procurement/?focus=copilot-readiness-standard">Invoice / PO</a>
+      </div>
     </div>
   </div>
-
-  <!--
-    Changelog (v2)
-    - Added numbered buyer flow (1–8) + sticky on-page nav
-    - Clarified start points and default path (QuickScan-first)
-    - Made deliverables/timeline/procurement notes explicit and skimmable
-    - Kept locked shell assets + header/footer injection IDs intact
-    - Strengthened “Public intake = non-confidential” boundary
-  -->
-
-  <!-- Smoke-test checklist
-    [ ] /copilot/ returns 200
-    [ ] /assets/noetfield-shell.css returns 200
-    [ ] /assets/noetfield-shell.js returns 200
-    [ ] Header renders inside #nfHeader; footer renders inside #nfFooter
-    [ ] Primary CTA links: /copilot/quickscan/ and /gate/intake/?need=copilot-quickscan
-    [ ] Anchor nav scrolls to all sections
-    [ ] Mobile: layout becomes single column; sticky aside becomes static; sticky CTA stays usable
-  -->
 </body>
 </html>

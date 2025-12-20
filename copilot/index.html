@@ -1,12 +1,12 @@
-<!-- /copilot/index.html — Noetfield Copilot v3.0 (Readiness-first • market-mirror SKUs • QuickScan as lead-in) -->
+<!-- /copilot/index.html — Noetfield Copilot v3.1 (Market-mirror outside • Process + Evidence inside • Fully responsive) -->
 <!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <title>Noetfield — Microsoft 365 Copilot</title>
-  <meta name="description" content="Microsoft 365 Copilot governance + readiness. Flagship Readiness Assessment (2/4/6 weeks) and Rapid QuickScan (5–7 business days) with procurement-ready evidence." />
+  <title>Noetfield — Microsoft 365 Copilot Readiness</title>
+  <meta name="description" content="Microsoft 365 Copilot governance + readiness. Market-standard Readiness Assessment (2/4/6 weeks) and Rapid QuickScan (5–7 business days) with board/procurement-ready evidence packs." />
   <meta name="robots" content="index,follow" />
   <meta name="author" content="Noetfield Systems Inc." />
   <meta name="theme-color" content="#07070b" />
@@ -18,13 +18,13 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Noetfield" />
   <meta property="og:title" content="Noetfield — Microsoft 365 Copilot" />
-  <meta property="og:description" content="Readiness Assessment (2/4/6 weeks) + QuickScan (5–7 days). Decision-ready governance and evidence artifacts." />
+  <meta property="og:description" content="Readiness Assessment (2/4/6 weeks) + QuickScan (5–7 days). Decision-ready governance and procurement-proof evidence artifacts." />
   <meta property="og:url" content="https://www.noetfield.com/copilot/" />
   <meta property="og:image" content="https://www.noetfield.com/noetfield-og.png" />
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Noetfield — Microsoft 365 Copilot" />
-  <meta name="twitter:description" content="Copilot readiness + governance with procurement-ready evidence packs." />
+  <meta name="twitter:description" content="Copilot readiness + governance with board/procurement-ready evidence packs." />
   <meta name="twitter:image" content="https://www.noetfield.com/noetfield-og.png" />
 
   <!-- LOCKED SHELL -->
@@ -32,8 +32,9 @@
   <script src="/assets/noetfield-shell.js" defer></script>
 
   <style>
-    .hero{padding:24px 0 12px}
-    .heroShell{
+    /* Page-scoped only (do not override shell globals broadly) */
+    .cp-hero{padding:24px 0 12px}
+    .cp-heroShell{
       position:relative;
       border-radius: calc(var(--radius) + 10px);
       border: 1px solid rgba(255,255,255,.12);
@@ -44,7 +45,7 @@
       box-shadow: var(--shadow);
       overflow:hidden;
     }
-    .heroShell::before{
+    .cp-heroShell::before{
       content:"";
       position:absolute; inset:-1px;
       background: linear-gradient(120deg, rgba(200,163,73,.28), transparent 32%, rgba(255,255,255,.08) 68%, transparent);
@@ -52,9 +53,9 @@
       pointer-events:none;
       mask-image: linear-gradient(180deg, black 0%, black 62%, transparent 96%);
     }
-    .heroInner{padding: 26px 22px}
+    .cp-heroInner{padding: 26px 22px}
 
-    .eyebrow{
+    .cp-eyebrow{
       display:inline-flex; gap:10px; align-items:center;
       color:var(--muted);
       font-size:13px;
@@ -63,32 +64,31 @@
       border:1px solid rgba(255,255,255,.13);
       background: rgba(255,255,255,.035);
     }
-    .dot{
+    .cp-dot{
       width:8px; height:8px; border-radius:50%;
       background: rgba(200,163,73,.97);
       box-shadow: 0 0 0 3px rgba(200,163,73,.18);
     }
-
-    .title{
+    .cp-title{
       margin:14px 0 10px;
       font-size: clamp(30px, 3.2vw, 48px);
       line-height:1.06;
       letter-spacing:-0.8px;
     }
-    .lead{
+    .cp-lead{
       margin:0;
       color:var(--muted);
       font-size: 16px;
       max-width: 980px;
       line-height:1.75;
     }
-    .lead strong{color:var(--text); font-weight:950}
+    .cp-lead strong{color:var(--text); font-weight:950}
 
-    .actions{display:flex; gap:12px; flex-wrap:wrap; align-items:center; margin-top:14px}
-    .actions .btn{min-height:44px}
+    .cp-actions{display:flex; gap:12px; flex-wrap:wrap; align-items:center; margin-top:14px}
+    .cp-actions .btn{min-height:44px}
 
-    .metaRow{display:flex; flex-wrap:wrap; gap:10px; margin-top:14px}
-    .pill{
+    .cp-metaRow{display:flex; flex-wrap:wrap; gap:10px; margin-top:14px}
+    .cp-pill{
       display:inline-flex; align-items:center; gap:10px;
       padding:9px 12px;
       border-radius:999px;
@@ -98,75 +98,9 @@
       font-size:13px;
       white-space:nowrap;
     }
-    .pill strong{color:var(--text); font-weight:950}
+    .cp-pill strong{color:var(--text); font-weight:950}
 
-    .layout{
-      display:grid;
-      grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr);
-      gap:16px;
-      margin: 16px 0 42px;
-      align-items:start;
-    }
-    .card{
-      border-radius:var(--radius);
-      border:1px solid rgba(255,255,255,.11);
-      background: linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.020));
-      box-shadow: var(--shadow2);
-      overflow:hidden;
-      min-width:0;
-    }
-    .hd{padding:18px 18px 0}
-    .bd{padding:18px}
-
-    .kicker{
-      color:var(--muted2);
-      font-size:12px;
-      letter-spacing:.12em;
-      text-transform:uppercase;
-      margin: 0 0 10px;
-    }
-    h2{margin:0 0 8px; font-size:18px; letter-spacing:-0.2px}
-    p{margin:0 0 12px; color:var(--muted); line-height:1.7}
-
-    .cards2{display:grid; grid-template-columns: 1fr 1fr; gap:12px; margin-top:12px}
-    .mini{
-      border-radius:16px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.03);
-      padding:12px;
-      min-width:0;
-    }
-    .mini .name{font-weight:950; letter-spacing:-.2px}
-    .mini .meta{margin-top:6px; color:var(--muted2); font-size:12.6px; line-height:1.55}
-    .mini .cta{margin-top:10px; display:flex; gap:10px; flex-wrap:wrap}
-
-    .table{
-      width:100%;
-      border-collapse:separate;
-      border-spacing:0;
-      overflow:hidden;
-      border-radius:16px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.02);
-      margin-top:10px;
-    }
-    .table th, .table td{
-      text-align:left;
-      padding:12px;
-      border-bottom:1px solid rgba(255,255,255,.08);
-      vertical-align:top;
-      font-size:13px;
-    }
-    .table th{
-      color:var(--muted2);
-      font-size:11px;
-      letter-spacing:.28em;
-      text-transform:uppercase;
-      background: rgba(255,255,255,.03);
-    }
-    .table tr:last-child td{border-bottom:none}
-
-    .box{
+    .cp-box{
       margin-top:12px;
       padding:12px 12px;
       border-radius:14px;
@@ -176,15 +110,118 @@
       font-size:12.8px;
       line-height:1.6;
     }
-    .box strong{color:var(--text); font-weight:950}
-    .box a{border-bottom:1px solid rgba(255,255,255,.18)}
+    .cp-box strong{color:var(--text); font-weight:950}
+    .cp-box a{border-bottom:1px solid rgba(255,255,255,.18)}
 
-    .stickyAside{position: sticky; top: 14px}
-    .navgrid{display:grid; gap:8px; margin-top:10px}
-    .navgrid a{color: rgba(255,255,255,.86); text-decoration:none}
-    .navgrid a:hover{text-decoration:underline}
+    .cp-layout{
+      display:grid;
+      grid-template-columns: minmax(0, 1.12fr) minmax(0, .88fr);
+      gap:16px;
+      margin: 16px 0 42px;
+      align-items:start;
+    }
 
-    .stickyCta{
+    .cp-card{
+      border-radius:var(--radius);
+      border:1px solid rgba(255,255,255,.11);
+      background: linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.020));
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+      min-width:0;
+    }
+    .cp-hd{padding:18px 18px 0}
+    .cp-bd{padding:18px}
+
+    .cp-kicker{
+      color:var(--muted2);
+      font-size:12px;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      margin: 0 0 10px;
+    }
+    .cp-card h2{margin:0 0 8px; font-size:18px; letter-spacing:-0.2px}
+    .cp-card p{margin:0 0 12px; color:var(--muted); line-height:1.7}
+
+    .cp-cards2{display:grid; grid-template-columns: 1fr 1fr; gap:12px; margin-top:12px}
+    .cp-mini{
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      padding:12px;
+      min-width:0;
+    }
+    .cp-mini .name{font-weight:950; letter-spacing:-.2px}
+    .cp-mini .meta{margin-top:6px; color:var(--muted2); font-size:12.6px; line-height:1.55}
+    .cp-mini .cta{margin-top:10px; display:flex; gap:10px; flex-wrap:wrap}
+
+    .cp-table{
+      width:100%;
+      border-collapse:separate;
+      border-spacing:0;
+      overflow:hidden;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.02);
+      margin-top:10px;
+    }
+    .cp-table th, .cp-table td{
+      text-align:left;
+      padding:12px;
+      border-bottom:1px solid rgba(255,255,255,.08);
+      vertical-align:top;
+      font-size:13px;
+    }
+    .cp-table th{
+      color:var(--muted2);
+      font-size:11px;
+      letter-spacing:.28em;
+      text-transform:uppercase;
+      background: rgba(255,255,255,.03);
+    }
+    .cp-table tr:last-child td{border-bottom:none}
+
+    .cp-list{margin:0; padding-left:18px; color:var(--muted); line-height:1.85}
+    .cp-list li{margin:6px 0}
+    .cp-divider{height:1px; background: rgba(255,255,255,.10); margin: 14px 0}
+
+    .cp-badges{display:flex; gap:8px; flex-wrap:wrap; margin-top:8px}
+    .cp-badge{
+      display:inline-flex;
+      padding:7px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.03);
+      color:var(--muted2);
+      font-size:12px;
+      white-space:nowrap;
+    }
+
+    /* Aside */
+    .cp-stickyAside{position: sticky; top: 14px}
+    .cp-navgrid{display:grid; gap:8px; margin-top:10px}
+    .cp-navgrid a{color: rgba(255,255,255,.86); text-decoration:none}
+    .cp-navgrid a:hover{text-decoration:underline}
+    .cp-small{font-size:12.6px; color:var(--muted2); line-height:1.6; margin:0}
+
+    /* Mini timeline */
+    .cp-timelineGrid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:12px;
+      margin-top:10px;
+    }
+    .cp-step{
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      padding:12px;
+      min-width:0;
+    }
+    .cp-step .t{font-weight:950; letter-spacing:-.2px}
+    .cp-step .d{margin-top:6px; color:var(--muted2); font-size:12.6px; line-height:1.55}
+
+    /* Sticky CTA */
+    .cp-stickyCta{
       position: sticky;
       bottom: 0;
       z-index: 20;
@@ -193,7 +230,7 @@
       backdrop-filter: blur(10px);
       border-top: 1px solid rgba(255,255,255,.08);
     }
-    .stickyInner{
+    .cp-stickyInner{
       display:flex;
       gap:12px;
       align-items:center;
@@ -202,18 +239,19 @@
       max-width: 1120px;
       margin: 0 auto;
     }
-    .stickyText{min-width:0; color:var(--muted); font-size:12.6px; line-height:1.4}
-    .stickyText strong{color:var(--text); font-weight:950}
+    .cp-stickyText{min-width:0; color:var(--muted); font-size:12.6px; line-height:1.4}
+    .cp-stickyText strong{color:var(--text); font-weight:950}
 
     @media (max-width: 980px){
-      .layout{grid-template-columns:1fr}
-      .cards2{grid-template-columns:1fr}
-      .stickyAside{position: static}
+      .cp-layout{grid-template-columns:1fr}
+      .cp-cards2{grid-template-columns:1fr}
+      .cp-timelineGrid{grid-template-columns:1fr}
+      .cp-stickyAside{position: static}
     }
     @media (max-width: 760px){
-      .stickyText{display:none}
-      .heroInner{padding: 22px 18px}
-      .table th, .table td{padding:10px}
+      .cp-heroInner{padding: 22px 18px}
+      .cp-stickyText{display:none}
+      .cp-table th, .cp-table td{padding:10px}
     }
   </style>
 
@@ -223,7 +261,7 @@
     "@type":"CollectionPage",
     "name":"Noetfield — Microsoft 365 Copilot",
     "url":"https://www.noetfield.com/copilot/",
-    "description":"Copilot readiness + governance with procurement-ready evidence packs.",
+    "description":"Microsoft 365 Copilot readiness + governance with board/procurement-ready evidence packs. Market-standard Readiness Assessment (2/4/6 weeks) and Rapid QuickScan (5–7 business days).",
     "isPartOf":{"@type":"WebSite","name":"Noetfield","url":"https://www.noetfield.com/"},
     "publisher":{"@type":"Organization","name":"Noetfield Systems Inc."}
   }
@@ -234,64 +272,81 @@
   <div class="bg" aria-hidden="true"></div>
   <a class="skip" href="#main">Skip to content</a>
 
+  <!-- Injected header -->
   <header id="nfHeader"></header>
 
   <main id="main" class="wrap">
-    <section class="hero" aria-label="Copilot hub hero">
-      <div class="heroShell">
-        <div class="heroInner">
-          <div class="eyebrow"><span class="dot"></span> Microsoft 365 Copilot • readiness + evidence</div>
+    <!-- HERO -->
+    <section class="cp-hero" aria-label="Copilot hub hero">
+      <div class="cp-heroShell">
+        <div class="cp-heroInner">
+          <div class="cp-eyebrow"><span class="cp-dot"></span> Microsoft 365 Copilot • readiness + evidence</div>
 
-          <h1 class="title">Copilot adoption, but procurement-proof.</h1>
+          <h1 class="cp-title">Copilot adoption, but procurement-proof.</h1>
 
-          <p class="lead">
-            The enterprise path is market-standard: <strong>Readiness Assessment (2/4/6 weeks)</strong>.
-            If you need a fast signal first, start with <strong>QuickScan (5–7 business days)</strong>.
+          <p class="cp-lead">
+            The enterprise motion is market-standard: <strong>Readiness Assessment (2/4/6 weeks)</strong>.
+            If a fast signal is needed first, start with <strong>QuickScan (5–7 business days)</strong>.
+            Outputs are designed to be filed, forwarded, and actioned.
           </p>
 
-          <div class="actions" aria-label="Primary CTAs">
+          <div class="cp-actions" aria-label="Primary CTAs">
             <a class="btn" href="/copilot/readiness/">Readiness Assessment (Flagship)</a>
             <a class="btn secondary" href="/copilot/quickscan/">QuickScan (5–7 days)</a>
-            <a class="btn secondary" href="/gate/procurement/?focus=copilot">Procurement lane</a>
+            <a class="btn secondary" href="/gate/procurement/?focus=copilot">Invoice / PO (Procurement)</a>
           </div>
 
-          <div class="metaRow" aria-label="Quick facts">
-            <div class="pill"><strong>Standard</strong> 4w • 15k CAD</div>
-            <div class="pill"><strong>Fixed tiers</strong> 2/4/6</div>
-            <div class="pill"><strong>Evidence</strong> first</div>
-            <div class="pill"><strong>Board-ready</strong> outputs</div>
+          <div class="cp-metaRow" aria-label="Quick facts">
+            <div class="cp-pill"><strong>Standard</strong> 4w • 15,000 CAD</div>
+            <div class="cp-pill"><strong>Fixed tiers</strong> 2/4/6 weeks</div>
+            <div class="cp-pill"><strong>Evidence</strong> first</div>
+            <div class="cp-pill"><strong>Board-ready</strong> outputs</div>
           </div>
 
-          <div class="box">
+          <div class="cp-box">
             <strong>Boundary rule:</strong> public intake is non-confidential. Avoid secrets, customer data, or identifiers.
+            If there is a fit, a secure channel and access plan follows.
           </div>
         </div>
       </div>
     </section>
 
-    <section class="layout" aria-label="Copilot hub content">
+    <!-- BODY -->
+    <section class="cp-layout" aria-label="Copilot hub content">
       <!-- MAIN -->
       <div style="min-width:0;">
-        <article class="card" id="offers">
-          <div class="hd">
-            <div class="kicker">1) Offers</div>
+
+        <!-- 1) OFFERS -->
+        <article class="cp-card" id="offers">
+          <div class="cp-hd">
+            <div class="cp-kicker">1) Offers</div>
             <h2>Two entry motions (enterprise-first)</h2>
             <p>Keep the outside market-standard; keep the inside Noetfield-proof.</p>
           </div>
-          <div class="bd">
-            <div class="cards2" aria-label="Offer cards">
-              <div class="mini">
+          <div class="cp-bd">
+            <div class="cp-cards2" aria-label="Offer cards">
+              <div class="cp-mini">
                 <div class="name">Microsoft 365 Copilot Readiness Assessment</div>
-                <div class="meta">2/4/6 weeks. Board/procurement-ready governance + evidence pack. Standard (4w) is the default enterprise tier.</div>
+                <div class="meta">2/4/6 weeks. Governance + controls + evidence pack. Standard (4w) is the default enterprise tier.</div>
+                <div class="cp-badges" aria-label="Readiness tiers">
+                  <span class="cp-badge">Starter • 2w • 9,500 CAD</span>
+                  <span class="cp-badge"><strong style="color:var(--text); font-weight:950">Standard • 4w • 15,000 CAD</strong></span>
+                  <span class="cp-badge">Extended • 6w • 25,000 CAD</span>
+                </div>
                 <div class="cta">
                   <a class="btn" href="/copilot/readiness/">View Readiness</a>
                   <a class="btn secondary" href="/gate/intake/?need=copilot-readiness-standard">Start Standard intake</a>
                 </div>
               </div>
 
-              <div class="mini">
+              <div class="cp-mini">
                 <div class="name">Copilot QuickScan</div>
                 <div class="meta">5–7 business days. Rapid snapshot to surface exposure themes and boundaries, then upgrade into Readiness if needed.</div>
+                <div class="cp-badges" aria-label="QuickScan tiers">
+                  <span class="cp-badge">Base • 3,500 CAD</span>
+                  <span class="cp-badge">Plus • 5,000 CAD</span>
+                  <span class="cp-badge">Pro • 7,500 CAD</span>
+                </div>
                 <div class="cta">
                   <a class="btn secondary" href="/copilot/quickscan/">View QuickScan</a>
                   <a class="btn secondary" href="/gate/intake/?need=copilot-quickscan">Start intake</a>
@@ -299,7 +354,7 @@
               </div>
             </div>
 
-            <table class="table" aria-label="Comparison table">
+            <table class="cp-table" aria-label="Offer comparison table">
               <thead>
                 <tr>
                   <th>Option</th>
@@ -311,87 +366,179 @@
               <tbody>
                 <tr>
                   <td><strong>Readiness (Standard)</strong></td>
-                  <td>Enterprise buyer needs governance + evidence, not just a snapshot</td>
+                  <td>Enterprise buyer needs governance + evidence (decision-grade), not just a snapshot</td>
                   <td>4 weeks</td>
-                  <td><strong>$15,000 CAD</strong></td>
+                  <td><strong>15,000 CAD</strong></td>
                 </tr>
                 <tr>
                   <td><strong>QuickScan</strong></td>
-                  <td>You need fast signal before committing to the full readiness motion</td>
+                  <td>Fast signal is required before committing to the full readiness motion</td>
                   <td>5–7 business days</td>
-                  <td>3.5k / 5k / 7.5k CAD tiers</td>
+                  <td>3,500 / 5,000 / 7,500 CAD</td>
                 </tr>
               </tbody>
             </table>
 
-            <div class="box">
+            <div class="cp-box">
               <strong>Default enterprise path:</strong> Readiness (Standard) → (optional) remediation sprint → (optional) Trust Ledger retainer.
+              <br/>If uncertainty is high: QuickScan → Readiness (Standard).
             </div>
           </div>
         </article>
 
-        <article class="card" id="procurement" style="margin-top:14px;">
-          <div class="hd">
-            <div class="kicker">2) Procurement</div>
-            <h2>Invoice/PO lane is always available</h2>
-            <p>Use procurement when card pay is not preferred or approvals require internal routing.</p>
+        <!-- 2) PROCESS -->
+        <article class="cp-card" id="process" style="margin-top:14px;">
+          <div class="cp-hd">
+            <div class="cp-kicker">2) Process</div>
+            <h2>60-second runbook (buyer-visible)</h2>
+            <p>Designed to reduce internal friction between IT, Security, Legal, and Procurement.</p>
           </div>
-          <div class="bd">
-            <div class="actions">
+          <div class="cp-bd">
+            <ul class="cp-list">
+              <li><strong>Non-confidential intake:</strong> scope intent + stakeholder map + access posture (no secrets).</li>
+              <li><strong>Scope lock:</strong> explicit boundary (who/where/what) + assumptions + decision constraints.</li>
+              <li><strong>Evidence requests:</strong> minimal, prioritized collection (procurement-safe checklist).</li>
+              <li><strong>Checkpoint:</strong> align owners + “must-not-expose” surfaces + connector/extension posture.</li>
+              <li><strong>Decision pack:</strong> findings + risk hotspots + 30/60/90 plan + proceed/pause/remediate options.</li>
+            </ul>
+            <div class="cp-box">
+              <strong>Measured on outcomes:</strong> confirmed risk-reduction actions + decision readiness, not document volume.
+            </div>
+          </div>
+        </article>
+
+        <!-- 3) DELIVERABLES -->
+        <article class="cp-card" id="deliverables" style="margin-top:14px;">
+          <div class="cp-hd">
+            <div class="cp-kicker">3) Deliverables</div>
+            <h2>Board-ready, procurement-forwardable</h2>
+            <p>Outputs are built to be filed, forwarded, and referenced — not slide-heavy marketing.</p>
+          </div>
+          <div class="cp-bd">
+            <div class="cp-cards2" aria-label="Deliverables by motion">
+              <div class="cp-mini">
+                <div class="name">Readiness (2/4/6 weeks)</div>
+                <div class="meta">Governance baseline + ownership + evidence discipline, packaged for executive and procurement use.</div>
+                <ul class="cp-list" style="margin-top:10px;">
+                  <li><strong>Governance baseline:</strong> policy + controls + owners (minimum viable governance).</li>
+                  <li><strong>Exposure surfaces map:</strong> priority hotspots and boundary conditions.</li>
+                  <li><strong>Control posture summary:</strong> what is on/off, allowed/blocked, reviewed/monitored.</li>
+                  <li><strong>Evidence pack:</strong> what exists vs missing, mapped to procurement/audit confidence.</li>
+                  <li><strong>Board memo:</strong> decision points + risk statement + recommended actions.</li>
+                  <li><strong>30/60/90 plan:</strong> sequencing + owners + “go/no-go” gates.</li>
+                </ul>
+              </div>
+
+              <div class="cp-mini">
+                <div class="name">QuickScan (5–7 days)</div>
+                <div class="meta">Rapid signal: scope lock + oversharing risk themes + decision options.</div>
+                <ul class="cp-list" style="margin-top:10px;">
+                  <li><strong>Scope lock:</strong> Copilot rollout boundary with explicit assumptions.</li>
+                  <li><strong>Oversharing heatmap:</strong> high-risk data surfaces and priority hotspots.</li>
+                  <li><strong>Sensitive boundaries:</strong> what must not be exposed + prompt/behavior guardrails.</li>
+                  <li><strong>Connector/extension notes:</strong> allow/block/review-first posture.</li>
+                  <li><strong>Evidence readiness:</strong> checklist of what procurement can file today vs gaps.</li>
+                  <li><strong>Decision options:</strong> proceed / pause / remediate, with a short action plan.</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="cp-divider"></div>
+            <div class="cp-box">
+              <strong>Upgrade logic:</strong> QuickScan reduces uncertainty. Readiness produces a decision-grade baseline and artifacts suitable for enterprise approval workflows.
+            </div>
+          </div>
+        </article>
+
+        <!-- 4) TIMELINE -->
+        <article class="cp-card" id="timeline" style="margin-top:14px;">
+          <div class="cp-hd">
+            <div class="cp-kicker">4) Timeline</div>
+            <h2>Fast by design</h2>
+            <p>Time compresses when scope, owners, and access posture are made explicit.</p>
+          </div>
+          <div class="cp-bd">
+            <div class="cp-timelineGrid" aria-label="Timeline cards">
+              <div class="cp-step">
+                <div class="t">QuickScan — Days 0–7</div>
+                <div class="d">
+                  <strong>Day 0:</strong> non-confidential intake → scope lock + access readiness plan.<br/>
+                  <strong>Days 1–4:</strong> targeted evidence + minimal stakeholder checkpoints.<br/>
+                  <strong>Days 5–7:</strong> decision pack + 30/60/90 plan + next-step options.
+                </div>
+              </div>
+              <div class="cp-step">
+                <div class="t">Readiness (Standard) — Weeks 0–4</div>
+                <div class="d">
+                  <strong>Week 0:</strong> scope lock + stakeholder alignment + evidence plan.<br/>
+                  <strong>Weeks 1–3:</strong> governance baseline + control posture + evidence build.<br/>
+                  <strong>Week 4:</strong> board/procurement pack + decision memo + plan.
+                </div>
+              </div>
+            </div>
+
+            <div class="cp-box">
+              <strong>What slows it down:</strong> unclear owners, unclear scope, and no access plan. This page exists to fix those first.
+            </div>
+          </div>
+        </article>
+
+        <!-- 5) PROCUREMENT -->
+        <article class="cp-card" id="procurement" style="margin-top:14px;">
+          <div class="cp-hd">
+            <div class="cp-kicker">5) Procurement</div>
+            <h2>Invoice / PO lane is always available</h2>
+            <p>Use procurement when card pay is not preferred or internal approvals require routing.</p>
+          </div>
+          <div class="cp-bd">
+            <div class="cp-actions" aria-label="Procurement CTAs">
               <a class="btn secondary" href="/gate/procurement/?focus=copilot-readiness-standard">Procurement: Readiness (Standard)</a>
               <a class="btn secondary" href="/gate/procurement/?focus=quickscan">Procurement: QuickScan</a>
               <a class="btn secondary" href="/gate/sales/">Sales hub</a>
             </div>
-            <div class="box">
-              <strong>Note:</strong> outputs are designed to be filed, forwarded, and referenced (not slide-heavy marketing).
+
+            <div class="cp-box">
+              <strong>Procurement expectations:</strong> a short SOW scope, a clean “what you get” list, and forwardable artifacts.
+              If a vendor/security questionnaire is required, use the procurement lane or email <a href="mailto:procurement@noetfield.com">procurement@noetfield.com</a>.
             </div>
           </div>
         </article>
-      </div>
 
-      <!-- ASIDE -->
-      <aside style="min-width:0;">
-        <div class="card stickyAside" aria-label="Copilot hub nav">
-          <div class="hd">
-            <div class="kicker">On this page</div>
-            <h2 style="margin:0 0 6px; font-size:16px;">Navigate</h2>
-            <p style="margin:0; color:var(--muted2); font-size:12.6px; line-height:1.6">Readiness-first. QuickScan is the lead-in.</p>
+        <!-- 6) FIT -->
+        <article class="cp-card" id="fit" style="margin-top:14px;">
+          <div class="cp-hd">
+            <div class="cp-kicker">6) Fit</div>
+            <h2>Teams under real pressure</h2>
+            <p>For organizations that need clarity, ownership, and decision-grade evidence.</p>
           </div>
-          <div class="bd">
-            <div class="navgrid">
-              <a href="#offers">1) Offers</a>
-              <a href="#procurement">2) Procurement</a>
-            </div>
-
-            <div class="box">
-              <strong>Start now</strong><br/>
-              <a href="/copilot/readiness/">Readiness Assessment</a> ·
-              <a href="/copilot/quickscan/">QuickScan</a>
-            </div>
-
-            <div class="box">
-              <strong>Related</strong><br/>
-              <a href="/trust-ledger/">Trust Ledger</a> ·
-              <a href="/trust-brief/">Trust Brief</a>
+          <div class="cp-bd">
+            <div class="cp-cards2" aria-label="Fit cards">
+              <div class="cp-mini">
+                <div class="name">Good fit</div>
+                <div class="meta">
+                  Executives, Security, IT, Legal, Procurement — when Copilot rollout is planned (or already happening) and evidence is fragmented.
+                </div>
+              </div>
+              <div class="cp-mini">
+                <div class="name">Not a fit</div>
+                <div class="meta">
+                  Pure experimentation with no owners, no intent to set boundaries, and no need for procurement/board-ready artifacts.
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </aside>
-    </section>
-  </main>
+        </article>
 
-  <footer id="nfFooter"></footer>
-
-  <div class="stickyCta" aria-label="Sticky CTA">
-    <div class="stickyInner">
-      <div class="stickyText">
-        <strong>Readiness (Standard)</strong> — 4 weeks — 15,000 CAD. Enterprise default.
-      </div>
-      <div class="actions" style="margin:0">
-        <a class="btn" href="/copilot/readiness/">View Readiness</a>
-        <a class="btn secondary" href="/gate/procurement/?focus=copilot-readiness-standard">Invoice / PO</a>
-      </div>
-    </div>
-  </div>
-</body>
-</html>
+        <!-- 7) FAQ -->
+        <article class="cp-card" id="faq" style="margin-top:14px;">
+          <div class="cp-hd">
+            <div class="cp-kicker">7) FAQ</div>
+            <h2>Common buyer questions</h2>
+          </div>
+          <div class="cp-bd">
+            <ul class="cp-list">
+              <li><strong>Is the first intake confidential?</strong> No. Public intake is non-confidential by design. A secure channel follows if there is a fit.</li>
+              <li><strong>Do we need deep access on day one?</strong> Not necessarily. The motion starts with scope lock + access readiness and escalates only as required.</li>
+              <li><strong>Is this an implementation service?</strong> Readiness/QuickScan are decision + evidence first. Remediation/implementation can follow as a scoped sprint.</li>
+              <li><strong>Can procurement use the outputs?</strong> Yes — outputs are designed to be forwarded, filed, and referenced in approval workflows.</li>
+              <li><strong>Which should we choose?</strong> Default enterprise: Readiness (Standard). If uncertainty

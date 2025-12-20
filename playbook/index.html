@@ -1,47 +1,656 @@
-<!-- /playbook/index.html — Noetfield Playbook (v4: productized + Gate-first + Trust Ledger shell alignment) -->
+<!-- /gate/sales/index.html — Noetfield Sales v3.1.1 (FULL SINGLE-FILE: header+footer+shell CSS+shell JS embedded) -->
 <!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>Noetfield — Playbook</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <meta name="description" content="The Noetfield Playbook is a governance-first 0–90 day pattern for teams adopting AI: control baseline, evidence discipline, board-ready artefacts, and Trust Ledger cadence." />
+  <title>Noetfield — Purchase</title>
+  <meta name="description" content="Copilot QuickScan checkout + procurement-ready starts for Trust Brief / Trust Ledger. Card where enabled, invoice/PO path always available." />
   <meta name="robots" content="index,follow" />
   <meta name="author" content="Noetfield Systems Inc." />
   <meta name="theme-color" content="#07070b" />
 
-  <link rel="canonical" href="https://www.noetfield.com/playbook/" />
-
+  <link rel="canonical" href="https://www.noetfield.com/gate/sales/" />
   <link rel="icon" href="/noetfield-favicon-512.png" type="image/png" />
   <link rel="apple-touch-icon" href="/noetfield-favicon-512.png" />
 
-  <!-- OG -->
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Noetfield" />
-  <meta property="og:title" content="Noetfield — Playbook" />
-  <meta property="og:description" content="A governance-first 0–90 day pattern for teams adopting AI: control baseline, evidence discipline, board-ready artefacts, and Trust Ledger cadence." />
-  <meta property="og:url" content="https://www.noetfield.com/playbook/" />
+  <meta property="og:title" content="Noetfield — Purchase" />
+  <meta property="og:description" content="Copilot QuickScan checkout + procurement-ready starts for Trust Brief / Trust Ledger. Card where enabled, invoice/PO path always available." />
+  <meta property="og:url" content="https://www.noetfield.com/gate/sales/" />
   <meta property="og:image" content="https://www.noetfield.com/noetfield-og.png" />
 
-  <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Noetfield — Playbook" />
-  <meta name="twitter:description" content="A governance-first 0–90 day pattern for teams adopting AI: control baseline, evidence discipline, board-ready artefacts, and Trust Ledger cadence." />
+  <meta name="twitter:title" content="Noetfield — Purchase" />
+  <meta name="twitter:description" content="Copilot QuickScan checkout + procurement-ready starts for Trust Brief / Trust Ledger. Card where enabled, invoice/PO path always available." />
   <meta name="twitter:image" content="https://www.noetfield.com/noetfield-og.png" />
 
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
-
-  <!-- LOCKED SHELL -->
-  <link rel="stylesheet" href="/assets/noetfield-shell.css" />
-  <script src="/assets/noetfield-shell.js" defer></script>
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"WebPage",
+    "name":"Noetfield — Purchase",
+    "url":"https://www.noetfield.com/gate/sales/",
+    "description":"Copilot QuickScan checkout + procurement-ready starts for Trust Brief / Trust Ledger. Card where enabled, invoice/PO path always available.",
+    "isPartOf":{"@type":"WebSite","name":"Noetfield","url":"https://www.noetfield.com/"},
+    "publisher":{"@type":"Organization","name":"Noetfield Systems Inc."}
+  }
+  </script>
 
   <style>
-    /* Layout / hero (matches Trust Ledger reference) */
-    .hero{padding:22px 0 14px}
+    /* =========================
+       /assets/noetfield-shell.css — v2.4 (embedded)
+       ========================= */
+    :root{
+      --bg0:#07070b; --bg1:#0b0b14;
+      --panel: rgba(255,255,255,.055);
+      --panel2: rgba(255,255,255,.038);
+
+      --text:#eff0f7; --muted:#b9bbcf; --muted2:#8e91ad;
+      --line: rgba(255,255,255,.11);
+
+      --gold:#c8a349;
+      --ok:#2de38a; --okGlow: rgba(45,227,138,.18);
+
+      --radius:18px; --max:1120px;
+      --shadow: 0 28px 80px rgba(0,0,0,.62);
+      --shadow2: 0 14px 50px rgba(0,0,0,.50);
+      --focus: 0 0 0 4px rgba(200,163,73,.18);
+
+      --navH: 68px;
+      color-scheme: dark;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color: var(--text);
+      background: linear-gradient(180deg, var(--bg0), var(--bg1));
+      overflow-x:hidden;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    a{color:inherit; text-decoration:none}
+    a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible{
+      outline:none;
+      box-shadow: var(--focus);
+      border-color: rgba(200,163,73,.58) !important;
+    }
+    [hidden]{display:none !important;}
+
+    .srOnly{
+      position:absolute !important;
+      width:1px !important; height:1px !important;
+      padding:0 !important; margin:-1px !important;
+      overflow:hidden !important;
+      clip:rect(0,0,0,0) !important;
+      white-space:nowrap !important;
+      border:0 !important;
+    }
+
+    .bg{
+      position:fixed; inset:0; z-index:-3; pointer-events:none;
+      background:
+        radial-gradient(1400px 820px at 10% -10%, rgba(200,163,73,.20), transparent 58%),
+        radial-gradient(1200px 820px at 100% 0%, rgba(122,167,255,.12), transparent 60%),
+        radial-gradient(900px 700px at 55% 22%, rgba(255,255,255,.05), transparent 62%),
+        linear-gradient(180deg, var(--bg0), var(--bg1));
+      filter: saturate(1.05);
+    }
+    .bg::before{
+      content:""; position:absolute; inset:0;
+      background:
+        linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
+      background-size: 54px 54px;
+      opacity:.055;
+      mask-image: radial-gradient(70% 60% at 50% 8%, black 55%, transparent 100%);
+    }
+    .bg::after{
+      content:""; position:absolute; inset:-90px;
+      background:
+        radial-gradient(1100px 760px at 50% 8%, transparent 55%, rgba(0,0,0,.58) 100%),
+        radial-gradient(1000px 900px at 50% 110%, rgba(0,0,0,.68), transparent 62%);
+      opacity:.92;
+    }
+
+    .wrap{max-width:var(--max); margin:0 auto; padding:24px}
+
+    .skip{
+      position:absolute; left:-999px; top:10px;
+      background:#111118;
+      border:1px solid rgba(255,255,255,.12);
+      color:var(--text);
+      padding:10px 12px;
+      border-radius:12px;
+      z-index:999;
+    }
+    .skip:focus{left:10px}
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding:10px 14px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.03);
+      color: var(--text);
+      text-decoration:none;
+      transition: background .15s ease, border-color .15s ease, transform .12s ease, filter .12s ease;
+      line-height:1;
+      font-size:13px;
+      min-height:40px;
+      cursor:pointer;
+      user-select:none;
+    }
+    .btn:hover{
+      border-color: rgba(255,255,255,.16);
+      background: rgba(255,255,255,.05);
+      transform: translateY(-1px);
+    }
+    .btn:active{transform: translateY(0)}
+    .btn.secondary{opacity:.92}
+    .btn.ghost{background:transparent; border-color: rgba(255,255,255,.16);}
+
+    .btn.primary{
+      border:1px solid rgba(200,163,73,.62);
+      background:
+        radial-gradient(260px 100px at 35% 0%, rgba(255,255,255,.12), transparent 62%),
+        linear-gradient(180deg, rgba(200,163,73,.24), rgba(200,163,73,.11));
+      font-weight:850;
+      letter-spacing:.1px;
+    }
+    .btn.primary:hover{
+      border-color: rgba(200,163,73,.88);
+      filter: brightness(1.06);
+    }
+
+    #nfHeader{
+      position:sticky;
+      top:0;
+      z-index:60;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      background: rgba(8,8,12,.62);
+      border-bottom: 1px solid rgba(255,255,255,.10);
+    }
+
+    #nfHeader .nav{
+      max-width:var(--max);
+      margin:0 auto;
+      padding: 10px 16px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+      min-height: var(--navH);
+    }
+
+    #nfHeader .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      flex:0 0 auto;
+      min-width: 240px;
+      max-width: 360px;
+    }
+    #nfHeader .brandMark{
+      width:36px;
+      height:36px;
+      border-radius:12px;
+      box-shadow: 0 12px 26px rgba(0,0,0,.55);
+      border:1px solid rgba(255,255,255,.12);
+      display:block;
+      flex:0 0 auto;
+    }
+    #nfHeader .brandText{min-width:0}
+    #nfHeader .brand .name{
+      font-weight:800;
+      letter-spacing:.10px;
+      line-height:1.05;
+      font-size:15px;
+    }
+    #nfHeader .brand .tag{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:7px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.03);
+      font-size:10.5px;
+      color:var(--muted2);
+      margin-top:6px;
+      letter-spacing:.28em;
+      text-transform:uppercase;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      max-width:320px;
+      opacity:.95;
+    }
+
+    #nfHeader .menu{
+      display:flex;
+      align-items:center;
+      justify-content:flex-end;
+      gap:12px;
+      flex:1 1 auto;
+      min-width:0;
+    }
+    #nfHeader .menuPrimary,
+    #nfHeader .menuActions{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      min-width:0;
+      flex-wrap:nowrap;
+    }
+    #nfHeader .menuPrimary{
+      flex:1 1 auto;
+      justify-content:center;
+      overflow:hidden;
+    }
+    #nfHeader .menuActions{
+      flex:0 0 auto;
+      justify-content:flex-end;
+    }
+
+    #nfHeader .menu a{
+      color:var(--muted);
+      padding:8px 10px;
+      border-radius:14px;
+      border:1px solid transparent;
+      background: transparent;
+      transition: background .15s ease, border-color .15s ease, color .15s ease, transform .06s ease;
+      white-space:nowrap;
+      font-size:12.75px;
+      line-height:1;
+    }
+    #nfHeader .menu a:hover{
+      color:var(--text);
+      border-color:rgba(255,255,255,.10);
+      background:rgba(255,255,255,.045);
+    }
+    #nfHeader .menu a:active{transform: translateY(1px)}
+
+    #nfHeader .menu a.active,
+    #nfHeader .menu a[aria-current="page"]{
+      color:var(--text);
+      border-color:rgba(200,163,73,.38);
+      background:
+        radial-gradient(240px 90px at 50% 0%, rgba(255,255,255,.10), transparent 60%),
+        linear-gradient(180deg, rgba(200,163,73,.22), rgba(200,163,73,.10));
+    }
+
+    #nfHeader .menu a.pilltab{
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.03);
+    }
+
+    #nfHeader .menu a.pilltab.cta{
+      border:1px solid rgba(200,163,73,.62);
+      background:
+        radial-gradient(260px 100px at 35% 0%, rgba(255,255,255,.12), transparent 62%),
+        linear-gradient(180deg, rgba(200,163,73,.24), rgba(200,163,73,.11));
+      color: var(--text);
+      font-weight:850;
+    }
+    #nfHeader .menu a.pilltab.cta:hover{
+      border-color: rgba(200,163,73,.88);
+      filter: brightness(1.06);
+    }
+
+    #nfHeader .menu a.login{
+      border:1px solid rgba(200,163,73,.58);
+      background:
+        radial-gradient(220px 90px at 40% 0%, rgba(255,255,255,.11), transparent 62%),
+        linear-gradient(180deg, rgba(200,163,73,.22), rgba(200,163,73,.10));
+      color: var(--text);
+      font-weight:750;
+      padding:8px 11px;
+    }
+
+    #nfHeader .menu a.statusLink,
+    #nfHeader .mobileGrid a.statusLink,
+    .footerMiniNav a.statusLink{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+    }
+    .statusDot{
+      width:7px; height:7px;
+      border-radius:50%;
+      background: var(--ok);
+      box-shadow: 0 0 0 3px var(--okGlow);
+    }
+
+    #nfHeader .burger{
+      display:none;
+      align-items:center;
+      justify-content:center;
+      width:42px;
+      height:42px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04);
+      cursor:pointer;
+      transition: background .15s ease, border-color .15s ease;
+      flex:0 0 auto;
+    }
+    #nfHeader .burger:hover{
+      border-color:rgba(255,255,255,.18);
+      background:rgba(255,255,255,.06);
+    }
+    #nfHeader .burger svg{width:20px; height:20px; opacity:.92}
+
+    #nfHeader .mobilePanel{
+      border-top:1px solid rgba(255,255,255,.10);
+      background: rgba(8,8,12,.74);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }
+    #nfHeader .mobileInner{max-width:var(--max); margin:0 auto; padding:12px 14px 16px;}
+    #nfHeader .mobileGrid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:10px;
+    }
+    #nfHeader .mobileGrid a{
+      padding:12px 12px;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04);
+      color: var(--muted);
+      font-size:14px;
+      transition: background .15s ease, border-color .15s ease, color .15s ease;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+    }
+    #nfHeader .mobileGrid a:hover{
+      color:var(--text);
+      border-color:rgba(255,255,255,.18);
+      background:rgba(255,255,255,.06);
+    }
+    #nfHeader .mobileGrid a.active,
+    #nfHeader .mobileGrid a[aria-current="page"]{
+      color: var(--text);
+      border-color: rgba(200,163,73,.42);
+      background:
+        radial-gradient(220px 90px at 30% 0%, rgba(200,163,73,.22), transparent 60%),
+        rgba(200,163,73,.10);
+    }
+    #nfHeader .mobileGrid a.mobileCTA{
+      grid-column: 1 / -1;
+      border:1px solid rgba(200,163,73,.62);
+      background:
+        radial-gradient(260px 100px at 35% 0%, rgba(255,255,255,.12), transparent 62%),
+        linear-gradient(180deg, rgba(200,163,73,.24), rgba(200,163,73,.11));
+      color: var(--text);
+      font-weight:900;
+    }
+
+    @media (min-width: 981px){
+      #nfHeader{
+        padding: 12px 16px 0;
+        background: transparent !important;
+        border: 0 !important;
+        box-shadow: none !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+      }
+
+      #nfHeader .nav{
+        width: min(1200px, calc(100% - 32px));
+        margin: 0 auto;
+        border-radius: 18px;
+        border: 1px solid rgba(255,255,255,.11);
+        background: rgba(10,10,16,.55);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        box-shadow: var(--shadow2);
+      }
+
+      #nfHeader .mobilePanel{
+        width: min(1200px, calc(100% - 32px));
+        margin: 8px auto 0;
+        border-radius: 18px;
+        overflow:hidden;
+        border: 1px solid rgba(255,255,255,.10);
+      }
+    }
+
+    footer{
+      border-top:1px solid rgba(255,255,255,.10);
+      margin-top:34px;
+      background: rgba(8,8,12,.35);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      color:var(--muted2);
+    }
+
+    .footerTop{
+      max-width:var(--max);
+      margin:0 auto;
+      padding: 18px 16px 10px;
+      display:grid;
+      grid-template-columns: 1.2fr .8fr .8fr .8fr;
+      gap:14px;
+    }
+    .fcol{
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.02);
+      border-radius:16px;
+      padding:14px 14px;
+    }
+
+    .footBrand{display:flex; align-items:center; gap:10px; color:var(--muted)}
+    .footBrand img{
+      width:28px; height:28px; border-radius:10px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.03);
+    }
+    .footBrand:hover{color:var(--text)}
+
+    .fTitle{
+      font-weight:850;
+      letter-spacing:-.2px;
+      margin:0 0 10px;
+      font-size:13px;
+    }
+    .fLinks{display:flex; flex-direction:column; gap:8px;}
+    .fLinks a{
+      color:var(--muted);
+      padding:8px 10px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      font-size:13px;
+      transition: background .15s ease, border-color .15s ease, color .15s ease;
+      display:flex; align-items:center;
+    }
+    .fLinks a:hover{
+      color:var(--text);
+      border-color:rgba(255,255,255,.16);
+      background:rgba(255,255,255,.05);
+    }
+
+    .fNote{
+      color:var(--muted2);
+      font-size:12px;
+      line-height:1.65;
+      margin:10px 0 0;
+    }
+
+    .ridRow{
+      display:flex;
+      flex-wrap:wrap;
+      align-items:center;
+      gap:10px;
+      margin-top:12px;
+      color: var(--muted2);
+      font-size:12.5px;
+    }
+    .ridRow code{
+      padding:7px 10px;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      color: var(--text);
+      font-size:12px;
+    }
+    .ridRow button{
+      padding:8px 10px;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.03);
+      color: var(--muted);
+      cursor:pointer;
+      transition: background .15s ease, border-color .15s ease, color .15s ease, filter .15s ease;
+    }
+    .ridRow button:hover{
+      color: var(--text);
+      border-color: rgba(255,255,255,.18);
+      background: rgba(255,255,255,.05);
+    }
+    .ridRow button[data-copied="1"]{
+      border-color: rgba(45,227,138,.55);
+      background: rgba(45,227,138,.12);
+      color: var(--text);
+    }
+
+    .footerBottom{
+      border-top:1px solid rgba(255,255,255,.10);
+      max-width:var(--max);
+      margin:0 auto;
+      padding: 12px 16px 18px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px 14px;
+      align-items:center;
+      justify-content:space-between;
+      color:var(--muted2);
+    }
+
+    .footerMiniNav{display:flex; flex-wrap:wrap; gap:10px; align-items:center}
+    .footerMiniNav a{
+      color:var(--muted);
+      padding:8px 10px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      font-size:13px;
+      transition: background .15s ease, border-color .15s ease, color .15s ease, filter .15s ease;
+    }
+    .footerMiniNav a:hover{
+      color:var(--text);
+      border-color:rgba(255,255,255,.16);
+      background:rgba(255,255,255,.05);
+    }
+    .footerMiniNav a.active, .footerMiniNav a[aria-current="page"]{
+      color: var(--text);
+      border-color: rgba(200,163,73,.40);
+      background: rgba(200,163,73,.10);
+    }
+
+    .footerMiniNav a.partnerIntakeLink{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      font-weight:850;
+      border:1px solid rgba(200,163,73,.58);
+      background:
+        radial-gradient(220px 90px at 40% 0%, rgba(255,255,255,.10), transparent 62%),
+        linear-gradient(180deg, rgba(200,163,73,.22), rgba(200,163,73,.10));
+      color: var(--text);
+    }
+    .footerMiniNav a.partnerIntakeLink:hover{
+      border-color:rgba(200,163,73,.85);
+      filter: brightness(1.06);
+    }
+    .goldDot{
+      width:8px; height:8px;
+      border-radius:50%;
+      background: var(--gold);
+      box-shadow: 0 0 0 3px rgba(200,163,73,.18);
+    }
+
+    .feedbackTab{
+      position:fixed;
+      right:16px;
+      bottom:16px;
+      z-index:80;
+      padding:10px 12px;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(8,8,12,.62);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      color: var(--muted);
+      font-size:13px;
+      display:inline-flex;
+      gap:8px;
+      align-items:center;
+      transition: background .15s ease, border-color .15s ease, color .15s ease, transform .06s ease;
+    }
+    .feedbackTab:hover{
+      color:var(--text);
+      border-color: rgba(200,163,73,.38);
+      background: rgba(200,163,73,.10);
+    }
+    .feedbackTab:active{transform: translateY(1px)}
+    .feedbackTab .spark{
+      width:8px; height:8px;
+      border-radius:50%;
+      background: rgba(200,163,73,.95);
+      box-shadow: 0 0 0 3px rgba(200,163,73,.16);
+    }
+
+    body.navOpen{ overflow:hidden; }
+
+    @media (max-width: 1140px){
+      #nfHeader .menu{display:none}
+      #nfHeader .burger{display:flex}
+    }
+    @media (max-width: 980px){
+      .footerTop{grid-template-columns:1fr 1fr;}
+    }
+    @media (max-width: 760px){
+      :root{--navH: 64px}
+      .wrap{padding:16px}
+      #nfHeader .nav{padding:10px 14px}
+      #nfHeader .brand .tag{display:none}
+      #nfHeader .mobileGrid{grid-template-columns:1fr 1fr}
+      .footerTop{grid-template-columns:1fr;}
+      .feedbackTab{display:none}
+    }
+    @media (max-width: 420px){
+      #nfHeader .mobileGrid{grid-template-columns:1fr}
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      *{scroll-behavior:auto !important;}
+      .btn,
+      #nfHeader .menu a,
+      #nfHeader .mobileGrid a,
+      .footerMiniNav a,
+      .fLinks a,
+      .feedbackTab{transition:none !important;}
+    }
+
+    /* =========================
+       /gate/sales page CSS — v3.1.1 (embedded)
+       ========================= */
+    .hero{padding:18px 0 12px}
     .heroShell{
       position:relative;
       border-radius: calc(var(--radius) + 8px);
@@ -61,8 +670,7 @@
       pointer-events:none;
       mask-image: linear-gradient(180deg, black 0%, black 58%, transparent 96%);
     }
-    .heroInner{padding: 24px 22px}
-
+    .heroInner{padding: 22px 18px; position:relative; z-index:1}
     .eyebrow{
       display:inline-flex; gap:10px; align-items:center;
       color:var(--muted);
@@ -77,12 +685,9 @@
       background: rgba(200,163,73,.97);
       box-shadow: 0 0 0 3px rgba(200,163,73,.18);
     }
-
-    h1{margin:14px 0 10px; font-size:40px; line-height:1.07; letter-spacing:-0.75px}
-    .lead{margin:0; color:var(--muted); font-size:16px; max-width: 1060px; line-height:1.75}
-    .lead strong{color:var(--text); font-weight:900}
-    .lead a{border-bottom:1px solid rgba(255,255,255,.18)}
-
+    h1{margin:12px 0 10px; font-size:34px; line-height:1.07; letter-spacing:-0.75px}
+    .lead{margin:0; color:var(--muted); font-size:16px; max-width: 1040px; line-height:1.75}
+    .lead strong{color:var(--text); font-weight:950}
     .metaRow{display:flex; flex-wrap:wrap; gap:10px; margin-top:14px}
     .pill{
       display:inline-flex; align-items:center; gap:10px;
@@ -95,12 +700,23 @@
       white-space:nowrap;
     }
     .pill strong{color:var(--text); font-weight:900}
+    .notice{
+      margin-top:12px;
+      padding:12px 12px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      color:var(--muted2);
+      font-size:12.8px;
+      line-height:1.6;
+    }
+    .notice strong{ color:var(--text); font-weight:900; }
 
     .grid{
       display:grid;
-      grid-template-columns: 1.15fr .85fr;
-      gap:18px;
-      margin: 18px 0 34px;
+      grid-template-columns: 1.12fr .88fr;
+      gap:16px;
+      margin: 14px 0 64px;
       align-items:start;
     }
     .card{
@@ -111,580 +727,1568 @@
       overflow:hidden;
       min-width:0;
     }
-    .card .hd{padding:18px 18px 0}
-    .card h2{margin:0 0 8px; font-size:18px; letter-spacing:-0.2px}
-    .card p{margin:0 0 12px; color:var(--muted); line-height:1.7}
-    .card .bd{padding:18px}
+    .hd{ padding:18px 18px 0; }
+    .bd{ padding:18px; }
+    .cardTitle{ margin:0 0 8px; font-size:18px; letter-spacing:-0.2px; }
+    .muted{ color:var(--muted); line-height:1.7; margin:0; }
 
-    .section{
-      border:1px solid rgba(255,255,255,.10);
+    .actions{display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-top:12px}
+    .btn.small{ min-height:40px; padding:9px 12px; font-size:13px; }
+
+    .sectionRow{display:flex; flex-wrap:wrap; gap:10px; align-items:center; margin: 2px 0 12px}
+    .chip{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:8px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
       background: rgba(255,255,255,.03);
-      border-radius:16px;
-      padding:14px;
-      margin-top:12px;
+      color:var(--muted2);
+      font-size:12.4px;
+      white-space:nowrap;
     }
-    .sectionTitle{font-weight:900; letter-spacing:-.2px; margin:0 0 6px; font-size:14px}
-    .sectionDesc{margin:0 0 12px; color:var(--muted2); font-size:12.7px; line-height:1.6}
+    .chip strong{ color:var(--text); font-weight:900; }
 
-    /* Packages (buyer-first) */
-    .pkg3{
-      display:grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap:12px;
-      margin-top:12px;
+    .groupTitle{
+      margin:18px 0 8px;
+      font-size:14px;
+      letter-spacing:.22em;
+      text-transform:uppercase;
+      color:var(--muted2);
     }
+
+    .offers{ display:grid; gap:12px; margin-top:12px; }
     .offer{
-      display:block;
       border-radius:16px;
-      border:1px solid rgba(255,255,255,.10);
+      border:1px solid rgba(255,255,255,.11);
       background: rgba(255,255,255,.03);
-      padding:12px;
-      text-decoration:none;
-      color:var(--text);
+      padding:14px;
+      overflow:hidden;
       transition: border-color .15s ease, background .15s ease, transform .06s ease;
-      min-width:0;
     }
     .offer:hover{border-color:rgba(255,255,255,.22); background:rgba(255,255,255,.05)}
     .offer:active{transform: translateY(1px)}
-    .offer .t{font-size:11px; letter-spacing:.28em; text-transform:uppercase; color:var(--muted2)}
-    .offer .n{margin-top:8px; font-weight:900; letter-spacing:-.2px}
-    .offer .d{margin-top:6px; color:var(--muted); font-size:12.7px; line-height:1.55}
-    .offer .m{margin-top:10px; color:var(--muted2); font-size:12.2px}
-    .offer .k{
-      margin-top:10px;
-      padding-top:10px;
-      border-top:1px solid rgba(255,255,255,.09);
-      color:var(--muted2);
-      font-size:12.2px;
-      line-height:1.6;
+    .offer.isActive{
+      border-color: rgba(200,163,73,.34);
+      box-shadow: 0 0 0 3px rgba(200,163,73,.10);
+      background: rgba(255,255,255,.045);
     }
-    .offer .k strong{color:var(--text); font-weight:900}
-
-    /* Phases */
-    .phaseGrid{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap:12px;
-      margin-top:12px;
-    }
-    .phase{
-      border-radius:16px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.03);
-      padding:12px;
-      min-width:0;
-    }
-    .phase .k{display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:10px}
-    .phase .k .n{font-weight:900; letter-spacing:-.2px}
-    .badge{
-      font-size:11px;
-      letter-spacing:.28em;
-      text-transform:uppercase;
-      color:var(--muted2);
-      padding:6px 10px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.03);
-      white-space:nowrap;
-    }
-    .phase ul{margin:0; padding-left:18px; color:var(--muted); line-height:1.85}
-    .phase li{margin:6px 0}
-
-    /* Deliverables list */
-    .dl{
-      margin:0;
-      padding-left:18px;
-      color:var(--muted);
-      line-height:1.9;
-    }
-    .dl li{margin:8px 0}
-    .dl strong{color:var(--text); font-weight:900}
-
-    /* Tables */
-    .table{
-      width:100%;
-      border-collapse:separate;
-      border-spacing:0;
-      overflow:hidden;
-      border-radius:16px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.02);
-      margin-top:10px;
-    }
-    .table th, .table td{
-      text-align:left;
-      padding:12px;
-      border-bottom:1px solid rgba(255,255,255,.08);
-      vertical-align:top;
-      font-size:13px;
-    }
-    .table th{
-      color:var(--muted2);
-      font-size:11px;
-      letter-spacing:.28em;
-      text-transform:uppercase;
-      background: rgba(255,255,255,.03);
-    }
-    .table tr:last-child td{border-bottom:none}
-
-    /* FAQ */
-    .faq{display:flex; flex-direction:column; gap:10px; margin-top:12px}
-    details{
-      border-radius:14px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.03);
-      padding:10px 12px;
-    }
-    summary{
-      cursor:pointer;
-      list-style:none;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      color:var(--text);
-      font-weight:800;
-      letter-spacing:-.1px;
-    }
-    summary::-webkit-details-marker{display:none}
-    details p{margin:10px 0 0; color:var(--muted); line-height:1.75}
-    .chev{opacity:.8}
-    details[open] .chev{transform: rotate(180deg)}
-    .faqNote{margin-top:12px}
-
-    /* Actions / buttons */
-    .actions{display:flex; gap:12px; flex-wrap:wrap; align-items:center; margin-top:12px}
-    .box{
-      margin-top:12px;
-      padding:12px 12px;
-      border-radius:14px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.03);
-      color:var(--muted2);
-      font-size:12.8px;
-      line-height:1.6;
-    }
-    .box strong{color:var(--text); font-weight:900}
-    .box a{border-bottom:1px solid rgba(255,255,255,.18)}
-
-    /* Minimal local button safety (in case shell button classes differ) */
-    .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:10px;
-      padding:10px 14px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.03);
-      color: var(--text);
-      text-decoration:none;
-      transition: transform .12s ease, border-color .15s ease, background .15s ease;
-      white-space:nowrap;
-    }
-    .btn:hover{transform: translateY(-1px); border-color:rgba(255,255,255,.22); background:rgba(255,255,255,.05)}
-    .btn.secondary{opacity:.92}
-    .btn.primary{
-      border-color: transparent;
-      background: linear-gradient(135deg,#f9fafb,#e5e7eb);
-      color:#07070b;
-      font-weight:900;
-    }
-
-    /* TOC */
-    .toc{display:flex; flex-direction:column; gap:10px; margin-top:10px}
-    .toc a{
-      display:flex; align-items:center; justify-content:space-between; gap:10px;
-      padding:11px 12px;
-      border-radius:14px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.03);
-      text-decoration:none;
-      color:var(--text);
-      transition: border-color .15s ease, background .15s ease, transform .06s ease;
-    }
-    .toc a:hover{border-color:rgba(255,255,255,.22); background:rgba(255,255,255,.05)}
-    .toc a:active{transform: translateY(1px)}
-    .toc span{color:var(--muted)}
-    .arrow{opacity:.8}
-
-    /* Match Trust Ledger header tagline (so Playbook header looks identical) */
-    #nfHeader .brandText .tag{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
+    .offerTop{ display:flex; gap:10px; align-items:flex-start; justify-content:space-between; flex-wrap:wrap; }
+    .offer h3{ margin:0; font-size:16px; letter-spacing:-.2px; font-weight:950; }
+    .tag{
+      display:inline-flex; align-items:center; gap:8px;
       padding:7px 10px;
       border-radius:999px;
       border:1px solid rgba(255,255,255,.12);
       background: rgba(255,255,255,.03);
-      color: var(--muted);
-      font-size:12px;
+      color:var(--muted2);
+      font-size:12.4px;
       white-space:nowrap;
     }
-
-    /* Desktop-only: floating/boxed header like /status (Trust Ledger reference) */
-    @media (min-width: 981px){
-      #nfHeader{
-        position: sticky;
-        top: 0;
-        z-index: 60;
-        padding: 12px 16px 0;
-        background: transparent !important;
-        border: 0 !important;
-        border-bottom: 0 !important;
-        box-shadow: none !important;
-        backdrop-filter: none !important;
-        -webkit-backdrop-filter: none !important;
-      }
-      #nfHeader::before, #nfHeader::after{content:none !important; display:none !important;}
-      #nfHeader .nav{
-        width: min(1200px, calc(100% - 32px));
-        margin: 0 auto;
-        border-radius: 18px;
-        border: 1px solid rgba(255,255,255,.11);
-        background: rgba(10,10,16,.55);
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
-        box-shadow: var(--shadow2);
-      }
+    .offer p{ margin:10px 0 0; color:var(--muted); line-height:1.7; }
+    .offer ul{ margin:10px 0 0; padding-left:18px; color:var(--muted2); line-height:1.6; }
+    .offer li{ margin:6px 0; }
+    .offerMeta{ display:flex; flex-wrap:wrap; gap:10px; margin-top:10px; }
+    .kv{
+      display:inline-flex; gap:8px; align-items:center;
+      padding:8px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.02);
+      color:var(--muted2);
+      font-size:12.4px;
+      white-space:nowrap;
     }
+    .kv strong{ color:var(--text); font-weight:900; }
+
+    details.opt{
+      margin-top:12px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.02);
+      padding:10px 12px;
+    }
+    details.opt summary{
+      cursor:pointer;
+      color:var(--text);
+      font-weight:900;
+      list-style:none;
+    }
+    details.opt summary::-webkit-details-marker{display:none}
+    .optBody{
+      margin-top:10px;
+      color:var(--muted2);
+      font-size:12.8px;
+      line-height:1.6;
+    }
+    .optRow{display:flex; flex-wrap:wrap; gap:10px; margin-top:10px; align-items:center;}
+    .optRow .btn{ min-height:40px; }
+
+    .rail{ position: sticky; top: 14px; }
+    .railBox{
+      border-radius: var(--radius);
+      border:1px solid rgba(255,255,255,.11);
+      background: linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.022));
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+    }
+    .kpi{
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      padding:12px;
+      margin-top:12px;
+      color:var(--muted2);
+      font-size:12.8px;
+      line-height:1.6;
+    }
+    .kpi strong{ color:var(--text); font-weight:900; }
+
+    .seg{
+      display:flex; gap:0;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.02);
+      overflow:hidden;
+    }
+    .seg button{
+      appearance:none;
+      border:0;
+      background: transparent;
+      color: var(--muted2);
+      padding:10px 12px;
+      font-size:12.6px;
+      cursor:pointer;
+      white-space:nowrap;
+      min-height:40px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      flex:1;
+    }
+    .seg button strong{ color:var(--text); font-weight:900; }
+    .seg button.isOn{
+      background: rgba(255,255,255,.06);
+      color: var(--text);
+    }
+
+    .refBox{
+      margin-top:10px;
+      padding:10px 12px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.02);
+      color:var(--muted2);
+      font-size:12.6px;
+      line-height:1.55;
+      word-break:break-word;
+    }
+    .refBox code{
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      color: var(--text);
+      font-weight: 850;
+      font-size: 12.8px;
+    }
+
+    label{
+      display:block;
+      color:var(--muted2);
+      font-size:12px;
+      letter-spacing:.26em;
+      text-transform:uppercase;
+      margin:14px 0 8px;
+    }
+    select, textarea{
+      width:100%;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.02);
+      color: var(--text);
+      padding:10px 12px;
+      outline:none;
+      font-size:14px;
+    }
+    textarea{ min-height: 132px; resize: vertical; line-height:1.55; color: var(--muted2); }
+
+    details.payDetails{
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.02);
+      padding:10px 12px;
+      margin-top:12px;
+    }
+    details.payDetails summary{ cursor:pointer; color:var(--text); font-weight:900; list-style:none; }
+    details.payDetails summary::-webkit-details-marker{display:none}
+    .detailsBody{ margin-top:10px; color:var(--muted2); font-size:12.8px; line-height:1.6; }
+
+    .payList{ margin-top:10px; display:grid; gap:10px; }
+    .payItem{
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.02);
+      padding:10px 12px;
+      color:var(--muted2);
+      font-size:12.8px;
+      line-height:1.55;
+    }
+    .payItem strong{ color:var(--text); font-weight:900; }
+    .payItem .row{ display:flex; flex-wrap:wrap; gap:10px; margin-top:10px; }
+
+    .stickyCta{
+      position: sticky;
+      bottom: 0;
+      z-index: 20;
+      padding: 10px 0;
+      background: linear-gradient(180deg, rgba(7,7,11,0) 0%, rgba(7,7,11,.78) 22%, rgba(7,7,11,.92) 100%);
+      backdrop-filter: blur(10px);
+      border-top: 1px solid rgba(255,255,255,.08);
+    }
+    .stickyInner{
+      display:flex;
+      gap:12px;
+      align-items:center;
+      justify-content:space-between;
+      padding: 0 16px;
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+    .stickyText{
+      min-width:0;
+      color:var(--muted);
+      font-size:12.6px;
+      line-height:1.4;
+    }
+    .stickyText strong{ color:var(--text); font-weight:950; }
+
     @media (max-width: 980px){
-      #nfHeader{padding:0}
-      .grid{grid-template-columns:1fr}
-      .phaseGrid{grid-template-columns:1fr}
-      .pkg3{grid-template-columns:1fr}
+      .grid{ grid-template-columns: 1fr; }
+      .rail{ position: relative; top: 0; }
+      h1{ font-size: 30px; }
     }
     @media (max-width: 760px){
-      h1{font-size:30px}
-      .table th, .table td{padding:10px}
+      .stickyText{display:none}
     }
   </style>
-
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"WebPage",
-    "name":"Noetfield — Playbook",
-    "url":"https://www.noetfield.com/playbook/",
-    "description":"The Noetfield Playbook is a governance-first 0–90 day pattern for teams adopting AI: control baseline, evidence discipline, board-ready artefacts, and Trust Ledger cadence.",
-    "isPartOf":{"@type":"WebSite","name":"Noetfield","url":"https://www.noetfield.com/"},
-    "publisher":{"@type":"Organization","name":"Noetfield Systems Inc."}
-  }
-  </script>
 </head>
 
 <body>
   <div class="bg" aria-hidden="true"></div>
   <a class="skip" href="#main">Skip to content</a>
 
-  <!-- Injected header (must match shell behavior: #nfHeader / #nfFooter) -->
-  <header id="nfHeader"></header>
+  <header id="nfHeader">
+    <!-- /assets/partials/header.html — v3.3 (embedded) -->
+    <div class="nav" role="navigation" aria-label="Noetfield global navigation">
+      <a class="brand" href="/" aria-label="Noetfield home">
+        <img class="brandMark" src="/noetfield-favicon-512.png" alt="Noetfield mark" />
+        <div class="brandText">
+          <div class="name">Noetfield Systems</div>
+          <div class="tag">Trust and Stewardship in AI</div>
+        </div>
+      </a>
+
+      <nav class="menu" aria-label="Primary navigation">
+        <div class="menuPrimary" aria-label="Core">
+          <a href="/trust-ledger/">Trust Ledger</a>
+          <a href="/trust-brief/">Trust Brief</a>
+          <a href="/playbook/">Playbook</a>
+          <a href="/copilot/">Copilot</a>
+          <a href="/for-whom/">For Whom</a>
+        </div>
+
+        <div class="menuActions" aria-label="App actions">
+          <a class="pilltab" href="/gate/" data-rid-link>Gate</a>
+          <a class="pilltab cta" href="/gate/sales/" data-rid-link aria-label="Sales start">Sales</a>
+
+          <a class="pilltab statusLink" href="/status/" data-rid-link>
+            <span class="statusDot" aria-hidden="true"></span>Status
+          </a>
+
+          <a class="login" href="/portal/login/" data-rid-link>Login</a>
+        </div>
+      </nav>
+
+      <button
+        class="burger"
+        id="burger"
+        type="button"
+        aria-label="Open menu"
+        aria-expanded="false"
+        aria-controls="mobilePanel"
+      >
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+        </svg>
+      </button>
+    </div>
+
+    <div class="mobilePanel" id="mobilePanel" hidden>
+      <div class="mobileInner">
+        <div class="mobileGrid" aria-label="Mobile navigation">
+          <a class="mobileCTA" href="/gate/sales/" data-rid-link>Sales (Start)</a>
+
+          <a href="/trust-ledger/">Trust Ledger</a>
+          <a href="/trust-brief/">Trust Brief</a>
+          <a href="/playbook/">Playbook</a>
+          <a href="/copilot/">Copilot</a>
+          <a href="/for-whom/">For Whom</a>
+
+          <a href="/gate/" data-rid-link>Gate</a>
+          <a href="/portal/" data-rid-link>Portal</a>
+
+          <a class="statusLink" href="/status/" data-rid-link>
+            <span class="statusDot" aria-hidden="true"></span>Status
+          </a>
+
+          <a href="/portal/login/" data-rid-link>Login</a>
+        </div>
+      </div>
+    </div>
+  </header>
 
   <main id="main" class="wrap">
-    <!-- HERO -->
-    <section class="hero">
+    <section class="hero" aria-label="Purchase hero">
       <div class="heroShell">
         <div class="heroInner">
-          <div class="eyebrow"><span class="dot"></span> 0–90 day governance pattern</div>
+          <div class="eyebrow"><span class="dot"></span> Purchase • board-safe starts • card or invoice/PO</div>
 
-          <h1>Playbook.</h1>
+          <h1>Copilot-first purchase options.</h1>
 
           <p class="lead">
-            A practical governance-first pattern for teams using AI without a compliance department.
-            Build a <strong>control baseline</strong>, enforce <strong>evidence discipline</strong>, and establish a
-            <strong>Trust Ledger cadence</strong> that holds under board and regulator scrutiny.
+            <strong>Copilot QuickScan</strong> is the fastest paid start (card checkout where enabled).
+            <strong>Trust Brief</strong> and <strong>Trust Ledger</strong> run through Gate/procurement to confirm scope and cadence.
+            <span style="opacity:.92;">Playbook is an optional add-on (digital).</span>
           </p>
 
-          <div class="metaRow" aria-label="Highlights">
-            <div class="pill"><strong>0–30</strong> baseline</div>
-            <div class="pill"><strong>31–60</strong> evidence</div>
-            <div class="pill"><strong>61–90</strong> cadence</div>
-            <div class="pill"><strong>Board memo</strong> options</div>
-            <div class="pill"><strong>Ledger starter set</strong></div>
+          <div class="metaRow" aria-label="Purchase facts">
+            <div class="pill"><strong>Public intake</strong> = non-confidential</div>
+            <div class="pill"><strong>Invoice / PO</strong> path</div>
+            <div class="pill"><strong>Reference</strong> carried across</div>
+            <div class="pill"><strong>Tax</strong> applied as required</div>
           </div>
 
-          <div class="actions" aria-label="Primary actions" style="margin-top:14px">
-            <a class="btn primary" href="/gate/intake/?need=playbook-pro">Start via Gate</a>
-            <a class="btn secondary" href="/playbook/pro/">See Playbook Pro</a>
-            <a class="btn secondary" href="/trust-brief/">Trust Brief</a>
+          <div class="actions" aria-label="Hero actions">
+            <a class="btn primary" href="/gate/" data-rid-link>Start (Gate)</a>
+            <a class="btn secondary" href="/gate/procurement/" data-rid-link>Invoice / PO</a>
+            <a class="btn secondary" href="/vendor/">Vendor profile</a>
           </div>
 
-          <div class="box">
-            <strong>Public intake = non-confidential.</strong> Do not submit secrets, credentials, or regulated personal data on public forms.
+          <div class="notice" role="note">
+            <strong>Public forms are designed for non-sensitive details.</strong>
+            Secure sharing options are confirmed after kickoff.
           </div>
         </div>
       </div>
     </section>
 
-    <section class="grid">
-      <!-- MAIN -->
-      <div class="card">
-        <div class="hd">
-          <h2>Choose your path</h2>
-          <p>
-            The Playbook is the pattern. Delivery routes through Gate. Pick the lane that matches pressure, timeline, and maturity.
-          </p>
-        </div>
+    <section class="grid" aria-label="Purchase layout">
+      <div>
+        <section class="card" aria-label="Offers">
+          <div class="hd">
+            <h2 class="cardTitle">Offers</h2>
+            <p class="muted">Choose an offer. Card checkout appears only where enabled. Invoice/PO and Gate start are always available.</p>
 
-        <div class="bd" id="paths">
-          <div class="pkg3" aria-label="Playbook paths">
-            <a class="offer" href="/gate/intake/?need=playbook" aria-label="Start Playbook DIY via Gate">
-              <div class="t">Lane</div>
-              <div class="n">Playbook (DIY)</div>
-              <div class="d">Templates + checklist + a 0–90 plan for teams that can implement internally.</div>
-              <div class="k"><strong>Best for:</strong> small teams, early posture, low ceremony, clear owner.</div>
-              <div class="m">Route: /gate/intake/?need=playbook</div>
-            </a>
+            <div class="sectionRow" aria-label="Offer groups">
+              <div class="chip"><strong>Primary:</strong> Copilot QuickScan</div>
+              <div class="chip"><strong>Primary:</strong> Trust Brief / Trust Ledger</div>
+              <div class="chip"><strong>Optional:</strong> Playbook add-on</div>
+            </div>
 
-            <a class="offer" href="/gate/intake/?need=playbook-pro" aria-label="Start Playbook Pro via Gate">
-              <div class="t">Lane</div>
-              <div class="n">Playbook Pro</div>
-              <div class="d">Done-with-you: stronger evidence discipline, board memo draft, and a starter Trust Ledger set.</div>
-              <div class="k"><strong>Best for:</strong> Copilot rollout, procurement pressure, audit questions, exec risk.</div>
-              <div class="m">Route: /gate/intake/?need=playbook-pro</div>
-            </a>
-
-            <a class="offer" href="/gate/intake/?need=trust-brief" aria-label="Start Trust Brief via Gate">
-              <div class="t">Lane</div>
-              <div class="n">Trust Brief</div>
-              <div class="d">Done-for-you diagnostic: fastest path to board-ready clarity and defensible first entries.</div>
-              <div class="k"><strong>Best for:</strong> regulator/board pressure, incident/near-miss, high materiality.</div>
-              <div class="m">Route: /gate/intake/?need=trust-brief</div>
-            </a>
+            <label for="nfOfferSelect">Selected offer</label>
+            <select id="nfOfferSelect" aria-label="Select offer">
+              <option value="quickscan_base">Copilot QuickScan (Base)</option>
+              <option value="quickscan_pro">Copilot QuickScan (Pro)</option>
+              <option value="quickscan_ent">Copilot QuickScan (Enterprise)</option>
+              <option value="trustbrief">Trust Brief (6-week)</option>
+              <option value="trustledger">Trust Ledger</option>
+              <option value="playbook_standard">Playbook — Standard (Digital)</option>
+              <option value="playbook_pro">Playbook — Pro (Digital)</option>
+            </select>
           </div>
 
-          <div class="section" id="pattern">
-            <div class="sectionTitle">The 0–90 pattern</div>
-            <p class="sectionDesc">
-              The goal is not perfect policy. The goal is to make AI use <strong>governable</strong> — with clear scope,
-              accountable owners, controls, and proof.
-            </p>
-
-            <div class="phaseGrid" aria-label="Phases">
-              <div class="phase" id="phase-0-30">
-                <div class="k">
-                  <div class="n">Phase 1: Baseline</div>
-                  <div class="badge">0–30 days</div>
+          <div class="bd">
+            <div class="groupTitle">Copilot QuickScan</div>
+            <div class="offers">
+              <article class="offer" data-offer="quickscan_base" aria-label="Copilot QuickScan Base">
+                <div class="offerTop">
+                  <h3>Copilot QuickScan (Base)</h3>
+                  <span class="tag">5–7 business days</span>
+                </div>
+                <p>Fast Copilot governance baseline: posture, surface map, and exposure priorities for board-safe decisions.</p>
+                <div class="offerMeta">
+                  <div class="kv"><strong>Price:</strong> $3,500 CAD</div>
+                  <div class="kv"><strong>Tier:</strong> Base</div>
                 </div>
                 <ul>
-                  <li>Material AI inventory (what runs in production; what influences decisions).</li>
-                  <li>Owner map: accountability, escalation, approval boundaries.</li>
-                  <li>Minimum control baseline (access, logs, data handling, retention).</li>
-                  <li>Decision framing: what boards must explicitly approve vs delegate.</li>
+                  <li>Executive summary (decision posture)</li>
+                  <li>Surface & enablement map</li>
+                  <li>Oversharing exposure themes + priorities</li>
                 </ul>
-              </div>
 
-              <div class="phase" id="phase-31-60">
-                <div class="k">
-                  <div class="n">Phase 2: Evidence</div>
-                  <div class="badge">31–60 days</div>
+                <div class="actions" style="margin-top:12px">
+                  <a class="btn" data-cta="pay" href="#" rel="nofollow noopener noreferrer">Pay by card</a>
+                  <a class="btn secondary" data-cta="po" href="/gate/procurement/?focus=quickscan&tier=base" data-rid-link>Invoice / PO</a>
+                  <a class="btn ghost" data-cta="open" href="/copilot/quickscan/">View details</a>
+                </div>
+
+                <details class="opt">
+                  <summary>More options</summary>
+                  <div class="optBody">
+                    Optional routing for internal approvals and kickoff.
+                    <div class="optRow">
+                      <a class="btn ghost small" data-cta="start" href="/gate/intake/?need=quickscan&tier=base" data-rid-link>Start (Gate intake)</a>
+                      <button class="btn ghost small" type="button" data-cta="copy">Copy procurement note</button>
+                      <button class="btn ghost small" type="button" data-cta="email">Email procurement</button>
+                    </div>
+                  </div>
+                </details>
+              </article>
+
+              <article class="offer" data-offer="quickscan_pro" aria-label="Copilot QuickScan Pro">
+                <div class="offerTop">
+                  <h3>Copilot QuickScan (Pro)</h3>
+                  <span class="tag">5–7 business days</span>
+                </div>
+                <p>Expanded defensibility: boundaries, evidence readiness, and a stronger control checklist for higher scrutiny.</p>
+                <div class="offerMeta">
+                  <div class="kv"><strong>Price:</strong> $5,500 CAD</div>
+                  <div class="kv"><strong>Tier:</strong> Pro</div>
                 </div>
                 <ul>
-                  <li>Evidence map: what counts as proof and where it lives.</li>
-                  <li>Standard artefact pack (configs, exports, runbooks, audits).</li>
-                  <li>First Trust Ledger entries for highest-impact use cases.</li>
-                  <li>Board memo draft with options and trade-offs.</li>
+                  <li>Deeper boundary guidance + red-lines</li>
+                  <li>Evidence readiness + owner mapping</li>
+                  <li>Control checklist + early cadence</li>
                 </ul>
-              </div>
 
-              <div class="phase" id="phase-61-90">
-                <div class="k">
-                  <div class="n">Phase 3: Cadence</div>
-                  <div class="badge">61–90 days</div>
+                <div class="actions" style="margin-top:12px">
+                  <a class="btn" data-cta="pay" href="#" rel="nofollow noopener noreferrer">Pay by card</a>
+                  <a class="btn secondary" data-cta="po" href="/gate/procurement/?focus=quickscan&tier=pro" data-rid-link>Invoice / PO</a>
+                  <a class="btn ghost" data-cta="open" href="/copilot/quickscan/">View details</a>
+                </div>
+
+                <details class="opt">
+                  <summary>More options</summary>
+                  <div class="optBody">
+                    Optional routing for internal approvals and kickoff.
+                    <div class="optRow">
+                      <a class="btn ghost small" data-cta="start" href="/gate/intake/?need=quickscan&tier=pro" data-rid-link>Start (Gate intake)</a>
+                      <button class="btn ghost small" type="button" data-cta="copy">Copy procurement note</button>
+                      <button class="btn ghost small" type="button" data-cta="email">Email procurement</button>
+                    </div>
+                  </div>
+                </details>
+              </article>
+
+              <article class="offer" data-offer="quickscan_ent" aria-label="Copilot QuickScan Enterprise">
+                <div class="offerTop">
+                  <h3>Copilot QuickScan (Enterprise)</h3>
+                  <span class="tag">Kickoff-confirmed timeline</span>
+                </div>
+                <p>Enterprise procurement/security posture and multi-stakeholder alignment with a board-ready briefing pack.</p>
+                <div class="offerMeta">
+                  <div class="kv"><strong>Price:</strong> $7,500 CAD</div>
+                  <div class="kv"><strong>Tier:</strong> Enterprise</div>
                 </div>
                 <ul>
-                  <li>Governance cadence (monthly ledger update; quarterly review).</li>
-                  <li>Change control (prevent drift; document exceptions).</li>
-                  <li>Implementation routing (internal team or partners).</li>
-                  <li>Incident drill: reconstruct decisions after the fact.</li>
+                  <li>Stakeholder-ready governance pack</li>
+                  <li>Exception / connector control model (where relevant)</li>
+                  <li>Board-ready briefing pack</li>
                 </ul>
-              </div>
 
-              <div class="phase" id="phase-output">
-                <div class="k">
-                  <div class="n">Output: Board-ready package</div>
-                  <div class="badge">deliverables</div>
+                <div class="actions" style="margin-top:12px">
+                  <a class="btn" data-cta="pay" href="#" rel="nofollow noopener noreferrer">Pay by card</a>
+                  <a class="btn secondary" data-cta="po" href="/gate/procurement/?focus=quickscan&tier=enterprise" data-rid-link>Invoice / PO</a>
+                  <a class="btn ghost" data-cta="open" href="/copilot/quickscan/">View details</a>
+                </div>
+
+                <details class="opt">
+                  <summary>More options</summary>
+                  <div class="optBody">
+                    Optional routing for internal approvals and kickoff.
+                    <div class="optRow">
+                      <a class="btn ghost small" data-cta="start" href="/gate/intake/?need=quickscan&tier=enterprise" data-rid-link>Start (Gate intake)</a>
+                      <button class="btn ghost small" type="button" data-cta="copy">Copy procurement note</button>
+                      <button class="btn ghost small" type="button" data-cta="email">Email procurement</button>
+                    </div>
+                  </div>
+                </details>
+              </article>
+            </div>
+
+            <div class="groupTitle">Primary services</div>
+            <div class="offers">
+              <article class="offer" data-offer="trustbrief" aria-label="Trust Brief">
+                <div class="offerTop">
+                  <h3>Trust Brief (6-week)</h3>
+                  <span class="tag">Engagement</span>
+                </div>
+                <p>Structured diagnostic to map material AI use-cases, decision points, and an initial operating model—ready for leadership review.</p>
+                <div class="offerMeta">
+                  <div class="kv"><strong>Timeline:</strong> 6 weeks</div>
+                  <div class="kv"><strong>Pricing:</strong> scoped at kickoff</div>
                 </div>
                 <ul>
-                  <li>Control baseline with owners and evidence expectations.</li>
-                  <li>Starter Trust Ledger entries (material use cases first).</li>
-                  <li>Board memo: options, priorities, approval boundaries.</li>
-                  <li>Implementation plan: controls + evidence trails shipped.</li>
+                  <li>Material use-case map + owners</li>
+                  <li>Decision gates + operating model draft</li>
+                  <li>Board-ready roadmap + first ledger entries</li>
                 </ul>
+                <div class="actions" style="margin-top:12px">
+                  <a class="btn secondary" data-cta="po" href="/gate/procurement/?focus=brief" data-rid-link>Invoice / PO</a>
+                  <a class="btn ghost" data-cta="open" href="/trust-brief/">View details</a>
+                </div>
+                <details class="opt">
+                  <summary>More options</summary>
+                  <div class="optBody">
+                    Default start is Gate/procurement to confirm scope and cadence.
+                    <div class="optRow">
+                      <a class="btn ghost small" data-cta="start" href="/gate/intake/?need=trustbrief" data-rid-link>Start (Gate intake)</a>
+                      <button class="btn ghost small" type="button" data-cta="copy">Copy procurement note</button>
+                      <button class="btn ghost small" type="button" data-cta="email">Email procurement</button>
+                    </div>
+                  </div>
+                </details>
+              </article>
+
+              <article class="offer" data-offer="trustledger" aria-label="Trust Ledger">
+                <div class="offerTop">
+                  <h3>Trust Ledger</h3>
+                  <span class="tag">Setup + cadence</span>
+                </div>
+                <p>Maintained register of AI systems, safeguards, sign-offs, and evidence—kept ready for recurring scrutiny.</p>
+                <div class="offerMeta">
+                  <div class="kv"><strong>Timeline:</strong> setup + cadence</div>
+                  <div class="kv"><strong>Pricing:</strong> setup + monthly</div>
+                </div>
+                <ul>
+                  <li>Ledger register + evidence index</li>
+                  <li>Board export cadence (agreed)</li>
+                  <li>Change trail + exception discipline</li>
+                </ul>
+                <div class="actions" style="margin-top:12px">
+                  <a class="btn secondary" data-cta="po" href="/gate/procurement/?focus=ledger" data-rid-link>Invoice / PO</a>
+                  <a class="btn ghost" data-cta="open" href="/trust-ledger/">View details</a>
+                </div>
+                <details class="opt">
+                  <summary>More options</summary>
+                  <div class="optBody">
+                    Default start is Gate/procurement to confirm cadence and evidence discipline.
+                    <div class="optRow">
+                      <a class="btn ghost small" data-cta="start" href="/gate/intake/?need=trustledger" data-rid-link>Start (Gate intake)</a>
+                      <button class="btn ghost small" type="button" data-cta="copy">Copy procurement note</button>
+                      <button class="btn ghost small" type="button" data-cta="email">Email procurement</button>
+                    </div>
+                  </div>
+                </details>
+              </article>
+            </div>
+
+            <details class="payDetails" style="margin-top:14px;">
+              <summary>Optional add-on (digital): Playbook</summary>
+              <div class="detailsBody">
+                Playbook is not the core product line. It is available as a digital add-on for teams that want a reusable internal rollout pattern.
+                <div class="offers" style="margin-top:12px;">
+                  <article class="offer" data-offer="playbook_standard" aria-label="Playbook Standard">
+                    <div class="offerTop">
+                      <h3>Playbook — Standard</h3>
+                      <span class="tag">Digital</span>
+                    </div>
+                    <p>AI governance playbook for one organization (0–90 day rollout). Templates + checklists + board/procurement-ready brief structure.</p>
+                    <div class="offerMeta">
+                      <div class="kv"><strong>Price:</strong> $249 CAD</div>
+                      <div class="kv"><strong>Delivery:</strong> immediate</div>
+                    </div>
+                    <div class="actions" style="margin-top:12px">
+                      <a class="btn" data-cta="pay" href="#" rel="nofollow noopener noreferrer">Pay by card</a>
+                      <a class="btn secondary" data-cta="po" href="/gate/procurement/?focus=playbook&tier=standard" data-rid-link>Invoice / PO</a>
+                      <a class="btn ghost" data-cta="open" href="/playbook/standard/">View details</a>
+                    </div>
+                    <details class="opt">
+                      <summary>More options</summary>
+                      <div class="optBody">
+                        <div class="optRow">
+                          <a class="btn ghost small" data-cta="start" href="/gate/intake/?need=playbook-standard&tier=standard" data-rid-link>Start (Gate intake)</a>
+                          <button class="btn ghost small" type="button" data-cta="copy">Copy procurement note</button>
+                          <button class="btn ghost small" type="button" data-cta="email">Email procurement</button>
+                        </div>
+                      </div>
+                    </details>
+                  </article>
+
+                  <article class="offer" data-offer="playbook_pro" aria-label="Playbook Pro">
+                    <div class="offerTop">
+                      <h3>Playbook — Pro (Agency/Broker)</h3>
+                      <span class="tag">Digital</span>
+                    </div>
+                    <p>Agency/advisor license for multi-client use. Reusable templates + due diligence kit + client-ready brief structures.</p>
+                    <div class="offerMeta">
+                      <div class="kv"><strong>Price:</strong> $749 CAD</div>
+                      <div class="kv"><strong>Delivery:</strong> immediate</div>
+                    </div>
+                    <div class="actions" style="margin-top:12px">
+                      <a class="btn" data-cta="pay" href="#" rel="nofollow noopener noreferrer">Pay by card</a>
+                      <a class="btn secondary" data-cta="po" href="/gate/procurement/?focus=playbook&tier=pro" data-rid-link>Invoice / PO</a>
+                      <a class="btn ghost" data-cta="open" href="/playbook/pro/">View details</a>
+                    </div>
+                    <details class="opt">
+                      <summary>More options</summary>
+                      <div class="optBody">
+                        <div class="optRow">
+                          <a class="btn ghost small" data-cta="start" href="/gate/intake/?need=playbook-pro&tier=pro" data-rid-link>Start (Gate intake)</a>
+                          <button class="btn ghost small" type="button" data-cta="copy">Copy procurement note</button>
+                          <button class="btn ghost small" type="button" data-cta="email">Email procurement</button>
+                        </div>
+                      </div>
+                    </details>
+                  </article>
+                </div>
               </div>
+            </details>
+
+            <div class="notice">
+              <strong>Card-enabled:</strong> Copilot QuickScan tiers (and optional Playbook add-on).
+              <strong>Default procurement/Gate:</strong> Trust Brief and Trust Ledger (scope + cadence confirmation).
+            </div>
+            <div class="notice">
+              <strong>Tax:</strong> applied as required at invoicing or checkout.
             </div>
           </div>
-
-          <div class="section" id="deliverables">
-            <div class="sectionTitle">What you get (typical)</div>
-            <p class="sectionDesc">Exact counts are finalized through Gate intake based on materiality and scope.</p>
-            <ul class="dl">
-              <li><strong>1× Control Baseline</strong> (owners, boundaries, evidence expectations).</li>
-              <li><strong>5–12× Starter Ledger Entries</strong> (material use cases first, evidence-linked).</li>
-              <li><strong>1× Board Memo Draft</strong> (options, trade-offs, approvals & next steps).</li>
-              <li><strong>1× Evidence Map</strong> (what counts as proof; where it lives; how it stays readable).</li>
-              <li><strong>1× Change Control + Exception Log</strong> (to prevent drift and “tribal governance”).</li>
-            </ul>
-
-            <div class="actions" aria-label="Delivery actions">
-              <a class="btn primary" href="/gate/intake/?need=playbook-pro">Start via Gate</a>
-              <a class="btn secondary" href="/trust-ledger/">See Trust Ledger</a>
-              <a class="btn secondary" href="/gate/">Gate</a>
-            </div>
-
-            <div class="box">
-              <strong>Implementation lanes:</strong> if controls/evidence trails require third parties, route via
-              <a href="/gate/partners/">Partners Gate</a>:
-              <a href="/gate/partners/integration/">Integration</a>,
-              <a href="/gate/partners/delivery/">Delivery</a>,
-              <a href="/gate/partners/channel/">Channel</a>.
-            </div>
-          </div>
-
-          <div class="section" id="artefacts">
-            <div class="sectionTitle">Standard artefacts</div>
-            <p class="sectionDesc">Keep everything auditable and readable without bureaucracy.</p>
-
-            <table class="table" aria-label="Standard artefacts">
-              <thead>
-                <tr>
-                  <th>Artefact</th>
-                  <th>Purpose</th>
-                  <th>Evidence expectation</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>AI inventory + materiality thresholds</td>
-                  <td>Know what matters and why</td>
-                  <td>Systems list + owners + decision impact notes</td>
-                </tr>
-                <tr>
-                  <td>Control baseline</td>
-                  <td>Minimum viable governance</td>
-                  <td>Config exports/screens + log/retention proof</td>
-                </tr>
-                <tr>
-                  <td>Trust Ledger starter entries</td>
-                  <td>Operationalize governance</td>
-                  <td>Use-case + controls + proof references</td>
-                </tr>
-                <tr>
-                  <td>Board memo</td>
-                  <td>Make decisions explicit</td>
-                  <td>Options, trade-offs, approval boundaries</td>
-                </tr>
-                <tr>
-                  <td>Change control + exception log</td>
-                  <td>Prevent drift</td>
-                  <td>Who approved exceptions + follow-up plan</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-
-          <div class="section" id="faq">
-            <div class="sectionTitle">Procurement FAQ</div>
-            <p class="sectionDesc">Common questions from boards, legal, privacy, security, and procurement.</p>
-
-            <div class="faq" aria-label="FAQ list">
-              <details>
-                <summary>Is this a policy document? <span class="chev">▾</span></summary>
-                <p>No. Policy is optional. The Playbook produces governed artefacts: owners, controls, evidence expectations, decision records, and ledger entries that remain readable under scrutiny.</p>
-              </details>
-              <details>
-                <summary>What do you need from us? <span class="chev">▾</span></summary>
-                <p>A short intake, an owner contact, and access to non-secret exports/screenshots for evidence posture. Exact inputs are scoped in Gate. If deeper access is required, it is handled through a controlled delivery path.</p>
-              </details>
-              <details>
-                <summary>How do you handle confidentiality? <span class="chev">▾</span></summary>
-                <p>Public intake is non-confidential. Sensitive details are not submitted via public forms. Any confidential exchange is routed into a controlled engagement path after Gate triage.</p>
-              </details>
-              <details>
-                <summary>Who owns the outputs? <span class="chev">▾</span></summary>
-                <p>The organization owns its governance artefacts and internal records. Noetfield retains its underlying methodologies, schemas, and delivery system.</p>
-              </details>
-              <details>
-                <summary>What happens after 90 days? <span class="chev">▾</span></summary>
-                <p>The target outcome is a stable cadence: periodic updates, drift prevention, change control, and ledger maintenance. This typically transitions into Trust Ledger operations.</p>
-              </details>
-              <details>
-                <summary>Can our partner/MSP implement controls? <span class="chev">▾</span></summary>
-                <p>Yes. Route partners through <a href="/gate/partners/">Partners Gate</a>. Implementation lanes require evidence discipline so changes remain provable and auditable.</p>
-              </details>
-            </div>
-
-            <div class="box faqNote">
-              <strong>Best next step:</strong> start via <a href="/gate/intake/?need=playbook-pro">Gate intake</a> and route into the correct lane based on pressure, scope, and timeline.
-            </div>
-          </div>
-        </div>
+        </section>
       </div>
 
-      <!-- ASIDE -->
-      <aside class="card">
-        <div class="hd">
-          <h2>Quick navigation</h2>
-          <p>Jump to paths, phases, artefacts, and FAQ.</p>
-        </div>
-
-        <div class="bd">
-          <div class="toc" aria-label="Table of contents">
-            <a href="#paths"><span>Choose</span><strong>Path</strong><span class="arrow">→</span></a>
-            <a href="#pattern"><span>0–90</span><strong>Pattern</strong><span class="arrow">→</span></a>
-            <a href="#deliverables"><span>Typical</span><strong>Outputs</strong><span class="arrow">→</span></a>
-            <a href="#artefacts"><span>Standard</span><strong>Artefacts</strong><span class="arrow">→</span></a>
-            <a href="#faq"><span>Procurement</span><strong>FAQ</strong><span class="arrow">→</span></a>
+      <aside class="rail" aria-label="Purchase shortcuts">
+        <div class="railBox card">
+          <div class="hd">
+            <h2 class="cardTitle">Purchase path</h2>
+            <p class="muted">Choose the purchase style that fits internal process.</p>
           </div>
 
-          <div class="box" style="margin-top:14px;">
-            <strong>Use this when:</strong><br/>
-            Copilot rollout, vendor AI embedded in workflows, audit/procurement pressure rising, or leadership wants speed with a defensible posture.
-          </div>
-
-          <div class="section" style="margin-top:14px;">
-            <div class="sectionTitle">Start here</div>
-            <p class="sectionDesc">Convert the pattern into delivery with a single procurement-ready entry.</p>
-            <div class="actions" style="margin-top:10px;">
-              <a class="btn primary" href="/gate/intake/?need=playbook-pro">Start via Gate</a>
-              <a class="btn secondary" href="/status/">Status</a>
-              <a class="btn secondary" href="/gate/">Gate</a>
+          <div class="bd">
+            <div class="seg" role="tablist" aria-label="Purchase style">
+              <button id="nfBuyerCard" type="button" role="tab" aria-selected="true"><strong>Card</strong> checkout</button>
+              <button id="nfBuyerProc" type="button" role="tab" aria-selected="false"><strong>Invoice</strong> / PO</button>
             </div>
-          </div>
 
-          <div class="box" style="margin-top:14px;">
-            <strong>Reference:</strong><br/>
-            <a href="/trust-ledger/">Trust Ledger</a> ·
-            <a href="/trust-brief/">Trust Brief</a> ·
-            <a href="/copilot/">Copilot</a> ·
-            <a href="/for-whom/">For Whom</a>
+            <div class="kpi" id="nfBuyerNote" role="note" style="margin-top:12px;"></div>
+
+            <div class="kpi" id="nfSelected"><strong>Selected:</strong> Copilot QuickScan (Base)</div>
+
+            <div class="refBox" id="nfRID" aria-label="Reference"></div>
+
+            <div class="actions" style="margin-top:12px">
+              <a class="btn primary" id="nfRailPrimary" href="#" aria-label="Primary action">Pay by card</a>
+              <a class="btn secondary" id="nfRailSecondary" href="#" aria-label="Gate intake">Start (Gate intake)</a>
+              <a class="btn secondary" id="nfRailTertiary" href="#" aria-label="Procurement">Invoice / PO</a>
+            </div>
+
+            <label for="nfSummary">Procurement note (copy/paste)</label>
+            <textarea id="nfSummary" spellcheck="false"></textarea>
+
+            <div class="actions">
+              <button class="btn secondary" type="button" id="nfCopy">Copy note</button>
+              <button class="btn secondary" type="button" id="nfEmail">Email procurement</button>
+            </div>
+
+            <details class="payDetails">
+              <summary>Internal: checkout links (card-enabled)</summary>
+              <div class="detailsBody">
+                Shows buttons only (no raw URLs displayed). Use for internal QA or controlled sharing.
+                <div id="nfPayLinks" class="payList" aria-label="Checkout links"></div>
+              </div>
+            </details>
+
+            <div class="notice" style="margin-top:12px;">
+              <strong>Public intake = non-confidential.</strong> Provide non-sensitive details only. Secure sharing is confirmed after kickoff.
+            </div>
           </div>
         </div>
       </aside>
     </section>
+
+    <section class="stickyCta" aria-label="Sticky CTA">
+      <div class="stickyInner">
+        <div class="stickyText" id="nfStickyText"><strong>Copilot QuickScan (Base)</strong> — 5–7 business days.</div>
+        <div class="actions" style="margin-top:0">
+          <a class="btn primary" id="nfStickyPrimary" href="#" rel="nofollow noopener noreferrer">Pay by card</a>
+          <a class="btn secondary" id="nfStickyProc" href="#" data-rid-link>Invoice / PO</a>
+        </div>
+      </div>
+    </section>
   </main>
 
-  <!-- Injected footer -->
-  <footer id="nfFooter"></footer>
+  <footer id="nfFooter">
+    <!-- /assets/partials/footer.html — v3.3 (embedded) -->
+    <div class="footerTop">
+      <div class="fcol">
+        <a class="footBrand" href="/" aria-label="Noetfield home">
+          <img src="/noetfield-favicon-512.png" alt="Noetfield mark" />
+          <span style="font-weight:850; color:var(--text);">Noetfield</span>
+        </a>
+
+        <div class="fNote">
+          Trust and stewardship in AI — board-first governance artefacts designed to be evidence-ready and defensible.
+        </div>
+
+        <div class="ridRow" aria-label="Request ID">
+          <span>Request ID:</span>
+          <code data-rid>—</code>
+          <button type="button" data-copy-rid>Copy</button>
+        </div>
+
+        <div class="ctaRow" style="margin-top:12px;">
+          <a class="btn primary" href="/gate/sales/" data-rid-link>Buy (Start)</a>
+          <a class="btn secondary" href="/gate/" data-rid-link>Gate</a>
+          <a class="btn secondary" href="/portal/" data-rid-link>Portal</a>
+        </div>
+      </div>
+
+      <div class="fcol">
+        <div class="fTitle">Core</div>
+        <div class="fLinks">
+          <a href="/trust-ledger/">Trust Ledger</a>
+          <a href="/trust-brief/">Trust Brief</a>
+          <a href="/playbook/">Playbook</a>
+          <a href="/copilot/">Copilot</a>
+          <a href="/for-whom/">For Whom</a>
+        </div>
+      </div>
+
+      <div class="fcol">
+        <div class="fTitle">Gate</div>
+        <div class="fLinks">
+          <a href="/gate/sales/" data-rid-link>Sales (Start)</a>
+          <a href="/gate/" data-rid-link>Gate Home</a>
+          <a href="/gate/offers/" data-rid-link>Offers</a>
+          <a href="/portal/" data-rid-link>Portal</a>
+          <a href="/vendor/">Vendor</a>
+        </div>
+      </div>
+
+      <div class="fcol">
+        <div class="fTitle">Legal</div>
+        <div class="fLinks">
+          <a href="/privacy/">Privacy</a>
+          <a href="/terms/">Terms</a>
+          <a href="/cookies/">Cookies</a>
+          <a href="/accessibility/">Accessibility</a>
+          <a href="/policies/">Policies</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footerBottom">
+      <div>© <span id="y">2025</span> Noetfield Systems Inc.</div>
+
+      <div class="footerMiniNav" aria-label="Footer mini navigation">
+        <a href="/gate/sales/" data-rid-link>Sales</a>
+
+        <a class="statusLink" href="/status/" data-rid-link>
+          <span class="statusDot" aria-hidden="true"></span>Status
+        </a>
+
+        <a href="/faq/">FAQ</a>
+        <a href="/sitemap.xml">Sitemap</a>
+
+        <a class="partnerIntakeLink" href="/gate/partners/" data-rid-link>
+          <span class="goldDot" aria-hidden="true"></span>Partner intake
+        </a>
+
+        <a href="/feedback/">Feedback</a>
+        <a href="/contact/">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    /* =========================
+       /assets/noetfield-shell.js — v2.3 (embedded + minor a11y hardening)
+       ========================= */
+    (function () {
+      "use strict";
+
+      var SHELL_VERSION = "2025.12.19";
+      var RID_KEY = "nf_rid";
+
+      function normPath(p) {
+        if (!p) return "/";
+        p = String(p).split("?")[0].split("#")[0];
+        if (p.length > 1 && p.endsWith("/")) p = p.slice(0, -1);
+        return p.toLowerCase();
+      }
+
+      function safeQueryAll(sel) {
+        try { return document.querySelectorAll(sel); } catch (_) { return []; }
+      }
+
+      function toInternalPath(href) {
+        if (!href) return null;
+
+        if (href.startsWith("http")) {
+          try {
+            var u = new URL(href, window.location.origin);
+            if (u.origin !== window.location.origin) return null;
+            return u.pathname || "/";
+          } catch (_) { return null; }
+        }
+        if (!href.startsWith("/")) return null;
+        return href;
+      }
+
+      function setYear() {
+        var y = document.getElementById("y");
+        if (y) y.textContent = String(new Date().getFullYear());
+      }
+
+      function sanitizeRID(x) {
+        x = (x || "").trim();
+        if (!x) return "";
+        x = x.replace(/[^a-zA-Z0-9\-_]/g, "").slice(0, 64);
+        if (x.length < 6) return "";
+        return x;
+      }
+
+      function buildUrlWithRID(href, rid) {
+        try {
+          var u = new URL(href, window.location.origin);
+          if (u.origin !== window.location.origin) return null;
+          u.searchParams.set("rid", rid);
+          var qs = u.searchParams.toString();
+          return u.pathname + (qs ? ("?" + qs) : "") + (u.hash || "");
+        } catch (_) {
+          return null;
+        }
+      }
+
+      function generateRID() {
+        return (
+          "RID-" +
+          Date.now().toString(36) +
+          "-" +
+          Math.random().toString(36).slice(2, 8)
+        ).toUpperCase();
+      }
+
+      function getOrCreateRID() {
+        var url;
+        try { url = new URL(window.location.href); } catch (_) { url = null; }
+
+        var ridFromUrl = "";
+        if (url) ridFromUrl = sanitizeRID(url.searchParams.get("rid"));
+
+        if (ridFromUrl) {
+          try { localStorage.setItem(RID_KEY, ridFromUrl); } catch (_) {}
+          return ridFromUrl;
+        }
+
+        var stored = "";
+        try { stored = sanitizeRID(localStorage.getItem(RID_KEY)); } catch (_) {}
+        if (stored) return stored;
+
+        var rid = sanitizeRID(generateRID()) || generateRID();
+        try { localStorage.setItem(RID_KEY, rid); } catch (_) {}
+        return rid;
+      }
+
+      function copyText(text) {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          return navigator.clipboard.writeText(text).then(function () { return true; }).catch(function () { return false; });
+        }
+        return new Promise(function (resolve) {
+          try {
+            var ta = document.createElement("textarea");
+            ta.value = text;
+            ta.setAttribute("readonly", "");
+            ta.style.position = "fixed";
+            ta.style.left = "-9999px";
+            document.body.appendChild(ta);
+            ta.select();
+            var ok = document.execCommand("copy");
+            document.body.removeChild(ta);
+            resolve(!!ok);
+          } catch (_) {
+            resolve(false);
+          }
+        });
+      }
+
+      function applyRID(rid) {
+        safeQueryAll("[data-rid]").forEach(function (el) {
+          el.textContent = rid;
+        });
+
+        safeQueryAll("[data-copy-rid]").forEach(function (btn) {
+          btn.addEventListener("click", function () {
+            copyText(rid).then(function (ok) {
+              if (!ok) return;
+              btn.setAttribute("data-copied", "1");
+              setTimeout(function () { btn.removeAttribute("data-copied"); }, 900);
+            });
+          });
+        });
+
+        safeQueryAll("a[data-rid-link]").forEach(function (a) {
+          var href = (a.getAttribute("href") || "").trim();
+          if (!href) return;
+          var out = buildUrlWithRID(href, rid);
+          if (out) a.setAttribute("href", out);
+        });
+
+        safeQueryAll("form").forEach(function (form) {
+          var ridInput = form.querySelector('input[name="rid"]');
+          var reqInput = form.querySelector('input[name="request_id"]');
+
+          if (!ridInput) {
+            ridInput = document.createElement("input");
+            ridInput.type = "hidden";
+            ridInput.name = "rid";
+            form.appendChild(ridInput);
+          }
+          ridInput.value = rid;
+
+          if (!reqInput) {
+            reqInput = document.createElement("input");
+            reqInput.type = "hidden";
+            reqInput.name = "request_id";
+            form.appendChild(reqInput);
+          }
+          reqInput.value = rid;
+        });
+      }
+
+      function setActiveLinks() {
+        var current = normPath(window.location.pathname);
+
+        var selectors = [
+          "#nfHeader .menuPrimary a",
+          "#nfHeader .menuActions a",
+          "#nfHeader .mobileGrid a",
+          "#nfFooter .footerMiniNav a"
+        ].join(", ");
+
+        safeQueryAll(selectors).forEach(function (a) {
+          var hrefRaw = a.getAttribute("href") || "";
+          var href = toInternalPath(hrefRaw);
+          if (!href) return;
+
+          var target = normPath(href);
+          var isActive =
+            (target === "/" && current === "/") ||
+            (target !== "/" && (current === target || current.startsWith(target + "/")));
+
+          if (isActive) {
+            a.classList.add("active");
+            a.setAttribute("aria-current", "page");
+          } else {
+            a.classList.remove("active");
+            a.removeAttribute("aria-current");
+          }
+        });
+      }
+
+      function initBurger() {
+        var burger = document.getElementById("burger");
+        var panel = document.getElementById("mobilePanel");
+        if (!burger || !panel) return;
+
+        function openPanel() {
+          burger.setAttribute("aria-expanded", "true");
+          panel.hidden = false;
+          document.body.classList.add("navOpen");
+        }
+
+        function closePanel() {
+          burger.setAttribute("aria-expanded", "false");
+          panel.hidden = true;
+          document.body.classList.remove("navOpen");
+        }
+
+        function toggle() {
+          var isOpen = burger.getAttribute("aria-expanded") === "true";
+          if (isOpen) closePanel(); else openPanel();
+        }
+
+        burger.setAttribute("aria-expanded", "false");
+        panel.hidden = true;
+        document.body.classList.remove("navOpen");
+
+        burger.addEventListener("click", function (e) {
+          e.preventDefault();
+          toggle();
+        });
+
+        document.addEventListener("keydown", function (e) {
+          if (e.key === "Escape" && burger.getAttribute("aria-expanded") === "true") closePanel();
+        });
+
+        document.addEventListener("click", function (e) {
+          if (burger.getAttribute("aria-expanded") !== "true") return;
+          var withinHeader = !!(e.target && e.target.closest && e.target.closest("#nfHeader"));
+          if (!withinHeader) closePanel();
+        });
+
+        panel.addEventListener("click", function (e) {
+          var a = e.target && e.target.closest ? e.target.closest("a") : null;
+          if (a) closePanel();
+        });
+
+        window.addEventListener("resize", function () {
+          if (window.innerWidth > 1140 && burger.getAttribute("aria-expanded") === "true") closePanel();
+        });
+      }
+
+      function normalizeFooterCTA() {
+        var cta = document.querySelector("#nfFooter .ctaRow");
+        if (!cta) return;
+
+        var keepPaths = {
+          "/gate/sales": true,
+          "/gate": true,
+          "/portal": true
+        };
+
+        Array.prototype.slice.call(cta.querySelectorAll("a")).forEach(function (a) {
+          var hrefRaw = (a.getAttribute("href") || "").trim();
+          var p = toInternalPath(hrefRaw);
+          if (!p) return;
+          var n = normPath(p);
+          if (!keepPaths[n]) a.parentNode && a.parentNode.removeChild(a);
+        });
+      }
+
+      function ensureFeedbackTab() {
+        var p = normPath(window.location.pathname);
+        if (p === "/feedback" || p.startsWith("/feedback/")) return;
+        if (document.querySelector(".feedbackTab")) return;
+
+        var a = document.createElement("a");
+        a.className = "feedbackTab";
+        a.href = "/feedback/";
+        a.setAttribute("aria-label", "Open feedback");
+
+        var spark = document.createElement("span");
+        spark.className = "spark";
+        spark.setAttribute("aria-hidden", "true");
+
+        a.appendChild(spark);
+        a.appendChild(document.createTextNode("Feedback"));
+        document.body.appendChild(a);
+      }
+
+      function emitReady(rid) {
+        try {
+          window.__nf = { rid: rid, version: SHELL_VERSION };
+          var ev = new CustomEvent("nf:shell:ready", { detail: { rid: rid, version: SHELL_VERSION } });
+          window.dispatchEvent(ev);
+        } catch (_) {
+          window.__nf = window.__nf || {};
+          window.__nf.rid = rid;
+          window.__nf.version = SHELL_VERSION;
+        }
+      }
+
+      function boot() {
+        var rid = getOrCreateRID();
+        applyRID(rid);
+
+        setYear();
+        setActiveLinks();
+        initBurger();
+        normalizeFooterCTA();
+        ensureFeedbackTab();
+
+        emitReady(rid);
+      }
+
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", function () { boot(); });
+      } else {
+        boot();
+      }
+    })();
+  </script>
+
+  <script>
+    /* =========================
+       /gate/sales logic — v3.1.1 (embedded)
+       - waits for nf:shell:ready
+       - keeps RID stable (no duplicates)
+       - improves tab a11y (aria-selected)
+       ========================= */
+    (function(){
+      "use strict";
+
+      var NF_CHECKOUT = {
+        quickscan_base: "https://buy.stripe.com/7sY4gA6v681S2a6cDi1Nu00",
+        quickscan_pro:  "https://buy.stripe.com/14A4gAg5Gfuk2a646M1Nu01",
+        quickscan_ent:  "https://buy.stripe.com/fZu5kE7za81SdSO5aQ1Nu02",
+        playbook_standard: "https://buy.stripe.com/9B69AU8De95W2a6cDi1Nu03",
+        playbook_pro:      "https://buy.stripe.com/28EfZicTuaa0dSO7iY1Nu04"
+      };
+
+      var OFFERS = {
+        quickscan_base: {
+          key:"quickscan_base", group:"Copilot QuickScan", priority:1,
+          name:"Copilot QuickScan (Base)", timeline:"5–7 business days",
+          indicative:"$3,500 CAD (pre-tax)", need:"quickscan", focus:"quickscan", tier:"base",
+          details:"/copilot/quickscan/",
+          bullets:["Executive summary (decision posture)","Surface & enablement map","Oversharing exposure themes + priorities"],
+          notes:["Digital delivery. Not legal advice."]
+        },
+        quickscan_pro: {
+          key:"quickscan_pro", group:"Copilot QuickScan", priority:1,
+          name:"Copilot QuickScan (Pro)", timeline:"5–7 business days",
+          indicative:"$5,500 CAD (pre-tax)", need:"quickscan", focus:"quickscan", tier:"pro",
+          details:"/copilot/quickscan/",
+          bullets:["Deeper boundary guidance + red-lines","Evidence readiness + owner mapping","Control checklist + early operating cadence"],
+          notes:["Digital delivery. Not legal advice."]
+        },
+        quickscan_ent: {
+          key:"quickscan_ent", group:"Copilot QuickScan", priority:1,
+          name:"Copilot QuickScan (Enterprise)", timeline:"Kickoff-confirmed timeline (typically 5–10 business days)",
+          indicative:"$7,500 CAD (pre-tax)", need:"quickscan", focus:"quickscan", tier:"enterprise",
+          details:"/copilot/quickscan/",
+          bullets:["Stakeholder-ready governance pack","Exception/connector control model (where relevant)","Board-ready briefing pack for leadership review"],
+          notes:["Digital delivery. Not legal advice."]
+        },
+        trustbrief: {
+          key:"trustbrief", group:"Primary Services", priority:2,
+          name:"Trust Brief (6-week)", timeline:"6 weeks",
+          indicative:"Scoped at kickoff (pre-tax)", need:"trustbrief", focus:"brief", tier:"",
+          details:"/trust-brief/",
+          bullets:["Material AI use-case map + owners","Decision gates + operating model draft","Board-ready roadmap + first ledger entries"],
+          notes:["Engagement scoped at kickoff. Not legal advice."]
+        },
+        trustledger: {
+          key:"trustledger", group:"Primary Services", priority:2,
+          name:"Trust Ledger", timeline:"Setup + cadence",
+          indicative:"Setup + monthly cadence (pre-tax)", need:"trustledger", focus:"ledger", tier:"",
+          details:"/trust-ledger/",
+          bullets:["Ledger register + evidence index","Board export cadence (agreed)","Change trail + exception discipline"],
+          notes:["Engagement scoped at kickoff. Not legal advice."]
+        },
+        playbook_standard: {
+          key:"playbook_standard", group:"Optional Add-ons", priority:3,
+          name:"Playbook — Standard", timeline:"Immediate (digital delivery)",
+          indicative:"$249 CAD (pre-tax)", need:"playbook-standard", focus:"playbook", tier:"standard",
+          details:"/playbook/standard/",
+          bullets:["0–90 day governance rollout pattern (one organization)","Templates + checklists","Board/procurement brief structure"],
+          notes:["Digital product. Not legal advice."]
+        },
+        playbook_pro: {
+          key:"playbook_pro", group:"Optional Add-ons", priority:3,
+          name:"Playbook — Pro (Agency/Broker)", timeline:"Immediate (digital delivery)",
+          indicative:"$749 CAD (pre-tax)", need:"playbook-pro", focus:"playbook", tier:"pro",
+          details:"/playbook/pro/",
+          bullets:["Agency/advisor license (multi-client use)","Reusable templates + due diligence kit","Client-ready procurement/board brief structures"],
+          notes:["Digital product. Not legal advice."]
+        }
+      };
+
+      function esc(s){
+        return String(s||"")
+          .replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+      }
+      function appendRID(path, rid){
+        try{
+          var u = new URL(path, location.origin);
+          if(!u.searchParams.get("rid")) u.searchParams.set("rid", rid);
+          return u.pathname + u.search + u.hash;
+        }catch(e){ return path; }
+      }
+      function checkoutHref(key, rid){
+        var u = NF_CHECKOUT[key] || "";
+        if(!u) return "";
+        try{
+          var x = new URL(u);
+          if(!x.searchParams.get("rid")) x.searchParams.set("rid", rid);
+          return x.toString();
+        }catch(e){ return u; }
+      }
+      function copyText(text){
+        if(!text) return;
+        if(navigator.clipboard && navigator.clipboard.writeText){
+          navigator.clipboard.writeText(text).catch(function(){});
+        }else{
+          var ta=document.createElement("textarea");
+          ta.value=text;
+          ta.style.position="fixed";
+          ta.style.left="-9999px";
+          document.body.appendChild(ta);
+          ta.select();
+          try{ document.execCommand("copy"); }catch(e){}
+          document.body.removeChild(ta);
+        }
+      }
+
+      function getBuyer(){ return localStorage.getItem("nf_buyer") || "card"; }
+      function setBuyer(b){ localStorage.setItem("nf_buyer", b); }
+
+      function buildProcSummary(rid, offerKey){
+        var o = OFFERS[offerKey] || OFFERS.quickscan_base;
+        var lines = [];
+        lines.push("Noetfield — Procurement Summary");
+        lines.push("Reference: " + rid);
+        lines.push("Selected offer: " + o.name);
+        lines.push("Timeline: " + o.timeline);
+        lines.push("Indicative pricing: " + o.indicative);
+        lines.push("Tax: applied as required at invoicing or checkout.");
+        lines.push("");
+        lines.push("Included (typical):");
+        for(var i=0;i<o.bullets.length;i++) lines.push("- " + o.bullets[i]);
+        if(o.notes && o.notes.length){
+          lines.push("");
+          lines.push("Notes:");
+          for(var j=0;j<o.notes.length;j++) lines.push("- " + o.notes[j]);
+        }
+        lines.push("");
+        lines.push("Start (Gate intake):");
+        var intake="/gate/intake/?need="+encodeURIComponent(o.need);
+        if(o.tier) intake += "&tier=" + encodeURIComponent(o.tier);
+        lines.push(location.origin + appendRID(intake, rid));
+        lines.push("");
+        lines.push("Invoice / PO (Procurement):");
+        var proc="/gate/procurement/?focus="+encodeURIComponent(o.focus);
+        if(o.tier) proc += "&tier=" + encodeURIComponent(o.tier);
+        lines.push(location.origin + appendRID(proc, rid));
+        return lines.join("\n");
+      }
+
+      function mailtoProc(rid, offerKey){
+        var o=OFFERS[offerKey] || OFFERS.quickscan_base;
+        var subject="Noetfield procurement — " + o.name + " — " + rid;
+        var body=buildProcSummary(rid, offerKey);
+        return "mailto:procurement@noetfield.com?subject="+encodeURIComponent(subject)+"&body="+encodeURIComponent(body);
+      }
+
+      function setTabState(cardOn){
+        var bCard=document.getElementById("nfBuyerCard");
+        var bProc=document.getElementById("nfBuyerProc");
+        if(!bCard || !bProc) return;
+        bCard.classList.toggle("isOn", !!cardOn);
+        bProc.classList.toggle("isOn", !cardOn);
+        bCard.setAttribute("aria-selected", cardOn ? "true" : "false");
+        bProc.setAttribute("aria-selected", cardOn ? "false" : "true");
+      }
+
+      function renderBuyerUI(){
+        var buyer=getBuyer();
+        setTabState(buyer==="card");
+
+        var note=document.getElementById("nfBuyerNote");
+        if(note){
+          note.innerHTML = (buyer==="proc")
+            ? "<strong>Invoice / PO:</strong> procurement note + clean routing are available."
+            : "<strong>Card checkout:</strong> enabled where shown (Copilot QuickScan, optional Playbook add-on).";
+        }
+      }
+
+      function setActiveOffer(rid, offerKey){
+        if(!OFFERS[offerKey]) offerKey="quickscan_base";
+
+        var cards=document.querySelectorAll("[data-offer]");
+        for(var i=0;i<cards.length;i++){
+          var k=cards[i].getAttribute("data-offer");
+          cards[i].classList.toggle("isActive", k===offerKey);
+        }
+
+        var sel=document.getElementById("nfOfferSelect");
+        if(sel) sel.value=offerKey;
+
+        var selLbl=document.getElementById("nfSelected");
+        if(selLbl) selLbl.innerHTML="<strong>Selected:</strong> " + esc(OFFERS[offerKey].name);
+
+        var ta=document.getElementById("nfSummary");
+        if(ta) ta.value=buildProcSummary(rid, offerKey);
+
+        updateRail(rid, offerKey);
+        updateOfferCTAs(rid);
+        setStickyFromOffer(rid, offerKey);
+
+        try{
+          var u=new URL(location.href);
+          u.searchParams.set("offer", offerKey);
+          history.replaceState({}, "", u.toString());
+        }catch(e){}
+      }
+
+      function updateRail(rid, activeKey){
+        var buyer=getBuyer();
+        var o=OFFERS[activeKey] || OFFERS.quickscan_base;
+
+        var railPrimary=document.getElementById("nfRailPrimary");
+        var railSecondary=document.getElementById("nfRailSecondary");
+        var railTertiary=document.getElementById("nfRailTertiary");
+        if(!railPrimary || !railSecondary || !railTertiary) return;
+
+        var intake="/gate/intake/?need="+encodeURIComponent(o.need) + (o.tier ? ("&tier="+encodeURIComponent(o.tier)) : "");
+        var proc="/gate/procurement/?focus="+encodeURIComponent(o.focus) + (o.tier ? ("&tier="+encodeURIComponent(o.tier)) : "");
+
+        railSecondary.setAttribute("href", appendRID(intake, rid));
+        railTertiary.setAttribute("href", appendRID(proc, rid));
+
+        var ch=checkoutHref(activeKey, rid);
+        if(buyer==="proc"){
+          railPrimary.textContent="Invoice / PO (Procurement)";
+          railPrimary.setAttribute("href", appendRID(proc, rid));
+          railPrimary.removeAttribute("rel");
+          railPrimary.removeAttribute("target");
+        }else{
+          if(ch){
+            railPrimary.textContent="Pay by card";
+            railPrimary.setAttribute("href", ch);
+            railPrimary.setAttribute("rel","nofollow noopener noreferrer");
+            railPrimary.setAttribute("target","_blank");
+          }else{
+            railPrimary.textContent="Start (Gate intake)";
+            railPrimary.setAttribute("href", appendRID(intake, rid));
+            railPrimary.removeAttribute("rel");
+            railPrimary.removeAttribute("target");
+          }
+        }
+      }
+
+      function updateOfferCTAs(rid){
+        var buyer=getBuyer();
+        var keys=Object.keys(OFFERS);
+
+        for(var i=0;i<keys.length;i++){
+          var k=keys[i];
+          var box=document.querySelector("[data-offer='"+k+"']");
+          if(!box) continue;
+
+          var o=OFFERS[k];
+          var pay=box.querySelector("a[data-cta='pay']");
+          var po=box.querySelector("a[data-cta='po']");
+          var start=box.querySelector("a[data-cta='start']");
+          var copy=box.querySelector("button[data-cta='copy']");
+          var email=box.querySelector("button[data-cta='email']");
+          var open=box.querySelector("a[data-cta='open']");
+
+          var ch=checkoutHref(k, rid);
+          var intake="/gate/intake/?need="+encodeURIComponent(o.need)+(o.tier?("&tier="+encodeURIComponent(o.tier)):"");
+          var proc="/gate/procurement/?focus="+encodeURIComponent(o.focus)+(o.tier?("&tier="+encodeURIComponent(o.tier)):"");
+
+          if(open) open.setAttribute("href", appendRID(o.details, rid));
+          if(start) start.setAttribute("href", appendRID(intake, rid));
+          if(po) po.setAttribute("href", appendRID(proc, rid));
+
+          if(pay){
+            if(ch){
+              pay.style.display="inline-flex";
+              pay.setAttribute("href", ch);
+              pay.setAttribute("rel","nofollow noopener noreferrer");
+              pay.setAttribute("target","_blank");
+            }else{
+              pay.style.display="none";
+              pay.removeAttribute("target");
+            }
+          }
+
+          if(copy){
+            copy.onclick = (function(offerKey){
+              return function(e){
+                e.preventDefault(); e.stopPropagation();
+                copyText(buildProcSummary(rid, offerKey));
+                setActiveOffer(rid, offerKey);
+              };
+            })(k);
+          }
+          if(email){
+            email.onclick = (function(offerKey){
+              return function(e){
+                e.preventDefault(); e.stopPropagation();
+                location.href = mailtoProc(rid, offerKey);
+              };
+            })(k);
+          }
+
+          if(buyer==="proc"){
+            if(po){ po.classList.add("primary"); po.classList.remove("secondary","ghost"); }
+            if(pay){ pay.classList.add("ghost"); pay.classList.remove("primary"); }
+          }else{
+            if(ch && pay){
+              pay.classList.add("primary"); pay.classList.remove("secondary","ghost");
+              if(po){ po.classList.add("secondary"); po.classList.remove("primary","ghost"); }
+            }else{
+              if(po){ po.classList.add("primary"); po.classList.remove("secondary","ghost"); }
+            }
+          }
+        }
+      }
+
+      function setStickyFromOffer(rid, offerKey){
+        var o=OFFERS[offerKey] || OFFERS.quickscan_base;
+
+        var sText=document.getElementById("nfStickyText");
+        var sPrimary=document.getElementById("nfStickyPrimary");
+        var sProc=document.getElementById("nfStickyProc");
+        if(!sText || !sPrimary || !sProc) return;
+
+        sText.innerHTML="<strong>"+esc(o.name)+"</strong> — "+esc(o.timeline)+".";
+
+        var ch=checkoutHref(offerKey, rid);
+        var intake="/gate/intake/?need="+encodeURIComponent(o.need)+(o.tier?("&tier="+encodeURIComponent(o.tier)):"");
+        var proc="/gate/procurement/?focus="+encodeURIComponent(o.focus)+(o.tier?("&tier="+encodeURIComponent(o.tier)):"");
+
+        if(ch){
+          sPrimary.textContent="Pay by card";
+          sPrimary.setAttribute("href", ch);
+          sPrimary.setAttribute("rel","nofollow noopener noreferrer");
+          sPrimary.setAttribute("target","_blank");
+        }else{
+          sPrimary.textContent="Start (Gate)";
+          sPrimary.setAttribute("href", appendRID(intake, rid));
+          sPrimary.removeAttribute("rel");
+          sPrimary.removeAttribute("target");
+        }
+        sProc.setAttribute("href", appendRID(proc, rid));
+      }
+
+      function renderRef(rid){
+        var el=document.getElementById("nfRID");
+        if(!el) return;
+        el.innerHTML =
+          'Reference (optional): <code>' + esc(rid) + '</code><br/>' +
+          'Used to keep Gate starts and procurement notes aligned. ' +
+          '<span style="opacity:.92;">Public intake = non-confidential.</span>';
+      }
+
+      function renderPaymentLinks(rid){
+        var box=document.getElementById("nfPayLinks");
+        if(!box) return;
+
+        function item(label, key){
+          var href = checkoutHref(key, rid);
+          if(!href) return "";
+          return (
+            '<div class="payItem">' +
+              '<strong>' + esc(label) + '</strong>' +
+              '<div class="row">' +
+                '<a class="btn secondary small" href="' + esc(href) + '" target="_blank" rel="nofollow noopener noreferrer">Open checkout</a>' +
+                '<button class="btn ghost small" type="button" data-copy-link="' + esc(key) + '">Copy checkout link</button>' +
+              '</div>' +
+            '</div>'
+          );
+        }
+
+        box.innerHTML =
+          item("Copilot QuickScan (Base) — $3,500 CAD", "quickscan_base") +
+          item("Copilot QuickScan (Pro) — $5,500 CAD", "quickscan_pro") +
+          item("Copilot QuickScan (Enterprise) — $7,500 CAD", "quickscan_ent") +
+          item("Playbook — Standard (add-on) — $249 CAD", "playbook_standard") +
+          item("Playbook — Pro (add-on) — $749 CAD", "playbook_pro");
+
+        var btns = box.querySelectorAll("button[data-copy-link]");
+        for(var i=0;i<btns.length;i++){
+          (function(b){
+            b.addEventListener("click", function(){
+              var k=b.getAttribute("data-copy-link");
+              copyText(checkoutHref(k, rid));
+            });
+          })(btns[i]);
+        }
+      }
+
+      function initWithRID(rid){
+        if(!rid) return;
+
+        renderRef(rid);
+        renderPaymentLinks(rid);
+
+        try{
+          var u = new URL(location.href);
+          var qb = (u.searchParams.get("buyer") || "").toLowerCase();
+          if(qb==="card" || qb==="proc") setBuyer(qb);
+        }catch(e){}
+
+        var defaultOffer="quickscan_base";
+        try{
+          var u2=new URL(location.href);
+          var o=(u2.searchParams.get("offer")||"").trim();
+          if(o && OFFERS[o]) defaultOffer=o;
+        }catch(e){}
+
+        var bCard=document.getElementById("nfBuyerCard");
+        var bProc=document.getElementById("nfBuyerProc");
+        if(bCard){
+          bCard.addEventListener("click", function(){
+            setBuyer("card");
+            renderBuyerUI();
+            setActiveOffer(rid, (document.getElementById("nfOfferSelect")||{}).value || defaultOffer);
+          });
+        }
+        if(bProc){
+          bProc.addEventListener("click", function(){
+            setBuyer("proc");
+            renderBuyerUI();
+            setActiveOffer(rid, (document.getElementById("nfOfferSelect")||{}).value || defaultOffer);
+          });
+        }
+
+        var cards=document.querySelectorAll("[data-offer]");
+        for(var i=0;i<cards.length;i++){
+          (function(el){
+            el.addEventListener("click", function(e){
+              var t=e.target;
+              if(t && (t.tagName==="A" || t.tagName==="BUTTON" || t.tagName==="SELECT" || t.tagName==="TEXTAREA" || t.tagName==="SUMMARY")) return;
+              var k=el.getAttribute("data-offer");
+              defaultOffer=k;
+              setActiveOffer(rid, k);
+            });
+          })(cards[i]);
+        }
+
+        var sel=document.getElementById("nfOfferSelect");
+        if(sel){
+          sel.addEventListener("change", function(){
+            defaultOffer=sel.value;
+            setActiveOffer(rid, sel.value);
+          });
+        }
+
+        var copyBtn=document.getElementById("nfCopy");
+        if(copyBtn){
+          copyBtn.addEventListener("click", function(){
+            var ta=document.getElementById("nfSummary");
+            if(ta) copyText(ta.value);
+          });
+        }
+        var emailBtn=document.getElementById("nfEmail");
+        if(emailBtn){
+          emailBtn.addEventListener("click", function(){
+            var offerKey=(document.getElementById("nfOfferSelect")||{}).value || "quickscan_base";
+            location.href = mailtoProc(rid, offerKey);
+          });
+        }
+
+        renderBuyerUI();
+        setActiveOffer(rid, defaultOffer);
+      }
+
+      window.addEventListener("nf:shell:ready", function(e){
+        initWithRID(e && e.detail ? e.detail.rid : (window.__nf && window.__nf.rid));
+      });
+
+      if(window.__nf && window.__nf.rid){
+        initWithRID(window.__nf.rid);
+      }
+    })();
+  </script>
 
   <!--
-    CHANGELOG (v4)
-    - Productized the page into 3 clear lanes (DIY / Pro / Trust Brief) with Gate routes.
-    - Added “What you get” with countable deliverables (buyer-first).
-    - Fixed artefacts presentation as a real table (no broken/fake table text).
-    - Added procurement FAQ (objection handling) using <details> (no JS required).
-    - Kept Trust Ledger reference hero + desktop floating header behavior.
-    - Aligned Playbook header tagline + desktop header reset to match Trust Ledger header behavior.
-  -->
+    CHANGELOG (v3.1.1 single-file)
+    - Embedded header.html + footer.html directly (no fetch/injection dependency).
+    - Embedded shell CSS + shell JS + sales logic into one deploy-ready HTML.
+    - Hardened external checkout links: rel="nofollow noopener noreferrer" + target="_blank".
+    - Fixed buyer tabs a11y: aria-selected toggles correctly.
+    - Kept RID behavior stable: one RID, propagated to data-rid-link + procurement notes.
 
-  <!--
-    SMOKE TEST
-    - GET /playbook/ returns 200
-    - /assets/noetfield-shell.css returns 200 and styles apply
-    - /assets/noetfield-shell.js returns 200 and injects header/footer into #nfHeader/#nfFooter
-    - Primary CTA routes to /gate/intake/?need=playbook-pro (200)
-    - Secondary routes: /playbook/pro/ , /trust-brief/ , /trust-ledger/ resolve (or redirect) to 200
-    - Mobile: header not boxed; desktop: header boxed/sticky; no layout overlap with hero
+    SMOKE TEST CHECKLIST
+    - GET /gate/sales/ => 200
+    - RID shows in footer + rail reference; copy button works
+    - Header active link highlights on /gate/sales/
+    - Burger opens/closes; body scroll locks; Esc closes
+    - Offer select updates rail + sticky CTA + procurement note
+    - Card buyer: QuickScan + Playbook show “Pay by card”; Trust Brief/Ledger do not
+    - Invoice buyer: primary action routes to /gate/procurement/ with rid
   -->
 </body>
 </html>

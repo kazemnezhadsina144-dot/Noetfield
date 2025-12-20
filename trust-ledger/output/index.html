@@ -1,12 +1,12 @@
-<!-- /trust-ledger/output/index.html — Noetfield Trust Ledger Output Spec v2.0 (buyer-first, acceptance-led, procurement-ready) -->
-<!DOCTYPE html>
+<!-- /trust-ledger/output/index.html — Noetfield Trust Ledger Output Spec v3.0 (Acceptance-led • Evidence-first • Procurement-ready) -->
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Noetfield — Trust Ledger output specification</title>
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <meta name="description" content="Board-ready Trust Ledger output specification: deliverables, structure, acceptance criteria, scope boundaries, and procurement-ready contracting path." />
+  <title>Noetfield — Trust Ledger output specification</title>
+  <meta name="description" content="Board-ready Trust Ledger output specification: deliverables, structure, acceptance criteria, inputs, cadence, scope boundaries, and procurement-ready contracting path (SOW/DPA)." />
   <meta name="robots" content="index,follow" />
   <meta name="author" content="Noetfield Systems Inc." />
   <meta name="theme-color" content="#07070b" />
@@ -43,7 +43,7 @@
       border-radius: calc(var(--radius) + 10px);
       border: 1px solid rgba(255,255,255,.11);
       background:
-        radial-gradient(1000px 420px at 16% 0%, rgba(200,163,73,.16), transparent 60%),
+        radial-gradient(1000px 420px at 14% 0%, rgba(200,163,73,.16), transparent 60%),
         radial-gradient(1000px 420px at 86% 10%, rgba(122,167,255,.08), transparent 62%),
         linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.022));
       box-shadow: var(--shadow);
@@ -135,6 +135,7 @@
       border-radius: 14px;
       background: rgba(255,255,255,.02);
       overflow:hidden;
+      margin-top:10px;
     }
     summary{
       cursor:pointer;
@@ -172,9 +173,9 @@
     "@type":"WebPage",
     "name":"Noetfield — Trust Ledger output specification",
     "url":"https://www.noetfield.com/trust-ledger/output/",
-    "description":"Board-ready Trust Ledger output specification: deliverables, structure, acceptance criteria, scope boundaries, and procurement-ready contracting path.",
+    "description":"Board-ready Trust Ledger output specification: deliverables, structure, acceptance criteria, inputs, cadence, scope boundaries, and procurement-ready contracting path (SOW/DPA).",
     "isPartOf":{"@type":"WebSite","name":"Noetfield","url":"https://www.noetfield.com/"},
-    "publisher":{"@type":"Organization","name":"Noetfield Systems Inc."}
+    "publisher":{"@type":"Organization","name":"Noetfield Systems Inc.","url":"https://www.noetfield.com/"}
   }
   </script>
 </head>
@@ -186,15 +187,14 @@
   <header id="nfHeader"></header>
 
   <main id="main" class="wrap">
-    <!-- HERO (sales-oriented but board-safe) -->
-    <section class="hero" aria-label="Trust Ledger output specification">
+    <section class="hero" aria-label="Trust Ledger output specification hero">
       <div class="heroShell">
         <div class="heroInner">
           <div class="eyebrow"><span class="dot"></span> Board-ready deliverables • Acceptance-led • Procurement-friendly</div>
           <h1>Trust Ledger output specification</h1>
           <p class="lead">
-            A procurement-ready definition of what “board-ready” means in practice: the artefacts delivered, how they are structured,
-            how acceptance is assessed, and what is explicitly out of scope. Built to reduce ambiguity, speed approvals, and support auditability.
+            Procurement-ready definition of “board-ready” Trust Ledger outputs: artefacts delivered, how they are structured, how acceptance is assessed,
+            and what is explicitly out of scope. Designed to reduce ambiguity, speed approvals, and support auditability.
           </p>
 
           <div class="row">
@@ -214,28 +214,26 @@
             <a class="chip" href="#procurement">Procurement</a>
           </div>
 
-          <div class="note">
+          <div class="note" role="note">
             Public intake is non-confidential by design. Do not submit credentials, secrets, or regulated data via public forms.
           </div>
         </div>
       </div>
     </section>
 
-    <!-- WHY THIS MATTERS (buyer clarity) -->
-    <section class="section" aria-label="Why this output spec exists">
+    <section class="section" aria-label="Why this specification exists">
       <div class="kicker">Why this spec exists</div>
       <p class="sub">
-        Many governance engagements fail in procurement because “deliverables” are vague. This specification defines concrete artefacts
-        and acceptance criteria so Legal, Security, IT, and Procurement can review the same object, not interpretations.
+        Procurement reviews stall when “deliverables” are vague. This specification defines concrete artefacts and acceptance criteria so Legal, Security, IT,
+        and Procurement review the same objects (versioned outputs), not interpretations.
       </p>
     </section>
 
-    <!-- PRIMARY DELIVERABLES -->
     <section id="deliverables" class="section" aria-label="Primary deliverables">
       <div class="kicker">Primary deliverables</div>
-      <p class="sub">Delivered as versioned artefacts. Evidence links are explicit. Missing proofs are listed as gaps.</p>
+      <p class="sub">Delivered as versioned artefacts. Evidence pointers are explicit. Missing proofs are listed as gaps.</p>
 
-      <div class="grid">
+      <div class="grid" aria-label="Deliverable cards">
         <div class="card"><div class="bd">
           <h2>Board memo (PDF)</h2>
           <p>Decision-ready summary that stands alone for board review.</p>
@@ -249,10 +247,10 @@
 
         <div class="card"><div class="bd">
           <h2>Trust Ledger snapshot</h2>
-          <p>Record of the system/use-case, owners, controls, and evidence pointers.</p>
+          <p>Record of system/use-case, accountable roles, controls, and evidence pointers.</p>
           <ul class="list">
             <li>Use case / system identifiers</li>
-            <li>Owners and approvers (by role)</li>
+            <li>Accountable roles (by function)</li>
             <li>Controls and evidence pointers</li>
             <li>Gaps and follow-ups</li>
           </ul>
@@ -260,7 +258,7 @@
 
         <div class="card"><div class="bd">
           <h2>Controls map</h2>
-          <p>Traceability from risks to controls to proofs (what is actually verifiable).</p>
+          <p>Traceability from risks to controls to proofs (what is verifiable).</p>
           <ul class="list">
             <li>Risks ↔ controls ↔ proof linkage</li>
             <li>Effectiveness notes (evidence-based)</li>
@@ -272,7 +270,7 @@
           <h2>Evidence index</h2>
           <p>What was reviewed, what was missing, and what was assumed.</p>
           <ul class="list">
-            <li>Reviewed artefacts</li>
+            <li>Reviewed artefacts list</li>
             <li>Missing evidence list</li>
             <li>Assumptions register</li>
           </ul>
@@ -280,25 +278,23 @@
       </div>
 
       <details>
-        <summary>
-          Optional add-ons (by scope) <span class="tag">enterprise</span>
-        </summary>
+        <summary>Optional add-ons (by scope) <span class="tag">enterprise</span></summary>
         <div class="detailsBd">
           <ul class="list">
             <li>Policy-to-control mapping pack (board + audit alignment)</li>
             <li>Vendor due-diligence questionnaire and review notes</li>
-            <li>Executive risk register slice for a specific tool/program</li>
+            <li>Executive risk register slice for a specific program/tool</li>
             <li>Evidence request list for internal teams (what to collect next)</li>
           </ul>
         </div>
       </details>
     </section>
 
-    <!-- STRUCTURE -->
     <section id="structure" class="section" aria-label="Structure and formatting">
       <div class="kicker">Structure and formatting</div>
-      <p class="sub">Outputs are designed to be usable under review: consistent naming, versioning, and role-based ownership.</p>
-      <div class="grid">
+      <p class="sub">Outputs are designed for review: consistent naming, versioning, and role-based ownership.</p>
+
+      <div class="grid" aria-label="Structure cards">
         <div class="card"><div class="bd">
           <h2>Versioning</h2>
           <ul class="list">
@@ -307,6 +303,7 @@
             <li>Explicit assumptions per version</li>
           </ul>
         </div></div>
+
         <div class="card"><div class="bd">
           <h2>Board readability</h2>
           <ul class="list">
@@ -318,10 +315,10 @@
       </div>
     </section>
 
-    <!-- ACCEPTANCE -->
     <section id="acceptance" class="section" aria-label="Acceptance criteria">
       <div class="kicker">Acceptance criteria</div>
       <p class="sub">Acceptance is based on deliverables and clarity, not undefined “completion.”</p>
+
       <ul class="list">
         <li><strong>Scope clarity</strong> and explicit exclusions</li>
         <li><strong>Ownership clarity</strong> (accountable roles)</li>
@@ -329,39 +326,39 @@
         <li><strong>Actionability</strong> (clear next steps with owners + timelines)</li>
         <li><strong>Board readability</strong> (decision summary stands alone)</li>
       </ul>
-      <div class="note">
-        If evidence access is constrained, outputs still complete — but constraints are recorded as assumptions and gaps, not hidden.
+
+      <div class="note" role="note">
+        If evidence access is constrained, outputs remain deliverable-complete — constraints are recorded as assumptions and gaps, not hidden.
       </div>
     </section>
 
-    <!-- INPUTS (what client must provide) -->
-    <section id="inputs" class="section" aria-label="Inputs and access (what is needed)">
+    <section id="inputs" class="section" aria-label="Inputs and access">
       <div class="kicker">Inputs and access</div>
       <p class="sub">Work is evidence-based. Inputs are scoped, minimized, and agreed before sensitive exchange.</p>
 
-      <div class="grid">
+      <div class="grid" aria-label="Inputs cards">
         <div class="card"><div class="bd">
           <h2>Minimum inputs</h2>
           <ul class="list">
             <li>Tool/use-case shortlist (or discovery constraints)</li>
-            <li>Named accountable roles (business + IT + security)</li>
+            <li>Accountable roles (business + IT + security)</li>
             <li>Existing policies (if available)</li>
             <li>Evidence access plan (what can be reviewed)</li>
           </ul>
         </div></div>
+
         <div class="card"><div class="bd">
-          <h2>What is not requested</h2>
+          <h2>Not requested</h2>
           <ul class="list">
             <li>Credentials/secrets via public channels</li>
             <li>Unbounded access to systems</li>
             <li>Production data dumps by default</li>
-            <li>Anything outside the agreed scope</li>
+            <li>Anything outside agreed scope</li>
           </ul>
         </div></div>
       </div>
     </section>
 
-    <!-- CADENCE -->
     <section id="cadence" class="section" aria-label="Delivery cadence">
       <div class="kicker">Delivery cadence</div>
       <p class="sub">Cadence is defined per engagement, typically:</p>
@@ -373,23 +370,22 @@
       </ul>
     </section>
 
-    <!-- BOUNDARIES -->
     <section id="boundaries" class="section" aria-label="Scope boundaries">
       <div class="kicker">Scope boundaries</div>
       <ul class="list">
         <li>Not legal representation; internal counsel retains final positions</li>
-        <li>Not forensic pentesting; evidence-based review within agreed access</li>
+        <li>Not forensic penetration testing; evidence-based review within agreed access</li>
         <li>Public intake is non-confidential by design</li>
       </ul>
     </section>
 
-    <!-- PROCUREMENT CTA -->
     <section id="procurement" class="section" aria-label="Procurement and contracting path">
       <div class="kicker">Procurement and contracting path</div>
       <p class="sub">
         Contracting is deliverable-defined. Typical documents: SOW (scope + acceptance) and, if applicable, DPA (privacy boundaries).
-        For onboarding context, see the Vendor pack.
+        For vendor onboarding context, see the Vendor pack.
       </p>
+
       <div class="row">
         <a class="btn" href="/gate/intake/?need=trust-ledger" data-rid-link>Request Trust Ledger via Gate</a>
         <a class="btn secondary" href="/vendor/" data-rid-link>Vendor pack</a>

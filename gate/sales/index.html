@@ -1,4 +1,4 @@
-<!-- /gate/sales/index.html — Noetfield Sales v3.1.0 (Shell-RID native + no duplicate .btn + stable init) -->
+<!-- /gate/sales/index.html — Noetfield Sales v3.2.0 (A11y tabs • Price consistency • Cleaner emphasis rules • Stable RID init) -->
 <!doctype html>
 <html lang="en">
 <head>
@@ -390,7 +390,7 @@
           name:"Copilot QuickScan (Pro)", timeline:"5–7 business days",
           indicative:"$5,500 CAD (pre-tax)", need:"quickscan", focus:"quickscan", tier:"pro",
           details:"/copilot/quickscan/",
-          bullets:["Deeper boundary guidance + red-lines","Evidence readiness + owner mapping","Control checklist + early operating cadence"],
+          bullets:["Expanded governance notes (connectors/extensions where relevant)","Owner/approval mapping for early controls","Deeper control priorities + early operating cadence"],
           notes:["Digital delivery. Not legal advice."]
         },
         quickscan_ent: {
@@ -398,7 +398,7 @@
           name:"Copilot QuickScan (Enterprise)", timeline:"Kickoff-confirmed timeline (typically 5–10 business days)",
           indicative:"$7,500 CAD (pre-tax)", need:"quickscan", focus:"quickscan", tier:"enterprise",
           details:"/copilot/quickscan/",
-          bullets:["Stakeholder-ready governance pack","Exception/connector control model (where relevant)","Board-ready briefing pack for leadership review"],
+          bullets:["Stakeholder-ready governance pack","Expanded evidence plan + exception notes (where relevant)","Board-ready briefing pack for leadership review"],
           notes:["Digital delivery. Not legal advice."]
         },
         trustbrief: {
@@ -511,12 +511,21 @@
         return "mailto:procurement@noetfield.com?subject="+encodeURIComponent(subject)+"&body="+encodeURIComponent(body);
       }
 
-      function renderBuyerUI(){
-        var buyer=getBuyer();
+      function setTabState(buyer){
         var bCard=document.getElementById("nfBuyerCard");
         var bProc=document.getElementById("nfBuyerProc");
-        if(bCard) bCard.classList.toggle("isOn", buyer==="card");
-        if(bProc) bProc.classList.toggle("isOn", buyer==="proc");
+        if(!bCard || !bProc) return;
+
+        bCard.classList.toggle("isOn", buyer==="card");
+        bProc.classList.toggle("isOn", buyer==="proc");
+
+        bCard.setAttribute("aria-selected", buyer==="card" ? "true" : "false");
+        bProc.setAttribute("aria-selected", buyer==="proc" ? "true" : "false");
+      }
+
+      function renderBuyerUI(){
+        var buyer=getBuyer();
+        setTabState(buyer);
 
         var note=document.getElementById("nfBuyerNote");
         if(note){
@@ -641,7 +650,7 @@
             })(k);
           }
 
-          /* Emphasis */
+          /* Emphasis rules */
           if(buyer==="proc"){
             if(po){ po.classList.add("primary"); po.classList.remove("secondary","ghost"); }
             if(pay){ pay.classList.add("ghost"); pay.classList.remove("primary"); }
@@ -749,19 +758,20 @@
 
         var bCard=document.getElementById("nfBuyerCard");
         var bProc=document.getElementById("nfBuyerProc");
+
+        function activateBuyer(b){
+          setBuyer(b);
+          renderBuyerUI();
+          setActiveOffer(rid, defaultOffer);
+        }
+
         if(bCard){
-          bCard.addEventListener("click", function(){
-            setBuyer("card");
-            renderBuyerUI();
-            setActiveOffer(rid, defaultOffer);
-          });
+          bCard.addEventListener("click", function(){ activateBuyer("card"); });
+          bCard.addEventListener("keydown", function(e){ if(e.key==="Enter" || e.key===" "){ e.preventDefault(); activateBuyer("card"); }});
         }
         if(bProc){
-          bProc.addEventListener("click", function(){
-            setBuyer("proc");
-            renderBuyerUI();
-            setActiveOffer(rid, defaultOffer);
-          });
+          bProc.addEventListener("click", function(){ activateBuyer("proc"); });
+          bProc.addEventListener("keydown", function(e){ if(e.key==="Enter" || e.key===" "){ e.preventDefault(); activateBuyer("proc"); }});
         }
 
         var cards=document.querySelectorAll("[data-offer]");
@@ -848,6 +858,7 @@
             <a class="btn primary" href="/gate/" data-rid-link>Start (Gate)</a>
             <a class="btn secondary" href="/gate/procurement/" data-rid-link>Invoice / PO</a>
             <a class="btn secondary" href="/vendor/">Vendor profile</a>
+            <a class="btn secondary" href="/copilot/">Copilot hub</a>
           </div>
 
           <div class="notice" role="note">
@@ -926,15 +937,15 @@
                   <h3>Copilot QuickScan (Pro)</h3>
                   <span class="tag">5–7 business days</span>
                 </div>
-                <p>Expanded defensibility: boundaries, evidence readiness, and a stronger control checklist for higher scrutiny.</p>
+                <p>Expanded defensibility: governance notes, owner mapping, and deeper control priorities for higher scrutiny.</p>
                 <div class="offerMeta">
                   <div class="kv"><strong>Price:</strong> $5,500 CAD</div>
                   <div class="kv"><strong>Tier:</strong> Pro</div>
                 </div>
                 <ul>
-                  <li>Deeper boundary guidance + red-lines</li>
-                  <li>Evidence readiness + owner mapping</li>
-                  <li>Control checklist + early cadence</li>
+                  <li>Expanded governance notes (connectors/extensions where relevant)</li>
+                  <li>Owner/approval mapping for early controls</li>
+                  <li>Deeper control priorities + early cadence</li>
                 </ul>
 
                 <div class="actions" style="margin-top:12px">
@@ -968,7 +979,7 @@
                 </div>
                 <ul>
                   <li>Stakeholder-ready governance pack</li>
-                  <li>Exception / connector control model (where relevant)</li>
+                  <li>Expanded evidence plan + exception notes (where relevant)</li>
                   <li>Board-ready briefing pack</li>
                 </ul>
 

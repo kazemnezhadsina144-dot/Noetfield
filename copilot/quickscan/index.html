@@ -1,4 +1,4 @@
-<!-- /copilot/quickscan/index.html — Copilot QuickScan v2.4 (lead-in to Readiness • 3-tier offers • Stripe Links kept) -->
+<!-- /copilot/quickscan/index.html — Copilot QuickScan v2.5 (Stronger enterprise alignment • Table-safe mobile • Price consistency) -->
 <!doctype html>
 <html lang="en">
 <head>
@@ -156,15 +156,19 @@
     .steps{margin:0; padding-left:18px; color:var(--muted); line-height:1.85}
     .steps li{margin:6px 0}
 
-    .table{
-      width:100%;
-      border-collapse:separate;
-      border-spacing:0;
-      overflow:hidden;
+    .tableWrap{
+      overflow:auto;
+      -webkit-overflow-scrolling: touch;
       border-radius:16px;
+      margin-top:10px;
       border:1px solid rgba(255,255,255,.10);
       background: rgba(255,255,255,.02);
-      margin-top:10px;
+    }
+    .table{
+      width:100%;
+      min-width: 640px;
+      border-collapse:separate;
+      border-spacing:0;
     }
     .table th, .table td{
       text-align:left;
@@ -184,6 +188,7 @@
 
     .rail{ position: sticky; top: 14px; }
     .railBox{ border-radius: var(--radius); overflow:hidden; }
+
     .box{
       margin-top:12px;
       padding:12px 12px;
@@ -212,6 +217,22 @@
     .miniList{margin:10px 0 0; padding-left:18px; color:var(--muted); line-height:1.85; font-size:13px}
     .miniList li{margin:6px 0}
 
+    details.faq{
+      margin-top:12px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.02);
+      padding:10px 12px;
+    }
+    details.faq summary{
+      cursor:pointer;
+      color:var(--text);
+      font-weight:900;
+      list-style:none;
+    }
+    details.faq summary::-webkit-details-marker{display:none}
+    .faqBody{margin-top:10px; color:var(--muted2); font-size:12.8px; line-height:1.6}
+
     .stickyCta{
       position: sticky;
       bottom: 0;
@@ -238,9 +259,9 @@
       .rail{ position: relative; top: 0; }
       .kpiGrid{ grid-template-columns: 1fr; }
       h1{ font-size: 30px; }
+      .table{ min-width: 560px; }
     }
     @media (max-width: 760px){
-      .table th, .table td{padding:10px}
       .stickyText{display:none}
     }
   </style>
@@ -275,12 +296,14 @@
           <p class="lead">
             A <strong>rapid readiness snapshot</strong> for Microsoft 365 Copilot adoption — delivered in <strong>5–7 business days</strong>.
             Use it to surface exposure themes and set boundaries fast, then upgrade into the full
-            <a href="/copilot/readiness/">Readiness Assessment (2/4/6 weeks)</a> when stakeholders require deeper governance and evidence.
+            <a href="/copilot/readiness/">Microsoft 365 Copilot Readiness Assessment (2/4/6 weeks)</a>
+            when stakeholders require deeper governance and evidence.
           </p>
 
           <div class="actions" aria-label="Primary actions">
             <a class="btn primary" href="#purchase">See packages & pay</a>
-            <a class="btn secondary" href="/copilot/readiness/">Readiness Assessment (Flagship)</a>
+            <a class="btn secondary" href="/copilot/readiness/">Readiness (Flagship)</a>
+            <a class="btn secondary" href="/gate/sales/?offer=quickscan_base">Purchase hub</a>
             <a class="btn secondary" href="/gate/procurement/?focus=quickscan">Invoice / PO (Procurement)</a>
           </div>
 
@@ -335,74 +358,89 @@
             <div class="sectionTitle">Deliverables (all tiers)</div>
             <p class="sectionDesc">A compact set of artifacts that support Go / Guardrails / Pause decisions and early controls.</p>
 
-            <table class="table" aria-label="Deliverables table">
-              <thead>
-                <tr>
-                  <th>Deliverable</th>
-                  <th>What it contains</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><strong>Executive Summary</strong> (1 page)</td>
-                  <td>Posture rating, decision requests, and immediate containment priorities.</td>
-                </tr>
-                <tr>
-                  <td><strong>Surface & Enablement Map</strong></td>
-                  <td>Which Copilot surfaces exist, where adoption is happening, and what governance exists.</td>
-                </tr>
-                <tr>
-                  <td><strong>Oversharing Themes</strong></td>
-                  <td>Ranked exposure themes and remediation priorities (policy + permissions + hygiene).</td>
-                </tr>
-                <tr>
-                  <td><strong>Data Boundaries Pack</strong></td>
-                  <td>Boundary guidance, sensitive domains, and practical red-lines for early adoption.</td>
-                </tr>
-                <tr>
-                  <td><strong>Evidence Readiness Sheet</strong></td>
-                  <td>Signals, retention posture, export steps, and accountable owners.</td>
-                </tr>
-                <tr>
-                  <td><strong>30/60/90 Plan</strong></td>
-                  <td>Owners, milestones, and a sequence that reduces exposure while enabling value.</td>
-                </tr>
-              </tbody>
-            </table>
+            <div class="tableWrap" aria-label="Deliverables table wrapper">
+              <table class="table" aria-label="Deliverables table">
+                <thead>
+                  <tr>
+                    <th>Deliverable</th>
+                    <th>What it contains</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Executive Summary</strong> (1 page)</td>
+                    <td>Posture rating, decision requests, and immediate containment priorities.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Surface & Enablement Map</strong></td>
+                    <td>Which Copilot surfaces exist, where adoption is happening, and what governance exists.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Oversharing Themes</strong></td>
+                    <td>Ranked exposure themes and remediation priorities (policy + permissions + hygiene).</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Data Boundaries Pack</strong></td>
+                    <td>Boundary guidance, sensitive domains, and practical red-lines for early adoption.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Evidence Readiness Sheet</strong></td>
+                    <td>Signals, retention posture, export steps, and accountable owners.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>30/60/90 Plan</strong></td>
+                    <td>Owners, milestones, and a sequence that reduces exposure while enabling value.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="section" id="how">
+            <div class="sectionTitle">How it runs (typical)</div>
+            <p class="sectionDesc">Designed to stay light on access and heavy on defensible outputs.</p>
+            <ol class="steps">
+              <li><strong>Kickoff</strong> (30–45 min): scope, stakeholders, and what must be true for a safe start.</li>
+              <li><strong>Snapshot</strong>: posture mapping + exposure themes + boundaries.</li>
+              <li><strong>Delivery</strong>: board-safe pack + 30/60/90 plan and upgrade recommendation.</li>
+            </ol>
           </div>
 
           <div class="section" id="upgrade">
             <div class="sectionTitle">Upgrade to Readiness (enterprise path)</div>
             <p class="sectionDesc">If procurement/boards require deeper governance, use Readiness packaging (2/4/6 weeks).</p>
-            <table class="table" aria-label="Upgrade table">
-              <thead>
-                <tr>
-                  <th>Next step</th>
-                  <th>When to use it</th>
-                  <th>Commercial</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><strong>Readiness — Standard</strong> (4 weeks)</td>
-                  <td>Enterprise default: owners + control baseline + procurement-fileable evidence pack.</td>
-                  <td><strong>$15,000 CAD</strong></td>
-                </tr>
-                <tr>
-                  <td><strong>Readiness — Starter</strong> (2 weeks)</td>
-                  <td>Fast readiness pack when urgency is high and org is smaller.</td>
-                  <td><strong>$9,500 CAD</strong></td>
-                </tr>
-                <tr>
-                  <td><strong>Readiness — Extended</strong> (6 weeks)</td>
-                  <td>Complex orgs / regulated expectations / stronger exception handling.</td>
-                  <td><strong>$25,000 CAD</strong></td>
-                </tr>
-              </tbody>
-            </table>
+
+            <div class="tableWrap" aria-label="Upgrade table wrapper">
+              <table class="table" aria-label="Upgrade table">
+                <thead>
+                  <tr>
+                    <th>Next step</th>
+                    <th>When to use it</th>
+                    <th>Commercial</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Readiness — Standard</strong> (4 weeks)</td>
+                    <td>Enterprise default: owners + control baseline + procurement-fileable evidence pack.</td>
+                    <td><strong>$15,000 CAD</strong></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Readiness — Starter</strong> (2 weeks)</td>
+                    <td>Fast readiness pack when urgency is high and org is smaller.</td>
+                    <td><strong>$9,500 CAD</strong></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Readiness — Extended</strong> (6 weeks)</td>
+                    <td>Complex orgs / regulated expectations / stronger exception handling.</td>
+                    <td><strong>$25,000 CAD</strong></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
 
             <div class="actions" style="margin-top:12px">
-              <a class="btn primary" href="/copilot/readiness/">View Readiness Assessment</a>
+              <a class="btn primary" href="/copilot/readiness/">View Readiness</a>
               <a class="btn secondary" href="/gate/procurement/?focus=copilot-readiness-standard">Invoice/PO for Standard</a>
             </div>
           </div>
@@ -411,36 +449,38 @@
             <div class="sectionTitle">Packages & pricing</div>
             <p class="sectionDesc">Choose a tier based on depth of governance coverage and stakeholder complexity.</p>
 
-            <table class="table" aria-label="Package comparison table">
-              <thead>
-                <tr>
-                  <th>Tier</th>
-                  <th>Best for</th>
-                  <th>Includes (in addition to all-tier deliverables)</th>
-                  <th>Price</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><strong>Base</strong></td>
-                  <td>Fast posture + decision pack for early rollout or pre-scale check.</td>
-                  <td>Core posture mapping + exposure themes + boundary guidance + evidence readiness.</td>
-                  <td><strong>$3,500 CAD</strong></td>
-                </tr>
-                <tr>
-                  <td><strong>Pro</strong></td>
-                  <td>More connectors, more stakeholders, higher sensitivity.</td>
-                  <td>Deeper connector/extension governance + clearer owner/approval mapping.</td>
-                  <td><strong>$5,000 CAD</strong></td>
-                </tr>
-                <tr>
-                  <td><strong>Enterprise</strong></td>
-                  <td>Formal governance expectations and higher scrutiny.</td>
-                  <td>Stronger executive memo depth + expanded evidence plan + exception notes.</td>
-                  <td><strong>$7,500 CAD</strong></td>
-                </tr>
-              </tbody>
-            </table>
+            <div class="tableWrap" aria-label="Package comparison table wrapper">
+              <table class="table" aria-label="Package comparison table">
+                <thead>
+                  <tr>
+                    <th>Tier</th>
+                    <th>Best for</th>
+                    <th>Includes (in addition to all-tier deliverables)</th>
+                    <th>Price</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Base</strong></td>
+                    <td>Fast posture + decision pack for early rollout or pre-scale check.</td>
+                    <td>Core posture mapping + exposure themes + boundary guidance + evidence readiness.</td>
+                    <td><strong>$3,500 CAD</strong></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Pro</strong></td>
+                    <td>More connectors, more stakeholders, higher sensitivity.</td>
+                    <td>Expanded governance notes + clearer owner/approval mapping + deeper control priorities.</td>
+                    <td><strong>$5,500 CAD</strong></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Enterprise</strong></td>
+                    <td>Formal governance expectations and higher scrutiny.</td>
+                    <td>Expanded evidence plan + exception notes + stronger executive briefing depth.</td>
+                    <td><strong>$7,500 CAD</strong></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
 
             <div class="notice" role="note">
               <strong>Scope note:</strong> QuickScan provides assessment + evidence-readiness outputs. Deeper readiness/governance is packaged in <a href="/copilot/readiness/">Readiness (2/4/6 weeks)</a>.
@@ -451,21 +491,23 @@
             <div class="sectionTitle">Procurement summary</div>
             <p class="sectionDesc">A compact internal-facing summary for approvals and onboarding.</p>
 
-            <table class="table" aria-label="Procurement summary table">
-              <thead>
-                <tr>
-                  <th>Item</th>
-                  <th>Summary</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr><td>Service</td><td>Copilot QuickScan (5–7 business days)</td></tr>
-                <tr><td>Scope</td><td>Copilot posture themes, boundaries, evidence readiness, connector/extension notes (tier-dependent depth)</td></tr>
-                <tr><td>Outputs</td><td>Executive Summary + Buyer Pack artifacts + 30/60/90 plan</td></tr>
-                <tr><td>Access</td><td>Read-only review preferred; posture-focused evidence</td></tr>
-                <tr><td>Data handling</td><td>Public intake is non-sensitive; secure sharing options confirmed after kickoff</td></tr>
-              </tbody>
-            </table>
+            <div class="tableWrap" aria-label="Procurement summary table wrapper">
+              <table class="table" aria-label="Procurement summary table">
+                <thead>
+                  <tr>
+                    <th>Item</th>
+                    <th>Summary</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td>Service</td><td>Copilot QuickScan (5–7 business days)</td></tr>
+                  <tr><td>Scope</td><td>Copilot posture themes, boundaries, evidence readiness, connector/extension notes (tier-dependent depth)</td></tr>
+                  <tr><td>Outputs</td><td>Executive Summary + buyer pack artifacts + 30/60/90 plan</td></tr>
+                  <tr><td>Access</td><td>Read-only review preferred; posture-focused evidence</td></tr>
+                  <tr><td>Data handling</td><td>Public intake is non-sensitive; secure sharing options confirmed after kickoff</td></tr>
+                </tbody>
+              </table>
+            </div>
 
             <div class="actions" aria-label="Procurement actions">
               <a class="btn secondary" href="/gate/procurement/?focus=quickscan">Invoice / PO (Procurement)</a>
@@ -473,6 +515,15 @@
               <a class="btn secondary" href="/copilot/readiness/">Readiness (Flagship)</a>
             </div>
           </div>
+
+          <details class="faq">
+            <summary>FAQ (common buyer questions)</summary>
+            <div class="faqBody">
+              <p><strong>Is this a technical deployment service?</strong><br/>No. QuickScan is a governance/readiness snapshot with board/procurement-ready artifacts.</p>
+              <p><strong>Do we share confidential data?</strong><br/>Public intake is non-confidential. Secure sharing options are confirmed after kickoff if needed.</p>
+              <p><strong>What if stakeholders want deeper evidence?</strong><br/>Upgrade to <a href="/copilot/readiness/">Readiness (2/4/6 weeks)</a> for enterprise expectations.</p>
+            </div>
+          </details>
         </div>
       </section>
 
@@ -510,16 +561,16 @@
                 <h3 class="offerName">QuickScan Pro</h3>
                 <span class="badge">Deeper governance</span>
               </div>
-              <div class="priceNum">$5,000 CAD</div>
+              <div class="priceNum">$5,500 CAD</div>
               <div class="offerSub">For more connectors, more stakeholders, or higher sensitivity.</div>
               <ul class="miniList">
                 <li>Expanded connector/extension notes</li>
                 <li>Clearer owner/approval mapping</li>
-                <li>More detailed control recommendations</li>
+                <li>Deeper control priorities</li>
               </ul>
               <div class="actions" style="margin-top:12px">
                 <a class="btn primary" href="https://buy.stripe.com/14A4gAg5Gfuk2a646M1Nu01" rel="nofollow noopener" target="_blank">Pay Pro</a>
-                <a class="btn secondary" href="/gate/procurement/?focus=quickscan">Invoice / PO</a>
+                <a class="btn secondary" href="/gate/procurement/?focus=quickscan&tier=pro">Invoice / PO</a>
               </div>
             </div>
 
@@ -533,24 +584,24 @@
               <div class="offerSub">For formal governance expectations and higher scrutiny.</div>
               <ul class="miniList">
                 <li>Expanded evidence plan + exception notes</li>
-                <li>Stronger executive memo depth</li>
+                <li>Stronger executive briefing depth</li>
                 <li>Approval routing guidance</li>
               </ul>
               <div class="actions" style="margin-top:12px">
                 <a class="btn primary" href="https://buy.stripe.com/fZu5kE7za81SdSO5aQ1Nu02" rel="nofollow noopener" target="_blank">Pay Enterprise</a>
-                <a class="btn secondary" href="/gate/procurement/?focus=quickscan">Invoice / PO</a>
+                <a class="btn secondary" href="/gate/procurement/?focus=quickscan&tier=enterprise">Invoice / PO</a>
               </div>
             </div>
 
             <div class="box">
-              <strong>Upgrade path</strong><br/>
-              Enterprise default is <a href="/copilot/readiness/">Readiness Assessment (2/4/6 weeks)</a>.
+              <strong>Enterprise default</strong><br/>
+              For formal governance expectations, use <a href="/copilot/readiness/">Readiness Assessment (2/4/6 weeks)</a>.
             </div>
 
             <div class="box">
               <strong>Related</strong><br/>
+              <a href="/copilot/">Copilot Hub</a> ·
               <a href="/copilot/readiness/">Readiness</a> ·
-              <a href="/trust-brief/">Trust Brief</a> ·
               <a href="/trust-ledger/">Trust Ledger</a>
             </div>
           </div>

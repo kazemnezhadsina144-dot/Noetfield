@@ -1,4 +1,4 @@
-<!-- /gate/procurement/index.html — Noetfield Procurement v2.0 (Procurement Pack + Request ID + Email Builder + Vendor Snapshot) -->
+<!-- /gate/procurement/index.html — Noetfield Procurement v2.1 (Procurement Pack + Request ID + Email Builder + Vendor Snapshot) -->
 <!doctype html>
 <html lang="en">
 <head>
@@ -10,6 +10,8 @@
   <meta name="robots" content="index,follow" />
   <meta name="author" content="Noetfield Systems Inc." />
   <meta name="theme-color" content="#07070b" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <meta name="format-detection" content="telephone=no" />
 
   <link rel="canonical" href="https://www.noetfield.com/gate/procurement/" />
   <link rel="icon" href="/noetfield-favicon-512.png" type="image/png" />
@@ -45,6 +47,7 @@
       overflow:hidden;
     }
     .nfHeroInner{ padding: 22px 18px; position:relative; z-index:1; }
+
     .nfEyebrow{
       display:inline-flex; gap:10px; align-items:center;
       color:var(--muted);
@@ -61,6 +64,7 @@
       box-shadow: 0 0 0 3px rgba(200,163,73,.18);
       flex:0 0 auto;
     }
+
     .nfTitle{ margin:12px 0 10px; font-size: 34px; line-height:1.07; letter-spacing:-0.75px; }
     .nfLead{ margin:0; color:var(--muted); font-size:16px; max-width: 980px; line-height:1.75; }
     .nfLead strong{ color: var(--text); font-weight: 900; }
@@ -110,6 +114,7 @@
     .nfBlock p{ margin:0; color:var(--muted); line-height:1.7; }
     .nfBlock ul{ margin:10px 0 0; padding-left:18px; color:var(--muted2); line-height:1.6; }
     .nfBlock li{ margin:6px 0; }
+
     .nfPills{ display:flex; flex-wrap:wrap; gap:8px; margin-top:10px; }
     .nfPill{
       display:inline-flex; align-items:center; gap:8px;
@@ -124,9 +129,14 @@
     }
     .nfPill b{ color:var(--text); font-weight:900; }
 
+    .nfActionsInline{
+      display:flex; gap:10px; flex-wrap:wrap; margin-top:12px;
+    }
+
     .nfRow{ display:grid; gap:10px; grid-template-columns: repeat(12, minmax(0, 1fr)); margin-top:12px; }
     .nfField{ grid-column: span 6; min-width:0; }
     .nfField.full{ grid-column: span 12; }
+
     .nfLabel{
       display:block;
       color: var(--muted2);
@@ -144,6 +154,10 @@
       color: rgba(255,255,255,.92);
       font-size:13px;
       outline:none;
+    }
+    .nfInput:focus, .nfSelect:focus, .nfTextarea:focus{
+      border-color: rgba(200,163,73,.42);
+      box-shadow: 0 0 0 3px rgba(200,163,73,.14);
     }
     .nfTextarea{ resize: vertical; min-height: 110px; }
 
@@ -173,6 +187,7 @@
 
     .nfActions{ display:grid; gap:10px; margin-top:12px; }
     .nfActions .btn{ min-height:46px; }
+
     .nfMini{ margin-top:10px; color:var(--muted2); font-size:12.6px; line-height:1.6; }
     .nfMini a{ border-bottom:1px solid rgba(255,255,255,.18); }
 
@@ -222,6 +237,7 @@
       word-break:break-word;
     }
     .nfRid b{ color:var(--text); font-weight:900; }
+
     .nfTinyBtn{
       display:inline-flex; align-items:center; justify-content:center;
       border-radius:12px;
@@ -232,14 +248,35 @@
       font-size:12.8px;
       min-height:40px;
       cursor:pointer;
+      user-select:none;
+      -webkit-tap-highlight-color: transparent;
     }
     .nfTinyBtn:hover{ background: rgba(255,255,255,.05); }
+    .nfTinyBtn:active{ transform: translateY(1px); }
+    .nfTinyBtn[aria-disabled="true"]{ opacity:.55; cursor:default; }
+
+    .nfLive{
+      margin-top:12px;
+      padding:12px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      color:var(--muted2);
+      font-size:12.8px;
+      line-height:1.6;
+      display:none;
+    }
 
     @media (max-width: 980px){
       .nfGrid{ grid-template-columns: 1fr; }
       .nfRail{ position: relative; top: 0; }
       .nfTitle{ font-size: 28px; }
       .nfField{ grid-column: span 12; }
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      *{ scroll-behavior:auto !important; }
+      .nfTinyBtn:active{ transform:none; }
     }
   </style>
 
@@ -273,6 +310,14 @@
   <!-- injected header -->
   <header id="nfHeader"></header>
 
+  <noscript>
+    <div class="wrap">
+      <div class="nfNotice" style="margin-top:14px;">
+        <strong>JavaScript is required</strong> for Request ID, status linking, and the procurement email builder. You can still email <a href="mailto:procurement@noetfield.com">procurement@noetfield.com</a> directly.
+      </div>
+    </div>
+  </noscript>
+
   <main id="main" class="wrap">
     <!-- HERO -->
     <section class="nfHero" aria-label="Procurement hero">
@@ -290,6 +335,7 @@
               <b>Request ID</b> <span id="nfRidText">—</span><span aria-hidden="true">•</span><span>Use this ID in procurement email threads.</span>
             </div>
             <button class="nfTinyBtn" id="nfRidCopyBtn" type="button">Copy Request ID</button>
+            <button class="nfTinyBtn" id="nfRidResetBtn" type="button" title="Generate a new Request ID">Reset ID</button>
             <a class="nfTinyBtn" id="nfStatusBtn" href="/status/" aria-label="Open status page">Open Status</a>
           </div>
 
@@ -314,7 +360,7 @@
             <div class="nfBlock">
               <h3>1) Select the offer</h3>
               <p>Pick a known package (recommended), or start with QuickScan if a fast decision-ready output is required.</p>
-              <div class="actions" style="display:flex; gap:10px; flex-wrap:wrap; margin-top:12px;">
+              <div class="nfActionsInline">
                 <a class="btn" href="/gate/sales/">Open Sales</a>
                 <a class="btn secondary" href="/copilot/quickscan/">Copilot QuickScan</a>
                 <a class="btn secondary" href="/trust-brief/">Trust Brief</a>
@@ -420,6 +466,7 @@
                 Short-form buyer language, stable package boundaries, explicit deliverables, and a clear evidence trail suitable for internal approvals.
               </div>
             </details>
+
             <details class="nfFAQ">
               <summary>Can vendor questionnaires be completed?</summary>
               <div class="nfFAQBody">
@@ -444,12 +491,12 @@
               <div class="nfRow">
                 <div class="nfField">
                   <label class="nfLabel" for="nf_org">Organisation</label>
-                  <input class="nfInput" id="nf_org" type="text" placeholder="Company / institution name" autocomplete="organization" />
+                  <input class="nfInput" id="nf_org" type="text" placeholder="Company / institution name" autocomplete="organization" required />
                 </div>
 
                 <div class="nfField">
                   <label class="nfLabel" for="nf_reply">Work email</label>
-                  <input class="nfInput" id="nf_reply" type="email" placeholder="name@org.com" autocomplete="email" inputmode="email" />
+                  <input class="nfInput" id="nf_reply" type="email" placeholder="name@org.com" autocomplete="email" inputmode="email" required />
                 </div>
 
                 <div class="nfField">
@@ -519,6 +566,8 @@
                 </div>
               </div>
 
+              <div class="nfLive" id="nfLive" role="status" aria-live="polite"></div>
+
               <p class="nfNotice" style="margin-top:12px;">
                 <strong>Reminder:</strong> This form generates an email from your device. Public intake is non-confidential. Secure sharing options are confirmed after kickoff.
               </p>
@@ -543,18 +592,21 @@
                 No. Card is optional via <a href="/gate/sales/">/gate/sales/</a>. Procurement can proceed via invoice, PO, or vendor onboarding.
               </div>
             </details>
+
             <details class="nfFAQ">
               <summary>Does Noetfield sign NDAs and DPAs?</summary>
               <div class="nfFAQBody">
                 NDA/MSA/SOW/DPA are supported as required by buyer policy. Send documents to <a href="mailto:procurement@noetfield.com">procurement@noetfield.com</a> with the Request ID.
               </div>
             </details>
+
             <details class="nfFAQ">
               <summary>What should be sent before kickoff?</summary>
               <div class="nfFAQBody">
                 Only high-level context and internal process requirements. Do not send secrets/credentials via public channels. Secure options are confirmed after kickoff when required.
               </div>
             </details>
+
             <details class="nfFAQ">
               <summary>How is delivery structured?</summary>
               <div class="nfFAQBody">
@@ -633,7 +685,7 @@
       function wire(id, val){
         var a = document.getElementById(id);
         if (!a) return;
-        a.href = "mailto:" + encodeURIComponent(val);
+        a.href = "mailto:" + val;
         a.textContent = val;
       }
       wire("nfProcEmailLink", NF.procurement);
@@ -641,16 +693,43 @@
       wire("nfSalesEmailLink", NF.sales);
       wire("nfSupportEmailLink", NF.support);
 
-      // Request ID (localStorage) + status links
+      // Request ID (unified) — supports ?rid= in URL (stores it), else localStorage, else new
+      var ridKey = "nf_request_id";
+
       function mkRid(){
-        // nf_ + time + random (URL-safe)
         var t = Date.now().toString(36);
-        var r = Math.random().toString(36).slice(2, 8);
+        var r = Math.random().toString(36).slice(2, 10);
         return ("nf_" + t + "_" + r).toLowerCase();
       }
-      var ridKey = "nf_request_id";
-      var rid = localStorage.getItem(ridKey);
-      if (!rid) { rid = mkRid(); localStorage.setItem(ridKey, rid); }
+
+      function getRidFromUrl(){
+        try{
+          var u = new URL(window.location.href);
+          var q = (u.searchParams.get("rid") || "").trim();
+          return q ? q : "";
+        }catch(e){ return ""; }
+      }
+
+      function setRidInUrl(rid){
+        try{
+          var u = new URL(window.location.href);
+          u.searchParams.set("rid", rid);
+          window.history.replaceState({}, "", u.toString());
+        }catch(e){}
+      }
+
+      var rid = getRidFromUrl();
+      if (rid){
+        localStorage.setItem(ridKey, rid);
+      } else {
+        rid = localStorage.getItem(ridKey) || "";
+        if (!rid){
+          rid = mkRid();
+          localStorage.setItem(ridKey, rid);
+        }
+        // keep URL stable for copy/share
+        setRidInUrl(rid);
+      }
 
       var ridEl = document.getElementById("nfRidText");
       if (ridEl) ridEl.textContent = rid;
@@ -664,20 +743,59 @@
       setStatusLink("nfStatusBtn2");
       setStatusLink("nfStatusInline");
 
+      function toast(msg){
+        var live = document.getElementById("nfLive");
+        if (!live) return;
+        live.textContent = msg;
+        live.style.display = "block";
+        clearTimeout(toast._t);
+        toast._t = setTimeout(function(){ live.style.display = "none"; }, 1600);
+      }
+
+      function copyText(txt){
+        if (navigator.clipboard && navigator.clipboard.writeText){
+          return navigator.clipboard.writeText(txt);
+        }
+        return new Promise(function(resolve, reject){
+          try{
+            var ta = document.createElement("textarea");
+            ta.value = txt;
+            ta.setAttribute("readonly", "");
+            ta.style.position = "fixed";
+            ta.style.top = "-1000px";
+            document.body.appendChild(ta);
+            ta.select();
+            var ok = document.execCommand("copy");
+            document.body.removeChild(ta);
+            ok ? resolve() : reject(new Error("copy failed"));
+          }catch(e){ reject(e); }
+        });
+      }
+
       var copyRidBtn = document.getElementById("nfRidCopyBtn");
       if (copyRidBtn){
         copyRidBtn.addEventListener("click", function(){
-          var txt = rid;
-          if (navigator.clipboard && navigator.clipboard.writeText){
-            navigator.clipboard.writeText(txt);
-          } else {
-            var ta = document.createElement("textarea");
-            ta.value = txt; document.body.appendChild(ta);
-            ta.select(); document.execCommand("copy");
-            document.body.removeChild(ta);
-          }
-          copyRidBtn.textContent = "Copied";
-          setTimeout(function(){ copyRidBtn.textContent = "Copy Request ID"; }, 1200);
+          copyText(rid).then(function(){
+            copyRidBtn.textContent = "Copied";
+            toast("Request ID copied.");
+            setTimeout(function(){ copyRidBtn.textContent = "Copy Request ID"; }, 1200);
+          }).catch(function(){
+            toast("Copy blocked. Select and copy manually.");
+          });
+        });
+      }
+
+      var resetBtn = document.getElementById("nfRidResetBtn");
+      if (resetBtn){
+        resetBtn.addEventListener("click", function(){
+          rid = mkRid();
+          localStorage.setItem(ridKey, rid);
+          setRidInUrl(rid);
+          if (ridEl) ridEl.textContent = rid;
+          setStatusLink("nfStatusBtn");
+          setStatusLink("nfStatusBtn2");
+          setStatusLink("nfStatusInline");
+          toast("New Request ID generated.");
         });
       }
 
@@ -735,7 +853,7 @@
         lines.push("Links:");
         lines.push("- Sales: " + (location.origin + "/gate/sales/"));
         lines.push("- Vendor: " + (location.origin + "/vendor/"));
-        lines.push("- Procurement: " + (location.origin + "/gate/procurement/"));
+        lines.push("- Procurement: " + (location.origin + "/gate/procurement/?rid=" + encodeURIComponent(payload.rid)));
         lines.push("- Status: " + (location.origin + "/status/?rid=" + encodeURIComponent(payload.rid)));
         lines.push("");
 
@@ -748,28 +866,6 @@
         lines.push("Public intake is non-confidential. Secure sharing options are confirmed after kickoff (if required).");
         lines.push("");
         return lines.join("\n");
-      }
-
-      var copyTextBtn = document.getElementById("nfCopyTextBtn");
-      function copyText(txt){
-        if (navigator.clipboard && navigator.clipboard.writeText){
-          return navigator.clipboard.writeText(txt);
-        }
-        var ta = document.createElement("textarea");
-        ta.value = txt; document.body.appendChild(ta);
-        ta.select(); document.execCommand("copy");
-        document.body.removeChild(ta);
-        return Promise.resolve();
-      }
-      if (copyTextBtn){
-        copyTextBtn.addEventListener("click", function(){
-          var payload = collectPayload();
-          var txt = buildRequestText(payload);
-          copyText(txt).then(function(){
-            copyTextBtn.textContent = "Copied";
-            setTimeout(function(){ copyTextBtn.textContent = "Copy request text"; }, 1200);
-          });
-        });
       }
 
       function collectPayload(){
@@ -802,6 +898,21 @@
         };
       }
 
+      var copyTextBtn = document.getElementById("nfCopyTextBtn");
+      if (copyTextBtn){
+        copyTextBtn.addEventListener("click", function(){
+          var payload = collectPayload();
+          var txt = buildRequestText(payload);
+          copyText(txt).then(function(){
+            copyTextBtn.textContent = "Copied";
+            toast("Request text copied.");
+            setTimeout(function(){ copyTextBtn.textContent = "Copy request text"; }, 1200);
+          }).catch(function(){
+            toast("Copy blocked. Select and copy manually.");
+          });
+        });
+      }
+
       var form = document.getElementById("nfProcEmailForm");
       var err = document.getElementById("nfFormErr");
       if (form){
@@ -813,6 +924,7 @@
 
           if (!ok){
             if (err) err.style.display = "block";
+            toast("Add organisation + a valid work email.");
             return;
           }
           if (err) err.style.display = "none";
@@ -832,20 +944,20 @@
   </script>
 
   <!--
-    CHANGELOG (procurement v2.0)
-    - Added Request ID (localStorage) + status link with rid.
-    - Added Procurement Pack section with forwardable links + optional PDF routes.
-    - Upgraded offer list to match enterprise market-mirror SKUs (Starter/Standard/Extended).
-    - Added “Copy request text” for environments that block mailto workflows.
-    - Expanded vendor snapshot + FAQ with procurement-aligned language.
+    CHANGELOG (procurement v2.1)
+    - Supports ?rid= (stores + keeps URL stable via replaceState) for copy/share consistency.
+    - Added “Reset ID” button to generate a new Request ID when needed.
+    - Improved accessibility: aria-live status, focus styles, required fields, toast helper.
+    - Safer mailto wiring (no encoding for direct mailto address anchors).
+    - Minor CSS polish + reduced-motion guard.
 
     SMOKE TEST
     - GET /gate/procurement/ returns 200
     - /assets/noetfield-shell.css returns 200 and styles apply
     - /assets/noetfield-shell.js returns 200 and header/footer load into #nfHeader/#nfFooter
-    - Request ID shows + status links include ?rid=
+    - Request ID shows + URL includes ?rid= + status links include ?rid=
     - Submit form opens email client to procurement@ with populated subject/body
-    - Copy buttons work on mobile + desktop
+    - Copy buttons work on mobile + desktop (fallback if clipboard blocked)
     - Links: /gate/sales/ /vendor/ /status/ /copilot/quickscan/intake/ return 200
   -->
 </body>

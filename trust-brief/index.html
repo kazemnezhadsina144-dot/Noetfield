@@ -1,4 +1,4 @@
-<!-- /trust-brief/index.html — Noetfield Trust Brief v7.0 (Sales-first • Visible pricing • Quote+Procurement builder • Sticky CTA • Shell aligned) -->
+<!-- /trust-brief/index.html — Noetfield Trust Brief v7.1 (Sales-first • Visible pricing • Stripe placeholders • Quote+Procurement builder • Sticky CTA • Shell aligned • Reduced ambiguity) -->
 <!doctype html>
 <html lang="en">
 <head>
@@ -6,12 +6,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <title>Noetfield — Trust Brief</title>
-  <meta name="description" content="Trust Brief is a 6-week governance-first diagnostic that maps material AI use cases and produces board-ready Trust Ledger entries, controls, evidence expectations, and decision options. Pricing is visible. Procurement supported." />
+  <meta name="description" content="Trust Brief is a 6-week governance-first diagnostic that maps material AI use cases and produces board-ready Trust Ledger entries, baseline controls, evidence expectations, and decision options. Pricing is visible. Procurement supported." />
   <meta name="robots" content="index,follow" />
   <meta name="author" content="Noetfield Systems Inc." />
   <meta name="theme-color" content="#07070b" />
 
+  <!-- Canonical (always with www + trailing slash) -->
   <link rel="canonical" href="https://www.noetfield.com/trust-brief/" />
+
   <link rel="icon" href="/noetfield-favicon-512.png" type="image/png" />
   <link rel="apple-touch-icon" href="/noetfield-favicon-512.png" />
 
@@ -297,6 +299,19 @@
     }
     .stickyText strong{ color:var(--text); font-weight:950; }
 
+    /* Details */
+    details.block summary{
+      cursor:pointer;
+      list-style:none;
+      font-weight:950;
+      color: var(--text);
+    }
+    details.block summary::-webkit-details-marker{display:none}
+    details.block[open]{
+      border-color: rgba(255,255,255,.20);
+      background: rgba(255,255,255,.045);
+    }
+
     @media (max-width: 980px){
       .grid{ grid-template-columns: 1fr; }
       .rail{ position: relative; top: 0; }
@@ -316,7 +331,7 @@
     "name":"Noetfield Trust Brief",
     "provider":{"@type":"Organization","name":"Noetfield Systems Inc."},
     "areaServed":"CA",
-    "description":"A 6-week governance-first diagnostic that maps material AI use cases and produces board-ready Trust Ledger entries, controls, evidence expectations, and decision options.",
+    "description":"A 6-week governance-first diagnostic that maps material AI use cases and produces board-ready Trust Ledger entries, baseline controls, evidence expectations, and decision options.",
     "url":"https://www.noetfield.com/trust-brief/"
   }
   </script>
@@ -417,7 +432,30 @@
                 <ul>
                   <li>Priorities + quick wins</li>
                   <li>Open risks + decisions requested</li>
-                  <li>Recommendation: next 30–90 days</li>
+                  <li>Recommendation: next 30-90 days</li>
+                </ul>
+              </article>
+            </div>
+
+            <div class="groupTitle">Included vs not included</div>
+            <div class="blocks">
+              <article class="block">
+                <div class="blockTop"><h3>Included</h3><span class="tag">Scope clarity</span></div>
+                <ul>
+                  <li>Governance baseline: owners + decision boundaries</li>
+                  <li>Evidence expectations and reference discipline</li>
+                  <li>Board-ready outputs: memo + starter ledger pack</li>
+                  <li>Procurement-friendly routing (Invoice/PO supported)</li>
+                </ul>
+              </article>
+
+              <article class="block">
+                <div class="blockTop"><h3>Not included (out of scope)</h3><span class="tag">Avoid surprises</span></div>
+                <ul>
+                  <li>Implementation work (tool configuration, engineering delivery, change management execution)</li>
+                  <li>Legal advice or representation</li>
+                  <li>Full enterprise security assessment beyond the AI surface in scope</li>
+                  <li>Handling confidential artefacts via public forms (secure protocol is confirmed after kickoff)</li>
                 </ul>
               </article>
             </div>
@@ -465,23 +503,30 @@
           </div>
           <div class="bd">
             <details class="block">
-              <summary style="cursor:pointer; font-weight:950;">Is public intake confidential?</summary>
+              <summary>Is public intake confidential?</summary>
               <p class="muted" style="margin-top:10px;">
                 No. Public intake is non-confidential. Secure sharing protocol is confirmed after kickoff.
               </p>
             </details>
 
             <details class="block">
-              <summary style="cursor:pointer; font-weight:950;">Does Trust Brief replace compliance?</summary>
+              <summary>Does Trust Brief replace compliance?</summary>
               <p class="muted" style="margin-top:10px;">
                 No. It establishes a defensible baseline, ownership, and evidence discipline to reduce risk fast and keep decisions readable.
               </p>
             </details>
 
             <details class="block">
-              <summary style="cursor:pointer; font-weight:950;">What happens after Trust Brief?</summary>
+              <summary>What happens after Trust Brief?</summary>
               <p class="muted" style="margin-top:10px;">
                 Move into Trust Ledger for ongoing cadence: entries stay current, exceptions expire, and board exports remain consistent.
+              </p>
+            </details>
+
+            <details class="block">
+              <summary>Can we purchase by PO / invoice?</summary>
+              <p class="muted" style="margin-top:10px;">
+                Yes. Use the procurement lane for Invoice/PO. Card payment is available via Stripe payment links.
               </p>
             </details>
           </div>
@@ -500,6 +545,12 @@
           </div>
 
           <div class="bd">
+
+            <!-- Stripe placeholders (replace in next messages) -->
+            <!-- TB Base Stripe Link:  https://buy.stripe.com/REPLACE_TB_BASE -->
+            <!-- TB Pro Stripe Link:   https://buy.stripe.com/REPLACE_TB_PRO -->
+            <!-- TB Ent Stripe Link:   https://buy.stripe.com/REPLACE_TB_ENTERPRISE -->
+
             <div class="plan" aria-label="TB Base">
               <div class="planTop">
                 <div>
@@ -515,7 +566,8 @@
                 <li>~4–6 starter entries</li>
               </ul>
               <div class="planActions">
-                <a class="btn primary" href="/gate/intake/?need=trust-brief&tier=base" data-rid-link>Start intake</a>
+                <a class="btn primary" id="tbPayBase" href="https://buy.stripe.com/REPLACE_TB_BASE" target="_blank" rel="nofollow noopener">Pay by card (Stripe)</a>
+                <a class="btn secondary" href="/gate/intake/?need=trust-brief&tier=base" data-rid-link>Start intake</a>
                 <a class="btn secondary" href="/gate/procurement/?focus=tb_base" data-rid-link>Invoice / PO</a>
               </div>
             </div>
@@ -535,7 +587,8 @@
                 <li>~6–10 starter entries</li>
               </ul>
               <div class="planActions">
-                <a class="btn primary" href="/gate/intake/?need=trust-brief&tier=pro" data-rid-link>Start intake</a>
+                <a class="btn primary" id="tbPayPro" href="https://buy.stripe.com/REPLACE_TB_PRO" target="_blank" rel="nofollow noopener">Pay by card (Stripe)</a>
+                <a class="btn secondary" href="/gate/intake/?need=trust-brief&tier=pro" data-rid-link>Start intake</a>
                 <a class="btn secondary" href="/gate/procurement/?focus=tb_pro" data-rid-link>Invoice / PO</a>
               </div>
             </div>
@@ -555,15 +608,37 @@
                 <li>Decision trail alignment</li>
               </ul>
               <div class="planActions">
-                <a class="btn primary" href="/gate/intake/?need=trust-brief&tier=enterprise" data-rid-link>Start intake</a>
+                <a class="btn primary" id="tbPayEnt" href="https://buy.stripe.com/REPLACE_TB_ENTERPRISE" target="_blank" rel="nofollow noopener">Pay by card (Stripe)</a>
+                <a class="btn secondary" href="/gate/intake/?need=trust-brief&tier=enterprise" data-rid-link>Start intake</a>
                 <a class="btn secondary" href="/gate/procurement/?focus=tb_enterprise" data-rid-link>Invoice / PO</a>
+              </div>
+            </div>
+
+            <div class="plan" aria-label="TB Enterprise Plus">
+              <div class="planTop">
+                <div>
+                  <div class="tag">TB — Enterprise+</div>
+                  <h3 class="planName">Portfolio / program scope (Custom SOW)</h3>
+                </div>
+                <div class="price">Custom</div>
+              </div>
+              <p class="planSub">For 16+ use cases or cross-portfolio governance programs. Scoped by SOW.</p>
+              <ul class="planBullets">
+                <li>Program-level cadence + decision boundaries</li>
+                <li>Portfolio triage + prioritization model</li>
+                <li>Procurement-ready SOW + board memo</li>
+              </ul>
+              <div class="planActions">
+                <a class="btn primary" href="/gate/intake/?need=trust-brief&tier=enterprise_plus" data-rid-link>Start intake</a>
+                <a class="btn secondary" href="/gate/procurement/?focus=tb_enterprise_plus" data-rid-link>Invoice / PO</a>
               </div>
             </div>
 
             <div class="fineprint" role="note">
               <strong>Add-ons:</strong> +900 CAD per extra use case, +2,500 CAD per extra team.
-              Regulated scope multiplier (1.25–1.5×). Rush delivery (+20–35%).
-              Taxes may apply.
+              <strong>Regulated:</strong> ×1.25. <strong>Highly regulated:</strong> ×1.5.
+              <strong>Rush:</strong> +25%. <strong>Deep evidence:</strong> +15%.
+              Taxes may apply. Estimates are non-binding; final scope confirmed after intake.
             </div>
 
             <section class="plan" aria-label="Quick quote builder">
@@ -587,7 +662,7 @@
                       <option value="pro">TB — Pro</option>
                       <option value="ent">TB — Enterprise</option>
                     </select>
-                    <div class="help">Auto chooses tier from the use-case band.</div>
+                    <div class="help">Auto chooses tier from the use-case band. For 16+ use cases, use Enterprise+ (custom SOW).</div>
                   </div>
 
                   <div class="field">
@@ -691,7 +766,7 @@
 
     <section class="stickyCta" aria-label="Sticky CTA">
       <div class="stickyInner">
-        <div class="stickyText"><strong>Trust Brief</strong> pricing is visible — start intake or route via procurement.</div>
+        <div class="stickyText"><strong>Trust Brief</strong> pricing is visible — pay by card, start intake, or route via procurement.</div>
         <div class="actions" style="margin-top:0">
           <a class="btn primary" href="#pricing">View pricing</a>
           <a class="btn secondary" href="/gate/intake/?need=trust-brief" data-rid-link>Start intake</a>
@@ -744,7 +819,7 @@
         if (band === "1-3") return { tier:"TB — Base", price:12500, ucIncluded:3, teamsIncluded:1 };
         if (band === "4-8") return { tier:"TB — Pro", price:18500, ucIncluded:8, teamsIncluded:3 };
         if (band === "9-15") return { tier:"TB — Enterprise", price:27500, ucIncluded:15, teamsIncluded:4 };
-        return { tier:"TB — Enterprise (custom)", price:27500, ucIncluded:15, teamsIncluded:4, custom:true };
+        return { tier:"TB — Enterprise+ (Custom SOW)", price:null, ucIncluded:15, teamsIncluded:4, custom:true };
       }
       function parseBandMax(band){
         if (band === "1-3") return 3;
@@ -783,6 +858,24 @@
 
         if (!band || !teamsSel || !risk || !evidence || !tempo) return null;
 
+        // Custom lane
+        if (band === "16+"){
+          var lineCustom =
+            "TB — Enterprise+ (Custom SOW) • Use cases: 16+ • Teams: " + teamsSel +
+            " • Risk: " + risk + " • Evidence: " + evidence + " • Tempo: " + tempo;
+
+          var quoteTextCustom =
+            "Noetfield — Trust Brief (Custom SOW)\n" +
+            "Request ID: " + rid + "\n" +
+            "Tier: TB — Enterprise+ (Custom SOW)\n" +
+            "Inputs: Use cases 16+, Teams " + teamsSel + ", Risk " + risk + ", Evidence " + evidence + ", Tempo " + tempo + "\n" +
+            "Estimated fee: Custom (scoped by SOW)\n" +
+            "Notes (high-level): " + (notes || "—") + "\n" +
+            "Disclosure: Estimate only; final scope confirmed after intake. Public intake is non-confidential.\n";
+
+          return { rid: rid, total: null, line: lineCustom, quoteText: quoteTextCustom, custom:true };
+        }
+
         var base = baseFromBand(band);
         var baseTier = base.tier;
         var basePrice = base.price;
@@ -812,8 +905,8 @@
           " • Risk: " + risk +
           " • Evidence: " + evidence +
           " • Tempo: " + tempo +
-          (extraUC ? (" • +"+extraUC+" extra use case(s)") : "") +
-          (extraTeams ? (" • +"+extraTeams+" extra team(s)") : "");
+          (extraUC ? (" • +" + extraUC + " extra use case(s)") : "") +
+          (extraTeams ? (" • +" + extraTeams + " extra team(s)") : "");
 
         var quoteText =
           "Noetfield — Trust Brief (Estimate)\n" +
@@ -845,7 +938,11 @@
           return;
         }
 
-        if (priceEl) priceEl.textContent = fmtCAD(q.total);
+        if (q.custom){
+          if (priceEl) priceEl.textContent = "Custom SOW";
+        } else {
+          if (priceEl) priceEl.textContent = fmtCAD(q.total);
+        }
         if (lineEl) lineEl.textContent = q.line;
 
         var subj = "Noetfield — Trust Brief Quote Request (" + q.rid + ")";
@@ -893,7 +990,6 @@
       ["tbTier","tbUseCasesBand","tbTeams","tbRisk","tbEvidence","tbTempo","tbNotes"].forEach(function(id){
         var el = document.getElementById(id);
         if (el) el.addEventListener("change", applyTBQuote);
-        if (id === "tbNotes" && el) el.addEventListener("input", function(){ /* keep quiet */ });
       });
     })();
   </script>
@@ -905,6 +1001,8 @@
     - header/footer injected into #nfHeader/#nfFooter
     - Pricing rail sticky on desktop
     - Quote builder: select -> estimate appears -> copy works -> mailto links populate
+    - 16+ use cases shows Custom SOW
+    - Stripe links are placeholders; replace when provided
   -->
 </body>
 </html>

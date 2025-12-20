@@ -1,11 +1,11 @@
-<!-- /trust-ledger/index.html — Noetfield Trust Ledger (vNext: pricing tiers + direct intake/quote CTA) -->
+<!-- /trust-ledger/index.html — Noetfield Trust Ledger (v5.1-style upgrade: shell-native + samples locked + board-safe tiers) -->
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Noetfield — Trust Ledger</title>
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
+  <title>Noetfield — Trust Ledger</title>
   <meta name="description" content="The Noetfield Trust Ledger turns scattered AI artefacts into board-ready, evidence-linked entries: use cases, controls, risks, owners, and proofs — readable by executives and defensible for regulators." />
   <meta name="robots" content="index,follow" />
   <meta name="author" content="Noetfield Systems Inc." />
@@ -29,17 +29,12 @@
   <meta name="twitter:description" content="Board-ready AI governance ledger: entries with owners, controls, risks, and evidence links — readable and defensible." />
   <meta name="twitter:image" content="https://www.noetfield.com/noetfield-og.png" />
 
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
-
   <!-- LOCKED SHELL -->
   <link rel="stylesheet" href="/assets/noetfield-shell.css" />
   <script src="/assets/noetfield-shell.js" defer></script>
 
   <style>
-    .hero{padding:22px 0 14px}
+    .hero{padding:18px 0 12px}
     .heroShell{
       position:relative;
       border-radius: calc(var(--radius) + 8px);
@@ -59,7 +54,7 @@
       pointer-events:none;
       mask-image: linear-gradient(180deg, black 0%, black 58%, transparent 96%);
     }
-    .heroInner{padding: 24px 22px}
+    .heroInner{padding:22px 18px; position:relative; z-index:1}
     .eyebrow{
       display:inline-flex; gap:10px; align-items:center;
       color:var(--muted);
@@ -74,9 +69,9 @@
       background: rgba(200,163,73,.97);
       box-shadow: 0 0 0 3px rgba(200,163,73,.18);
     }
-    h1{margin:14px 0 10px; font-size:40px; line-height:1.07; letter-spacing:-0.75px}
-    .lead{margin:0; color:var(--muted); font-size:16px; max-width: 1020px; line-height:1.75}
-    .lead strong{color:var(--text); font-weight:900}
+    h1{margin:12px 0 10px; font-size:36px; line-height:1.07; letter-spacing:-0.75px}
+    .lead{margin:0; color:var(--muted); font-size:16px; max-width: 1040px; line-height:1.75}
+    .lead strong{color:var(--text); font-weight:950}
 
     .metaRow{display:flex; flex-wrap:wrap; gap:10px; margin-top:14px}
     .pill{
@@ -91,11 +86,23 @@
     }
     .pill strong{color:var(--text); font-weight:900}
 
+    .notice{
+      margin-top:12px;
+      padding:12px 12px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      color:var(--muted2);
+      font-size:12.8px;
+      line-height:1.6;
+    }
+    .notice strong{ color:var(--text); font-weight:900; }
+
     .grid{
       display:grid;
       grid-template-columns: 1.12fr .88fr;
-      gap:18px;
-      margin: 18px 0 34px;
+      gap:16px;
+      margin: 14px 0 64px;
       align-items:start;
     }
     .card{
@@ -106,10 +113,13 @@
       overflow:hidden;
       min-width:0;
     }
-    .card .hd{padding:18px 18px 0}
-    .card h2{margin:0 0 8px; font-size:18px; letter-spacing:-0.2px}
-    .card p{margin:0 0 12px; color:var(--muted); line-height:1.7}
-    .card .bd{padding:18px}
+    .hd{ padding:18px 18px 0; }
+    .bd{ padding:18px; }
+    .cardTitle{ margin:0 0 8px; font-size:18px; letter-spacing:-0.2px; }
+    .muted{ color:var(--muted); line-height:1.7; margin:0; }
+
+    .actions{display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-top:12px}
+    .btn.small{ min-height:40px; padding:9px 12px; font-size:13px; }
 
     .kpiGrid{
       display:grid;
@@ -123,20 +133,14 @@
       background: rgba(255,255,255,.03);
       padding:12px;
       min-width:0;
+      color:var(--muted2);
+      font-size:12.8px;
+      line-height:1.6;
     }
+    .kpi strong{ color:var(--text); font-weight:900; }
     .kpi .t{font-size:11px; letter-spacing:.28em; text-transform:uppercase; color:var(--muted2)}
-    .kpi .v{margin-top:8px; font-weight:900; letter-spacing:-.2px}
+    .kpi .v{margin-top:8px; font-weight:950; letter-spacing:-.2px; color:var(--text)}
     .kpi .d{margin-top:6px; color:var(--muted2); font-size:12.6px; line-height:1.55}
-
-    .section{
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.03);
-      border-radius:16px;
-      padding:14px;
-      margin-top:12px;
-    }
-    .sectionTitle{font-weight:900; letter-spacing:-.2px; margin:0 0 6px; font-size:14px}
-    .sectionDesc{margin:0 0 12px; color:var(--muted2); font-size:12.7px; line-height:1.6}
 
     .table{
       width:100%;
@@ -165,106 +169,102 @@
     .table tr:last-child td{border-bottom:none}
 
     .tag{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
+      display:inline-flex; align-items:center; gap:8px;
       padding:7px 10px;
       border-radius:999px;
       border:1px solid rgba(255,255,255,.12);
       background: rgba(255,255,255,.03);
-      color:var(--muted);
-      font-size:12px;
+      color:var(--muted2);
+      font-size:12.4px;
       white-space:nowrap;
     }
-    .tag strong{color:var(--text); font-weight:900}
+    .tag strong{ color:var(--text); font-weight:900; }
 
-    .actions{display:flex; gap:12px; flex-wrap:wrap; align-items:center; margin-top:12px}
-
-    .box{
-      margin-top:12px;
-      padding:12px 12px;
-      border-radius:14px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.03);
-      color:var(--muted2);
-      font-size:12.8px;
-      line-height:1.6;
-    }
-    .box strong{color:var(--text); font-weight:900}
-    .box a{border-bottom:1px solid rgba(255,255,255,.18)}
-
-    .planGrid{
+    .steps{
       display:grid;
       grid-template-columns: 1fr 1fr 1fr;
       gap:12px;
-      margin-top:10px;
+      margin-top:12px;
+    }
+    .step{
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      padding:12px;
+      min-width:0;
+    }
+    .step .n{
+      width:30px; height:30px; border-radius:999px;
+      display:inline-flex; align-items:center; justify-content:center;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.03);
+      color: var(--text);
+      font-weight:950;
+      font-size:12px;
+    }
+    .step .h{ margin-top:10px; font-weight:950; letter-spacing:-.2px; }
+    .step .p{ margin-top:6px; color:var(--muted2); font-size:12.6px; line-height:1.55; }
+
+    .plans{
+      display:grid;
+      gap:12px;
+      margin-top:12px;
     }
     .plan{
       border-radius:16px;
       border:1px solid rgba(255,255,255,.10);
       background: rgba(255,255,255,.03);
       padding:12px;
+      min-width:0;
     }
-    .plan .name{font-weight:900; letter-spacing:-.2px}
-    .plan .amt{margin-top:8px; font-size:22px; font-weight:950; letter-spacing:-.4px}
-    .plan .sub{margin-top:6px; color:var(--muted2); font-size:12.6px; line-height:1.55}
-    .plan ul{margin:10px 0 0; padding-left:18px; color:var(--muted); line-height:1.65}
-    .plan li{margin:6px 0}
+    .planTop{ display:flex; gap:10px; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; }
+    .plan .name{ font-weight:950; letter-spacing:-.2px; }
+    .plan .amt{ font-weight:950; letter-spacing:-.2px; color:var(--text); }
+    .plan .sub{ margin-top:6px; color:var(--muted2); font-size:12.6px; line-height:1.55; }
+    .plan ul{ margin:10px 0 0; padding-left:18px; color:var(--muted); line-height:1.65; }
+    .plan li{ margin:6px 0; }
 
-    .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:10px;
-      padding:10px 14px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.03);
-      color: var(--text);
-      text-decoration:none;
-      transition: transform .12s ease;
-      min-height:44px;
-    }
-    .btn:hover{transform: translateY(-1px)}
-    .btn.secondary{opacity:.92}
-    .btn.primary{
-      border-color: transparent;
-      background: linear-gradient(135deg,#f9fafb,#e5e7eb);
-      color:#07070b;
-      font-weight:850;
+    .rail{ position: sticky; top: 14px; }
+    .refBox{
+      margin-top:10px;
+      padding:10px 12px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.02);
+      color:var(--muted2);
+      font-size:12.6px;
+      line-height:1.55;
+      word-break:break-word;
     }
 
-    @media (min-width: 981px){
-      #nfHeader{
-        position: sticky;
-        top: 0;
-        z-index: 60;
-        padding: 12px 16px 0;
-        background: transparent !important;
-        border: 0 !important;
-        box-shadow: none !important;
-      }
-      #nfHeader::before, #nfHeader::after{content:none !important; display:none !important;}
-      #nfHeader .nav{
-        width: min(1200px, calc(100% - 32px));
-        margin: 0 auto;
-        border-radius: 18px;
-        border: 1px solid rgba(255,255,255,.11);
-        background: rgba(10,10,16,.55);
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
-        box-shadow: var(--shadow2);
-      }
+    details.opt{
+      margin-top:12px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.02);
+      padding:10px 12px;
     }
+    details.opt summary{
+      cursor:pointer;
+      color:var(--text);
+      font-weight:900;
+      list-style:none;
+    }
+    details.opt summary::-webkit-details-marker{display:none}
+    .optBody{
+      margin-top:10px;
+      color:var(--muted2);
+      font-size:12.8px;
+      line-height:1.6;
+    }
+
     @media (max-width: 980px){
-      #nfHeader{padding:0}
-      .grid{grid-template-columns:1fr}
-      .kpiGrid{grid-template-columns:1fr}
-      .planGrid{grid-template-columns:1fr}
-    }
-    @media (max-width: 760px){
-      h1{font-size:30px}
-      .table th, .table td{padding:10px}
+      .grid{ grid-template-columns:1fr; }
+      .rail{ position: relative; top: 0; }
+      .kpiGrid{ grid-template-columns:1fr; }
+      .steps{ grid-template-columns:1fr; }
+      h1{ font-size: 30px; }
+      .table th, .table td{ padding:10px; }
     }
   </style>
 
@@ -288,14 +288,17 @@
   <header id="nfHeader"></header>
 
   <main id="main" class="wrap">
-    <section class="hero">
+    <!-- HERO -->
+    <section class="hero" aria-label="Trust Ledger hero">
       <div class="heroShell">
         <div class="heroInner">
-          <div class="eyebrow"><span class="dot"></span> Ongoing register • evidence-linked</div>
+          <div class="eyebrow"><span class="dot"></span> Ongoing register • evidence-linked • board-readable</div>
+
           <h1>Trust Ledger.</h1>
+
           <p class="lead">
-            A <strong>board-readable</strong> and <strong>evidence-linked</strong> ledger of material AI usage:
-            each entry ties a use case to owners, risks, controls, decisions, and proof. Designed to reduce drift and keep you answer-ready.
+            The Trust Ledger turns scattered AI artefacts into <strong>board-ready, evidence-linked entries</strong>:
+            use cases, controls, risks, owners, approvals, and proof. Designed to reduce drift and keep organizations answer-ready.
           </p>
 
           <div class="metaRow" aria-label="Highlights">
@@ -306,115 +309,261 @@
             <div class="pill"><strong>Cadence</strong> updates</div>
           </div>
 
-          <div class="actions" aria-label="Actions" style="margin-top:14px">
-            <a class="btn primary" href="/trust-ledger/intake/">Start intake</a>
-            <a class="btn secondary" href="/trust-brief/">Start with Trust Brief</a>
-            <a class="btn secondary" href="/gate/">Gate</a>
+          <div class="actions" aria-label="Hero actions">
+            <a class="btn primary" href="/gate/intake/?need=trustledger" data-rid-link>Start (Gate intake)</a>
+            <a class="btn secondary" href="/gate/procurement/?focus=ledger" data-rid-link>Invoice / PO</a>
+            <a class="btn secondary" href="/trust-brief/" data-rid-link>Start with Trust Brief</a>
+            <a class="btn secondary" href="/vendor/">Vendor profile</a>
           </div>
 
-          <div class="box">
-            <strong>Public intake = non-confidential.</strong> Do not submit secrets, credentials, private keys, regulated personal data, internal case files, or contract attachments on public forms.
+          <div class="notice" role="note">
+            <strong>Public intake = non-confidential.</strong>
+            Do not submit secrets, credentials, private keys, regulated personal data, internal case files, or contract attachments on public forms.
+            Secure sharing options are confirmed after kickoff.
           </div>
         </div>
       </div>
     </section>
 
-    <section class="grid">
-      <div class="card">
-        <div class="hd">
-          <h2>What a ledger entry contains</h2>
-          <p>One governed snapshot of one material AI use case: impact, owners, risks, controls, and proofs.</p>
-        </div>
-        <div class="bd">
-          <div class="kpiGrid" aria-label="Ledger outcomes">
-            <div class="kpi"><div class="t">Outcome</div><div class="v">Board clarity</div><div class="d">Executives see what AI does, who owns it, and what can go wrong.</div></div>
-            <div class="kpi"><div class="t">Outcome</div><div class="v">Evidence discipline</div><div class="d">Controls and claims backed by exports/configs/logs/approvals as available.</div></div>
-            <div class="kpi"><div class="t">Outcome</div><div class="v">Lower drift</div><div class="d">Governance stays aligned as tools, vendors, and teams change.</div></div>
-            <div class="kpi"><div class="t">Outcome</div><div class="v">Answer-ready</div><div class="d">Audit and client due diligence becomes survivable without tribal knowledge.</div></div>
+    <!-- MAIN GRID -->
+    <section class="grid" aria-label="Trust Ledger layout">
+      <!-- LEFT -->
+      <div>
+        <!-- What it contains -->
+        <section class="card" aria-label="What a ledger entry contains">
+          <div class="hd">
+            <h2 class="cardTitle">What a ledger entry contains</h2>
+            <p class="muted">One governed snapshot of one material AI use case: impact, owners, risks, controls, decisions, and proof.</p>
           </div>
+          <div class="bd">
+            <div class="kpiGrid" aria-label="Ledger outcomes">
+              <div class="kpi">
+                <div class="t">Outcome</div>
+                <div class="v">Board clarity</div>
+                <div class="d">Executives see what AI does, who owns it, and what can go wrong.</div>
+              </div>
+              <div class="kpi">
+                <div class="t">Outcome</div>
+                <div class="v">Evidence discipline</div>
+                <div class="d">Controls and claims backed by exports/configs/logs/approvals as available.</div>
+              </div>
+              <div class="kpi">
+                <div class="t">Outcome</div>
+                <div class="v">Lower drift</div>
+                <div class="d">Governance stays aligned as tools, vendors, and teams change.</div>
+              </div>
+              <div class="kpi">
+                <div class="t">Outcome</div>
+                <div class="v">Answer-ready</div>
+                <div class="d">Audit and due diligence become survivable without tribal knowledge.</div>
+              </div>
+            </div>
 
-          <div class="section">
-            <div class="sectionTitle">Typical entry fields</div>
-            <p class="sectionDesc">Readable by leadership, defensible under scrutiny.</p>
             <table class="table" aria-label="Ledger entry fields">
-              <thead><tr><th>Field</th><th>Answers</th><th>Proof</th></tr></thead>
+              <thead>
+                <tr><th>Field</th><th>Answers</th><th>Proof</th></tr>
+              </thead>
               <tbody>
-                <tr><td><span class="tag"><strong>Use case</strong></span></td><td>What AI does, where it runs, who uses it.</td><td>Inventory, vendor docs, mapping.</td></tr>
-                <tr><td><span class="tag"><strong>Impact</strong></span></td><td>Why it matters (money, safety, rights, decisions).</td><td>Decision memo, thresholds.</td></tr>
-                <tr><td><span class="tag"><strong>Risks</strong></span></td><td>Failure modes: privacy, security, bias, fraud, IP.</td><td>Risk notes, incidents, tests.</td></tr>
-                <tr><td><span class="tag"><strong>Controls</strong></span></td><td>Safeguards: access, DLP, logging, review, approvals.</td><td>Configs/exports/screenshots/logs.</td></tr>
-                <tr><td><span class="tag"><strong>Owners</strong></span></td><td>Accountability and approvals.</td><td>RACI, change control record.</td></tr>
-                <tr><td><span class="tag"><strong>Evidence</strong></span></td><td>Where proof lives and stays readable.</td><td>Sanitized artefact links, bundles.</td></tr>
+                <tr>
+                  <td><span class="tag"><strong>Use case</strong></span></td>
+                  <td>What AI does, where it runs, who uses it.</td>
+                  <td>Inventory, vendor docs, mapping.</td>
+                </tr>
+                <tr>
+                  <td><span class="tag"><strong>Impact</strong></span></td>
+                  <td>Why it matters (money, safety, rights, decisions).</td>
+                  <td>Decision memo, thresholds.</td>
+                </tr>
+                <tr>
+                  <td><span class="tag"><strong>Risks</strong></span></td>
+                  <td>Failure modes: privacy, security, bias, fraud, IP.</td>
+                  <td>Risk notes, incidents, tests.</td>
+                </tr>
+                <tr>
+                  <td><span class="tag"><strong>Controls</strong></span></td>
+                  <td>Safeguards: access, DLP, logging, review, approvals.</td>
+                  <td>Configs/exports/screenshots/logs.</td>
+                </tr>
+                <tr>
+                  <td><span class="tag"><strong>Owners</strong></span></td>
+                  <td>Accountability and approvals.</td>
+                  <td>RACI, change control record.</td>
+                </tr>
+                <tr>
+                  <td><span class="tag"><strong>Evidence</strong></span></td>
+                  <td>Where proof lives and stays readable.</td>
+                  <td>Sanitized artefact links, bundles.</td>
+                </tr>
               </tbody>
             </table>
-          </div>
 
-          <div class="actions">
-            <a class="btn primary" href="/trust-ledger/intake/">Start intake</a>
-            <a class="btn secondary" href="/trust-brief/">Trust Brief</a>
-            <a class="btn secondary" href="/status/">Status</a>
-          </div>
+            <div class="actions">
+              <a class="btn primary" href="/gate/intake/?need=trustledger" data-rid-link>Start (Gate intake)</a>
+              <a class="btn secondary" href="/gate/procurement/?focus=ledger" data-rid-link>Invoice / PO</a>
+              <a class="btn secondary" href="/status/" data-rid-link>Status</a>
+            </div>
 
-          <div class="box">
-            <strong>Fast start:</strong> if scope is unclear, begin with <a href="/trust-brief/">Trust Brief</a> to generate the first starter entries and the initial cadence plan.
+            <div class="notice">
+              <strong>Fast start:</strong> if scope is unclear, begin with <a href="/trust-brief/" data-rid-link>Trust Brief</a> to generate starter entries and a cadence plan, then move into Trust Ledger maintenance.
+            </div>
           </div>
-        </div>
+        </section>
+
+        <!-- How it runs -->
+        <section class="card" aria-label="How it runs" style="margin-top:16px;">
+          <div class="hd">
+            <h2 class="cardTitle">How it runs</h2>
+            <p class="muted">Minimal friction. Clear cadence. Evidence-first delivery.</p>
+          </div>
+          <div class="bd">
+            <div class="steps" aria-label="Steps">
+              <div class="step">
+                <div class="n">1</div>
+                <div class="h">Kickoff & scope</div>
+                <div class="p">Confirm material use cases, owners, and a practical update rhythm.</div>
+              </div>
+              <div class="step">
+                <div class="n">2</div>
+                <div class="h">Entries & proof map</div>
+                <div class="p">Draft entries and link each claim to an evidence path (light → deep).</div>
+              </div>
+              <div class="step">
+                <div class="n">3</div>
+                <div class="h">Cadence & exports</div>
+                <div class="p">Maintain change trail and produce board/procurement-ready exports as agreed.</div>
+              </div>
+            </div>
+
+            <details class="opt">
+              <summary>What you receive (typical)</summary>
+              <div class="optBody">
+                <ul style="margin:10px 0 0; padding-left:18px; color:var(--muted); line-height:1.65;">
+                  <li>Ledger register (active entries) + evidence index</li>
+                  <li>Change trail + exception discipline</li>
+                  <li>Board-ready snapshot exports on agreed cadence</li>
+                  <li>Procurement support: questionnaire alignment + vendor-facing clarity (where applicable)</li>
+                </ul>
+              </div>
+            </details>
+          </div>
+        </section>
+
+        <!-- Samples (locked) -->
+        <section class="card" aria-label="Samples" style="margin-top:16px;">
+          <div class="hd">
+            <h2 class="cardTitle">Samples (locked routes)</h2>
+            <p class="muted">Format preview for board-ready artefacts and online outputs (demonstration only).</p>
+          </div>
+          <div class="bd">
+            <div class="actions" style="margin-top:0">
+              <a class="btn secondary" href="https://www.noetfield.com/trust-ledger/sample-report/board-memo.pdf" target="_blank" rel="nofollow">View sample board memo (PDF)</a>
+              <a class="btn secondary" href="https://www.noetfield.com/trust-ledger/ledger-entry.pdf" target="_blank" rel="nofollow">View ledger entry (PDF)</a>
+              <a class="btn ghost" href="https://www.noetfield.com/trust-ledger/ledger-entry.pdf2" target="_blank" rel="nofollow">View ledger entry (PDF2)</a>
+              <a class="btn ghost" href="https://www.noetfield.com/trust-ledger/sample-report/online/" target="_blank" rel="nofollow">View sample report (online)</a>
+              <a class="btn ghost" href="https://www.noetfield.com/trust-ledger/online-report/" target="_blank" rel="nofollow">View online report</a>
+              <a class="btn ghost" href="https://www.noetfield.com/trust-ledger/output/" target="_blank" rel="nofollow">Browse outputs</a>
+            </div>
+
+            <div class="notice">
+              <strong>Note:</strong> sample artefacts are for demonstration only and may be sanitized. Actual delivery is scoped at kickoff and aligned to internal approval and evidence constraints.
+            </div>
+          </div>
+        </section>
       </div>
 
-      <aside class="card">
-        <div class="hd">
-          <h2>Plans & pricing</h2>
-          <p>Monthly retainer + one-time setup. Final quote confirmed after intake.</p>
-        </div>
-        <div class="bd">
-          <div class="planGrid" aria-label="Trust Ledger pricing tiers">
-            <div class="plan">
-              <div class="name">TL — Maintain</div>
-              <div class="amt">1,500 CAD / mo</div>
-              <div class="sub">Up to 5 active entries • Monthly or quarterly cadence.</div>
-              <ul>
-                <li>Setup: 2,500 CAD</li>
-                <li>SLA: 5 business days</li>
-                <li>Evidence tier: light/standard</li>
-              </ul>
-            </div>
-            <div class="plan">
-              <div class="name">TL — Govern</div>
-              <div class="amt">2,750 CAD / mo</div>
-              <div class="sub">Up to 10 active entries • Board rhythm + due diligence support.</div>
-              <ul>
-                <li>Setup: 4,500 CAD</li>
-                <li>SLA: 3 business days</li>
-                <li>Quarterly board pack</li>
-              </ul>
-            </div>
-            <div class="plan">
-              <div class="name">TL — Assure</div>
-              <div class="amt">4,750 CAD / mo</div>
-              <div class="sub">Up to 20 active entries • Deep evidence discipline.</div>
-              <ul>
-                <li>Setup: 7,500 CAD</li>
-                <li>SLA: 1–2 business days</li>
-                <li>Config/log-driven proofs</li>
-              </ul>
-            </div>
+      <!-- RIGHT / RAIL -->
+      <aside class="rail" aria-label="Trust Ledger rail">
+        <!-- Plans -->
+        <section class="card" aria-label="Plans and pricing">
+          <div class="hd">
+            <h2 class="cardTitle">Plans & pricing</h2>
+            <p class="muted">Monthly cadence + one-time setup. Final quote confirmed after Gate intake.</p>
           </div>
+          <div class="bd">
+            <div class="plans" aria-label="Tiers">
+              <div class="plan">
+                <div class="planTop">
+                  <div class="name">TL — Maintain</div>
+                  <div class="amt">1,500 CAD / mo</div>
+                </div>
+                <div class="sub">Up to 5 active entries • Monthly or quarterly cadence.</div>
+                <ul>
+                  <li>Setup: 2,500 CAD</li>
+                  <li>SLA target: 5 business days</li>
+                  <li>Evidence tier: light/standard</li>
+                </ul>
+              </div>
 
-          <div class="box" style="margin-top:12px">
-            <strong>Add-on:</strong> Procurement-heavy support (vendor onboarding, extended questionnaires) available as a monthly add-on. Taxes may apply where applicable.
-          </div>
+              <div class="plan">
+                <div class="planTop">
+                  <div class="name">TL — Govern</div>
+                  <div class="amt">2,750 CAD / mo</div>
+                </div>
+                <div class="sub">Up to 10 active entries • Board rhythm + due diligence support.</div>
+                <ul>
+                  <li>Setup: 4,500 CAD</li>
+                  <li>SLA target: 3 business days</li>
+                  <li>Quarterly board pack</li>
+                </ul>
+              </div>
 
-          <div class="actions">
-            <a class="btn primary" href="/trust-ledger/intake/">Start intake</a>
-            <a class="btn secondary" href="mailto:procurement@noetfield.com?subject=Trust%20Ledger%20-%20Invoice%2FPO%20request">Request PO / invoice</a>
-          </div>
+              <div class="plan">
+                <div class="planTop">
+                  <div class="name">TL — Assure</div>
+                  <div class="amt">4,750 CAD / mo</div>
+                </div>
+                <div class="sub">Up to 20 active entries • Deep evidence discipline.</div>
+                <ul>
+                  <li>Setup: 7,500 CAD</li>
+                  <li>SLA target: 1–2 business days</li>
+                  <li>Config/log-driven proofs</li>
+                </ul>
+              </div>
+            </div>
 
-          <div class="box" style="margin-top:14px">
-            <strong>Proof:</strong> review the format before buying.<br/>
-            <a href="/trust-ledger/sample-report/">Sample artefacts</a> ·
-            <a href="/trust-ledger/online-report/">Sample board report</a>
+            <div class="notice" style="margin-top:12px;">
+              <strong>Add-on:</strong> procurement-heavy support (vendor onboarding, extended questionnaires) available as a monthly add-on. Taxes may apply where required.
+            </div>
+
+            <div class="actions">
+              <a class="btn primary" href="/gate/intake/?need=trustledger" data-rid-link>Start (Gate intake)</a>
+              <a class="btn secondary" href="/gate/procurement/?focus=ledger" data-rid-link>Invoice / PO</a>
+              <a class="btn secondary" href="/gate/sales/" data-rid-link>Purchase hub</a>
+            </div>
+
+            <div class="refBox" aria-label="Procurement shortcut">
+              For procurement: use <strong>procurement@noetfield.com</strong> with the Gate reference (RID). Gate starts are designed for non-sensitive details.
+            </div>
+
+            <details class="opt">
+              <summary>When to start with Trust Brief</summary>
+              <div class="optBody">
+                Start with Trust Brief when AI scope is unclear, ownership is messy, or leadership needs a decision-ready map first.
+                Trust Brief can produce the first starter entries and a cadence plan, then Trust Ledger maintains it.
+                <div class="actions">
+                  <a class="btn secondary small" href="/trust-brief/" data-rid-link>View Trust Brief</a>
+                  <a class="btn ghost small" href="/gate/intake/?need=trustbrief" data-rid-link>Start Trust Brief (Gate)</a>
+                </div>
+              </div>
+            </details>
           </div>
-        </div>
+        </section>
+
+        <!-- Samples quick access -->
+        <section class="card" aria-label="Samples quick access" style="margin-top:16px;">
+          <div class="hd">
+            <h2 class="cardTitle">Samples</h2>
+            <p class="muted">Preview the artefact format.</p>
+          </div>
+          <div class="bd">
+            <div class="actions" style="margin-top:0">
+              <a class="btn secondary small" href="https://www.noetfield.com/trust-ledger/sample-report/board-memo.pdf" target="_blank" rel="nofollow">Board memo (PDF)</a>
+              <a class="btn secondary small" href="https://www.noetfield.com/trust-ledger/ledger-entry.pdf" target="_blank" rel="nofollow">Ledger entry (PDF)</a>
+              <a class="btn ghost small" href="https://www.noetfield.com/trust-ledger/sample-report/online/" target="_blank" rel="nofollow">Online sample</a>
+              <a class="btn ghost small" href="https://www.noetfield.com/trust-ledger/output/" target="_blank" rel="nofollow">Outputs</a>
+            </div>
+          </div>
+        </section>
       </aside>
     </section>
   </main>
@@ -422,14 +571,12 @@
   <footer id="nfFooter"></footer>
 
   <!--
-    CHANGELOG
-    - Replaced “$750–$3k” signal with 3 clear Trust Ledger plans + setup fees.
-    - Tightened CTAs to /trust-ledger/intake/ (direct kickoff path).
-
     SMOKE TEST
-    - GET /trust-ledger/ returns 200
-    - shell assets 200; header/footer render
-    - CTAs route correctly
+    - GET /trust-ledger/ => 200
+    - /assets/noetfield-shell.css, /assets/noetfield-shell.js => 200
+    - Header/footer injected
+    - Gate links append RID via data-rid-link
+    - Sample links are absolute and match locked routes exactly
   -->
 </body>
 </html>

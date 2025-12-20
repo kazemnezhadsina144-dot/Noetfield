@@ -1,0 +1,584 @@
+<!-- /copilot/readiness/index.html — Microsoft 365 Copilot Readiness Assessment v1.0 (Market-mirror SKUs • Readiness-first • procurement-ready) -->
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>Noetfield — Microsoft 365 Copilot Readiness Assessment</title>
+  <meta name="description" content="Microsoft 365 Copilot Readiness Assessment. Fixed-scope tiers (2/4/6 weeks) with board/procurement-ready evidence and decision artifacts. Standard (4 weeks) — 15,000 CAD." />
+  <meta name="robots" content="index,follow" />
+  <meta name="author" content="Noetfield Systems Inc." />
+  <meta name="theme-color" content="#07070b" />
+
+  <link rel="canonical" href="https://www.noetfield.com/copilot/readiness/" />
+  <link rel="icon" href="/noetfield-favicon-512.png" type="image/png" />
+  <link rel="apple-touch-icon" href="/noetfield-favicon-512.png" />
+
+  <!-- OG -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Noetfield" />
+  <meta property="og:title" content="Noetfield — Microsoft 365 Copilot Readiness Assessment" />
+  <meta property="og:description" content="Fixed-scope readiness tiers (2/4/6 weeks) with board/procurement-ready evidence. Standard (4 weeks) — 15,000 CAD." />
+  <meta property="og:url" content="https://www.noetfield.com/copilot/readiness/" />
+  <meta property="og:image" content="https://www.noetfield.com/noetfield-og.png" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Noetfield — Copilot Readiness Assessment" />
+  <meta name="twitter:description" content="Copilot readiness (2/4/6 weeks) with decision-ready governance + evidence pack." />
+  <meta name="twitter:image" content="https://www.noetfield.com/noetfield-og.png" />
+
+  <!-- LOCKED SHELL -->
+  <link rel="stylesheet" href="/assets/noetfield-shell.css" />
+  <script src="/assets/noetfield-shell.js" defer></script>
+
+  <!-- Optional Stripe (only if you embed buy buttons; safe to keep) -->
+  <script async src="https://js.stripe.com/v3/buy-button.js"></script>
+
+  <style>
+    .hero{padding:18px 0 12px}
+    .heroShell{
+      position:relative;
+      border-radius: calc(var(--radius) + 10px);
+      border: 1px solid rgba(255,255,255,.12);
+      background:
+        radial-gradient(1100px 520px at 16% 0%, rgba(200,163,73,.20), transparent 62%),
+        radial-gradient(980px 520px at 92% 10%, rgba(122,167,255,.12), transparent 64%),
+        linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.020));
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .heroShell::before{
+      content:"";
+      position:absolute; inset:-1px;
+      background: linear-gradient(120deg, rgba(200,163,73,.28), transparent 32%, rgba(255,255,255,.08) 68%, transparent);
+      opacity:.46;
+      pointer-events:none;
+      mask-image: linear-gradient(180deg, black 0%, black 62%, transparent 96%);
+    }
+    .heroInner{padding: 26px 22px; position:relative; z-index:1}
+
+    .eyebrow{
+      display:inline-flex; gap:10px; align-items:center;
+      color:var(--muted);
+      font-size:13px;
+      padding:9px 12px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.13);
+      background: rgba(255,255,255,.035);
+    }
+    .dot{
+      width:8px; height:8px; border-radius:50%;
+      background: rgba(200,163,73,.97);
+      box-shadow: 0 0 0 3px rgba(200,163,73,.18);
+    }
+
+    h1{margin:14px 0 10px; font-size: clamp(30px, 3.1vw, 46px); line-height:1.06; letter-spacing:-0.8px}
+    .lead{margin:0; color:var(--muted); font-size:16px; line-height:1.75; max-width: 980px}
+    .lead strong{color:var(--text); font-weight:950}
+
+    .actions{display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-top:14px}
+    .actions .btn{min-height:44px}
+
+    .metaRow{display:flex; flex-wrap:wrap; gap:10px; margin-top:14px}
+    .pill{
+      display:inline-flex; align-items:center; gap:10px;
+      padding:9px 12px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.03);
+      color:var(--muted);
+      font-size:13px;
+      white-space:nowrap;
+    }
+    .pill strong{color:var(--text); font-weight:950}
+
+    .notice{
+      margin-top:12px;
+      padding:12px 12px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      color:var(--muted2);
+      font-size:12.8px;
+      line-height:1.6;
+    }
+    .notice strong{ color:var(--text); font-weight:950; }
+    .notice a{ border-bottom:1px solid rgba(255,255,255,.18); }
+
+    .grid{
+      display:grid;
+      grid-template-columns: 1.08fr .92fr;
+      gap:16px;
+      margin: 14px 0 34px;
+      align-items:start;
+    }
+
+    .card{
+      border-radius:var(--radius);
+      border:1px solid rgba(255,255,255,.11);
+      background: linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.022));
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+      min-width:0;
+    }
+    .hd{ padding:18px 18px 0; }
+    .bd{ padding:18px; }
+    .cardTitle{ margin:0 0 8px; font-size:18px; letter-spacing:-0.2px; }
+    .muted{ color:var(--muted); line-height:1.7; margin:0; }
+
+    .kpiGrid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:12px;
+      margin-top:12px;
+    }
+    .kpi{
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      padding:12px;
+      min-width:0;
+    }
+    .kpi .t{font-size:11px; letter-spacing:.28em; text-transform:uppercase; color:var(--muted2)}
+    .kpi .v{margin-top:8px; font-weight:950; letter-spacing:-.2px; color:var(--text)}
+    .kpi .d{margin-top:6px; color:var(--muted2); font-size:12.6px; line-height:1.55}
+
+    .section{
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      border-radius:16px;
+      padding:14px;
+      margin-top:12px;
+    }
+    .sectionTitle{font-weight:950; letter-spacing:-.2px; margin:0 0 6px; font-size:14px; color:var(--text)}
+    .sectionDesc{margin:0 0 10px; color:var(--muted2); font-size:12.7px; line-height:1.6}
+    .steps{margin:0; padding-left:18px; color:var(--muted); line-height:1.85}
+    .steps li{margin:6px 0}
+
+    .table{
+      width:100%;
+      border-collapse:separate;
+      border-spacing:0;
+      overflow:hidden;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.02);
+      margin-top:10px;
+    }
+    .table th, .table td{
+      text-align:left;
+      padding:12px;
+      border-bottom:1px solid rgba(255,255,255,.08);
+      vertical-align:top;
+      font-size:13px;
+    }
+    .table th{
+      color:var(--muted2);
+      font-size:11px;
+      letter-spacing:.28em;
+      text-transform:uppercase;
+      background: rgba(255,255,255,.03);
+    }
+    .table tr:last-child td{border-bottom:none}
+
+    .rail{ position: sticky; top: 14px; }
+    .box{
+      margin-top:12px;
+      padding:12px 12px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      color:var(--muted2);
+      font-size:12.8px;
+      line-height:1.6;
+    }
+    .box strong{color:var(--text); font-weight:950}
+    .box a{border-bottom:1px solid rgba(255,255,255,.18)}
+
+    .offerGrid{display:grid; gap:12px; margin-top:12px}
+    .offer{
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.11);
+      background:
+        radial-gradient(900px 380px at 20% 0%, rgba(200,163,73,.16), transparent 60%),
+        linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.022));
+      padding:14px;
+      box-shadow: var(--shadow2);
+    }
+    .offer.top{
+      border-color: rgba(200,163,73,.32);
+      background:
+        radial-gradient(900px 380px at 20% 0%, rgba(200,163,73,.22), transparent 60%),
+        radial-gradient(800px 320px at 92% 18%, rgba(122,167,255,.10), transparent 62%),
+        linear-gradient(180deg, rgba(255,255,255,.065), rgba(255,255,255,.022));
+    }
+    .offerTop{display:flex; justify-content:space-between; align-items:flex-start; gap:10px; flex-wrap:wrap}
+    .offerName{margin:0; font-size:15px; font-weight:950; letter-spacing:-.2px; color:var(--text)}
+    .badge{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:7px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.03);
+      color:var(--muted2);
+      font-size:12.4px;
+      white-space:nowrap;
+    }
+    .priceNum{margin:10px 0 0; font-size:28px; letter-spacing:-.6px; font-weight:950; color:var(--text)}
+    .offerSub{margin:6px 0 0; color:var(--muted2); font-size:12.8px; line-height:1.55}
+    .offerSub a{border-bottom:1px solid rgba(255,255,255,.18)}
+    .miniList{margin:10px 0 0; padding-left:18px; color:var(--muted); line-height:1.85; font-size:13px}
+    .miniList li{margin:6px 0}
+
+    .stickyCta{
+      position: sticky;
+      bottom: 0;
+      z-index: 20;
+      padding: 10px 0;
+      background: linear-gradient(180deg, rgba(7,7,11,0) 0%, rgba(7,7,11,.78) 22%, rgba(7,7,11,.92) 100%);
+      backdrop-filter: blur(10px);
+      border-top: 1px solid rgba(255,255,255,.08);
+    }
+    .stickyInner{
+      display:flex;
+      gap:12px;
+      align-items:center;
+      justify-content:space-between;
+      padding: 0 16px;
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+    .stickyText{
+      min-width:0;
+      color:var(--muted);
+      font-size:12.6px;
+      line-height:1.4;
+    }
+    .stickyText strong{ color:var(--text); font-weight:950; }
+
+    @media (max-width: 980px){
+      .grid{ grid-template-columns: 1fr; }
+      .rail{ position: relative; top: 0; }
+      .kpiGrid{ grid-template-columns: 1fr; }
+    }
+    @media (max-width: 760px){
+      .table th, .table td{padding:10px}
+      .stickyText{display:none}
+    }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Service",
+    "name":"Microsoft 365 Copilot Readiness Assessment",
+    "provider":{"@type":"Organization","name":"Noetfield Systems Inc."},
+    "areaServed":"CA",
+    "description":"Fixed-scope readiness tiers (2/4/6 weeks) for Microsoft 365 Copilot adoption, delivering board/procurement-ready governance and evidence artifacts.",
+    "url":"https://www.noetfield.com/copilot/readiness/"
+  }
+  </script>
+</head>
+
+<body>
+  <div class="bg" aria-hidden="true"></div>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <!-- injected header -->
+  <header id="nfHeader"></header>
+
+  <main id="main" class="wrap">
+    <!-- HERO -->
+    <section class="hero" aria-label="Copilot Readiness hero">
+      <div class="heroShell">
+        <div class="heroInner">
+          <div class="eyebrow"><span class="dot"></span> Microsoft 365 Copilot • Readiness Assessment</div>
+
+          <h1>Microsoft 365 Copilot Readiness Assessment.</h1>
+
+          <p class="lead">
+            Market-standard packaging (2/4/6 weeks) with <strong>board/procurement-ready</strong> evidence and decision artifacts.
+            Standard tier is the default enterprise path: <strong>4 weeks — 15,000 CAD</strong>.
+          </p>
+
+          <div class="actions" aria-label="Primary actions">
+            <a class="btn primary" href="#packages">See tiers & start</a>
+            <a class="btn secondary" href="/gate/intake/?need=copilot-readiness">Start intake (non-confidential)</a>
+            <a class="btn secondary" href="/gate/procurement/?focus=copilot-readiness">Invoice / PO (Procurement)</a>
+            <a class="btn secondary" href="/copilot/quickscan/">QuickScan (5–7 days)</a>
+          </div>
+
+          <div class="metaRow" aria-label="Highlights">
+            <div class="pill"><strong>Starter</strong> 2 weeks</div>
+            <div class="pill"><strong>Standard</strong> 4 weeks</div>
+            <div class="pill"><strong>Extended</strong> 6 weeks</div>
+            <div class="pill"><strong>Fixed scope</strong> tiers</div>
+          </div>
+
+          <div class="notice" role="note">
+            <strong>Public intake is non-confidential by design.</strong>
+            Avoid secrets, customer data, or identifiers. Secure sharing options (if needed) are confirmed after kickoff.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="grid" aria-label="Readiness layout">
+      <!-- MAIN -->
+      <section class="card" aria-label="Readiness details">
+        <div class="hd">
+          <h2 class="cardTitle">What this is (and why buyers approve it)</h2>
+          <p class="muted">
+            A readiness engagement that turns “Copilot interest” into a controlled adoption posture: clear owners, control baseline,
+            and evidence that can survive recurring scrutiny (security, privacy, procurement, and boards).
+          </p>
+        </div>
+
+        <div class="bd">
+          <div class="kpiGrid" aria-label="Outcomes">
+            <div class="kpi">
+              <div class="t">Decision readiness</div>
+              <div class="v">Go / Guardrails / Pause</div>
+              <div class="d">A decision-grade posture that leadership can approve without guessing.</div>
+            </div>
+            <div class="kpi">
+              <div class="t">Control baseline</div>
+              <div class="v">Owners + controls + change discipline</div>
+              <div class="d">Who owns what, which controls exist, and how changes are governed.</div>
+            </div>
+            <div class="kpi">
+              <div class="t">Evidence pack</div>
+              <div class="v">Procurement-fileable artifacts</div>
+              <div class="d">Artifacts designed to be forwarded, filed, and used as internal references.</div>
+            </div>
+            <div class="kpi">
+              <div class="t">Adoption plan</div>
+              <div class="v">30/60/90 rollout sequencing</div>
+              <div class="d">A practical plan that reduces oversharing risk while enabling real value.</div>
+            </div>
+          </div>
+
+          <div class="section" id="deliverables">
+            <div class="sectionTitle">Deliverables (all tiers)</div>
+            <p class="sectionDesc">Compact artifacts designed for real org workflows (IT/Sec/Legal/Procurement).</p>
+
+            <table class="table" aria-label="Deliverables table">
+              <thead>
+                <tr>
+                  <th>Deliverable</th>
+                  <th>What it contains</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Executive Summary</strong> (decision page)</td>
+                  <td>Posture snapshot, decision requests, and high-impact priorities.</td>
+                </tr>
+                <tr>
+                  <td><strong>Scope & Surface Map</strong></td>
+                  <td>Copilot surfaces, enablement posture, and adoption boundary (who/where/what).</td>
+                </tr>
+                <tr>
+                  <td><strong>Oversharing Exposure Themes</strong></td>
+                  <td>Top exposure paths (permissions + content sprawl patterns) and containment actions.</td>
+                </tr>
+                <tr>
+                  <td><strong>Data Boundaries</strong></td>
+                  <td>Practical red-lines: sensitive domains, do-not-use zones, and early guardrails.</td>
+                </tr>
+                <tr>
+                  <td><strong>Controls & Ownership Baseline</strong></td>
+                  <td>Owners, control expectations, approvals/exception notes (tier depth varies).</td>
+                </tr>
+                <tr>
+                  <td><strong>Evidence Readiness Pack</strong></td>
+                  <td>Signals, retention posture, export steps, and “what can be proven today”.</td>
+                </tr>
+                <tr>
+                  <td><strong>30/60/90 Plan</strong></td>
+                  <td>Milestones, owners, sequencing, and decision points.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="section" id="timeline">
+            <div class="sectionTitle">Timeline by tier</div>
+            <p class="sectionDesc">Market-standard packaging: 2/4/6 weeks, fixed-scope.</p>
+
+            <table class="table" aria-label="Timeline table">
+              <thead>
+                <tr>
+                  <th>Tier</th>
+                  <th>Duration</th>
+                  <th>Cadence</th>
+                  <th>Output emphasis</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Starter</strong></td>
+                  <td>2 weeks</td>
+                  <td>Kickoff + posture capture + decision pack</td>
+                  <td>Fast scope lock, high-signal exposure themes, minimal baseline</td>
+                </tr>
+                <tr>
+                  <td><strong>Standard</strong> (default)</td>
+                  <td>4 weeks</td>
+                  <td>Stakeholder alignment + baseline + evidence pack</td>
+                  <td>Board/procurement-ready pack with clear owners and governance posture</td>
+                </tr>
+                <tr>
+                  <td><strong>Extended</strong></td>
+                  <td>6 weeks</td>
+                  <td>Deeper posture + exception model + stronger evidence plan</td>
+                  <td>Complex orgs / regulated expectations / more formal governance expectations</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="section" id="inputs">
+            <div class="sectionTitle">What we need from you</div>
+            <p class="sectionDesc">Designed to reduce friction: minimal meetings, clear owners, controlled access.</p>
+            <ul class="steps">
+              <li><strong>Stakeholder owner:</strong> one accountable person to confirm scope and approve access approach.</li>
+              <li><strong>Read-only access preferred:</strong> posture review and evidence export steps.</li>
+              <li><strong>Boundary agreement:</strong> what content is in-scope vs out-of-scope for Copilot reach.</li>
+              <li><strong>Procurement path:</strong> card payment (optional) or invoice/PO via Procurement lane.</li>
+            </ul>
+          </div>
+
+          <div class="section" id="next">
+            <div class="sectionTitle">Recommended start</div>
+            <p class="sectionDesc">If you are an enterprise buyer, Standard is the default path.</p>
+            <div class="actions" aria-label="Next step actions">
+              <a class="btn primary" href="/gate/intake/?need=copilot-readiness-standard">Start Standard intake</a>
+              <a class="btn secondary" href="/gate/procurement/?focus=copilot-readiness">Invoice / PO</a>
+              <a class="btn secondary" href="/copilot/quickscan/">Need a fast snapshot? QuickScan</a>
+            </div>
+            <div class="notice" role="note" style="margin-top:12px">
+              <strong>Implementation note:</strong> This engagement is readiness + governance + evidence. Remediation / execution can be scoped after delivery if needed.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- RAIL (Packages) -->
+      <aside class="rail" aria-label="Readiness packages rail">
+        <div class="card">
+          <div class="hd">
+            <h2 class="cardTitle" id="packages">Packages & pricing</h2>
+            <p class="muted">Fixed-scope tiers. Procurement lane is always available.</p>
+          </div>
+
+          <div class="bd">
+            <!-- STARTER -->
+            <div class="offer" aria-label="Starter offer">
+              <div class="offerTop">
+                <h3 class="offerName">Readiness — Starter</h3>
+                <span class="badge">2 weeks</span>
+              </div>
+              <div class="priceNum">$9,500 CAD</div>
+              <div class="offerSub">For fast scope lock + decision pack when the org is smaller or urgency is high.</div>
+              <ul class="miniList">
+                <li>Scope & surface map</li>
+                <li>Exposure themes + boundary notes</li>
+                <li>Decision-ready executive summary</li>
+              </ul>
+              <div class="actions" style="margin-top:12px">
+                <a class="btn primary" href="/gate/intake/?need=copilot-readiness-starter">Start Starter</a>
+                <a class="btn secondary" href="/gate/procurement/?focus=copilot-readiness-starter">Invoice / PO</a>
+              </div>
+              <div class="offerSub" style="margin-top:10px">
+                Optional card pay: <a href="https://buy.stripe.com/REPLACE_WITH_STARTER_LINK" rel="nofollow noopener" target="_blank">Stripe Payment Link</a>
+              </div>
+            </div>
+
+            <!-- STANDARD -->
+            <div class="offer top" aria-label="Standard offer">
+              <div class="offerTop">
+                <h3 class="offerName">Readiness — Standard</h3>
+                <span class="badge">4 weeks • Flagship</span>
+              </div>
+              <div class="priceNum">$15,000 CAD</div>
+              <div class="offerSub">Default enterprise tier for stakeholder alignment + governance baseline + evidence pack.</div>
+              <ul class="miniList">
+                <li>Owners + control baseline</li>
+                <li>Procurement-fileable evidence pack</li>
+                <li>30/60/90 plan + decision gates</li>
+              </ul>
+              <div class="actions" style="margin-top:12px">
+                <a class="btn primary" href="/gate/intake/?need=copilot-readiness-standard">Start Standard</a>
+                <a class="btn secondary" href="/gate/procurement/?focus=copilot-readiness-standard">Invoice / PO</a>
+              </div>
+              <div class="offerSub" style="margin-top:10px">
+                Optional card pay: <a href="https://buy.stripe.com/REPLACE_WITH_STANDARD_LINK" rel="nofollow noopener" target="_blank">Stripe Payment Link</a>
+              </div>
+            </div>
+
+            <!-- EXTENDED -->
+            <div class="offer" aria-label="Extended offer">
+              <div class="offerTop">
+                <h3 class="offerName">Readiness — Extended</h3>
+                <span class="badge">6 weeks</span>
+              </div>
+              <div class="priceNum">$25,000 CAD</div>
+              <div class="offerSub">For complex orgs: stricter governance, deeper evidence posture, and exception handling model.</div>
+              <ul class="miniList">
+                <li>Deeper ownership/approval routing</li>
+                <li>Expanded evidence readiness + exceptions</li>
+                <li>Stronger board memo depth</li>
+              </ul>
+              <div class="actions" style="margin-top:12px">
+                <a class="btn primary" href="/gate/intake/?need=copilot-readiness-extended">Start Extended</a>
+                <a class="btn secondary" href="/gate/procurement/?focus=copilot-readiness-extended">Invoice / PO</a>
+              </div>
+              <div class="offerSub" style="margin-top:10px">
+                Optional card pay: <a href="https://buy.stripe.com/REPLACE_WITH_EXTENDED_LINK" rel="nofollow noopener" target="_blank">Stripe Payment Link</a>
+              </div>
+            </div>
+
+            <div class="box">
+              <strong>Preferred enterprise motion</strong><br/>
+              Intake → scope lock → kickoff → delivery pack → (optional) Trust Ledger retainer.
+            </div>
+
+            <div class="box">
+              <strong>Related</strong><br/>
+              <a href="/copilot/quickscan/">QuickScan</a> ·
+              <a href="/trust-ledger/">Trust Ledger</a> ·
+              <a href="/gate/sales/">Sales</a>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </section>
+  </main>
+
+  <!-- injected footer -->
+  <footer id="nfFooter"></footer>
+
+  <!-- Sticky CTA -->
+  <div class="stickyCta" aria-label="Sticky call to action">
+    <div class="stickyInner">
+      <div class="stickyText">
+        <strong>Copilot Readiness — Standard</strong> (4 weeks) — 15,000 CAD. Procurement-ready deliverables.
+      </div>
+      <div class="actions" style="margin:0">
+        <a class="btn primary" href="/gate/intake/?need=copilot-readiness-standard">Start Standard</a>
+        <a class="btn secondary" href="/gate/procurement/?focus=copilot-readiness-standard">Invoice / PO</a>
+      </div>
+    </div>
+  </div>
+
+  <!--
+    SETUP NOTES
+    - Replace Stripe placeholders with your Payment Links when ready.
+    - Keep #nfHeader and #nfFooter for shell injection.
+    - Gate routes are non-confidential intake by design.
+  -->
+</body>
+</html>

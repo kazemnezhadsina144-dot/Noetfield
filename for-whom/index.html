@@ -1,4 +1,4 @@
-<!-- /for-whom/index.html — Noetfield For Whom (clean + header-safe + shell-aligned) -->
+<!-- /for-whom/index.html — Noetfield For Whom v2.0 (board-safe positioning + clearer routing + header-safe CSS) -->
 <!doctype html>
 <html lang="en">
 <head>
@@ -8,7 +8,7 @@
 
   <meta
     name="description"
-    content="Who Noetfield is built for: boards, executives, and operators in real organizations where AI influences material decisions, requiring evidence-ready governance and defensible controls."
+    content="Who Noetfield is built for: boards, executives, security, and operators in real organizations where AI affects material decisions and requires evidence-ready governance, defensible controls, and procurement-friendly artefacts."
   />
   <meta name="robots" content="index,follow" />
   <meta name="author" content="Noetfield Systems Inc." />
@@ -22,32 +22,29 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Noetfield" />
   <meta property="og:title" content="Noetfield — For Whom" />
-  <meta property="og:description" content="Boards, executives, and operators in real organizations where AI needs evidence-ready governance and defensible controls." />
+  <meta property="og:description" content="Boards, executives, security, and operators where AI requires evidence-ready governance and defensible controls." />
   <meta property="og:url" content="https://www.noetfield.com/for-whom/" />
   <meta property="og:image" content="https://www.noetfield.com/noetfield-og.png" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Noetfield — For Whom" />
-  <meta name="twitter:description" content="Boards, executives, and operators in real organizations where AI needs evidence-ready governance and defensible controls." />
+  <meta name="twitter:description" content="Boards, executives, security, and operators where AI requires evidence-ready governance and defensible controls." />
   <meta name="twitter:image" content="https://www.noetfield.com/noetfield-og.png" />
-
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
 
   <!-- LOCKED SHELL -->
   <link rel="stylesheet" href="/assets/noetfield-shell.css" />
   <script src="/assets/noetfield-shell.js" defer></script>
 
-  <!-- Page-only styles (header-safe: avoids touching header classes) -->
   <style>
-    /* Hero */
-    .hero{padding:22px 0 14px}
-    .heroShell{
+    /* =========
+       Page scope (header-safe): fw- prefix everywhere
+       ========= */
+
+    .fw-hero{ padding: 20px 0 12px; }
+    .fw-heroShell{
       position:relative;
-      border-radius: calc(var(--radius) + 8px);
+      border-radius: calc(var(--radius) + 10px);
       border: 1px solid rgba(255,255,255,.11);
       background:
         radial-gradient(1000px 420px at 18% 0%, rgba(200,163,73,.18), transparent 60%),
@@ -56,18 +53,18 @@
       box-shadow: var(--shadow);
       overflow:hidden;
     }
-    .heroShell::before{
+    .fw-heroShell::before{
       content:"";
       position:absolute; inset:-1px;
       background: linear-gradient(120deg, rgba(200,163,73,.26), transparent 30%, rgba(255,255,255,.08) 68%, transparent);
-      opacity:.44;
+      opacity:.40;
       pointer-events:none;
-      mask-image: linear-gradient(180deg, black 0%, black 58%, transparent 96%);
+      mask-image: linear-gradient(180deg, black 0%, black 60%, transparent 96%);
     }
-    .heroInner{padding: 24px 22px}
+    .fw-heroInner{ padding: 24px 20px; position:relative; z-index:1; }
 
-    .eyebrow{
-      display:inline-flex; gap:10px; align-items:center;
+    .fw-eyebrow{
+      display:inline-flex; gap:10px; align-items:center; flex-wrap:wrap;
       color:var(--muted);
       font-size:13px;
       padding:9px 12px;
@@ -75,18 +72,18 @@
       border:1px solid rgba(255,255,255,.13);
       background: rgba(255,255,255,.035);
     }
-    .dot{
+    .fw-dot{
       width:8px; height:8px; border-radius:50%;
       background: rgba(200,163,73,.97);
       box-shadow: 0 0 0 3px rgba(200,163,73,.18);
+      flex:0 0 auto;
     }
+    .fw-h1{ margin:14px 0 10px; font-size:40px; line-height:1.07; letter-spacing:-0.75px; }
+    .fw-lead{ margin:0; color:var(--muted); font-size:16px; max-width: 1080px; line-height:1.75; }
+    .fw-lead strong{ color:var(--text); font-weight:900; }
 
-    h1{margin:14px 0 10px; font-size:40px; line-height:1.07; letter-spacing:-0.75px}
-    .lead{margin:0; color:var(--muted); font-size:16px; max-width: 1080px; line-height:1.75}
-    .lead strong{color:var(--text); font-weight:900}
-
-    .metaRow{display:flex; flex-wrap:wrap; gap:10px; margin-top:14px}
-    .pill{
+    .fw-pills{ display:flex; flex-wrap:wrap; gap:10px; margin-top:14px; }
+    .fw-pill{
       display:inline-flex; align-items:center; gap:10px;
       padding:9px 12px;
       border-radius:999px;
@@ -96,17 +93,30 @@
       font-size:13px;
       white-space:nowrap;
     }
-    .pill strong{color:var(--text); font-weight:900}
+    .fw-pill strong{ color:var(--text); font-weight:900; }
 
-    /* Layout */
-    .grid{
+    .fw-note{
+      margin-top:12px;
+      padding:12px 12px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      color:var(--muted2);
+      font-size:12.8px;
+      line-height:1.6;
+    }
+    .fw-note strong{ color:var(--text); font-weight:900; }
+    .fw-note a{ border-bottom:1px solid rgba(255,255,255,.18); }
+
+    .fw-grid{
       display:grid;
       grid-template-columns: 1.12fr .88fr;
-      gap:18px;
-      margin: 18px 0 34px;
+      gap:16px;
+      margin: 16px 0 34px;
       align-items:start;
     }
-    .card{
+
+    .fw-card{
       border-radius:var(--radius);
       border:1px solid rgba(255,255,255,.11);
       background: linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.022));
@@ -114,46 +124,44 @@
       overflow:hidden;
       min-width:0;
     }
-    .card .hd{padding:18px 18px 0}
-    .card h2{margin:0 0 8px; font-size:18px; letter-spacing:-0.2px}
-    .card p{margin:0 0 12px; color:var(--muted); line-height:1.7}
-    .card .bd{padding:18px}
+    .fw-hd{ padding:18px 18px 0; }
+    .fw-bd{ padding:18px; }
+    .fw-h2{ margin:0 0 8px; font-size:18px; letter-spacing:-0.2px; }
+    .fw-muted{ margin:0 0 12px; color:var(--muted); line-height:1.7; }
 
-    .section{
+    .fw-block{
       border:1px solid rgba(255,255,255,.10);
       background: rgba(255,255,255,.03);
       border-radius:16px;
       padding:14px;
       margin-top:12px;
     }
-    .sectionTitle{font-weight:900; letter-spacing:-.2px; margin:0 0 6px; font-size:14px}
-    .sectionDesc{margin:0 0 12px; color:var(--muted2); font-size:12.8px; line-height:1.6}
+    .fw-blockTitle{ font-weight:900; letter-spacing:-.2px; margin:0 0 6px; font-size:14px; }
+    .fw-blockDesc{ margin:0 0 12px; color:var(--muted2); font-size:12.8px; line-height:1.6; }
 
-    /* KPI grid */
-    .kpiGrid{display:grid; grid-template-columns: 1fr 1fr; gap:12px; margin-top:12px}
-    .kpi{
+    .fw-kpiGrid{ display:grid; grid-template-columns: 1fr 1fr; gap:12px; margin-top:12px; }
+    .fw-kpi{
       border-radius:16px;
       border:1px solid rgba(255,255,255,.10);
       background: rgba(255,255,255,.03);
       padding:12px;
       min-width:0;
     }
-    .kpi .t{font-size:11px; letter-spacing:.28em; text-transform:uppercase; color:var(--muted2)}
-    .kpi .v{margin-top:8px; font-weight:900; letter-spacing:-.2px}
-    .kpi .d{margin-top:6px; color:var(--muted2); font-size:12.6px; line-height:1.55}
+    .fw-kpi .t{ font-size:11px; letter-spacing:.28em; text-transform:uppercase; color:var(--muted2); }
+    .fw-kpi .v{ margin-top:8px; font-weight:900; letter-spacing:-.2px; }
+    .fw-kpi .d{ margin-top:6px; color:var(--muted2); font-size:12.6px; line-height:1.55; }
 
-    /* Audience cards */
-    .audGrid{display:grid; grid-template-columns: 1fr 1fr; gap:12px; margin-top:12px}
-    .aud{
+    .fw-audGrid{ display:grid; grid-template-columns: 1fr 1fr; gap:12px; margin-top:12px; }
+    .fw-aud{
       border-radius:16px;
       border:1px solid rgba(255,255,255,.10);
       background: rgba(255,255,255,.03);
       padding:12px;
       min-width:0;
     }
-    .aud .k{display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:10px}
-    .aud h3{margin:0; font-size:14px; letter-spacing:-.2px}
-    .badge{
+    .fw-audTop{ display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:10px; }
+    .fw-aud h3{ margin:0; font-size:14px; letter-spacing:-.2px; }
+    .fw-badge{
       font-size:11px;
       letter-spacing:.28em;
       text-transform:uppercase;
@@ -164,15 +172,14 @@
       background: rgba(255,255,255,.03);
       white-space:nowrap;
     }
-    .aud p{margin:0; color:var(--muted); line-height:1.75}
-    .aud strong{color:var(--text); font-weight:900}
+    .fw-aud p{ margin:0; color:var(--muted); line-height:1.75; }
+    .fw-aud strong{ color:var(--text); font-weight:900; }
 
-    .list{margin:0; padding-left:18px; color:var(--muted); line-height:1.9}
-    .list li{margin:8px 0}
-    .list strong{color:var(--text); font-weight:900}
+    .fw-list{ margin:0; padding-left:18px; color:var(--muted); line-height:1.9; }
+    .fw-list li{ margin:8px 0; }
+    .fw-list strong{ color:var(--text); font-weight:900; }
 
-    /* Tables */
-    .table{
+    .fw-table{
       width:100%;
       border-collapse:separate;
       border-spacing:0;
@@ -182,24 +189,25 @@
       background: rgba(255,255,255,.02);
       margin-top:10px;
     }
-    .table th, .table td{
+    .fw-table th, .fw-table td{
       text-align:left;
       padding:12px;
       border-bottom:1px solid rgba(255,255,255,.08);
       vertical-align:top;
       font-size:13px;
     }
-    .table th{
+    .fw-table th{
       color:var(--muted2);
       font-size:11px;
       letter-spacing:.28em;
       text-transform:uppercase;
       background: rgba(255,255,255,.03);
     }
-    .table tr:last-child td{border-bottom:none}
+    .fw-table tr:last-child td{ border-bottom:none; }
+    .fw-table a{ border-bottom:1px solid rgba(255,255,255,.18); }
 
-    /* Chips (renamed from .tag to avoid header collisions) */
-    .chip{
+    .fw-chipRow{ display:flex; flex-wrap:wrap; gap:10px; margin-top:10px; }
+    .fw-chip{
       display:inline-flex;
       align-items:center;
       gap:8px;
@@ -211,24 +219,11 @@
       font-size:12px;
       white-space:nowrap;
     }
-    .chip strong{color:var(--text); font-weight:900}
+    .fw-chip strong{ color:var(--text); font-weight:900; }
 
-    .box{
-      margin-top:12px;
-      padding:12px 12px;
-      border-radius:14px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.03);
-      color:var(--muted2);
-      font-size:12.8px;
-      line-height:1.6;
-    }
-    .box strong{color:var(--text); font-weight:900}
-    .box a{border-bottom:1px solid rgba(255,255,255,.18)}
+    .fw-actions{ display:flex; gap:12px; flex-wrap:wrap; align-items:center; margin-top:12px; }
 
-    .actions{display:flex; gap:12px; flex-wrap:wrap; align-items:center; margin-top:12px}
-
-    /* Button safety — scoped to MAIN only (never touches injected header) */
+    /* Button safety — scoped to MAIN only */
     #main .btn{
       display:inline-flex;
       align-items:center;
@@ -243,8 +238,8 @@
       transition: transform .12s ease, border-color .15s ease, background .15s ease;
       white-space:nowrap;
     }
-    #main .btn:hover{transform: translateY(-1px); border-color:rgba(255,255,255,.22); background:rgba(255,255,255,.05)}
-    #main .btn.secondary{opacity:.92}
+    #main .btn:hover{ transform: translateY(-1px); border-color:rgba(255,255,255,.22); background:rgba(255,255,255,.05); }
+    #main .btn.secondary{ opacity:.92; }
     #main .btn.primary{
       border-color: transparent;
       background: linear-gradient(135deg,#f9fafb,#e5e7eb);
@@ -252,9 +247,8 @@
       font-weight:900;
     }
 
-    /* TOC */
-    .toc{display:flex; flex-direction:column; gap:10px; margin-top:10px}
-    .toc a{
+    .fw-toc{ display:flex; flex-direction:column; gap:10px; margin-top:10px; }
+    .fw-toc a{
       display:flex; align-items:center; justify-content:space-between; gap:10px;
       padding:11px 12px;
       border-radius:14px;
@@ -264,14 +258,72 @@
       color:var(--text);
       transition: border-color .15s ease, background .15s ease, transform .06s ease;
     }
-    .toc a:hover{border-color:rgba(255,255,255,.22); background:rgba(255,255,255,.05)}
-    .toc a:active{transform: translateY(1px)}
-    .toc span{color:var(--muted)}
-    .arrow{opacity:.8}
+    .fw-toc a:hover{ border-color:rgba(255,255,255,.22); background:rgba(255,255,255,.05); }
+    .fw-toc a:active{ transform: translateY(1px); }
+    .fw-toc span{ color:var(--muted); }
+    .fw-arrow{ opacity:.8; }
 
-    /* Optional: boxed header behavior (MOVE to /assets/noetfield-shell.css later) */
+    details.fw-faq{
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.11);
+      background: rgba(255,255,255,.03);
+      padding:12px 12px;
+      margin-top:10px;
+    }
+    details.fw-faq summary{
+      cursor:pointer;
+      color: var(--text);
+      font-weight: 900;
+      letter-spacing: -.1px;
+      list-style:none;
+      outline:none;
+    }
+    details.fw-faq summary::-webkit-details-marker{ display:none; }
+    details.fw-faq .fw-faqBody{
+      margin-top:8px;
+      color:var(--muted2);
+      line-height:1.7;
+      font-size:13px;
+    }
+
+    .fw-ridBox{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
+      margin-top:12px;
+    }
+    .fw-rid{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.03);
+      padding:10px 12px;
+      color:var(--muted2);
+      font-size:12.8px;
+      line-height:1.4;
+      word-break:break-word;
+    }
+    .fw-rid b{ color:var(--text); font-weight:900; }
+    .fw-miniBtn{
+      display:inline-flex; align-items:center; justify-content:center;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.03);
+      color: rgba(255,255,255,.92);
+      padding:10px 12px;
+      font-size:12.8px;
+      min-height:40px;
+      cursor:pointer;
+      text-decoration:none;
+    }
+    .fw-miniBtn:hover{ background: rgba(255,255,255,.05); }
+
+    /* Optional boxed header behavior (ready to migrate into shell.css later) */
     @media (min-width: 981px){
-      body.header-boxed #nfHeader{
+      body.fw-header-boxed #nfHeader{
         position: sticky;
         top: 0;
         z-index: 60;
@@ -280,9 +332,9 @@
         border: 0 !important;
         box-shadow: none !important;
       }
-      body.header-boxed #nfHeader::before,
-      body.header-boxed #nfHeader::after{content:none !important; display:none !important;}
-      body.header-boxed #nfHeader .nav{
+      body.fw-header-boxed #nfHeader::before,
+      body.fw-header-boxed #nfHeader::after{ content:none !important; display:none !important; }
+      body.fw-header-boxed #nfHeader .nav{
         width: min(1200px, calc(100% - 32px));
         margin: 0 auto;
         border-radius: 18px;
@@ -295,192 +347,230 @@
     }
 
     @media (max-width: 980px){
-      .grid{grid-template-columns:1fr}
-      .audGrid{grid-template-columns:1fr}
-      .kpiGrid{grid-template-columns:1fr}
+      .fw-grid{ grid-template-columns:1fr; }
+      .fw-audGrid{ grid-template-columns:1fr; }
+      .fw-kpiGrid{ grid-template-columns:1fr; }
     }
     @media (max-width: 760px){
-      h1{font-size:30px}
-      .table th, .table td{padding:10px}
+      .fw-h1{ font-size:30px; }
+      .fw-table th, .fw-table td{ padding:10px; }
     }
   </style>
 
   <script type="application/ld+json">
   {
-    "@context": "https://schema.org",
-    "@type": "WebPage",
-    "name": "Noetfield — For Whom",
-    "url": "https://www.noetfield.com/for-whom/",
-    "description": "Who Noetfield is built for: boards, executives, and operators in real organizations where AI influences material decisions, requiring evidence-ready governance and defensible controls.",
-    "isPartOf": {"@type":"WebSite","name":"Noetfield","url":"https://www.noetfield.com/"},
-    "publisher": {"@type":"Organization","name":"Noetfield Systems Inc."}
+    "@context":"https://schema.org",
+    "@type":"WebPage",
+    "name":"Noetfield — For Whom",
+    "url":"https://www.noetfield.com/for-whom/",
+    "description":"Who Noetfield is built for: boards, executives, security, and operators in real organizations where AI affects material decisions and requires evidence-ready governance and defensible controls.",
+    "isPartOf":{"@type":"WebSite","name":"Noetfield","url":"https://www.noetfield.com/"},
+    "publisher":{"@type":"Organization","name":"Noetfield Systems Inc.","url":"https://www.noetfield.com/"}
   }
   </script>
 </head>
 
-<body class="header-boxed">
+<body class="fw-header-boxed">
   <div class="bg" aria-hidden="true"></div>
   <a class="skip" href="#main">Skip to content</a>
 
-  <!-- Injected header (central: /assets/partials/header.html) -->
+  <!-- injected header -->
   <header id="nfHeader"></header>
 
   <main id="main" class="wrap">
     <!-- HERO -->
-    <section class="hero">
-      <div class="heroShell">
-        <div class="heroInner">
-          <div class="eyebrow"><span class="dot"></span> Audience • fit • routing</div>
-          <h1>For whom.</h1>
+    <section class="fw-hero" aria-label="For whom hero">
+      <div class="fw-heroShell">
+        <div class="fw-heroInner">
+          <div class="fw-eyebrow"><span class="fw-dot"></span> Audience • fit • routing</div>
+          <h1 class="fw-h1">For whom.</h1>
 
-          <p class="lead">
+          <p class="fw-lead">
             Noetfield is built for <strong>real organizations</strong> where AI influences <strong>material decisions</strong> —
-            and leadership must be able to show <strong>who decided</strong>, <strong>what controls applied</strong>,
+            and leadership must be able to show <strong>what was decided</strong>, <strong>which controls applied</strong>,
             and <strong>what evidence proves it</strong>.
           </p>
 
-          <div class="metaRow" aria-label="Fit signals">
-            <div class="pill"><strong>Board exposure</strong></div>
-            <div class="pill"><strong>Audit pressure</strong></div>
-            <div class="pill"><strong>Vendor AI sprawl</strong></div>
-            <div class="pill"><strong>Copilot adoption</strong></div>
-            <div class="pill"><strong>Evidence requirement</strong></div>
+          <div class="fw-pills" aria-label="Fit signals">
+            <div class="fw-pill"><strong>Board exposure</strong></div>
+            <div class="fw-pill"><strong>Audit pressure</strong></div>
+            <div class="fw-pill"><strong>Procurement scrutiny</strong></div>
+            <div class="fw-pill"><strong>Copilot adoption</strong></div>
+            <div class="fw-pill"><strong>Evidence requirement</strong></div>
           </div>
 
-          <div class="actions" aria-label="Actions">
+          <div class="fw-actions" aria-label="Actions">
             <a class="btn primary" href="/gate/intake/?need=for-whom">Start via Gate</a>
-            <a class="btn secondary" href="/trust-brief/">See Trust Brief</a>
-            <a class="btn secondary" href="/trust-ledger/">See Trust Ledger</a>
+            <a class="btn secondary" href="/gate/sales/">Purchase-ready</a>
+            <a class="btn secondary" href="/gate/procurement/">Procurement (Invoice/PO)</a>
           </div>
 
-          <div class="box">
-            <strong>Public intake = non-confidential.</strong> Do not submit secrets, credentials, or regulated personal data on public forms.
+          <div class="fw-ridBox" aria-label="Request ID">
+            <div class="fw-rid" role="note"><b>Request ID</b> <span id="fwRidText">—</span><span aria-hidden="true">•</span><span>Use this ID in threads.</span></div>
+            <button class="fw-miniBtn" id="fwRidCopyBtn" type="button">Copy</button>
+            <a class="fw-miniBtn" id="fwStatusBtn" href="/status/">Status</a>
+          </div>
+
+          <div class="fw-note">
+            <strong>Public intake = non-confidential.</strong> Do not submit secrets, credentials, private keys, or regulated personal data on public forms.
           </div>
         </div>
       </div>
     </section>
 
-    <section class="grid">
-      <!-- MAIN -->
-      <div class="card">
-        <div class="hd">
-          <h2>How to know if Noetfield applies</h2>
-          <p>
-            Noetfield is for environments where AI is not a “side experiment” — it affects approvals, access, money, safety,
-            rights, or regulated outcomes. The goal is governance artefacts that remain readable under scrutiny.
+    <section class="fw-grid" aria-label="For whom layout">
+      <!-- LEFT (main narrative) -->
+      <div class="fw-card">
+        <div class="fw-hd">
+          <h2 class="fw-h2">How to know if Noetfield applies</h2>
+          <p class="fw-muted">
+            Noetfield is for environments where AI is not a side experiment — it affects approvals, access, money, safety, rights,
+            or regulated outcomes. The goal is governance artefacts that remain readable under scrutiny.
           </p>
         </div>
 
-        <div class="bd">
-          <div class="kpiGrid" aria-label="Decision context KPIs">
-            <div class="kpi">
+        <div class="fw-bd">
+          <div class="fw-kpiGrid" aria-label="Decision context">
+            <div class="fw-kpi">
               <div class="t">Pressure</div>
               <div class="v">Board accountability</div>
               <div class="d">Questions arrive late; evidence must exist early and remain reconstructable.</div>
             </div>
-            <div class="kpi">
+            <div class="fw-kpi">
               <div class="t">Risk</div>
               <div class="v">Operational exposure</div>
               <div class="d">AI-driven errors create real-world impact: cost, service failure, compliance, reputational damage.</div>
             </div>
-            <div class="kpi">
+            <div class="fw-kpi">
               <div class="t">Reality</div>
-              <div class="v">Tool sprawl</div>
+              <div class="v">Tool and vendor sprawl</div>
               <div class="d">Copilot + vendor AI + shadow usage create drift between policy and behavior.</div>
             </div>
-            <div class="kpi">
+            <div class="fw-kpi">
               <div class="t">Requirement</div>
               <div class="v">Proof, not claims</div>
-              <div class="d">Controls must be tied to logs, exports, approvals, and accountable owners.</div>
+              <div class="d">Controls must be tied to logs, exports, approvals, accountable owners, and traceable decisions.</div>
             </div>
           </div>
 
-          <div class="section" id="audiences">
-            <div class="sectionTitle">Primary audiences</div>
-            <p class="sectionDesc">These roles need governance artefacts that can survive scrutiny (not just policies that read well).</p>
+          <div class="fw-block" id="audiences">
+            <div class="fw-blockTitle">Primary audiences</div>
+            <p class="fw-blockDesc">Roles that need governance artefacts that survive scrutiny (not slideware policies).</p>
 
-            <div class="audGrid" aria-label="Audience cards">
-              <div class="aud">
-                <div class="k">
-                  <h3>Boards & committees</h3>
-                  <span class="badge">STEWARDS</span>
-                </div>
-                <p>Need <strong>decision memos</strong>, options, thresholds, and confidence that controls are real and evidenced.</p>
+            <div class="fw-audGrid" aria-label="Audience cards">
+              <div class="fw-aud">
+                <div class="fw-audTop"><h3>Boards & committees</h3><span class="fw-badge">STEWARDS</span></div>
+                <p>Need <strong>decision memos</strong>, thresholds, options, and confidence that controls are real and evidenced.</p>
               </div>
 
-              <div class="aud">
-                <div class="k">
-                  <h3>Executives (CEO/COO/CFO)</h3>
-                  <span class="badge">OWNERS</span>
-                </div>
+              <div class="fw-aud">
+                <div class="fw-audTop"><h3>Executives (CEO/COO/CFO)</h3><span class="fw-badge">OWNERS</span></div>
                 <p>Need <strong>cost + risk visibility</strong> and a baseline that reduces exposure without stalling delivery.</p>
               </div>
 
-              <div class="aud">
-                <div class="k">
-                  <h3>Security leadership (CISO)</h3>
-                  <span class="badge">GUARDS</span>
-                </div>
+              <div class="fw-aud">
+                <div class="fw-audTop"><h3>Security leadership (CISO)</h3><span class="fw-badge">GUARDS</span></div>
                 <p>Need <strong>identity, logging, DLP</strong>, and evidence discipline aligned to audit and incident response.</p>
               </div>
 
-              <div class="aud">
-                <div class="k">
-                  <h3>Legal, privacy, compliance</h3>
-                  <span class="badge">ASSURE</span>
-                </div>
+              <div class="fw-aud">
+                <div class="fw-audTop"><h3>Legal, privacy, compliance</h3><span class="fw-badge">ASSURE</span></div>
                 <p>Need <strong>traceability</strong>: policies mapped to controls and artefacts, not “trust us” statements.</p>
               </div>
 
-              <div class="aud">
-                <div class="k">
-                  <h3>Operators (real economy)</h3>
-                  <span class="badge">DELIVER</span>
-                </div>
+              <div class="fw-aud">
+                <div class="fw-audTop"><h3>Operators (real economy)</h3><span class="fw-badge">DELIVER</span></div>
                 <p>Need governance that works in production—where failure has <strong>real-world impact</strong>.</p>
               </div>
 
-              <div class="aud">
-                <div class="k">
-                  <h3>Implementation partners</h3>
-                  <span class="badge">SHIP</span>
-                </div>
-                <p>Need governed routing to deliver evidence-ready outcomes (not random tooling or slideware).</p>
+              <div class="fw-aud">
+                <div class="fw-audTop"><h3>Implementation partners</h3><span class="fw-badge">SHIP</span></div>
+                <p>Need governed routing to deliver evidence-ready outcomes with clear boundaries and accountable owners.</p>
               </div>
             </div>
 
-            <div class="box">
-              <strong>Bottom line:</strong> if AI can move money, approvals, access, eligibility, pricing, safety outcomes,
-              or regulated decisions, this is Noetfield territory.
+            <div class="fw-note">
+              <strong>Bottom line:</strong> if AI can move money, approvals, access, eligibility, pricing, safety outcomes, or regulated decisions, this is Noetfield territory.
             </div>
           </div>
 
-          <div class="section" id="fit">
-            <div class="sectionTitle">Strong fit signals</div>
-            <p class="sectionDesc">If multiple items below are true, start with Gate intake and route into the right track.</p>
+          <div class="fw-block" id="fit">
+            <div class="fw-blockTitle">Strong fit signals</div>
+            <p class="fw-blockDesc">If multiple items below are true, start with Gate intake and route into the right track.</p>
 
-            <ul class="list">
+            <ul class="fw-list">
               <li>AI is already used across teams (official or shadow usage).</li>
               <li>Decisions are audited or regulated (finance, privacy, safety, public sector, critical operations).</li>
               <li>You need <strong>evidence trails</strong> (logs, exports, approvals) that can be reconstructed later.</li>
-              <li>You must show <strong>who approved</strong> which model/tool and under what boundaries.</li>
+              <li>You must show <strong>who approved</strong> which tool/model and under what boundaries.</li>
               <li>AI touches <strong>identity, access, or sensitive data</strong> (customer, employee, citizen, patient).</li>
-              <li>Security/compliance capacity is constrained; you need a <strong>baseline</strong> you can actually enforce.</li>
+              <li>Security/compliance capacity is constrained; a baseline must be enforceable.</li>
               <li>Leadership wants speed — but requires a defensible posture.</li>
             </ul>
 
-            <div class="actions">
+            <div class="fw-actions">
               <a class="btn primary" href="/gate/intake/?need=fit">Start intake</a>
               <a class="btn secondary" href="/gate/">Open Gate</a>
-              <a class="btn secondary" href="/status/">Status</a>
+              <a class="btn secondary" href="/gate/procurement/">Procurement</a>
             </div>
           </div>
 
-          <div class="section" id="not-fit">
-            <div class="sectionTitle">Not a fit (yet)</div>
-            <p class="sectionDesc">Noetfield is not a general AI agency or a chatbot feature shop. If the goal is “ship a toy fast,” use a different path.</p>
+          <div class="fw-block" id="routing">
+            <div class="fw-blockTitle">Recommended starting point</div>
+            <p class="fw-blockDesc">Market-standard offers on the outside. Evidence-first differentiation inside the deliverables.</p>
 
-            <table class="table" aria-label="Fit vs not fit">
+            <table class="fw-table" aria-label="Routing table">
+              <thead>
+                <tr>
+                  <th>Situation</th>
+                  <th>Start</th>
+                  <th>Outcome</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Need a fast decision snapshot</td>
+                  <td><a href="/copilot/quickscan/">Copilot QuickScan</a></td>
+                  <td>Rapid readiness snapshot + buyer-grade artefacts</td>
+                </tr>
+                <tr>
+                  <td>Enterprise Copilot rollout (board/procurement pressure)</td>
+                  <td><a href="/copilot/">Microsoft 365 Copilot Readiness Assessment</a></td>
+                  <td>Starter/Standard/Extended assessment outputs (board-safe)</td>
+                </tr>
+                <tr>
+                  <td>Need board-ready options + baseline quickly</td>
+                  <td><a href="/trust-brief/">Trust Brief</a></td>
+                  <td>Time-boxed diagnostic + artefacts + routing plan</td>
+                </tr>
+                <tr>
+                  <td>Need ongoing defensible records tied to proof</td>
+                  <td><a href="/trust-ledger/">Trust Ledger</a></td>
+                  <td>Ledger entries linked to owners, controls, and evidence</td>
+                </tr>
+                <tr>
+                  <td>Need procurement-style purchasing (invoice/PO)</td>
+                  <td><a href="/gate/procurement/">Procurement</a></td>
+                  <td>Vendor onboarding track + short request flow</td>
+                </tr>
+                <tr>
+                  <td>Need templates and internal rollout pattern</td>
+                  <td><a href="/playbook/">Playbook</a></td>
+                  <td>0–90 day governance pattern + checklists + brief</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <div class="fw-note">
+              <strong>Core output:</strong> decision record + control baseline + evidence trail. Not generic advisory, not “a policy doc.”
+            </div>
+          </div>
+
+          <div class="fw-block" id="not-fit">
+            <div class="fw-blockTitle">Not a fit (yet)</div>
+            <p class="fw-blockDesc">Noetfield is not a general AI dev shop, chatbot agency, or feature factory.</p>
+
+            <table class="fw-table" aria-label="Not fit table">
               <thead>
                 <tr>
                   <th>Not fit</th>
@@ -490,145 +580,136 @@
               </thead>
               <tbody>
                 <tr>
-                  <td>Pure marketing chatbots</td>
+                  <td>Pure marketing chatbot builds</td>
                   <td>Low governance requirement; weak evidence needs</td>
-                  <td>Standard product/vendor evaluation</td>
+                  <td>Standard vendor selection / internal product build</td>
                 </tr>
                 <tr>
                   <td>Prototype-only teams</td>
                   <td>No production impact yet</td>
-                  <td>Start with a minimal baseline + <a href="/playbook/">Playbook</a></td>
+                  <td>Start with <a href="/playbook/">Playbook</a> or minimal baseline</td>
                 </tr>
                 <tr>
-                  <td>No logging / no IdP discipline</td>
+                  <td>No identity/logging discipline</td>
                   <td>Cannot defend claims without evidence</td>
-                  <td>Integration lane first (identity/logs/DLP) via <a href="/gate/partners/">Partners</a></td>
+                  <td>Start via <a href="/gate/intake/?need=baseline">Gate intake</a> to route baseline work</td>
                 </tr>
               </tbody>
             </table>
 
-            <div class="box">
-              <strong>Fast path:</strong> if a concrete baseline and artefacts are needed in weeks,
-              <a href="/trust-brief/">Trust Brief</a> is the shortest route to board-ready clarity.
-            </div>
-          </div>
-
-          <div class="section" id="routing">
-            <div class="sectionTitle">How you route into Noetfield</div>
-            <p class="sectionDesc">Pick the path that matches the situation. Gate is the governed entry point.</p>
-
-            <table class="table" aria-label="Routing table">
-              <thead>
-                <tr>
-                  <th>Situation</th>
-                  <th>Route</th>
-                  <th>Outcome</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Need board-ready decision options + baseline quickly</td>
-                  <td><a href="/trust-brief/">Trust Brief</a></td>
-                  <td>Time-boxed diagnostic + artefacts + routing</td>
-                </tr>
-                <tr>
-                  <td>Need defensible governance records linked to proof</td>
-                  <td><a href="/trust-ledger/">Trust Ledger</a></td>
-                  <td>Ledger entries tied to owners, controls, and evidence</td>
-                </tr>
-                <tr>
-                  <td>Need a controlled procurement-style intake</td>
-                  <td><a href="/gate/intake/?need=for-whom">Gate intake</a></td>
-                  <td>Structured context + lane selection</td>
-                </tr>
-                <tr>
-                  <td>Need implementation capacity (IdP/logs/DLP)</td>
-                  <td><a href="/gate/partners/">Partners</a></td>
-                  <td>Routed partner lanes with evidence discipline</td>
-                </tr>
-              </tbody>
-            </table>
-
-            <div class="box">
-              <strong>Reminder:</strong> Noetfield’s output is not “a policy.”
-              It is a <strong>decision record</strong> + <strong>control baseline</strong> + <strong>evidence trail</strong>.
-            </div>
-
-            <div class="actions">
-              <a class="btn primary" href="/gate/intake/?need=for-whom">Start via Gate</a>
-              <a class="btn secondary" href="/gate/">Gate</a>
-              <a class="btn secondary" href="/playbook/">Playbook</a>
-            </div>
+            <details class="fw-faq">
+              <summary>What if uncertainty exists (fit is unclear)?</summary>
+              <div class="fw-faqBody">
+                Start with <a href="/gate/intake/?need=for-whom">Gate intake</a>. Routing is the point: choose the smallest defensible first step, then expand.
+              </div>
+            </details>
           </div>
         </div>
       </div>
 
-      <!-- ASIDE -->
-      <aside class="card">
-        <div class="hd">
-          <h2>Quick navigation</h2>
-          <p>Jump to sections.</p>
+      <!-- RIGHT (navigation + quick routes) -->
+      <aside class="fw-card" aria-label="For whom sidebar">
+        <div class="fw-hd">
+          <h2 class="fw-h2">Quick navigation</h2>
+          <p class="fw-muted">Jump to sections and start the right lane.</p>
         </div>
 
-        <div class="bd">
-          <div class="toc" aria-label="On-page navigation">
-            <a href="#audiences"><span>Primary</span><strong>Audiences</strong><span class="arrow">→</span></a>
-            <a href="#fit"><span>Strong</span><strong>Fit</strong><span class="arrow">→</span></a>
-            <a href="#not-fit"><span>Not a</span><strong>Fit</strong><span class="arrow">→</span></a>
-            <a href="#routing"><span>How to</span><strong>Route</strong><span class="arrow">→</span></a>
+        <div class="fw-bd">
+          <div class="fw-toc" aria-label="On-page navigation">
+            <a href="#audiences"><span>Primary</span><strong>Audiences</strong><span class="fw-arrow">→</span></a>
+            <a href="#fit"><span>Strong</span><strong>Fit</strong><span class="fw-arrow">→</span></a>
+            <a href="#routing"><span>Recommended</span><strong>Start</strong><span class="fw-arrow">→</span></a>
+            <a href="#not-fit"><span>Not a</span><strong>Fit</strong><span class="fw-arrow">→</span></a>
           </div>
 
-          <div class="section" style="margin-top:14px;">
-            <div class="sectionTitle">Common triggers</div>
-            <p class="sectionDesc">Copilot rollout, vendor AI adoption, incident/near-miss, internal audit, regulator questions, or procurement pressure.</p>
-            <div class="metaRow" aria-label="Triggers" style="margin-top:10px">
-              <span class="chip"><strong>Copilot / M365</strong></span>
-              <span class="chip"><strong>Vendor AI</strong></span>
-              <span class="chip"><strong>Data leakage</strong></span>
-              <span class="chip"><strong>Audit</strong></span>
-              <span class="chip"><strong>Policy drift</strong></span>
+          <div class="fw-block" style="margin-top:14px;">
+            <div class="fw-blockTitle">Common triggers</div>
+            <p class="fw-blockDesc">Copilot rollout, vendor AI adoption, incident/near-miss, internal audit, regulator questions, or procurement pressure.</p>
+            <div class="fw-chipRow" aria-label="Triggers">
+              <span class="fw-chip"><strong>Copilot / M365</strong></span>
+              <span class="fw-chip"><strong>Vendor AI</strong></span>
+              <span class="fw-chip"><strong>Data leakage</strong></span>
+              <span class="fw-chip"><strong>Audit</strong></span>
+              <span class="fw-chip"><strong>Policy drift</strong></span>
             </div>
           </div>
 
-          <div class="box" style="margin-top:14px;">
+          <div class="fw-note" style="margin-top:14px;">
             <strong>Best next step:</strong><br/>
             If uncertain, start at <a href="/gate/intake/?need=for-whom">/gate/intake/</a> for routing.
           </div>
 
-          <div class="box" style="margin-top:14px;">
-            <strong>Reference:</strong><br/>
-            <a href="/trust-brief/">Trust Brief</a> ·
-            <a href="/trust-ledger/">Trust Ledger</a> ·
-            <a href="/copilot/">Copilot</a>
+          <div class="fw-note" style="margin-top:14px;">
+            <strong>Procurement path:</strong><br/>
+            Invoice/PO purchasing starts at <a href="/gate/procurement/">/gate/procurement/</a>.
           </div>
 
-          <div class="actions" style="margin-top:14px;">
+          <div class="fw-actions" style="margin-top:14px;">
             <a class="btn primary" href="/gate/intake/?need=for-whom">Start intake</a>
-            <a class="btn secondary" href="/gate/">Gate</a>
+            <a class="btn secondary" href="/gate/sales/">Purchase-ready</a>
           </div>
         </div>
       </aside>
     </section>
   </main>
 
-  <!-- Injected footer (central: /assets/partials/footer.html) -->
+  <!-- injected footer -->
   <footer id="nfFooter"></footer>
 
-  <!--
-    CHANGELOG
-    - Removed all potential header-class collisions by renaming .tag -> .chip (page-only).
-    - Scoped button safety to #main so injected header never gets overridden.
-    - Made boxed-header behavior optional via body.header-boxed (ready to migrate to shell.css).
-    - Kept mounts as #nfHeader/#nfFooter for shell injection.
-  -->
+  <script>
+    (function(){
+      // Request ID (localStorage) + status link
+      function mkRid(){
+        var t = Date.now().toString(36);
+        var r = Math.random().toString(36).slice(2, 8);
+        return ("nf_" + t + "_" + r).toLowerCase();
+      }
+      var ridKey = "nf_request_id";
+      var rid = localStorage.getItem(ridKey);
+      if (!rid) { rid = mkRid(); localStorage.setItem(ridKey, rid); }
+
+      var ridEl = document.getElementById("fwRidText");
+      if (ridEl) ridEl.textContent = rid;
+
+      var statusA = document.getElementById("fwStatusBtn");
+      if (statusA) statusA.href = "/status/?rid=" + encodeURIComponent(rid);
+
+      var copyBtn = document.getElementById("fwRidCopyBtn");
+      function copyText(txt){
+        if (navigator.clipboard && navigator.clipboard.writeText){
+          return navigator.clipboard.writeText(txt);
+        }
+        var ta = document.createElement("textarea");
+        ta.value = txt; document.body.appendChild(ta);
+        ta.select(); document.execCommand("copy");
+        document.body.removeChild(ta);
+        return Promise.resolve();
+      }
+      if (copyBtn){
+        copyBtn.addEventListener("click", function(){
+          copyText(rid).then(function(){
+            copyBtn.textContent = "Copied";
+            setTimeout(function(){ copyBtn.textContent = "Copy"; }, 1200);
+          });
+        });
+      }
+    })();
+  </script>
 
   <!--
+    CHANGELOG (for-whom v2.0)
+    - Clearer enterprise positioning (material decisions + evidence-ready governance).
+    - Stronger routing aligned to market-mirror offers (QuickScan, M365 Copilot Readiness tiers, Trust Brief, Trust Ledger, Procurement).
+    - Added Request ID + Status link for continuity across the site.
+    - Header-safe CSS via fw- prefix + button scope to #main only.
+    - Optional boxed header behavior via body.fw-header-boxed (ready to move into shell.css later).
+
     SMOKE TEST
     - GET /for-whom/ returns 200
     - /assets/noetfield-shell.css returns 200 and tokens apply
     - /assets/noetfield-shell.js returns 200 and injects into #nfHeader/#nfFooter
-    - Desktop: boxed header works (if body has header-boxed) without full-width band
-    - CTA: /gate/intake/?need=for-whom returns 200
+    - Request ID shows + Status link includes ?rid=
+    - CTAs: /gate/intake/ /gate/sales/ /gate/procurement/ return 200
   -->
 </body>
 </html>

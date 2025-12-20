@@ -1,4 +1,4 @@
-<!-- /trust-ledger/index.html — Noetfield Trust Ledger v5.2 (Authority Hub • Copilot-first • Samples • zero-404 library cards) -->
+<!-- /trust-ledger/index.html — Noetfield Trust Ledger v6.0 (Sales-first • Plans & pricing rail • Subscription CTAs) -->
 <!doctype html>
 <html lang="en">
 <head>
@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <title>Noetfield — Trust Ledger</title>
-  <meta name="description" content="A maintained register of AI systems, safeguards, sign-offs, and evidence—kept ready for recurring scrutiny. Board exports, change trail, and evidence discipline built in." />
+  <meta name="description" content="Trust Ledger is a maintained AI governance register: systems, owners, controls, evidence, changes, exceptions, and board exports—kept ready for recurring scrutiny. Subscription plans available." />
   <meta name="robots" content="index,follow" />
   <meta name="author" content="Noetfield Systems Inc." />
   <meta name="theme-color" content="#07070b" />
@@ -18,13 +18,13 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Noetfield" />
   <meta property="og:title" content="Noetfield — Trust Ledger" />
-  <meta property="og:description" content="A maintained register of AI systems, safeguards, sign-offs, and evidence—kept ready for recurring scrutiny. Board exports, change trail, and evidence discipline built in." />
+  <meta property="og:description" content="A maintained AI governance register with evidence discipline and board exports. Subscription plans available." />
   <meta property="og:url" content="https://www.noetfield.com/trust-ledger/" />
   <meta property="og:image" content="https://www.noetfield.com/noetfield-og.png" />
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Noetfield — Trust Ledger" />
-  <meta name="twitter:description" content="A maintained register of AI systems, safeguards, sign-offs, and evidence—kept ready for recurring scrutiny. Board exports, change trail, and evidence discipline built in." />
+  <meta name="twitter:description" content="A maintained AI governance register with evidence discipline and board exports. Subscription plans available." />
   <meta name="twitter:image" content="https://www.noetfield.com/noetfield-og.png" />
 
   <!-- LOCKED SHELL -->
@@ -32,14 +32,34 @@
   <script src="/assets/noetfield-shell.js" defer></script>
 
   <style>
-    .hero{padding:18px 0 12px}
+    /* Layout */
+    .hero{padding:18px 0 10px}
+    .grid{
+      display:grid;
+      grid-template-columns: 1.12fr .88fr;
+      gap:16px;
+      margin: 14px 0 72px;
+      align-items:start;
+    }
+    .card{
+      border-radius:var(--radius);
+      border:1px solid rgba(255,255,255,.11);
+      background: linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.022));
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+      min-width:0;
+    }
+    .hd{ padding:18px 18px 0; }
+    .bd{ padding:18px; }
+
+    /* Hero */
     .heroShell{
       position:relative;
       border-radius: calc(var(--radius) + 8px);
       border: 1px solid rgba(255,255,255,.11);
       background:
-        radial-gradient(1000px 420px at 18% 0%, rgba(200,163,73,.18), transparent 60%),
-        radial-gradient(1000px 420px at 90% 10%, rgba(122,167,255,.10), transparent 62%),
+        radial-gradient(1100px 420px at 16% 0%, rgba(200,163,73,.18), transparent 60%),
+        radial-gradient(1100px 420px at 92% 10%, rgba(122,167,255,.10), transparent 62%),
         linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.022));
       box-shadow: var(--shadow);
       overflow:hidden;
@@ -53,6 +73,7 @@
       mask-image: linear-gradient(180deg, black 0%, black 58%, transparent 96%);
     }
     .heroInner{padding: 22px 18px; position:relative; z-index:1}
+
     .eyebrow{
       display:inline-flex; gap:10px; align-items:center;
       color:var(--muted);
@@ -70,6 +91,7 @@
     h1{margin:12px 0 10px; font-size:34px; line-height:1.07; letter-spacing:-0.75px}
     .lead{margin:0; color:var(--muted); font-size:16px; max-width: 1040px; line-height:1.75}
     .lead strong{color:var(--text); font-weight:950}
+
     .metaRow{display:flex; flex-wrap:wrap; gap:10px; margin-top:14px}
     .pill{
       display:inline-flex; align-items:center; gap:10px;
@@ -82,6 +104,10 @@
       white-space:nowrap;
     }
     .pill strong{color:var(--text); font-weight:900}
+
+    .actions{display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-top:12px}
+    .btn.small{ min-height:40px; padding:9px 12px; font-size:13px; }
+
     .notice{
       margin-top:12px;
       padding:12px 12px;
@@ -94,41 +120,9 @@
     }
     .notice strong{ color:var(--text); font-weight:900; }
 
-    .grid{
-      display:grid;
-      grid-template-columns: 1.12fr .88fr;
-      gap:16px;
-      margin: 14px 0 64px;
-      align-items:start;
-    }
-    .card{
-      border-radius:var(--radius);
-      border:1px solid rgba(255,255,255,.11);
-      background: linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.022));
-      box-shadow: var(--shadow2);
-      overflow:hidden;
-      min-width:0;
-    }
-    .hd{ padding:18px 18px 0; }
-    .bd{ padding:18px; }
+    /* Content blocks */
     .cardTitle{ margin:0 0 8px; font-size:18px; letter-spacing:-0.2px; }
     .muted{ color:var(--muted); line-height:1.7; margin:0; }
-
-    .actions{display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-top:12px}
-    .btn.small{ min-height:40px; padding:9px 12px; font-size:13px; }
-
-    .sectionRow{display:flex; flex-wrap:wrap; gap:10px; align-items:center; margin: 2px 0 12px}
-    .chip{
-      display:inline-flex; align-items:center; gap:8px;
-      padding:8px 10px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.03);
-      color:var(--muted2);
-      font-size:12.4px;
-      white-space:nowrap;
-    }
-    .chip strong{ color:var(--text); font-weight:900; }
 
     .groupTitle{
       margin:18px 0 8px;
@@ -137,7 +131,6 @@
       text-transform:uppercase;
       color:var(--muted2);
     }
-
     .blocks{ display:grid; gap:12px; margin-top:12px; }
     .block{
       border-radius:16px;
@@ -177,75 +170,64 @@
     }
     .kv strong{ color:var(--text); font-weight:900; }
 
-    .disabled{ opacity:.86; }
-    .disabled .tag{opacity:.92}
-    .disabled .actions .btn{pointer-events:none; opacity:.72}
-    .hint{
-      margin-top:10px;
-      color:var(--muted2);
-      font-size:12.6px;
-      line-height:1.55;
-    }
-
-    details.opt{
-      margin-top:12px;
-      border-radius:14px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.02);
-      padding:10px 12px;
-    }
-    details.opt summary{
-      cursor:pointer;
-      color:var(--text);
-      font-weight:900;
-      list-style:none;
-    }
-    details.opt summary::-webkit-details-marker{display:none}
-    .optBody{
-      margin-top:10px;
-      color:var(--muted2);
-      font-size:12.8px;
-      line-height:1.6;
-    }
-
+    /* Pricing rail */
     .rail{ position: sticky; top: 14px; }
-    .railBox{
-      border-radius: var(--radius);
-      border:1px solid rgba(255,255,255,.11);
-      background: linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.022));
-      box-shadow: var(--shadow2);
-      overflow:hidden;
-    }
-    .kpi{
+    .pricingIntro{
+      padding:14px;
       border-radius:16px;
       border:1px solid rgba(255,255,255,.10);
       background: rgba(255,255,255,.03);
-      padding:12px;
-      margin-top:12px;
       color:var(--muted2);
       font-size:12.8px;
       line-height:1.6;
     }
-    .kpi strong{ color:var(--text); font-weight:900; }
+    .pricingIntro strong{ color:var(--text); font-weight:900; }
 
-    .refBox{
-      margin-top:10px;
-      padding:10px 12px;
+    .plan{
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.11);
+      background: rgba(255,255,255,.03);
+      padding:14px;
+      margin-top:12px;
+    }
+    .planTop{
+      display:flex; align-items:flex-start; justify-content:space-between; gap:12px; flex-wrap:wrap;
+    }
+    .planName{
+      margin:0;
+      font-size:15px;
+      font-weight:950;
+      letter-spacing:-.15px;
+    }
+    .price{
+      color:var(--text);
+      font-weight:950;
+      font-size:14px;
+      white-space:nowrap;
+    }
+    .planSub{ margin:8px 0 0; color:var(--muted); line-height:1.6; font-size:13px; }
+    .planBullets{ margin:10px 0 0; padding-left:18px; color:var(--muted2); line-height:1.6; font-size:12.8px; }
+    .planBullets li{ margin:6px 0; }
+    .planActions{ display:flex; gap:10px; flex-wrap:wrap; margin-top:12px; }
+
+    .fineprint{
+      margin-top:12px;
+      padding:12px;
       border-radius:14px;
       border:1px solid rgba(255,255,255,.10);
       background: rgba(255,255,255,.02);
       color:var(--muted2);
-      font-size:12.6px;
-      line-height:1.55;
-      word-break:break-word;
+      font-size:12.4px;
+      line-height:1.6;
     }
-    .refBox code{
+    .fineprint code{
       font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
       color: var(--text);
-      font-weight: 850;
-      font-size: 12.8px;
+      font-weight: 900;
+      font-size: 12.6px;
     }
 
+    /* Sticky bottom CTA */
     .stickyCta{
       position: sticky;
       bottom: 0;
@@ -288,38 +270,9 @@
     "@type":"WebPage",
     "name":"Noetfield — Trust Ledger",
     "url":"https://www.noetfield.com/trust-ledger/",
-    "description":"A maintained register of AI systems, safeguards, sign-offs, and evidence—kept ready for recurring scrutiny. Board exports, change trail, and evidence discipline built in.",
+    "description":"A maintained AI governance register with evidence discipline and board exports. Subscription plans available.",
     "isPartOf":{"@type":"WebSite","name":"Noetfield","url":"https://www.noetfield.com/"},
     "publisher":{"@type":"Organization","name":"Noetfield Systems Inc."}
-  }
-  </script>
-
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"FAQPage",
-    "mainEntity":[
-      {
-        "@type":"Question",
-        "name":"What is the Trust Ledger?",
-        "acceptedAnswer":{"@type":"Answer","text":"Trust Ledger is a maintained register of AI systems, safeguards, sign-offs, and evidence—kept ready for recurring scrutiny. It supports board exports and change trail discipline."}
-      },
-      {
-        "@type":"Question",
-        "name":"How does it relate to Trust Brief?",
-        "acceptedAnswer":{"@type":"Answer","text":"Trust Brief is a structured diagnostic that defines the initial operating model and material map. Trust Ledger is the maintained cadence layer that keeps controls and evidence current after kickoff."}
-      },
-      {
-        "@type":"Question",
-        "name":"How do engagements start?",
-        "acceptedAnswer":{"@type":"Answer","text":"Fast baseline starts Copilot-first (QuickScan). Trust Ledger typically starts via procurement/invoice/PO to confirm scope, cadence, and secure sharing protocol."}
-      },
-      {
-        "@type":"Question",
-        "name":"What should be shared in public forms?",
-        "acceptedAnswer":{"@type":"Answer","text":"Public intake is designed for non-confidential details only. Secure sharing options and evidence transfer paths are confirmed after kickoff."}
-      }
-    ]
   }
   </script>
 </head>
@@ -331,268 +284,138 @@
   <header id="nfHeader"></header>
 
   <main id="main" class="wrap">
+    <!-- HERO -->
     <section class="hero" aria-label="Trust Ledger hero">
       <div class="heroShell">
         <div class="heroInner">
-          <div class="eyebrow"><span class="dot"></span> Trust Ledger • maintained register • board exports • evidence index</div>
+          <div class="eyebrow"><span class="dot"></span> Trust Ledger • plans & pricing • subscription available</div>
 
-          <h1>Keep AI governance current, defensible, and export-ready.</h1>
+          <h1>Trust Ledger: pricing is visible. Purchase is one click.</h1>
 
           <p class="lead">
-            Trust Ledger is the <strong>maintained cadence layer</strong>: a register of systems, safeguards, sign-offs, and evidence
-            designed to stay ready for recurring scrutiny—without rebuilding the story each time.
-            For first posture, start <strong>Copilot-first</strong>. For Ledger setup/cadence, use <strong>procurement</strong>.
+            Trust Ledger is a maintained register of <strong>AI systems, owners, controls, evidence, changes, and exceptions</strong>,
+            built for <strong>board clarity</strong> and <strong>audit survivability</strong>.
+            Subscription plans below. Procurement (Invoice/PO) also supported.
           </p>
 
-          <div class="metaRow" aria-label="Trust Ledger facts">
-            <div class="pill"><strong>Ledger register</strong> + evidence index</div>
-            <div class="pill"><strong>Change trail</strong> + exceptions</div>
-            <div class="pill"><strong>Board exports</strong> (agreed cadence)</div>
-            <div class="pill"><strong>Public intake</strong> = non-confidential</div>
+          <div class="metaRow" aria-label="Trust Ledger outcomes">
+            <div class="pill"><strong>Board clarity</strong> what exists + who owns it</div>
+            <div class="pill"><strong>Evidence discipline</strong> proofs linked to claims</div>
+            <div class="pill"><strong>Answer-ready</strong> due diligence without chaos</div>
+            <div class="pill"><strong>Lower drift</strong> stays current as tools change</div>
           </div>
 
           <div class="actions" aria-label="Hero actions">
-            <a class="btn primary" href="/gate/procurement/?focus=ledger" data-rid-link>Invoice / PO start</a>
-            <a class="btn secondary" href="/copilot/" data-rid-link>Copilot-first baseline</a>
-            <a class="btn secondary" href="/trust-brief/" data-rid-link>Trust Brief</a>
+            <a class="btn primary" href="#pricing">View plans & pricing</a>
+            <a class="btn secondary" href="/gate/procurement/?focus=trust_ledger" data-rid-link>Invoice / PO start</a>
+            <a class="btn secondary" href="/copilot/quickscan/" data-rid-link>Copilot-first baseline</a>
           </div>
 
           <div class="notice" role="note">
-            <strong>Procurement:</strong> invoice/PO supported. Use <strong>procurement@noetfield.com</strong>.
+            <strong>Billing model:</strong> monthly cadence + one-time setup. Setup confirms the ledger schema and the first operating baseline.
             <br />
-            <strong>Public forms:</strong> designed for non-sensitive details only. Secure sharing options are confirmed after kickoff.
+            <strong>Public forms:</strong> non-confidential details only. Secure sharing protocol is confirmed after kickoff.
           </div>
         </div>
       </div>
     </section>
 
+    <!-- MAIN GRID -->
     <section class="grid" aria-label="Trust Ledger layout">
+      <!-- LEFT: SALES CONTENT -->
       <div>
-        <section class="card" aria-label="What this is">
+        <section class="card" aria-label="What is included">
           <div class="hd">
-            <h2 class="cardTitle">What Trust Ledger is</h2>
+            <h2 class="cardTitle">What Trust Ledger covers</h2>
             <p class="muted">
-              A maintained governance register for AI systems and AI-enabled workflows: what exists, who owns it, what controls apply,
-              what evidence exists, what changed, what exceptions are active, and what the current decision posture is.
+              A practical governance surface: what AI does, where it runs, who approves it, what controls apply, and where proof lives.
             </p>
-
-            <div class="sectionRow" aria-label="Alignment chips">
-              <div class="chip"><strong>Purpose:</strong> stay export-ready</div>
-              <div class="chip"><strong>Mechanism:</strong> cadence + evidence discipline</div>
-              <div class="chip"><strong>Output:</strong> board/procurement packs</div>
-            </div>
           </div>
 
           <div class="bd">
-            <div class="groupTitle">Core components</div>
+            <div class="groupTitle">Ledger fields (executive-ready)</div>
             <div class="blocks">
-              <article class="block" aria-label="Ledger register">
-                <div class="blockTop">
-                  <h3>Ledger register</h3>
-                  <span class="tag">Live</span>
-                </div>
-                <p>Single place to track AI systems, owners, intended use, constraints, and governance posture.</p>
+              <article class="block" aria-label="Use case">
+                <div class="blockTop"><h3>Use case</h3><span class="tag">Field</span></div>
+                <p>What AI does, where it runs, who uses it.</p>
                 <div class="kvRow">
-                  <div class="kv"><strong>Includes:</strong> owners + boundaries</div>
-                  <div class="kv"><strong>Outcome:</strong> decision clarity</div>
-                </div>
-                <ul>
-                  <li>System / workflow inventory (material items)</li>
-                  <li>Owner mapping + decision gates</li>
-                  <li>Risk flags + acceptance posture</li>
-                </ul>
-              </article>
-
-              <article class="block" aria-label="Evidence index">
-                <div class="blockTop">
-                  <h3>Evidence index</h3>
-                  <span class="tag">Live</span>
-                </div>
-                <p>Evidence references linked to controls, sign-offs, and decision points—organized for audit/board review.</p>
-                <div class="kvRow">
-                  <div class="kv"><strong>Design:</strong> minimal friction</div>
-                  <div class="kv"><strong>Outcome:</strong> defensibility</div>
-                </div>
-                <ul>
-                  <li>Evidence hooks per control/owner</li>
-                  <li>Reference discipline (what exists vs missing)</li>
-                  <li>Public vs secure sharing boundaries</li>
-                </ul>
-              </article>
-
-              <article class="block" aria-label="Change trail">
-                <div class="blockTop">
-                  <h3>Change trail + exceptions</h3>
-                  <span class="tag">Live</span>
-                </div>
-                <p>What changed, why it changed, who approved, and what exceptions remain open—kept board-safe.</p>
-                <div class="kvRow">
-                  <div class="kv"><strong>Tracks:</strong> deltas + approvals</div>
-                  <div class="kv"><strong>Outcome:</strong> stable narrative</div>
-                </div>
-                <ul>
-                  <li>Change entries (scope, controls, providers)</li>
-                  <li>Exception register + expiry</li>
-                  <li>Owner acknowledgement + next actions</li>
-                </ul>
-              </article>
-
-              <article class="block" aria-label="Board exports">
-                <div class="blockTop">
-                  <h3>Board export cadence</h3>
-                  <span class="tag">Live</span>
-                </div>
-                <p>Recurring export format for leadership review: posture summary, key changes, open exceptions, and decisions needed.</p>
-                <div class="kvRow">
-                  <div class="kv"><strong>Cadence:</strong> agreed (monthly/quarterly)</div>
-                  <div class="kv"><strong>Format:</strong> board memo + appendix</div>
-                </div>
-                <ul>
-                  <li>Executive posture summary</li>
-                  <li>Key changes & risk themes</li>
-                  <li>Board actions / decisions requested</li>
-                </ul>
-              </article>
-            </div>
-
-            <details class="opt">
-              <summary>How starts typically work</summary>
-              <div class="optBody">
-                Recommended: establish posture Copilot-first (QuickScan), then stand up Trust Ledger with a procurement-scoped kickoff
-                to confirm scope, cadence, and secure sharing protocol.
-              </div>
-            </details>
-
-            <div class="groupTitle">Start paths</div>
-            <div class="blocks">
-              <article class="block" aria-label="Procurement start">
-                <div class="blockTop">
-                  <h3>Invoice / PO start (recommended)</h3>
-                  <span class="tag">Procurement-ready</span>
-                </div>
-                <p>Confirm scope + cadence + internal routing before kickoff. Public intake remains non-confidential.</p>
-                <div class="kvRow">
-                  <div class="kv"><strong>Path:</strong> invoice / PO</div>
-                  <div class="kv"><strong>Focus:</strong> Ledger setup + cadence</div>
-                </div>
-                <ul>
-                  <li>Procurement note + internal summary</li>
-                  <li>Kickoff confirms secure sharing options</li>
-                  <li>Initial cadence and export format agreed</li>
-                </ul>
-                <div class="actions">
-                  <a class="btn primary" href="/gate/procurement/?focus=ledger" data-rid-link>Invoice / PO</a>
-                  <a class="btn secondary" href="/gate/" data-rid-link>Start via Gate</a>
+                  <div class="kv"><strong>Proof:</strong> inventory + vendor docs</div>
+                  <div class="kv"><strong>Output:</strong> scope clarity</div>
                 </div>
               </article>
 
-              <article class="block" aria-label="Copilot baseline">
-                <div class="blockTop">
-                  <h3>Copilot-first baseline</h3>
-                  <span class="tag">Fast clarity</span>
-                </div>
-                <p>Reduce uncertainty quickly, then expand into maintained cadence.</p>
+              <article class="block" aria-label="Impact">
+                <div class="blockTop"><h3>Impact</h3><span class="tag">Field</span></div>
+                <p>Why it matters: money, safety, rights, decisions.</p>
                 <div class="kvRow">
-                  <div class="kv"><strong>Option:</strong> QuickScan</div>
-                  <div class="kv"><strong>Outcome:</strong> posture + next steps</div>
+                  <div class="kv"><strong>Proof:</strong> decision memo + thresholds</div>
+                  <div class="kv"><strong>Output:</strong> prioritization</div>
                 </div>
-                <div class="actions">
-                  <a class="btn primary" href="/copilot/quickscan/" data-rid-link>View QuickScan</a>
-                  <a class="btn secondary" href="/gate/sales/?offer=quickscan_base&buyer=card" data-rid-link>Purchase options</a>
+              </article>
+
+              <article class="block" aria-label="Risks">
+                <div class="blockTop"><h3>Risks</h3><span class="tag">Field</span></div>
+                <p>Failure modes: privacy, security, bias, fraud, IP.</p>
+                <div class="kvRow">
+                  <div class="kv"><strong>Proof:</strong> incidents + tests</div>
+                  <div class="kv"><strong>Output:</strong> risk posture</div>
+                </div>
+              </article>
+
+              <article class="block" aria-label="Controls">
+                <div class="blockTop"><h3>Controls</h3><span class="tag">Field</span></div>
+                <p>Safeguards: access, DLP, logging, review, approvals.</p>
+                <div class="kvRow">
+                  <div class="kv"><strong>Proof:</strong> configs + exports + logs</div>
+                  <div class="kv"><strong>Output:</strong> defensibility</div>
+                </div>
+              </article>
+
+              <article class="block" aria-label="Owners">
+                <div class="blockTop"><h3>Owners</h3><span class="tag">Field</span></div>
+                <p>Accountability and sign-offs.</p>
+                <div class="kvRow">
+                  <div class="kv"><strong>Proof:</strong> RACI + approvals</div>
+                  <div class="kv"><strong>Output:</strong> governance clarity</div>
+                </div>
+              </article>
+
+              <article class="block" aria-label="Evidence">
+                <div class="blockTop"><h3>Evidence</h3><span class="tag">Field</span></div>
+                <p>Where proof lives and stays readable.</p>
+                <div class="kvRow">
+                  <div class="kv"><strong>Proof:</strong> sanitized artefact links</div>
+                  <div class="kv"><strong>Output:</strong> answer-ready posture</div>
                 </div>
               </article>
             </div>
 
-            <div class="groupTitle">Samples</div>
+            <div class="groupTitle">Outputs</div>
             <div class="blocks">
-              <article class="block" aria-label="Sample outputs">
-                <div class="blockTop">
-                  <h3>See the output style</h3>
-                  <span class="tag">Board-ready PDFs</span>
-                </div>
-                <p>Short, executive-friendly artefacts designed for leadership review and procurement alignment.</p>
+              <article class="block" aria-label="Board pack output">
+                <div class="blockTop"><h3>Board-ready export pack</h3><span class="tag">Output</span></div>
+                <p>Recurring posture summary, major changes, open exceptions, and decisions requested.</p>
+                <ul>
+                  <li>Executive summary + key changes</li>
+                  <li>Open exceptions and expiry</li>
+                  <li>Actions required (owners / leadership)</li>
+                </ul>
+              </article>
+
+              <article class="block" aria-label="Samples output">
+                <div class="blockTop"><h3>Samples</h3><span class="tag">PDF</span></div>
+                <p>Output style reference (board-safe formatting).</p>
                 <div class="actions">
                   <a class="btn secondary" href="/trust-brief/samples/board-memo.pdf" target="_blank" rel="nofollow">View sample board memo</a>
                   <a class="btn secondary" href="/trust-ledger/samples/ledger-entry.pdf" target="_blank" rel="nofollow">View sample ledger entry</a>
-                </div>
-                <div class="hint">
-                  If either link returns 404, deploy the PDF to the exact path shown (keep the URL stable once published).
-                </div>
-              </article>
-
-              <article class="block disabled" aria-label="Online sample report (in build)">
-                <div class="blockTop">
-                  <h3>Online sample report</h3>
-                  <span class="tag">In build</span>
-                </div>
-                <p>Optional web-view version of board-ready outputs (kept consistent with the PDF pack).</p>
-                <div class="actions">
-                  <a class="btn ghost" href="#" aria-disabled="true">Open</a>
-                </div>
-              </article>
-            </div>
-          </div>
-        </section>
-
-        <section class="card" aria-label="Library modules" style="margin-top:16px;">
-          <div class="hd">
-            <h2 class="cardTitle">Trust Ledger modules</h2>
-            <p class="muted">
-              Modules below describe how the ledger is maintained. Links are enabled only when pages are live (to prevent 404 trust loss).
-            </p>
-          </div>
-
-          <div class="bd">
-            <div class="groupTitle">Cadence and governance</div>
-            <div class="blocks">
-              <article class="block disabled" aria-label="Controls baseline module (in build)">
-                <div class="blockTop">
-                  <h3>Controls baseline</h3>
-                  <span class="tag">In build</span>
-                </div>
-                <p>Minimum viable control set and owner mapping, linked to evidence hooks.</p>
-                <ul>
-                  <li>Policy → control mapping</li>
-                  <li>Owner mapping + evidence hooks</li>
-                  <li>Exceptions + red-lines</li>
-                </ul>
-                <div class="actions">
-                  <a class="btn ghost" href="#" aria-disabled="true">Open module</a>
-                </div>
-              </article>
-
-              <article class="block disabled" aria-label="Evidence transfer protocol (in build)">
-                <div class="blockTop">
-                  <h3>Secure sharing protocol</h3>
-                  <span class="tag">In build</span>
-                </div>
-                <p>How evidence is requested, transmitted, referenced, and retained (post-kickoff).</p>
-                <ul>
-                  <li>Public vs secure boundaries</li>
-                  <li>Evidence naming and reference discipline</li>
-                  <li>Expiry and retention rules</li>
-                </ul>
-                <div class="actions">
-                  <a class="btn ghost" href="#" aria-disabled="true">Open module</a>
-                </div>
-              </article>
-
-              <article class="block" aria-label="Purchase hub">
-                <div class="blockTop">
-                  <h3>Purchase hub</h3>
-                  <span class="tag">Live</span>
-                </div>
-                <p>Card-enabled where applicable + procurement-ready starts for scoped engagements.</p>
-                <div class="actions">
-                  <a class="btn primary" href="/gate/sales/" data-rid-link>Open purchase hub</a>
-                  <a class="btn secondary" href="/vendor/" data-rid-link>Vendor profile</a>
                 </div>
               </article>
             </div>
 
             <div class="notice" style="margin-top:14px;">
-              <strong>Support channels:</strong>
-              sales@noetfield.com • procurement@noetfield.com • billing@noetfield.com • trust@noetfield.com • legal@noetfield.com
+              <strong>Sales / procurement:</strong> sales@noetfield.com • procurement@noetfield.com • billing@noetfield.com
+              <br />
+              <strong>Trust & governance:</strong> trust@noetfield.com • legal@noetfield.com
             </div>
           </div>
         </section>
@@ -600,84 +423,153 @@
         <section class="card" aria-label="FAQ" style="margin-top:16px;">
           <div class="hd">
             <h2 class="cardTitle">FAQ</h2>
-            <p class="muted">Short answers for internal alignment and procurement routing.</p>
+            <p class="muted">Short answers for purchasing and internal routing.</p>
           </div>
           <div class="bd">
-            <details class="opt">
-              <summary>What is Trust Ledger?</summary>
-              <div class="optBody">
-                A maintained register of AI systems, safeguards, sign-offs, exceptions, and evidence—kept ready for recurring scrutiny and board exports.
-              </div>
+            <details class="block">
+              <summary style="cursor:pointer; font-weight:950;">What is an “active entry”?</summary>
+              <p class="muted" style="margin-top:10px;">
+                One tracked AI system or AI-enabled workflow that has defined owners, controls, evidence hooks, and change trail.
+              </p>
             </details>
 
-            <details class="opt">
-              <summary>Do we need Trust Brief first?</summary>
-              <div class="optBody">
-                Not always. Trust Brief is a structured diagnostic; Trust Ledger is the maintained cadence layer. Copilot-first baseline is recommended to set posture quickly.
-              </div>
+            <details class="block">
+              <summary style="cursor:pointer; font-weight:950;">What does “setup” include?</summary>
+              <p class="muted" style="margin-top:10px;">
+                Ledger schema baseline, initial inventory alignment, evidence reference conventions, and cadence confirmation.
+              </p>
             </details>
 
-            <details class="opt">
-              <summary>Do you support invoice / PO?</summary>
-              <div class="optBody">
-                Yes. Use the procurement path or email procurement@noetfield.com. Public intake is non-confidential; secure sharing options are confirmed after kickoff.
-              </div>
+            <details class="block">
+              <summary style="cursor:pointer; font-weight:950;">Can procurement / invoice be used instead of card?</summary>
+              <p class="muted" style="margin-top:10px;">
+                Yes. Procurement path supports invoice/PO and internal approval routing. Scope and cadence are confirmed after intake.
+              </p>
             </details>
 
-            <details class="opt">
-              <summary>What should be shared in public forms?</summary>
-              <div class="optBody">
-                Non-sensitive, non-confidential details only. Evidence transfer and secure sharing protocol are confirmed after kickoff.
-              </div>
+            <details class="block">
+              <summary style="cursor:pointer; font-weight:950;">Is sensitive data required in public forms?</summary>
+              <p class="muted" style="margin-top:10px;">
+                No. Public intake is for non-confidential details only. Secure sharing protocol is confirmed after kickoff.
+              </p>
             </details>
           </div>
         </section>
       </div>
 
-      <aside class="rail" aria-label="Trust Ledger shortcuts">
-        <div class="railBox card">
+      <!-- RIGHT: PRICING RAIL -->
+      <aside class="rail" aria-label="Plans and pricing rail">
+        <section id="pricing" class="card" aria-label="Plans & pricing">
           <div class="hd">
-            <h2 class="cardTitle">Quick actions</h2>
-            <p class="muted">Fast routing for the most common next step.</p>
+            <h2 class="cardTitle">Plans & pricing</h2>
+            <div class="pricingIntro">
+              <strong>Monthly cadence</strong> + one-time setup.
+              Fixed plan pricing below. Procurement (Invoice/PO) supported.
+              Final scope confirmed after Gate intake if required.
+            </div>
           </div>
 
           <div class="bd">
-            <div class="kpi" role="note">
-              <strong>Recommended:</strong> Copilot-first baseline → procurement-scoped Ledger setup → maintained cadence and board exports.
+            <!-- Plan 1 -->
+            <div class="plan" aria-label="TL Maintain">
+              <div class="planTop">
+                <div>
+                  <div class="tag">TL — Maintain</div>
+                  <h3 class="planName">Maintain cadence for a small surface</h3>
+                </div>
+                <div class="price">1,500 CAD / mo</div>
+              </div>
+
+              <p class="planSub">Up to 5 active entries • Monthly or quarterly cadence.</p>
+
+              <ul class="planBullets">
+                <li><strong>Setup:</strong> 2,500 CAD (one-time)</li>
+                <li><strong>SLA target:</strong> 5 business days</li>
+                <li><strong>Evidence tier:</strong> light / standard</li>
+                <li><strong>Change trail:</strong> maintained</li>
+              </ul>
+
+              <div class="planActions">
+                <!-- Replace href with actual Stripe Payment Link -->
+                <a class="btn primary" href="STRIPE_TL_MAINTAIN_MONTHLY" target="_blank" rel="nofollow noopener">Subscribe (Card)</a>
+                <a class="btn secondary" href="/gate/procurement/?focus=tl_maintain" data-rid-link>Invoice / PO</a>
+              </div>
             </div>
 
-            <div class="actions" style="margin-top:12px">
-              <a class="btn primary" href="/gate/procurement/?focus=ledger" data-rid-link>Invoice / PO</a>
-              <a class="btn secondary" href="/copilot/quickscan/" data-rid-link>QuickScan baseline</a>
-              <a class="btn secondary" href="/gate/" data-rid-link>Start via Gate</a>
+            <!-- Plan 2 -->
+            <div class="plan" aria-label="TL Govern">
+              <div class="planTop">
+                <div>
+                  <div class="tag">TL — Govern</div>
+                  <h3 class="planName">Board rhythm + due diligence support</h3>
+                </div>
+                <div class="price">2,750 CAD / mo</div>
+              </div>
+
+              <p class="planSub">Up to 10 active entries • Board rhythm + diligence support.</p>
+
+              <ul class="planBullets">
+                <li><strong>Setup:</strong> 4,500 CAD (one-time)</li>
+                <li><strong>SLA target:</strong> 3 business days</li>
+                <li><strong>Board pack:</strong> quarterly export</li>
+                <li><strong>Exceptions:</strong> register + expiry</li>
+              </ul>
+
+              <div class="planActions">
+                <a class="btn primary" href="STRIPE_TL_GOVERN_MONTHLY" target="_blank" rel="nofollow noopener">Subscribe (Card)</a>
+                <a class="btn secondary" href="/gate/procurement/?focus=tl_govern" data-rid-link>Invoice / PO</a>
+              </div>
             </div>
 
-            <div class="refBox" aria-label="Reference">
-              Reference (optional): <code>RID</code><br/>
-              RID is carried by the Shell across Gate/procurement paths to keep starts aligned.
+            <!-- Plan 3 -->
+            <div class="plan" aria-label="TL Assure">
+              <div class="planTop">
+                <div>
+                  <div class="tag">TL — Assure</div>
+                  <h3 class="planName">Deep evidence discipline for broader surface</h3>
+                </div>
+                <div class="price">4,750 CAD / mo</div>
+              </div>
+
+              <p class="planSub">Up to 20 active entries • Deep evidence discipline.</p>
+
+              <ul class="planBullets">
+                <li><strong>Setup:</strong> 7,500 CAD (one-time)</li>
+                <li><strong>SLA target:</strong> 2 business days</li>
+                <li><strong>Board pack:</strong> monthly or quarterly (as agreed)</li>
+                <li><strong>Evidence:</strong> stronger reference discipline</li>
+              </ul>
+
+              <div class="planActions">
+                <a class="btn primary" href="STRIPE_TL_ASSURE_MONTHLY" target="_blank" rel="nofollow noopener">Subscribe (Card)</a>
+                <a class="btn secondary" href="/gate/procurement/?focus=tl_assure" data-rid-link>Invoice / PO</a>
+              </div>
             </div>
 
-            <div class="kpi">
-              <strong>Public intake = non-confidential.</strong><br/>
-              Provide non-sensitive details only. Secure sharing is confirmed after kickoff.
+            <div class="fineprint" role="note">
+              <strong>Notes:</strong>
+              Subscription is monthly. Setup is one-time.
+              Taxes may apply. Cancellation terms and start date are confirmed in the receipt / invoice.
+              Public intake is non-confidential only.
+              <br /><br />
+              <strong>Implementation:</strong> replace <code>STRIPE_TL_*_MONTHLY</code> with Stripe Payment Links.
             </div>
 
-            <div class="kpi">
-              <strong>Samples:</strong><br/>
-              <a class="btn ghost small" href="/trust-brief/samples/board-memo.pdf" target="_blank" rel="nofollow">Board memo (PDF)</a>
-              <a class="btn ghost small" href="/trust-ledger/samples/ledger-entry.pdf" target="_blank" rel="nofollow">Ledger entry (PDF)</a>
+            <div class="actions" style="margin-top:12px;">
+              <a class="btn secondary" href="/gate/sales/" data-rid-link>Open Purchase Hub</a>
+              <a class="btn secondary" href="/vendor/" data-rid-link>Vendor profile</a>
             </div>
           </div>
-        </div>
+        </section>
       </aside>
     </section>
 
     <section class="stickyCta" aria-label="Sticky CTA">
       <div class="stickyInner">
-        <div class="stickyText"><strong>Procurement start recommended</strong> — Ledger setup → cadence → board export-ready.</div>
+        <div class="stickyText"><strong>Trust Ledger plans</strong> are live — card subscription or invoice/PO start.</div>
         <div class="actions" style="margin-top:0">
-          <a class="btn primary" href="/gate/procurement/?focus=ledger" data-rid-link>Invoice / PO</a>
-          <a class="btn secondary" href="/copilot/quickscan/" data-rid-link>QuickScan</a>
+          <a class="btn primary" href="#pricing">View pricing</a>
+          <a class="btn secondary" href="/gate/procurement/?focus=trust_ledger" data-rid-link>Invoice / PO</a>
         </div>
       </div>
     </section>

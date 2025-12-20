@@ -1,4 +1,4 @@
-<!-- /quote/index.html — Noetfield Quote v1.0 (Wizard estimator + buyer-safe language + Stripe QuickScan Base enabled) -->
+<!-- /quote/index.html — Noetfield Quote v2.0 (Wizard estimator + Copilot Readiness tiers + buyer-safe routing + Stripe QuickScan Base enabled) -->
 <!doctype html>
 <html lang="en">
 <head>
@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <title>Noetfield — Quote</title>
-  <meta name="description" content="A short, buyer-safe quote wizard that estimates scope and price bands for Noetfield offers, and routes to card payment (QuickScan Base), Gate intake, or invoice/PO procurement." />
+  <meta name="description" content="Buyer-safe quote wizard that estimates scope and price bands for Noetfield offers and routes to card payment (QuickScan Base), Gate intake, or invoice/PO procurement." />
   <meta name="robots" content="index,follow" />
   <meta name="author" content="Noetfield Systems Inc." />
   <meta name="theme-color" content="#07070b" />
@@ -19,27 +19,24 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Noetfield" />
   <meta property="og:title" content="Noetfield — Quote" />
-  <meta property="og:description" content="Buyer-safe quote wizard with price bands and a clean route to purchase, Gate intake, or invoice/PO procurement." />
+  <meta property="og:description" content="Buyer-safe quote wizard with price bands and clean routing to purchase, Gate intake, or invoice/PO procurement." />
   <meta property="og:url" content="https://www.noetfield.com/quote/" />
   <meta property="og:image" content="https://www.noetfield.com/noetfield-og.png" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Noetfield — Quote" />
-  <meta name="twitter:description" content="Buyer-safe quote wizard with price bands and a clean route to purchase, Gate intake, or invoice/PO procurement." />
+  <meta name="twitter:description" content="Buyer-safe quote wizard with price bands and clean routing to purchase, Gate intake, or invoice/PO procurement." />
   <meta name="twitter:image" content="https://www.noetfield.com/noetfield-og.png" />
-
-  <!-- Fonts (optional if already loaded globally) -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
 
   <!-- LOCKED SHELL -->
   <link rel="stylesheet" href="/assets/noetfield-shell.css" />
   <script src="/assets/noetfield-shell.js" defer></script>
 
   <style>
-    /* Hero (aligned with Playbook/Trust Ledger/Sales style) */
+    /* ===========================
+       Page polish (shell-aligned)
+       =========================== */
     .hero{padding:18px 0 12px}
     .heroShell{
       position:relative;
@@ -77,9 +74,9 @@
       box-shadow: 0 0 0 3px rgba(200,163,73,.18);
     }
 
-    h1{margin:12px 0 10px; font-size:34px; line-height:1.07; letter-spacing:-0.75px}
-    .lead{margin:0; color:var(--muted); font-size:16px; max-width: 1040px; line-height:1.75}
-    .lead strong{color:var(--text); font-weight:900}
+    h1{margin:12px 0 10px; font-size: clamp(28px, 3.4vw, 36px); line-height:1.06; letter-spacing:-0.75px}
+    .lead{margin:0; color:var(--muted); font-size:15.8px; max-width: 1040px; line-height:1.75}
+    .lead strong{color:var(--text); font-weight:950}
 
     .metaRow{display:flex; flex-wrap:wrap; gap:10px; margin-top:14px}
     .pill{
@@ -92,9 +89,8 @@
       font-size:13px;
       white-space:nowrap;
     }
-    .pill strong{color:var(--text); font-weight:900}
+    .pill strong{color:var(--text); font-weight:950}
 
-    /* Layout */
     .grid{
       display:grid;
       grid-template-columns: 1.12fr .88fr;
@@ -125,14 +121,11 @@
       font-size:12.8px;
       line-height:1.6;
     }
-    .notice strong{ color:var(--text); font-weight:900; }
+    .notice strong{ color:var(--text); font-weight:950; }
     .notice a{ border-bottom:1px solid rgba(255,255,255,.18); }
 
-    /* Form */
-    .stepper{
-      display:flex; flex-wrap:wrap; gap:10px;
-      margin-top:12px;
-    }
+    /* Wizard stepper */
+    .stepper{display:flex; flex-wrap:wrap; gap:10px; margin-top:12px}
     .step{
       display:inline-flex; align-items:center; gap:10px;
       padding:8px 10px;
@@ -142,15 +135,20 @@
       color:var(--muted2);
       font-size:12.6px;
       white-space:nowrap;
+      cursor:pointer;
+      user-select:none;
     }
-    .step strong{ color: var(--text); font-weight:900; }
+    .step strong{ color: var(--text); font-weight:950; }
     .step.isOn{
       border-color: rgba(200,163,73,.34);
       box-shadow: 0 0 0 3px rgba(200,163,73,.10);
       background: rgba(255,255,255,.04);
       color: var(--text);
     }
+    .step[aria-current="step"]{ border-color: rgba(200,163,73,.34); }
 
+    /* Form */
+    fieldset{ border:0; padding:0; margin:0; min-width:0; }
     .field{ margin-top:12px; }
     label{
       display:block;
@@ -160,7 +158,7 @@
       text-transform:uppercase;
       margin:0 0 8px;
     }
-    select, input[type="text"]{
+    select, input[type="text"], textarea{
       width:100%;
       border-radius:14px;
       border:1px solid rgba(255,255,255,.12);
@@ -169,6 +167,11 @@
       padding:10px 12px;
       outline:none;
       font-size:14px;
+    }
+    textarea{ color: var(--muted2); line-height:1.55; }
+    select:focus, input:focus, textarea:focus{
+      border-color: rgba(200,163,73,.28);
+      box-shadow: 0 0 0 3px rgba(200,163,73,.10);
     }
     .twoCol{
       display:grid;
@@ -208,15 +211,13 @@
       border-color: transparent;
       background: linear-gradient(135deg,#f9fafb,#e5e7eb);
       color:#07070b;
-      font-weight:900;
+      font-weight:950;
     }
-    .btn.ghost{
-      background: transparent;
-      border-color: rgba(255,255,255,.16);
-    }
+    .btn.ghost{ background: transparent; border-color: rgba(255,255,255,.16); }
+    .btn:disabled{ opacity:.55; cursor:not-allowed; transform:none !important; }
     button.btn{appearance:none}
 
-    /* Quote output */
+    /* Output */
     .quoteBox{
       border-radius:16px;
       border:1px solid rgba(255,255,255,.10);
@@ -250,14 +251,8 @@
       font-size:12.4px;
       white-space:nowrap;
     }
-    .kv strong{ color:var(--text); font-weight:900; }
-
-    .list{
-      margin:10px 0 0;
-      padding-left:18px;
-      color:var(--muted2);
-      line-height:1.7;
-    }
+    .kv strong{ color:var(--text); font-weight:950; }
+    .list{ margin:10px 0 0; padding-left:18px; color:var(--muted2); line-height:1.7; }
     .list li{margin:6px 0}
 
     /* Rail */
@@ -273,7 +268,7 @@
       font-size:12.8px;
       line-height:1.6;
     }
-    .kpi strong{ color:var(--text); font-weight:900; }
+    .kpi strong{ color:var(--text); font-weight:950; }
     .refBox{
       margin-top:10px;
       padding:10px 12px;
@@ -288,13 +283,13 @@
     .refBox code{
       font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
       color: var(--text);
-      font-weight: 800;
+      font-weight: 900;
       font-size: 12.8px;
     }
     .mini{ margin-top:10px; color:var(--muted2); font-size:12.6px; line-height:1.6; }
     .mini a{ border-bottom:1px solid rgba(255,255,255,.18); }
 
-    /* Match header tag style */
+    /* Match header brand tag style */
     #nfHeader .brandText .tag{
       display:inline-flex;
       align-items:center;
@@ -334,11 +329,12 @@
         box-shadow: var(--shadow2);
       }
     }
+
+    /* Mobile */
     @media (max-width: 980px){
       #nfHeader{padding:0}
       .grid{ grid-template-columns: 1fr; }
       .rail{ position: relative; top: 0; }
-      h1{ font-size: 30px; }
       .twoCol{ grid-template-columns: 1fr; }
     }
   </style>
@@ -349,7 +345,7 @@
     "@type":"WebPage",
     "name":"Noetfield — Quote",
     "url":"https://www.noetfield.com/quote/",
-    "description":"A buyer-safe quote wizard that estimates scope and price bands for Noetfield offers, and routes to purchase, Gate intake, or invoice/PO procurement.",
+    "description":"Buyer-safe quote wizard that estimates scope and price bands for Noetfield offers and routes to purchase, Gate intake, or invoice/PO procurement.",
     "isPartOf":{"@type":"WebSite","name":"Noetfield","url":"https://www.noetfield.com/"},
     "publisher":{"@type":"Organization","name":"Noetfield Systems Inc."}
   }
@@ -364,45 +360,100 @@
 
       /* Offer catalog (buyer-facing) */
       var OFFERS = {
+        /* Lead-in */
         quickscan: {
           key:"quickscan",
-          name:"Copilot QuickScan (Base)",
+          name:"Copilot QuickScan (Rapid Readiness Snapshot)",
           details:"/copilot/quickscan/",
           need:"quickscan",
           focus:"quickscan",
           defaultTimeline:"5–7 business days",
           baseMin: 3500,
-          baseMax: 9500
+          baseMax: 9500,
+          cardEligible:true
         },
+
+        /* Market-mirror tiers (fixed bands) */
+        readiness_starter: {
+          key:"readiness_starter",
+          name:"Microsoft 365 Copilot Readiness Assessment — Starter",
+          details:"/copilot/readiness/",
+          need:"copilot-readiness",
+          focus:"readiness",
+          defaultTimeline:"2 weeks",
+          baseMin: 9500,
+          baseMax: 9500,
+          cardEligible:false
+        },
+        readiness_standard: {
+          key:"readiness_standard",
+          name:"Microsoft 365 Copilot Readiness Assessment — Standard",
+          details:"/copilot/readiness/",
+          need:"copilot-readiness",
+          focus:"readiness",
+          defaultTimeline:"4 weeks",
+          baseMin: 15000,
+          baseMax: 15000,
+          cardEligible:false
+        },
+        readiness_extended: {
+          key:"readiness_extended",
+          name:"Microsoft 365 Copilot Readiness Assessment — Extended",
+          details:"/copilot/readiness/",
+          need:"copilot-readiness",
+          focus:"readiness",
+          defaultTimeline:"6 weeks",
+          baseMin: 25000,
+          baseMax: 25000,
+          cardEligible:false
+        },
+
+        /* Governance products */
         trustbrief: {
           key:"trustbrief",
-          name:"Trust Brief (6-week)",
+          name:"Trust Brief (Diagnostic)",
           details:"/trust-brief/",
           need:"trustbrief",
           focus:"brief",
           defaultTimeline:"6 weeks",
           baseMin: 12000,
-          baseMax: 35000
+          baseMax: 35000,
+          cardEligible:false
         },
         trustledger: {
           key:"trustledger",
-          name:"Trust Ledger",
+          name:"Trust Ledger (Setup + cadence)",
           details:"/trust-ledger/",
           need:"trustledger",
           focus:"ledger",
           defaultTimeline:"Setup + cadence",
           baseMin: 6000,
-          baseMax: 25000
+          baseMax: 25000,
+          cardEligible:false
         },
-        playbook: {
-          key:"playbook",
-          name:"Playbook Pro",
+
+        /* Enablement */
+        playbook_standard: {
+          key:"playbook_standard",
+          name:"Playbook — Standard (DIY)",
+          details:"/playbook/",
+          need:"playbook-standard",
+          focus:"playbook",
+          defaultTimeline:"One-time",
+          baseMin: 249,
+          baseMax: 249,
+          cardEligible:false
+        },
+        playbook_pro: {
+          key:"playbook_pro",
+          name:"Playbook — Pro (DIY)",
           details:"/playbook/pro/",
           need:"playbook-pro",
           focus:"playbook",
-          defaultTimeline:"One-time (upgrade path)",
-          baseMin: 250,
-          baseMax: 8000
+          defaultTimeline:"One-time",
+          baseMin: 749,
+          baseMax: 749,
+          cardEligible:false
         }
       };
 
@@ -428,13 +479,14 @@
           .replace(/"/g,"&quot;");
       }
       function getQS(name){
-        var p = new URLSearchParams(location.search);
-        return p.get(name);
+        try{ return (new URLSearchParams(location.search)).get(name); }catch(e){ return null; }
       }
       function setQS(name,val){
-        var u = new URL(location.href);
-        u.searchParams.set(name,val);
-        history.replaceState({}, "", u.toString());
+        try{
+          var u = new URL(location.href);
+          u.searchParams.set(name,val);
+          history.replaceState({}, "", u.toString());
+        }catch(e){}
       }
       function ensureRID(){
         var rid = getQS("rid") || localStorage.getItem("nf_rid");
@@ -461,112 +513,6 @@
       }
       function clamp(n, a, b){ return Math.max(a, Math.min(b, n)); }
 
-      /* ===========================
-         Quote logic
-         =========================== */
-
-      function computeMultipliers(state){
-        // Each multiplier is intentionally conservative and interpretable.
-        // Output is a band, not a promise.
-        var m = 1.00;
-
-        // Org size (proxy for environment scale + coordination)
-        if(state.size === "1-49") m *= 1.00;
-        if(state.size === "50-249") m *= 1.15;
-        if(state.size === "250-999") m *= 1.35;
-        if(state.size === "1000+") m *= 1.55;
-
-        // Materiality (how much AI influences decisions + scrutiny)
-        if(state.materiality === "low") m *= 1.00;
-        if(state.materiality === "medium") m *= 1.15;
-        if(state.materiality === "high") m *= 1.35;
-
-        // Procurement/security depth (extra documentation + coordination)
-        if(state.procDepth === "light") m *= 1.00;
-        if(state.procDepth === "standard") m *= 1.10;
-        if(state.procDepth === "heavy") m *= 1.25;
-
-        // Timeline urgency (trade-offs: scheduling + focus)
-        if(state.timeline === "normal") m *= 1.00;
-        if(state.timeline === "fast") m *= 1.12;
-
-        // Multi-jurisdiction (more stakeholders, policies, approvals)
-        if(state.geo === "single") m *= 1.00;
-        if(state.geo === "multi") m *= 1.12;
-
-        // Buyer type does not change price; it changes routing.
-        return m;
-      }
-
-      function recommendOffer(state){
-        // Simple, readable routing logic.
-        // 1) If Microsoft 365 Copilot / Copilot pressure is selected, start with QuickScan.
-        if(state.need === "copilot") return "quickscan";
-
-        // 2) If high materiality or heavy procurement, Trust Brief is safer start.
-        if(state.materiality === "high" || state.procDepth === "heavy") return "trustbrief";
-
-        // 3) If ongoing cadence is explicitly requested, Trust Ledger.
-        if(state.need === "ledger") return "trustledger";
-
-        // 4) If enablement/templates requested, Playbook Pro.
-        if(state.need === "enablement") return "playbook";
-
-        // Default: Trust Brief for broader “AI governance starting point”
-        return "trustbrief";
-      }
-
-      function quoteBand(offerKey, mult){
-        var o = OFFERS[offerKey] || OFFERS.quickscan;
-
-        // Keep a band: +/- 12% around multiplier to avoid false precision.
-        var low = o.baseMin * clamp(mult * 0.92, 0.85, 2.2);
-        var high = o.baseMax * clamp(mult * 1.10, 0.90, 2.4);
-
-        // Round to friendly increments
-        function roundFriendly(x){
-          if(x < 1000) return Math.round(x/25)*25;
-          if(x < 10000) return Math.round(x/250)*250;
-          return Math.round(x/500)*500;
-        }
-        return {
-          min: roundFriendly(low),
-          max: roundFriendly(high),
-          timeline: o.defaultTimeline
-        };
-      }
-
-      function buildProcNote(rid, offerKey, band, state){
-        var o = OFFERS[offerKey] || OFFERS.quickscan;
-        var lines = [];
-        lines.push("Noetfield — Procurement Summary");
-        lines.push("Reference: " + rid);
-        lines.push("Selected offer: " + o.name);
-        lines.push("Estimated band: " + money(band.min) + " – " + money(band.max) + " CAD (pre-tax)");
-        lines.push("Timeline: " + band.timeline);
-        lines.push("Tax: applied as required at invoicing.");
-        lines.push("");
-        lines.push("Assumptions (high-level):");
-        lines.push("- Organisation size: " + state.sizeLabel);
-        lines.push("- Materiality: " + state.materialityLabel);
-        lines.push("- Procurement depth: " + state.procDepthLabel);
-        lines.push("- Geography: " + state.geoLabel);
-        lines.push("- Timeline: " + state.timelineLabel);
-        lines.push("");
-        lines.push("Start (Gate intake):");
-        lines.push(location.origin + appendRID("/gate/intake/?need=" + encodeURIComponent(o.need), rid));
-        lines.push("");
-        lines.push("Invoice / PO (Procurement):");
-        lines.push(location.origin + appendRID("/gate/procurement/?focus=" + encodeURIComponent(o.focus), rid));
-        return lines.join("\n");
-      }
-
-      function mailtoProc(rid, offerKey, note){
-        var o = OFFERS[offerKey] || OFFERS.quickscan;
-        var subject = "Noetfield quote — " + o.name + " — " + rid;
-        return "mailto:procurement@noetfield.com?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(note);
-      }
-
       function copyText(text){
         if(!text) return;
         if(navigator.clipboard && navigator.clipboard.writeText){
@@ -580,30 +526,165 @@
           document.body.removeChild(tmp);
         }
       }
+      function downloadText(filename, text){
+        try{
+          var blob = new Blob([text], {type:"text/plain;charset=utf-8"});
+          var a = document.createElement("a");
+          a.href = URL.createObjectURL(blob);
+          a.download = filename;
+          document.body.appendChild(a);
+          a.click();
+          setTimeout(function(){
+            URL.revokeObjectURL(a.href);
+            document.body.removeChild(a);
+          }, 50);
+        }catch(e){}
+      }
 
       /* ===========================
-         Wizard steps
+         Quote logic
+         =========================== */
+      function computeMultipliers(state){
+        // Conservative multipliers for variable-band offers (Trust Brief / Ledger / QuickScan band).
+        var m = 1.00;
+
+        if(state.size === "1-49") m *= 1.00;
+        if(state.size === "50-249") m *= 1.15;
+        if(state.size === "250-999") m *= 1.35;
+        if(state.size === "1000+") m *= 1.55;
+
+        if(state.materiality === "low") m *= 1.00;
+        if(state.materiality === "medium") m *= 1.15;
+        if(state.materiality === "high") m *= 1.35;
+
+        if(state.procDepth === "light") m *= 1.00;
+        if(state.procDepth === "standard") m *= 1.10;
+        if(state.procDepth === "heavy") m *= 1.25;
+
+        if(state.timeline === "normal") m *= 1.00;
+        if(state.timeline === "fast") m *= 1.12;
+
+        if(state.geo === "single") m *= 1.00;
+        if(state.geo === "multi") m *= 1.12;
+
+        return m;
+      }
+
+      function recommendOffer(state){
+        // Copilot lane: choose tier, else route to governance products.
+        if(state.need === "copilot"){
+          // QuickScan for small + fast starts (lead-in), otherwise tiered readiness.
+          if(state.size === "1-49" && state.timeline === "fast") return "quickscan";
+          if(state.size === "1-49" && state.procDepth !== "heavy" && state.materiality !== "high") return "readiness_starter";
+
+          // Standard is default market-mirror for most orgs.
+          if(state.procDepth === "heavy" || state.materiality === "high" || state.size === "1000+") return "readiness_extended";
+          return "readiness_standard";
+        }
+
+        if(state.need === "ledger") return "trustledger";
+
+        if(state.need === "enablement"){
+          // Simple: Pro for bigger orgs / heavier procurement; Standard for small DIY.
+          if(state.size === "1-49" && state.procDepth === "light") return "playbook_standard";
+          return "playbook_pro";
+        }
+
+        // Governance starting point
+        if(state.materiality === "high" || state.procDepth === "heavy") return "trustbrief";
+        if(state.size === "1-49" && state.procDepth === "light") return "trustbrief";
+        return "trustbrief";
+      }
+
+      function quoteBand(offerKey, mult){
+        var o = OFFERS[offerKey] || OFFERS.quickscan;
+
+        // Fixed bands: keep fixed (starter/standard/extended, playbook).
+        if(o.baseMin === o.baseMax){
+          return { min:o.baseMin, max:o.baseMax, timeline:o.defaultTimeline };
+        }
+
+        // Variable-band offers: keep a band, avoid false precision.
+        var low = o.baseMin * clamp(mult * 0.92, 0.85, 2.2);
+        var high = o.baseMax * clamp(mult * 1.10, 0.90, 2.4);
+
+        function roundFriendly(x){
+          if(x < 1000) return Math.round(x/25)*25;
+          if(x < 10000) return Math.round(x/250)*250;
+          return Math.round(x/500)*500;
+        }
+
+        return { min: roundFriendly(low), max: roundFriendly(high), timeline:o.defaultTimeline };
+      }
+
+      function buildProcNote(rid, offerKey, band, state){
+        var o = OFFERS[offerKey] || OFFERS.quickscan;
+        var lines = [];
+        lines.push("Noetfield — Procurement Summary");
+        lines.push("Reference: " + rid);
+        lines.push("Recommended lane: " + o.name);
+        lines.push("Estimated band: " + money(band.min) + " – " + money(band.max) + " CAD (pre-tax)");
+        lines.push("Timeline: " + band.timeline);
+        lines.push("Tax: applied as required at invoicing.");
+        lines.push("");
+        lines.push("Signals (high-level):");
+        lines.push("- Organisation size: " + state.sizeLabel);
+        lines.push("- Materiality: " + state.materialityLabel);
+        lines.push("- Procurement depth: " + state.procDepthLabel);
+        lines.push("- Geography: " + state.geoLabel);
+        lines.push("- Timeline: " + state.timelineLabel);
+        lines.push("- Purchase style: " + state.buyerLabel);
+        lines.push("");
+        lines.push("Start (Gate intake — public / non-sensitive):");
+        lines.push(location.origin + appendRID("/gate/intake/?need=" + encodeURIComponent(o.need), rid));
+        lines.push("");
+        lines.push("Invoice / PO (Procurement onboarding):");
+        lines.push(location.origin + appendRID("/gate/procurement/?focus=" + encodeURIComponent(o.focus), rid));
+        lines.push("");
+        lines.push("Offer details:");
+        lines.push(location.origin + o.details);
+        return lines.join("\n");
+      }
+
+      function mailtoProc(rid, offerKey, note){
+        var o = OFFERS[offerKey] || OFFERS.quickscan;
+        var subject = "Noetfield quote — " + o.name + " — " + rid;
+        return "mailto:procurement@noetfield.com?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(note);
+      }
+
+      /* ===========================
+         Wizard state
          =========================== */
       var STEPS = ["context","need","procurement","result"];
       var currentStep = 0;
 
       function setStep(i){
         currentStep = clamp(i, 0, STEPS.length-1);
+
         for(var s=0;s<STEPS.length;s++){
-          var el = document.getElementById("step-" + STEPS[s]);
-          if(el) el.style.display = (s === currentStep) ? "block" : "none";
+          var panel = document.getElementById("step-" + STEPS[s]);
+          if(panel) panel.style.display = (s === currentStep) ? "block" : "none";
+
           var chip = document.getElementById("chip-" + STEPS[s]);
-          if(chip) chip.classList.toggle("isOn", s === currentStep);
+          if(chip){
+            var on = (s === currentStep);
+            chip.classList.toggle("isOn", on);
+            chip.setAttribute("aria-current", on ? "step" : "false");
+          }
         }
+
         var back = document.getElementById("btnBack");
         var next = document.getElementById("btnNext");
-        if(back) back.disabled = (currentStep === 0);
-        if(next) next.style.display = (currentStep === STEPS.length-1) ? "none" : "inline-flex";
-
         var finish = document.getElementById("btnFinish");
-        if(finish) finish.style.display = (currentStep === STEPS.length-1) ? "none" : "inline-flex";
 
-        // On result step, compute
+        if(back) back.disabled = (currentStep === 0);
+
+        // Continue for steps 0-1, Show result for step 2, none on result.
+        if(next) next.style.display = (currentStep <= 1) ? "inline-flex" : "none";
+        if(finish) finish.style.display = (currentStep === 2) ? "inline-flex" : "none";
+
+        setQS("step", STEPS[currentStep]);
+
         if(STEPS[currentStep] === "result") computeAndRender();
       }
 
@@ -612,7 +693,7 @@
         var materiality = (document.getElementById("fMateriality")||{}).value || "medium";
         var geo = (document.getElementById("fGeo")||{}).value || "single";
         var timeline = (document.getElementById("fTimeline")||{}).value || "normal";
-        var need = (document.getElementById("fNeed")||{}).value || "governance";
+        var need = (document.getElementById("fNeed")||{}).value || "copilot";
         var procDepth = (document.getElementById("fProcDepth")||{}).value || "standard";
         var buyer = (document.getElementById("fBuyer")||{}).value || "card";
 
@@ -621,7 +702,12 @@
           materiality: { "low":"Low", "medium":"Medium", "high":"High" },
           geo: { "single":"Single jurisdiction", "multi":"Multi-jurisdiction" },
           timeline: { "normal":"Standard", "fast":"Fast" },
-          need: { "copilot":"Microsoft 365 Copilot governance", "governance":"AI governance starting point", "ledger":"Ongoing Trust Ledger operations", "enablement":"Enablement (templates + playbook)" },
+          need: {
+            "copilot":"Microsoft 365 Copilot readiness",
+            "governance":"AI governance starting point",
+            "ledger":"Ongoing Trust Ledger operations",
+            "enablement":"Enablement (templates + playbook)"
+          },
           procDepth: { "light":"Light", "standard":"Standard", "heavy":"Deeper (security/privacy/procurement)" },
           buyer: { "card":"Card payment", "proc":"Invoice / PO" }
         };
@@ -634,6 +720,7 @@
           need:need,
           procDepth:procDepth,
           buyer:buyer,
+
           sizeLabel: labels.size[size] || size,
           materialityLabel: labels.materiality[materiality] || materiality,
           geoLabel: labels.geo[geo] || geo,
@@ -644,15 +731,55 @@
         };
       }
 
+      function saveFormState(){
+        try{
+          var st = getState();
+          localStorage.setItem("nf_quote_state", JSON.stringify({
+            size:st.size, materiality:st.materiality, geo:st.geo, timeline:st.timeline,
+            need:st.need, procDepth:st.procDepth, buyer:st.buyer
+          }));
+        }catch(e){}
+      }
+      function restoreFormState(){
+        try{
+          // Query param prefill (optional): ?need=copilot|governance|ledger|enablement, ?buyer=card|proc
+          var qNeed = getQS("need");
+          var qBuyer = getQS("buyer");
+
+          var raw = localStorage.getItem("nf_quote_state");
+          var obj = raw ? JSON.parse(raw) : null;
+
+          function setVal(id, val){
+            var el = document.getElementById(id);
+            if(el && val) el.value = val;
+          }
+
+          if(obj){
+            setVal("fSize", obj.size);
+            setVal("fMateriality", obj.materiality);
+            setVal("fGeo", obj.geo);
+            setVal("fTimeline", obj.timeline);
+            setVal("fNeed", obj.need);
+            setVal("fProcDepth", obj.procDepth);
+            setVal("fBuyer", obj.buyer);
+          }
+
+          if(qNeed){ setVal("fNeed", qNeed); }
+          if(qBuyer){ setVal("fBuyer", qBuyer); }
+        }catch(e){}
+      }
+
       function computeAndRender(){
         var rid = localStorage.getItem("nf_rid") || ensureRID();
         var st = getState();
+        saveFormState();
+
         var mult = computeMultipliers(st);
         var offerKey = recommendOffer(st);
         var band = quoteBand(offerKey, mult);
         var offer = OFFERS[offerKey] || OFFERS.quickscan;
 
-        // UI values
+        // UI nodes
         var elOffer = document.getElementById("qOffer");
         var elBand = document.getElementById("qBand");
         var elTime = document.getElementById("qTime");
@@ -662,7 +789,11 @@
         var elNote = document.getElementById("qNote");
 
         if(elOffer) elOffer.textContent = offer.name;
-        if(elBand) elBand.textContent = money(band.min) + " – " + money(band.max) + " CAD";
+        if(elBand){
+          elBand.textContent = (band.min === band.max)
+            ? (money(band.min) + " CAD")
+            : (money(band.min) + " – " + money(band.max) + " CAD");
+        }
         if(elTime) elTime.textContent = band.timeline;
         if(elRef) elRef.innerHTML = 'Reference (optional): <code>' + esc(rid) + '</code>';
 
@@ -670,6 +801,7 @@
         reasons.push("Need: " + st.needLabel);
         reasons.push("Materiality: " + st.materialityLabel);
         reasons.push("Procurement depth: " + st.procDepthLabel);
+        if(st.need === "copilot") reasons.push("Lane: readiness tier selection");
         if(elReason) elReason.innerHTML = "<strong>Why this lane:</strong> " + esc(reasons.join(" · "));
 
         if(elAssump){
@@ -687,14 +819,14 @@
         var aPay = document.getElementById("aPay");
         var aProcEmail = document.getElementById("aProcEmail");
         var aCopy = document.getElementById("aCopy");
+        var aDownload = document.getElementById("aDownload");
 
         if(aDetails) aDetails.setAttribute("href", offer.details);
         if(aGate) aGate.setAttribute("href", appendRID("/gate/intake/?need=" + encodeURIComponent(offer.need), rid));
         if(aPO) aPO.setAttribute("href", appendRID("/gate/procurement/?focus=" + encodeURIComponent(offer.focus), rid));
 
-        // Card payment appears only when:
-        // - buyer chooses card AND offer is QuickScan (Base) (for now)
-        var showPay = (st.buyer === "card" && offerKey === "quickscan");
+        // Card payment only for QuickScan Base for now.
+        var showPay = (st.buyer === "card" && offer.cardEligible === true && offerKey === "quickscan");
         if(aPay){
           aPay.style.display = showPay ? "inline-flex" : "none";
           if(showPay){
@@ -724,12 +856,23 @@
             copyText(note);
           };
         }
+        if(aDownload){
+          aDownload.onclick = function(e){
+            e.preventDefault();
+            downloadText("Noetfield-Procurement-Summary-" + rid + ".txt", note);
+          };
+        }
 
-        // Minor note text (band meaning)
         var bandNote = document.getElementById("bandNote");
         if(bandNote){
           bandNote.innerHTML =
-            "<strong>Estimate:</strong> a practical price band based on the selected inputs. Final scope is confirmed via Gate intake or procurement onboarding.";
+            "<strong>Estimate:</strong> a practical band based on the selected signals. Final scope is confirmed via Gate intake or procurement onboarding.";
+        }
+
+        // Update live region for screen readers
+        var live = document.getElementById("liveRegion");
+        if(live){
+          live.textContent = "Result updated. " + offer.name + ". Estimated band " + elBand.textContent + ". Timeline " + band.timeline + ".";
         }
       }
 
@@ -745,8 +888,9 @@
       document.addEventListener("DOMContentLoaded", function(){
         var rid = ensureRID();
         wireRID(rid);
+        restoreFormState();
 
-        // Restore step from URL if present
+        // Restore step
         var s = getQS("step");
         if(s){
           var idx = STEPS.indexOf(String(s));
@@ -756,36 +900,35 @@
         // Buttons
         var back = document.getElementById("btnBack");
         var next = document.getElementById("btnNext");
-        var toResult = document.getElementById("btnFinish");
+        var finish = document.getElementById("btnFinish");
         var restart = document.getElementById("btnRestart");
 
-        if(back) back.addEventListener("click", function(){ setStep(currentStep - 1); setQS("step", STEPS[clamp(currentStep-1,0,3)]); });
-        if(next) next.addEventListener("click", function(){ setStep(currentStep + 1); setQS("step", STEPS[clamp(currentStep+1,0,3)]); });
-        if(toResult) toResult.addEventListener("click", function(){ setStep(3); setQS("step","result"); });
-        if(restart) restart.addEventListener("click", function(){ setStep(0); setQS("step","context"); });
+        if(back) back.addEventListener("click", function(){ setStep(currentStep - 1); });
+        if(next) next.addEventListener("click", function(){ setStep(currentStep + 1); });
+        if(finish) finish.addEventListener("click", function(){ setStep(3); });
+        if(restart) restart.addEventListener("click", function(){ setStep(0); });
 
         // Chips click
         for(var i=0;i<STEPS.length;i++){
           (function(idx){
             var chip = document.getElementById("chip-" + STEPS[idx]);
             if(chip){
-              chip.addEventListener("click", function(){
-                setStep(idx);
-                setQS("step", STEPS[idx]);
-              });
+              chip.addEventListener("click", function(){ setStep(idx); });
             }
           })(i);
         }
 
-        // Any input change updates result if on result step
-        var inputs = document.querySelectorAll("select, input");
+        // Update on input change (and persist)
+        var inputs = document.querySelectorAll("select, input, textarea");
         for(var j=0;j<inputs.length;j++){
           inputs[j].addEventListener("change", function(){
+            saveFormState();
             if(STEPS[currentStep] === "result") computeAndRender();
           });
         }
 
         setStep(currentStep);
+        if(STEPS[currentStep] === "result") computeAndRender();
       });
     })();
   </script>
@@ -808,14 +951,14 @@
           <h1>Quote (estimate).</h1>
 
           <p class="lead">
-            A short wizard that estimates a practical price band and routes to the appropriate start.
-            Card payment is currently available for <strong>Copilot QuickScan (Base)</strong>.
+            A short wizard that estimates a practical band and routes to the appropriate start.
+            Card payment is currently available for <strong>Copilot QuickScan</strong> (lead-in).
           </p>
 
           <div class="metaRow" aria-label="Quote facts">
             <div class="pill"><strong>2–3 minutes</strong> to complete</div>
             <div class="pill"><strong>Price band</strong> (not a promise)</div>
-            <div class="pill"><strong>Board-ready</strong> orientation</div>
+            <div class="pill"><strong>Procurement-ready</strong> routing</div>
             <div class="pill"><strong>Invoice / PO</strong> supported</div>
           </div>
 
@@ -841,7 +984,7 @@
           <p class="muted">A small number of inputs to estimate scope and provide a clean start path.</p>
 
           <div class="stepper" aria-label="Wizard steps">
-            <button type="button" class="step isOn" id="chip-context" aria-label="Context"><strong>1</strong> Context</button>
+            <button type="button" class="step isOn" id="chip-context" aria-label="Context" aria-current="step"><strong>1</strong> Context</button>
             <button type="button" class="step" id="chip-need" aria-label="Need"><strong>2</strong> Need</button>
             <button type="button" class="step" id="chip-procurement" aria-label="Procurement"><strong>3</strong> Procurement</button>
             <button type="button" class="step" id="chip-result" aria-label="Result"><strong>4</strong> Result</button>
@@ -851,100 +994,108 @@
         <div class="bd">
           <!-- Step: Context -->
           <div id="step-context">
-            <div class="twoCol">
-              <div class="field">
-                <label for="fSize">Organisation size</label>
-                <select id="fSize">
-                  <option value="1-49">1–49</option>
-                  <option value="50-249">50–249</option>
-                  <option value="250-999">250–999</option>
-                  <option value="1000+">1000+</option>
-                </select>
-                <div class="help">Used as a simple proxy for environment scale and coordination effort.</div>
+            <fieldset>
+              <div class="twoCol">
+                <div class="field">
+                  <label for="fSize">Organisation size</label>
+                  <select id="fSize">
+                    <option value="1-49">1–49</option>
+                    <option value="50-249">50–249</option>
+                    <option value="250-999">250–999</option>
+                    <option value="1000+">1000+</option>
+                  </select>
+                  <div class="help">Proxy for environment scale and coordination effort.</div>
+                </div>
+
+                <div class="field">
+                  <label for="fGeo">Geography</label>
+                  <select id="fGeo">
+                    <option value="single">Single jurisdiction</option>
+                    <option value="multi">Multi-jurisdiction</option>
+                  </select>
+                  <div class="help">Multi-jurisdiction typically adds stakeholders and approvals.</div>
+                </div>
               </div>
 
-              <div class="field">
-                <label for="fGeo">Geography</label>
-                <select id="fGeo">
-                  <option value="single">Single jurisdiction</option>
-                  <option value="multi">Multi-jurisdiction</option>
-                </select>
-                <div class="help">Multi-jurisdiction typically adds stakeholders and approval steps.</div>
-              </div>
-            </div>
+              <div class="twoCol">
+                <div class="field">
+                  <label for="fMateriality">AI materiality</label>
+                  <select id="fMateriality">
+                    <option value="low">Low (limited decision impact)</option>
+                    <option value="medium" selected>Medium (workflow impact)</option>
+                    <option value="high">High (decision or regulated impact)</option>
+                  </select>
+                  <div class="help">Higher materiality increases evidence expectations.</div>
+                </div>
 
-            <div class="twoCol">
-              <div class="field">
-                <label for="fMateriality">AI materiality</label>
-                <select id="fMateriality">
-                  <option value="low">Low (limited decision impact)</option>
-                  <option value="medium" selected>Medium (workflow impact)</option>
-                  <option value="high">High (decision or regulated impact)</option>
-                </select>
-                <div class="help">Higher materiality usually increases evidence expectations.</div>
+                <div class="field">
+                  <label for="fTimeline">Timeline</label>
+                  <select id="fTimeline">
+                    <option value="normal" selected>Standard</option>
+                    <option value="fast">Fast</option>
+                  </select>
+                  <div class="help">Fast timelines may change scheduling and sequencing.</div>
+                </div>
               </div>
-
-              <div class="field">
-                <label for="fTimeline">Timeline</label>
-                <select id="fTimeline">
-                  <option value="normal" selected>Standard</option>
-                  <option value="fast">Fast</option>
-                </select>
-                <div class="help">A faster timeline may change scheduling and sequencing.</div>
-              </div>
-            </div>
+            </fieldset>
           </div>
 
           <!-- Step: Need -->
           <div id="step-need" style="display:none">
-            <div class="field">
-              <label for="fNeed">Primary need</label>
-              <select id="fNeed">
-                <option value="copilot">Microsoft 365 Copilot governance</option>
-                <option value="governance" selected>AI governance starting point</option>
-                <option value="ledger">Ongoing Trust Ledger operations</option>
-                <option value="enablement">Enablement (templates + playbook)</option>
-              </select>
-              <div class="help">This guides the recommended offer lane (QuickScan, Trust Brief, Trust Ledger, or Playbook Pro).</div>
-            </div>
+            <fieldset>
+              <div class="field">
+                <label for="fNeed">Primary need</label>
+                <select id="fNeed">
+                  <option value="copilot" selected>Microsoft 365 Copilot readiness</option>
+                  <option value="governance">AI governance starting point</option>
+                  <option value="ledger">Ongoing Trust Ledger operations</option>
+                  <option value="enablement">Enablement (templates + playbook)</option>
+                </select>
+                <div class="help">Guides the lane (QuickScan, Copilot Readiness tiers, Trust Brief, Trust Ledger, Playbook).</div>
+              </div>
 
-            <div class="notice">
-              <strong>Practical guidance:</strong>
-              Copilot adoption typically starts with QuickScan for fast boundaries and decision options.
-              Higher materiality usually routes to Trust Brief for stronger clarity.
-            </div>
+              <div class="notice">
+                <strong>Practical guidance:</strong>
+                Copilot adoption commonly starts with a readiness lane.
+                Higher materiality or deeper procurement typically routes to stronger structure (tier upgrade).
+              </div>
+            </fieldset>
           </div>
 
           <!-- Step: Procurement -->
           <div id="step-procurement" style="display:none">
-            <div class="twoCol">
-              <div class="field">
-                <label for="fBuyer">Purchase style</label>
-                <select id="fBuyer">
-                  <option value="card" selected>Card payment</option>
-                  <option value="proc">Invoice / PO</option>
-                </select>
-                <div class="help">This changes routing (purchase link vs procurement onboarding).</div>
+            <fieldset>
+              <div class="twoCol">
+                <div class="field">
+                  <label for="fBuyer">Purchase style</label>
+                  <select id="fBuyer">
+                    <option value="card" selected>Card payment</option>
+                    <option value="proc">Invoice / PO</option>
+                  </select>
+                  <div class="help">Changes routing (purchase link vs procurement onboarding).</div>
+                </div>
+
+                <div class="field">
+                  <label for="fProcDepth">Procurement depth</label>
+                  <select id="fProcDepth">
+                    <option value="light">Light</option>
+                    <option value="standard" selected>Standard</option>
+                    <option value="heavy">Deeper (security/privacy/procurement)</option>
+                  </select>
+                  <div class="help">Deeper reviews often require more documentation and coordination.</div>
+                </div>
               </div>
 
-              <div class="field">
-                <label for="fProcDepth">Procurement depth</label>
-                <select id="fProcDepth">
-                  <option value="light">Light</option>
-                  <option value="standard" selected>Standard</option>
-                  <option value="heavy">Deeper (security/privacy/procurement)</option>
-                </select>
-                <div class="help">Deeper reviews often require more documentation and coordination.</div>
+              <div class="notice">
+                <strong>Invoice / PO:</strong> a copyable internal summary is generated on the Result step, including reference and start links.
               </div>
-            </div>
-
-            <div class="notice">
-              <strong>Invoice / PO:</strong> a copyable internal summary is generated on the Result step, with a clean reference and start links.
-            </div>
+            </fieldset>
           </div>
 
           <!-- Step: Result -->
           <div id="step-result" style="display:none">
+            <div id="liveRegion" aria-live="polite" style="position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden;"></div>
+
             <div class="quoteBox" aria-label="Quote result">
               <div class="quoteTop">
                 <h3 class="quoteTitle">Recommended lane</h3>
@@ -965,7 +1116,7 @@
               <div class="notice" id="bandNote" style="margin-top:12px;"></div>
 
               <div class="actions" aria-label="Result actions">
-                <a class="btn primary" id="aPay" href="#" rel="nofollow" style="display:none">Pay by card (QuickScan Base)</a>
+                <a class="btn primary" id="aPay" href="#" rel="nofollow" style="display:none">Pay by card (QuickScan)</a>
                 <a class="btn secondary" id="aGate" href="#" data-rid="1">Start via Gate intake</a>
                 <a class="btn secondary" id="aPO" href="#" data-rid="1">Invoice / PO (Procurement)</a>
                 <a class="btn ghost" id="aDetails" href="/copilot/quickscan/">View offer details</a>
@@ -982,15 +1133,22 @@
             <div class="quoteBox" aria-label="Procurement note">
               <div class="quoteTop">
                 <h3 class="quoteTitle">Procurement note</h3>
-                <span class="tag">copy / email</span>
+                <span class="tag">copy / email / download</span>
               </div>
+
               <div class="field" style="margin-top:10px;">
                 <label for="qNote">Summary</label>
-                <textarea id="qNote" readonly style="width:100%; min-height:170px; border-radius:14px; border:1px solid rgba(255,255,255,.12); background: rgba(255,255,255,.02); color: var(--muted2); padding:10px 12px; line-height:1.55;"></textarea>
+                <textarea id="qNote" readonly style="min-height:190px;"></textarea>
               </div>
+
               <div class="actions" aria-label="Procurement note actions">
                 <a class="btn secondary" href="#" id="aCopy">Copy note</a>
+                <a class="btn secondary" href="#" id="aDownload">Download .txt</a>
                 <a class="btn primary" href="#" id="aProcEmail">Email procurement</a>
+              </div>
+
+              <div class="notice">
+                <strong>Public details only:</strong> do not paste sensitive data into the wizard. Secure transfer options are handled after kickoff.
               </div>
             </div>
 
@@ -1008,7 +1166,7 @@
           </div>
 
           <div class="notice" style="margin-top:12px;">
-            <strong>Public forms:</strong> designed for non-sensitive details. Secure sharing options are confirmed after kickoff.
+            <strong>Public form:</strong> designed for non-sensitive details. Secure sharing options are confirmed after kickoff.
           </div>
         </div>
       </section>
@@ -1040,9 +1198,9 @@
             <div class="kpi">
               <strong>Reference pages</strong><br/>
               <div class="actions" style="margin-top:10px;">
+                <a class="btn ghost" href="/copilot/readiness/">Copilot Readiness</a>
                 <a class="btn ghost" href="/trust-brief/">Trust Brief</a>
                 <a class="btn ghost" href="/trust-ledger/">Trust Ledger</a>
-                <a class="btn ghost" href="/copilot/">Copilot</a>
               </div>
             </div>
 
@@ -1059,12 +1217,13 @@
   <footer id="nfFooter"></footer>
 
   <!--
-    CHANGELOG (Quote v1.0)
-    - Added /quote/ wizard with 4 steps: Context → Need → Procurement → Result
-    - Generates an indicative price band (CAD) and recommends a lane (QuickScan / Trust Brief / Trust Ledger / Playbook Pro)
-    - Provides clean routing with a carried reference (optional) to Gate intake and Procurement
-    - Enables card payment only for Copilot QuickScan (Base) via Stripe:
-      https://buy.stripe.com/7sY4gA6v681S2a6cDi1Nu00
+    CHANGELOG (Quote v2.0)
+    - Fixed wizard navigation: Continue (steps 1–2) + Show result (step 3)
+    - Added Copilot Readiness tiering (Starter/Standard/Extended) aligned to market-mirror packaging
+    - Persisted wizard selections locally (nf_quote_state)
+    - Added procurement note download (.txt) alongside copy/email
+    - Improved accessibility: aria-current on steps, aria-live updates on result
+    - Kept Stripe card payment ONLY for QuickScan lead-in; other lanes route via Gate/Procurement
 
     SMOKE TEST
     - GET /quote/ returns 200
@@ -1072,10 +1231,10 @@
     - /assets/noetfield-shell.js returns 200 and injects header/footer into #nfHeader/#nfFooter
     - Wizard:
       - Step navigation works (Context/Need/Procurement/Result)
-      - Result computes a band and renders CTAs
-      - “Pay by card (QuickScan Base)” appears only when need routes to QuickScan and buyer is Card
+      - Result computes and renders CTAs
+      - “Pay by card (QuickScan)” appears only when lane=QuickScan AND Purchase style=Card
     - Links:
-      - Gate, Procurement, Purchase, and offer details resolve (or redirect) to 200
+      - Gate, Procurement, Purchase, Copilot Readiness, Trust Brief, Trust Ledger resolve (or redirect) to 200
   -->
 </body>
 </html>

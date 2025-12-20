@@ -1,12 +1,12 @@
-<!-- /trust-brief/index.html — Noetfield Trust Brief (vNext: pricing tiers + quote builder + procurement email builder) -->
-<!DOCTYPE html>
+<!-- /trust-brief/index.html — Noetfield Trust Brief v7.0 (Sales-first • Visible pricing • Quote+Procurement builder • Sticky CTA • Shell aligned) -->
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Noetfield — Trust Brief</title>
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <meta name="description" content="The Noetfield Trust Brief is a 6-week governance-first diagnostic that maps material AI use cases and produces board-ready Trust Ledger entries, risks, controls, and decision options." />
+  <title>Noetfield — Trust Brief</title>
+  <meta name="description" content="Trust Brief is a 6-week governance-first diagnostic that maps material AI use cases and produces board-ready Trust Ledger entries, controls, evidence expectations, and decision options. Pricing is visible. Procurement supported." />
   <meta name="robots" content="index,follow" />
   <meta name="author" content="Noetfield Systems Inc." />
   <meta name="theme-color" content="#07070b" />
@@ -15,38 +15,50 @@
   <link rel="icon" href="/noetfield-favicon-512.png" type="image/png" />
   <link rel="apple-touch-icon" href="/noetfield-favicon-512.png" />
 
-  <!-- OG -->
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Noetfield" />
   <meta property="og:title" content="Noetfield — Trust Brief" />
-  <meta property="og:description" content="A 6-week AI governance diagnostic producing board-ready Trust Ledger entries, risks, controls, and decision options." />
+  <meta property="og:description" content="A 6-week AI governance diagnostic producing board-ready outputs: starter Trust Ledger entries, control baseline, evidence expectations, and a board memo with options. Pricing is visible. Procurement supported." />
   <meta property="og:url" content="https://www.noetfield.com/trust-brief/" />
   <meta property="og:image" content="https://www.noetfield.com/noetfield-og.png" />
 
-  <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Noetfield — Trust Brief" />
-  <meta name="twitter:description" content="A 6-week AI governance diagnostic producing board-ready Trust Ledger entries, risks, controls, and decision options." />
+  <meta name="twitter:description" content="A 6-week AI governance diagnostic producing board-ready outputs. Pricing is visible. Procurement supported." />
   <meta name="twitter:image" content="https://www.noetfield.com/noetfield-og.png" />
-
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
 
   <!-- LOCKED SHELL -->
   <link rel="stylesheet" href="/assets/noetfield-shell.css" />
   <script src="/assets/noetfield-shell.js" defer></script>
 
   <style>
-    .hero{padding:22px 0 14px}
+    .hero{padding:18px 0 10px}
+    .grid{
+      display:grid;
+      grid-template-columns: 1.12fr .88fr;
+      gap:16px;
+      margin: 14px 0 72px;
+      align-items:start;
+    }
+    .card{
+      border-radius:var(--radius);
+      border:1px solid rgba(255,255,255,.11);
+      background: linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.022));
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+      min-width:0;
+    }
+    .hd{ padding:18px 18px 0; }
+    .bd{ padding:18px; }
+
+    /* Hero */
     .heroShell{
       position:relative;
       border-radius: calc(var(--radius) + 8px);
       border: 1px solid rgba(255,255,255,.11);
       background:
-        radial-gradient(1000px 420px at 18% 0%, rgba(200,163,73,.18), transparent 60%),
-        radial-gradient(1000px 420px at 90% 10%, rgba(122,167,255,.10), transparent 62%),
+        radial-gradient(1100px 420px at 16% 0%, rgba(200,163,73,.18), transparent 60%),
+        radial-gradient(1100px 420px at 92% 10%, rgba(122,167,255,.10), transparent 62%),
         linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.022));
       box-shadow: var(--shadow);
       overflow:hidden;
@@ -59,7 +71,8 @@
       pointer-events:none;
       mask-image: linear-gradient(180deg, black 0%, black 58%, transparent 96%);
     }
-    .heroInner{padding: 24px 22px}
+    .heroInner{padding: 22px 18px; position:relative; z-index:1}
+
     .eyebrow{
       display:inline-flex; gap:10px; align-items:center;
       color:var(--muted);
@@ -74,9 +87,9 @@
       background: rgba(200,163,73,.97);
       box-shadow: 0 0 0 3px rgba(200,163,73,.18);
     }
-    h1{margin:14px 0 10px; font-size:40px; line-height:1.07; letter-spacing:-0.75px}
-    .lead{margin:0; color:var(--muted); font-size:16px; max-width: 1020px; line-height:1.75}
-    .lead strong{color:var(--text); font-weight:900}
+    h1{margin:12px 0 10px; font-size:34px; line-height:1.07; letter-spacing:-0.75px}
+    .lead{margin:0; color:var(--muted); font-size:16px; max-width: 1040px; line-height:1.75}
+    .lead strong{color:var(--text); font-weight:950}
 
     .metaRow{display:flex; flex-wrap:wrap; gap:10px; margin-top:14px}
     .pill{
@@ -91,55 +104,58 @@
     }
     .pill strong{color:var(--text); font-weight:900}
 
-    .grid{
-      display:grid;
-      grid-template-columns: 1.12fr .88fr;
-      gap:18px;
-      margin: 18px 0 34px;
-      align-items:start;
+    .actions{display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-top:12px}
+    .btn.small{ min-height:40px; padding:9px 12px; font-size:13px; }
+
+    .notice{
+      margin-top:12px;
+      padding:12px 12px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      color:var(--muted2);
+      font-size:12.8px;
+      line-height:1.6;
     }
-    .card{
-      border-radius:var(--radius);
+    .notice strong{ color:var(--text); font-weight:900; }
+
+    .cardTitle{ margin:0 0 8px; font-size:18px; letter-spacing:-0.2px; }
+    .muted{ color:var(--muted); line-height:1.7; margin:0; }
+
+    .groupTitle{
+      margin:18px 0 8px;
+      font-size:14px;
+      letter-spacing:.22em;
+      text-transform:uppercase;
+      color:var(--muted2);
+    }
+
+    .blocks{ display:grid; gap:12px; margin-top:12px; }
+    .block{
+      border-radius:16px;
       border:1px solid rgba(255,255,255,.11);
-      background: linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.022));
-      box-shadow: var(--shadow2);
-      overflow:hidden;
-      min-width:0;
-    }
-    .card .hd{padding:18px 18px 0}
-    .card h2{margin:0 0 8px; font-size:18px; letter-spacing:-0.2px}
-    .card p{margin:0 0 12px; color:var(--muted); line-height:1.7}
-    .card .bd{padding:18px}
-
-    .kpiGrid{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap:12px;
-      margin-top:12px;
-    }
-    .kpi{
-      border-radius:16px;
-      border:1px solid rgba(255,255,255,.10);
       background: rgba(255,255,255,.03);
-      padding:12px;
-      min-width:0;
-    }
-    .kpi .t{font-size:11px; letter-spacing:.28em; text-transform:uppercase; color:var(--muted2)}
-    .kpi .v{margin-top:8px; font-weight:900; letter-spacing:-.2px}
-    .kpi .d{margin-top:6px; color:var(--muted2); font-size:12.6px; line-height:1.55}
-
-    .section{
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.03);
-      border-radius:16px;
       padding:14px;
-      margin-top:12px;
+      overflow:hidden;
+      transition: border-color .15s ease, background .15s ease, transform .06s ease;
     }
-    .sectionTitle{font-weight:900; letter-spacing:-.2px; margin:0 0 6px; font-size:14px}
-    .sectionDesc{margin:0 0 12px; color:var(--muted2); font-size:12.7px; line-height:1.6}
-
-    .steps{margin:0; padding-left:18px; color:var(--muted); line-height:1.85}
-    .steps li{margin:6px 0}
+    .block:hover{border-color:rgba(255,255,255,.22); background:rgba(255,255,255,.05)}
+    .block:active{transform: translateY(1px)}
+    .blockTop{ display:flex; gap:10px; align-items:flex-start; justify-content:space-between; flex-wrap:wrap; }
+    .block h3{ margin:0; font-size:16px; letter-spacing:-.2px; font-weight:950; }
+    .tag{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:7px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.03);
+      color:var(--muted2);
+      font-size:12.4px;
+      white-space:nowrap;
+    }
+    .block p{ margin:10px 0 0; color:var(--muted); line-height:1.7; }
+    .block ul{ margin:10px 0 0; padding-left:18px; color:var(--muted2); line-height:1.6; }
+    .block li{ margin:6px 0; }
 
     .table{
       width:100%;
@@ -167,64 +183,53 @@
     }
     .table tr:last-child td{border-bottom:none}
 
-    .tag{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      padding:7px 10px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.03);
-      color:var(--muted);
-      font-size:12px;
-      white-space:nowrap;
-    }
-    .tag strong{color:var(--text); font-weight:900}
-
-    .actions{display:flex; gap:12px; flex-wrap:wrap; align-items:center; margin-top:12px}
-
-    .box{
-      margin-top:12px;
-      padding:12px 12px;
-      border-radius:14px;
+    /* Pricing rail */
+    .rail{ position: sticky; top: 14px; }
+    .pricingIntro{
+      padding:14px;
+      border-radius:16px;
       border:1px solid rgba(255,255,255,.10);
       background: rgba(255,255,255,.03);
       color:var(--muted2);
       font-size:12.8px;
       line-height:1.6;
     }
-    .box strong{color:var(--text); font-weight:900}
-    .box a{border-bottom:1px solid rgba(255,255,255,.18)}
+    .pricingIntro strong{ color:var(--text); font-weight:900; }
 
-    .priceRow{
-      display:grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap:12px;
+    .plan{
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.11);
+      background: rgba(255,255,255,.03);
+      padding:14px;
       margin-top:12px;
     }
-    .priceCard{
-      border-radius:16px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.03);
-      padding:12px;
-      min-width:0;
+    .planTop{
+      display:flex; align-items:flex-start; justify-content:space-between; gap:12px; flex-wrap:wrap;
     }
-    .priceCard .name{font-weight:900; letter-spacing:-.2px}
-    .priceCard .amt{margin-top:8px; font-size:22px; font-weight:950; letter-spacing:-.4px}
-    .priceCard .sub{margin-top:6px; color:var(--muted2); font-size:12.6px; line-height:1.55}
-    .priceCard ul{margin:10px 0 0; padding-left:18px; color:var(--muted); line-height:1.65}
-    .priceCard li{margin:6px 0}
+    .planName{
+      margin:0;
+      font-size:15px;
+      font-weight:950;
+      letter-spacing:-.15px;
+    }
+    .price{
+      color:var(--text);
+      font-weight:950;
+      font-size:14px;
+      white-space:nowrap;
+    }
+    .planSub{ margin:8px 0 0; color:var(--muted); line-height:1.6; font-size:13px; }
+    .planBullets{ margin:10px 0 0; padding-left:18px; color:var(--muted2); line-height:1.6; font-size:12.8px; }
+    .planBullets li{ margin:6px 0; }
+    .planActions{ display:flex; gap:10px; flex-wrap:wrap; margin-top:12px; }
 
-    .form{
-      display:grid;
-      gap:12px;
-      margin-top:10px;
-    }
-    .row2{display:grid; grid-template-columns: 1fr 1fr; gap:12px}
+    /* Quote builder */
+    .form{ display:grid; gap:12px; margin-top:12px; }
+    .row2{ display:grid; grid-template-columns: 1fr 1fr; gap:12px; }
     .field label{
       display:block;
-      font-size:12px;
-      letter-spacing:.20em;
+      font-size:11px;
+      letter-spacing:.24em;
       text-transform:uppercase;
       color:var(--muted2);
       margin:0 0 6px;
@@ -239,8 +244,8 @@
       outline:none;
       min-height:44px;
     }
-    .field textarea{min-height:96px; resize:vertical}
-    .help{margin-top:6px; color:var(--muted2); font-size:12.6px; line-height:1.55}
+    .field textarea{ min-height:92px; resize:vertical; }
+    .help{ margin-top:6px; color:var(--muted2); font-size:12.6px; line-height:1.55; }
 
     .quoteOut{
       border-radius:16px;
@@ -249,67 +254,57 @@
       padding:12px;
       margin-top:12px;
     }
-    .qTop{display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap; align-items:flex-start}
-    .qLabel{font-size:11px; letter-spacing:.28em; text-transform:uppercase; color:var(--muted2)}
-    .qPrice{font-size:26px; font-weight:950; letter-spacing:-.3px; margin-top:6px}
-    .mono{font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace}
+    .qTop{ display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap; align-items:flex-start; }
+    .qLabel{ font-size:11px; letter-spacing:.28em; text-transform:uppercase; color:var(--muted2); }
+    .qPrice{ font-size:26px; font-weight:950; letter-spacing:-.3px; margin-top:6px; }
+    .mono{ font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
 
-    .btn{
-      display:inline-flex;
+    .fineprint{
+      margin-top:12px;
+      padding:12px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.02);
+      color:var(--muted2);
+      font-size:12.4px;
+      line-height:1.6;
+    }
+
+    /* Sticky bottom CTA */
+    .stickyCta{
+      position: sticky;
+      bottom: 0;
+      z-index: 20;
+      padding: 10px 0;
+      background: linear-gradient(180deg, rgba(7,7,11,0) 0%, rgba(7,7,11,.78) 22%, rgba(7,7,11,.92) 100%);
+      backdrop-filter: blur(10px);
+      border-top: 1px solid rgba(255,255,255,.08);
+    }
+    .stickyInner{
+      display:flex;
+      gap:12px;
       align-items:center;
-      justify-content:center;
-      gap:10px;
-      padding:10px 14px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.03);
-      color: var(--text);
-      text-decoration:none;
-      transition: transform .12s ease;
-      min-height:44px;
-      cursor:pointer;
+      justify-content:space-between;
+      padding: 0 16px;
+      max-width: 1120px;
+      margin: 0 auto;
     }
-    .btn:hover{transform: translateY(-1px)}
-    .btn.secondary{opacity:.92}
-    .btn.primary{
-      border-color: transparent;
-      background: linear-gradient(135deg,#f9fafb,#e5e7eb);
-      color:#07070b;
-      font-weight:850;
+    .stickyText{
+      min-width:0;
+      color:var(--muted);
+      font-size:12.6px;
+      line-height:1.4;
     }
+    .stickyText strong{ color:var(--text); font-weight:950; }
 
-    /* Desktop-only: floating/boxed header like /status */
-    @media (min-width: 981px){
-      #nfHeader{
-        position: sticky;
-        top: 0;
-        z-index: 60;
-        padding: 12px 16px 0;
-        background: transparent !important;
-        border: 0 !important;
-        box-shadow: none !important;
-      }
-      #nfHeader::before, #nfHeader::after{content:none !important; display:none !important;}
-      #nfHeader .nav{
-        width: min(1200px, calc(100% - 32px));
-        margin: 0 auto;
-        border-radius: 18px;
-        border: 1px solid rgba(255,255,255,.11);
-        background: rgba(10,10,16,.55);
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
-        box-shadow: var(--shadow2);
-      }
-    }
     @media (max-width: 980px){
-      #nfHeader{padding:0}
-      .grid{grid-template-columns:1fr}
-      .kpiGrid{grid-template-columns:1fr}
-      .priceRow{grid-template-columns:1fr}
-      .row2{grid-template-columns:1fr}
+      .grid{ grid-template-columns: 1fr; }
+      .rail{ position: relative; top: 0; }
+      .row2{ grid-template-columns: 1fr; }
+      h1{ font-size: 30px; }
     }
     @media (max-width: 760px){
-      h1{font-size:30px}
+      .stickyText{display:none}
       .table th, .table td{padding:10px}
     }
   </style>
@@ -318,10 +313,10 @@
   {
     "@context":"https://schema.org",
     "@type":"Service",
-    "name":"Trust Brief",
+    "name":"Noetfield Trust Brief",
     "provider":{"@type":"Organization","name":"Noetfield Systems Inc."},
     "areaServed":"CA",
-    "description":"A 6-week governance-first diagnostic that maps material AI use cases and produces board-ready Trust Ledger entries, risks, controls, and decision options.",
+    "description":"A 6-week governance-first diagnostic that maps material AI use cases and produces board-ready Trust Ledger entries, controls, evidence expectations, and decision options.",
     "url":"https://www.noetfield.com/trust-brief/"
   }
   </script>
@@ -331,81 +326,103 @@
   <div class="bg" aria-hidden="true"></div>
   <a class="skip" href="#main">Skip to content</a>
 
-  <!-- Injected header -->
   <header id="nfHeader"></header>
 
   <main id="main" class="wrap">
-    <section class="hero">
+    <!-- HERO -->
+    <section class="hero" aria-label="Trust Brief hero">
       <div class="heroShell">
         <div class="heroInner">
-          <div class="eyebrow"><span class="dot"></span> 6-week diagnostic • board-first</div>
-          <h1>Trust Brief.</h1>
+          <div class="eyebrow"><span class="dot"></span> Trust Brief • 6-week diagnostic • pricing is visible</div>
+
+          <h1>Trust Brief: decisions become defensible.</h1>
+
           <p class="lead">
-            A governance-first diagnostic designed to get you to a <strong>board-readable</strong> posture fast:
-            map material AI use cases, define the control baseline, and produce a first set of
-            <strong>Trust Ledger</strong> entries with evidence expectations and decision options.
+            A structured 6-week diagnostic to turn “we use AI” into a <strong>board-readable</strong> posture:
+            material use-case map, baseline controls, evidence expectations, starter <strong>Trust Ledger</strong> entries,
+            and a board memo with options.
           </p>
 
           <div class="metaRow" aria-label="Highlights">
             <div class="pill"><strong>6 weeks</strong> structured delivery</div>
-            <div class="pill"><strong>Use-case map</strong> (material AI)</div>
-            <div class="pill"><strong>Control baseline</strong> (minimum viable)</div>
-            <div class="pill"><strong>Board memo</strong> + options</div>
-            <div class="pill"><strong>Starter ledger pack</strong></div>
+            <div class="pill"><strong>Board memo</strong> + decision options</div>
+            <div class="pill"><strong>Starter entries</strong> for material AI</div>
+            <div class="pill"><strong>Evidence rule</strong> proofs linked to claims</div>
+            <div class="pill"><strong>Procurement-ready</strong> invoice/PO supported</div>
           </div>
 
-          <div class="actions" style="margin-top:14px">
-            <a class="btn primary" href="/gate/intake/?need=trust-brief">Start intake</a>
-            <a class="btn secondary" href="/trust-ledger/">See Trust Ledger</a>
-            <a class="btn secondary" href="/gate/">Gate</a>
+          <div class="actions" aria-label="Hero actions">
+            <a class="btn primary" href="#pricing">View pricing</a>
+            <a class="btn secondary" href="/gate/intake/?need=trust-brief" data-rid-link>Start intake</a>
+            <a class="btn secondary" href="/gate/procurement/?focus=trust_brief" data-rid-link>Invoice / PO</a>
+            <a class="btn secondary" href="/trust-ledger/" data-rid-link>Trust Ledger</a>
           </div>
 
-          <div class="box">
-            <strong>Public intake = non-confidential.</strong> Do not submit secrets, credentials, private keys, regulated personal data, internal case files, or contract attachments on public forms.
+          <div class="notice" role="note">
+            <strong>Public intake:</strong> non-confidential details only. Secure sharing protocol is confirmed after kickoff.
+            <br />
+            <strong>Goal:</strong> board clarity + ownership + evidence discipline without building a compliance department.
           </div>
         </div>
       </div>
     </section>
 
-    <section class="grid">
-      <!-- MAIN -->
-      <div class="card">
-        <div class="hd">
-          <h2>What you get</h2>
-          <p>
-            The Trust Brief converts “we use AI” into a governable, provable reality: clear scope, accountable owners,
-            and a short list of controls that holds under audit and procurement pressure.
-          </p>
-        </div>
-
-        <div class="bd">
-          <div class="kpiGrid" aria-label="Deliverables">
-            <div class="kpi">
-              <div class="t">Deliverable</div>
-              <div class="v">Material AI map</div>
-              <div class="d">Which AI use cases matter, where they run, and what they affect.</div>
-            </div>
-            <div class="kpi">
-              <div class="t">Deliverable</div>
-              <div class="v">Control baseline</div>
-              <div class="d">Minimum viable controls + owners + evidence expectations (what counts as proof).</div>
-            </div>
-            <div class="kpi">
-              <div class="t">Deliverable</div>
-              <div class="v">Starter ledger pack</div>
-              <div class="d">Initial Trust Ledger entries for the highest-impact use cases.</div>
-            </div>
-            <div class="kpi">
-              <div class="t">Deliverable</div>
-              <div class="v">Board decision memo</div>
-              <div class="d">Options, priorities, trade-offs, and a next-step governance cadence.</div>
-            </div>
+    <!-- GRID -->
+    <section class="grid" aria-label="Trust Brief layout">
+      <!-- LEFT -->
+      <div>
+        <section class="card" aria-label="What is included">
+          <div class="hd">
+            <h2 class="cardTitle">What you get</h2>
+            <p class="muted">
+              Practical outputs that survive scrutiny: scope, owners, baseline controls, evidence expectations, starter ledger entries, and a decision memo.
+            </p>
           </div>
 
-          <div class="section">
-            <div class="sectionTitle">6-week structure</div>
-            <p class="sectionDesc">Mapping → controls → entries → board options. Designed to be decisive.</p>
+          <div class="bd">
+            <div class="groupTitle">Core deliverables</div>
+            <div class="blocks">
+              <article class="block">
+                <div class="blockTop"><h3>Material AI map</h3><span class="tag">Deliverable</span></div>
+                <p>Which AI use cases matter, where they run, who uses them, and what they affect.</p>
+                <ul>
+                  <li>Materiality thresholds (what counts as “board-visible”)</li>
+                  <li>Owner mapping (operational + governance)</li>
+                  <li>Data movement at a usable level</li>
+                </ul>
+              </article>
 
+              <article class="block">
+                <div class="blockTop"><h3>Control baseline</h3><span class="tag">Deliverable</span></div>
+                <p>Minimum viable controls + evidence expectations (what counts as proof).</p>
+                <ul>
+                  <li>Access + identity + approvals</li>
+                  <li>Logging / monitoring expectations</li>
+                  <li>Policy hooks (human-readable)</li>
+                </ul>
+              </article>
+
+              <article class="block">
+                <div class="blockTop"><h3>Starter Trust Ledger pack</h3><span class="tag">Deliverable</span></div>
+                <p>First entries for the highest-impact use cases, in an audit-survivable format.</p>
+                <ul>
+                  <li>Entries include owners, controls, evidence references</li>
+                  <li>Change / exception expectations (readable trail)</li>
+                </ul>
+              </article>
+
+              <article class="block">
+                <div class="blockTop"><h3>Board decision memo</h3><span class="tag">Deliverable</span></div>
+                <p>Options, trade-offs, and the next-step governance cadence.</p>
+                <ul>
+                  <li>Priorities + quick wins</li>
+                  <li>Open risks + decisions requested</li>
+                  <li>Recommendation: next 30–90 days</li>
+                </ul>
+              </article>
+            </div>
+
+            <div class="groupTitle">6-week structure</div>
             <table class="table" aria-label="6-week plan">
               <thead>
                 <tr><th>Week</th><th>Focus</th><th>Output</th></tr>
@@ -414,202 +431,276 @@
                 <tr><td><span class="tag"><strong>1</strong></span></td><td>Scope + materiality thresholds</td><td>Objectives, decision boundaries, initial inventory</td></tr>
                 <tr><td><span class="tag"><strong>2</strong></span></td><td>Use-case mapping</td><td>Material AI map + owners + data movement</td></tr>
                 <tr><td><span class="tag"><strong>3</strong></span></td><td>Risk & control baseline</td><td>Baseline controls + evidence expectations</td></tr>
-                <tr><td><span class="tag"><strong>4</strong></span></td><td>Ledger entry build</td><td>First ledger entries for highest-impact use cases</td></tr>
-                <tr><td><span class="tag"><strong>5</strong></span></td><td>Board memo draft</td><td>Options, priorities, quick wins, cadence</td></tr>
-                <tr><td><span class="tag"><strong>6</strong></span></td><td>Finalize + handoff</td><td>Board-ready brief + ledger pack + next-step plan</td></tr>
+                <tr><td><span class="tag"><strong>4</strong></span></td><td>Ledger entry build</td><td>Starter entries for highest-impact use cases</td></tr>
+                <tr><td><span class="tag"><strong>5</strong></span></td><td>Board memo draft</td><td>Options, priorities, cadence plan</td></tr>
+                <tr><td><span class="tag"><strong>6</strong></span></td><td>Finalize + handoff</td><td>Board-ready brief + starter ledger pack + next steps</td></tr>
               </tbody>
             </table>
-          </div>
 
-          <div class="section">
-            <div class="sectionTitle">What we need from you</div>
-            <p class="sectionDesc">This stays light-weight and non-disruptive, but it must be truthful.</p>
-            <ol class="steps">
-              <li>Point of contact for AI usage + IT/security context.</li>
-              <li>Basic inventory of AI tools/vendors and key workflows.</li>
-              <li>Sanitized artefacts when available (policies, screenshots, exports).</li>
-              <li>Agreement on what “material impact” means in your context.</li>
-            </ol>
-          </div>
+            <div class="groupTitle">Samples (output style reference)</div>
+            <div class="blocks">
+              <article class="block">
+                <div class="blockTop"><h3>Board-safe formatting</h3><span class="tag">Reference</span></div>
+                <p>Trust Brief and Trust Ledger exports follow the same board-safe style.</p>
+                <div class="actions">
+                  <a class="btn secondary" href="/trust-ledger/sample-report/board-memo.pdf" target="_blank" rel="nofollow noopener">Board memo (PDF)</a>
+                  <a class="btn secondary" href="/trust-ledger/ledger-entry.pdf" target="_blank" rel="nofollow noopener">Ledger entry (PDF)</a>
+                  <a class="btn secondary" href="/trust-ledger/sample-report/online/" target="_blank" rel="nofollow noopener">Sample (Online)</a>
+                </div>
+              </article>
+            </div>
 
-          <div class="actions">
-            <a class="btn primary" href="/gate/intake/?need=trust-brief">Start intake</a>
-            <a class="btn secondary" href="/trust-ledger/">See Trust Ledger</a>
-            <a class="btn secondary" href="/status/">Status</a>
+            <div class="notice" style="margin-top:14px;">
+              <strong>Contact:</strong> sales@noetfield.com • procurement@noetfield.com • billing@noetfield.com
+              <br />
+              <strong>Trust & governance:</strong> trust@noetfield.com • legal@noetfield.com
+            </div>
           </div>
+        </section>
 
-          <div class="box">
-            <strong>Outcome:</strong> board-ready posture without pretending a full compliance department exists.
+        <section class="card" aria-label="FAQ" style="margin-top:16px;">
+          <div class="hd">
+            <h2 class="cardTitle">FAQ</h2>
+            <p class="muted">Short answers for purchasing and internal routing.</p>
           </div>
-        </div>
+          <div class="bd">
+            <details class="block">
+              <summary style="cursor:pointer; font-weight:950;">Is public intake confidential?</summary>
+              <p class="muted" style="margin-top:10px;">
+                No. Public intake is non-confidential. Secure sharing protocol is confirmed after kickoff.
+              </p>
+            </details>
+
+            <details class="block">
+              <summary style="cursor:pointer; font-weight:950;">Does Trust Brief replace compliance?</summary>
+              <p class="muted" style="margin-top:10px;">
+                No. It establishes a defensible baseline, ownership, and evidence discipline to reduce risk fast and keep decisions readable.
+              </p>
+            </details>
+
+            <details class="block">
+              <summary style="cursor:pointer; font-weight:950;">What happens after Trust Brief?</summary>
+              <p class="muted" style="margin-top:10px;">
+                Move into Trust Ledger for ongoing cadence: entries stay current, exceptions expire, and board exports remain consistent.
+              </p>
+            </details>
+          </div>
+        </section>
       </div>
 
-      <!-- ASIDE -->
-      <aside class="card">
-        <div class="hd">
-          <h2>Pricing</h2>
-          <p>Clear anchors for procurement. Final quote confirmed after intake.</p>
-        </div>
-        <div class="bd">
-          <div class="priceRow" aria-label="Trust Brief pricing tiers">
-            <div class="priceCard">
-              <div class="name">TB — Base</div>
-              <div class="amt">12,500 CAD</div>
-              <div class="sub">Single team • 1–3 material use cases • starter ledger pack.</div>
-              <ul>
+      <!-- RIGHT: PRICING RAIL -->
+      <aside class="rail" aria-label="Pricing rail">
+        <section id="pricing" class="card" aria-label="Plans & pricing">
+          <div class="hd">
+            <h2 class="cardTitle">Plans & pricing</h2>
+            <div class="pricingIntro">
+              <strong>Fixed fee</strong> by tier. Procurement (Invoice/PO) supported.
+              Final scope is confirmed after intake. Public inputs are non-confidential.
+            </div>
+          </div>
+
+          <div class="bd">
+            <div class="plan" aria-label="TB Base">
+              <div class="planTop">
+                <div>
+                  <div class="tag">TB — Base</div>
+                  <h3 class="planName">Single team baseline</h3>
+                </div>
+                <div class="price">12,500 CAD</div>
+              </div>
+              <p class="planSub">1 team • 1–3 material use cases • starter ledger pack.</p>
+              <ul class="planBullets">
                 <li>Board memo + options</li>
                 <li>Control baseline + owners</li>
                 <li>~4–6 starter entries</li>
               </ul>
+              <div class="planActions">
+                <a class="btn primary" href="/gate/intake/?need=trust-brief&tier=base" data-rid-link>Start intake</a>
+                <a class="btn secondary" href="/gate/procurement/?focus=tb_base" data-rid-link>Invoice / PO</a>
+              </div>
             </div>
-            <div class="priceCard">
-              <div class="name">TB — Pro</div>
-              <div class="amt">18,500 CAD</div>
-              <div class="sub">2–3 teams • 4–8 use cases • deeper evidence expectations.</div>
-              <ul>
+
+            <div class="plan" aria-label="TB Pro">
+              <div class="planTop">
+                <div>
+                  <div class="tag">TB — Pro</div>
+                  <h3 class="planName">Multi-team scope</h3>
+                </div>
+                <div class="price">18,500 CAD</div>
+              </div>
+              <p class="planSub">2–3 teams • 4–8 use cases • deeper evidence expectations.</p>
+              <ul class="planBullets">
                 <li>Board memo + options</li>
                 <li>Procurement snapshot</li>
                 <li>~6–10 starter entries</li>
               </ul>
+              <div class="planActions">
+                <a class="btn primary" href="/gate/intake/?need=trust-brief&tier=pro" data-rid-link>Start intake</a>
+                <a class="btn secondary" href="/gate/procurement/?focus=tb_pro" data-rid-link>Invoice / PO</a>
+              </div>
             </div>
-            <div class="priceCard">
-              <div class="name">TB — Enterprise</div>
-              <div class="amt">27,500 CAD</div>
-              <div class="sub">Enterprise-wide • 9–15 use cases • board + procurement pack.</div>
-              <ul>
-                <li>Cadence plan</li>
+
+            <div class="plan" aria-label="TB Enterprise">
+              <div class="planTop">
+                <div>
+                  <div class="tag">TB — Enterprise</div>
+                  <h3 class="planName">Enterprise-wide posture</h3>
+                </div>
+                <div class="price">27,500 CAD</div>
+              </div>
+              <p class="planSub">Enterprise-wide • 9–15 use cases • board + procurement pack.</p>
+              <ul class="planBullets">
+                <li>Cadence plan + operating rhythm</li>
                 <li>~10–15 starter entries</li>
-                <li>Enterprise decision trail</li>
+                <li>Decision trail alignment</li>
               </ul>
+              <div class="planActions">
+                <a class="btn primary" href="/gate/intake/?need=trust-brief&tier=enterprise" data-rid-link>Start intake</a>
+                <a class="btn secondary" href="/gate/procurement/?focus=tb_enterprise" data-rid-link>Invoice / PO</a>
+              </div>
+            </div>
+
+            <div class="fineprint" role="note">
+              <strong>Add-ons:</strong> +900 CAD per extra use case, +2,500 CAD per extra team.
+              Regulated scope multiplier (1.25–1.5×). Rush delivery (+20–35%).
+              Taxes may apply.
+            </div>
+
+            <section class="plan" aria-label="Quick quote builder">
+              <div class="planTop">
+                <div>
+                  <div class="tag">Quote builder</div>
+                  <h3 class="planName">Quick estimate + procurement email</h3>
+                </div>
+              </div>
+
+              <form class="form" id="tbQuoteForm">
+                <input type="hidden" name="rid" value="" data-rid-field />
+
+                <div class="row2">
+                  <div class="field">
+                    <label for="tbTier">Tier</label>
+                    <select id="tbTier" name="tier" required>
+                      <option value="" selected disabled>Select…</option>
+                      <option value="auto">Auto (recommended)</option>
+                      <option value="base">TB — Base</option>
+                      <option value="pro">TB — Pro</option>
+                      <option value="ent">TB — Enterprise</option>
+                    </select>
+                    <div class="help">Auto chooses tier from the use-case band.</div>
+                  </div>
+
+                  <div class="field">
+                    <label for="tbUseCasesBand">Use cases</label>
+                    <select id="tbUseCasesBand" name="usecases_band" required>
+                      <option value="" selected disabled>Select…</option>
+                      <option value="1-3">1–3</option>
+                      <option value="4-8">4–8</option>
+                      <option value="9-15">9–15</option>
+                      <option value="16+">16+</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="row2">
+                  <div class="field">
+                    <label for="tbTeams">Teams in scope</label>
+                    <select id="tbTeams" name="teams" required>
+                      <option value="" selected disabled>Select…</option>
+                      <option value="1">1 team</option>
+                      <option value="2-3">2–3 teams</option>
+                      <option value="4+">4+ teams</option>
+                    </select>
+                  </div>
+
+                  <div class="field">
+                    <label for="tbRisk">Risk tier</label>
+                    <select id="tbRisk" name="risk" required>
+                      <option value="" selected disabled>Select…</option>
+                      <option value="standard">Standard</option>
+                      <option value="regulated">Regulated (×1.25)</option>
+                      <option value="high">Highly regulated (×1.5)</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="row2">
+                  <div class="field">
+                    <label for="tbEvidence">Evidence depth</label>
+                    <select id="tbEvidence" name="evidence" required>
+                      <option value="" selected disabled>Select…</option>
+                      <option value="light">Light</option>
+                      <option value="standard">Standard</option>
+                      <option value="deep">Deep (+15%)</option>
+                    </select>
+                  </div>
+
+                  <div class="field">
+                    <label for="tbTempo">Tempo</label>
+                    <select id="tbTempo" name="tempo" required>
+                      <option value="" selected disabled>Select…</option>
+                      <option value="standard">Standard (6 weeks)</option>
+                      <option value="rush">Rush (+25%)</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="field">
+                  <label for="tbNotes">Notes for scope</label>
+                  <textarea id="tbNotes" name="notes" placeholder="High-level only: driver (audit, Copilot, vendor AI), key teams, what the board must be able to answer."></textarea>
+                  <div class="help">Avoid confidential details. Public intake is non-confidential.</div>
+                </div>
+
+                <div class="quoteOut" aria-label="Quote output">
+                  <div class="qTop">
+                    <div>
+                      <div class="qLabel">Request ID</div>
+                      <div class="mono" data-rid-text>—</div>
+                    </div>
+                    <div>
+                      <div class="qLabel">Estimated fee</div>
+                      <div class="qPrice" id="tbQuotePrice">—</div>
+                    </div>
+                  </div>
+
+                  <div class="help" id="tbQuoteLine" style="margin-top:10px">Select inputs to generate an estimate.</div>
+
+                  <div class="actions" style="margin-top:12px">
+                    <button class="btn primary" type="button" id="tbBuild">Build estimate</button>
+                    <button class="btn secondary" type="button" id="tbCopy">Copy quote</button>
+                    <a class="btn secondary" id="tbEmailQuote" href="mailto:ceo@noetfield.com">Email quote</a>
+                    <a class="btn secondary" id="tbEmailPO" href="mailto:procurement@noetfield.com">Request PO / invoice</a>
+                  </div>
+
+                  <div class="notice" style="margin-top:12px;">
+                    <strong>Estimate only.</strong> Final quote confirmed after intake. Taxes may apply.
+                    Public intake is non-confidential.
+                  </div>
+                </div>
+              </form>
+            </section>
+
+            <div class="actions" style="margin-top:12px;">
+              <a class="btn secondary" href="/gate/sales/" data-rid-link>Open Purchase Hub</a>
+              <a class="btn secondary" href="/trust-ledger/" data-rid-link>Move to Trust Ledger</a>
             </div>
           </div>
-
-          <div class="box" style="margin-top:12px">
-            <strong>Standard add-ons:</strong> +900 CAD per extra use case, +2,500 CAD per extra team, regulated scope multiplier (1.25–1.5×), rush delivery (+20–35%).
-          </div>
-
-          <div class="section">
-            <div class="sectionTitle">Quick Quote + Email Builder</div>
-            <p class="sectionDesc">Generates an estimate + procurement-ready email text (non-confidential).</p>
-
-            <form class="form" id="tbQuoteForm">
-              <input type="hidden" name="rid" value="" data-rid-field />
-              <div class="row2">
-                <div class="field">
-                  <label for="tbTier">Tier</label>
-                  <select id="tbTier" name="tier" required>
-                    <option value="" selected disabled>Select…</option>
-                    <option value="auto">Auto (recommended)</option>
-                    <option value="base">TB — Base</option>
-                    <option value="pro">TB — Pro</option>
-                    <option value="ent">TB — Enterprise</option>
-                  </select>
-                  <div class="help">Auto chooses tier from use-case band.</div>
-                </div>
-                <div class="field">
-                  <label for="tbUseCasesBand">Use cases</label>
-                  <select id="tbUseCasesBand" name="usecases_band" required>
-                    <option value="" selected disabled>Select…</option>
-                    <option value="1-3">1–3</option>
-                    <option value="4-8">4–8</option>
-                    <option value="9-15">9–15</option>
-                    <option value="16+">16+</option>
-                  </select>
-                </div>
-              </div>
-
-              <div class="row2">
-                <div class="field">
-                  <label for="tbTeams">Teams in scope</label>
-                  <select id="tbTeams" name="teams" required>
-                    <option value="" selected disabled>Select…</option>
-                    <option value="1">1 team</option>
-                    <option value="2-3">2–3 teams</option>
-                    <option value="4+">4+ teams</option>
-                  </select>
-                </div>
-                <div class="field">
-                  <label for="tbRisk">Risk tier</label>
-                  <select id="tbRisk" name="risk" required>
-                    <option value="" selected disabled>Select…</option>
-                    <option value="standard">Standard</option>
-                    <option value="regulated">Regulated (×1.25)</option>
-                    <option value="high">Highly regulated (×1.5)</option>
-                  </select>
-                </div>
-              </div>
-
-              <div class="row2">
-                <div class="field">
-                  <label for="tbEvidence">Evidence depth</label>
-                  <select id="tbEvidence" name="evidence" required>
-                    <option value="" selected disabled>Select…</option>
-                    <option value="light">Light</option>
-                    <option value="standard">Standard</option>
-                    <option value="deep">Deep (+15%)</option>
-                  </select>
-                </div>
-                <div class="field">
-                  <label for="tbTempo">Tempo</label>
-                  <select id="tbTempo" name="tempo" required>
-                    <option value="" selected disabled>Select…</option>
-                    <option value="standard">Standard (6 weeks)</option>
-                    <option value="rush">Rush (+25%)</option>
-                  </select>
-                </div>
-              </div>
-
-              <div class="field">
-                <label for="tbNotes">Notes for scope</label>
-                <textarea id="tbNotes" name="notes" placeholder="High-level: what is driving this (audit, Copilot, vendor AI, regulator questions), key teams involved, and what the board must be able to answer."></textarea>
-                <div class="help">Avoid confidential details. Public intake = non-confidential.</div>
-              </div>
-
-              <div class="quoteOut" aria-label="Quote output">
-                <div class="qTop">
-                  <div>
-                    <div class="qLabel">Request ID</div>
-                    <div class="mono" data-rid-text>—</div>
-                  </div>
-                  <div>
-                    <div class="qLabel">Estimated fixed fee</div>
-                    <div class="qPrice" id="tbQuotePrice">—</div>
-                  </div>
-                </div>
-                <div class="help" id="tbQuoteLine" style="margin-top:10px">
-                  Select inputs to generate an estimate.
-                </div>
-
-                <div class="actions" style="margin-top:12px">
-                  <button class="btn primary" type="button" id="tbBuild">Build estimate</button>
-                  <button class="btn secondary" type="button" id="tbCopy">Copy quote</button>
-                  <a class="btn secondary" id="tbEmailQuote" href="mailto:ceo@noetfield.com">Email quote</a>
-                  <a class="btn secondary" id="tbEmailPO" href="mailto:procurement@noetfield.com">Request PO / invoice</a>
-                </div>
-
-                <div class="box" style="margin-top:12px">
-                  <strong>Estimate only.</strong> Final quote confirmed after intake. Taxes may apply where applicable.
-                </div>
-              </div>
-            </form>
-          </div>
-
-          <div class="box" style="margin-top:14px">
-            <strong>Next:</strong> after Trust Brief, move into <a href="/trust-ledger/">Trust Ledger</a> for ongoing cadence and evidence freshness.
-          </div>
-
-          <div class="box" style="margin-top:14px">
-            <strong>References:</strong><br/>
-            <a href="/playbook/">Playbook</a> ·
-            <a href="/copilot/">Copilot</a> ·
-            <a href="/for-whom/">For Whom</a>
-          </div>
-        </div>
+        </section>
       </aside>
+    </section>
+
+    <section class="stickyCta" aria-label="Sticky CTA">
+      <div class="stickyInner">
+        <div class="stickyText"><strong>Trust Brief</strong> pricing is visible — start intake or route via procurement.</div>
+        <div class="actions" style="margin-top:0">
+          <a class="btn primary" href="#pricing">View pricing</a>
+          <a class="btn secondary" href="/gate/intake/?need=trust-brief" data-rid-link>Start intake</a>
+          <a class="btn secondary" href="/gate/procurement/?focus=trust_brief" data-rid-link>Invoice / PO</a>
+        </div>
+      </div>
     </section>
   </main>
 
-  <!-- Injected footer -->
   <footer id="nfFooter"></footer>
 
   <script>
@@ -649,38 +740,32 @@
         }
       }
 
-      // Trust Brief calculator
       function baseFromBand(band){
         if (band === "1-3") return { tier:"TB — Base", price:12500, ucIncluded:3, teamsIncluded:1 };
         if (band === "4-8") return { tier:"TB — Pro", price:18500, ucIncluded:8, teamsIncluded:3 };
         if (band === "9-15") return { tier:"TB — Enterprise", price:27500, ucIncluded:15, teamsIncluded:4 };
         return { tier:"TB — Enterprise (custom)", price:27500, ucIncluded:15, teamsIncluded:4, custom:true };
       }
-
       function parseBandMax(band){
         if (band === "1-3") return 3;
         if (band === "4-8") return 8;
         if (band === "9-15") return 15;
         return 16;
       }
-
       function teamCountFromSel(v){
         if (v === "1") return 1;
-        if (v === "2-3") return 3; // use upper bound for estimate
-        return 4; // 4+
+        if (v === "2-3") return 3; // upper bound for estimate
+        return 4;
       }
-
       function multiplierRisk(v){
         if (v === "regulated") return 1.25;
         if (v === "high") return 1.5;
         return 1.0;
       }
-
       function multiplierEvidence(v){
         if (v === "deep") return 1.15;
         return 1.0;
       }
-
       function multiplierTempo(v){
         if (v === "rush") return 1.25;
         return 1.0;
@@ -702,7 +787,6 @@
         var baseTier = base.tier;
         var basePrice = base.price;
 
-        // If user forces tier, override base but keep included thresholds aligned with that tier.
         if (tier && tier !== "auto"){
           if (tier === "base"){ baseTier = "TB — Base"; basePrice = 12500; base.ucIncluded = 3; base.teamsIncluded = 1; }
           if (tier === "pro"){ baseTier = "TB — Pro"; basePrice = 18500; base.ucIncluded = 8; base.teamsIncluded = 3; }
@@ -774,7 +858,6 @@
           body + "\nProcurement path: Invoice/PO required.\n"
         );
 
-        // store latest text
         try { window.__tbQuoteText = q.quoteText; } catch(e){}
       }
 
@@ -783,7 +866,20 @@
           var t = window.__tbQuoteText || "";
           if (!t) { applyTBQuote(); t = window.__tbQuoteText || ""; }
           if (!t) return;
-          navigator.clipboard.writeText(t);
+
+          if (navigator.clipboard && navigator.clipboard.writeText){
+            navigator.clipboard.writeText(t);
+            return;
+          }
+
+          var ta = document.createElement("textarea");
+          ta.value = t;
+          ta.style.position = "fixed";
+          ta.style.left = "-9999px";
+          document.body.appendChild(ta);
+          ta.select();
+          document.execCommand("copy");
+          document.body.removeChild(ta);
         } catch(e){}
       }
 
@@ -794,25 +890,21 @@
       if (buildBtn) buildBtn.addEventListener("click", applyTBQuote);
       if (copyBtn) copyBtn.addEventListener("click", copyTB);
 
-      // auto-recalc on change
       ["tbTier","tbUseCasesBand","tbTeams","tbRisk","tbEvidence","tbTempo","tbNotes"].forEach(function(id){
         var el = document.getElementById(id);
         if (el) el.addEventListener("change", applyTBQuote);
+        if (id === "tbNotes" && el) el.addEventListener("input", function(){ /* keep quiet */ });
       });
     })();
   </script>
 
   <!--
-    CHANGELOG
-    - Replaced “3–10k” signal with 3-tier Trust Brief anchors (Base/Pro/Enterprise).
-    - Added Quick Quote + Email Builder (estimate + procurement-ready mailto) and RID propagation.
-    - Preserved locked shell + header floating box behavior.
-
     SMOKE TEST
     - GET /trust-brief/ returns 200
     - /assets/noetfield-shell.css and /assets/noetfield-shell.js return 200
-    - header/footer load into #nfHeader/#nfFooter
-    - Quote builder: selects -> estimate appears -> copy works -> mailto links populate
+    - header/footer injected into #nfHeader/#nfFooter
+    - Pricing rail sticky on desktop
+    - Quote builder: select -> estimate appears -> copy works -> mailto links populate
   -->
 </body>
 </html>

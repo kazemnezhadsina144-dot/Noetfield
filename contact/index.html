@@ -1,568 +1,600 @@
-<!DOCTYPE html>
+<!-- /contact/index.html — Noetfield Contact v4.0 (Shell-aligned • procurement-aware • non-confidential intake rule) -->
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Contact Noetfield – AI Trust & Governance</title>
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <meta
-    name="description"
-    content="Contact Noetfield to discuss AI governance, a 6-week Trust Brief, or the Trust Ledger for real-economy institutions where AI influences material decisions."
-  />
+  <title>Noetfield — Contact</title>
+  <meta name="description" content="Contact Noetfield for Microsoft 365 Copilot readiness, Trust Brief, Trust Ledger, procurement (invoice/PO), partnerships, and governance-first AI oversight." />
   <meta name="robots" content="index,follow" />
   <meta name="author" content="Noetfield Systems Inc." />
+  <meta name="theme-color" content="#07070b" />
 
-  <!-- Canonical (always with www + trailing slash) -->
+  <!-- Canonical (www + trailing slash) -->
   <link rel="canonical" href="https://www.noetfield.com/contact/" />
 
-  <!-- Favicon / icons -->
+  <!-- Icons -->
   <link rel="icon" href="/noetfield-favicon-512.png" type="image/png" />
   <link rel="apple-touch-icon" href="/noetfield-favicon-512.png" />
-  <meta name="theme-color" content="#05060a" />
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Noetfield" />
-  <meta property="og:title" content="Contact Noetfield – AI Trust & Governance" />
-  <meta
-    property="og:description"
-    content="Direct contact for boards, executives, and risk leaders considering a Trust Brief or Trust Ledger for AI governance."
-  />
+  <meta property="og:title" content="Noetfield — Contact" />
+  <meta property="og:description" content="Direct contact for boards, executives, and risk leaders. Procurement-aware routing (Gate, invoice/PO, vendor onboarding). Non-confidential intake." />
   <meta property="og:url" content="https://www.noetfield.com/contact/" />
   <meta property="og:image" content="https://www.noetfield.com/noetfield-og.png" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Contact Noetfield – AI Trust & Governance" />
-  <meta
-    name="twitter:description"
-    content="Direct contact for boards, executives, and risk leaders considering a Trust Brief or Trust Ledger for AI governance."
-  />
+  <meta name="twitter:title" content="Noetfield — Contact" />
+  <meta name="twitter:description" content="Direct contact for boards, executives, and risk leaders. Procurement-aware routing (Gate, invoice/PO, vendor onboarding). Non-confidential intake." />
   <meta name="twitter:image" content="https://www.noetfield.com/noetfield-og.png" />
 
-  <!-- Schema.org ContactPage -->
+  <!-- LOCKED SHELL -->
+  <link rel="stylesheet" href="/assets/noetfield-shell.css" />
+  <script src="/assets/noetfield-shell.js" defer></script>
+
+  <!-- Schema.org -->
   <script type="application/ld+json">
   {
-    "@context": "https://schema.org",
-    "@type": "ContactPage",
-    "name": "Contact Noetfield",
-    "url": "https://www.noetfield.com/contact/",
-    "description": "Contact Noetfield to discuss AI governance, the 6-week Trust Brief, and the Trust Ledger for real-economy institutions.",
-    "isPartOf": {
-      "@type": "WebSite",
-      "name": "Noetfield",
-      "url": "https://www.noetfield.com/"
-    },
-    "about": [
-      { "@type": "Thing", "name": "AI governance for boards" },
-      { "@type": "Thing", "name": "Trust Ledger" },
-      { "@type": "Thing", "name": "AI Trust Brief" }
-    ]
+    "@context":"https://schema.org",
+    "@type":"ContactPage",
+    "name":"Noetfield — Contact",
+    "url":"https://www.noetfield.com/contact/",
+    "description":"Contact Noetfield for Microsoft 365 Copilot readiness, Trust Brief, Trust Ledger, procurement (invoice/PO), partnerships, and governance-first AI oversight.",
+    "isPartOf":{"@type":"WebSite","name":"Noetfield","url":"https://www.noetfield.com/"},
+    "publisher":{"@type":"Organization","name":"Noetfield Systems Inc.","url":"https://www.noetfield.com/"}
   }
   </script>
 
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    /* Contact-specific styles (prefixed) */
+    .nfContactHero{ padding: 18px 0 10px; }
+    .nfContactHeroShell{
+      position:relative;
+      border-radius: calc(var(--radius) + 8px);
+      border: 1px solid rgba(255,255,255,.11);
+      background:
+        radial-gradient(1000px 420px at 18% 0%, rgba(200,163,73,.16), transparent 60%),
+        radial-gradient(1000px 420px at 90% 10%, rgba(122,167,255,.10), transparent 62%),
+        linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.022));
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .nfContactHeroShell::before{
+      content:"";
+      position:absolute; inset:-1px;
+      background: linear-gradient(120deg, rgba(200,163,73,.22), transparent 30%, rgba(255,255,255,.08) 68%, transparent);
+      opacity:.44;
+      pointer-events:none;
+      mask-image: linear-gradient(180deg, black 0%, black 58%, transparent 96%);
+    }
+    .nfContactHeroInner{ padding: 22px 18px; position:relative; z-index:1; }
 
-    :root {
-      --bg: #05060a;
-      --bg-soft: #080911;
-      --border-soft: rgba(255,255,255,0.10);
-
-      --text-main: #f5f5f7;
-      --text-soft: #daddef;
-      --text-mute: #9ca3af;
-
-      --accent-soft: #9ca3ff;
-
-      --field-bg: rgba(15,23,42,0.92);
-      --field-border: #303445;
-      --field-border-focus: #6366f1;
-
-      --card-border: #22252f;
-      --card-bg: radial-gradient(circle at top left, #191c2e 0, #0a0b10 52%, #050608 100%);
-      --shadow-strong: 0 12px 32px rgba(15,23,42,0.9);
+    .nfContactEyebrow{
+      display:inline-flex; gap:10px; align-items:center;
+      color:var(--muted);
+      font-size:13px;
+      padding:9px 12px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.13);
+      background: rgba(255,255,255,.035);
+    }
+    .nfContactDot{
+      width:8px; height:8px; border-radius:50%;
+      background: rgba(200,163,73,.97);
+      box-shadow: 0 0 0 3px rgba(200,163,73,.18);
     }
 
-    body {
-      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: radial-gradient(circle at top, #151827 0%, var(--bg) 55%);
-      background-attachment: fixed;
-      color: var(--text-main);
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 32px 20px 40px;
+    .nfContactTitle{ margin:12px 0 10px; font-size: 38px; line-height:1.07; letter-spacing:-0.75px; }
+    .nfContactLead{ margin:0; color:var(--muted); font-size:16px; max-width: 980px; line-height:1.75; }
+    .nfContactLead strong{ color: var(--text); font-weight: 900; }
+
+    .nfContactHeroCtas{
+      display:flex; gap:10px; flex-wrap:wrap; align-items:center;
+      margin-top:14px;
+    }
+    .nfContactHeroCtas .btn{ min-height:46px; }
+
+    .nfContactOnPage{
+      display:flex; flex-wrap:wrap; gap:10px; align-items:center;
+      margin-top:12px;
+    }
+    .nfContactChip{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:8px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.03);
+      color:var(--muted);
+      font-size:12.6px;
+      text-decoration:none;
+      white-space:nowrap;
+    }
+    .nfContactChip:hover{ filter:brightness(1.08); }
+
+    .nfContactNotice{
+      margin-top:12px;
+      padding:12px 12px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      color:var(--muted2);
+      font-size:12.8px;
+      line-height:1.6;
+    }
+    .nfContactNotice strong{ color:var(--text); font-weight:900; }
+    .nfContactNotice a{ border-bottom:1px solid rgba(255,255,255,.18); }
+
+    /* Layout */
+    .nfContactGrid{
+      display:grid;
+      grid-template-columns: 1.08fr .92fr;
+      gap:16px;
+      margin: 14px 0 36px;
+      align-items:start;
     }
 
-    a { color: inherit; text-decoration: none; }
-
-    .page {
-      width: 100%;
-      max-width: 1040px;
-      display: flex;
-      flex-direction: column;
-      min-height: calc(100vh - 72px);
+    .nfCard{
+      border-radius:var(--radius);
+      border:1px solid rgba(255,255,255,.11);
+      background: linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.022));
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+      min-width:0;
     }
+    .nfCardHd{ padding:18px 18px 0; }
+    .nfCardBd{ padding:18px; }
+    .nfCardTitle{ margin:0 0 8px; font-size:18px; letter-spacing:-0.2px; }
+    .nfMuted{ color:var(--muted); line-height:1.7; margin:0; }
+    .nfMuted2{ color:var(--muted2); line-height:1.7; margin:0; }
 
-    header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 32px;
-      padding-bottom: 14px;
-      border-bottom: 1px solid var(--border-soft);
-      gap: 14px;
-    }
+    /* Form */
+    .nfForm{ display:grid; gap:10px; margin-top:12px; }
+    .nfRow{ display:grid; gap:10px; grid-template-columns: 1fr 1fr; }
+    .nfRow1{ display:grid; gap:10px; grid-template-columns: 1fr; }
 
-    .brand-wrap { display: flex; align-items: center; gap: 10px; }
-
-    .brand-logo {
-      width: 32px;
-      height: 32px;
-      border-radius: 999px;
-      background: radial-gradient(circle at 25% 0, #ffffff 0, #d4e0ff 18%, #818cf8 45%, #1f2937 70%, #020617 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 18px;
-      font-weight: 700;
-      color: #ffffff;
-      box-shadow: 0 10px 28px rgba(15,23,42,0.9);
-    }
-
-    .brand-text { display: flex; flex-direction: column; gap: 2px; }
-
-    .brand-name {
-      font-size: 16px;
-      font-weight: 600;
-      letter-spacing: 0.08em;
+    .nfLabel{
+      display:block;
+      color: var(--muted2);
+      font-size: 11px;
+      letter-spacing: .28em;
       text-transform: uppercase;
+      margin: 0 0 6px;
+    }
+    .nfInput, .nfSelect, .nfTextarea{
+      width:100%;
+      padding:10px 11px;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(5,8,20,.72);
+      color: rgba(255,255,255,.92);
+      font-size:13px;
+      outline:none;
+    }
+    .nfTextarea{ resize: vertical; min-height: 120px; }
+    .nfInput::placeholder, .nfTextarea::placeholder{ color: rgba(255,255,255,.38); }
+    .nfInput:focus, .nfSelect:focus, .nfTextarea:focus{
+      border-color: rgba(200,163,73,.34);
+      box-shadow: 0 0 0 1px rgba(200,163,73,.18);
     }
 
-    .brand-tagline { font-size: 12px; color: var(--text-mute); }
-
-    nav {
-      display: flex;
-      gap: 18px;
-      font-size: 13px;
-      flex-wrap: wrap;
+    .nfHelp{
+      margin-top:6px;
+      color: var(--muted2);
+      font-size:12.8px;
+      line-height:1.6;
     }
 
-    nav a {
-      opacity: 0.78;
-      padding-bottom: 2px;
-      border-bottom: 1px solid transparent;
-      position: relative;
+    .nfFormActions{ display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-top:12px; }
+    .nfFormActions .btn{ min-height:46px; }
+
+    .nfCheckRow{
+      display:flex; gap:10px; align-items:flex-start;
+      padding:10px 12px;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.02);
+      margin-top:10px;
     }
+    .nfCheckRow input{ margin-top:3px; }
+    .nfCheckRow .t{ color: var(--muted2); font-size:12.8px; line-height:1.55; }
+    .nfCheckRow .t strong{ color: var(--text); font-weight:900; }
 
-    nav a:hover {
-      opacity: 1;
-      border-bottom-color: rgba(209,213,219,0.6);
+    /* Right rail */
+    .nfRail{ position: sticky; top: 14px; }
+    .nfRailBox{
+      border-radius: var(--radius);
+      border:1px solid rgba(255,255,255,.11);
+      background: linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.022));
+      box-shadow: var(--shadow2);
+      overflow:hidden;
     }
+    .nfRailHd{ padding:18px 18px 0; }
+    .nfRailBd{ padding:18px; }
 
-    nav a.active {
-      opacity: 1;
-      border-bottom-color: rgba(255,255,255,0.85);
-      font-weight: 500;
+    .nfRailBlock{
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      padding:12px;
+      margin-top:12px;
+      color:var(--muted2);
+      font-size:12.8px;
+      line-height:1.6;
     }
+    .nfRailBlock strong{ color:var(--text); font-weight:900; }
 
-    main { width: 100%; }
-
-    .hero { margin-bottom: 28px; }
-
-    .pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 11px;
-      padding: 4px 10px;
-      border-radius: 999px;
-      border: 1px solid rgba(148,163,253,0.35);
-      background: radial-gradient(circle at 0 0, rgba(129,140,248,0.32), transparent 55%);
-      color: #e5e7eb;
-      margin-bottom: 10px;
+    .nfRailLinks{ display:grid; gap:8px; margin-top:10px; }
+    .nfRailLinks a{
+      display:flex; align-items:center; justify-content:space-between; gap:10px;
+      padding:10px 11px;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.02);
+      text-decoration:none;
+      color: rgba(255,255,255,.90);
+      font-size:13px;
     }
-
-    .pill-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 999px;
-      background: linear-gradient(135deg, #7dd3fc, #a855f7);
-    }
-
-    .hero-kicker {
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      color: var(--text-mute);
-      margin-bottom: 8px;
-    }
-
-    .hero-title {
-      font-size: clamp(26px, 3vw, 30px);
-      line-height: 1.15;
-      font-weight: 600;
-      margin-bottom: 12px;
-      letter-spacing: -0.02em;
-    }
-
-    .hero-title span {
-      background: linear-gradient(135deg, #ffffff, #a5b4fc);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
-
-    .hero-subtitle {
-      font-size: 15px;
-      line-height: 1.6;
-      color: #d0d3dd;
-      max-width: 760px;
-    }
-
-    .section { margin-bottom: 30px; }
-
-    .grid-2 {
-      display: grid;
-      grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
-      gap: 24px;
-      align-items: start;
-    }
-
-    .card {
-      border-radius: 16px;
-      border: 1px solid var(--card-border);
-      background: var(--card-bg);
-      padding: 16px 16px 14px;
-      font-size: 13px;
-      line-height: 1.6;
-      color: var(--text-soft);
-    }
-
-    .card-title {
-      font-size: 14px;
-      font-weight: 600;
-      margin-bottom: 6px;
-      color: #f1f2fb;
-    }
-
-    .form-shell {
-      border-radius: 16px;
-      border: 1px solid var(--card-border);
-      background: var(--card-bg);
-      padding: 16px 16px 14px;
-    }
-
-    .form-title {
-      font-size: 14px;
-      font-weight: 600;
-      margin-bottom: 6px;
-      color: #f1f2fb;
-    }
-
-    .form-subtitle {
-      font-size: 12px;
-      color: #a3a7c0;
-      margin-bottom: 12px;
-      line-height: 1.55;
-    }
-
-    form { display: flex; flex-direction: column; gap: 10px; }
-
-    .form-row { display: flex; gap: 10px; flex-wrap: wrap; }
-
-    .field {
-      flex: 1;
-      min-width: 160px;
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
-
-    .field-label {
-      font-size: 12px;
-      color: #e5e7f5;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .field-label span {
-      font-size: 11px;
-      color: #9ca3c4;
-    }
-
-    input, textarea, select {
-      width: 100%;
-      border-radius: 10px;
-      border: 1px solid var(--field-border);
-      background: var(--field-bg);
-      color: var(--text-soft);
-      font-size: 13px;
-      padding: 7px 9px;
-      outline: none;
-      transition: border-color 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
-    }
-
-    input::placeholder, textarea::placeholder { color: #6b7280; }
-
-    textarea { min-height: 110px; resize: vertical; }
-
-    input:focus, textarea:focus, select:focus {
-      border-color: var(--field-border-focus);
-      box-shadow: 0 0 0 1px rgba(99,102,241,0.45);
-      background-color: rgba(15,23,42,0.98);
-    }
-
-    .helper-text {
-      font-size: 11px;
-      color: #9ca3c4;
-      line-height: 1.5;
-      margin-top: 2px;
-    }
-
-    .form-footer {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      margin-top: 4px;
-      flex-wrap: wrap;
-    }
-
-    .btn-primary {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 9px 18px;
-      border-radius: 999px;
-      font-size: 13px;
-      font-weight: 500;
-      cursor: pointer;
-      border: 1px solid transparent;
-      background: linear-gradient(135deg, #f9fafb, #e5e7eb);
-      color: #050608;
-      box-shadow: var(--shadow-strong);
-      transition: background-color 0.16s ease, border-color 0.16s ease, color 0.16s ease, transform 0.06s ease;
-      white-space: nowrap;
-    }
-
-    .btn-primary:hover { background: #ffffff; transform: translateY(-1px); }
-
-    .inline-note {
-      font-size: 11px;
-      color: #868bad;
-      line-height: 1.5;
-    }
-
-    .inline-note a { color: #b6bad1; text-decoration: underline; text-underline-offset: 2px; }
-    .inline-note a:hover { color: #e5e7f5; }
+    .nfRailLinks a:hover{ filter:brightness(1.08); }
+    .nfRailLinks .k{ color:var(--muted); font-size:12.6px; }
 
     /* Honeypot */
-    .hp { display: none !important; }
+    .nfHp{ display:none !important; }
 
-    footer {
-      margin-top: 32px;
-      font-size: 11px;
-      color: #737889;
-      display: flex;
-      justify-content: space-between;
-      gap: 12px;
-      flex-wrap: wrap;
-      align-items: center;
+    @media (max-width: 980px){
+      .nfContactGrid{ grid-template-columns: 1fr; }
+      .nfRail{ position: relative; top: 0; }
+      .nfContactTitle{ font-size: 30px; }
     }
-
-    footer a { color: #b6bad1; text-decoration: none; }
-    footer a:hover { text-decoration: underline; }
-
-    @media (max-width: 768px) {
-      body { padding: 24px 16px 32px; }
-      header { align-items: flex-start; flex-direction: column; gap: 6px; }
-      nav { justify-content: flex-start; }
-      .hero-title { font-size: 24px; }
-      .hero-subtitle { max-width: 100%; }
-      .grid-2 { grid-template-columns: minmax(0, 1fr); }
-      .form-footer { align-items: flex-start; flex-direction: column; }
-      footer { flex-direction: column; align-items: flex-start; }
+    @media (max-width: 760px){
+      .nfContactHeroInner{ padding: 18px 14px; }
+      .nfCardHd, .nfCardBd, .nfRailHd, .nfRailBd{ padding-left:14px; padding-right:14px; }
+      .nfRow{ grid-template-columns: 1fr; }
+    }
+    @media (prefers-reduced-motion: reduce){
+      *{ scroll-behavior:auto !important; }
     }
   </style>
 </head>
 
 <body>
-  <div class="page">
-    <header>
-      <a href="/" class="brand-wrap">
-        <div class="brand-logo">N</div>
-        <div class="brand-text">
-          <div class="brand-name">Noetfield</div>
-          <div class="brand-tagline">Trust systems for AI governance</div>
+  <div class="bg" aria-hidden="true"></div>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <!-- injected header -->
+  <header id="nfHeader"></header>
+
+  <main id="main" class="wrap">
+    <!-- HERO -->
+    <section class="nfContactHero" aria-label="Contact hero">
+      <div class="nfContactHeroShell">
+        <div class="nfContactHeroInner">
+          <div class="nfContactEyebrow"><span class="nfContactDot"></span> Contact • procurement-aware • direct routing</div>
+
+          <h1 class="nfContactTitle">Contact (buyer-ready routing)</h1>
+
+          <p class="nfContactLead">
+            Route the request to the right start: <strong>Copilot readiness</strong>, <strong>Trust Brief</strong>, <strong>Trust Ledger</strong>,
+            <strong>procurement (invoice/PO)</strong>, or <strong>partners</strong>. This page uses a <strong>non-confidential intake</strong> rule.
+          </p>
+
+          <div class="nfContactHeroCtas" aria-label="Hero actions">
+            <a class="btn" href="/gate/">Enter Gate</a>
+            <a class="btn secondary" href="#form">Send an inquiry</a>
+            <a class="btn secondary" href="#procurement">Invoice / PO</a>
+          </div>
+
+          <div class="nfContactOnPage" aria-label="On this page">
+            <a class="nfContactChip" href="#form">Contact form</a>
+            <a class="nfContactChip" href="#emails">Email map</a>
+            <a class="nfContactChip" href="#what-to-include">What to include</a>
+            <a class="nfContactChip" href="#procurement">Procurement</a>
+          </div>
+
+          <div class="nfContactNotice" role="note">
+            <strong>Public intake = non-confidential.</strong>
+            Do not submit secrets, credentials, private keys, or regulated personal data. Secure sharing options (if needed) are confirmed after kickoff.
+          </div>
         </div>
-      </a>
+      </div>
+    </section>
 
-      <nav aria-label="Primary navigation">
-        <a href="/">Home</a>
-        <a href="/trust-brief/">Trust Brief</a>
-        <a href="/trust-ledger/">Trust Ledger</a>
-        <a href="/for-whom/">For Whom</a>
-        <a href="/gate/">Gate</a>
-        <a href="/about/">About</a>
-        <a href="/contact/" class="active" aria-current="page">Contact</a>
-        <a href="/playbook/">Playbook</a>
-        <a href="/partners/">Partners</a>
-      </nav>
-    </header>
+    <section class="nfContactGrid" aria-label="Contact layout">
+      <!-- LEFT -->
+      <div>
+        <!-- FORM -->
+        <section class="nfCard" id="form" aria-label="Contact form">
+          <div class="nfCardHd">
+            <h2 class="nfCardTitle">Contact form</h2>
+            <p class="nfMuted">Short, high-signal context. Use Gate for structured intake and procurement paths.</p>
+          </div>
 
-    <main>
-      <section class="hero">
-        <div class="pill">
-          <span class="pill-dot"></span>
-          Direct contact for boards, executives, and risk leaders
-        </div>
-
-        <div class="hero-kicker">Contact</div>
-
-        <h1 class="hero-title">
-          Start a board-ready conversation about <span>AI trust and governance</span>.
-        </h1>
-
-        <p class="hero-subtitle">
-          Use this form to share a short outline of role, AI footprint, and the governance questions under pressure.
-          Messages are treated as confidential; there is no marketing list behind this form.
-        </p>
-      </section>
-
-      <section class="section">
-        <div class="grid-2">
-          <div class="form-shell">
-            <div class="form-title">Contact form</div>
-            <div class="form-subtitle">
-              For inquiries about the 6-week Trust Brief, the Trust Ledger, or a potential pilot engagement.
-              Replace <strong>YOUR_FORMSPREE_ID</strong> before publishing.
+          <div class="nfCardBd">
+            <div class="nfContactNotice" style="margin-top:0;">
+              <strong>Form endpoint:</strong> Replace <code style="font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono','Courier New', monospace; font-size:12px; background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.08); padding:2px 6px; border-radius:10px;">YOUR_FORMSPREE_ID</code> before publishing.
+              If form tooling is not desired, use the “Prepare email” button below.
             </div>
 
-            <form action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST" accept-charset="UTF-8">
+            <form id="nfContactForm" class="nfForm" action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST" accept-charset="UTF-8" novalidate>
               <input type="hidden" name="_subject" value="Noetfield website inquiry (Contact)" />
+              <input type="hidden" name="page" value="https://www.noetfield.com/contact/" />
 
               <!-- Honeypot -->
-              <div class="hp" aria-hidden="true">
+              <div class="nfHp" aria-hidden="true">
                 <label>Leave this empty: <input name="website" tabindex="-1" autocomplete="off" /></label>
               </div>
 
-              <div class="form-row">
-                <div class="field">
-                  <label class="field-label" for="name">Name <span>Required</span></label>
-                  <input id="name" type="text" name="name" autocomplete="name" required placeholder="Full name" />
+              <div class="nfRow">
+                <div>
+                  <label class="nfLabel" for="nf_name">Name *</label>
+                  <input class="nfInput" id="nf_name" name="name" type="text" autocomplete="name" required placeholder="Full name" />
                 </div>
-
-                <div class="field">
-                  <label class="field-label" for="email">Work email <span>Required</span></label>
-                  <input id="email" type="email" name="email" autocomplete="email" required placeholder="you@organisation.com" />
-                </div>
-              </div>
-
-              <div class="form-row">
-                <div class="field">
-                  <label class="field-label" for="org">Organisation <span>Required</span></label>
-                  <input id="org" type="text" name="organisation" required placeholder="Institution / company" />
-                </div>
-
-                <div class="field">
-                  <label class="field-label" for="role">Role <span>Optional</span></label>
-                  <input id="role" type="text" name="role" placeholder="e.g. Board chair, CRO, COO" />
+                <div>
+                  <label class="nfLabel" for="nf_email">Work email *</label>
+                  <input class="nfInput" id="nf_email" name="email" type="email" autocomplete="email" required placeholder="you@organisation.com" />
                 </div>
               </div>
 
-              <div class="field">
-                <label class="field-label" for="reason">Primary reason for contact <span>Required</span></label>
-                <select id="reason" name="reason" required>
-                  <option value="">Select an option</option>
-                  <option value="trust-brief">Explore a 6-week Trust Brief</option>
-                  <option value="trust-ledger">Understand the Trust Ledger</option>
-                  <option value="regulatory-pressure">Upcoming regulatory / supervisory review</option>
-                  <option value="board-prep">Board or committee preparation</option>
-                  <option value="other">Other AI governance question</option>
-                </select>
-              </div>
-
-              <div class="field">
-                <label class="field-label" for="message">Short context <span>Required</span></label>
-                <textarea
-                  id="message"
-                  name="message"
-                  required
-                  placeholder="A few lines on AI use cases, governance concerns, and any deadlines or milestones."
-                ></textarea>
-                <div class="helper-text">
-                  Enough detail to route scope, urgency, and next step.
+              <div class="nfRow">
+                <div>
+                  <label class="nfLabel" for="nf_org">Organisation *</label>
+                  <input class="nfInput" id="nf_org" name="organisation" type="text" autocomplete="organization" required placeholder="Institution / company" />
+                </div>
+                <div>
+                  <label class="nfLabel" for="nf_role">Role (optional)</label>
+                  <input class="nfInput" id="nf_role" name="role" type="text" placeholder="e.g., CIO, CISO, CRO, COO, Board/Committee" />
                 </div>
               </div>
 
-              <div class="field">
-                <label class="field-label" for="ai_exposure">Approximate AI exposure <span>Optional</span></label>
-                <select id="ai_exposure" name="ai_exposure">
-                  <option value="">Select a rough description</option>
-                  <option value="early">Early experiments / pilots only</option>
-                  <option value="embedded">AI embedded in a few key processes</option>
-                  <option value="wide">AI used widely across products / operations</option>
-                  <option value="critical">AI in core, safety- or market-critical systems</option>
-                </select>
-                <div class="helper-text">
-                  This helps tailor depth and focus for any initial discussion.
+              <div class="nfRow">
+                <div>
+                  <label class="nfLabel" for="nf_reason">Primary reason *</label>
+                  <select class="nfSelect" id="nf_reason" name="reason" required>
+                    <option value="">Select</option>
+                    <option value="copilot-readiness">Microsoft 365 Copilot readiness</option>
+                    <option value="quickscan">Copilot QuickScan (5–7 business days)</option>
+                    <option value="trust-brief">Trust Brief (6-week)</option>
+                    <option value="trust-ledger">Trust Ledger (ongoing)</option>
+                    <option value="procurement">Procurement (invoice / PO / vendor onboarding)</option>
+                    <option value="partners">Partners (delivery / channel / integration)</option>
+                    <option value="other">Other governance question</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="nfLabel" for="nf_timeline">Timeline (optional)</label>
+                  <select class="nfSelect" id="nf_timeline" name="timeline">
+                    <option value="">Select</option>
+                    <option value="urgent">Urgent (days–2 weeks)</option>
+                    <option value="this-month">This month</option>
+                    <option value="this-quarter">This quarter</option>
+                    <option value="exploring">Exploring / research phase</option>
+                  </select>
                 </div>
               </div>
 
-              <div class="form-footer">
-                <button type="submit" class="btn-primary">Submit inquiry</button>
-
-                <div class="inline-note">
-                  Alternatively, email
-                  <a href="mailto:ceo@noetfield.com?subject=Noetfield%20inquiry">ceo@noetfield.com</a>
-                  with the same details.
+              <div class="nfRow1">
+                <div>
+                  <label class="nfLabel" for="nf_message">Short context *</label>
+                  <textarea class="nfTextarea" id="nf_message" name="message" required placeholder="High-level only: what’s being adopted, what’s under pressure, and what decision is needed. No secrets, credentials, private keys, or regulated personal data."></textarea>
+                  <div class="nfHelp">Enough detail to route scope, urgency, and the right next step.</div>
                 </div>
               </div>
+
+              <div class="nfCheckRow">
+                <input id="nf_ack" name="ack_nonconfidential" type="checkbox" required />
+                <div class="t">
+                  <strong>Non-confidential rule acknowledged.</strong>
+                  This form is for public intake only. Secure sharing options (if required) are confirmed after kickoff.
+                </div>
+              </div>
+
+              <div class="nfFormActions" aria-label="Form actions">
+                <button class="btn" type="submit">Submit inquiry</button>
+                <button class="btn secondary" type="button" id="nfPrepareEmailBtn">Prepare email instead</button>
+                <a class="btn secondary" href="/gate/">Use Gate (structured routing)</a>
+              </div>
+
+              <div class="nfContactNotice" style="margin-top:10px;">
+                No marketing list behind this form. Routing-only intent. If Noetfield is not a fit, the response will be plain and, where possible, redirected to a better path.
+              </div>
+
+              <noscript>
+                <div class="nfContactNotice" style="margin-top:10px;">
+                  JavaScript is disabled. Use email:
+                  <a href="mailto:contact@noetfield.com?subject=Noetfield%20inquiry">contact@noetfield.com</a>
+                </div>
+              </noscript>
             </form>
           </div>
+        </section>
 
-          <aside class="card">
-            <div class="card-title">What to expect</div>
-            <p>
-              • Messages are reviewed directly, not by a generic sales layer.<br />
-              • If there is clear fit, next step is typically a 20–30 minute call focused on context and pressure points.<br />
-              • If Noetfield is not the right fit, this will be stated plainly and, where possible, redirected to a better path.
-            </p>
+        <!-- EMAIL MAP -->
+        <section class="nfCard" id="emails" aria-label="Email map" style="margin-top:14px;">
+          <div class="nfCardHd">
+            <h2 class="nfCardTitle">Email map (fast routing)</h2>
+            <p class="nfMuted">Use the right inbox for cleaner handling and procurement continuity.</p>
+          </div>
+          <div class="nfCardBd">
+            <div class="nfContactNotice" style="margin-top:0;">
+              <strong>Default:</strong> <a href="mailto:contact@noetfield.com">contact@noetfield.com</a> (general routing).<br/>
+              <strong>Procurement:</strong> <a href="mailto:procurement@noetfield.com">procurement@noetfield.com</a> (invoice/PO/vendor onboarding).<br/>
+              <strong>Trust & governance:</strong> <a href="mailto:trust@noetfield.com">trust@noetfield.com</a> (security/privacy/compliance/risk/audit).<br/>
+              <strong>Sales:</strong> <a href="mailto:sales@noetfield.com">sales@noetfield.com</a> (purchase/pricing/demo).<br/>
+              <strong>Operations:</strong> <a href="mailto:ops@noetfield.com">ops@noetfield.com</a> (support/onboarding/billing/procurement ops).<br/>
+              <strong>Legal:</strong> <a href="mailto:legal@noetfield.com">legal@noetfield.com</a> (NDA/MSA/DPA/contracts).<br/><br/>
+              Also available: <a href="mailto:ceo@noetfield.com">ceo@noetfield.com</a> · <a href="mailto:support@noetfield.com">support@noetfield.com</a> · <a href="mailto:billing@noetfield.com">billing@noetfield.com</a>
+            </div>
+          </div>
+        </section>
 
-            <p style="margin-top: 10px;">
-              Typical partners include boards, executives, and risk leaders in financial services, infrastructure, utilities,
-              and other real-economy sectors where AI decisions move risk, money, or customers—and where oversight expects
-              a durable, auditable narrative of what was decided and why.
-            </p>
-          </aside>
-        </div>
-      </section>
-    </main>
+        <!-- WHAT TO INCLUDE -->
+        <section class="nfCard" id="what-to-include" aria-label="What to include" style="margin-top:14px;">
+          <div class="nfCardHd">
+            <h2 class="nfCardTitle">What to include (3–5 lines)</h2>
+            <p class="nfMuted">Keep it high-level. Enough detail to route scope and urgency.</p>
+          </div>
+          <div class="nfCardBd">
+            <ul style="margin:0; padding-left:18px; color:var(--muted2); line-height:1.7;">
+              <li><strong>Role + stakeholder set</strong> (IT/security/legal/risk/board)</li>
+              <li><strong>AI footprint</strong> (Copilot pilot vs broad rollout; core vs non-core processes)</li>
+              <li><strong>Pressure point</strong> (procurement approval, audit, client questionnaire, oversight review)</li>
+              <li><strong>Deadline</strong> (date or window)</li>
+              <li><strong>Constraints</strong> (data residency, regulated environment, supplier policies)</li>
+            </ul>
+          </div>
+        </section>
 
-    <footer>
-      <div>© <span id="year"></span> Noetfield Systems Inc. All rights reserved.</div>
-      <div>
-        <a href="/">Home</a> ·
-        <a href="/trust-brief/">Trust Brief</a> ·
-        <a href="/trust-ledger/">Trust Ledger</a> ·
-        <a href="/for-whom/">For Whom</a> ·
-        <a href="/gate/">Gate</a> ·
-        <a href="/about/">About</a> ·
-        <a href="/contact/">Contact</a> ·
-        <a href="/playbook/">Playbook</a> ·
-        <a href="/partners/">Partners</a>
+        <!-- PROCUREMENT -->
+        <section class="nfCard" id="procurement" aria-label="Procurement" style="margin-top:14px;">
+          <div class="nfCardHd">
+            <h2 class="nfCardTitle">Procurement (Invoice / PO)</h2>
+            <p class="nfMuted">For vendor onboarding steps, invoice/PO purchasing, or internal approvals.</p>
+          </div>
+          <div class="nfCardBd">
+            <div class="nfContactNotice" style="margin-top:0;">
+              <strong>Fast path:</strong> Use <a href="/gate/#procurement">Gate → Invoice / PO</a> for vendor onboarding steps and procurement routing.
+              If the package is already clear, use the offer catalog for buyer-ready snapshots.
+            </div>
+
+            <div class="nfFormActions" style="margin-top:12px;">
+              <a class="btn" href="/gate/offers/">Offer Catalog</a>
+              <a class="btn secondary" href="/gate/#procurement">Gate → Invoice / PO</a>
+              <a class="btn secondary" href="mailto:procurement@noetfield.com?subject=Procurement%20request%20%E2%80%94%20Noetfield">Email procurement</a>
+            </div>
+
+            <div class="nfContactNotice" style="margin-top:12px;">
+              <strong>Reminder:</strong> Public intake is non-confidential. Secure sharing options are confirmed after kickoff.
+            </div>
+          </div>
+        </section>
       </div>
-    </footer>
-  </div>
+
+      <!-- RIGHT RAIL -->
+      <aside class="nfRail" aria-label="Routing panel">
+        <div class="nfRailBox">
+          <div class="nfRailHd">
+            <h2 class="nfCardTitle" style="margin-bottom:6px;">Fast routing</h2>
+            <p class="nfMuted">Choose the cleanest path for the request type.</p>
+          </div>
+
+          <div class="nfRailBd">
+            <div class="nfRailBlock">
+              <strong>Best default:</strong> Gate<br/>
+              Structured intake + clean procurement path.
+              <div style="margin-top:10px; display:grid; gap:10px;">
+                <a class="btn" href="/gate/">Enter Gate</a>
+                <a class="btn secondary" href="/gate/offers/">Offer Catalog</a>
+              </div>
+            </div>
+
+            <div class="nfRailBlock">
+              <strong>Email map:</strong>
+              <div class="nfRailLinks" aria-label="Routing emails">
+                <a href="mailto:contact@noetfield.com"><span>contact@noetfield.com</span><span class="k">general</span></a>
+                <a href="mailto:sales@noetfield.com"><span>sales@noetfield.com</span><span class="k">purchase</span></a>
+                <a href="mailto:procurement@noetfield.com"><span>procurement@noetfield.com</span><span class="k">invoice/PO</span></a>
+                <a href="mailto:trust@noetfield.com"><span>trust@noetfield.com</span><span class="k">governance</span></a>
+                <a href="mailto:ops@noetfield.com"><span>ops@noetfield.com</span><span class="k">ops</span></a>
+                <a href="mailto:legal@noetfield.com"><span>legal@noetfield.com</span><span class="k">contracts</span></a>
+              </div>
+            </div>
+
+            <div class="nfRailBlock">
+              <strong>Non-confidential rule</strong><br/>
+              Do not send secrets, credentials, private keys, or regulated personal data via public forms or public email threads.
+            </div>
+
+            <div class="nfRailBlock">
+              Browse: <a href="/copilot/" style="border-bottom:1px solid rgba(255,255,255,.18);">Copilot</a> ·
+              <a href="/trust-brief/" style="border-bottom:1px solid rgba(255,255,255,.18);">Trust Brief</a> ·
+              <a href="/trust-ledger/" style="border-bottom:1px solid rgba(255,255,255,.18);">Trust Ledger</a> ·
+              <a href="/playbook/" style="border-bottom:1px solid rgba(255,255,255,.18);">Playbook</a>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </section>
+  </main>
+
+  <!-- injected footer -->
+  <footer id="nfFooter"></footer>
 
   <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
+    (function(){
+      function byId(id){ return document.getElementById(id); }
+      function val(id){ var el = byId(id); return el ? (el.value || "").trim() : ""; }
+      function esc(s){
+        return String(s || "")
+          .replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")
+          .replace(/"/g,"&quot;").replace(/'/g,"&#039;");
+      }
+
+      // "Prepare email instead" => builds a mailto to contact@ (routing), keeping non-confidential rule
+      var btn = byId("nfPrepareEmailBtn");
+      if (!btn) return;
+
+      btn.addEventListener("click", function(){
+        var name = val("nf_name");
+        var email = val("nf_email");
+        var org = val("nf_org");
+        var role = val("nf_role");
+        var reason = val("nf_reason");
+        var timeline = val("nf_timeline");
+        var msg = val("nf_message");
+
+        var subject = "Noetfield inquiry — " + (reason ? reason : "contact") + (org ? (" (" + org + ")") : "");
+        var body = [];
+        body.push("Hello Noetfield,");
+        body.push("");
+        if (name) body.push("Name: " + name);
+        if (email) body.push("Email: " + email);
+        if (org) body.push("Organisation: " + org);
+        if (role) body.push("Role: " + role);
+        if (reason) body.push("Reason: " + reason);
+        if (timeline) body.push("Timeline: " + timeline);
+        body.push("");
+        body.push("Context (non-confidential):");
+        body.push(msg || "(add 3–5 high-level lines)");
+        body.push("");
+        body.push("Gate (structured routing): " + (location.origin + "/gate/"));
+        body.push("Offer Catalog: " + (location.origin + "/gate/offers/"));
+        body.push("");
+        body.push("Reminder: public intake is non-confidential. No secrets, credentials, private keys, or regulated personal data.");
+        body.push("");
+
+        var mailto =
+          "mailto:" + encodeURIComponent("contact@noetfield.com") +
+          "?subject=" + encodeURIComponent(subject) +
+          "&body=" + encodeURIComponent(body.join("\n"));
+
+        window.location.href = mailto;
+      });
+
+      // Basic required validation hint (no blocking beyond HTML required)
+      var form = byId("nfContactForm");
+      if (form){
+        form.addEventListener("submit", function(e){
+          var ack = byId("nf_ack");
+          if (ack && !ack.checked){
+            e.preventDefault();
+            ack.focus();
+          }
+        });
+      }
+    })();
   </script>
+
+  <!--
+    CHANGELOG (contact v4.0)
+    - Migrated to locked shell (noetfield-shell.css/js) with header/footer injection.
+    - Aligned copy with “public intake = non-confidential” rule used across Gate/Offers.
+    - Added buyer-ready routing: Gate, Offer Catalog, invoice/PO section.
+    - Added email map (contact/sales/ops/trust/legal/procurement) consistent with root routing architecture.
+    - Added mailto “Prepare email instead” builder (no network submit).
+    - Improved accessibility (skip link, labels, required checkbox ack).
+  -->
 </body>
 </html>

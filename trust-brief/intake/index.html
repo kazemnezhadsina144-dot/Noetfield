@@ -1,29 +1,30 @@
+<!-- /trust-brief/intake/index.html — Noetfield Trust Brief Intake v1.0 (Shell aligned • Tier-aware • Procurement-ready • RID continuity • Non-confidential intake) -->
 <!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <title>Noetfield — Trust Ledger Intake</title>
-  <meta name="description" content="Start Trust Ledger. A maintained, board-ready register of AI systems, safeguards, evidence, and accountability over time." />
+  <title>Noetfield — Trust Brief Intake</title>
+  <meta name="description" content="Start Trust Brief intake. A 6-week governance-first diagnostic that produces board-ready outputs: starter Trust Ledger entries, control baseline, evidence expectations, and a decision memo. Public intake is non-confidential." />
   <meta name="robots" content="index,follow" />
   <meta name="author" content="Noetfield Systems Inc." />
   <meta name="theme-color" content="#07070b" />
 
-  <link rel="canonical" href="https://www.noetfield.com/trust-ledger/intake/" />
+  <link rel="canonical" href="https://www.noetfield.com/trust-brief/intake/" />
   <link rel="icon" href="/noetfield-favicon-512.png" type="image/png" />
   <link rel="apple-touch-icon" href="/noetfield-favicon-512.png" />
 
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Noetfield" />
-  <meta property="og:title" content="Noetfield — Trust Ledger Intake" />
-  <meta property="og:description" content="Start Trust Ledger. A maintained, board-ready register of AI systems, safeguards, evidence, and accountability over time." />
-  <meta property="og:url" content="https://www.noetfield.com/trust-ledger/intake/" />
+  <meta property="og:title" content="Noetfield — Trust Brief Intake" />
+  <meta property="og:description" content="Start Trust Brief intake. Confirm scope, teams, use-case band, and procurement path. Board-ready outputs in 6 weeks. Public intake is non-confidential." />
+  <meta property="og:url" content="https://www.noetfield.com/trust-brief/intake/" />
   <meta property="og:image" content="https://www.noetfield.com/noetfield-og.png" />
 
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Noetfield — Trust Ledger Intake" />
-  <meta name="twitter:description" content="Start Trust Ledger. Board-ready register of systems, safeguards, evidence, and accountability." />
+  <meta name="twitter:title" content="Noetfield — Trust Brief Intake" />
+  <meta name="twitter:description" content="Start Trust Brief intake. Board-ready outputs in 6 weeks. Public intake is non-confidential." />
   <meta name="twitter:image" content="https://www.noetfield.com/noetfield-og.png" />
 
   <!-- LOCKED SHELL -->
@@ -31,9 +32,9 @@
   <script src="/assets/noetfield-shell.js" defer></script>
 
   <style>
-    /* Page-local styles (prefixed) */
-    .nfIntakeHero{padding:22px 0 10px}
-    .nfIntakeShell{
+    /* Page-local styles (prefixed: tbI_) */
+    .tbI_hero{padding:22px 0 10px}
+    .tbI_shell{
       position:relative;
       border-radius: calc(var(--radius) + 8px);
       border: 1px solid rgba(255,255,255,.11);
@@ -44,7 +45,7 @@
       box-shadow: var(--shadow);
       overflow:hidden;
     }
-    .nfIntakeShell::before{
+    .tbI_shell::before{
       content:"";
       position:absolute; inset:-1px;
       background: linear-gradient(120deg, rgba(200,163,73,.26), transparent 30%, rgba(255,255,255,.08) 68%, transparent);
@@ -52,9 +53,9 @@
       pointer-events:none;
       mask-image: linear-gradient(180deg, black 0%, black 58%, transparent 96%);
     }
-    .nfIntakeInner{padding: 24px 22px}
+    .tbI_inner{padding: 24px 22px; position:relative; z-index:1}
 
-    .nfEyebrow{
+    .tbI_eyebrow{
       display:inline-flex; gap:10px; align-items:center;
       color:var(--muted);
       font-size:13px;
@@ -63,17 +64,17 @@
       border:1px solid rgba(255,255,255,.13);
       background: rgba(255,255,255,.035);
     }
-    .nfDot{
+    .tbI_dot{
       width:8px; height:8px; border-radius:50%;
       background: rgba(200,163,73,.97);
       box-shadow: 0 0 0 3px rgba(200,163,73,.18);
     }
 
-    .nfIntakeTitle{margin:14px 0 10px; font-size:40px; line-height:1.07; letter-spacing:-0.75px}
-    .nfLead{margin:0; color:var(--muted); font-size:16px; max-width: 980px; line-height:1.75}
-    .nfLead strong{color:var(--text); font-weight:900}
+    .tbI_title{margin:14px 0 10px; font-size:40px; line-height:1.07; letter-spacing:-0.75px}
+    .tbI_lead{margin:0; color:var(--muted); font-size:16px; max-width: 980px; line-height:1.75}
+    .tbI_lead strong{color:var(--text); font-weight:950}
 
-    .nfInfo{
+    .tbI_info{
       margin-top:12px;
       padding:12px 12px;
       border-radius:14px;
@@ -83,17 +84,21 @@
       font-size:12.8px;
       line-height:1.6;
     }
-    .nfInfo strong{color:var(--text); font-weight:900}
-    .nfInfo a{border-bottom:1px solid rgba(255,255,255,.18)}
+    .tbI_info strong{color:var(--text); font-weight:950}
+    .tbI_info a{border-bottom:1px solid rgba(255,255,255,.18)}
 
-    .nfGrid{
+    .tbI_actions{display:flex; gap:12px; flex-wrap:wrap; align-items:center; margin-top:14px}
+    .tbI_actions .btn{min-height:44px}
+
+    .tbI_grid{
       display:grid;
       grid-template-columns: 1.08fr .92fr;
       gap:16px;
       margin: 16px 0 34px;
       align-items:start;
     }
-    .nfCard{
+
+    .tbI_card{
       border-radius:var(--radius);
       border:1px solid rgba(255,255,255,.11);
       background: linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.022));
@@ -101,22 +106,14 @@
       overflow:hidden;
       min-width:0;
     }
-    .nfCard .hd{padding:18px 18px 0}
-    .nfCard .bd{padding:18px}
-    .nfCard h2{margin:0 0 8px; font-size:18px; letter-spacing:-0.2px}
-    .nfMuted{color:var(--muted); line-height:1.7; margin:0 0 12px}
+    .tbI_card .hd{padding:18px 18px 0}
+    .tbI_card .bd{padding:18px}
+    .tbI_card h2{margin:0 0 8px; font-size:18px; letter-spacing:-0.2px}
+    .tbI_muted{color:var(--muted); line-height:1.7; margin:0 0 12px}
 
-    .nfForm{
-      display:grid;
-      gap:12px;
-      margin-top:6px;
-    }
-    .nfRow2{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap:12px;
-    }
-    .nfField label{
+    .tbI_form{display:grid; gap:12px; margin-top:6px}
+    .tbI_row2{display:grid; grid-template-columns: 1fr 1fr; gap:12px}
+    .tbI_field label{
       display:block;
       font-size:12px;
       letter-spacing:.20em;
@@ -124,7 +121,7 @@
       color:var(--muted2);
       margin:0 0 6px;
     }
-    .nfField input, .nfField select, .nfField textarea{
+    .tbI_field input, .tbI_field select, .tbI_field textarea{
       width:100%;
       border-radius:12px;
       border:1px solid rgba(255,255,255,.12);
@@ -134,50 +131,18 @@
       outline:none;
       min-height:44px;
     }
-    .nfField textarea{min-height:110px; resize:vertical}
-    .nfHelp{
-      margin-top:6px;
-      color:var(--muted2);
-      font-size:12.6px;
-      line-height:1.55;
-    }
+    .tbI_field textarea{min-height:120px; resize:vertical}
+    .tbI_help{margin-top:6px; color:var(--muted2); font-size:12.6px; line-height:1.55}
 
-    .nfActions{display:flex; gap:12px; flex-wrap:wrap; align-items:center; margin-top:14px}
-    .nfActions .btn{min-height:44px}
-
-    .nfPriceBox{
-      border-radius:16px;
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.03);
-      padding:14px;
-    }
-    .nfPriceTop{
-      display:flex; justify-content:space-between; gap:10px; align-items:flex-start; flex-wrap:wrap;
-    }
-    .nfPriceLabel{
-      font-size:11px;
+    .tbI_groupTitle{
+      margin:14px 0 6px;
+      font-size:12px;
       letter-spacing:.28em;
       text-transform:uppercase;
       color:var(--muted2);
     }
-    .nfPrice{
-      font-size:26px;
-      font-weight:950;
-      letter-spacing:-.3px;
-      margin-top:6px;
-    }
-    .nfMini{margin-top:10px; color:var(--muted2); font-size:12.8px; line-height:1.6}
-    .nfMini a{border-bottom:1px solid rgba(255,255,255,.18)}
 
-    .nfList{
-      margin:10px 0 0;
-      padding-left:18px;
-      color:var(--muted);
-      line-height:1.7;
-    }
-    .nfList li{margin:6px 0}
-
-    .nfRid{
+    .tbI_ridBox{
       margin-top:12px;
       padding:12px;
       border-radius:14px;
@@ -187,15 +152,50 @@
       font-size:12.8px;
       line-height:1.6;
     }
-    .nfRid strong{color:var(--text); font-weight:900}
+    .tbI_ridBox strong{color:var(--text); font-weight:950}
 
-    .nfOk{display:none}
-    .nfOk.show{display:block}
+    .tbI_ok{display:none}
+    .tbI_ok.show{display:block}
+
+    /* Right rail */
+    .tbI_rail{position:sticky; top:14px}
+    .tbI_panel{
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.03);
+      padding:14px;
+    }
+    .tbI_panelTop{display:flex; justify-content:space-between; gap:10px; align-items:flex-start; flex-wrap:wrap}
+    .tbI_label{
+      font-size:11px;
+      letter-spacing:.28em;
+      text-transform:uppercase;
+      color:var(--muted2);
+    }
+    .tbI_value{
+      font-size:18px;
+      font-weight:950;
+      letter-spacing:-.2px;
+      margin-top:6px;
+    }
+    .tbI_price{
+      font-size:26px;
+      font-weight:950;
+      letter-spacing:-.3px;
+      margin-top:6px;
+      white-space:nowrap;
+    }
+    .tbI_list{margin:10px 0 0; padding-left:18px; color:var(--muted); line-height:1.7}
+    .tbI_list li{margin:6px 0}
+    .tbI_small{margin-top:10px; color:var(--muted2); font-size:12.8px; line-height:1.6}
+
+    .tbI_mono{font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;}
 
     @media (max-width: 980px){
-      .nfGrid{grid-template-columns:1fr}
-      .nfIntakeTitle{font-size:30px}
-      .nfRow2{grid-template-columns:1fr}
+      .tbI_grid{grid-template-columns:1fr}
+      .tbI_title{font-size:30px}
+      .tbI_row2{grid-template-columns:1fr}
+      .tbI_rail{position:relative; top:0}
     }
   </style>
 
@@ -203,11 +203,11 @@
   {
     "@context":"https://schema.org",
     "@type":"Service",
-    "name":"Trust Ledger",
+    "name":"Noetfield Trust Brief (Intake)",
     "provider":{"@type":"Organization","name":"Noetfield Systems Inc."},
     "areaServed":"CA",
-    "description":"A maintained, board-ready register of AI systems, safeguards, evidence, and accountability over time.",
-    "url":"https://www.noetfield.com/trust-ledger/intake/"
+    "description":"Intake for Trust Brief: a 6-week governance-first diagnostic producing board-ready outputs (starter Trust Ledger entries, control baseline, evidence expectations, and a decision memo).",
+    "url":"https://www.noetfield.com/trust-brief/intake/"
   }
   </script>
 </head>
@@ -219,93 +219,161 @@
   <header id="nfHeader"></header>
 
   <main id="main" class="wrap">
-    <section class="nfIntakeHero" aria-label="Trust Ledger Intake">
-      <div class="nfIntakeShell">
-        <div class="nfIntakeInner">
-          <div class="nfEyebrow"><span class="nfDot"></span> Trust Ledger • ongoing register</div>
+    <!-- HERO -->
+    <section class="tbI_hero" aria-label="Trust Brief intake hero">
+      <div class="tbI_shell">
+        <div class="tbI_inner">
+          <div class="tbI_eyebrow"><span class="tbI_dot"></span> Trust Brief • 6-week diagnostic • public intake</div>
 
-          <h1 class="nfIntakeTitle">Start Trust Ledger.</h1>
+          <h1 class="tbI_title">Start Trust Brief intake.</h1>
 
-          <p class="nfLead">
-            A maintained register that keeps AI systems <strong>answer-ready</strong>:
-            safeguards, evidence, ownership, and change history — in a format leadership can use.
+          <p class="tbI_lead">
+            Confirm scope, teams, and the decision questions leadership must answer.
+            Outputs are <strong>board-ready</strong>: starter Trust Ledger entries, control baseline, evidence expectations, and a decision memo.
           </p>
 
-          <div class="nfInfo">
-            <strong>How to use this page:</strong> share scope, teams involved, and evidence expectations. Keep details high-level; deep access happens after kickoff under the right controls.
+          <div class="tbI_info" role="note">
+            <strong>Public intake is non-confidential.</strong> High-level only. Secure sharing protocol is confirmed after kickoff.
+            <br />
+            <strong>Routing:</strong> card purchase (where possible) or Invoice/PO via procurement.
           </div>
 
-          <div class="nfActions" style="margin-top:14px;">
+          <div class="tbI_actions" aria-label="Hero actions">
             <a class="btn" href="#intake">Start intake</a>
-            <a class="btn secondary" href="/trust-ledger/">View Trust Ledger details</a>
-            <a class="btn secondary" href="/gate/">Back to Gate</a>
+            <a class="btn secondary" href="/trust-brief/#pricing" data-rid-link>View pricing</a>
+            <a class="btn secondary" href="/gate/procurement/?focus=trust_brief" data-rid-link>Invoice / PO</a>
+            <a class="btn secondary" href="/gate/sales/" data-rid-link>Purchase hub</a>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="nfGrid" aria-label="Intake form and purchase options">
-      <!-- FORM -->
-      <div class="nfCard" id="intake">
+    <!-- GRID -->
+    <section class="tbI_grid" aria-label="Trust Brief intake grid">
+      <!-- LEFT: FORM -->
+      <section class="tbI_card" id="intake" aria-label="Trust Brief intake form">
         <div class="hd">
           <h2>Intake</h2>
-          <p class="nfMuted">Two minutes to confirm scope, cadence, and evidence expectations.</p>
+          <p class="tbI_muted">Two minutes to confirm scope, tier direction, and procurement path.</p>
         </div>
 
         <div class="bd">
-          <form class="nfForm" id="nfIntakeForm"
+          <form class="tbI_form" id="tbIntakeForm"
                 action="https://formspree.io/xyzrdrpv"
                 method="POST"
                 accept-charset="UTF-8">
 
             <!-- routing -->
-            <input type="hidden" name="package" value="trust-ledger" />
-            <input type="hidden" name="page" value="/trust-ledger/intake/" />
-            <input type="hidden" name="rid" value="" data-rid />
+            <input type="hidden" name="package" value="trust-brief" />
+            <input type="hidden" name="page" value="/trust-brief/intake/" />
+            <input type="hidden" name="rid" value="" data-rid-field />
+            <input type="hidden" name="prefill_tier" value="" data-prefill-tier />
 
-            <div class="nfRow2">
-              <div class="nfField">
-                <label for="name">Name</label>
-                <input id="name" name="name" autocomplete="name" required />
+            <div class="tbI_groupTitle">Contact</div>
+            <div class="tbI_row2">
+              <div class="tbI_field">
+                <label for="tb_name">Name</label>
+                <input id="tb_name" name="name" autocomplete="name" required />
               </div>
-              <div class="nfField">
-                <label for="email">Work email</label>
-                <input id="email" name="email" type="email" autocomplete="email" required />
+              <div class="tbI_field">
+                <label for="tb_email">Work email</label>
+                <input id="tb_email" name="email" type="email" autocomplete="email" required />
               </div>
             </div>
 
-            <div class="nfRow2">
-              <div class="nfField">
-                <label for="org">Organization</label>
-                <input id="org" name="organization" autocomplete="organization" required />
+            <div class="tbI_row2">
+              <div class="tbI_field">
+                <label for="tb_role">Role</label>
+                <input id="tb_role" name="role" placeholder="IT, Security, Legal, COO, etc." />
               </div>
-              <div class="nfField">
-                <label for="cadence">Cadence</label>
-                <select id="cadence" name="cadence" required>
-                  <option value="" selected disabled>Select…</option>
-                  <option>Monthly register updates</option>
-                  <option>Quarterly updates</option>
-                  <option>Hybrid (monthly + incident-driven)</option>
-                  <option>Not sure yet</option>
+              <div class="tbI_field">
+                <label for="tb_country">Country</label>
+                <select id="tb_country" name="country">
+                  <option selected>Canada</option>
+                  <option>United States</option>
+                  <option>United Kingdom</option>
+                  <option>EU</option>
+                  <option>Other</option>
                 </select>
               </div>
             </div>
 
-            <div class="nfRow2">
-              <div class="nfField">
-                <label for="scope">Starting scope</label>
-                <select id="scope" name="scope" required>
+            <div class="tbI_groupTitle">Organization</div>
+            <div class="tbI_row2">
+              <div class="tbI_field">
+                <label for="tb_org">Organization</label>
+                <input id="tb_org" name="organization" autocomplete="organization" required />
+              </div>
+              <div class="tbI_field">
+                <label for="tb_site">Website</label>
+                <input id="tb_site" name="website" placeholder="https://…" />
+              </div>
+            </div>
+
+            <div class="tbI_groupTitle">Scope signals</div>
+            <div class="tbI_row2">
+              <div class="tbI_field">
+                <label for="tb_need">Primary driver</label>
+                <select id="tb_need" name="driver" required>
                   <option value="" selected disabled>Select…</option>
-                  <option>Copilot / M365 only</option>
-                  <option>1–3 AI tools/systems</option>
-                  <option>Multiple teams / multiple systems</option>
-                  <option>Enterprise-wide</option>
+                  <option>Microsoft 365 Copilot rollout</option>
+                  <option>AI inventory / governance baseline</option>
+                  <option>Audit / regulator readiness</option>
+                  <option>Client due diligence / vendor scrutiny</option>
+                  <option>Incident / exception pressure</option>
+                  <option>Board policy / reporting requirements</option>
+                  <option>Other</option>
                 </select>
               </div>
-              <div class="nfField">
-                <label for="proc">Procurement path</label>
-                <select id="proc" name="procurement">
-                  <option value="" selected>Optional</option>
+              <div class="tbI_field">
+                <label for="tb_start">Desired start window</label>
+                <select id="tb_start" name="start_window" required>
+                  <option value="" selected disabled>Select…</option>
+                  <option>Next 2 weeks</option>
+                  <option>Next 30 days</option>
+                  <option>Next 60–90 days</option>
+                  <option>Not sure</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="tbI_row2">
+              <div class="tbI_field">
+                <label for="tb_usecases">Use cases (band)</label>
+                <select id="tb_usecases" name="usecases_band" required>
+                  <option value="" selected disabled>Select…</option>
+                  <option value="1-3">1–3</option>
+                  <option value="4-8">4–8</option>
+                  <option value="9-15">9–15</option>
+                  <option value="16+">16+</option>
+                </select>
+                <div class="tbI_help">Used to estimate tier direction (final scope confirmed after kickoff).</div>
+              </div>
+              <div class="tbI_field">
+                <label for="tb_teams">Teams in scope</label>
+                <select id="tb_teams" name="teams" required>
+                  <option value="" selected disabled>Select…</option>
+                  <option value="1">1 team</option>
+                  <option value="2-3">2–3 teams</option>
+                  <option value="4+">4+ teams</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="tbI_row2">
+              <div class="tbI_field">
+                <label for="tb_risk">Risk tier</label>
+                <select id="tb_risk" name="risk" required>
+                  <option value="" selected disabled>Select…</option>
+                  <option value="standard">Standard</option>
+                  <option value="regulated">Regulated (×1.25)</option>
+                  <option value="high">Highly regulated (×1.5)</option>
+                </select>
+              </div>
+              <div class="tbI_field">
+                <label for="tb_proc">Procurement path</label>
+                <select id="tb_proc" name="procurement" required>
+                  <option value="" selected disabled>Select…</option>
                   <option>Card payment possible</option>
                   <option>Invoice / PO required</option>
                   <option>Not sure yet</option>
@@ -313,80 +381,112 @@
               </div>
             </div>
 
-            <div class="nfField">
-              <label for="need">What should the Ledger answer?</label>
-              <textarea id="need" name="need" placeholder="Example: board reporting, audit requests, client due diligence, change control, evidence exports, roles/owners…"></textarea>
-              <div class="nfHelp">Short bullets are perfect.</div>
-            </div>
-
-            <div class="nfActions">
-              <button class="btn" type="submit">Send intake</button>
-              <a class="btn secondary" href="mailto:ceo@noetfield.com?subject=Trust%20Ledger%20intake">Email instead</a>
-              <a class="btn secondary" href="/status/">Status</a>
-            </div>
-
-            <div class="nfRid">
-              <strong>Request ID:</strong> <span data-rid>—</span>
-              <span style="margin-left:10px;"><button class="btn secondary" type="button" data-copy-rid>Copy</button></span>
-            </div>
-
-            <div class="nfInfo">
-              <strong>Good inputs:</strong> systems in scope, owners, reporting cadence, evidence expectations.
-              <br/>
-              <strong>Avoid:</strong> credentials, private keys, sensitive personal data, internal case files.
-            </div>
-
-            <div class="nfOk" id="nfOk">
-              <div class="nfInfo">
-                <strong>Received.</strong> Next step is confirming scope + cadence and setting up the first register entry pack.
+            <div class="tbI_row2">
+              <div class="tbI_field">
+                <label for="tb_tier">Preferred tier</label>
+                <select id="tb_tier" name="preferred_tier">
+                  <option value="" selected>Auto (recommended)</option>
+                  <option value="base">TB — Base</option>
+                  <option value="pro">TB — Pro</option>
+                  <option value="enterprise">TB — Enterprise</option>
+                </select>
+              </div>
+              <div class="tbI_field">
+                <label for="tb_evidence">Evidence depth</label>
+                <select id="tb_evidence" name="evidence_depth" required>
+                  <option value="" selected disabled>Select…</option>
+                  <option value="light">Light</option>
+                  <option value="standard">Standard</option>
+                  <option value="deep">Deep (+15%)</option>
+                </select>
               </div>
             </div>
 
+            <div class="tbI_field">
+              <label for="tb_notes">Notes for scope (high-level only)</label>
+              <textarea id="tb_notes" name="notes" placeholder="Bullets are perfect: key teams, tools (e.g., Copilot), decision questions, reporting needs, procurement constraints. Avoid confidential details."></textarea>
+              <div class="tbI_help">Avoid: credentials, private keys, sensitive personal data, internal case files.</div>
+            </div>
+
+            <div class="tbI_field">
+              <label for="tb_ack">Non-confidential acknowledgement</label>
+              <select id="tb_ack" name="ack_nonconfidential" required>
+                <option value="" selected disabled>Select…</option>
+                <option value="yes">Yes — this intake contains non-confidential information only</option>
+              </select>
+            </div>
+
+            <div class="tbI_actions">
+              <button class="btn" type="submit">Send intake</button>
+              <a class="btn secondary" id="tbEmailInstead" href="mailto:sales@noetfield.com">Email instead</a>
+              <a class="btn secondary" href="/gate/procurement/?focus=trust_brief" data-rid-link>Invoice / PO</a>
+              <a class="btn secondary" href="/status/" data-rid-link>Status</a>
+            </div>
+
+            <div class="tbI_ridBox">
+              <strong>Request ID:</strong> <span class="tbI_mono" data-rid-text>—</span>
+              <span style="margin-left:10px;">
+                <button class="btn secondary" type="button" data-copy-rid>Copy</button>
+              </span>
+            </div>
+
+            <div class="tbI_info">
+              <strong>What happens next:</strong> confirm scope → confirm tier + procurement path → kickoff → week-by-week delivery → board-ready memo + starter ledger pack.
+              <br />
+              <strong>Contact:</strong> sales@noetfield.com • procurement@noetfield.com • billing@noetfield.com • trust@noetfield.com • legal@noetfield.com
+            </div>
+
+            <div class="tbI_ok" id="tbOk">
+              <div class="tbI_info">
+                <strong>Received.</strong> Next step is scope confirmation and kickoff scheduling using the Request ID above.
+              </div>
+            </div>
           </form>
         </div>
-      </div>
+      </section>
 
-      <!-- PURCHASE / OPTIONS -->
-      <aside class="nfCard" aria-label="Purchase options">
-        <div class="hd">
-          <h2>Purchase & kickoff</h2>
-          <p class="nfMuted">Designed for ongoing accountability and fast answers under scrutiny.</p>
-        </div>
-
-        <div class="bd">
-          <div class="nfPriceBox">
-            <div class="nfPriceTop">
-              <div>
-                <div class="nfPriceLabel">Trust Ledger</div>
-                <div class="nfPrice">Ongoing</div>
+      <!-- RIGHT: RAIL -->
+      <aside class="tbI_rail" aria-label="Tier guidance and procurement summary">
+        <section class="tbI_card" aria-label="Tier guidance">
+          <div class="hd">
+            <h2>Tier direction</h2>
+            <p class="tbI_muted">Auto-derived from the use-case band (override if needed).</p>
+          </div>
+          <div class="bd">
+            <div class="tbI_panel" aria-label="Tier panel">
+              <div class="tbI_panelTop">
+                <div>
+                  <div class="tbI_label">Recommended tier</div>
+                  <div class="tbI_value" id="tbTierOut">—</div>
+                </div>
+                <div>
+                  <div class="tbI_label">Typical fee</div>
+                  <div class="tbI_price" id="tbPriceOut">—</div>
+                </div>
               </div>
-              <div>
-                <div class="nfPriceLabel">Typical range</div>
-                <div class="nfPrice">$750–$3k CAD / mo</div>
+
+              <ul class="tbI_list" id="tbBullets">
+                <li>6-week delivery structure</li>
+                <li>Board decision memo + options</li>
+                <li>Starter Trust Ledger entries</li>
+                <li>Control baseline + evidence expectations</li>
+              </ul>
+
+              <div class="tbI_small" id="tbLineOut">Select the form inputs to populate tier direction.</div>
+
+              <div class="tbI_actions" style="margin-top:12px;">
+                <button class="btn secondary" type="button" id="tbCopySummary">Copy summary</button>
+                <a class="btn secondary" id="tbEmailProc" href="mailto:procurement@noetfield.com">Email procurement</a>
+                <a class="btn secondary" href="/trust-brief/#pricing" data-rid-link>Back to pricing</a>
               </div>
-            </div>
 
-            <div class="nfMini">
-              Pricing varies by number of systems, cadence, and evidence depth. Taxes may apply where applicable.
-            </div>
-
-            <ul class="nfList">
-              <li>Board-ready register entries with owners and controls</li>
-              <li>Evidence linkage (exports, configs, logs) by design</li>
-              <li>Change history and accountability trail over time</li>
-              <li>Answer-ready posture for audits and client questions</li>
-            </ul>
-
-            <div class="nfActions" style="margin-top:14px;">
-              <a class="btn" href="#intake">Start intake</a>
-              <a class="btn secondary" href="mailto:ceo@noetfield.com?subject=Trust%20Ledger%20-%20Invoice%2FPO%20request">Request invoice / PO</a>
+              <div class="tbI_info" style="margin-top:12px;">
+                <strong>Disclosure:</strong> guidance only. Final quote confirmed after kickoff. Taxes may apply.
+                Public intake is non-confidential.
+              </div>
             </div>
           </div>
-
-          <div class="nfInfo" style="margin-top:12px;">
-            <strong>What happens next:</strong> confirm scope → confirm cadence → set up first entries → start reporting rhythm.
-          </div>
-        </div>
+        </section>
       </aside>
     </section>
   </main>
@@ -395,23 +495,272 @@
 
   <script>
     (function(){
-      var form = document.getElementById("nfIntakeForm");
-      var ok = document.getElementById("nfOk");
-      if (!form || !ok) return;
+      function ridNew(){
+        var ts = Date.now().toString(36);
+        var rnd = Math.random().toString(36).slice(2, 8);
+        return ("NF-" + ts + "-" + rnd).toUpperCase();
+      }
+      function ridGet(){
+        try { return localStorage.getItem("nf_rid") || ""; } catch(e){ return ""; }
+      }
+      function ridSet(val){
+        try { localStorage.setItem("nf_rid", val); } catch(e){}
+        try{
+          document.querySelectorAll("[data-rid-text]").forEach(function(n){ n.textContent = val; });
+          document.querySelectorAll("[data-rid-field]").forEach(function(n){ n.value = val; });
+        }catch(e){}
+      }
+      function ridInit(){
+        var existing = ridGet();
+        var p = "";
+        try{
+          var sp = new URLSearchParams(location.search);
+          p = sp.get("rid") || "";
+        }catch(e){}
+        ridSet((p && p.length >= 6) ? p : (existing || ridNew()));
+      }
 
-      form.addEventListener("submit", function(){
-        try { ok.classList.add("show"); } catch(e){}
+      function fmtCAD(n){
+        try{
+          return new Intl.NumberFormat("en-CA", { style:"currency", currency:"CAD", maximumFractionDigits:0 }).format(n);
+        }catch(e){
+          return "$" + Math.round(n).toString() + " CAD";
+        }
+      }
+
+      function mailto(to, subject, body){
+        function enc(s){ return encodeURIComponent(s || ""); }
+        return "mailto:" + enc(to) + "?subject=" + enc(subject) + "&body=" + enc(body);
+      }
+
+      function baseFromBand(band){
+        if (band === "1-3") return { code:"base", name:"TB — Base", price:12500, ucIncluded:3, teamsIncluded:1 };
+        if (band === "4-8") return { code:"pro", name:"TB — Pro", price:18500, ucIncluded:8, teamsIncluded:3 };
+        if (band === "9-15") return { code:"enterprise", name:"TB — Enterprise", price:27500, ucIncluded:15, teamsIncluded:4 };
+        return { code:"enterprise", name:"TB — Enterprise (custom)", price:27500, ucIncluded:15, teamsIncluded:4, custom:true };
+      }
+      function parseBandMax(band){
+        if (band === "1-3") return 3;
+        if (band === "4-8") return 8;
+        if (band === "9-15") return 15;
+        return 16;
+      }
+      function teamCountFromSel(v){
+        if (v === "1") return 1;
+        if (v === "2-3") return 3; // estimate upper bound
+        return 4;
+      }
+      function multiplierRisk(v){
+        if (v === "regulated") return 1.25;
+        if (v === "high") return 1.5;
+        return 1.0;
+      }
+      function multiplierEvidence(v){
+        if (v === "deep") return 1.15;
+        return 1.0;
+      }
+
+      function getQS(){
+        try { return new URLSearchParams(location.search); } catch(e){ return null; }
+      }
+
+      function prefillFromQS(){
+        var qs = getQS(); if (!qs) return;
+        var tier = (qs.get("tier") || "").toLowerCase();
+        var need = qs.get("need") || "";
+        var pre = document.querySelector("[data-prefill-tier]");
+        if (pre) pre.value = tier || "";
+
+        var tierSel = document.getElementById("tb_tier");
+        if (tierSel){
+          if (tier === "base" || tier === "pro" || tier === "enterprise"){
+            tierSel.value = tier;
+          }
+        }
+
+        // Optional: if routed from /gate/intake/?need=trust-brief
+        var driverSel = document.getElementById("tb_need");
+        if (driverSel && need && driverSel.value === ""){
+          // Keep conservative: do not force match; just leave as-is.
+        }
+      }
+
+      function buildSummary(){
+        var rid = ridGet() || "—";
+
+        var band = (document.getElementById("tb_usecases")||{}).value || "";
+        var teamsSel = (document.getElementById("tb_teams")||{}).value || "";
+        var risk = (document.getElementById("tb_risk")||{}).value || "";
+        var evidence = (document.getElementById("tb_evidence")||{}).value || "";
+        var prefTier = (document.getElementById("tb_tier")||{}).value || ""; // base/pro/enterprise/""
+        var proc = (document.getElementById("tb_proc")||{}).value || "";
+        var driver = (document.getElementById("tb_need")||{}).value || "";
+        var start = (document.getElementById("tb_start")||{}).value || "";
+        var org = (document.getElementById("tb_org")||{}).value || "";
+        var notes = (document.getElementById("tb_notes")||{}).value || "";
+
+        if (!band || !teamsSel || !risk || !evidence) return null;
+
+        var base = baseFromBand(band);
+
+        // Override recommendation if user selected tier
+        if (prefTier === "base") base = { code:"base", name:"TB — Base", price:12500, ucIncluded:3, teamsIncluded:1 };
+        if (prefTier === "pro") base = { code:"pro", name:"TB — Pro", price:18500, ucIncluded:8, teamsIncluded:3 };
+        if (prefTier === "enterprise") base = { code:"enterprise", name:"TB — Enterprise", price:27500, ucIncluded:15, teamsIncluded:4 };
+
+        var estUseCases = parseBandMax(band);
+        var estTeams = teamCountFromSel(teamsSel);
+
+        var extraUC = Math.max(0, estUseCases - base.ucIncluded);
+        var extraTeams = Math.max(0, estTeams - base.teamsIncluded);
+
+        var addUC = extraUC * 900;
+        var addTeams = extraTeams * 2500;
+
+        var subtotal = base.price + addUC + addTeams;
+        var mult = multiplierRisk(risk) * multiplierEvidence(evidence);
+        var total = Math.round(subtotal * mult);
+
+        var line =
+          base.name +
+          " • Use cases: " + band +
+          " • Teams: " + teamsSel +
+          " • Risk: " + risk +
+          " • Evidence: " + evidence +
+          (extraUC ? (" • +"+extraUC+" extra use case(s)") : "") +
+          (extraTeams ? (" • +"+extraTeams+" extra team(s)") : "");
+
+        var body =
+          "Noetfield — Trust Brief (Intake Summary)\n" +
+          "Request ID: " + rid + "\n" +
+          (org ? ("Organization: " + org + "\n") : "") +
+          (driver ? ("Primary driver: " + driver + "\n") : "") +
+          (start ? ("Desired start window: " + start + "\n") : "") +
+          "Recommended tier: " + base.name + "\n" +
+          "Inputs: Use cases " + band + ", Teams " + teamsSel + ", Risk " + risk + ", Evidence " + evidence + "\n" +
+          "Typical fee guidance: " + fmtCAD(total) + "\n" +
+          "Procurement path: " + (proc || "—") + "\n" +
+          "Notes (high-level): " + (notes || "—") + "\n" +
+          "Disclosure: Guidance only; final quote confirmed after kickoff. Public intake is non-confidential.\n";
+
+        return { rid: rid, tierName: base.name, total: total, line: line, emailBody: body };
+      }
+
+      function applySummary(){
+        var tierOut = document.getElementById("tbTierOut");
+        var priceOut = document.getElementById("tbPriceOut");
+        var lineOut = document.getElementById("tbLineOut");
+        var emailProc = document.getElementById("tbEmailProc");
+
+        var s = buildSummary();
+        if (!s){
+          if (tierOut) tierOut.textContent = "—";
+          if (priceOut) priceOut.textContent = "—";
+          if (lineOut) lineOut.textContent = "Select the form inputs to populate tier direction.";
+          if (emailProc) emailProc.href = "mailto:procurement@noetfield.com";
+          return;
+        }
+
+        if (tierOut) tierOut.textContent = s.tierName;
+        if (priceOut) priceOut.textContent = fmtCAD(s.total);
+        if (lineOut) lineOut.textContent = s.line;
+
+        var subj = "Noetfield — Trust Brief | Procurement / Invoice Request (" + s.rid + ")";
+        if (emailProc) emailProc.href = mailto("procurement@noetfield.com", subj, s.emailBody);
+
+        // Email fallback link on the form
+        var emailInstead = document.getElementById("tbEmailInstead");
+        if (emailInstead){
+          emailInstead.href = mailto("sales@noetfield.com", "Noetfield — Trust Brief Intake (" + s.rid + ")", s.emailBody);
+        }
+
+        try { window.__tbSummary = s.emailBody; } catch(e){}
+      }
+
+      function copyRID(){
+        try{
+          var rid = ridGet() || "";
+          if (!rid) return;
+          if (navigator.clipboard && navigator.clipboard.writeText){
+            navigator.clipboard.writeText(rid);
+            return;
+          }
+          var ta = document.createElement("textarea");
+          ta.value = rid;
+          ta.style.position="fixed"; ta.style.left="-9999px";
+          document.body.appendChild(ta);
+          ta.select();
+          document.execCommand("copy");
+          document.body.removeChild(ta);
+        }catch(e){}
+      }
+
+      function copySummary(){
+        try{
+          var t = window.__tbSummary || "";
+          if (!t){ applySummary(); t = window.__tbSummary || ""; }
+          if (!t) return;
+
+          if (navigator.clipboard && navigator.clipboard.writeText){
+            navigator.clipboard.writeText(t);
+            return;
+          }
+          var ta = document.createElement("textarea");
+          ta.value = t;
+          ta.style.position="fixed"; ta.style.left="-9999px";
+          document.body.appendChild(ta);
+          ta.select();
+          document.execCommand("copy");
+          document.body.removeChild(ta);
+        }catch(e){}
+      }
+
+      // Init
+      ridInit();
+      prefillFromQS();
+      applySummary();
+
+      // Bind updates
+      ["tb_usecases","tb_teams","tb_risk","tb_evidence","tb_tier","tb_proc","tb_need","tb_start","tb_org","tb_notes"].forEach(function(id){
+        var el = document.getElementById(id);
+        if (!el) return;
+        el.addEventListener("change", applySummary);
+        if (id === "tb_notes") el.addEventListener("input", function(){ /* quiet */ });
       });
+
+      // Copy buttons
+      document.querySelectorAll("[data-copy-rid]").forEach(function(btn){
+        btn.addEventListener("click", copyRID);
+      });
+      var copySum = document.getElementById("tbCopySummary");
+      if (copySum) copySum.addEventListener("click", copySummary);
+
+      // Success hint (non-blocking)
+      var form = document.getElementById("tbIntakeForm");
+      var ok = document.getElementById("tbOk");
+      if (form && ok){
+        form.addEventListener("submit", function(){
+          try { ok.classList.add("show"); } catch(e){}
+        });
+      }
     })();
   </script>
 
   <!--
+    CONFIG
+    - Replace Formspree endpoint: action="https://formspree.io/xyzrdrpv"
+      with the Trust Brief-specific endpoint.
+    - Optional: create /trust-brief/thanks/ and set Formspree redirect there.
+
     SMOKE TEST
-    - GET /trust-ledger/intake/ returns 200
-    - /assets/noetfield-shell.css returns 200 and styles apply
-    - /assets/noetfield-shell.js returns 200 and header/footer load into #nfHeader/#nfFooter
-    - Form posts to Formspree endpoint
-    - Mailto fallback opens correctly
+    - GET /trust-brief/intake/ returns 200
+    - /assets/noetfield-shell.css and /assets/noetfield-shell.js return 200
+    - header/footer injected into #nfHeader/#nfFooter
+    - RID persists (localStorage) and appears in page + hidden field
+    - Query params tier=base|pro|enterprise prefill preferred tier
+    - Tier panel updates as form inputs change
+    - Copy RID and Copy summary work
+    - Mailto links include RID + summary
   -->
 </body>
 </html>

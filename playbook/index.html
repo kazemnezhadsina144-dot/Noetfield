@@ -1,4 +1,4 @@
-<!-- /playbook/index.html — Noetfield Playbook (upgraded to latest shell/header behavior + Gate-first CTA) -->
+<!-- /playbook/index.html — Noetfield Playbook (v5: Authority Hub + Copilot-first CTA + Modules Library + Procurement FAQ) -->
 <!doctype html>
 <html lang="en">
 <head>
@@ -6,7 +6,7 @@
   <title>Noetfield — Playbook</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <meta name="description" content="The Noetfield Playbook is a governance-first 0–90 day pattern for teams adopting AI: control baseline, evidence discipline, board-ready artefacts, and Trust Ledger cadence." />
+  <meta name="description" content="The Noetfield Playbook is a governance-first 0–90 day pattern and library for teams adopting AI: control baseline, evidence discipline, board-ready artefacts, and Trust Ledger cadence. Primary enterprise path: Microsoft 365 Copilot Readiness Assessment." />
   <meta name="robots" content="index,follow" />
   <meta name="author" content="Noetfield Systems Inc." />
   <meta name="theme-color" content="#07070b" />
@@ -20,14 +20,14 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Noetfield" />
   <meta property="og:title" content="Noetfield — Playbook" />
-  <meta property="og:description" content="A governance-first 0–90 day pattern for teams adopting AI: control baseline, evidence discipline, board-ready artefacts, and Trust Ledger cadence." />
+  <meta property="og:description" content="Governance-first pattern + library (0–90). Control baseline, evidence discipline, board-ready artefacts, and Trust Ledger cadence. Copilot-first enterprise path." />
   <meta property="og:url" content="https://www.noetfield.com/playbook/" />
   <meta property="og:image" content="https://www.noetfield.com/noetfield-og.png" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Noetfield — Playbook" />
-  <meta name="twitter:description" content="A governance-first 0–90 day pattern for teams adopting AI: control baseline, evidence discipline, board-ready artefacts, and Trust Ledger cadence." />
+  <meta name="twitter:description" content="Governance-first pattern + library (0–90). Control baseline, evidence discipline, board-ready artefacts, and Trust Ledger cadence. Copilot-first enterprise path." />
   <meta name="twitter:image" content="https://www.noetfield.com/noetfield-og.png" />
 
   <!-- Fonts -->
@@ -39,8 +39,8 @@
   <link rel="stylesheet" href="/assets/noetfield-shell.css" />
   <script src="/assets/noetfield-shell.js" defer></script>
 
-  <!-- Page-only styles (Trust Brief reference structure) -->
   <style>
+    /* Hero */
     .hero{padding:22px 0 14px}
     .heroShell{
       position:relative;
@@ -79,7 +79,7 @@
     }
 
     h1{margin:14px 0 10px; font-size:40px; line-height:1.07; letter-spacing:-0.75px}
-    .lead{margin:0; color:var(--muted); font-size:16px; max-width: 1040px; line-height:1.75}
+    .lead{margin:0; color:var(--muted); font-size:16px; max-width: 1080px; line-height:1.75}
     .lead strong{color:var(--text); font-weight:900}
     .lead a{border-bottom:1px solid rgba(255,255,255,.18)}
 
@@ -96,6 +96,7 @@
     }
     .pill strong{color:var(--text); font-weight:900}
 
+    /* Layout */
     .grid{
       display:grid;
       grid-template-columns: 1.15fr .85fr;
@@ -126,6 +127,7 @@
     .sectionTitle{font-weight:900; letter-spacing:-.2px; margin:0 0 6px; font-size:14px}
     .sectionDesc{margin:0 0 12px; color:var(--muted2); font-size:12.7px; line-height:1.6}
 
+    /* Phases */
     .phaseGrid{
       display:grid;
       grid-template-columns: 1fr 1fr;
@@ -155,6 +157,7 @@
     .phase ul{margin:0; padding-left:18px; color:var(--muted); line-height:1.85}
     .phase li{margin:6px 0}
 
+    /* Tables */
     .table{
       width:100%;
       border-collapse:separate;
@@ -181,6 +184,7 @@
     }
     .table tr:last-child td{border-bottom:none}
 
+    /* Actions / buttons */
     .actions{display:flex; gap:12px; flex-wrap:wrap; align-items:center; margin-top:12px}
     .box{
       margin-top:12px;
@@ -195,6 +199,31 @@
     .box strong{color:var(--text); font-weight:900}
     .box a{border-bottom:1px solid rgba(255,255,255,.18)}
 
+    /* Minimal local button safety (in case shell button classes differ) */
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding:10px 14px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.03);
+      color: var(--text);
+      text-decoration:none;
+      transition: transform .12s ease, border-color .15s ease, background .15s ease;
+      white-space:nowrap;
+    }
+    .btn:hover{transform: translateY(-1px); border-color:rgba(255,255,255,.22); background:rgba(255,255,255,.05)}
+    .btn.secondary{opacity:.92}
+    .btn.primary{
+      border-color: transparent;
+      background: linear-gradient(135deg,#f9fafb,#e5e7eb);
+      color:#07070b;
+      font-weight:900;
+    }
+
+    /* TOC */
     .toc{display:flex; flex-direction:column; gap:10px; margin-top:10px}
     .toc a{
       display:flex; align-items:center; justify-content:space-between; gap:10px;
@@ -211,6 +240,7 @@
     .toc span{color:var(--muted)}
     .arrow{opacity:.8}
 
+    /* Library grid */
     .pkgGrid{
       display:grid;
       grid-template-columns: 1fr 1fr;
@@ -234,6 +264,30 @@
     .pkg .n{margin-top:8px; font-weight:900; letter-spacing:-.2px}
     .pkg .d{margin-top:6px; color:var(--muted); font-size:12.7px; line-height:1.55}
     .pkg .m{margin-top:10px; color:var(--muted2); font-size:12.2px}
+
+    /* FAQ */
+    .faq{display:flex; flex-direction:column; gap:10px; margin-top:12px}
+    details{
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      padding:10px 12px;
+    }
+    summary{
+      cursor:pointer;
+      list-style:none;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      color:var(--text);
+      font-weight:800;
+      letter-spacing:-.1px;
+    }
+    summary::-webkit-details-marker{display:none}
+    details p{margin:10px 0 0; color:var(--muted); line-height:1.75}
+    .chev{opacity:.8}
+    details[open] .chev{transform: rotate(180deg)}
 
     /* Desktop-only: floating/boxed header like /status */
     @media (min-width: 981px){
@@ -276,7 +330,7 @@
     "@type":"WebPage",
     "name":"Noetfield — Playbook",
     "url":"https://www.noetfield.com/playbook/",
-    "description":"The Noetfield Playbook is a governance-first 0–90 day pattern for teams adopting AI: control baseline, evidence discipline, board-ready artefacts, and Trust Ledger cadence.",
+    "description":"Governance-first 0–90 day pattern and library for teams adopting AI: control baseline, evidence discipline, board-ready artefacts, and Trust Ledger cadence. Primary enterprise path: Microsoft 365 Copilot Readiness Assessment.",
     "isPartOf":{"@type":"WebSite","name":"Noetfield","url":"https://www.noetfield.com/"},
     "publisher":{"@type":"Organization","name":"Noetfield Systems Inc."}
   }
@@ -295,7 +349,7 @@
     <section class="hero">
       <div class="heroShell">
         <div class="heroInner">
-          <div class="eyebrow"><span class="dot"></span> 0–90 day governance pattern</div>
+          <div class="eyebrow"><span class="dot"></span> governance pattern + library (not the primary sales page)</div>
 
           <h1>Playbook.</h1>
 
@@ -303,25 +357,32 @@
             A practical governance-first pattern for teams using AI without a compliance department.
             Build a <strong>control baseline</strong>, enforce <strong>evidence discipline</strong>,
             and establish a <strong>Trust Ledger cadence</strong> that holds under board and regulator scrutiny.
+            <strong>Primary enterprise path</strong>: Microsoft 365 Copilot Readiness Assessment.
           </p>
 
           <div class="metaRow" aria-label="Highlights">
             <div class="pill"><strong>0–30</strong> baseline</div>
             <div class="pill"><strong>31–60</strong> evidence</div>
             <div class="pill"><strong>61–90</strong> cadence</div>
-            <div class="pill"><strong>Board memo</strong> options</div>
-            <div class="pill"><strong>Ledger entries</strong> starter set</div>
+            <div class="pill"><strong>Board memo</strong> format</div>
+            <div class="pill"><strong>Ledger</strong> schema</div>
           </div>
 
-          <div class="actions" style="margin-top:14px">
-            <a class="btn" href="/gate/intake/?need=playbook">Start via Gate</a>
-            <a class="btn secondary" href="/trust-brief/">Trust Brief</a>
+          <div class="actions" aria-label="Primary actions" style="margin-top:14px">
+            <!-- Copilot-first (SAFE default) -->
+            <a class="btn primary" href="/copilot/">Copilot Readiness Assessment</a>
+
+            <!-- Gate (non-confidential): adjust query value if your router uses a different key -->
+            <a class="btn secondary" href="/gate/intake/?need=copilot-readiness">Start via Gate</a>
+
             <a class="btn secondary" href="/trust-ledger/">Trust Ledger</a>
+            <a class="btn secondary" href="/trust-brief/">Trust Brief</a>
           </div>
 
           <div class="box">
             <strong>Public intake = non-confidential.</strong>
-            This page describes the pattern; delivery begins through Gate.
+            Do not submit secrets, credentials, or regulated personal data on public forms.
+            This page is a library and reference; delivery routes through Copilot / Gate.
           </div>
         </div>
       </div>
@@ -331,65 +392,85 @@
       <!-- MAIN -->
       <div class="card">
         <div class="hd">
-          <h2>The pattern</h2>
+          <h2>What this page is</h2>
           <p>
-            The goal is not perfect policy. The goal is to make AI use <strong>governable</strong> —
-            with clear scope, accountable owners, controls, and proof.
+            A board-safe reference that explains the 0–90 pattern, the artefacts, and the modules we use to make AI use
+            <strong>governable</strong>. Use it to align your team before starting Copilot readiness or a Gate intake.
           </p>
         </div>
 
         <div class="bd">
-          <div class="phaseGrid" aria-label="Phases">
-            <div class="phase" id="phase-0-30">
-              <div class="k">
-                <div class="n">Phase 1: Baseline</div>
-                <div class="badge">0–30 days</div>
+          <div class="section" id="pattern">
+            <div class="sectionTitle">The 0–90 pattern</div>
+            <p class="sectionDesc">
+              The goal is not perfect policy. The goal is to make AI use <strong>governable</strong> —
+              with clear scope, accountable owners, controls, and proof.
+            </p>
+
+            <div class="phaseGrid" aria-label="Phases">
+              <div class="phase" id="phase-0-30">
+                <div class="k">
+                  <div class="n">Phase 1: Baseline</div>
+                  <div class="badge">0–30 days</div>
+                </div>
+                <ul>
+                  <li>Material AI inventory (what runs in production; what influences decisions).</li>
+                  <li>Owner map: accountable roles, escalation, approval boundaries.</li>
+                  <li>Minimum control baseline (access, logs, data handling, retention).</li>
+                  <li>Decision framing: what boards must explicitly approve vs delegate.</li>
+                </ul>
               </div>
-              <ul>
-                <li>Material AI inventory (what runs in production; what influences decisions).</li>
-                <li>Owner map: accountable roles, escalation, approval boundaries.</li>
-                <li>Minimum control baseline (access, logs, data handling, retention).</li>
-                <li>Decision framing: what boards must explicitly approve vs delegate.</li>
-              </ul>
+
+              <div class="phase" id="phase-31-60">
+                <div class="k">
+                  <div class="n">Phase 2: Evidence</div>
+                  <div class="badge">31–60 days</div>
+                </div>
+                <ul>
+                  <li>Evidence map: what counts as proof and where it lives.</li>
+                  <li>Standard artefact pack (configs, screenshots, exports, runbooks).</li>
+                  <li>First Trust Ledger entries for highest-impact use cases.</li>
+                  <li>Board memo draft with options and trade-offs.</li>
+                </ul>
+              </div>
+
+              <div class="phase" id="phase-61-90">
+                <div class="k">
+                  <div class="n">Phase 3: Cadence</div>
+                  <div class="badge">61–90 days</div>
+                </div>
+                <ul>
+                  <li>Governance cadence (monthly ledger update; quarterly board review).</li>
+                  <li>Change control (prevent drift; document exceptions).</li>
+                  <li>Implementation routing (internal team or partners).</li>
+                  <li>Incident drill: reconstruct decisions after the fact.</li>
+                </ul>
+              </div>
+
+              <div class="phase" id="phase-output">
+                <div class="k">
+                  <div class="n">Output: Board-ready package</div>
+                  <div class="badge">deliverables</div>
+                </div>
+                <ul>
+                  <li>Control baseline with owners and evidence expectations.</li>
+                  <li>Starter Trust Ledger entries (material use cases first).</li>
+                  <li>Board memo: options, priorities, and decision record.</li>
+                  <li>Implementation plan: how controls + evidence trails get shipped.</li>
+                </ul>
+              </div>
             </div>
 
-            <div class="phase" id="phase-31-60">
-              <div class="k">
-                <div class="n">Phase 2: Evidence</div>
-                <div class="badge">31–60 days</div>
-              </div>
-              <ul>
-                <li>Evidence map: what counts as proof and where it lives.</li>
-                <li>Standard artefact pack (configs, screenshots, exports, runbooks).</li>
-                <li>First Trust Ledger entries for highest-impact use cases.</li>
-                <li>Board memo draft with options and trade-offs.</li>
-              </ul>
+            <div class="actions">
+              <a class="btn primary" href="/copilot/">Copilot Readiness Assessment</a>
+              <a class="btn secondary" href="/gate/intake/?need=copilot-readiness">Start via Gate</a>
+              <a class="btn secondary" href="/gate/partners/">Partners Gate</a>
             </div>
 
-            <div class="phase" id="phase-61-90">
-              <div class="k">
-                <div class="n">Phase 3: Cadence</div>
-                <div class="badge">61–90 days</div>
-              </div>
-              <ul>
-                <li>Governance cadence (monthly ledger update; quarterly board review).</li>
-                <li>Change control (prevent drift; document exceptions).</li>
-                <li>Implementation routing (internal team or partners).</li>
-                <li>Incident drill: reconstruct decisions after the fact.</li>
-              </ul>
-            </div>
-
-            <div class="phase" id="phase-output">
-              <div class="k">
-                <div class="n">Output: Board-ready package</div>
-                <div class="badge">deliverables</div>
-              </div>
-              <ul>
-                <li>Control baseline with owners and evidence expectations.</li>
-                <li>Starter Trust Ledger entries (material use cases first).</li>
-                <li>Board memo: options, priorities, and next-step plan.</li>
-                <li>Implementation plan: how controls + evidence trails get shipped.</li>
-              </ul>
+            <div class="box">
+              <strong>How this supports Copilot:</strong>
+              Copilot readiness is the enterprise delivery path. The Playbook modules below are the building blocks used
+              to define scope, controls, evidence, and board-ready decisions for Copilot rollout.
             </div>
           </div>
 
@@ -433,63 +514,55 @@
                 </tr>
               </tbody>
             </table>
+
+            <div class="box">
+              <strong>Implementation lanes:</strong> if controls/evidence trails require third parties,
+              route via <a href="/gate/partners/">Partners Gate</a>:
+              <a href="/gate/partners/integration/">Integration</a>,
+              <a href="/gate/partners/delivery/">Delivery</a>,
+              <a href="/gate/partners/channel/">Channel</a>.
+            </div>
           </div>
 
-          <div class="actions">
-            <a class="btn" href="/gate/intake/?need=playbook">Start via Gate</a>
-            <a class="btn secondary" href="/trust-brief/">Trust Brief</a>
-            <a class="btn secondary" href="/trust-ledger/">Trust Ledger</a>
-          </div>
+          <div class="section" id="kits">
+            <div class="sectionTitle">Optional digital kits (not the enterprise path)</div>
+            <p class="sectionDesc">
+              Useful for small teams or internal enablement. Enterprise delivery routes through Copilot / Gate.
+            </p>
 
-          <div class="box">
-            <strong>Implementation lanes:</strong> if controls/evidence trails require third parties,
-            route via <a href="/gate/partners/">Partners Gate</a>:
-            <a href="/gate/partners/integration/">Integration</a>,
-            <a href="/gate/partners/delivery/">Delivery</a>,
-            <a href="/gate/partners/channel/">Channel</a>.
-          </div>
-        </div>
-      </div>
-
-      <!-- ASIDE -->
-      <aside class="card">
-        <div class="hd">
-          <h2>Quick navigation</h2>
-          <p>Jump to phases, artefacts, and packages.</p>
-        </div>
-
-        <div class="bd">
-          <div class="toc" aria-label="Table of contents">
-            <a href="#phase-0-30"><span>Phase 1</span><strong>Baseline</strong><span class="arrow">→</span></a>
-            <a href="#phase-31-60"><span>Phase 2</span><strong>Evidence</strong><span class="arrow">→</span></a>
-            <a href="#phase-61-90"><span>Phase 3</span><strong>Cadence</strong><span class="arrow">→</span></a>
-            <a href="#artefacts"><span>Standard</span><strong>Artefacts</strong><span class="arrow">→</span></a>
-          </div>
-
-          <div class="section" style="margin-top:14px;" id="packages">
-            <div class="sectionTitle">Playbook packages</div>
-            <p class="sectionDesc">These sub-pages are the modular building blocks under this pattern.</p>
-
-            <div class="pkgGrid" aria-label="Playbook packages">
+            <div class="pkgGrid" aria-label="Digital kits">
               <a class="pkg" href="/playbook/standard/">
-                <div class="t">Package</div>
-                <div class="n">Standard</div>
-                <div class="d">Baseline governance pattern + starter artefacts. Good default for most teams.</div>
+                <div class="t">Digital kit</div>
+                <div class="n">Playbook — Standard</div>
+                <div class="d">Baseline governance pattern + starter artefacts. Good default for most small teams.</div>
                 <div class="m">/playbook/standard</div>
               </a>
               <a class="pkg" href="/playbook/pro/">
-                <div class="t">Package</div>
-                <div class="n">Pro</div>
-                <div class="d">Deeper evidence discipline, stronger board outputs, more ledger coverage.</div>
+                <div class="t">Digital kit</div>
+                <div class="n">Playbook — Pro</div>
+                <div class="d">Deeper evidence discipline and stronger board outputs for more pressure environments.</div>
                 <div class="m">/playbook/pro</div>
               </a>
+            </div>
 
+            <div class="box">
+              <strong>Note:</strong> if you sell these via Stripe links, keep messaging “digital delivery / not legal advice / single org vs multi-client license”
+              on the Standard/Pro sub-pages and route enterprise buyers to <a href="/copilot/">Copilot Readiness</a>.
+            </div>
+          </div>
+
+          <div class="section" id="modules">
+            <div class="sectionTitle">Modules library</div>
+            <p class="sectionDesc">Modular building blocks used across Copilot readiness, Trust Brief, and ongoing Trust Ledger operations.</p>
+
+            <div class="pkgGrid" aria-label="Modules">
               <a class="pkg" href="/playbook/vendor-due-diligence/">
                 <div class="t">Module</div>
                 <div class="n">Vendor due diligence</div>
-                <div class="d">Procurement-ready questions, evidence asks, and risk posture structure.</div>
+                <div class="d">Procurement-ready questions, evidence asks, and a risk posture structure.</div>
                 <div class="m">/playbook/vendor-due-diligence</div>
               </a>
+
               <a class="pkg" href="/playbook/ai-policy/">
                 <div class="t">Module</div>
                 <div class="n">AI policy</div>
@@ -500,9 +573,10 @@
               <a class="pkg" href="/playbook/iso-42001/">
                 <div class="t">Module</div>
                 <div class="n">ISO/IEC 42001</div>
-                <div class="d">Governance structure aligned to an AI management system approach.</div>
+                <div class="d">AI management system lens for governance structure and auditability.</div>
                 <div class="m">/playbook/iso-42001</div>
               </a>
+
               <a class="pkg" href="/playbook/eu-ai-act/">
                 <div class="t">Module</div>
                 <div class="n">EU AI Act</div>
@@ -513,9 +587,10 @@
               <a class="pkg" href="/playbook/ledger-schema/">
                 <div class="t">Module</div>
                 <div class="n">Ledger schema</div>
-                <div class="d">A practical structure for entries: scope, owners, controls, proof, changes.</div>
+                <div class="d">Practical entry structure: scope, owners, controls, proof, changes.</div>
                 <div class="m">/playbook/ledger-schema</div>
               </a>
+
               <a class="pkg" href="/playbook/board-trust-brief/">
                 <div class="t">Module</div>
                 <div class="n">Board Trust Brief</div>
@@ -529,25 +604,107 @@
                 <div class="d">Operating mandate: scope, boundaries, escalation, and accountability.</div>
                 <div class="m">/playbook/mandate</div>
               </a>
+
+              <a class="pkg" href="/trust-ledger/">
+                <div class="t">Reference</div>
+                <div class="n">Trust Ledger</div>
+                <div class="d">Ongoing governance operations: entries, controls, proof, changes, incidents.</div>
+                <div class="m">/trust-ledger</div>
+              </a>
+            </div>
+
+            <div class="box">
+              <strong>Slug discipline:</strong> if any paths differ in production, add redirects or update the hrefs here to match live routes.
+            </div>
+          </div>
+
+          <div class="section" id="faq">
+            <div class="sectionTitle">Procurement FAQ</div>
+            <p class="sectionDesc">Common questions from boards, legal, privacy, security, and procurement.</p>
+
+            <div class="faq" aria-label="FAQ list">
+              <details>
+                <summary>Is this a policy document? <span class="chev">▾</span></summary>
+                <p>No. Policy is optional. The focus is governed artefacts: owners, controls, evidence expectations, decision records, and ledger entries that remain readable under scrutiny.</p>
+              </details>
+
+              <details>
+                <summary>What do you need from us? <span class="chev">▾</span></summary>
+                <p>A short intake, an accountable owner contact, and access to non-secret exports/screenshots for evidence posture. If deeper access is required, it is handled through a controlled engagement path after Gate triage.</p>
+              </details>
+
+              <details>
+                <summary>How do you handle confidentiality? <span class="chev">▾</span></summary>
+                <p>Public intake is non-confidential. Sensitive details are not submitted via public forms. Any confidential exchange is routed into a controlled engagement path after Gate triage.</p>
+              </details>
+
+              <details>
+                <summary>Who owns the outputs? <span class="chev">▾</span></summary>
+                <p>The organization owns its governance artefacts and internal records. Noetfield retains its underlying methodologies, schemas, and delivery system.</p>
+              </details>
+
+              <details>
+                <summary>Can our partner/MSP implement controls? <span class="chev">▾</span></summary>
+                <p>Yes. Route partners through <a href="/gate/partners/">Partners Gate</a>. Implementation lanes require evidence discipline so changes remain provable and auditable.</p>
+              </details>
+
+              <details>
+                <summary>What happens after 90 days? <span class="chev">▾</span></summary>
+                <p>The target outcome is a stable cadence: periodic updates, drift prevention, change control, and ledger maintenance—typically transitioning into Trust Ledger operations.</p>
+              </details>
             </div>
 
             <div class="box" style="margin-top:12px;">
-              <strong>Note:</strong> keep slugs consistent. If the current live paths differ, either add redirects or update these hrefs to match production.
+              <strong>Best next step:</strong>
+              for enterprise readiness, start at <a href="/copilot/">Copilot Readiness Assessment</a> or submit a <a href="/gate/intake/?need=copilot-readiness">Gate intake</a>.
             </div>
+          </div>
+
+          <div class="actions">
+            <a class="btn primary" href="/copilot/">Copilot Readiness Assessment</a>
+            <a class="btn secondary" href="/gate/intake/?need=copilot-readiness">Start via Gate</a>
+            <a class="btn secondary" href="/gate/sales/">Purchase</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- ASIDE -->
+      <aside class="card">
+        <div class="hd">
+          <h2>Quick navigation</h2>
+          <p>Jump to pattern, artefacts, modules, and procurement answers.</p>
+        </div>
+
+        <div class="bd">
+          <div class="toc" aria-label="Table of contents">
+            <a href="#pattern"><span>0–90</span><strong>Pattern</strong><span class="arrow">→</span></a>
+            <a href="#artefacts"><span>Standard</span><strong>Artefacts</strong><span class="arrow">→</span></a>
+            <a href="#kits"><span>Optional</span><strong>Digital kits</strong><span class="arrow">→</span></a>
+            <a href="#modules"><span>Library</span><strong>Modules</strong><span class="arrow">→</span></a>
+            <a href="#faq"><span>Procurement</span><strong>FAQ</strong><span class="arrow">→</span></a>
           </div>
 
           <div class="box" style="margin-top:14px;">
             <strong>Use this when:</strong><br/>
-            AI is in production, Copilot is rolling out, vendor AI is embedded in workflows, or audit pressure is rising — and a board-safe posture is needed quickly without building heavy bureaucracy.
+            Copilot rollout is planned, vendor AI is embedded in workflows, audit/procurement pressure is rising, or leadership needs a defensible posture without heavy bureaucracy.
           </div>
 
           <div class="section" style="margin-top:14px;">
-            <div class="sectionTitle">Start here</div>
-            <p class="sectionDesc">Convert this pattern into delivery via a single procurement-ready entry.</p>
+            <div class="sectionTitle">Start here (enterprise)</div>
+            <p class="sectionDesc">Primary enterprise path is Copilot readiness. Gate is the intake router.</p>
             <div class="actions" style="margin-top:10px;">
-              <a class="btn" href="/gate/intake/?need=playbook">Start via Gate</a>
+              <a class="btn primary" href="/copilot/">Copilot Readiness</a>
+              <a class="btn secondary" href="/gate/intake/?need=copilot-readiness">Gate intake</a>
               <a class="btn secondary" href="/status/">Status</a>
             </div>
+          </div>
+
+          <div class="box" style="margin-top:14px;">
+            <strong>Reference:</strong><br/>
+            <a href="/trust-ledger/">Trust Ledger</a> ·
+            <a href="/trust-brief/">Trust Brief</a> ·
+            <a href="/gate/">Gate</a> ·
+            <a href="/for-whom/">For Whom</a>
           </div>
         </div>
       </aside>
@@ -561,9 +718,11 @@
     SMOKE TEST
     - GET /playbook/ returns 200
     - /assets/noetfield-shell.css returns 200 and styles apply
-    - /assets/noetfield-shell.js returns 200 and header/footer inject into #nfHeader/#nfFooter
-    - Primary CTA routes to /gate/intake/?need=playbook
-    - All package links resolve (or are redirected) to 200
+    - /assets/noetfield-shell.js returns 200 and injects header/footer into #nfHeader/#nfFooter
+    - Primary CTA routes to /copilot/ (200)
+    - Gate intake route works: /gate/intake/?need=copilot-readiness (200)
+    - All module links either resolve to 200 or are redirected properly
+    - Desktop: header boxed/sticky; Mobile: no overlap with hero
   -->
 </body>
 </html>

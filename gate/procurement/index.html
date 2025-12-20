@@ -1,4 +1,4 @@
-<!-- /gate/procurement/index.html — Noetfield Procurement v1.0 (Invoice/PO + Vendor Onboarding + Short Request Form) -->
+<!-- /gate/procurement/index.html — Noetfield Procurement v2.0 (Procurement Pack + Request ID + Email Builder + Vendor Snapshot) -->
 <!doctype html>
 <html lang="en">
 <head>
@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <title>Noetfield — Procurement (Invoice / PO)</title>
-  <meta name="description" content="Invoice/PO purchasing and vendor onboarding. Procurement snapshot, security/privacy notes, contracting options, and a short request flow." />
+  <meta name="description" content="Invoice/PO purchasing and vendor onboarding. Procurement pack, security & privacy summary, contracting options, and a short request flow with Request ID." />
   <meta name="robots" content="index,follow" />
   <meta name="author" content="Noetfield Systems Inc." />
   <meta name="theme-color" content="#07070b" />
@@ -18,13 +18,13 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Noetfield" />
   <meta property="og:title" content="Noetfield — Procurement" />
-  <meta property="og:description" content="Invoice/PO purchasing and vendor onboarding. Short request flow + procurement snapshot." />
+  <meta property="og:description" content="Invoice/PO purchasing and vendor onboarding. Procurement pack + short request flow with Request ID." />
   <meta property="og:url" content="https://www.noetfield.com/gate/procurement/" />
   <meta property="og:image" content="https://www.noetfield.com/noetfield-og.png" />
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Noetfield — Procurement" />
-  <meta name="twitter:description" content="Invoice/PO purchasing and vendor onboarding. Short request flow + procurement snapshot." />
+  <meta name="twitter:description" content="Invoice/PO purchasing and vendor onboarding. Procurement pack + short request flow with Request ID." />
   <meta name="twitter:image" content="https://www.noetfield.com/noetfield-og.png" />
 
   <!-- LOCKED SHELL -->
@@ -32,10 +32,10 @@
   <script src="/assets/noetfield-shell.js" defer></script>
 
   <style>
-    .nfPHero { padding: 18px 0 10px; }
-    .nfPHeroShell{
+    .nfHero{ padding: 18px 0 10px; }
+    .nfHeroShell{
       position:relative;
-      border-radius: calc(var(--radius) + 8px);
+      border-radius: calc(var(--radius) + 10px);
       border: 1px solid rgba(255,255,255,.11);
       background:
         radial-gradient(1000px 420px at 18% 0%, rgba(200,163,73,.16), transparent 60%),
@@ -44,8 +44,8 @@
       box-shadow: var(--shadow);
       overflow:hidden;
     }
-    .nfPHeroInner{ padding: 22px 18px; position:relative; z-index:1; }
-    .nfPEyebrow{
+    .nfHeroInner{ padding: 22px 18px; position:relative; z-index:1; }
+    .nfEyebrow{
       display:inline-flex; gap:10px; align-items:center;
       color:var(--muted);
       font-size:13px;
@@ -53,17 +53,19 @@
       border-radius:999px;
       border:1px solid rgba(255,255,255,.13);
       background: rgba(255,255,255,.035);
+      flex-wrap:wrap;
     }
-    .nfPDot{
+    .nfDot{
       width:8px; height:8px; border-radius:50%;
       background: rgba(200,163,73,.97);
       box-shadow: 0 0 0 3px rgba(200,163,73,.18);
+      flex:0 0 auto;
     }
-    .nfPTitle{ margin:12px 0 10px; font-size: 34px; line-height:1.07; letter-spacing:-0.75px; }
-    .nfPLead{ margin:0; color:var(--muted); font-size:16px; max-width: 980px; line-height:1.75; }
-    .nfPLead strong{ color: var(--text); font-weight: 900; }
+    .nfTitle{ margin:12px 0 10px; font-size: 34px; line-height:1.07; letter-spacing:-0.75px; }
+    .nfLead{ margin:0; color:var(--muted); font-size:16px; max-width: 980px; line-height:1.75; }
+    .nfLead strong{ color: var(--text); font-weight: 900; }
 
-    .nfPNotice{
+    .nfNotice{
       margin-top:12px;
       padding:12px 12px;
       border-radius:14px;
@@ -73,10 +75,10 @@
       font-size:12.8px;
       line-height:1.6;
     }
-    .nfPNotice strong{ color:var(--text); font-weight:900; }
-    .nfPNotice a{ border-bottom:1px solid rgba(255,255,255,.18); }
+    .nfNotice strong{ color:var(--text); font-weight:900; }
+    .nfNotice a{ border-bottom:1px solid rgba(255,255,255,.18); }
 
-    .nfPGrid{
+    .nfGrid{
       display:grid;
       grid-template-columns: 1.05fr .95fr;
       gap:16px;
@@ -108,6 +110,19 @@
     .nfBlock p{ margin:0; color:var(--muted); line-height:1.7; }
     .nfBlock ul{ margin:10px 0 0; padding-left:18px; color:var(--muted2); line-height:1.6; }
     .nfBlock li{ margin:6px 0; }
+    .nfPills{ display:flex; flex-wrap:wrap; gap:8px; margin-top:10px; }
+    .nfPill{
+      display:inline-flex; align-items:center; gap:8px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.03);
+      padding:8px 10px;
+      color:var(--muted2);
+      font-size:12.6px;
+      line-height:1;
+      white-space:nowrap;
+    }
+    .nfPill b{ color:var(--text); font-weight:900; }
 
     .nfRow{ display:grid; gap:10px; grid-template-columns: repeat(12, minmax(0, 1fr)); margin-top:12px; }
     .nfField{ grid-column: span 6; min-width:0; }
@@ -142,6 +157,7 @@
     }
     .nfRailHd{ padding:18px 18px 0; }
     .nfRailBd{ padding:18px; }
+
     .nfKpi{
       border-radius:16px;
       border:1px solid rgba(255,255,255,.10);
@@ -151,17 +167,78 @@
       color:var(--muted2);
       font-size:12.8px;
       line-height:1.6;
+      word-break:break-word;
     }
     .nfKpi strong{ color:var(--text); font-weight:900; }
+
     .nfActions{ display:grid; gap:10px; margin-top:12px; }
     .nfActions .btn{ min-height:46px; }
     .nfMini{ margin-top:10px; color:var(--muted2); font-size:12.6px; line-height:1.6; }
     .nfMini a{ border-bottom:1px solid rgba(255,255,255,.18); }
 
+    details.nfFAQ{
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.11);
+      background: rgba(255,255,255,.03);
+      padding:12px 12px;
+      margin-top:10px;
+    }
+    details.nfFAQ summary{
+      cursor:pointer;
+      color: var(--text);
+      font-weight: 900;
+      letter-spacing: -.1px;
+      list-style:none;
+      outline:none;
+    }
+    details.nfFAQ summary::-webkit-details-marker{ display:none; }
+    details.nfFAQ .nfFAQBody{
+      margin-top:8px;
+      color:var(--muted2);
+      line-height:1.7;
+      font-size:13px;
+    }
+    .nfBad{ color: rgba(255,140,140,.92); }
+    .nfOk{ color: rgba(175,255,210,.92); }
+
+    .nfRidBox{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
+      margin-top:12px;
+    }
+    .nfRid{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.03);
+      padding:10px 12px;
+      color:var(--muted2);
+      font-size:12.8px;
+      line-height:1.4;
+      word-break:break-word;
+    }
+    .nfRid b{ color:var(--text); font-weight:900; }
+    .nfTinyBtn{
+      display:inline-flex; align-items:center; justify-content:center;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.03);
+      color: rgba(255,255,255,.92);
+      padding:10px 12px;
+      font-size:12.8px;
+      min-height:40px;
+      cursor:pointer;
+    }
+    .nfTinyBtn:hover{ background: rgba(255,255,255,.05); }
+
     @media (max-width: 980px){
-      .nfPGrid{ grid-template-columns: 1fr; }
+      .nfGrid{ grid-template-columns: 1fr; }
       .nfRail{ position: relative; top: 0; }
-      .nfPTitle{ font-size: 28px; }
+      .nfTitle{ font-size: 28px; }
       .nfField{ grid-column: span 12; }
     }
   </style>
@@ -172,9 +249,19 @@
     "@type":"WebPage",
     "name":"Noetfield — Procurement (Invoice / PO)",
     "url":"https://www.noetfield.com/gate/procurement/",
-    "description":"Invoice/PO purchasing and vendor onboarding.",
+    "description":"Invoice/PO purchasing and vendor onboarding. Procurement pack, security & privacy summary, contracting options, and a short request flow.",
     "isPartOf":{"@type":"WebSite","name":"Noetfield","url":"https://www.noetfield.com/"},
-    "publisher":{"@type":"Organization","name":"Noetfield Systems Inc."}
+    "publisher":{
+      "@type":"Organization",
+      "name":"Noetfield Systems Inc.",
+      "url":"https://www.noetfield.com/",
+      "contactPoint":[
+        {"@type":"ContactPoint","contactType":"procurement","email":"procurement@noetfield.com"},
+        {"@type":"ContactPoint","contactType":"billing","email":"billing@noetfield.com"},
+        {"@type":"ContactPoint","contactType":"support","email":"support@noetfield.com"},
+        {"@type":"ContactPoint","contactType":"sales","email":"sales@noetfield.com"}
+      ]
+    }
   }
   </script>
 </head>
@@ -187,17 +274,26 @@
   <header id="nfHeader"></header>
 
   <main id="main" class="wrap">
-    <section class="nfPHero" aria-label="Procurement hero">
-      <div class="nfPHeroShell">
-        <div class="nfPHeroInner">
-          <div class="nfPEyebrow"><span class="nfPDot"></span> Invoice / PO • vendor onboarding • procurement-grade</div>
-          <h1 class="nfPTitle">Procurement (Invoice / PO)</h1>
-          <p class="nfPLead">
-            This page is for organisations that purchase via <strong>invoice</strong>, <strong>purchase order</strong>, or formal vendor onboarding.
-            If you already know the package, you can also use <strong>/gate/sales</strong> for direct starts.
+    <!-- HERO -->
+    <section class="nfHero" aria-label="Procurement hero">
+      <div class="nfHeroShell">
+        <div class="nfHeroInner">
+          <div class="nfEyebrow"><span class="nfDot"></span> Invoice / PO • vendor onboarding • procurement-grade</div>
+          <h1 class="nfTitle">Procurement (Invoice / PO)</h1>
+          <p class="nfLead">
+            Procurement path for organisations purchasing via <strong>invoice</strong>, <strong>purchase order</strong>, or formal vendor onboarding.
+            Direct card starts remain available on <strong>/gate/sales</strong>.
           </p>
 
-          <div class="nfPNotice" role="note">
+          <div class="nfRidBox" aria-label="Request ID box">
+            <div class="nfRid" role="note">
+              <b>Request ID</b> <span id="nfRidText">—</span><span aria-hidden="true">•</span><span>Use this ID in procurement email threads.</span>
+            </div>
+            <button class="nfTinyBtn" id="nfRidCopyBtn" type="button">Copy Request ID</button>
+            <a class="nfTinyBtn" id="nfStatusBtn" href="/status/" aria-label="Open status page">Open Status</a>
+          </div>
+
+          <div class="nfNotice" role="note">
             <strong>Public intake = non-confidential.</strong>
             Do not submit secrets, credentials, private keys, or regulated personal data. Secure sharing options are confirmed after kickoff.
           </div>
@@ -205,89 +301,143 @@
       </div>
     </section>
 
-    <section class="nfPGrid" aria-label="Procurement layout">
+    <section class="nfGrid" aria-label="Procurement layout">
       <!-- LEFT -->
       <div>
-        <section class="nfCard" aria-label="How to buy">
+        <!-- FLOW -->
+        <section class="nfCard" aria-label="How procurement works">
           <div class="nfCardHd">
-            <h2 class="nfCardTitle">How procurement typically works</h2>
-            <p class="nfMuted">A clean, repeatable flow: pick the package, request invoice/PO onboarding, then confirm kickoff.</p>
+            <h2 class="nfCardTitle">Procurement flow (typical)</h2>
+            <p class="nfMuted">A repeatable, buyer-friendly track to reduce questionnaire churn and accelerate onboarding.</p>
           </div>
           <div class="nfCardBd">
             <div class="nfBlock">
-              <h3>1) Choose the package</h3>
-              <p>Use Sales for direct package links, or start with QuickScan if you need fast decision-ready outputs.</p>
+              <h3>1) Select the offer</h3>
+              <p>Pick a known package (recommended), or start with QuickScan if a fast decision-ready output is required.</p>
               <div class="actions" style="display:flex; gap:10px; flex-wrap:wrap; margin-top:12px;">
                 <a class="btn" href="/gate/sales/">Open Sales</a>
-                <a class="btn secondary" href="/copilot/quickscan/">QuickScan details</a>
-                <a class="btn secondary" href="/trust-brief/">Trust Brief details</a>
+                <a class="btn secondary" href="/copilot/quickscan/">Copilot QuickScan</a>
+                <a class="btn secondary" href="/trust-brief/">Trust Brief</a>
+              </div>
+              <div class="nfPills" aria-label="Common procurement outcomes">
+                <span class="nfPill"><b>Outcome</b> Board-ready snapshot</span>
+                <span class="nfPill"><b>Outcome</b> Scope + SOW clarity</span>
+                <span class="nfPill"><b>Outcome</b> Evidence discipline</span>
               </div>
             </div>
 
             <div class="nfBlock">
-              <h3>2) Start invoice/PO onboarding</h3>
-              <p>Submit the short request below (or generate a prefilled email) to trigger the procurement track.</p>
+              <h3>2) Trigger invoice / PO onboarding</h3>
+              <p>Use the short request below (or the one-click email builder). Procurement pack links are included automatically.</p>
               <ul>
-                <li>Invoice terms: Net 30/45/60 (as required by your process)</li>
-                <li>PO purchasing: SOW + vendor onboarding snapshot available</li>
-                <li>Contracting: NDA/MSA/SOW/DPA available on request</li>
+                <li>Invoice terms: Net 30/45/60 (as required by buyer policy)</li>
+                <li>PO purchasing: SOW + procurement snapshot available</li>
+                <li>Contracting: NDA / MSA / SOW / DPA available on request</li>
               </ul>
             </div>
 
             <div class="nfBlock">
-              <h3>3) Kickoff (lightweight by default)</h3>
-              <p>Email-first kickoff is supported to reduce back-and-forth. A short call is available if your process requires scope confirmation.</p>
+              <h3>3) Kickoff (email-first by default)</h3>
+              <p>Kickoff runs asynchronously unless a call is required by policy. Secure sharing options are set after kickoff (if needed).</p>
             </div>
 
-            <div class="nfPNotice">
-              <strong>Vendor page:</strong> If your team prefers a dedicated vendor snapshot page, use <a href="/vendor/">/vendor/</a>.
+            <div class="nfNotice">
+              Prefer a dedicated vendor overview page? Use <a href="/vendor/">/vendor/</a>.
             </div>
           </div>
         </section>
 
+        <!-- PROCUREMENT PACK -->
+        <section class="nfCard" aria-label="Procurement pack" style="margin-top:14px;">
+          <div class="nfCardHd">
+            <h2 class="nfCardTitle">Procurement pack (quick links)</h2>
+            <p class="nfMuted">Buyer-friendly artifacts to speed internal approvals.</p>
+          </div>
+          <div class="nfCardBd">
+            <div class="nfBlock">
+              <h3>What to forward internally</h3>
+              <ul>
+                <li><strong>Sales start:</strong> <a href="/gate/sales/">/gate/sales/</a> (direct package selection)</li>
+                <li><strong>Vendor overview:</strong> <a href="/vendor/">/vendor/</a></li>
+                <li><strong>Status tracking:</strong> <a id="nfStatusInline" href="/status/">/status/</a> (use Request ID)</li>
+              </ul>
+            </div>
+
+            <div class="nfBlock">
+              <h3>Optional: downloadable procurement files</h3>
+              <p>Publish these routes when ready (static PDF/HTML is acceptable).</p>
+              <ul>
+                <li><a href="/gate/procurement/procurement-pack.pdf">/gate/procurement/procurement-pack.pdf</a> (one-page procurement snapshot)</li>
+                <li><a href="/gate/procurement/security-privacy-summary.pdf">/gate/procurement/security-privacy-summary.pdf</a> (high-level summary)</li>
+                <li><a href="/gate/procurement/contracting-notes.pdf">/gate/procurement/contracting-notes.pdf</a> (NDA/MSA/SOW/DPA overview)</li>
+              </ul>
+              <div class="nfNotice" style="margin-top:12px;">
+                If PDFs are not published, keep the same content on-page and link to sections below.
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- VENDOR SNAPSHOT -->
         <section class="nfCard" aria-label="Vendor onboarding snapshot" style="margin-top:14px;">
           <div class="nfCardHd">
-            <h2 class="nfCardTitle">Vendor onboarding snapshot (buyer-facing)</h2>
-            <p class="nfMuted">Procurement-grade, short-form content that reduces questionnaire churn.</p>
+            <h2 class="nfCardTitle">Vendor onboarding snapshot (procurement-grade)</h2>
+            <p class="nfMuted">Short, consistent answers that map cleanly to common vendor questionnaires.</p>
           </div>
           <div class="nfCardBd">
             <div class="nfBlock">
               <h3>Vendor profile</h3>
               <ul>
                 <li>Legal entity: Noetfield Systems Inc. (details provided during procurement)</li>
-                <li>Primary contacts: procurement + billing + support (see right rail)</li>
-                <li>Delivery model: asynchronous-first; short call available when required</li>
+                <li>Currency: CAD (unless otherwise agreed in writing)</li>
+                <li>Delivery model: asynchronous-first; call available when policy requires</li>
+                <li>Outputs: board-safe, procurement-friendly artifacts</li>
               </ul>
             </div>
 
             <div class="nfBlock">
               <h3>Security & privacy (high-level)</h3>
               <ul>
-                <li>Public intake is non-confidential by policy</li>
-                <li>Secure sharing options are confirmed after kickoff if required</li>
-                <li>Outputs are designed to be board-safe and procurement-friendly</li>
+                <li><strong class="nfOk">Default:</strong> public intake is non-confidential (no secrets or regulated personal data)</li>
+                <li><strong class="nfOk">After kickoff:</strong> secure sharing options can be established where required</li>
+                <li><strong class="nfOk">Data minimisation:</strong> scope uses the minimum necessary information for delivery</li>
+                <li><strong class="nfBad">Not accepted via public forms:</strong> credentials, private keys, sensitive personal data</li>
               </ul>
             </div>
 
             <div class="nfBlock">
-              <h3>Contracting</h3>
+              <h3>Contracting & compliance</h3>
               <ul>
                 <li>NDA / MSA / SOW available on request</li>
-                <li>DPA / privacy review available where applicable</li>
-                <li>Scope drivers are explicitly defined per package to avoid surprises</li>
+                <li>DPA / privacy review supported where applicable</li>
+                <li>Scope drivers and exclusions are defined per package to avoid surprises</li>
               </ul>
             </div>
+
+            <details class="nfFAQ">
+              <summary>What does “procurement-grade” mean here?</summary>
+              <div class="nfFAQBody">
+                Short-form buyer language, stable package boundaries, explicit deliverables, and a clear evidence trail suitable for internal approvals.
+              </div>
+            </details>
+            <details class="nfFAQ">
+              <summary>Can vendor questionnaires be completed?</summary>
+              <div class="nfFAQBody">
+                Yes. Send the questionnaire to <a href="mailto:procurement@noetfield.com">procurement@noetfield.com</a> with the Request ID. A concise response pack is returned.
+              </div>
+            </details>
           </div>
         </section>
 
+        <!-- REQUEST -->
         <section class="nfCard" aria-label="Procurement request" style="margin-top:14px;">
           <div class="nfCardHd">
             <h2 class="nfCardTitle">Request invoice / PO onboarding</h2>
-            <p class="nfMuted">Short form (non-confidential) + one-click email builder fallback.</p>
+            <p class="nfMuted">Short request (non-confidential). Generates a procurement email from your own email client.</p>
           </div>
           <div class="nfCardBd">
-            <div class="nfPNotice" style="margin-top:0;">
-              If your environment blocks web submissions, use the email builder and send from your own email client.
+            <div class="nfNotice" style="margin-top:0;">
+              If web submission is blocked by policy, use <strong>Prepare procurement email</strong>. No backend required.
             </div>
 
             <form id="nfProcEmailForm" novalidate>
@@ -298,27 +448,30 @@
                 </div>
 
                 <div class="nfField">
-                  <label class="nfLabel" for="nf_reply">Your work email</label>
+                  <label class="nfLabel" for="nf_reply">Work email</label>
                   <input class="nfInput" id="nf_reply" type="email" placeholder="name@org.com" autocomplete="email" inputmode="email" />
                 </div>
 
                 <div class="nfField">
-                  <label class="nfLabel" for="nf_contact">Contact name (optional)</label>
+                  <label class="nfLabel" for="nf_contact">Contact name</label>
                   <input class="nfInput" id="nf_contact" type="text" placeholder="Name" autocomplete="name" />
                 </div>
 
                 <div class="nfField">
-                  <label class="nfLabel" for="nf_role">Role/team (optional)</label>
-                  <input class="nfInput" id="nf_role" type="text" placeholder="Procurement, IT, Security..." />
+                  <label class="nfLabel" for="nf_role">Team / role</label>
+                  <input class="nfInput" id="nf_role" type="text" placeholder="Procurement, IT, Security, Legal..." />
                 </div>
 
                 <div class="nfField">
-                  <label class="nfLabel" for="nf_package">Package</label>
+                  <label class="nfLabel" for="nf_package">Offer</label>
                   <select class="nfSelect" id="nf_package">
-                    <option value="quickscan">Copilot QuickScan</option>
-                    <option value="brief">Trust Brief (6-week)</option>
-                    <option value="ledger">Trust Ledger</option>
-                    <option value="playbook">Playbook Pro</option>
+                    <option value="quickscan">Copilot QuickScan (5-day)</option>
+                    <option value="m365-starter">Microsoft 365 Copilot Readiness Assessment — Starter (2 weeks)</option>
+                    <option value="m365-standard" selected>Microsoft 365 Copilot Readiness Assessment — Standard (4 weeks)</option>
+                    <option value="m365-extended">Microsoft 365 Copilot Readiness Assessment — Extended (6 weeks)</option>
+                    <option value="trust-brief">Trust Brief (6-week)</option>
+                    <option value="trust-ledger">Trust Ledger (retainer)</option>
+                    <option value="playbook-pro">Playbook Pro (license)</option>
                     <option value="other">Other / not sure</option>
                   </select>
                 </div>
@@ -333,8 +486,23 @@
                   </select>
                 </div>
 
+                <div class="nfField">
+                  <label class="nfLabel" for="nf_terms">Invoice terms</label>
+                  <select class="nfSelect" id="nf_terms">
+                    <option value="net30" selected>Net 30</option>
+                    <option value="net45">Net 45</option>
+                    <option value="net60">Net 60</option>
+                    <option value="other">Other / per policy</option>
+                  </select>
+                </div>
+
+                <div class="nfField">
+                  <label class="nfLabel" for="nf_po">PO number (if known)</label>
+                  <input class="nfInput" id="nf_po" type="text" placeholder="Optional" />
+                </div>
+
                 <div class="nfField full">
-                  <label class="nfLabel" for="nf_timeline">Timing (optional)</label>
+                  <label class="nfLabel" for="nf_timeline">Timing</label>
                   <input class="nfInput" id="nf_timeline" type="text" placeholder="e.g., this week / this quarter / target date" />
                 </div>
 
@@ -345,21 +513,60 @@
 
                 <div class="nfField full" style="display:flex; gap:10px; flex-wrap:wrap;">
                   <button class="btn" type="submit">Prepare procurement email</button>
+                  <button class="btn secondary" id="nfCopyTextBtn" type="button">Copy request text</button>
                   <a class="btn secondary" href="/gate/sales/">Open Sales</a>
                   <a class="btn secondary" href="/gate/">Back to Gate</a>
                 </div>
               </div>
 
-              <p class="nfPNotice" style="margin-top:12px;">
-                <strong>Reminder:</strong> Public intake is non-confidential. Secure sharing options are confirmed after kickoff.
+              <p class="nfNotice" style="margin-top:12px;">
+                <strong>Reminder:</strong> This form generates an email from your device. Public intake is non-confidential. Secure sharing options are confirmed after kickoff.
+              </p>
+
+              <p class="nfNotice" id="nfFormErr" style="display:none; margin-top:12px;">
+                <strong>Action needed:</strong> Please add <strong>Organisation</strong> and a valid <strong>Work email</strong>.
               </p>
             </form>
+          </div>
+        </section>
+
+        <!-- FAQ -->
+        <section class="nfCard" aria-label="Procurement FAQ" style="margin-top:14px;">
+          <div class="nfCardHd">
+            <h2 class="nfCardTitle">Procurement FAQ</h2>
+            <p class="nfMuted">Short answers aligned to common enterprise procurement questions.</p>
+          </div>
+          <div class="nfCardBd">
+            <details class="nfFAQ">
+              <summary>Is card payment required?</summary>
+              <div class="nfFAQBody">
+                No. Card is optional via <a href="/gate/sales/">/gate/sales/</a>. Procurement can proceed via invoice, PO, or vendor onboarding.
+              </div>
+            </details>
+            <details class="nfFAQ">
+              <summary>Does Noetfield sign NDAs and DPAs?</summary>
+              <div class="nfFAQBody">
+                NDA/MSA/SOW/DPA are supported as required by buyer policy. Send documents to <a href="mailto:procurement@noetfield.com">procurement@noetfield.com</a> with the Request ID.
+              </div>
+            </details>
+            <details class="nfFAQ">
+              <summary>What should be sent before kickoff?</summary>
+              <div class="nfFAQBody">
+                Only high-level context and internal process requirements. Do not send secrets/credentials via public channels. Secure options are confirmed after kickoff when required.
+              </div>
+            </details>
+            <details class="nfFAQ">
+              <summary>How is delivery structured?</summary>
+              <div class="nfFAQBody">
+                Asynchronous-first delivery with board/procurement-ready artifacts. A short call is available if your policy requires live scope confirmation.
+              </div>
+            </details>
           </div>
         </section>
       </div>
 
       <!-- RIGHT -->
-      <aside class="nfRail" aria-label="Procurement contacts and fast starts">
+      <aside class="nfRail" aria-label="Procurement contacts and actions">
         <div class="nfRailBox">
           <div class="nfRailHd">
             <h2 class="nfCardTitle" style="margin-bottom:6px;">Contacts</h2>
@@ -384,14 +591,25 @@
               offer selection · scope questions · start dates
             </div>
 
+            <div class="nfKpi">
+              <strong>Support</strong><br/>
+              <a id="nfSupportEmailLink" href="mailto:support@noetfield.com">support@noetfield.com</a><br/>
+              delivery operations · status follow-ups
+            </div>
+
             <div class="nfActions">
               <a class="btn" href="/gate/sales/">Open Sales</a>
               <a class="btn secondary" href="/vendor/">Vendor page</a>
               <a class="btn secondary" href="/copilot/quickscan/intake/">Start QuickScan</a>
+              <a class="btn secondary" id="nfStatusBtn2" href="/status/">Open Status</a>
             </div>
 
             <div class="nfMini">
-              Kickoff is email-first by default. A short call is available if your process requires scope confirmation.
+              Kickoff is email-first by default. A short call is available if procurement policy requires it.
+            </div>
+
+            <div class="nfNotice" style="margin-top:12px;">
+              <strong>Internal note:</strong> Add the Request ID to PO / invoice comments where possible.
             </div>
           </div>
         </div>
@@ -404,10 +622,13 @@
 
   <script>
     (function(){
-      // Procurement email builder (mailto). No web submission.
-      var NF_PROC_EMAIL = "procurement@noetfield.com";
-      var NF_BILLING_EMAIL = "billing@noetfield.com";
-      var NF_SALES_EMAIL = "sales@noetfield.com";
+      // Contacts (align with current routing)
+      var NF = {
+        procurement: "procurement@noetfield.com",
+        billing: "billing@noetfield.com",
+        sales: "sales@noetfield.com",
+        support: "support@noetfield.com"
+      };
 
       function wire(id, val){
         var a = document.getElementById(id);
@@ -415,21 +636,67 @@
         a.href = "mailto:" + encodeURIComponent(val);
         a.textContent = val;
       }
-      wire("nfProcEmailLink", NF_PROC_EMAIL);
-      wire("nfBillingEmailLink", NF_BILLING_EMAIL);
-      wire("nfSalesEmailLink", NF_SALES_EMAIL);
+      wire("nfProcEmailLink", NF.procurement);
+      wire("nfBillingEmailLink", NF.billing);
+      wire("nfSalesEmailLink", NF.sales);
+      wire("nfSupportEmailLink", NF.support);
+
+      // Request ID (localStorage) + status links
+      function mkRid(){
+        // nf_ + time + random (URL-safe)
+        var t = Date.now().toString(36);
+        var r = Math.random().toString(36).slice(2, 8);
+        return ("nf_" + t + "_" + r).toLowerCase();
+      }
+      var ridKey = "nf_request_id";
+      var rid = localStorage.getItem(ridKey);
+      if (!rid) { rid = mkRid(); localStorage.setItem(ridKey, rid); }
+
+      var ridEl = document.getElementById("nfRidText");
+      if (ridEl) ridEl.textContent = rid;
+
+      function setStatusLink(id){
+        var a = document.getElementById(id);
+        if (!a) return;
+        a.href = "/status/?rid=" + encodeURIComponent(rid);
+      }
+      setStatusLink("nfStatusBtn");
+      setStatusLink("nfStatusBtn2");
+      setStatusLink("nfStatusInline");
+
+      var copyRidBtn = document.getElementById("nfRidCopyBtn");
+      if (copyRidBtn){
+        copyRidBtn.addEventListener("click", function(){
+          var txt = rid;
+          if (navigator.clipboard && navigator.clipboard.writeText){
+            navigator.clipboard.writeText(txt);
+          } else {
+            var ta = document.createElement("textarea");
+            ta.value = txt; document.body.appendChild(ta);
+            ta.select(); document.execCommand("copy");
+            document.body.removeChild(ta);
+          }
+          copyRidBtn.textContent = "Copied";
+          setTimeout(function(){ copyRidBtn.textContent = "Copy Request ID"; }, 1200);
+        });
+      }
 
       function getVal(id){
         var el = document.getElementById(id);
         return el ? (el.value || "").trim() : "";
       }
-      function labelForPackage(v){
-        if (v === "quickscan") return "Copilot QuickScan";
-        if (v === "brief") return "Trust Brief (6-week)";
-        if (v === "ledger") return "Trust Ledger";
-        if (v === "playbook") return "Playbook Pro";
+
+      function labelForOffer(v){
+        if (v === "quickscan") return "Copilot QuickScan (5-day)";
+        if (v === "m365-starter") return "Microsoft 365 Copilot Readiness Assessment — Starter (2 weeks)";
+        if (v === "m365-standard") return "Microsoft 365 Copilot Readiness Assessment — Standard (4 weeks)";
+        if (v === "m365-extended") return "Microsoft 365 Copilot Readiness Assessment — Extended (6 weeks)";
+        if (v === "trust-brief") return "Trust Brief (6-week)";
+        if (v === "trust-ledger") return "Trust Ledger (retainer)";
+        if (v === "playbook-pro") return "Playbook Pro (license)";
         return "Other / not sure";
       }
+
       function labelForProc(v){
         if (v === "invoice") return "Invoice";
         if (v === "po") return "Purchase Order (PO)";
@@ -437,78 +704,149 @@
         return "Other";
       }
 
-      var form = document.getElementById("nfProcEmailForm");
-      if (!form) return;
+      function labelForTerms(v){
+        if (v === "net30") return "Net 30";
+        if (v === "net45") return "Net 45";
+        if (v === "net60") return "Net 60";
+        return "Other / per policy";
+      }
 
-      form.addEventListener("submit", function(e){
-        e.preventDefault();
+      function isValidEmail(s){
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test((s||"").trim());
+      }
 
+      function buildRequestText(payload){
+        var lines = [];
+        lines.push("Hello Noetfield Procurement,");
+        lines.push("");
+        lines.push("Request ID: " + payload.rid);
+        lines.push("Request: " + payload.procLabel + " path for " + payload.offerLabel + ".");
+        lines.push("");
+
+        if (payload.org) lines.push("Organisation: " + payload.org);
+        if (payload.reply) lines.push("Work email: " + payload.reply);
+        if (payload.contact) lines.push("Contact: " + payload.contact);
+        if (payload.role) lines.push("Team/role: " + payload.role);
+        if (payload.termsLabel) lines.push("Invoice terms: " + payload.termsLabel);
+        if (payload.po) lines.push("PO number: " + payload.po);
+        if (payload.timeline) lines.push("Timing: " + payload.timeline);
+
+        lines.push("");
+        lines.push("Links:");
+        lines.push("- Sales: " + (location.origin + "/gate/sales/"));
+        lines.push("- Vendor: " + (location.origin + "/vendor/"));
+        lines.push("- Procurement: " + (location.origin + "/gate/procurement/"));
+        lines.push("- Status: " + (location.origin + "/status/?rid=" + encodeURIComponent(payload.rid)));
+        lines.push("");
+
+        if (payload.note) {
+          lines.push("Note (non-confidential):");
+          lines.push(payload.note);
+          lines.push("");
+        }
+
+        lines.push("Public intake is non-confidential. Secure sharing options are confirmed after kickoff (if required).");
+        lines.push("");
+        return lines.join("\n");
+      }
+
+      var copyTextBtn = document.getElementById("nfCopyTextBtn");
+      function copyText(txt){
+        if (navigator.clipboard && navigator.clipboard.writeText){
+          return navigator.clipboard.writeText(txt);
+        }
+        var ta = document.createElement("textarea");
+        ta.value = txt; document.body.appendChild(ta);
+        ta.select(); document.execCommand("copy");
+        document.body.removeChild(ta);
+        return Promise.resolve();
+      }
+      if (copyTextBtn){
+        copyTextBtn.addEventListener("click", function(){
+          var payload = collectPayload();
+          var txt = buildRequestText(payload);
+          copyText(txt).then(function(){
+            copyTextBtn.textContent = "Copied";
+            setTimeout(function(){ copyTextBtn.textContent = "Copy request text"; }, 1200);
+          });
+        });
+      }
+
+      function collectPayload(){
         var org = getVal("nf_org");
         var reply = getVal("nf_reply");
         var contact = getVal("nf_contact");
         var role = getVal("nf_role");
-        var pkg = getVal("nf_package");
+        var offer = getVal("nf_package");
         var proc = getVal("nf_proc");
+        var terms = getVal("nf_terms");
+        var po = getVal("nf_po");
         var timeline = getVal("nf_timeline");
         var note = getVal("nf_note");
 
-        var pkgLabel = labelForPackage(pkg);
-        var procLabel = labelForProc(proc);
+        return {
+          rid: rid,
+          org: org,
+          reply: reply,
+          contact: contact,
+          role: role,
+          offer: offer,
+          offerLabel: labelForOffer(offer),
+          proc: proc,
+          procLabel: labelForProc(proc),
+          terms: terms,
+          termsLabel: labelForTerms(terms),
+          po: po,
+          timeline: timeline,
+          note: note
+        };
+      }
 
-        var subject = "Procurement — " + pkgLabel + (org ? " (" + org + ")" : "");
-        var body = [];
+      var form = document.getElementById("nfProcEmailForm");
+      var err = document.getElementById("nfFormErr");
+      if (form){
+        form.addEventListener("submit", function(e){
+          e.preventDefault();
 
-        body.push("Hello Noetfield Procurement,");
-        body.push("");
-        body.push("Request: " + procLabel + " path for " + pkgLabel + ".");
-        body.push("");
+          var payload = collectPayload();
+          var ok = !!payload.org && isValidEmail(payload.reply);
 
-        if (org) body.push("Organisation: " + org);
-        if (reply) body.push("Reply email: " + reply);
-        if (contact) body.push("Contact: " + contact);
-        if (role) body.push("Role/team: " + role);
-        if (timeline) body.push("Timing: " + timeline);
+          if (!ok){
+            if (err) err.style.display = "block";
+            return;
+          }
+          if (err) err.style.display = "none";
 
-        body.push("");
-        body.push("Sales page: " + (location.origin + "/gate/sales/"));
-        body.push("Vendor page: " + (location.origin + "/vendor/"));
-        body.push("Procurement page: " + (location.origin + "/gate/procurement/"));
-        body.push("");
+          var subject = "Procurement — " + payload.offerLabel + " — " + payload.procLabel + " — " + payload.rid + (payload.org ? " (" + payload.org + ")" : "");
+          var body = buildRequestText(payload);
 
-        if (note) {
-          body.push("Note (non-confidential):");
-          body.push(note);
-          body.push("");
-        }
+          var mailto =
+            "mailto:" + encodeURIComponent(NF.procurement) +
+            "?subject=" + encodeURIComponent(subject) +
+            "&body=" + encodeURIComponent(body);
 
-        body.push("Public intake is non-confidential. Secure sharing options are confirmed after kickoff.");
-        body.push("");
-
-        var mailto =
-          "mailto:" + encodeURIComponent(NF_PROC_EMAIL) +
-          "?subject=" + encodeURIComponent(subject) +
-          "&body=" + encodeURIComponent(body.join("\n"));
-
-        window.location.href = mailto;
-      });
+          window.location.href = mailto;
+        });
+      }
     })();
   </script>
 
   <!--
-    CHANGELOG (procurement v1.0)
-    - Dedicated Invoice/PO page separated from Gate to reduce mixed intent.
-    - Procurement-grade snapshot sections (vendor, security/privacy, contracting).
-    - Short request form implemented as mailto builder (no web submission) to avoid backend dependency.
+    CHANGELOG (procurement v2.0)
+    - Added Request ID (localStorage) + status link with rid.
+    - Added Procurement Pack section with forwardable links + optional PDF routes.
+    - Upgraded offer list to match enterprise market-mirror SKUs (Starter/Standard/Extended).
+    - Added “Copy request text” for environments that block mailto workflows.
+    - Expanded vendor snapshot + FAQ with procurement-aligned language.
 
     SMOKE TEST
     - GET /gate/procurement/ returns 200
     - /assets/noetfield-shell.css returns 200 and styles apply
     - /assets/noetfield-shell.js returns 200 and header/footer load into #nfHeader/#nfFooter
-    - Mailto builder: submit opens email client with populated subject/body to procurement@
-    - Links:
-      - /gate/sales/ (200)
-      - /vendor/ (200)
-      - /copilot/quickscan/intake/ (200)
+    - Request ID shows + status links include ?rid=
+    - Submit form opens email client to procurement@ with populated subject/body
+    - Copy buttons work on mobile + desktop
+    - Links: /gate/sales/ /vendor/ /status/ /copilot/quickscan/intake/ return 200
   -->
 </body>
 </html>

@@ -1,4 +1,4 @@
-<!-- /gate/index.html — Noetfield Gate v4.1 (Pro polish: explicit procurement page link • quick links • URL deep-linking • safer copy • rail + mobile dual CTA) -->
+<!-- /gate/index.html — Noetfield Gate v4.2 (Shareable deep-link RID • mobile table scroll • wizard close • a11y selection • safer procurement email budget) -->
 <!doctype html>
 <html lang="en">
 <head>
@@ -124,6 +124,7 @@
       box-shadow: var(--shadow2);
       overflow:hidden;
       min-width:0;
+      scroll-margin-top: 96px;
     }
     .hd{ padding:18px 18px 0; }
     .bd{ padding:18px; }
@@ -243,16 +244,21 @@
     }
     .snapNote a{ border-bottom:1px solid rgba(255,255,255,.18); }
 
-    /* Compare table */
-    .table{
-      width:100%;
-      border-collapse:separate;
-      border-spacing:0;
-      overflow:hidden;
+    /* Compare table (mobile safe) */
+    .tableWrap{
+      margin-top:10px;
+      overflow-x:auto;
+      -webkit-overflow-scrolling: touch;
       border-radius:16px;
       border:1px solid rgba(255,255,255,.10);
       background: rgba(255,255,255,.02);
-      margin-top:10px;
+    }
+    .table{
+      width:100%;
+      min-width: 860px;
+      border-collapse:separate;
+      border-spacing:0;
+      background: transparent;
     }
     .table th, .table td{
       text-align:left;
@@ -260,6 +266,7 @@
       border-bottom:1px solid rgba(255,255,255,.08);
       vertical-align:top;
       font-size:13px;
+      white-space: normal;
     }
     .table th{
       color:var(--muted2);
@@ -465,10 +472,7 @@
             <a class="btn primary" href="/copilot/readiness/" data-rid-link>Open Copilot Readiness</a>
             <a class="btn secondary" href="/copilot/quickscan/" data-rid-link>Open QuickScan (5–7 days)</a>
 
-            <!-- explicit procurement page link (this solves “no visible procurement link”) -->
             <a class="btn secondary" href="/gate/procurement/" data-rid-link>Open Procurement (Invoice / PO)</a>
-
-            <!-- in-page procurement builder anchor (optional) -->
             <a class="btn secondary" href="#procurement">On-page approval builder</a>
 
             <a class="btn secondary" href="/gate/sales/" data-rid-link>Start (Sales)</a>
@@ -509,9 +513,8 @@
 
           <div class="bd">
             <div class="offers" aria-label="Offer cards">
-
               <!-- Readiness Starter -->
-              <article class="offer" tabindex="0"
+              <article class="offer" tabindex="0" role="button" aria-pressed="false"
                 data-offer="readiness_starter"
                 data-group="copilot"
                 data-name="Microsoft 365 Copilot Readiness Assessment — Starter"
@@ -601,7 +604,7 @@
               </article>
 
               <!-- Readiness Standard -->
-              <article class="offer" tabindex="0"
+              <article class="offer" tabindex="0" role="button" aria-pressed="false"
                 data-offer="readiness_standard"
                 data-group="copilot"
                 data-name="Microsoft 365 Copilot Readiness Assessment — Standard"
@@ -692,7 +695,7 @@
               </article>
 
               <!-- Readiness Extended -->
-              <article class="offer" tabindex="0"
+              <article class="offer" tabindex="0" role="button" aria-pressed="false"
                 data-offer="readiness_extended"
                 data-group="copilot"
                 data-name="Microsoft 365 Copilot Readiness Assessment — Extended"
@@ -783,12 +786,12 @@
               </article>
 
               <!-- QuickScan -->
-              <article class="offer" tabindex="0"
+              <article class="offer" tabindex="0" role="button" aria-pressed="false"
                 data-offer="quickscan"
                 data-group="copilot"
                 data-name="Copilot QuickScan (Rapid Snapshot)"
                 data-duration="5–7 business days"
-                data-price="Card checkout available"
+                data-price="TBD (card checkout available)"
                 data-primary="/copilot/quickscan/"
                 data-intake="/copilot/quickscan/intake/"
                 data-proc="/gate/procurement/?focus=quickscan"
@@ -879,8 +882,7 @@
                 <p class="sectionDesc">For broader AI governance beyond Copilot rollout.</p>
 
                 <div class="offers" style="margin-top:10px">
-
-                  <article class="offer" tabindex="0"
+                  <article class="offer" tabindex="0" role="button" aria-pressed="false"
                     data-offer="trust_brief"
                     data-group="governance"
                     data-name="Trust Brief (6-week)"
@@ -914,7 +916,7 @@
                     </div>
                   </article>
 
-                  <article class="offer" tabindex="0"
+                  <article class="offer" tabindex="0" role="button" aria-pressed="false"
                     data-offer="trust_ledger"
                     data-group="governance"
                     data-name="Trust Ledger (Ongoing)"
@@ -947,7 +949,6 @@
                       <a class="btn secondary" href="/trust-ledger/intake/" data-rid-link>Start intake</a>
                     </div>
                   </article>
-
                 </div>
               </div>
 
@@ -962,55 +963,57 @@
             <p class="muted">Short comparison for fast internal alignment.</p>
           </div>
           <div class="bd">
-            <table class="table" aria-label="Compare table">
-              <thead>
-                <tr>
-                  <th>Item</th>
-                  <th>Readiness (Standard)</th>
-                  <th>QuickScan</th>
-                  <th>Trust Brief</th>
-                  <th>Trust Ledger</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Best for</td>
-                  <td>Enterprise Copilot rollout</td>
-                  <td>Urgent snapshot</td>
-                  <td>Governance roadmap</td>
-                  <td>Ongoing evidence continuity</td>
-                </tr>
-                <tr>
-                  <td>Timing</td>
-                  <td>4 weeks</td>
-                  <td>5–7 business days</td>
-                  <td>6 weeks</td>
-                  <td>Ongoing</td>
-                </tr>
-                <tr>
-                  <td>Outcome</td>
-                  <td>Baseline + evidence packaging</td>
-                  <td>Decision-ready pack</td>
-                  <td>Operating model + decisions</td>
-                  <td>Maintained register + exports</td>
-                </tr>
-                <tr>
-                  <td>Start</td>
-                  <td><a href="/gate/sales/?offer=readiness_standard" data-rid-link>Sales</a> · <a href="/gate/intake/?need=copilot-readiness-standard" data-rid-link>Intake</a></td>
-                  <td><a href="/gate/sales/?offer=quickscan" data-rid-link>Sales</a> · <a href="/copilot/quickscan/intake/" data-rid-link>Intake</a></td>
-                  <td><a href="/gate/sales/?offer=trust_brief" data-rid-link>Sales</a> · <a href="/trust-brief/intake/" data-rid-link>Intake</a></td>
-                  <td><a href="/gate/sales/?offer=trust_ledger" data-rid-link>Sales</a> · <a href="/trust-ledger/intake/" data-rid-link>Intake</a></td>
-                </tr>
-              </tbody>
-            </table>
+            <div class="tableWrap" role="region" aria-label="Compare table (scrollable on mobile)">
+              <table class="table" aria-label="Compare table">
+                <thead>
+                  <tr>
+                    <th>Item</th>
+                    <th>Readiness (Standard)</th>
+                    <th>QuickScan</th>
+                    <th>Trust Brief</th>
+                    <th>Trust Ledger</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Best for</td>
+                    <td>Enterprise Copilot rollout</td>
+                    <td>Urgent snapshot</td>
+                    <td>Governance roadmap</td>
+                    <td>Ongoing evidence continuity</td>
+                  </tr>
+                  <tr>
+                    <td>Timing</td>
+                    <td>4 weeks</td>
+                    <td>5–7 business days</td>
+                    <td>6 weeks</td>
+                    <td>Ongoing</td>
+                  </tr>
+                  <tr>
+                    <td>Outcome</td>
+                    <td>Baseline + evidence packaging</td>
+                    <td>Decision-ready pack</td>
+                    <td>Operating model + decisions</td>
+                    <td>Maintained register + exports</td>
+                  </tr>
+                  <tr>
+                    <td>Start</td>
+                    <td><a href="/gate/sales/?offer=readiness_standard" data-rid-link>Sales</a> · <a href="/gate/intake/?need=copilot-readiness-standard" data-rid-link>Intake</a></td>
+                    <td><a href="/gate/sales/?offer=quickscan" data-rid-link>Sales</a> · <a href="/copilot/quickscan/intake/" data-rid-link>Intake</a></td>
+                    <td><a href="/gate/sales/?offer=trust_brief" data-rid-link>Sales</a> · <a href="/trust-brief/intake/" data-rid-link>Intake</a></td>
+                    <td><a href="/gate/sales/?offer=trust_ledger" data-rid-link>Sales</a> · <a href="/trust-ledger/intake/" data-rid-link>Intake</a></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
 
             <div class="notice" style="margin-top:12px;">
-              <strong>Procurement tip:</strong> Share this Gate link internally and use the approval builder below to reduce back-and-forth.
+              <strong>Procurement tip:</strong> Share this Gate link internally (offer + RID included) and use the approval builder below to reduce back-and-forth.
             </div>
           </div>
         </section>
 
-        <!-- ROUTER (unchanged from your v4.0 except small logic improvements in script below) -->
+        <!-- ROUTER -->
         <section class="card" id="router" aria-label="Wizard router" style="margin-top:14px;">
           <div class="hd">
             <h2 class="cardTitle">Need a fast route?</h2>
@@ -1019,6 +1022,7 @@
           <div class="bd">
             <div class="actions" aria-label="Router actions" style="margin-top:0;">
               <button class="btn primary" type="button" id="routerOpenBtn" aria-controls="routerCard" aria-expanded="false">Start wizard</button>
+              <button class="btn secondary" type="button" id="wizardCloseBtn" hidden>Close</button>
               <button class="btn secondary" type="button" id="wizardResetBtn" hidden>Reset</button>
             </div>
 
@@ -1232,10 +1236,7 @@
               <a class="btn" id="railStartIntake" href="#" data-rid-link>Start intake</a>
               <a class="btn secondary" id="railDetails" href="#" data-rid-link>View details</a>
 
-              <!-- explicit procurement page link -->
               <a class="btn secondary" href="/gate/procurement/" data-rid-link>Procurement (Invoice/PO)</a>
-
-              <!-- anchor builder (optional) -->
               <a class="btn secondary" href="#procurement">On-page builder</a>
             </div>
 
@@ -1243,7 +1244,7 @@
 
             <div class="box">
               <div><strong>Request ID:</strong> <code data-rid>—</code></div>
-              <div style="margin-top:6px;">Share this Gate page internally. RID is preserved on Sales/links.</div>
+              <div style="margin-top:6px;">Share this Gate page internally. RID is preserved on Sales/links and is included in the URL.</div>
               <div style="margin-top:6px;">
                 Samples:
                 <a href="/trust-ledger/sample-report/board-memo.pdf" data-rid-link>Board memo</a> ·
@@ -1282,8 +1283,12 @@
       function $(id){ return document.getElementById(id); }
       function qsa(sel){ try { return Array.prototype.slice.call(document.querySelectorAll(sel)); } catch(_) { return []; } }
 
-      // Minimal RID helper (non-conflicting). If shell already provides RID, this reads it.
+      // RID helper (shareable deep-link). If a shell-level RID exists, reuse it.
       function getRid(){
+        try {
+          if (window.__NF_RID && String(window.__NF_RID).trim()) return String(window.__NF_RID).trim();
+        } catch(_) {}
+
         try {
           var u = new URL(window.location.href);
           var rid = (u.searchParams.get("rid") || "").trim();
@@ -1338,6 +1343,7 @@
 
       // Router elements
       var routerOpenBtn = $("routerOpenBtn");
+      var wizardCloseBtn = $("wizardCloseBtn");
       var routerCard = $("routerCard");
       var wizardResetBtn = $("wizardResetBtn");
       var wizardBackBtn = $("wizardBackBtn");
@@ -1372,27 +1378,40 @@
         return null;
       }
 
-      function setUrlOfferParam(id){
+      function setUrlParamsForShare(offerId, rid){
         try{
           var u = new URL(window.location.href);
-          u.searchParams.set("offer", id);
-          // preserve any existing rid param too
+          if (offerId) u.searchParams.set("offer", offerId);
+          if (rid && !u.searchParams.get("rid")) u.searchParams.set("rid", rid);
           history.replaceState({}, "", u.pathname + "?" + u.searchParams.toString() + u.hash);
         } catch(_) {}
+      }
+
+      function normalizePriceForEmail(price){
+        var p = (price || "").trim();
+        if (!p) return "TBD (CAD)";
+        // if it's not obviously a number-ish budget, keep procurement-safe placeholder
+        var hasDigit = /\d/.test(p);
+        if (!hasDigit) return "TBD (CAD)";
+        return p;
       }
 
       function setSelected(id){
         var el = offerById(id) || offerById(DEFAULT_OFFER) || offers[0];
         if (!el) return;
 
-        offers.forEach(function(o){ o.classList.remove("offerSelected"); });
+        offers.forEach(function(o){
+          o.classList.remove("offerSelected");
+          try { o.setAttribute("aria-pressed","false"); } catch(_) {}
+        });
         el.classList.add("offerSelected");
+        try { el.setAttribute("aria-pressed","true"); } catch(_) {}
 
         selectedOfferId = el.getAttribute("data-offer");
         try { localStorage.setItem(STORAGE_KEY, selectedOfferId); } catch(_) {}
 
-        // deep-link for internal sharing
-        setUrlOfferParam(selectedOfferId);
+        var rid = getRid();
+        setUrlParamsForShare(selectedOfferId, rid);
 
         var name = el.getAttribute("data-name") || "—";
         var dur = el.getAttribute("data-duration") || "—";
@@ -1412,10 +1431,9 @@
         bottomText.innerHTML = "<strong>Selected:</strong> " + name;
         bottomBtn.setAttribute("href", salesHref);
 
-        // keep procurement CTA stable
         if (bottomProcBtn) bottomProcBtn.setAttribute("href", "/gate/procurement/");
 
-        var rid = getRid();
+        setRidBadges(rid);
         applyRidToLinks(rid);
       }
 
@@ -1437,6 +1455,7 @@
           function activate(){ setSelected(el.getAttribute("data-offer")); }
           el.addEventListener("click", function(e){
             if (e.target && e.target.tagName === "A") return;
+            if (e.target && e.target.closest && e.target.closest("a")) return;
             activate();
           });
           el.addEventListener("keydown", function(e){
@@ -1464,6 +1483,7 @@
         routerCard.hidden = false;
         routerOpenBtn.setAttribute("aria-expanded", "true");
         routerOpenBtn.hidden = true;
+        wizardCloseBtn.hidden = false;
         wizardResetBtn.hidden = false;
         resetWizard();
       }
@@ -1472,6 +1492,7 @@
         routerCard.hidden = true;
         routerOpenBtn.setAttribute("aria-expanded", "false");
         routerOpenBtn.hidden = false;
+        wizardCloseBtn.hidden = true;
         wizardResetBtn.hidden = true;
       }
 
@@ -1567,7 +1588,8 @@
         var o = offerById(selectedOfferId) || offerById(DEFAULT_OFFER);
         var name = o ? (o.getAttribute("data-name") || "Selected package") : "Selected package";
         var dur = o ? (o.getAttribute("data-duration") || "—") : "—";
-        var price = o ? (o.getAttribute("data-price") || "—") : "—";
+        var rawPrice = o ? (o.getAttribute("data-price") || "—") : "—";
+        var price = normalizePriceForEmail(rawPrice);
         var proc = o ? (o.getAttribute("data-proc") || "/gate/procurement/") : "/gate/procurement/";
         var intake = o ? (o.getAttribute("data-intake") || "/gate/intake/") : "/gate/intake/";
         var sales = o ? (o.getAttribute("data-sales") || "/gate/sales/") : "/gate/sales/";
@@ -1650,6 +1672,9 @@
       if (routerOpenBtn && routerCard){
         routerOpenBtn.addEventListener("click", openWizard);
       }
+      if (wizardCloseBtn){
+        wizardCloseBtn.addEventListener("click", closeWizard);
+      }
       if (wizardResetBtn){
         wizardResetBtn.addEventListener("click", resetWizard);
       }
@@ -1700,9 +1725,9 @@
     - Deploy as: /gate/index.html
     - Required pages/paths assumed:
       - /gate/sales/
-      - /gate/procurement/  (explicit link is now first-class)
-      - /gate/intake/       (or your preferred intake endpoint)
-    - Deep link:
+      - /gate/procurement/
+      - /gate/intake/ (or preferred intake endpoint)
+    - Deep link share pattern:
       - /gate/?offer=readiness_standard&rid=NF-...
   -->
 </body>

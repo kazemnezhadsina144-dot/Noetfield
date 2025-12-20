@@ -1,4 +1,4 @@
-<!-- /gate/sales/index.html — Noetfield Sales v3.1.1 (FULL SINGLE-FILE: header+footer+shell CSS+shell JS embedded) -->
+<!-- /gate/sales/index.html — Noetfield Sales v3.1.0 (Shell-RID native + no duplicate .btn + stable init) -->
 <!doctype html>
 <html lang="en">
 <head>
@@ -27,629 +27,11 @@
   <meta name="twitter:description" content="Copilot QuickScan checkout + procurement-ready starts for Trust Brief / Trust Ledger. Card where enabled, invoice/PO path always available." />
   <meta name="twitter:image" content="https://www.noetfield.com/noetfield-og.png" />
 
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"WebPage",
-    "name":"Noetfield — Purchase",
-    "url":"https://www.noetfield.com/gate/sales/",
-    "description":"Copilot QuickScan checkout + procurement-ready starts for Trust Brief / Trust Ledger. Card where enabled, invoice/PO path always available.",
-    "isPartOf":{"@type":"WebSite","name":"Noetfield","url":"https://www.noetfield.com/"},
-    "publisher":{"@type":"Organization","name":"Noetfield Systems Inc."}
-  }
-  </script>
+  <!-- LOCKED SHELL -->
+  <link rel="stylesheet" href="/assets/noetfield-shell.css" />
+  <script src="/assets/noetfield-shell.js" defer></script>
 
   <style>
-    /* =========================
-       /assets/noetfield-shell.css — v2.4 (embedded)
-       ========================= */
-    :root{
-      --bg0:#07070b; --bg1:#0b0b14;
-      --panel: rgba(255,255,255,.055);
-      --panel2: rgba(255,255,255,.038);
-
-      --text:#eff0f7; --muted:#b9bbcf; --muted2:#8e91ad;
-      --line: rgba(255,255,255,.11);
-
-      --gold:#c8a349;
-      --ok:#2de38a; --okGlow: rgba(45,227,138,.18);
-
-      --radius:18px; --max:1120px;
-      --shadow: 0 28px 80px rgba(0,0,0,.62);
-      --shadow2: 0 14px 50px rgba(0,0,0,.50);
-      --focus: 0 0 0 4px rgba(200,163,73,.18);
-
-      --navH: 68px;
-      color-scheme: dark;
-    }
-
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      color: var(--text);
-      background: linear-gradient(180deg, var(--bg0), var(--bg1));
-      overflow-x:hidden;
-      -webkit-font-smoothing: antialiased;
-      text-rendering: optimizeLegibility;
-    }
-
-    a{color:inherit; text-decoration:none}
-    a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible{
-      outline:none;
-      box-shadow: var(--focus);
-      border-color: rgba(200,163,73,.58) !important;
-    }
-    [hidden]{display:none !important;}
-
-    .srOnly{
-      position:absolute !important;
-      width:1px !important; height:1px !important;
-      padding:0 !important; margin:-1px !important;
-      overflow:hidden !important;
-      clip:rect(0,0,0,0) !important;
-      white-space:nowrap !important;
-      border:0 !important;
-    }
-
-    .bg{
-      position:fixed; inset:0; z-index:-3; pointer-events:none;
-      background:
-        radial-gradient(1400px 820px at 10% -10%, rgba(200,163,73,.20), transparent 58%),
-        radial-gradient(1200px 820px at 100% 0%, rgba(122,167,255,.12), transparent 60%),
-        radial-gradient(900px 700px at 55% 22%, rgba(255,255,255,.05), transparent 62%),
-        linear-gradient(180deg, var(--bg0), var(--bg1));
-      filter: saturate(1.05);
-    }
-    .bg::before{
-      content:""; position:absolute; inset:0;
-      background:
-        linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
-      background-size: 54px 54px;
-      opacity:.055;
-      mask-image: radial-gradient(70% 60% at 50% 8%, black 55%, transparent 100%);
-    }
-    .bg::after{
-      content:""; position:absolute; inset:-90px;
-      background:
-        radial-gradient(1100px 760px at 50% 8%, transparent 55%, rgba(0,0,0,.58) 100%),
-        radial-gradient(1000px 900px at 50% 110%, rgba(0,0,0,.68), transparent 62%);
-      opacity:.92;
-    }
-
-    .wrap{max-width:var(--max); margin:0 auto; padding:24px}
-
-    .skip{
-      position:absolute; left:-999px; top:10px;
-      background:#111118;
-      border:1px solid rgba(255,255,255,.12);
-      color:var(--text);
-      padding:10px 12px;
-      border-radius:12px;
-      z-index:999;
-    }
-    .skip:focus{left:10px}
-
-    .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:10px;
-      padding:10px 14px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.03);
-      color: var(--text);
-      text-decoration:none;
-      transition: background .15s ease, border-color .15s ease, transform .12s ease, filter .12s ease;
-      line-height:1;
-      font-size:13px;
-      min-height:40px;
-      cursor:pointer;
-      user-select:none;
-    }
-    .btn:hover{
-      border-color: rgba(255,255,255,.16);
-      background: rgba(255,255,255,.05);
-      transform: translateY(-1px);
-    }
-    .btn:active{transform: translateY(0)}
-    .btn.secondary{opacity:.92}
-    .btn.ghost{background:transparent; border-color: rgba(255,255,255,.16);}
-
-    .btn.primary{
-      border:1px solid rgba(200,163,73,.62);
-      background:
-        radial-gradient(260px 100px at 35% 0%, rgba(255,255,255,.12), transparent 62%),
-        linear-gradient(180deg, rgba(200,163,73,.24), rgba(200,163,73,.11));
-      font-weight:850;
-      letter-spacing:.1px;
-    }
-    .btn.primary:hover{
-      border-color: rgba(200,163,73,.88);
-      filter: brightness(1.06);
-    }
-
-    #nfHeader{
-      position:sticky;
-      top:0;
-      z-index:60;
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      background: rgba(8,8,12,.62);
-      border-bottom: 1px solid rgba(255,255,255,.10);
-    }
-
-    #nfHeader .nav{
-      max-width:var(--max);
-      margin:0 auto;
-      padding: 10px 16px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:14px;
-      min-height: var(--navH);
-    }
-
-    #nfHeader .brand{
-      display:flex;
-      align-items:center;
-      gap:12px;
-      flex:0 0 auto;
-      min-width: 240px;
-      max-width: 360px;
-    }
-    #nfHeader .brandMark{
-      width:36px;
-      height:36px;
-      border-radius:12px;
-      box-shadow: 0 12px 26px rgba(0,0,0,.55);
-      border:1px solid rgba(255,255,255,.12);
-      display:block;
-      flex:0 0 auto;
-    }
-    #nfHeader .brandText{min-width:0}
-    #nfHeader .brand .name{
-      font-weight:800;
-      letter-spacing:.10px;
-      line-height:1.05;
-      font-size:15px;
-    }
-    #nfHeader .brand .tag{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      padding:7px 10px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.03);
-      font-size:10.5px;
-      color:var(--muted2);
-      margin-top:6px;
-      letter-spacing:.28em;
-      text-transform:uppercase;
-      white-space:nowrap;
-      overflow:hidden;
-      text-overflow:ellipsis;
-      max-width:320px;
-      opacity:.95;
-    }
-
-    #nfHeader .menu{
-      display:flex;
-      align-items:center;
-      justify-content:flex-end;
-      gap:12px;
-      flex:1 1 auto;
-      min-width:0;
-    }
-    #nfHeader .menuPrimary,
-    #nfHeader .menuActions{
-      display:flex;
-      align-items:center;
-      gap:8px;
-      min-width:0;
-      flex-wrap:nowrap;
-    }
-    #nfHeader .menuPrimary{
-      flex:1 1 auto;
-      justify-content:center;
-      overflow:hidden;
-    }
-    #nfHeader .menuActions{
-      flex:0 0 auto;
-      justify-content:flex-end;
-    }
-
-    #nfHeader .menu a{
-      color:var(--muted);
-      padding:8px 10px;
-      border-radius:14px;
-      border:1px solid transparent;
-      background: transparent;
-      transition: background .15s ease, border-color .15s ease, color .15s ease, transform .06s ease;
-      white-space:nowrap;
-      font-size:12.75px;
-      line-height:1;
-    }
-    #nfHeader .menu a:hover{
-      color:var(--text);
-      border-color:rgba(255,255,255,.10);
-      background:rgba(255,255,255,.045);
-    }
-    #nfHeader .menu a:active{transform: translateY(1px)}
-
-    #nfHeader .menu a.active,
-    #nfHeader .menu a[aria-current="page"]{
-      color:var(--text);
-      border-color:rgba(200,163,73,.38);
-      background:
-        radial-gradient(240px 90px at 50% 0%, rgba(255,255,255,.10), transparent 60%),
-        linear-gradient(180deg, rgba(200,163,73,.22), rgba(200,163,73,.10));
-    }
-
-    #nfHeader .menu a.pilltab{
-      border:1px solid rgba(255,255,255,.14);
-      background: rgba(255,255,255,.03);
-    }
-
-    #nfHeader .menu a.pilltab.cta{
-      border:1px solid rgba(200,163,73,.62);
-      background:
-        radial-gradient(260px 100px at 35% 0%, rgba(255,255,255,.12), transparent 62%),
-        linear-gradient(180deg, rgba(200,163,73,.24), rgba(200,163,73,.11));
-      color: var(--text);
-      font-weight:850;
-    }
-    #nfHeader .menu a.pilltab.cta:hover{
-      border-color: rgba(200,163,73,.88);
-      filter: brightness(1.06);
-    }
-
-    #nfHeader .menu a.login{
-      border:1px solid rgba(200,163,73,.58);
-      background:
-        radial-gradient(220px 90px at 40% 0%, rgba(255,255,255,.11), transparent 62%),
-        linear-gradient(180deg, rgba(200,163,73,.22), rgba(200,163,73,.10));
-      color: var(--text);
-      font-weight:750;
-      padding:8px 11px;
-    }
-
-    #nfHeader .menu a.statusLink,
-    #nfHeader .mobileGrid a.statusLink,
-    .footerMiniNav a.statusLink{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-    }
-    .statusDot{
-      width:7px; height:7px;
-      border-radius:50%;
-      background: var(--ok);
-      box-shadow: 0 0 0 3px var(--okGlow);
-    }
-
-    #nfHeader .burger{
-      display:none;
-      align-items:center;
-      justify-content:center;
-      width:42px;
-      height:42px;
-      border-radius:14px;
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.04);
-      cursor:pointer;
-      transition: background .15s ease, border-color .15s ease;
-      flex:0 0 auto;
-    }
-    #nfHeader .burger:hover{
-      border-color:rgba(255,255,255,.18);
-      background:rgba(255,255,255,.06);
-    }
-    #nfHeader .burger svg{width:20px; height:20px; opacity:.92}
-
-    #nfHeader .mobilePanel{
-      border-top:1px solid rgba(255,255,255,.10);
-      background: rgba(8,8,12,.74);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-    }
-    #nfHeader .mobileInner{max-width:var(--max); margin:0 auto; padding:12px 14px 16px;}
-    #nfHeader .mobileGrid{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:10px;
-    }
-    #nfHeader .mobileGrid a{
-      padding:12px 12px;
-      border-radius:16px;
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.04);
-      color: var(--muted);
-      font-size:14px;
-      transition: background .15s ease, border-color .15s ease, color .15s ease;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      text-align:center;
-    }
-    #nfHeader .mobileGrid a:hover{
-      color:var(--text);
-      border-color:rgba(255,255,255,.18);
-      background:rgba(255,255,255,.06);
-    }
-    #nfHeader .mobileGrid a.active,
-    #nfHeader .mobileGrid a[aria-current="page"]{
-      color: var(--text);
-      border-color: rgba(200,163,73,.42);
-      background:
-        radial-gradient(220px 90px at 30% 0%, rgba(200,163,73,.22), transparent 60%),
-        rgba(200,163,73,.10);
-    }
-    #nfHeader .mobileGrid a.mobileCTA{
-      grid-column: 1 / -1;
-      border:1px solid rgba(200,163,73,.62);
-      background:
-        radial-gradient(260px 100px at 35% 0%, rgba(255,255,255,.12), transparent 62%),
-        linear-gradient(180deg, rgba(200,163,73,.24), rgba(200,163,73,.11));
-      color: var(--text);
-      font-weight:900;
-    }
-
-    @media (min-width: 981px){
-      #nfHeader{
-        padding: 12px 16px 0;
-        background: transparent !important;
-        border: 0 !important;
-        box-shadow: none !important;
-        backdrop-filter: none !important;
-        -webkit-backdrop-filter: none !important;
-      }
-
-      #nfHeader .nav{
-        width: min(1200px, calc(100% - 32px));
-        margin: 0 auto;
-        border-radius: 18px;
-        border: 1px solid rgba(255,255,255,.11);
-        background: rgba(10,10,16,.55);
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
-        box-shadow: var(--shadow2);
-      }
-
-      #nfHeader .mobilePanel{
-        width: min(1200px, calc(100% - 32px));
-        margin: 8px auto 0;
-        border-radius: 18px;
-        overflow:hidden;
-        border: 1px solid rgba(255,255,255,.10);
-      }
-    }
-
-    footer{
-      border-top:1px solid rgba(255,255,255,.10);
-      margin-top:34px;
-      background: rgba(8,8,12,.35);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      color:var(--muted2);
-    }
-
-    .footerTop{
-      max-width:var(--max);
-      margin:0 auto;
-      padding: 18px 16px 10px;
-      display:grid;
-      grid-template-columns: 1.2fr .8fr .8fr .8fr;
-      gap:14px;
-    }
-    .fcol{
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.02);
-      border-radius:16px;
-      padding:14px 14px;
-    }
-
-    .footBrand{display:flex; align-items:center; gap:10px; color:var(--muted)}
-    .footBrand img{
-      width:28px; height:28px; border-radius:10px;
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.03);
-    }
-    .footBrand:hover{color:var(--text)}
-
-    .fTitle{
-      font-weight:850;
-      letter-spacing:-.2px;
-      margin:0 0 10px;
-      font-size:13px;
-    }
-    .fLinks{display:flex; flex-direction:column; gap:8px;}
-    .fLinks a{
-      color:var(--muted);
-      padding:8px 10px;
-      border-radius:14px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.03);
-      font-size:13px;
-      transition: background .15s ease, border-color .15s ease, color .15s ease;
-      display:flex; align-items:center;
-    }
-    .fLinks a:hover{
-      color:var(--text);
-      border-color:rgba(255,255,255,.16);
-      background:rgba(255,255,255,.05);
-    }
-
-    .fNote{
-      color:var(--muted2);
-      font-size:12px;
-      line-height:1.65;
-      margin:10px 0 0;
-    }
-
-    .ridRow{
-      display:flex;
-      flex-wrap:wrap;
-      align-items:center;
-      gap:10px;
-      margin-top:12px;
-      color: var(--muted2);
-      font-size:12.5px;
-    }
-    .ridRow code{
-      padding:7px 10px;
-      border-radius:12px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.03);
-      color: var(--text);
-      font-size:12px;
-    }
-    .ridRow button{
-      padding:8px 10px;
-      border-radius:12px;
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.03);
-      color: var(--muted);
-      cursor:pointer;
-      transition: background .15s ease, border-color .15s ease, color .15s ease, filter .15s ease;
-    }
-    .ridRow button:hover{
-      color: var(--text);
-      border-color: rgba(255,255,255,.18);
-      background: rgba(255,255,255,.05);
-    }
-    .ridRow button[data-copied="1"]{
-      border-color: rgba(45,227,138,.55);
-      background: rgba(45,227,138,.12);
-      color: var(--text);
-    }
-
-    .footerBottom{
-      border-top:1px solid rgba(255,255,255,.10);
-      max-width:var(--max);
-      margin:0 auto;
-      padding: 12px 16px 18px;
-      display:flex;
-      flex-wrap:wrap;
-      gap:12px 14px;
-      align-items:center;
-      justify-content:space-between;
-      color:var(--muted2);
-    }
-
-    .footerMiniNav{display:flex; flex-wrap:wrap; gap:10px; align-items:center}
-    .footerMiniNav a{
-      color:var(--muted);
-      padding:8px 10px;
-      border-radius:14px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.03);
-      font-size:13px;
-      transition: background .15s ease, border-color .15s ease, color .15s ease, filter .15s ease;
-    }
-    .footerMiniNav a:hover{
-      color:var(--text);
-      border-color:rgba(255,255,255,.16);
-      background:rgba(255,255,255,.05);
-    }
-    .footerMiniNav a.active, .footerMiniNav a[aria-current="page"]{
-      color: var(--text);
-      border-color: rgba(200,163,73,.40);
-      background: rgba(200,163,73,.10);
-    }
-
-    .footerMiniNav a.partnerIntakeLink{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      font-weight:850;
-      border:1px solid rgba(200,163,73,.58);
-      background:
-        radial-gradient(220px 90px at 40% 0%, rgba(255,255,255,.10), transparent 62%),
-        linear-gradient(180deg, rgba(200,163,73,.22), rgba(200,163,73,.10));
-      color: var(--text);
-    }
-    .footerMiniNav a.partnerIntakeLink:hover{
-      border-color:rgba(200,163,73,.85);
-      filter: brightness(1.06);
-    }
-    .goldDot{
-      width:8px; height:8px;
-      border-radius:50%;
-      background: var(--gold);
-      box-shadow: 0 0 0 3px rgba(200,163,73,.18);
-    }
-
-    .feedbackTab{
-      position:fixed;
-      right:16px;
-      bottom:16px;
-      z-index:80;
-      padding:10px 12px;
-      border-radius:16px;
-      border:1px solid rgba(255,255,255,.14);
-      background: rgba(8,8,12,.62);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      color: var(--muted);
-      font-size:13px;
-      display:inline-flex;
-      gap:8px;
-      align-items:center;
-      transition: background .15s ease, border-color .15s ease, color .15s ease, transform .06s ease;
-    }
-    .feedbackTab:hover{
-      color:var(--text);
-      border-color: rgba(200,163,73,.38);
-      background: rgba(200,163,73,.10);
-    }
-    .feedbackTab:active{transform: translateY(1px)}
-    .feedbackTab .spark{
-      width:8px; height:8px;
-      border-radius:50%;
-      background: rgba(200,163,73,.95);
-      box-shadow: 0 0 0 3px rgba(200,163,73,.16);
-    }
-
-    body.navOpen{ overflow:hidden; }
-
-    @media (max-width: 1140px){
-      #nfHeader .menu{display:none}
-      #nfHeader .burger{display:flex}
-    }
-    @media (max-width: 980px){
-      .footerTop{grid-template-columns:1fr 1fr;}
-    }
-    @media (max-width: 760px){
-      :root{--navH: 64px}
-      .wrap{padding:16px}
-      #nfHeader .nav{padding:10px 14px}
-      #nfHeader .brand .tag{display:none}
-      #nfHeader .mobileGrid{grid-template-columns:1fr 1fr}
-      .footerTop{grid-template-columns:1fr;}
-      .feedbackTab{display:none}
-    }
-    @media (max-width: 420px){
-      #nfHeader .mobileGrid{grid-template-columns:1fr}
-    }
-
-    @media (prefers-reduced-motion: reduce){
-      *{scroll-behavior:auto !important;}
-      .btn,
-      #nfHeader .menu a,
-      #nfHeader .mobileGrid a,
-      .footerMiniNav a,
-      .fLinks a,
-      .feedbackTab{transition:none !important;}
-    }
-
-    /* =========================
-       /gate/sales page CSS — v3.1.1 (embedded)
-       ========================= */
     .hero{padding:18px 0 12px}
     .heroShell{
       position:relative;
@@ -969,849 +351,20 @@
       .stickyText{display:none}
     }
   </style>
-</head>
 
-<body>
-  <div class="bg" aria-hidden="true"></div>
-  <a class="skip" href="#main">Skip to content</a>
-
-  <header id="nfHeader">
-    <!-- /assets/partials/header.html — v3.3 (embedded) -->
-    <div class="nav" role="navigation" aria-label="Noetfield global navigation">
-      <a class="brand" href="/" aria-label="Noetfield home">
-        <img class="brandMark" src="/noetfield-favicon-512.png" alt="Noetfield mark" />
-        <div class="brandText">
-          <div class="name">Noetfield Systems</div>
-          <div class="tag">Trust and Stewardship in AI</div>
-        </div>
-      </a>
-
-      <nav class="menu" aria-label="Primary navigation">
-        <div class="menuPrimary" aria-label="Core">
-          <a href="/trust-ledger/">Trust Ledger</a>
-          <a href="/trust-brief/">Trust Brief</a>
-          <a href="/playbook/">Playbook</a>
-          <a href="/copilot/">Copilot</a>
-          <a href="/for-whom/">For Whom</a>
-        </div>
-
-        <div class="menuActions" aria-label="App actions">
-          <a class="pilltab" href="/gate/" data-rid-link>Gate</a>
-          <a class="pilltab cta" href="/gate/sales/" data-rid-link aria-label="Sales start">Sales</a>
-
-          <a class="pilltab statusLink" href="/status/" data-rid-link>
-            <span class="statusDot" aria-hidden="true"></span>Status
-          </a>
-
-          <a class="login" href="/portal/login/" data-rid-link>Login</a>
-        </div>
-      </nav>
-
-      <button
-        class="burger"
-        id="burger"
-        type="button"
-        aria-label="Open menu"
-        aria-expanded="false"
-        aria-controls="mobilePanel"
-      >
-        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
-        </svg>
-      </button>
-    </div>
-
-    <div class="mobilePanel" id="mobilePanel" hidden>
-      <div class="mobileInner">
-        <div class="mobileGrid" aria-label="Mobile navigation">
-          <a class="mobileCTA" href="/gate/sales/" data-rid-link>Sales (Start)</a>
-
-          <a href="/trust-ledger/">Trust Ledger</a>
-          <a href="/trust-brief/">Trust Brief</a>
-          <a href="/playbook/">Playbook</a>
-          <a href="/copilot/">Copilot</a>
-          <a href="/for-whom/">For Whom</a>
-
-          <a href="/gate/" data-rid-link>Gate</a>
-          <a href="/portal/" data-rid-link>Portal</a>
-
-          <a class="statusLink" href="/status/" data-rid-link>
-            <span class="statusDot" aria-hidden="true"></span>Status
-          </a>
-
-          <a href="/portal/login/" data-rid-link>Login</a>
-        </div>
-      </div>
-    </div>
-  </header>
-
-  <main id="main" class="wrap">
-    <section class="hero" aria-label="Purchase hero">
-      <div class="heroShell">
-        <div class="heroInner">
-          <div class="eyebrow"><span class="dot"></span> Purchase • board-safe starts • card or invoice/PO</div>
-
-          <h1>Copilot-first purchase options.</h1>
-
-          <p class="lead">
-            <strong>Copilot QuickScan</strong> is the fastest paid start (card checkout where enabled).
-            <strong>Trust Brief</strong> and <strong>Trust Ledger</strong> run through Gate/procurement to confirm scope and cadence.
-            <span style="opacity:.92;">Playbook is an optional add-on (digital).</span>
-          </p>
-
-          <div class="metaRow" aria-label="Purchase facts">
-            <div class="pill"><strong>Public intake</strong> = non-confidential</div>
-            <div class="pill"><strong>Invoice / PO</strong> path</div>
-            <div class="pill"><strong>Reference</strong> carried across</div>
-            <div class="pill"><strong>Tax</strong> applied as required</div>
-          </div>
-
-          <div class="actions" aria-label="Hero actions">
-            <a class="btn primary" href="/gate/" data-rid-link>Start (Gate)</a>
-            <a class="btn secondary" href="/gate/procurement/" data-rid-link>Invoice / PO</a>
-            <a class="btn secondary" href="/vendor/">Vendor profile</a>
-          </div>
-
-          <div class="notice" role="note">
-            <strong>Public forms are designed for non-sensitive details.</strong>
-            Secure sharing options are confirmed after kickoff.
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="grid" aria-label="Purchase layout">
-      <div>
-        <section class="card" aria-label="Offers">
-          <div class="hd">
-            <h2 class="cardTitle">Offers</h2>
-            <p class="muted">Choose an offer. Card checkout appears only where enabled. Invoice/PO and Gate start are always available.</p>
-
-            <div class="sectionRow" aria-label="Offer groups">
-              <div class="chip"><strong>Primary:</strong> Copilot QuickScan</div>
-              <div class="chip"><strong>Primary:</strong> Trust Brief / Trust Ledger</div>
-              <div class="chip"><strong>Optional:</strong> Playbook add-on</div>
-            </div>
-
-            <label for="nfOfferSelect">Selected offer</label>
-            <select id="nfOfferSelect" aria-label="Select offer">
-              <option value="quickscan_base">Copilot QuickScan (Base)</option>
-              <option value="quickscan_pro">Copilot QuickScan (Pro)</option>
-              <option value="quickscan_ent">Copilot QuickScan (Enterprise)</option>
-              <option value="trustbrief">Trust Brief (6-week)</option>
-              <option value="trustledger">Trust Ledger</option>
-              <option value="playbook_standard">Playbook — Standard (Digital)</option>
-              <option value="playbook_pro">Playbook — Pro (Digital)</option>
-            </select>
-          </div>
-
-          <div class="bd">
-            <div class="groupTitle">Copilot QuickScan</div>
-            <div class="offers">
-              <article class="offer" data-offer="quickscan_base" aria-label="Copilot QuickScan Base">
-                <div class="offerTop">
-                  <h3>Copilot QuickScan (Base)</h3>
-                  <span class="tag">5–7 business days</span>
-                </div>
-                <p>Fast Copilot governance baseline: posture, surface map, and exposure priorities for board-safe decisions.</p>
-                <div class="offerMeta">
-                  <div class="kv"><strong>Price:</strong> $3,500 CAD</div>
-                  <div class="kv"><strong>Tier:</strong> Base</div>
-                </div>
-                <ul>
-                  <li>Executive summary (decision posture)</li>
-                  <li>Surface & enablement map</li>
-                  <li>Oversharing exposure themes + priorities</li>
-                </ul>
-
-                <div class="actions" style="margin-top:12px">
-                  <a class="btn" data-cta="pay" href="#" rel="nofollow noopener noreferrer">Pay by card</a>
-                  <a class="btn secondary" data-cta="po" href="/gate/procurement/?focus=quickscan&tier=base" data-rid-link>Invoice / PO</a>
-                  <a class="btn ghost" data-cta="open" href="/copilot/quickscan/">View details</a>
-                </div>
-
-                <details class="opt">
-                  <summary>More options</summary>
-                  <div class="optBody">
-                    Optional routing for internal approvals and kickoff.
-                    <div class="optRow">
-                      <a class="btn ghost small" data-cta="start" href="/gate/intake/?need=quickscan&tier=base" data-rid-link>Start (Gate intake)</a>
-                      <button class="btn ghost small" type="button" data-cta="copy">Copy procurement note</button>
-                      <button class="btn ghost small" type="button" data-cta="email">Email procurement</button>
-                    </div>
-                  </div>
-                </details>
-              </article>
-
-              <article class="offer" data-offer="quickscan_pro" aria-label="Copilot QuickScan Pro">
-                <div class="offerTop">
-                  <h3>Copilot QuickScan (Pro)</h3>
-                  <span class="tag">5–7 business days</span>
-                </div>
-                <p>Expanded defensibility: boundaries, evidence readiness, and a stronger control checklist for higher scrutiny.</p>
-                <div class="offerMeta">
-                  <div class="kv"><strong>Price:</strong> $5,500 CAD</div>
-                  <div class="kv"><strong>Tier:</strong> Pro</div>
-                </div>
-                <ul>
-                  <li>Deeper boundary guidance + red-lines</li>
-                  <li>Evidence readiness + owner mapping</li>
-                  <li>Control checklist + early cadence</li>
-                </ul>
-
-                <div class="actions" style="margin-top:12px">
-                  <a class="btn" data-cta="pay" href="#" rel="nofollow noopener noreferrer">Pay by card</a>
-                  <a class="btn secondary" data-cta="po" href="/gate/procurement/?focus=quickscan&tier=pro" data-rid-link>Invoice / PO</a>
-                  <a class="btn ghost" data-cta="open" href="/copilot/quickscan/">View details</a>
-                </div>
-
-                <details class="opt">
-                  <summary>More options</summary>
-                  <div class="optBody">
-                    Optional routing for internal approvals and kickoff.
-                    <div class="optRow">
-                      <a class="btn ghost small" data-cta="start" href="/gate/intake/?need=quickscan&tier=pro" data-rid-link>Start (Gate intake)</a>
-                      <button class="btn ghost small" type="button" data-cta="copy">Copy procurement note</button>
-                      <button class="btn ghost small" type="button" data-cta="email">Email procurement</button>
-                    </div>
-                  </div>
-                </details>
-              </article>
-
-              <article class="offer" data-offer="quickscan_ent" aria-label="Copilot QuickScan Enterprise">
-                <div class="offerTop">
-                  <h3>Copilot QuickScan (Enterprise)</h3>
-                  <span class="tag">Kickoff-confirmed timeline</span>
-                </div>
-                <p>Enterprise procurement/security posture and multi-stakeholder alignment with a board-ready briefing pack.</p>
-                <div class="offerMeta">
-                  <div class="kv"><strong>Price:</strong> $7,500 CAD</div>
-                  <div class="kv"><strong>Tier:</strong> Enterprise</div>
-                </div>
-                <ul>
-                  <li>Stakeholder-ready governance pack</li>
-                  <li>Exception / connector control model (where relevant)</li>
-                  <li>Board-ready briefing pack</li>
-                </ul>
-
-                <div class="actions" style="margin-top:12px">
-                  <a class="btn" data-cta="pay" href="#" rel="nofollow noopener noreferrer">Pay by card</a>
-                  <a class="btn secondary" data-cta="po" href="/gate/procurement/?focus=quickscan&tier=enterprise" data-rid-link>Invoice / PO</a>
-                  <a class="btn ghost" data-cta="open" href="/copilot/quickscan/">View details</a>
-                </div>
-
-                <details class="opt">
-                  <summary>More options</summary>
-                  <div class="optBody">
-                    Optional routing for internal approvals and kickoff.
-                    <div class="optRow">
-                      <a class="btn ghost small" data-cta="start" href="/gate/intake/?need=quickscan&tier=enterprise" data-rid-link>Start (Gate intake)</a>
-                      <button class="btn ghost small" type="button" data-cta="copy">Copy procurement note</button>
-                      <button class="btn ghost small" type="button" data-cta="email">Email procurement</button>
-                    </div>
-                  </div>
-                </details>
-              </article>
-            </div>
-
-            <div class="groupTitle">Primary services</div>
-            <div class="offers">
-              <article class="offer" data-offer="trustbrief" aria-label="Trust Brief">
-                <div class="offerTop">
-                  <h3>Trust Brief (6-week)</h3>
-                  <span class="tag">Engagement</span>
-                </div>
-                <p>Structured diagnostic to map material AI use-cases, decision points, and an initial operating model—ready for leadership review.</p>
-                <div class="offerMeta">
-                  <div class="kv"><strong>Timeline:</strong> 6 weeks</div>
-                  <div class="kv"><strong>Pricing:</strong> scoped at kickoff</div>
-                </div>
-                <ul>
-                  <li>Material use-case map + owners</li>
-                  <li>Decision gates + operating model draft</li>
-                  <li>Board-ready roadmap + first ledger entries</li>
-                </ul>
-                <div class="actions" style="margin-top:12px">
-                  <a class="btn secondary" data-cta="po" href="/gate/procurement/?focus=brief" data-rid-link>Invoice / PO</a>
-                  <a class="btn ghost" data-cta="open" href="/trust-brief/">View details</a>
-                </div>
-                <details class="opt">
-                  <summary>More options</summary>
-                  <div class="optBody">
-                    Default start is Gate/procurement to confirm scope and cadence.
-                    <div class="optRow">
-                      <a class="btn ghost small" data-cta="start" href="/gate/intake/?need=trustbrief" data-rid-link>Start (Gate intake)</a>
-                      <button class="btn ghost small" type="button" data-cta="copy">Copy procurement note</button>
-                      <button class="btn ghost small" type="button" data-cta="email">Email procurement</button>
-                    </div>
-                  </div>
-                </details>
-              </article>
-
-              <article class="offer" data-offer="trustledger" aria-label="Trust Ledger">
-                <div class="offerTop">
-                  <h3>Trust Ledger</h3>
-                  <span class="tag">Setup + cadence</span>
-                </div>
-                <p>Maintained register of AI systems, safeguards, sign-offs, and evidence—kept ready for recurring scrutiny.</p>
-                <div class="offerMeta">
-                  <div class="kv"><strong>Timeline:</strong> setup + cadence</div>
-                  <div class="kv"><strong>Pricing:</strong> setup + monthly</div>
-                </div>
-                <ul>
-                  <li>Ledger register + evidence index</li>
-                  <li>Board export cadence (agreed)</li>
-                  <li>Change trail + exception discipline</li>
-                </ul>
-                <div class="actions" style="margin-top:12px">
-                  <a class="btn secondary" data-cta="po" href="/gate/procurement/?focus=ledger" data-rid-link>Invoice / PO</a>
-                  <a class="btn ghost" data-cta="open" href="/trust-ledger/">View details</a>
-                </div>
-                <details class="opt">
-                  <summary>More options</summary>
-                  <div class="optBody">
-                    Default start is Gate/procurement to confirm cadence and evidence discipline.
-                    <div class="optRow">
-                      <a class="btn ghost small" data-cta="start" href="/gate/intake/?need=trustledger" data-rid-link>Start (Gate intake)</a>
-                      <button class="btn ghost small" type="button" data-cta="copy">Copy procurement note</button>
-                      <button class="btn ghost small" type="button" data-cta="email">Email procurement</button>
-                    </div>
-                  </div>
-                </details>
-              </article>
-            </div>
-
-            <details class="payDetails" style="margin-top:14px;">
-              <summary>Optional add-on (digital): Playbook</summary>
-              <div class="detailsBody">
-                Playbook is not the core product line. It is available as a digital add-on for teams that want a reusable internal rollout pattern.
-                <div class="offers" style="margin-top:12px;">
-                  <article class="offer" data-offer="playbook_standard" aria-label="Playbook Standard">
-                    <div class="offerTop">
-                      <h3>Playbook — Standard</h3>
-                      <span class="tag">Digital</span>
-                    </div>
-                    <p>AI governance playbook for one organization (0–90 day rollout). Templates + checklists + board/procurement-ready brief structure.</p>
-                    <div class="offerMeta">
-                      <div class="kv"><strong>Price:</strong> $249 CAD</div>
-                      <div class="kv"><strong>Delivery:</strong> immediate</div>
-                    </div>
-                    <div class="actions" style="margin-top:12px">
-                      <a class="btn" data-cta="pay" href="#" rel="nofollow noopener noreferrer">Pay by card</a>
-                      <a class="btn secondary" data-cta="po" href="/gate/procurement/?focus=playbook&tier=standard" data-rid-link>Invoice / PO</a>
-                      <a class="btn ghost" data-cta="open" href="/playbook/standard/">View details</a>
-                    </div>
-                    <details class="opt">
-                      <summary>More options</summary>
-                      <div class="optBody">
-                        <div class="optRow">
-                          <a class="btn ghost small" data-cta="start" href="/gate/intake/?need=playbook-standard&tier=standard" data-rid-link>Start (Gate intake)</a>
-                          <button class="btn ghost small" type="button" data-cta="copy">Copy procurement note</button>
-                          <button class="btn ghost small" type="button" data-cta="email">Email procurement</button>
-                        </div>
-                      </div>
-                    </details>
-                  </article>
-
-                  <article class="offer" data-offer="playbook_pro" aria-label="Playbook Pro">
-                    <div class="offerTop">
-                      <h3>Playbook — Pro (Agency/Broker)</h3>
-                      <span class="tag">Digital</span>
-                    </div>
-                    <p>Agency/advisor license for multi-client use. Reusable templates + due diligence kit + client-ready brief structures.</p>
-                    <div class="offerMeta">
-                      <div class="kv"><strong>Price:</strong> $749 CAD</div>
-                      <div class="kv"><strong>Delivery:</strong> immediate</div>
-                    </div>
-                    <div class="actions" style="margin-top:12px">
-                      <a class="btn" data-cta="pay" href="#" rel="nofollow noopener noreferrer">Pay by card</a>
-                      <a class="btn secondary" data-cta="po" href="/gate/procurement/?focus=playbook&tier=pro" data-rid-link>Invoice / PO</a>
-                      <a class="btn ghost" data-cta="open" href="/playbook/pro/">View details</a>
-                    </div>
-                    <details class="opt">
-                      <summary>More options</summary>
-                      <div class="optBody">
-                        <div class="optRow">
-                          <a class="btn ghost small" data-cta="start" href="/gate/intake/?need=playbook-pro&tier=pro" data-rid-link>Start (Gate intake)</a>
-                          <button class="btn ghost small" type="button" data-cta="copy">Copy procurement note</button>
-                          <button class="btn ghost small" type="button" data-cta="email">Email procurement</button>
-                        </div>
-                      </div>
-                    </details>
-                  </article>
-                </div>
-              </div>
-            </details>
-
-            <div class="notice">
-              <strong>Card-enabled:</strong> Copilot QuickScan tiers (and optional Playbook add-on).
-              <strong>Default procurement/Gate:</strong> Trust Brief and Trust Ledger (scope + cadence confirmation).
-            </div>
-            <div class="notice">
-              <strong>Tax:</strong> applied as required at invoicing or checkout.
-            </div>
-          </div>
-        </section>
-      </div>
-
-      <aside class="rail" aria-label="Purchase shortcuts">
-        <div class="railBox card">
-          <div class="hd">
-            <h2 class="cardTitle">Purchase path</h2>
-            <p class="muted">Choose the purchase style that fits internal process.</p>
-          </div>
-
-          <div class="bd">
-            <div class="seg" role="tablist" aria-label="Purchase style">
-              <button id="nfBuyerCard" type="button" role="tab" aria-selected="true"><strong>Card</strong> checkout</button>
-              <button id="nfBuyerProc" type="button" role="tab" aria-selected="false"><strong>Invoice</strong> / PO</button>
-            </div>
-
-            <div class="kpi" id="nfBuyerNote" role="note" style="margin-top:12px;"></div>
-
-            <div class="kpi" id="nfSelected"><strong>Selected:</strong> Copilot QuickScan (Base)</div>
-
-            <div class="refBox" id="nfRID" aria-label="Reference"></div>
-
-            <div class="actions" style="margin-top:12px">
-              <a class="btn primary" id="nfRailPrimary" href="#" aria-label="Primary action">Pay by card</a>
-              <a class="btn secondary" id="nfRailSecondary" href="#" aria-label="Gate intake">Start (Gate intake)</a>
-              <a class="btn secondary" id="nfRailTertiary" href="#" aria-label="Procurement">Invoice / PO</a>
-            </div>
-
-            <label for="nfSummary">Procurement note (copy/paste)</label>
-            <textarea id="nfSummary" spellcheck="false"></textarea>
-
-            <div class="actions">
-              <button class="btn secondary" type="button" id="nfCopy">Copy note</button>
-              <button class="btn secondary" type="button" id="nfEmail">Email procurement</button>
-            </div>
-
-            <details class="payDetails">
-              <summary>Internal: checkout links (card-enabled)</summary>
-              <div class="detailsBody">
-                Shows buttons only (no raw URLs displayed). Use for internal QA or controlled sharing.
-                <div id="nfPayLinks" class="payList" aria-label="Checkout links"></div>
-              </div>
-            </details>
-
-            <div class="notice" style="margin-top:12px;">
-              <strong>Public intake = non-confidential.</strong> Provide non-sensitive details only. Secure sharing is confirmed after kickoff.
-            </div>
-          </div>
-        </div>
-      </aside>
-    </section>
-
-    <section class="stickyCta" aria-label="Sticky CTA">
-      <div class="stickyInner">
-        <div class="stickyText" id="nfStickyText"><strong>Copilot QuickScan (Base)</strong> — 5–7 business days.</div>
-        <div class="actions" style="margin-top:0">
-          <a class="btn primary" id="nfStickyPrimary" href="#" rel="nofollow noopener noreferrer">Pay by card</a>
-          <a class="btn secondary" id="nfStickyProc" href="#" data-rid-link>Invoice / PO</a>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer id="nfFooter">
-    <!-- /assets/partials/footer.html — v3.3 (embedded) -->
-    <div class="footerTop">
-      <div class="fcol">
-        <a class="footBrand" href="/" aria-label="Noetfield home">
-          <img src="/noetfield-favicon-512.png" alt="Noetfield mark" />
-          <span style="font-weight:850; color:var(--text);">Noetfield</span>
-        </a>
-
-        <div class="fNote">
-          Trust and stewardship in AI — board-first governance artefacts designed to be evidence-ready and defensible.
-        </div>
-
-        <div class="ridRow" aria-label="Request ID">
-          <span>Request ID:</span>
-          <code data-rid>—</code>
-          <button type="button" data-copy-rid>Copy</button>
-        </div>
-
-        <div class="ctaRow" style="margin-top:12px;">
-          <a class="btn primary" href="/gate/sales/" data-rid-link>Buy (Start)</a>
-          <a class="btn secondary" href="/gate/" data-rid-link>Gate</a>
-          <a class="btn secondary" href="/portal/" data-rid-link>Portal</a>
-        </div>
-      </div>
-
-      <div class="fcol">
-        <div class="fTitle">Core</div>
-        <div class="fLinks">
-          <a href="/trust-ledger/">Trust Ledger</a>
-          <a href="/trust-brief/">Trust Brief</a>
-          <a href="/playbook/">Playbook</a>
-          <a href="/copilot/">Copilot</a>
-          <a href="/for-whom/">For Whom</a>
-        </div>
-      </div>
-
-      <div class="fcol">
-        <div class="fTitle">Gate</div>
-        <div class="fLinks">
-          <a href="/gate/sales/" data-rid-link>Sales (Start)</a>
-          <a href="/gate/" data-rid-link>Gate Home</a>
-          <a href="/gate/offers/" data-rid-link>Offers</a>
-          <a href="/portal/" data-rid-link>Portal</a>
-          <a href="/vendor/">Vendor</a>
-        </div>
-      </div>
-
-      <div class="fcol">
-        <div class="fTitle">Legal</div>
-        <div class="fLinks">
-          <a href="/privacy/">Privacy</a>
-          <a href="/terms/">Terms</a>
-          <a href="/cookies/">Cookies</a>
-          <a href="/accessibility/">Accessibility</a>
-          <a href="/policies/">Policies</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="footerBottom">
-      <div>© <span id="y">2025</span> Noetfield Systems Inc.</div>
-
-      <div class="footerMiniNav" aria-label="Footer mini navigation">
-        <a href="/gate/sales/" data-rid-link>Sales</a>
-
-        <a class="statusLink" href="/status/" data-rid-link>
-          <span class="statusDot" aria-hidden="true"></span>Status
-        </a>
-
-        <a href="/faq/">FAQ</a>
-        <a href="/sitemap.xml">Sitemap</a>
-
-        <a class="partnerIntakeLink" href="/gate/partners/" data-rid-link>
-          <span class="goldDot" aria-hidden="true"></span>Partner intake
-        </a>
-
-        <a href="/feedback/">Feedback</a>
-        <a href="/contact/">Contact</a>
-      </div>
-    </div>
-  </footer>
-
-  <script>
-    /* =========================
-       /assets/noetfield-shell.js — v2.3 (embedded + minor a11y hardening)
-       ========================= */
-    (function () {
-      "use strict";
-
-      var SHELL_VERSION = "2025.12.19";
-      var RID_KEY = "nf_rid";
-
-      function normPath(p) {
-        if (!p) return "/";
-        p = String(p).split("?")[0].split("#")[0];
-        if (p.length > 1 && p.endsWith("/")) p = p.slice(0, -1);
-        return p.toLowerCase();
-      }
-
-      function safeQueryAll(sel) {
-        try { return document.querySelectorAll(sel); } catch (_) { return []; }
-      }
-
-      function toInternalPath(href) {
-        if (!href) return null;
-
-        if (href.startsWith("http")) {
-          try {
-            var u = new URL(href, window.location.origin);
-            if (u.origin !== window.location.origin) return null;
-            return u.pathname || "/";
-          } catch (_) { return null; }
-        }
-        if (!href.startsWith("/")) return null;
-        return href;
-      }
-
-      function setYear() {
-        var y = document.getElementById("y");
-        if (y) y.textContent = String(new Date().getFullYear());
-      }
-
-      function sanitizeRID(x) {
-        x = (x || "").trim();
-        if (!x) return "";
-        x = x.replace(/[^a-zA-Z0-9\-_]/g, "").slice(0, 64);
-        if (x.length < 6) return "";
-        return x;
-      }
-
-      function buildUrlWithRID(href, rid) {
-        try {
-          var u = new URL(href, window.location.origin);
-          if (u.origin !== window.location.origin) return null;
-          u.searchParams.set("rid", rid);
-          var qs = u.searchParams.toString();
-          return u.pathname + (qs ? ("?" + qs) : "") + (u.hash || "");
-        } catch (_) {
-          return null;
-        }
-      }
-
-      function generateRID() {
-        return (
-          "RID-" +
-          Date.now().toString(36) +
-          "-" +
-          Math.random().toString(36).slice(2, 8)
-        ).toUpperCase();
-      }
-
-      function getOrCreateRID() {
-        var url;
-        try { url = new URL(window.location.href); } catch (_) { url = null; }
-
-        var ridFromUrl = "";
-        if (url) ridFromUrl = sanitizeRID(url.searchParams.get("rid"));
-
-        if (ridFromUrl) {
-          try { localStorage.setItem(RID_KEY, ridFromUrl); } catch (_) {}
-          return ridFromUrl;
-        }
-
-        var stored = "";
-        try { stored = sanitizeRID(localStorage.getItem(RID_KEY)); } catch (_) {}
-        if (stored) return stored;
-
-        var rid = sanitizeRID(generateRID()) || generateRID();
-        try { localStorage.setItem(RID_KEY, rid); } catch (_) {}
-        return rid;
-      }
-
-      function copyText(text) {
-        if (navigator.clipboard && navigator.clipboard.writeText) {
-          return navigator.clipboard.writeText(text).then(function () { return true; }).catch(function () { return false; });
-        }
-        return new Promise(function (resolve) {
-          try {
-            var ta = document.createElement("textarea");
-            ta.value = text;
-            ta.setAttribute("readonly", "");
-            ta.style.position = "fixed";
-            ta.style.left = "-9999px";
-            document.body.appendChild(ta);
-            ta.select();
-            var ok = document.execCommand("copy");
-            document.body.removeChild(ta);
-            resolve(!!ok);
-          } catch (_) {
-            resolve(false);
-          }
-        });
-      }
-
-      function applyRID(rid) {
-        safeQueryAll("[data-rid]").forEach(function (el) {
-          el.textContent = rid;
-        });
-
-        safeQueryAll("[data-copy-rid]").forEach(function (btn) {
-          btn.addEventListener("click", function () {
-            copyText(rid).then(function (ok) {
-              if (!ok) return;
-              btn.setAttribute("data-copied", "1");
-              setTimeout(function () { btn.removeAttribute("data-copied"); }, 900);
-            });
-          });
-        });
-
-        safeQueryAll("a[data-rid-link]").forEach(function (a) {
-          var href = (a.getAttribute("href") || "").trim();
-          if (!href) return;
-          var out = buildUrlWithRID(href, rid);
-          if (out) a.setAttribute("href", out);
-        });
-
-        safeQueryAll("form").forEach(function (form) {
-          var ridInput = form.querySelector('input[name="rid"]');
-          var reqInput = form.querySelector('input[name="request_id"]');
-
-          if (!ridInput) {
-            ridInput = document.createElement("input");
-            ridInput.type = "hidden";
-            ridInput.name = "rid";
-            form.appendChild(ridInput);
-          }
-          ridInput.value = rid;
-
-          if (!reqInput) {
-            reqInput = document.createElement("input");
-            reqInput.type = "hidden";
-            reqInput.name = "request_id";
-            form.appendChild(reqInput);
-          }
-          reqInput.value = rid;
-        });
-      }
-
-      function setActiveLinks() {
-        var current = normPath(window.location.pathname);
-
-        var selectors = [
-          "#nfHeader .menuPrimary a",
-          "#nfHeader .menuActions a",
-          "#nfHeader .mobileGrid a",
-          "#nfFooter .footerMiniNav a"
-        ].join(", ");
-
-        safeQueryAll(selectors).forEach(function (a) {
-          var hrefRaw = a.getAttribute("href") || "";
-          var href = toInternalPath(hrefRaw);
-          if (!href) return;
-
-          var target = normPath(href);
-          var isActive =
-            (target === "/" && current === "/") ||
-            (target !== "/" && (current === target || current.startsWith(target + "/")));
-
-          if (isActive) {
-            a.classList.add("active");
-            a.setAttribute("aria-current", "page");
-          } else {
-            a.classList.remove("active");
-            a.removeAttribute("aria-current");
-          }
-        });
-      }
-
-      function initBurger() {
-        var burger = document.getElementById("burger");
-        var panel = document.getElementById("mobilePanel");
-        if (!burger || !panel) return;
-
-        function openPanel() {
-          burger.setAttribute("aria-expanded", "true");
-          panel.hidden = false;
-          document.body.classList.add("navOpen");
-        }
-
-        function closePanel() {
-          burger.setAttribute("aria-expanded", "false");
-          panel.hidden = true;
-          document.body.classList.remove("navOpen");
-        }
-
-        function toggle() {
-          var isOpen = burger.getAttribute("aria-expanded") === "true";
-          if (isOpen) closePanel(); else openPanel();
-        }
-
-        burger.setAttribute("aria-expanded", "false");
-        panel.hidden = true;
-        document.body.classList.remove("navOpen");
-
-        burger.addEventListener("click", function (e) {
-          e.preventDefault();
-          toggle();
-        });
-
-        document.addEventListener("keydown", function (e) {
-          if (e.key === "Escape" && burger.getAttribute("aria-expanded") === "true") closePanel();
-        });
-
-        document.addEventListener("click", function (e) {
-          if (burger.getAttribute("aria-expanded") !== "true") return;
-          var withinHeader = !!(e.target && e.target.closest && e.target.closest("#nfHeader"));
-          if (!withinHeader) closePanel();
-        });
-
-        panel.addEventListener("click", function (e) {
-          var a = e.target && e.target.closest ? e.target.closest("a") : null;
-          if (a) closePanel();
-        });
-
-        window.addEventListener("resize", function () {
-          if (window.innerWidth > 1140 && burger.getAttribute("aria-expanded") === "true") closePanel();
-        });
-      }
-
-      function normalizeFooterCTA() {
-        var cta = document.querySelector("#nfFooter .ctaRow");
-        if (!cta) return;
-
-        var keepPaths = {
-          "/gate/sales": true,
-          "/gate": true,
-          "/portal": true
-        };
-
-        Array.prototype.slice.call(cta.querySelectorAll("a")).forEach(function (a) {
-          var hrefRaw = (a.getAttribute("href") || "").trim();
-          var p = toInternalPath(hrefRaw);
-          if (!p) return;
-          var n = normPath(p);
-          if (!keepPaths[n]) a.parentNode && a.parentNode.removeChild(a);
-        });
-      }
-
-      function ensureFeedbackTab() {
-        var p = normPath(window.location.pathname);
-        if (p === "/feedback" || p.startsWith("/feedback/")) return;
-        if (document.querySelector(".feedbackTab")) return;
-
-        var a = document.createElement("a");
-        a.className = "feedbackTab";
-        a.href = "/feedback/";
-        a.setAttribute("aria-label", "Open feedback");
-
-        var spark = document.createElement("span");
-        spark.className = "spark";
-        spark.setAttribute("aria-hidden", "true");
-
-        a.appendChild(spark);
-        a.appendChild(document.createTextNode("Feedback"));
-        document.body.appendChild(a);
-      }
-
-      function emitReady(rid) {
-        try {
-          window.__nf = { rid: rid, version: SHELL_VERSION };
-          var ev = new CustomEvent("nf:shell:ready", { detail: { rid: rid, version: SHELL_VERSION } });
-          window.dispatchEvent(ev);
-        } catch (_) {
-          window.__nf = window.__nf || {};
-          window.__nf.rid = rid;
-          window.__nf.version = SHELL_VERSION;
-        }
-      }
-
-      function boot() {
-        var rid = getOrCreateRID();
-        applyRID(rid);
-
-        setYear();
-        setActiveLinks();
-        initBurger();
-        normalizeFooterCTA();
-        ensureFeedbackTab();
-
-        emitReady(rid);
-      }
-
-      if (document.readyState === "loading") {
-        document.addEventListener("DOMContentLoaded", function () { boot(); });
-      } else {
-        boot();
-      }
-    })();
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"WebPage",
+    "name":"Noetfield — Purchase",
+    "url":"https://www.noetfield.com/gate/sales/",
+    "description":"Copilot QuickScan checkout + procurement-ready starts for Trust Brief / Trust Ledger. Card where enabled, invoice/PO path always available.",
+    "isPartOf":{"@type":"WebSite","name":"Noetfield","url":"https://www.noetfield.com/"},
+    "publisher":{"@type":"Organization","name":"Noetfield Systems Inc."}
+  }
   </script>
 
   <script>
-    /* =========================
-       /gate/sales logic — v3.1.1 (embedded)
-       - waits for nf:shell:ready
-       - keeps RID stable (no duplicates)
-       - improves tab a11y (aria-selected)
-       ========================= */
     (function(){
       "use strict";
 
@@ -1958,19 +511,12 @@
         return "mailto:procurement@noetfield.com?subject="+encodeURIComponent(subject)+"&body="+encodeURIComponent(body);
       }
 
-      function setTabState(cardOn){
-        var bCard=document.getElementById("nfBuyerCard");
-        var bProc=document.getElementById("nfBuyerProc");
-        if(!bCard || !bProc) return;
-        bCard.classList.toggle("isOn", !!cardOn);
-        bProc.classList.toggle("isOn", !cardOn);
-        bCard.setAttribute("aria-selected", cardOn ? "true" : "false");
-        bProc.setAttribute("aria-selected", cardOn ? "false" : "true");
-      }
-
       function renderBuyerUI(){
         var buyer=getBuyer();
-        setTabState(buyer==="card");
+        var bCard=document.getElementById("nfBuyerCard");
+        var bProc=document.getElementById("nfBuyerProc");
+        if(bCard) bCard.classList.toggle("isOn", buyer==="card");
+        if(bProc) bProc.classList.toggle("isOn", buyer==="proc");
 
         var note=document.getElementById("nfBuyerNote");
         if(note){
@@ -1999,7 +545,7 @@
         if(ta) ta.value=buildProcSummary(rid, offerKey);
 
         updateRail(rid, offerKey);
-        updateOfferCTAs(rid);
+        updateOfferCTAs(rid, offerKey);
         setStickyFromOffer(rid, offerKey);
 
         try{
@@ -2029,23 +575,20 @@
           railPrimary.textContent="Invoice / PO (Procurement)";
           railPrimary.setAttribute("href", appendRID(proc, rid));
           railPrimary.removeAttribute("rel");
-          railPrimary.removeAttribute("target");
         }else{
           if(ch){
             railPrimary.textContent="Pay by card";
             railPrimary.setAttribute("href", ch);
-            railPrimary.setAttribute("rel","nofollow noopener noreferrer");
-            railPrimary.setAttribute("target","_blank");
+            railPrimary.setAttribute("rel","nofollow");
           }else{
             railPrimary.textContent="Start (Gate intake)";
             railPrimary.setAttribute("href", appendRID(intake, rid));
             railPrimary.removeAttribute("rel");
-            railPrimary.removeAttribute("target");
           }
         }
       }
 
-      function updateOfferCTAs(rid){
+      function updateOfferCTAs(rid, activeKey){
         var buyer=getBuyer();
         var keys=Object.keys(OFFERS);
 
@@ -2074,11 +617,9 @@
             if(ch){
               pay.style.display="inline-flex";
               pay.setAttribute("href", ch);
-              pay.setAttribute("rel","nofollow noopener noreferrer");
-              pay.setAttribute("target","_blank");
+              pay.setAttribute("rel","nofollow");
             }else{
               pay.style.display="none";
-              pay.removeAttribute("target");
             }
           }
 
@@ -2100,6 +641,7 @@
             })(k);
           }
 
+          /* Emphasis */
           if(buyer==="proc"){
             if(po){ po.classList.add("primary"); po.classList.remove("secondary","ghost"); }
             if(pay){ pay.classList.add("ghost"); pay.classList.remove("primary"); }
@@ -2131,13 +673,11 @@
         if(ch){
           sPrimary.textContent="Pay by card";
           sPrimary.setAttribute("href", ch);
-          sPrimary.setAttribute("rel","nofollow noopener noreferrer");
-          sPrimary.setAttribute("target","_blank");
+          sPrimary.setAttribute("rel","nofollow");
         }else{
           sPrimary.textContent="Start (Gate)";
           sPrimary.setAttribute("href", appendRID(intake, rid));
           sPrimary.removeAttribute("rel");
-          sPrimary.removeAttribute("target");
         }
         sProc.setAttribute("href", appendRID(proc, rid));
       }
@@ -2162,7 +702,7 @@
             '<div class="payItem">' +
               '<strong>' + esc(label) + '</strong>' +
               '<div class="row">' +
-                '<a class="btn secondary small" href="' + esc(href) + '" target="_blank" rel="nofollow noopener noreferrer">Open checkout</a>' +
+                '<a class="btn secondary small" href="' + esc(href) + '" target="_blank" rel="nofollow">Open checkout</a>' +
                 '<button class="btn ghost small" type="button" data-copy-link="' + esc(key) + '">Copy checkout link</button>' +
               '</div>' +
             '</div>'
@@ -2193,6 +733,7 @@
         renderRef(rid);
         renderPaymentLinks(rid);
 
+        /* buyer from query (optional) */
         try{
           var u = new URL(location.href);
           var qb = (u.searchParams.get("buyer") || "").toLowerCase();
@@ -2212,14 +753,14 @@
           bCard.addEventListener("click", function(){
             setBuyer("card");
             renderBuyerUI();
-            setActiveOffer(rid, (document.getElementById("nfOfferSelect")||{}).value || defaultOffer);
+            setActiveOffer(rid, defaultOffer);
           });
         }
         if(bProc){
           bProc.addEventListener("click", function(){
             setBuyer("proc");
             renderBuyerUI();
-            setActiveOffer(rid, (document.getElementById("nfOfferSelect")||{}).value || defaultOffer);
+            setActiveOffer(rid, defaultOffer);
           });
         }
 
@@ -2263,32 +804,394 @@
         setActiveOffer(rid, defaultOffer);
       }
 
+      /* Wait for Shell RID (prevents race / double RID) */
       window.addEventListener("nf:shell:ready", function(e){
         initWithRID(e && e.detail ? e.detail.rid : (window.__nf && window.__nf.rid));
       });
 
+      /* In case shell is already ready */
       if(window.__nf && window.__nf.rid){
         initWithRID(window.__nf.rid);
       }
     })();
   </script>
+</head>
 
-  <!--
-    CHANGELOG (v3.1.1 single-file)
-    - Embedded header.html + footer.html directly (no fetch/injection dependency).
-    - Embedded shell CSS + shell JS + sales logic into one deploy-ready HTML.
-    - Hardened external checkout links: rel="nofollow noopener noreferrer" + target="_blank".
-    - Fixed buyer tabs a11y: aria-selected toggles correctly.
-    - Kept RID behavior stable: one RID, propagated to data-rid-link + procurement notes.
+<body>
+  <div class="bg" aria-hidden="true"></div>
+  <a class="skip" href="#main">Skip to content</a>
 
-    SMOKE TEST CHECKLIST
-    - GET /gate/sales/ => 200
-    - RID shows in footer + rail reference; copy button works
-    - Header active link highlights on /gate/sales/
-    - Burger opens/closes; body scroll locks; Esc closes
-    - Offer select updates rail + sticky CTA + procurement note
-    - Card buyer: QuickScan + Playbook show “Pay by card”; Trust Brief/Ledger do not
-    - Invoice buyer: primary action routes to /gate/procurement/ with rid
-  -->
+  <header id="nfHeader"></header>
+
+  <main id="main" class="wrap">
+    <section class="hero" aria-label="Purchase hero">
+      <div class="heroShell">
+        <div class="heroInner">
+          <div class="eyebrow"><span class="dot"></span> Purchase • board-safe starts • card or invoice/PO</div>
+
+          <h1>Copilot-first purchase options.</h1>
+
+          <p class="lead">
+            <strong>Copilot QuickScan</strong> is the fastest paid start (card checkout where enabled).
+            <strong>Trust Brief</strong> and <strong>Trust Ledger</strong> run through Gate/procurement to confirm scope and cadence.
+            <span style="opacity:.92;">Playbook is an optional add-on (digital).</span>
+          </p>
+
+          <div class="metaRow" aria-label="Purchase facts">
+            <div class="pill"><strong>Public intake</strong> = non-confidential</div>
+            <div class="pill"><strong>Invoice / PO</strong> path</div>
+            <div class="pill"><strong>Reference</strong> carried across</div>
+            <div class="pill"><strong>Tax</strong> applied as required</div>
+          </div>
+
+          <div class="actions" aria-label="Hero actions">
+            <a class="btn primary" href="/gate/" data-rid-link>Start (Gate)</a>
+            <a class="btn secondary" href="/gate/procurement/" data-rid-link>Invoice / PO</a>
+            <a class="btn secondary" href="/vendor/">Vendor profile</a>
+          </div>
+
+          <div class="notice" role="note">
+            <strong>Public forms are designed for non-sensitive details.</strong>
+            Secure sharing options are confirmed after kickoff.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="grid" aria-label="Purchase layout">
+      <div>
+        <section class="card" aria-label="Offers">
+          <div class="hd">
+            <h2 class="cardTitle">Offers</h2>
+            <p class="muted">Choose an offer. Card checkout appears only where enabled. Invoice/PO and Gate start are always available.</p>
+
+            <div class="sectionRow" aria-label="Offer groups">
+              <div class="chip"><strong>Primary:</strong> Copilot QuickScan</div>
+              <div class="chip"><strong>Primary:</strong> Trust Brief / Trust Ledger</div>
+              <div class="chip"><strong>Optional:</strong> Playbook add-on</div>
+            </div>
+
+            <label for="nfOfferSelect">Selected offer</label>
+            <select id="nfOfferSelect" aria-label="Select offer">
+              <option value="quickscan_base">Copilot QuickScan (Base)</option>
+              <option value="quickscan_pro">Copilot QuickScan (Pro)</option>
+              <option value="quickscan_ent">Copilot QuickScan (Enterprise)</option>
+              <option value="trustbrief">Trust Brief (6-week)</option>
+              <option value="trustledger">Trust Ledger</option>
+              <option value="playbook_standard">Playbook — Standard (Digital)</option>
+              <option value="playbook_pro">Playbook — Pro (Digital)</option>
+            </select>
+          </div>
+
+          <div class="bd">
+            <div class="groupTitle">Copilot QuickScan</div>
+            <div class="offers">
+              <article class="offer" data-offer="quickscan_base" aria-label="Copilot QuickScan Base">
+                <div class="offerTop">
+                  <h3>Copilot QuickScan (Base)</h3>
+                  <span class="tag">5–7 business days</span>
+                </div>
+                <p>Fast Copilot governance baseline: posture, surface map, and exposure priorities for board-safe decisions.</p>
+                <div class="offerMeta">
+                  <div class="kv"><strong>Price:</strong> $3,500 CAD</div>
+                  <div class="kv"><strong>Tier:</strong> Base</div>
+                </div>
+                <ul>
+                  <li>Executive summary (decision posture)</li>
+                  <li>Surface & enablement map</li>
+                  <li>Oversharing exposure themes + priorities</li>
+                </ul>
+
+                <div class="actions" style="margin-top:12px">
+                  <a class="btn" data-cta="pay" href="#" rel="nofollow">Pay by card</a>
+                  <a class="btn secondary" data-cta="po" href="/gate/procurement/?focus=quickscan&tier=base" data-rid-link>Invoice / PO</a>
+                  <a class="btn ghost" data-cta="open" href="/copilot/quickscan/">View details</a>
+                </div>
+
+                <details class="opt">
+                  <summary>More options</summary>
+                  <div class="optBody">
+                    Optional routing for internal approvals and kickoff.
+                    <div class="optRow">
+                      <a class="btn ghost small" data-cta="start" href="/gate/intake/?need=quickscan&tier=base" data-rid-link>Start (Gate intake)</a>
+                      <button class="btn ghost small" type="button" data-cta="copy">Copy procurement note</button>
+                      <button class="btn ghost small" type="button" data-cta="email">Email procurement</button>
+                    </div>
+                  </div>
+                </details>
+              </article>
+
+              <article class="offer" data-offer="quickscan_pro" aria-label="Copilot QuickScan Pro">
+                <div class="offerTop">
+                  <h3>Copilot QuickScan (Pro)</h3>
+                  <span class="tag">5–7 business days</span>
+                </div>
+                <p>Expanded defensibility: boundaries, evidence readiness, and a stronger control checklist for higher scrutiny.</p>
+                <div class="offerMeta">
+                  <div class="kv"><strong>Price:</strong> $5,500 CAD</div>
+                  <div class="kv"><strong>Tier:</strong> Pro</div>
+                </div>
+                <ul>
+                  <li>Deeper boundary guidance + red-lines</li>
+                  <li>Evidence readiness + owner mapping</li>
+                  <li>Control checklist + early cadence</li>
+                </ul>
+
+                <div class="actions" style="margin-top:12px">
+                  <a class="btn" data-cta="pay" href="#" rel="nofollow">Pay by card</a>
+                  <a class="btn secondary" data-cta="po" href="/gate/procurement/?focus=quickscan&tier=pro" data-rid-link>Invoice / PO</a>
+                  <a class="btn ghost" data-cta="open" href="/copilot/quickscan/">View details</a>
+                </div>
+
+                <details class="opt">
+                  <summary>More options</summary>
+                  <div class="optBody">
+                    Optional routing for internal approvals and kickoff.
+                    <div class="optRow">
+                      <a class="btn ghost small" data-cta="start" href="/gate/intake/?need=quickscan&tier=pro" data-rid-link>Start (Gate intake)</a>
+                      <button class="btn ghost small" type="button" data-cta="copy">Copy procurement note</button>
+                      <button class="btn ghost small" type="button" data-cta="email">Email procurement</button>
+                    </div>
+                  </div>
+                </details>
+              </article>
+
+              <article class="offer" data-offer="quickscan_ent" aria-label="Copilot QuickScan Enterprise">
+                <div class="offerTop">
+                  <h3>Copilot QuickScan (Enterprise)</h3>
+                  <span class="tag">Kickoff-confirmed timeline</span>
+                </div>
+                <p>Enterprise procurement/security posture and multi-stakeholder alignment with a board-ready briefing pack.</p>
+                <div class="offerMeta">
+                  <div class="kv"><strong>Price:</strong> $7,500 CAD</div>
+                  <div class="kv"><strong>Tier:</strong> Enterprise</div>
+                </div>
+                <ul>
+                  <li>Stakeholder-ready governance pack</li>
+                  <li>Exception / connector control model (where relevant)</li>
+                  <li>Board-ready briefing pack</li>
+                </ul>
+
+                <div class="actions" style="margin-top:12px">
+                  <a class="btn" data-cta="pay" href="#" rel="nofollow">Pay by card</a>
+                  <a class="btn secondary" data-cta="po" href="/gate/procurement/?focus=quickscan&tier=enterprise" data-rid-link>Invoice / PO</a>
+                  <a class="btn ghost" data-cta="open" href="/copilot/quickscan/">View details</a>
+                </div>
+
+                <details class="opt">
+                  <summary>More options</summary>
+                  <div class="optBody">
+                    Optional routing for internal approvals and kickoff.
+                    <div class="optRow">
+                      <a class="btn ghost small" data-cta="start" href="/gate/intake/?need=quickscan&tier=enterprise" data-rid-link>Start (Gate intake)</a>
+                      <button class="btn ghost small" type="button" data-cta="copy">Copy procurement note</button>
+                      <button class="btn ghost small" type="button" data-cta="email">Email procurement</button>
+                    </div>
+                  </div>
+                </details>
+              </article>
+            </div>
+
+            <div class="groupTitle">Primary services</div>
+            <div class="offers">
+              <article class="offer" data-offer="trustbrief" aria-label="Trust Brief">
+                <div class="offerTop">
+                  <h3>Trust Brief (6-week)</h3>
+                  <span class="tag">Engagement</span>
+                </div>
+                <p>Structured diagnostic to map material AI use-cases, decision points, and an initial operating model—ready for leadership review.</p>
+                <div class="offerMeta">
+                  <div class="kv"><strong>Timeline:</strong> 6 weeks</div>
+                  <div class="kv"><strong>Pricing:</strong> scoped at kickoff</div>
+                </div>
+                <ul>
+                  <li>Material use-case map + owners</li>
+                  <li>Decision gates + operating model draft</li>
+                  <li>Board-ready roadmap + first ledger entries</li>
+                </ul>
+                <div class="actions" style="margin-top:12px">
+                  <a class="btn secondary" data-cta="po" href="/gate/procurement/?focus=brief" data-rid-link>Invoice / PO</a>
+                  <a class="btn ghost" data-cta="open" href="/trust-brief/">View details</a>
+                </div>
+                <details class="opt">
+                  <summary>More options</summary>
+                  <div class="optBody">
+                    Default start is Gate/procurement to confirm scope and cadence.
+                    <div class="optRow">
+                      <a class="btn ghost small" data-cta="start" href="/gate/intake/?need=trustbrief" data-rid-link>Start (Gate intake)</a>
+                      <button class="btn ghost small" type="button" data-cta="copy">Copy procurement note</button>
+                      <button class="btn ghost small" type="button" data-cta="email">Email procurement</button>
+                    </div>
+                  </div>
+                </details>
+              </article>
+
+              <article class="offer" data-offer="trustledger" aria-label="Trust Ledger">
+                <div class="offerTop">
+                  <h3>Trust Ledger</h3>
+                  <span class="tag">Setup + cadence</span>
+                </div>
+                <p>Maintained register of AI systems, safeguards, sign-offs, and evidence—kept ready for recurring scrutiny.</p>
+                <div class="offerMeta">
+                  <div class="kv"><strong>Timeline:</strong> setup + cadence</div>
+                  <div class="kv"><strong>Pricing:</strong> setup + monthly</div>
+                </div>
+                <ul>
+                  <li>Ledger register + evidence index</li>
+                  <li>Board export cadence (agreed)</li>
+                  <li>Change trail + exception discipline</li>
+                </ul>
+                <div class="actions" style="margin-top:12px">
+                  <a class="btn secondary" data-cta="po" href="/gate/procurement/?focus=ledger" data-rid-link>Invoice / PO</a>
+                  <a class="btn ghost" data-cta="open" href="/trust-ledger/">View details</a>
+                </div>
+                <details class="opt">
+                  <summary>More options</summary>
+                  <div class="optBody">
+                    Default start is Gate/procurement to confirm cadence and evidence discipline.
+                    <div class="optRow">
+                      <a class="btn ghost small" data-cta="start" href="/gate/intake/?need=trustledger" data-rid-link>Start (Gate intake)</a>
+                      <button class="btn ghost small" type="button" data-cta="copy">Copy procurement note</button>
+                      <button class="btn ghost small" type="button" data-cta="email">Email procurement</button>
+                    </div>
+                  </div>
+                </details>
+              </article>
+            </div>
+
+            <details class="payDetails" style="margin-top:14px;">
+              <summary>Optional add-on (digital): Playbook</summary>
+              <div class="detailsBody">
+                Playbook is not the core product line. It is available as a digital add-on for teams that want a reusable internal rollout pattern.
+                <div class="offers" style="margin-top:12px;">
+                  <article class="offer" data-offer="playbook_standard" aria-label="Playbook Standard">
+                    <div class="offerTop">
+                      <h3>Playbook — Standard</h3>
+                      <span class="tag">Digital</span>
+                    </div>
+                    <p>AI governance playbook for one organization (0–90 day rollout). Templates + checklists + board/procurement-ready brief structure.</p>
+                    <div class="offerMeta">
+                      <div class="kv"><strong>Price:</strong> $249 CAD</div>
+                      <div class="kv"><strong>Delivery:</strong> immediate</div>
+                    </div>
+                    <div class="actions" style="margin-top:12px">
+                      <a class="btn" data-cta="pay" href="#" rel="nofollow">Pay by card</a>
+                      <a class="btn secondary" data-cta="po" href="/gate/procurement/?focus=playbook&tier=standard" data-rid-link>Invoice / PO</a>
+                      <a class="btn ghost" data-cta="open" href="/playbook/standard/">View details</a>
+                    </div>
+                    <details class="opt">
+                      <summary>More options</summary>
+                      <div class="optBody">
+                        <div class="optRow">
+                          <a class="btn ghost small" data-cta="start" href="/gate/intake/?need=playbook-standard&tier=standard" data-rid-link>Start (Gate intake)</a>
+                          <button class="btn ghost small" type="button" data-cta="copy">Copy procurement note</button>
+                          <button class="btn ghost small" type="button" data-cta="email">Email procurement</button>
+                        </div>
+                      </div>
+                    </details>
+                  </article>
+
+                  <article class="offer" data-offer="playbook_pro" aria-label="Playbook Pro">
+                    <div class="offerTop">
+                      <h3>Playbook — Pro (Agency/Broker)</h3>
+                      <span class="tag">Digital</span>
+                    </div>
+                    <p>Agency/advisor license for multi-client use. Reusable templates + due diligence kit + client-ready brief structures.</p>
+                    <div class="offerMeta">
+                      <div class="kv"><strong>Price:</strong> $749 CAD</div>
+                      <div class="kv"><strong>Delivery:</strong> immediate</div>
+                    </div>
+                    <div class="actions" style="margin-top:12px">
+                      <a class="btn" data-cta="pay" href="#" rel="nofollow">Pay by card</a>
+                      <a class="btn secondary" data-cta="po" href="/gate/procurement/?focus=playbook&tier=pro" data-rid-link>Invoice / PO</a>
+                      <a class="btn ghost" data-cta="open" href="/playbook/pro/">View details</a>
+                    </div>
+                    <details class="opt">
+                      <summary>More options</summary>
+                      <div class="optBody">
+                        <div class="optRow">
+                          <a class="btn ghost small" data-cta="start" href="/gate/intake/?need=playbook-pro&tier=pro" data-rid-link>Start (Gate intake)</a>
+                          <button class="btn ghost small" type="button" data-cta="copy">Copy procurement note</button>
+                          <button class="btn ghost small" type="button" data-cta="email">Email procurement</button>
+                        </div>
+                      </div>
+                    </details>
+                  </article>
+                </div>
+              </div>
+            </details>
+
+            <div class="notice">
+              <strong>Card-enabled:</strong> Copilot QuickScan tiers (and optional Playbook add-on).
+              <strong>Default procurement/Gate:</strong> Trust Brief and Trust Ledger (scope + cadence confirmation).
+            </div>
+            <div class="notice">
+              <strong>Tax:</strong> applied as required at invoicing or checkout.
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <aside class="rail" aria-label="Purchase shortcuts">
+        <div class="railBox card">
+          <div class="hd">
+            <h2 class="cardTitle">Purchase path</h2>
+            <p class="muted">Choose the purchase style that fits internal process.</p>
+          </div>
+
+          <div class="bd">
+            <div class="seg" role="tablist" aria-label="Purchase style">
+              <button id="nfBuyerCard" type="button" role="tab" aria-selected="true"><strong>Card</strong> checkout</button>
+              <button id="nfBuyerProc" type="button" role="tab" aria-selected="false"><strong>Invoice</strong> / PO</button>
+            </div>
+
+            <div class="kpi" id="nfBuyerNote" role="note" style="margin-top:12px;"></div>
+
+            <div class="kpi" id="nfSelected"><strong>Selected:</strong> Copilot QuickScan (Base)</div>
+
+            <div class="refBox" id="nfRID" aria-label="Reference"></div>
+
+            <div class="actions" style="margin-top:12px">
+              <a class="btn primary" id="nfRailPrimary" href="#" aria-label="Primary action">Pay by card</a>
+              <a class="btn secondary" id="nfRailSecondary" href="#" aria-label="Gate intake">Start (Gate intake)</a>
+              <a class="btn secondary" id="nfRailTertiary" href="#" aria-label="Procurement">Invoice / PO</a>
+            </div>
+
+            <label for="nfSummary">Procurement note (copy/paste)</label>
+            <textarea id="nfSummary" spellcheck="false"></textarea>
+
+            <div class="actions">
+              <button class="btn secondary" type="button" id="nfCopy">Copy note</button>
+              <button class="btn secondary" type="button" id="nfEmail">Email procurement</button>
+            </div>
+
+            <details class="payDetails">
+              <summary>Internal: checkout links (card-enabled)</summary>
+              <div class="detailsBody">
+                Shows buttons only (no raw URLs displayed). Use for internal QA or controlled sharing.
+                <div id="nfPayLinks" class="payList" aria-label="Checkout links"></div>
+              </div>
+            </details>
+
+            <div class="notice" style="margin-top:12px;">
+              <strong>Public intake = non-confidential.</strong> Provide non-sensitive details only. Secure sharing is confirmed after kickoff.
+            </div>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="stickyCta" aria-label="Sticky CTA">
+      <div class="stickyInner">
+        <div class="stickyText" id="nfStickyText"><strong>Copilot QuickScan (Base)</strong> — 5–7 business days.</div>
+        <div class="actions" style="margin-top:0">
+          <a class="btn primary" id="nfStickyPrimary" href="#" rel="nofollow">Pay by card</a>
+          <a class="btn secondary" id="nfStickyProc" href="#" data-rid-link>Invoice / PO</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="nfFooter"></footer>
 </body>
 </html>

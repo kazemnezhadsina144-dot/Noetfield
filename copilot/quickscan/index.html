@@ -1,4 +1,4 @@
-<!-- /copilot/quickscan/index.html — Copilot QuickScan v2.3 (3-tier offers + Stripe Links + optional Buy Buttons + success redirect ready) -->
+<!-- /copilot/quickscan/index.html — Copilot QuickScan v2.4 (lead-in to Readiness • 3-tier offers • Stripe Links kept) -->
 <!doctype html>
 <html lang="en">
 <head>
@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <title>Noetfield — Copilot QuickScan</title>
-  <meta name="description" content="Copilot QuickScan: board-ready evidence for Microsoft 365 Copilot adoption in 5–7 business days. Surface oversharing exposure, sensitive-data boundaries, audit/retention posture, and extension/connector controls." />
+  <meta name="description" content="Copilot QuickScan: rapid readiness snapshot in 5–7 business days. Board-ready evidence themes for Microsoft 365 Copilot adoption, with a clean upgrade path to the full Readiness Assessment (2/4/6 weeks)." />
   <meta name="robots" content="index,follow" />
   <meta name="author" content="Noetfield Systems Inc." />
   <meta name="theme-color" content="#07070b" />
@@ -19,25 +19,23 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Noetfield" />
   <meta property="og:title" content="Noetfield — Copilot QuickScan" />
-  <meta property="og:description" content="Board-ready Copilot evidence pack in 5–7 business days." />
+  <meta property="og:description" content="Rapid readiness snapshot in 5–7 business days with an upgrade path to Readiness (2/4/6 weeks)." />
   <meta property="og:url" content="https://www.noetfield.com/copilot/quickscan/" />
   <meta property="og:image" content="https://www.noetfield.com/noetfield-og.png" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Noetfield — Copilot QuickScan" />
-  <meta name="twitter:description" content="Evidence-first Copilot governance pack: scope, exposure paths, boundaries, evidence readiness." />
+  <meta name="twitter:description" content="Rapid Copilot readiness snapshot (5–7 days) + upgrade to Readiness Assessment." />
   <meta name="twitter:image" content="https://www.noetfield.com/noetfield-og.png" />
 
   <!-- LOCKED SHELL -->
   <link rel="stylesheet" href="/assets/noetfield-shell.css" />
   <script src="/assets/noetfield-shell.js" defer></script>
 
-  <!-- Optional Stripe Buy Button (only needed if you render <stripe-buy-button> elements below) -->
   <script async src="https://js.stripe.com/v3/buy-button.js"></script>
 
   <style>
-    /* Minimal page-only styles; rely on shell tokens/components */
     .hero{padding:18px 0 12px}
     .heroShell{
       position:relative;
@@ -199,50 +197,21 @@
     .box strong{color:var(--text); font-weight:900}
     .box a{border-bottom:1px solid rgba(255,255,255,.18)}
 
-    /* Offer cards (3-tier) */
-    .offerGrid{
-      display:grid;
-      grid-template-columns: 1fr;
-      gap:12px;
-      margin-top:12px;
+    .offer{border-radius:16px;border:1px solid rgba(255,255,255,.11);background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.022));padding:14px;box-shadow: var(--shadow2)}
+    .offer.top{border-color: rgba(200,163,73,.32);background:
+      radial-gradient(900px 380px at 20% 0%, rgba(200,163,73,.22), transparent 60%),
+      radial-gradient(800px 320px at 92% 18%, rgba(122,167,255,.10), transparent 62%),
+      linear-gradient(180deg, rgba(255,255,255,.065), rgba(255,255,255,.022));
     }
-    .offer{
-      border-radius:16px;
-      border:1px solid rgba(255,255,255,.11);
-      background:
-        radial-gradient(900px 380px at 20% 0%, rgba(200,163,73,.16), transparent 60%),
-        linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.022));
-      padding:14px;
-      box-shadow: var(--shadow2);
-    }
-    .offer.top{
-      border-color: rgba(200,163,73,.32);
-      background:
-        radial-gradient(900px 380px at 20% 0%, rgba(200,163,73,.22), transparent 60%),
-        radial-gradient(800px 320px at 92% 18%, rgba(122,167,255,.10), transparent 62%),
-        linear-gradient(180deg, rgba(255,255,255,.065), rgba(255,255,255,.022));
-    }
-    .offerTop{
-      display:flex; justify-content:space-between; align-items:flex-start; gap:10px; flex-wrap:wrap;
-    }
+    .offerTop{display:flex; justify-content:space-between; align-items:flex-start; gap:10px; flex-wrap:wrap}
     .offerName{margin:0; font-size:15px; font-weight:950; letter-spacing:-.2px; color:var(--text)}
-    .badge{
-      display:inline-flex; align-items:center; gap:8px;
-      padding:7px 10px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.03);
-      color:var(--muted2);
-      font-size:12.4px;
-      white-space:nowrap;
-    }
+    .badge{display:inline-flex; align-items:center; gap:8px; padding:7px 10px; border-radius:999px; border:1px solid rgba(255,255,255,.12); background: rgba(255,255,255,.03); color:var(--muted2); font-size:12.4px; white-space:nowrap}
     .priceNum{margin:10px 0 0; font-size:28px; letter-spacing:-.6px; font-weight:950; color:var(--text)}
     .offerSub{margin:6px 0 0; color:var(--muted2); font-size:12.8px; line-height:1.55}
     .offerSub a{border-bottom:1px solid rgba(255,255,255,.18)}
     .miniList{margin:10px 0 0; padding-left:18px; color:var(--muted); line-height:1.85; font-size:13px}
     .miniList li{margin:6px 0}
 
-    /* Sticky CTA */
     .stickyCta{
       position: sticky;
       bottom: 0;
@@ -261,12 +230,7 @@
       max-width: 1120px;
       margin: 0 auto;
     }
-    .stickyText{
-      min-width:0;
-      color:var(--muted);
-      font-size:12.6px;
-      line-height:1.4;
-    }
+    .stickyText{min-width:0; color:var(--muted); font-size:12.6px; line-height:1.4}
     .stickyText strong{ color:var(--text); font-weight:950; }
 
     @media (max-width: 980px){
@@ -288,7 +252,7 @@
     "name":"Copilot QuickScan",
     "provider":{"@type":"Organization","name":"Noetfield Systems Inc."},
     "areaServed":"CA",
-    "description":"Board-ready evidence for Microsoft 365 Copilot adoption — delivered in 5–7 business days. Surfaces oversharing exposure, sensitive-data boundaries, audit/retention posture, and extension/connector controls.",
+    "description":"Rapid readiness snapshot for Microsoft 365 Copilot adoption — delivered in 5–7 business days, with an upgrade path to a full Readiness Assessment (2/4/6 weeks).",
     "url":"https://www.noetfield.com/copilot/quickscan/"
   }
   </script>
@@ -298,34 +262,33 @@
   <div class="bg" aria-hidden="true"></div>
   <a class="skip" href="#main">Skip to content</a>
 
-  <!-- injected header -->
   <header id="nfHeader"></header>
 
   <main id="main" class="wrap">
-    <!-- HERO -->
     <section class="hero" aria-label="Copilot QuickScan hero">
       <div class="heroShell">
         <div class="heroInner">
-          <div class="eyebrow"><span class="dot"></span> Microsoft 365 Copilot • 5–7 business days</div>
+          <div class="eyebrow"><span class="dot"></span> Rapid snapshot • 5–7 business days • upgradeable</div>
 
           <h1>Copilot QuickScan.</h1>
 
           <p class="lead">
-            Board-ready evidence for Microsoft 365 Copilot adoption — delivered in <strong>5–7 business days</strong>.
-            Surface oversharing exposure, sensitive-data boundaries, audit/retention posture, and connector/extension controls — in a buyer-safe package leadership can approve.
+            A <strong>rapid readiness snapshot</strong> for Microsoft 365 Copilot adoption — delivered in <strong>5–7 business days</strong>.
+            Use it to surface exposure themes and set boundaries fast, then upgrade into the full
+            <a href="/copilot/readiness/">Readiness Assessment (2/4/6 weeks)</a> when stakeholders require deeper governance and evidence.
           </p>
 
           <div class="actions" aria-label="Primary actions">
             <a class="btn primary" href="#purchase">See packages & pay</a>
+            <a class="btn secondary" href="/copilot/readiness/">Readiness Assessment (Flagship)</a>
             <a class="btn secondary" href="/gate/procurement/?focus=quickscan">Invoice / PO (Procurement)</a>
-            <a class="btn secondary" href="/copilot/">Copilot hub</a>
           </div>
 
           <div class="metaRow" aria-label="Highlights">
             <div class="pill"><strong>5–7 days</strong> delivery</div>
-            <div class="pill"><strong>3 tiers</strong> (Base / Pro / Enterprise)</div>
+            <div class="pill"><strong>Lead-in</strong> to Readiness</div>
             <div class="pill"><strong>Board-ready</strong> outputs</div>
-            <div class="pill"><strong>Procurement-friendly</strong> routing</div>
+            <div class="pill"><strong>3 tiers</strong> (Base / Pro / Enterprise)</div>
           </div>
 
           <div class="notice" role="note">
@@ -341,20 +304,20 @@
       <section class="card" aria-label="QuickScan details">
         <div class="hd">
           <h2 class="cardTitle">What this solves</h2>
-          <p class="muted">Copilot value can be real — and so can unintended exposure. QuickScan makes the exposure paths legible and the proof producible.</p>
+          <p class="muted">Copilot value can be real — and so can unintended exposure. QuickScan makes exposure themes legible and proof producible.</p>
         </div>
 
         <div class="bd">
           <div class="kpiGrid" aria-label="Outcomes">
             <div class="kpi">
-              <div class="t">Scope clarity</div>
-              <div class="v">What is enabled, where, and for whom</div>
-              <div class="d">A clean map of Copilot surfaces and tenant posture suitable for executive review.</div>
+              <div class="t">Fast clarity</div>
+              <div class="v">What is enabled, where, and why it matters</div>
+              <div class="d">A compact map of Copilot posture suitable for executive review.</div>
             </div>
             <div class="kpi">
-              <div class="t">Exposure paths</div>
+              <div class="t">Exposure themes</div>
               <div class="v">Oversharing risk made visible</div>
-              <div class="d">High-signal exposure paths driven by permissions posture and content sprawl.</div>
+              <div class="d">High-signal exposure themes driven by permissions posture and content sprawl.</div>
             </div>
             <div class="kpi">
               <div class="t">Boundaries</div>
@@ -362,15 +325,15 @@
               <div class="d">Practical boundary guidance: what belongs in Copilot reach, what needs controls first.</div>
             </div>
             <div class="kpi">
-              <div class="t">Evidence readiness</div>
-              <div class="v">Proof for boards, audits, and clients</div>
-              <div class="d">What signals exist, how retention/export works, and what can be produced as evidence.</div>
+              <div class="t">Upgrade path</div>
+              <div class="v">Ready to scale into Readiness</div>
+              <div class="d">When stakeholders require deeper governance and evidence, upgrade to 2/4/6-week Readiness.</div>
             </div>
           </div>
 
           <div class="section" id="deliverables">
             <div class="sectionTitle">Deliverables (all tiers)</div>
-            <p class="sectionDesc">A compact set of artifacts that support Go / Guardrails / Pause decisions and early governance controls.</p>
+            <p class="sectionDesc">A compact set of artifacts that support Go / Guardrails / Pause decisions and early controls.</p>
 
             <table class="table" aria-label="Deliverables table">
               <thead>
@@ -389,8 +352,8 @@
                   <td>Which Copilot surfaces exist, where adoption is happening, and what governance exists.</td>
                 </tr>
                 <tr>
-                  <td><strong>Oversharing Heatmap</strong></td>
-                  <td>Top exposure paths and ranked remediation themes (policy + permissions + hygiene).</td>
+                  <td><strong>Oversharing Themes</strong></td>
+                  <td>Ranked exposure themes and remediation priorities (policy + permissions + hygiene).</td>
                 </tr>
                 <tr>
                   <td><strong>Data Boundaries Pack</strong></td>
@@ -401,10 +364,6 @@
                   <td>Signals, retention posture, export steps, and accountable owners.</td>
                 </tr>
                 <tr>
-                  <td><strong>Connector / Extension Controls</strong> (where relevant)</td>
-                  <td>Allowed/restricted posture and an exception/approval model (tier-dependent depth).</td>
-                </tr>
-                <tr>
                   <td><strong>30/60/90 Plan</strong></td>
                   <td>Owners, milestones, and a sequence that reduces exposure while enabling value.</td>
                 </tr>
@@ -412,39 +371,45 @@
             </table>
           </div>
 
-          <div class="section" id="timeline">
-            <div class="sectionTitle">Timeline</div>
-            <p class="sectionDesc">A practical delivery cadence designed for organizational reality.</p>
-            <table class="table" aria-label="Timeline table">
+          <div class="section" id="upgrade">
+            <div class="sectionTitle">Upgrade to Readiness (enterprise path)</div>
+            <p class="sectionDesc">If procurement/boards require deeper governance, use Readiness packaging (2/4/6 weeks).</p>
+            <table class="table" aria-label="Upgrade table">
               <thead>
                 <tr>
-                  <th>Window</th>
-                  <th>Focus</th>
-                  <th>Output</th>
+                  <th>Next step</th>
+                  <th>When to use it</th>
+                  <th>Commercial</th>
                 </tr>
               </thead>
               <tbody>
-                <tr><td>Day 0–1</td><td>Scope lock + access readiness</td><td>Checklist + evidence/export plan</td></tr>
-                <tr><td>Day 2–4</td><td>Posture review + capture</td><td>Draft artifacts (map, heatmap, boundaries)</td></tr>
-                <tr><td>Day 5–7</td><td>Synthesis + delivery</td><td>Final buyer pack + 30/60/90 plan</td></tr>
+                <tr>
+                  <td><strong>Readiness — Standard</strong> (4 weeks)</td>
+                  <td>Enterprise default: owners + control baseline + procurement-fileable evidence pack.</td>
+                  <td><strong>$15,000 CAD</strong></td>
+                </tr>
+                <tr>
+                  <td><strong>Readiness — Starter</strong> (2 weeks)</td>
+                  <td>Fast readiness pack when urgency is high and org is smaller.</td>
+                  <td><strong>$9,500 CAD</strong></td>
+                </tr>
+                <tr>
+                  <td><strong>Readiness — Extended</strong> (6 weeks)</td>
+                  <td>Complex orgs / regulated expectations / stronger exception handling.</td>
+                  <td><strong>$25,000 CAD</strong></td>
+                </tr>
               </tbody>
             </table>
-          </div>
 
-          <div class="section" id="roles">
-            <div class="sectionTitle">Who uses this internally</div>
-            <p class="sectionDesc">Structured so each stakeholder gets usable information without friction.</p>
-            <ul class="steps">
-              <li><strong>IT / Admin:</strong> surfaces, enablement, connectors, and change control</li>
-              <li><strong>Security / Compliance:</strong> exposure paths, boundaries, evidence readiness</li>
-              <li><strong>Business owner:</strong> go/no-go posture, decision requests, 30/60/90 plan</li>
-              <li><strong>Procurement:</strong> clear scope + artifacts + start paths (card or invoice/PO)</li>
-            </ul>
+            <div class="actions" style="margin-top:12px">
+              <a class="btn primary" href="/copilot/readiness/">View Readiness Assessment</a>
+              <a class="btn secondary" href="/gate/procurement/?focus=copilot-readiness-standard">Invoice/PO for Standard</a>
+            </div>
           </div>
 
           <div class="section" id="purchase">
             <div class="sectionTitle">Packages & pricing</div>
-            <p class="sectionDesc">Choose a tier based on how deep you need governance coverage and internal stakeholder coordination.</p>
+            <p class="sectionDesc">Choose a tier based on depth of governance coverage and stakeholder complexity.</p>
 
             <table class="table" aria-label="Package comparison table">
               <thead>
@@ -458,33 +423,33 @@
               <tbody>
                 <tr>
                   <td><strong>Base</strong></td>
-                  <td>Fast posture + board-ready decision pack for early rollout or pre-scale check.</td>
-                  <td>Core posture mapping + top exposure paths + boundary guidance + evidence readiness.</td>
+                  <td>Fast posture + decision pack for early rollout or pre-scale check.</td>
+                  <td>Core posture mapping + exposure themes + boundary guidance + evidence readiness.</td>
                   <td><strong>$3,500 CAD</strong></td>
                 </tr>
                 <tr>
                   <td><strong>Pro</strong></td>
-                  <td>Multiple business units, more connectors, higher sensitivity, or stricter internal controls.</td>
-                  <td>Deeper connector/extension governance, stronger “who owns what” mapping, more detailed control recommendations.</td>
+                  <td>More connectors, more stakeholders, higher sensitivity.</td>
+                  <td>Deeper connector/extension governance + clearer owner/approval mapping.</td>
                   <td><strong>$5,000 CAD</strong></td>
                 </tr>
                 <tr>
                   <td><strong>Enterprise</strong></td>
-                  <td>Regulated environments, complex permissions, formal governance expectations.</td>
-                  <td>Executive-ready governance memo depth, stakeholder-ready approval paths, expanded evidence plan and exception handling model.</td>
+                  <td>Formal governance expectations and higher scrutiny.</td>
+                  <td>Stronger executive memo depth + expanded evidence plan + exception notes.</td>
                   <td><strong>$7,500 CAD</strong></td>
                 </tr>
               </tbody>
             </table>
 
             <div class="notice" role="note">
-              <strong>Scope note:</strong> QuickScan provides assessment and evidence-readiness outputs. Implementation and remediation can be scoped separately when needed.
+              <strong>Scope note:</strong> QuickScan provides assessment + evidence-readiness outputs. Deeper readiness/governance is packaged in <a href="/copilot/readiness/">Readiness (2/4/6 weeks)</a>.
             </div>
           </div>
 
           <div class="section" id="procurement">
             <div class="sectionTitle">Procurement summary</div>
-            <p class="sectionDesc">A compact, internal-facing summary for approvals and onboarding.</p>
+            <p class="sectionDesc">A compact internal-facing summary for approvals and onboarding.</p>
 
             <table class="table" aria-label="Procurement summary table">
               <thead>
@@ -495,7 +460,7 @@
               </thead>
               <tbody>
                 <tr><td>Service</td><td>Copilot QuickScan (5–7 business days)</td></tr>
-                <tr><td>Scope</td><td>Copilot posture, exposure paths, boundary guidance, evidence readiness, connectors/extensions (tier-dependent depth)</td></tr>
+                <tr><td>Scope</td><td>Copilot posture themes, boundaries, evidence readiness, connector/extension notes (tier-dependent depth)</td></tr>
                 <tr><td>Outputs</td><td>Executive Summary + Buyer Pack artifacts + 30/60/90 plan</td></tr>
                 <tr><td>Access</td><td>Read-only review preferred; posture-focused evidence</td></tr>
                 <tr><td>Data handling</td><td>Public intake is non-sensitive; secure sharing options confirmed after kickoff</td></tr>
@@ -505,7 +470,7 @@
             <div class="actions" aria-label="Procurement actions">
               <a class="btn secondary" href="/gate/procurement/?focus=quickscan">Invoice / PO (Procurement)</a>
               <a class="btn secondary" href="/gate/sales/">Sales hub</a>
-              <a class="btn secondary" href="/status/">Status</a>
+              <a class="btn secondary" href="/copilot/readiness/">Readiness (Flagship)</a>
             </div>
           </div>
         </div>
@@ -520,7 +485,7 @@
           </div>
 
           <div class="bd">
-            <!-- OFFER: BASE -->
+            <!-- BASE -->
             <div class="offer" aria-label="QuickScan Base offer">
               <div class="offerTop">
                 <h3 class="offerName">QuickScan Base</h3>
@@ -530,35 +495,25 @@
               <div class="offerSub">Taxes apply at checkout. For invoice/PO, use <a href="/gate/procurement/?focus=quickscan">Procurement</a>.</div>
               <ul class="miniList">
                 <li>Surface & enablement map</li>
-                <li>Oversharing heatmap</li>
-                <li>Data boundaries + evidence readiness</li>
+                <li>Exposure themes + boundaries</li>
+                <li>Evidence readiness sheet</li>
               </ul>
               <div class="actions" style="margin-top:12px">
                 <a class="btn primary" href="https://buy.stripe.com/7sY4gA6v681S2a6cDi1Nu00" rel="nofollow noopener" target="_blank">Pay Base</a>
-                <a class="btn secondary" href="/copilot/quickscan/thanks/">After payment: next steps</a>
+                <a class="btn secondary" href="/copilot/quickscan/thanks/">After payment</a>
               </div>
-
-              <!-- OPTIONAL: Stripe buy button embed (commented out by default) -->
-              <!--
-              <div style="margin-top:12px">
-                <stripe-buy-button
-                  buy-button-id="buy_btn_1Sg0ESJ03eJkL57Ju6PFOiwj"
-                  publishable-key="pk_live_51SfSseJ03eJkL57JNU4voCGfUjjK4WDew62tPBWesZAejr03HX8uTonznYoWDVcpXwLATZpTvWSDfSU4zJbRIB6900xlpPcGSz">
-                </stripe-buy-button>
-              </div>
-              -->
             </div>
 
-            <!-- OFFER: PRO -->
+            <!-- PRO -->
             <div class="offer top" aria-label="QuickScan Pro offer">
               <div class="offerTop">
                 <h3 class="offerName">QuickScan Pro</h3>
                 <span class="badge">Deeper governance</span>
               </div>
               <div class="priceNum">$5,000 CAD</div>
-              <div class="offerSub">For orgs with more connectors, more stakeholders, or higher sensitivity.</div>
+              <div class="offerSub">For more connectors, more stakeholders, or higher sensitivity.</div>
               <ul class="miniList">
-                <li>Expanded connector/extension governance</li>
+                <li>Expanded connector/extension notes</li>
                 <li>Clearer owner/approval mapping</li>
                 <li>More detailed control recommendations</li>
               </ul>
@@ -566,30 +521,20 @@
                 <a class="btn primary" href="https://buy.stripe.com/14A4gAg5Gfuk2a646M1Nu01" rel="nofollow noopener" target="_blank">Pay Pro</a>
                 <a class="btn secondary" href="/gate/procurement/?focus=quickscan">Invoice / PO</a>
               </div>
-
-              <!-- OPTIONAL: Stripe buy button embed (enable if desired) -->
-              <!--
-              <div style="margin-top:12px">
-                <stripe-buy-button
-                  buy-button-id="buy_btn_1Sg0FEJ03eJkL57JsejfI5wu"
-                  publishable-key="pk_live_51SfSseJ03eJkL57JNU4voCGfUjjK4WDew62tPBWesZAejr03HX8uTonznYoWDVcpXwLATZpTvWSDfSU4zJbRIB6900xlpPcGSz">
-                </stripe-buy-button>
-              </div>
-              -->
             </div>
 
-            <!-- OFFER: ENTERPRISE -->
+            <!-- ENTERPRISE -->
             <div class="offer" aria-label="QuickScan Enterprise offer">
               <div class="offerTop">
                 <h3 class="offerName">QuickScan Enterprise</h3>
                 <span class="badge">High-impact</span>
               </div>
               <div class="priceNum">$7,500 CAD</div>
-              <div class="offerSub">For regulated environments and formal governance expectations.</div>
+              <div class="offerSub">For formal governance expectations and higher scrutiny.</div>
               <ul class="miniList">
-                <li>Expanded evidence plan + exception handling model</li>
-                <li>Stronger executive-ready governance memo depth</li>
-                <li>Stakeholder-ready approval routing guidance</li>
+                <li>Expanded evidence plan + exception notes</li>
+                <li>Stronger executive memo depth</li>
+                <li>Approval routing guidance</li>
               </ul>
               <div class="actions" style="margin-top:12px">
                 <a class="btn primary" href="https://buy.stripe.com/fZu5kE7za81SdSO5aQ1Nu02" rel="nofollow noopener" target="_blank">Pay Enterprise</a>
@@ -598,15 +543,15 @@
             </div>
 
             <div class="box">
-              <strong>Public intake</strong><br/>
-              Designed for non-sensitive details. Secure sharing options are confirmed after kickoff.
+              <strong>Upgrade path</strong><br/>
+              Enterprise default is <a href="/copilot/readiness/">Readiness Assessment (2/4/6 weeks)</a>.
             </div>
 
             <div class="box">
               <strong>Related</strong><br/>
+              <a href="/copilot/readiness/">Readiness</a> ·
               <a href="/trust-brief/">Trust Brief</a> ·
-              <a href="/trust-ledger/">Trust Ledger</a> ·
-              <a href="/gate/sales/">Sales</a>
+              <a href="/trust-ledger/">Trust Ledger</a>
             </div>
           </div>
         </div>
@@ -614,42 +559,18 @@
     </section>
   </main>
 
-  <!-- injected footer -->
   <footer id="nfFooter"></footer>
 
-  <!-- Sticky CTA -->
   <div class="stickyCta" aria-label="Sticky call to action">
     <div class="stickyInner">
       <div class="stickyText">
-        <strong>Copilot QuickScan</strong> — board-ready evidence in 5–7 business days.
+        <strong>QuickScan</strong> — rapid snapshot (5–7 business days). Upgradeable to Readiness.
       </div>
       <div class="actions" style="margin:0">
         <a class="btn primary" href="#purchase">Choose tier</a>
-        <a class="btn secondary" href="/gate/procurement/?focus=quickscan">Invoice / PO</a>
+        <a class="btn secondary" href="/copilot/readiness/">Readiness (Flagship)</a>
       </div>
     </div>
   </div>
-
-  <!--
-    CHANGELOG (QuickScan v2.3)
-    - Added 3-tier purchase rail (Base/Pro/Enterprise) with your Stripe payment links
-    - Kept Swiss-minimal + buyer-safe copy; clarified what changes by tier
-    - Included optional Stripe Buy Button embed (commented out); single script include only once
-    - Added “After payment” route to /copilot/quickscan/thanks/ for Base (you can mirror for Pro/Ent if you set redirects in Stripe)
-    - Kept Noetfield shell injection (header/footer) + canonical/OG
-
-    IMPORTANT SETUP NOTES
-    - Stripe payment links redirect is configured inside Stripe Payment Link settings (After successful payment → Redirect).
-      Set to: https://www.noetfield.com/copilot/quickscan/thanks/
-    - If you do NOT set Stripe redirect, customers will still see Stripe confirmation + receipt email, but won’t land on your thanks page.
-
-    SMOKE TEST
-    - GET /copilot/quickscan/ returns 200
-    - GET /copilot/quickscan/thanks/ returns 200
-    - /assets/noetfield-shell.css returns 200 and styles apply
-    - /assets/noetfield-shell.js returns 200 and injects header/footer
-    - Stripe Links open in new tab: Base/Pro/Enterprise
-    - Procurement route resolves: /gate/procurement/?focus=quickscan
-  -->
 </body>
 </html>

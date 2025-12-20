@@ -1,4 +1,4 @@
-<!-- /gate/index.html — Noetfield Gate v3.4 (Enterprise-first Readiness SKUs • QuickScan as Rapid Snapshot • Procurement-grade hub • Wizard updated • Shell locked) -->
+<!-- /gate/index.html — Noetfield Gate v3.5 (Offer select + purchase rail + mobile bottom bar + wizard + procurement builder • Shell locked) -->
 <!doctype html>
 <html lang="en">
 <head>
@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <title>Noetfield — Gate</title>
-  <meta name="description" content="Purchase-ready entry to Noetfield packages. Enterprise Copilot readiness SKUs, rapid snapshot lead-in, procurement-friendly snapshots, direct intake for kickoff, and a fast wizard router." />
+  <meta name="description" content="Purchase-ready entry to Noetfield packages. Enterprise Copilot readiness SKUs, rapid snapshot lead-in, procurement snapshots, direct intake for kickoff, and a fast wizard router." />
   <meta name="robots" content="index,follow" />
   <meta name="author" content="Noetfield Systems Inc." />
   <meta name="theme-color" content="#07070b" />
@@ -150,8 +150,9 @@
       position:relative;
       overflow:hidden;
       cursor: pointer;
+      outline:none;
     }
-    .nfOffer:focus-within{ outline: 2px solid rgba(200,163,73,.22); outline-offset: 2px; }
+    .nfOffer:focus-visible{ box-shadow: var(--focus); border-color: rgba(200,163,73,.46); }
     .nfOfferTop{ display:flex; gap:10px; align-items:flex-start; justify-content:space-between; }
     .nfOfferName{ margin:0; font-size:16px; letter-spacing:-.2px; font-weight:950; }
     .nfOfferMeta{ display:flex; flex-wrap:wrap; gap:8px; margin-top:10px; }
@@ -170,13 +171,27 @@
     .nfOfferBullets li{ margin:6px 0; }
     .nfOfferActions{ display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-top:12px; }
     .nfOfferActions .btn{ min-height:44px; }
+
     .nfOfferSelected{
-      border-color: rgba(200,163,73,.32);
-      box-shadow: 0 0 0 1px rgba(200,163,73,.14), var(--shadow2);
+      border-color: rgba(200,163,73,.34);
+      box-shadow: 0 0 0 1px rgba(200,163,73,.16), var(--shadow2);
       background:
         radial-gradient(700px 260px at 0% 0%, rgba(200,163,73,.12), transparent 55%),
         rgba(255,255,255,.03);
     }
+
+    .nfOfferBadge{
+      position:absolute; top:12px; right:12px;
+      padding:7px 10px;
+      border-radius:999px;
+      border:1px solid rgba(200,163,73,.34);
+      background: rgba(200,163,73,.10);
+      color: var(--text);
+      font-size:12px;
+      font-weight:900;
+      display:none;
+    }
+    .nfOfferSelected .nfOfferBadge{ display:inline-flex; }
 
     /* Offer: procurement-ready snapshot (collapsible) */
     .nfOfferSnap{
@@ -278,6 +293,9 @@
     }
     .nfRailHd{ padding:18px 18px 0; }
     .nfRailBd{ padding:18px; }
+    .nfRailTitle{ margin:0 0 8px; font-size:18px; letter-spacing:-.2px; font-weight:950; }
+    .nfRailDesc{ margin:0; color:var(--muted); line-height:1.7; }
+
     .nfRailKpi{
       border-radius:16px;
       border:1px solid rgba(255,255,255,.10);
@@ -298,6 +316,12 @@
       line-height:1.6;
     }
     .nfRailMiniLinks a{ border-bottom:1px solid rgba(255,255,255,.18); }
+
+    .nfRailDivider{
+      height:1px;
+      background: rgba(255,255,255,.10);
+      margin: 14px 0;
+    }
 
     /* Samples */
     .nfSamplesGrid{ display:grid; gap:12px; grid-template-columns: 1fr 1fr; }
@@ -400,9 +424,20 @@
     .nfRecoWhy{ margin:10px 0 0; padding-left:18px; color:var(--muted2); line-height:1.6; }
     .nfRecoWhy li{ margin:6px 0; }
 
-    /* Procurement email builder (prefixed) */
-    .nfProcNote { margin-top: 12px; color: var(--muted2); font-size: 12.8px; line-height: 1.6; }
-    .nfProcForm { margin-top: 12px; }
+    /* Procurement builder */
+    .nfProcNote { margin-top: 10px; color: var(--muted2); font-size: 12.8px; line-height: 1.6; }
+    .nfProcGrid{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:12px;
+      margin-top:12px;
+    }
+    .nfProcBox{
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.11);
+      background: rgba(255,255,255,.03);
+      padding:14px;
+    }
     .nfProcRow{ display:grid; gap:10px; grid-template-columns: repeat(12, minmax(0, 1fr)); }
     .nfProcField{ grid-column: span 6; min-width:0; }
     .nfProcField.full{ grid-column: span 12; }
@@ -424,7 +459,9 @@
       font-size:13px;
       outline:none;
     }
-    .nfProcTextarea{ resize: vertical; min-height: 110px; }
+    .nfProcTextarea{ resize: vertical; min-height: 140px; }
+    .nfProcActions{ display:flex; gap:10px; flex-wrap:wrap; margin-top:12px; }
+    .nfProcActions .btn{ min-height:46px; }
 
     /* Mobile bottom bar */
     .nfBottomBar{
@@ -454,6 +491,7 @@
       white-space:nowrap;
     }
     .nfBottomText strong{ color:var(--text); font-weight:950; }
+    .nfBottomInner .btn{ min-height:46px; }
 
     @media (max-width: 980px){
       .nfGateGrid{ grid-template-columns: 1fr; }
@@ -509,7 +547,7 @@
           <p class="nfGateLead">
             Market-standard Copilot readiness SKUs with named deliverables and scope drivers.
             <strong>Readiness</strong> is the enterprise path. <strong>QuickScan</strong> is the rapid snapshot lead-in.
-            Invoice/PO and vendor onboarding options are provided in the Procurement section.
+            Invoice/PO and vendor onboarding options are provided in Procurement.
           </p>
 
           <div class="nfGateHeroCtas" aria-label="Hero primary actions">
@@ -523,7 +561,7 @@
             <a class="nfGateChip" href="#compare">Compare</a>
             <a class="nfGateChip" href="#router">Wizard router</a>
             <a class="nfGateChip" href="#samples">Samples</a>
-            <a class="nfGateChip" href="#procurement">Invoice / PO</a>
+            <a class="nfGateChip" href="#procurement">Procurement</a>
           </div>
 
           <div class="nfGateNotice" role="note">
@@ -542,14 +580,23 @@
         <section class="nfGateCard" id="packages" aria-label="Packages">
           <div class="nfGateCardHd">
             <h2 class="nfGateCardTitle">Packages</h2>
-            <p class="nfGateMuted">Direct start points with procurement snapshots (deliverables, inputs, timeline rule, scope drivers). Readiness SKUs mirror enterprise buying patterns.</p>
+            <p class="nfGateMuted">Click any offer to select it. The right rail updates with the best “start” path and procurement summary.</p>
           </div>
 
           <div class="nfGateCardBd">
             <div class="nfOffers" aria-label="Offer cards">
 
-              <!-- Copilot Readiness — Starter -->
-              <article class="nfOffer" id="offer-readiness-starter" data-offer="readiness_starter" tabindex="0" aria-label="Copilot Readiness Starter offer">
+              <!-- Readiness — Starter -->
+              <article class="nfOffer" id="offer-readiness-starter"
+                tabindex="0"
+                data-offer="readiness_starter"
+                data-name="Microsoft 365 Copilot Readiness Assessment — Starter"
+                data-duration="2 weeks"
+                data-price="9,500 CAD"
+                data-primary="/copilot/readiness/?tier=starter"
+                data-details="/copilot/readiness/"
+                aria-label="Copilot Readiness Starter offer">
+                <span class="nfOfferBadge" aria-hidden="true">Selected</span>
                 <div class="nfOfferTop">
                   <div>
                     <h3 class="nfOfferName">Microsoft 365 Copilot Readiness Assessment — Starter</h3>
@@ -585,9 +632,9 @@
                       <div class="nfSnapItem">
                         <div class="h">Deliverables (named)</div>
                         <ul>
-                          <li><strong>Readiness Executive Memo</strong> (PDF) — posture, decisions, rollout constraints</li>
-                          <li><strong>Boundary & Oversharing Map</strong> (PDF) — exposure paths + recommended limits</li>
-                          <li><strong>Control Set (Starter)</strong> (XLSX/CSV) — prioritized controls + owners</li>
+                          <li><strong>Readiness Executive Memo</strong> (PDF)</li>
+                          <li><strong>Boundary & Oversharing Map</strong> (PDF)</li>
+                          <li><strong>Control Set (Starter)</strong> (XLSX/CSV)</li>
                         </ul>
                       </div>
                       <div class="nfSnapItem">
@@ -602,22 +649,22 @@
                         <div class="h">Timeline rule</div>
                         <ul>
                           <li>Clock starts after intake + scope confirmation</li>
-                          <li>Default delivery window: <strong>2 weeks</strong></li>
+                          <li>Default delivery: <strong>2 weeks</strong></li>
                         </ul>
                       </div>
                       <div class="nfSnapItem">
-                        <div class="h">Scope drivers (pricing clarity)</div>
+                        <div class="h">Scope drivers</div>
                         <ul>
                           <li>Business units in scope</li>
                           <li>Connector/extension depth</li>
-                          <li>Evidence packaging needs</li>
+                          <li>Evidence packaging depth</li>
                         </ul>
                       </div>
                     </div>
 
                     <div class="nfSnapNote">
                       <strong>Kickoff:</strong> email-first by default. Short call available when scope confirmation is required.
-                      <span style="display:block; margin-top:6px;"><strong>Invoice/PO:</strong> use <a href="#procurement">Invoice / PO</a> for vendor onboarding steps.</span>
+                      <span style="display:block; margin-top:6px;"><strong>Invoice/PO:</strong> see <a href="#procurement">Procurement</a>.</span>
                     </div>
                   </div>
                 </details>
@@ -628,8 +675,17 @@
                 </div>
               </article>
 
-              <!-- Copilot Readiness — Standard (default flagship) -->
-              <article class="nfOffer" id="offer-readiness-standard" data-offer="readiness_standard" tabindex="0" aria-label="Copilot Readiness Standard offer">
+              <!-- Readiness — Standard (flagship) -->
+              <article class="nfOffer" id="offer-readiness-standard"
+                tabindex="0"
+                data-offer="readiness_standard"
+                data-name="Microsoft 365 Copilot Readiness Assessment — Standard"
+                data-duration="4 weeks"
+                data-price="15,000 CAD"
+                data-primary="/copilot/readiness/?tier=standard"
+                data-details="/copilot/readiness/"
+                aria-label="Copilot Readiness Standard offer">
+                <span class="nfOfferBadge" aria-hidden="true">Selected</span>
                 <div class="nfOfferTop">
                   <div>
                     <h3 class="nfOfferName">Microsoft 365 Copilot Readiness Assessment — Standard</h3>
@@ -665,10 +721,10 @@
                       <div class="nfSnapItem">
                         <div class="h">Deliverables (named)</div>
                         <ul>
-                          <li><strong>Readiness Executive Memo</strong> (PDF) — posture, risks, decision options</li>
-                          <li><strong>Control Baseline</strong> (XLSX/CSV) — controls + owners + priority</li>
-                          <li><strong>Evidence Index (initial)</strong> (XLSX/CSV) — evidence available + gaps</li>
-                          <li><strong>Connector/Extension Review Notes</strong> (PDF) — tightening order</li>
+                          <li><strong>Readiness Executive Memo</strong> (PDF)</li>
+                          <li><strong>Control Baseline</strong> (XLSX/CSV)</li>
+                          <li><strong>Evidence Index (initial)</strong> (XLSX/CSV)</li>
+                          <li><strong>Connector/Extension Review Notes</strong> (PDF)</li>
                         </ul>
                       </div>
                       <div class="nfSnapItem">
@@ -683,13 +739,13 @@
                         <div class="h">Timeline rule</div>
                         <ul>
                           <li>Clock starts after intake + scope confirmation</li>
-                          <li>Default delivery window: <strong>4 weeks</strong></li>
+                          <li>Default delivery: <strong>4 weeks</strong></li>
                         </ul>
                       </div>
                       <div class="nfSnapItem">
-                        <div class="h">Scope drivers (pricing clarity)</div>
+                        <div class="h">Scope drivers</div>
                         <ul>
-                          <li>Number of business units and stakeholders</li>
+                          <li>Stakeholder set and units in scope</li>
                           <li>Connector/extension depth</li>
                           <li>Evidence packaging depth</li>
                         </ul>
@@ -698,7 +754,7 @@
 
                     <div class="nfSnapNote">
                       <strong>Kickoff:</strong> email-first by default. Short call available when scope confirmation is required.
-                      <span style="display:block; margin-top:6px;"><strong>Invoice/PO:</strong> use <a href="#procurement">Invoice / PO</a> for vendor onboarding steps.</span>
+                      <span style="display:block; margin-top:6px;"><strong>Invoice/PO:</strong> see <a href="#procurement">Procurement</a>.</span>
                     </div>
                   </div>
                 </details>
@@ -709,8 +765,17 @@
                 </div>
               </article>
 
-              <!-- Copilot Readiness — Extended -->
-              <article class="nfOffer" id="offer-readiness-extended" data-offer="readiness_extended" tabindex="0" aria-label="Copilot Readiness Extended offer">
+              <!-- Readiness — Extended -->
+              <article class="nfOffer" id="offer-readiness-extended"
+                tabindex="0"
+                data-offer="readiness_extended"
+                data-name="Microsoft 365 Copilot Readiness Assessment — Extended"
+                data-duration="6 weeks"
+                data-price="25,000 CAD"
+                data-primary="/copilot/readiness/?tier=extended"
+                data-details="/copilot/readiness/"
+                aria-label="Copilot Readiness Extended offer">
+                <span class="nfOfferBadge" aria-hidden="true">Selected</span>
                 <div class="nfOfferTop">
                   <div>
                     <h3 class="nfOfferName">Microsoft 365 Copilot Readiness Assessment — Extended</h3>
@@ -746,10 +811,10 @@
                       <div class="nfSnapItem">
                         <div class="h">Deliverables (named)</div>
                         <ul>
-                          <li><strong>Extended Executive Memo</strong> (PDF) — options, tradeoffs, rollout constraints</li>
-                          <li><strong>Control Baseline (expanded)</strong> (XLSX/CSV) — controls + owners + sequencing</li>
-                          <li><strong>Evidence Index (expanded)</strong> (XLSX/CSV) — deeper evidence mapping + gaps</li>
-                          <li><strong>Operating Cadence Outline</strong> (PDF) — review cadence and escalation paths</li>
+                          <li><strong>Extended Executive Memo</strong> (PDF)</li>
+                          <li><strong>Control Baseline (expanded)</strong> (XLSX/CSV)</li>
+                          <li><strong>Evidence Index (expanded)</strong> (XLSX/CSV)</li>
+                          <li><strong>Operating Cadence Outline</strong> (PDF)</li>
                         </ul>
                       </div>
                       <div class="nfSnapItem">
@@ -764,13 +829,13 @@
                         <div class="h">Timeline rule</div>
                         <ul>
                           <li>Clock starts after intake + scope confirmation</li>
-                          <li>Default delivery window: <strong>6 weeks</strong></li>
+                          <li>Default delivery: <strong>6 weeks</strong></li>
                         </ul>
                       </div>
                       <div class="nfSnapItem">
-                        <div class="h">Scope drivers (pricing clarity)</div>
+                        <div class="h">Scope drivers</div>
                         <ul>
-                          <li>Number of units and decision-makers</li>
+                          <li>Units and decision-makers</li>
                           <li>Connector/extension depth</li>
                           <li>Evidence indexing depth</li>
                         </ul>
@@ -779,7 +844,7 @@
 
                     <div class="nfSnapNote">
                       <strong>Kickoff:</strong> email-first by default. Short call available when scope confirmation is required.
-                      <span style="display:block; margin-top:6px;"><strong>Invoice/PO:</strong> use <a href="#procurement">Invoice / PO</a> for vendor onboarding steps.</span>
+                      <span style="display:block; margin-top:6px;"><strong>Invoice/PO:</strong> see <a href="#procurement">Procurement</a>.</span>
                     </div>
                   </div>
                 </details>
@@ -790,8 +855,17 @@
                 </div>
               </article>
 
-              <!-- Copilot QuickScan (Rapid Snapshot lead-in) -->
-              <article class="nfOffer" id="offer-quickscan" data-offer="quickscan" tabindex="0" aria-label="Copilot QuickScan offer">
+              <!-- QuickScan -->
+              <article class="nfOffer" id="offer-quickscan"
+                tabindex="0"
+                data-offer="quickscan"
+                data-name="Copilot QuickScan (Rapid Snapshot)"
+                data-duration="5–7 business days"
+                data-price="Decision-ready"
+                data-primary="/copilot/quickscan/intake/"
+                data-details="/copilot/quickscan/"
+                aria-label="Copilot QuickScan offer">
+                <span class="nfOfferBadge" aria-hidden="true">Selected</span>
                 <div class="nfOfferTop">
                   <div>
                     <h3 class="nfOfferName">Copilot QuickScan (Rapid Snapshot)</h3>
@@ -827,17 +901,17 @@
                       <div class="nfSnapItem">
                         <div class="h">Deliverables (named)</div>
                         <ul>
-                          <li><strong>Executive Memo</strong> (PDF) — posture, risks, decision options</li>
-                          <li><strong>Exposure & Boundary Map</strong> (PDF) — oversharing paths + recommended boundaries</li>
-                          <li><strong>Control Checklist</strong> (XLSX/CSV) — prioritized controls + owners</li>
-                          <li><strong>Connector/Extension Notes</strong> (PDF) — tightening order</li>
+                          <li><strong>Executive Memo</strong> (PDF)</li>
+                          <li><strong>Exposure & Boundary Map</strong> (PDF)</li>
+                          <li><strong>Control Checklist</strong> (XLSX/CSV)</li>
+                          <li><strong>Connector/Extension Notes</strong> (PDF)</li>
                         </ul>
                       </div>
                       <div class="nfSnapItem">
                         <div class="h">Inputs required (non-confidential)</div>
                         <ul>
                           <li>Rollout intent (pilot vs broad)</li>
-                          <li>High-level data types (HR/finance/client files)</li>
+                          <li>High-level data types</li>
                           <li>Policy posture summary</li>
                         </ul>
                       </div>
@@ -845,13 +919,13 @@
                         <div class="h">Timeline rule</div>
                         <ul>
                           <li>Clock starts after intake + scope confirmation</li>
-                          <li>Default delivery window: <strong>5–7 business days</strong></li>
+                          <li>Default delivery: <strong>5–7 business days</strong></li>
                         </ul>
                       </div>
                       <div class="nfSnapItem">
-                        <div class="h">Scope drivers (pricing clarity)</div>
+                        <div class="h">Scope drivers</div>
                         <ul>
-                          <li>Single tenant vs multi-entity rollout</li>
+                          <li>Single tenant vs multi-entity</li>
                           <li>Business units in scope</li>
                           <li>Connector/extension depth</li>
                         </ul>
@@ -860,7 +934,7 @@
 
                     <div class="nfSnapNote">
                       <strong>Kickoff:</strong> email-first by default. Short call available when scope confirmation is required.
-                      <span style="display:block; margin-top:6px;"><strong>Invoice/PO:</strong> use <a href="#procurement">Invoice / PO</a> for vendor onboarding steps.</span>
+                      <span style="display:block; margin-top:6px;"><strong>Invoice/PO:</strong> see <a href="#procurement">Procurement</a>.</span>
                     </div>
                   </div>
                 </details>
@@ -872,7 +946,16 @@
               </article>
 
               <!-- Trust Brief -->
-              <article class="nfOffer" id="offer-brief" data-offer="brief" tabindex="0" aria-label="Trust Brief offer">
+              <article class="nfOffer" id="offer-brief"
+                tabindex="0"
+                data-offer="brief"
+                data-name="Trust Brief (6-week)"
+                data-duration="6 weeks"
+                data-price="Base + add-ons"
+                data-primary="/trust-brief/intake/"
+                data-details="/trust-brief/"
+                aria-label="Trust Brief offer">
+                <span class="nfOfferBadge" aria-hidden="true">Selected</span>
                 <div class="nfOfferTop">
                   <div>
                     <h3 class="nfOfferName">Trust Brief (6-week)</h3>
@@ -908,10 +991,10 @@
                       <div class="nfSnapItem">
                         <div class="h">Deliverables (named)</div>
                         <ul>
-                          <li><strong>Trust Brief Report</strong> (PDF) — decisions, risks, controls, roadmap</li>
-                          <li><strong>Use-Case Map</strong> (XLSX/CSV) — material use cases + owners</li>
-                          <li><strong>Decision Gate Set</strong> (PDF) — approvals, rationale, escalation</li>
-                          <li><strong>Operating Model Draft</strong> (PDF) — roles, cadence, escalation</li>
+                          <li><strong>Trust Brief Report</strong> (PDF)</li>
+                          <li><strong>Use-Case Map</strong> (XLSX/CSV)</li>
+                          <li><strong>Decision Gate Set</strong> (PDF)</li>
+                          <li><strong>Operating Model Draft</strong> (PDF)</li>
                         </ul>
                       </div>
                       <div class="nfSnapItem">
@@ -919,21 +1002,21 @@
                         <ul>
                           <li>High-level inventory of AI/tool usage</li>
                           <li>Org structure (owners / IT / legal / security)</li>
-                          <li>Known constraints (regulatory, client, audit)</li>
+                          <li>Known constraints</li>
                         </ul>
                       </div>
                       <div class="nfSnapItem">
                         <div class="h">Timeline rule</div>
                         <ul>
                           <li>Starts after intake + kickoff alignment</li>
-                          <li>Default delivery window: <strong>6 weeks</strong></li>
+                          <li>Default delivery: <strong>6 weeks</strong></li>
                         </ul>
                       </div>
                       <div class="nfSnapItem">
-                        <div class="h">Scope drivers (pricing clarity)</div>
+                        <div class="h">Scope drivers</div>
                         <ul>
-                          <li>Number of material use cases</li>
-                          <li>Stakeholder groups involved</li>
+                          <li>Material use cases count</li>
+                          <li>Stakeholder groups</li>
                           <li>Board memo variants</li>
                         </ul>
                       </div>
@@ -941,7 +1024,7 @@
 
                     <div class="nfSnapNote">
                       <strong>Kickoff:</strong> email-first by default. Short call available when scope confirmation is required.
-                      <span style="display:block; margin-top:6px;"><strong>Invoice/PO:</strong> use <a href="#procurement">Invoice / PO</a> for vendor onboarding steps.</span>
+                      <span style="display:block; margin-top:6px;"><strong>Invoice/PO:</strong> see <a href="#procurement">Procurement</a>.</span>
                     </div>
                   </div>
                 </details>
@@ -953,7 +1036,16 @@
               </article>
 
               <!-- Trust Ledger -->
-              <article class="nfOffer" id="offer-ledger" data-offer="ledger" tabindex="0" aria-label="Trust Ledger offer">
+              <article class="nfOffer" id="offer-ledger"
+                tabindex="0"
+                data-offer="ledger"
+                data-name="Trust Ledger"
+                data-duration="Ongoing"
+                data-price="Monthly base + add-ons"
+                data-primary="/trust-ledger/intake/"
+                data-details="/trust-ledger/"
+                aria-label="Trust Ledger offer">
+                <span class="nfOfferBadge" aria-hidden="true">Selected</span>
                 <div class="nfOfferTop">
                   <div>
                     <h3 class="nfOfferName">Trust Ledger</h3>
@@ -989,9 +1081,9 @@
                       <div class="nfSnapItem">
                         <div class="h">Deliverables (named)</div>
                         <ul>
-                          <li><strong>Ledger Register</strong> (maintained) — systems, risks, controls, approvals</li>
-                          <li><strong>Board Export</strong> (PDF) — periodic summary + changes since last cycle</li>
-                          <li><strong>Evidence Index</strong> (CSV/XLSX) — evidence list + gaps</li>
+                          <li><strong>Ledger Register</strong> (maintained)</li>
+                          <li><strong>Board Export</strong> (PDF)</li>
+                          <li><strong>Evidence Index</strong> (CSV/XLSX)</li>
                         </ul>
                       </div>
                       <div class="nfSnapItem">
@@ -999,21 +1091,21 @@
                         <ul>
                           <li>High-level list of AI systems/tools</li>
                           <li>Primary owners / accountable roles</li>
-                          <li>Cadence preference (monthly/quarterly)</li>
+                          <li>Cadence preference</li>
                         </ul>
                       </div>
                       <div class="nfSnapItem">
                         <div class="h">Timeline rule</div>
                         <ul>
-                          <li>Ongoing service; first cycle begins after kickoff</li>
+                          <li>Ongoing; first cycle begins after kickoff</li>
                           <li>Exports delivered on agreed cadence</li>
                         </ul>
                       </div>
                       <div class="nfSnapItem">
-                        <div class="h">Scope drivers (pricing clarity)</div>
+                        <div class="h">Scope drivers</div>
                         <ul>
-                          <li>Number of systems in scope</li>
-                          <li>Export cadence + stakeholder set</li>
+                          <li>Systems count</li>
+                          <li>Cadence + stakeholder set</li>
                           <li>Evidence indexing depth</li>
                         </ul>
                       </div>
@@ -1021,7 +1113,7 @@
 
                     <div class="nfSnapNote">
                       <strong>Kickoff:</strong> email-first by default. Short call available when scope confirmation is required.
-                      <span style="display:block; margin-top:6px;"><strong>Invoice/PO:</strong> use <a href="#procurement">Invoice / PO</a> for vendor onboarding steps.</span>
+                      <span style="display:block; margin-top:6px;"><strong>Invoice/PO:</strong> see <a href="#procurement">Procurement</a>.</span>
                     </div>
                   </div>
                 </details>
@@ -1033,7 +1125,16 @@
               </article>
 
               <!-- Playbook Pro -->
-              <article class="nfOffer" id="offer-playbook" data-offer="playbook" tabindex="0" aria-label="Playbook Pro offer">
+              <article class="nfOffer" id="offer-playbook"
+                tabindex="0"
+                data-offer="playbook"
+                data-name="Playbook Pro (Agency / Pro)"
+                data-duration="One-time"
+                data-price="749 CAD"
+                data-primary="/playbook/pro/"
+                data-details="/playbook/"
+                aria-label="Playbook Pro offer">
+                <span class="nfOfferBadge" aria-hidden="true">Selected</span>
                 <div class="nfOfferTop">
                   <div>
                     <h3 class="nfOfferName">Playbook Pro (Agency / Pro)</h3>
@@ -1084,7 +1185,7 @@
                     </div>
 
                     <div class="nfSnapNote">
-                      <strong>Note:</strong> Playbook is a product track. For enterprise delivery work, start with Readiness or QuickScan.
+                      <strong>Note:</strong> For enterprise delivery work, start with Readiness or QuickScan.
                     </div>
                   </div>
                 </details>
@@ -1149,7 +1250,7 @@
             </table>
 
             <div class="nfGateNotice" style="margin-top:12px;">
-              <strong>Procurement tip:</strong> Share this Gate link internally and attach the procurement pack from the Invoice / PO section for vendor onboarding.
+              <strong>Procurement tip:</strong> Share this Gate link internally and use the Procurement builder below to generate an approval email in 60 seconds.
             </div>
           </div>
         </section>
@@ -1158,19 +1259,19 @@
         <section class="nfGateCard" id="router" aria-label="Wizard router" style="margin-top:14px;">
           <div class="nfGateCardHd">
             <h2 class="nfGateCardTitle">Need a fast route?</h2>
-            <p class="nfGateMuted">Select two options. The wizard auto-advances and returns one recommendation.</p>
+            <p class="nfGateMuted">Two questions. One recommendation. You can apply it immediately.</p>
           </div>
           <div class="nfGateCardBd">
             <div class="nfRouterToggleRow" aria-label="Router actions">
               <button class="btn" type="button" id="nfRouterOpenBtn" aria-controls="nfRouterCard" aria-expanded="false">Start wizard</button>
               <a class="btn secondary" href="/copilot">Copilot hub</a>
-              <a class="btn secondary" href="/status/">Status</a>
+              <a class="btn secondary" href="/status/" data-rid-link>Status</a>
             </div>
 
             <div class="nfRouterWrap">
               <div class="nfRouterCard" id="nfRouterCard" hidden>
                 <div class="nfGateNotice" style="margin-top:0;">
-                  <strong>Public intake is non-confidential.</strong> Use high-level selections only. Secure sharing options are confirmed after kickoff.
+                  <strong>Public intake is non-confidential.</strong> Use high-level selections only.
                 </div>
 
                 <div class="nfRouterTop">
@@ -1192,28 +1293,28 @@
                       <input type="radio" name="nf_situation" value="copilot" />
                       <div>
                         <div class="t">Microsoft 365 Copilot rollout</div>
-                        <div class="d">Enterprise readiness or structured rollout decisions.</div>
+                        <div class="d">Enterprise readiness, governance posture, safe rollout decisions.</div>
                       </div>
                     </label>
                     <label class="nfRouterOpt">
                       <input type="radio" name="nf_situation" value="snapshot" />
                       <div>
                         <div class="t">Urgent snapshot</div>
-                        <div class="d">Rapid decision-ready posture within days.</div>
+                        <div class="d">Decision-ready posture within days.</div>
                       </div>
                     </label>
                     <label class="nfRouterOpt">
                       <input type="radio" name="nf_situation" value="plan" />
                       <div>
                         <div class="t">Governance plan</div>
-                        <div class="d">Owners, controls, decisions, and a roadmap.</div>
+                        <div class="d">Owners, controls, decision gates, roadmap.</div>
                       </div>
                     </label>
                     <label class="nfRouterOpt">
                       <input type="radio" name="nf_situation" value="ongoing" />
                       <div>
                         <div class="t">Ongoing evidence readiness</div>
-                        <div class="d">Maintained register with repeatable exports.</div>
+                        <div class="d">Maintained register + exports for scrutiny cycles.</div>
                       </div>
                     </label>
                     <label class="nfRouterOpt">
@@ -1243,14 +1344,14 @@
                       <input type="radio" name="nf_timing" value="standard" />
                       <div>
                         <div class="t">Standard (4 weeks)</div>
-                        <div class="d">Enterprise readiness baseline and evidence packaging.</div>
+                        <div class="d">Enterprise baseline + evidence packaging.</div>
                       </div>
                     </label>
                     <label class="nfRouterOpt">
                       <input type="radio" name="nf_timing" value="extended" />
                       <div>
                         <div class="t">Extended (6 weeks)</div>
-                        <div class="d">Expanded scope and deeper evidence indexing.</div>
+                        <div class="d">Expanded scope, deeper evidence indexing.</div>
                       </div>
                     </label>
                     <label class="nfRouterOpt">
@@ -1273,7 +1374,11 @@
 
                   <div class="nfOfferActions" style="margin-top:12px;">
                     <a class="btn" id="nfRecoPrimary" href="#">Start</a>
-                    <a class="btn secondary" id="nfRecoDetails" href="#">View details</a>
+                    <button class="btn secondary" type="button" id="nfRecoApplyBtn">Apply to selection</button>
+                  </div>
+
+                  <div class="nfProcNote" style="margin-top:10px;">
+                    Applying updates the selected offer and the Purchase panel (right rail).
                   </div>
                 </div>
               </div>
@@ -1293,7 +1398,7 @@
                 <h3>Board memo sample</h3>
                 <p>Board-safe decision memo format (structure + decision options).</p>
                 <div class="actions">
-                  <a class="btn secondary" href="/samples/board-memo.pdf">View sample</a>
+                  <a class="btn secondary" href="/trust-ledger/sample-report/board-memo.pdf" data-rid-link>View sample</a>
                   <a class="btn" href="/copilot/readiness/">Open Readiness</a>
                 </div>
               </div>
@@ -1301,178 +1406,109 @@
                 <h3>Ledger entry sample</h3>
                 <p>Redacted ledger entry example (system → risks → controls → evidence → approvals).</p>
                 <div class="actions">
-                  <a class="btn secondary" href="/samples/ledger-entry.pdf">View sample</a>
-                  <a class="btn" href="/trust-ledger/intake/">Start Trust Ledger</a>
+                  <a class="btn secondary" href="/trust-ledger/ledger-entry.pdf" data-rid-link>View sample</a>
+                  <a class="btn" href="/trust-ledger/intake/" data-rid-link>Start Trust Ledger</a>
                 </div>
               </div>
-            </div>
-
-            <div class="nfGateNotice" style="margin-top:12px;">
-              <strong>Publishing note:</strong> publish PDFs at <code>/samples/</code> and keep them redacted by design.
             </div>
           </div>
         </section>
 
         <!-- PROCUREMENT -->
-        <section class="nfGateCard" id="procurement" aria-label="Invoice / PO" style="margin-top:14px;">
+        <section class="nfGateCard" id="procurement" aria-label="Procurement" style="margin-top:14px;">
           <div class="nfGateCardHd">
-            <h2 class="nfGateCardTitle">Invoice / PO (procurement)</h2>
-            <p class="nfGateMuted">Invoice, PO, and vendor onboarding path for organisational purchasing.</p>
+            <h2 class="nfGateCardTitle">Procurement (Invoice / PO)</h2>
+            <p class="nfGateMuted">Generate an internal approval email aligned with your selected package. Use it to start vendor onboarding.</p>
           </div>
           <div class="nfGateCardBd">
             <div class="nfGateNotice" style="margin-top:0;">
-              <strong>Procurement Pack:</strong> internal approvals and vendor onboarding support.
-              <div style="margin-top:10px; display:flex; gap:10px; flex-wrap:wrap;">
-                <a class="btn secondary" href="/vendor/">Open procurement pack</a>
-                <a class="btn" href="/copilot/readiness/?tier=standard">Open Readiness (Standard)</a>
+              <strong>Procurement-safe framing:</strong> Named deliverables, timeline rule, and scope drivers are included on each offer card.
+              Use the approval email below to reduce back-and-forth.
+            </div>
+
+            <div class="nfProcGrid">
+              <div class="nfProcBox" aria-label="Procurement email builder">
+                <div class="nfGateCardTitle" style="margin:0 0 8px;">Approval email builder</div>
+                <p class="nfGateMuted" style="margin:0;">Fields are optional. The selected package is used by default.</p>
+
+                <form id="nfProcForm" class="nfProcForm" autocomplete="off">
+                  <div class="nfProcRow">
+                    <div class="nfProcField">
+                      <label class="nfProcLabel" for="nfOrg">Organization</label>
+                      <input class="nfProcInput" id="nfOrg" name="org" placeholder="Company name" />
+                    </div>
+                    <div class="nfProcField">
+                      <label class="nfProcLabel" for="nfContact">Requester / owner</label>
+                      <input class="nfProcInput" id="nfContact" name="contact" placeholder="Name + role" />
+                    </div>
+                    <div class="nfProcField">
+                      <label class="nfProcLabel" for="nfStakeholder">Approver</label>
+                      <input class="nfProcInput" id="nfStakeholder" name="approver" placeholder="Manager / director / procurement" />
+                    </div>
+                    <div class="nfProcField">
+                      <label class="nfProcLabel" for="nfStart">Desired start</label>
+                      <select class="nfProcSelect" id="nfStart" name="start">
+                        <option value="asap">ASAP</option>
+                        <option value="this_month">This month</option>
+                        <option value="next_month">Next month</option>
+                        <option value="tbd">TBD</option>
+                      </select>
+                    </div>
+                    <div class="nfProcField full">
+                      <label class="nfProcLabel" for="nfNotes">Constraints (optional)</label>
+                      <textarea class="nfProcTextarea" id="nfNotes" name="notes" placeholder="Constraints: audit window, client requirements, sensitive data, policy posture..."></textarea>
+                    </div>
+                  </div>
+
+                  <div class="nfProcActions">
+                    <button class="btn" type="button" id="nfProcGenerateBtn">Generate email</button>
+                    <button class="btn secondary" type="button" id="nfProcCopyBtn" disabled>Copy</button>
+                    <a class="btn secondary" href="/vendor/" data-rid-link>Vendor page</a>
+                  </div>
+
+                  <div class="nfProcNote">Output is generated locally in the browser.</div>
+                  <textarea class="nfProcTextarea" id="nfProcOut" readonly style="margin-top:12px;"></textarea>
+                </form>
               </div>
             </div>
-
-            <div class="nfGateNotice" style="margin-top:12px;">
-              <strong>Invoice / PO flow:</strong> start with the package entry and select “Invoice / PO” where available.
-              Procurement snapshots provide deliverables, scope drivers, and timeline rule for approval steps.
-            </div>
-
-            <div class="nfGateNotice" style="margin-top:12px;">
-              <strong>Procurement contact:</strong> <a id="nfProcSupportLink" href="mailto:procurement@noetfield.com">procurement@noetfield.com</a>
-              <span style="display:block; margin-top:4px;">(PO, invoicing, vendor onboarding)</span>
-              <span style="display:block; margin-top:8px;"><strong>General:</strong> <a href="mailto:ceo@noetfield.com">ceo@noetfield.com</a></span>
-              <span style="display:block; margin-top:8px;"><strong>Kickoff:</strong> email-first by default. Short call available when scope confirmation is required.</span>
-            </div>
-
-            <div class="nfGateNotice" style="margin-top:12px;">
-              <strong>Quick procurement email</strong><br/>
-              <span>Opens a pre-filled procurement email for review and sending from an email client. If mail links are restricted, use the secure intake fallback.</span>
-              <div style="margin-top:10px; display:flex; gap:10px; flex-wrap:wrap;">
-                <a class="btn secondary" href="/gate/intake/?need=readiness">Open secure intake</a>
-                <a class="btn secondary" href="/vendor/">Procurement pack</a>
-              </div>
-            </div>
-
-            <form id="nfProcEmailForm" class="nfProcForm" novalidate>
-              <div class="nfProcRow">
-                <div class="nfProcField">
-                  <label class="nfProcLabel" for="nf_org">Organisation</label>
-                  <input class="nfProcInput" id="nf_org" type="text" placeholder="Company / institution name" autocomplete="organization" />
-                </div>
-
-                <div class="nfProcField">
-                  <label class="nfProcLabel" for="nf_contact">Contact (optional)</label>
-                  <input class="nfProcInput" id="nf_contact" type="text" placeholder="Name" autocomplete="name" />
-                </div>
-
-                <div class="nfProcField">
-                  <label class="nfProcLabel" for="nf_role">Role / team (optional)</label>
-                  <input class="nfProcInput" id="nf_role" type="text" placeholder="e.g., Procurement, IT, Security" />
-                </div>
-
-                <div class="nfProcField">
-                  <label class="nfProcLabel" for="nf_reply">Reply email (optional)</label>
-                  <input class="nfProcInput" id="nf_reply" type="email" placeholder="Reply routing" autocomplete="email" inputmode="email" />
-                </div>
-
-                <div class="nfProcField">
-                  <label class="nfProcLabel" for="nf_package">Package</label>
-                  <select class="nfProcSelect" id="nf_package">
-                    <option value="readiness_standard">Copilot Readiness — Standard (4w)</option>
-                    <option value="readiness_starter">Copilot Readiness — Starter (2w)</option>
-                    <option value="readiness_extended">Copilot Readiness — Extended (6w)</option>
-                    <option value="quickscan">Copilot QuickScan (Rapid Snapshot)</option>
-                    <option value="brief">Trust Brief (6-week)</option>
-                    <option value="ledger">Trust Ledger</option>
-                    <option value="playbook">Playbook Pro</option>
-                    <option value="other">Other / not sure</option>
-                  </select>
-                </div>
-
-                <div class="nfProcField">
-                  <label class="nfProcLabel" for="nf_proc">Procurement path</label>
-                  <select class="nfProcSelect" id="nf_proc">
-                    <option value="invoice">Invoice</option>
-                    <option value="po">Purchase Order (PO)</option>
-                    <option value="vendor">Vendor onboarding</option>
-                    <option value="other">Other</option>
-                  </select>
-                </div>
-
-                <div class="nfProcField full">
-                  <label class="nfProcLabel" for="nf_timeline">Timing (optional)</label>
-                  <input class="nfProcInput" id="nf_timeline" type="text" placeholder="e.g., target date / this quarter" />
-                </div>
-
-                <div class="nfProcField full">
-                  <label class="nfProcLabel" for="nf_note">Short note (non-confidential)</label>
-                  <textarea class="nfProcTextarea" id="nf_note" placeholder="High-level context only. Avoid secrets, credentials, or regulated personal data."></textarea>
-                </div>
-
-                <div class="nfProcField full" style="display:flex; gap:10px; flex-wrap:wrap;">
-                  <button class="btn" type="submit">Prepare email</button>
-                  <a class="btn secondary" href="/gate/intake/?need=readiness">Open secure intake</a>
-                  <a class="btn secondary" href="/vendor/">Procurement pack</a>
-                </div>
-              </div>
-
-              <p class="nfProcNote">
-                Public intake is non-confidential. Secure sharing options are confirmed after kickoff.
-              </p>
-            </form>
           </div>
         </section>
       </div>
 
-      <!-- RIGHT: PURCHASE PANEL -->
-      <aside class="nfRail" aria-label="Purchase panel">
+      <!-- RIGHT RAIL -->
+      <aside class="nfRail" aria-label="Purchase rail">
         <div class="nfRailBox">
           <div class="nfRailHd">
-            <h2 class="nfGateCardTitle" style="margin-bottom:6px;">Purchase & kickoff</h2>
-            <p class="nfGateMuted">Select a package (or use the wizard). Start with a direct entry point.</p>
+            <h2 class="nfRailTitle">Selected package</h2>
+            <p class="nfRailDesc" id="nfRailDesc">Choose a package on the left to update this panel.</p>
           </div>
 
           <div class="nfRailBd">
             <div class="nfRailKpi" id="nfRailKpi">
-              <strong>Current focus:</strong> Copilot Readiness — Standard<br/>
-              Enterprise flagship · 4 weeks · 15,000 CAD
+              <div><strong id="nfRailName">—</strong></div>
+              <div style="margin-top:6px;">
+                <span id="nfRailMeta">—</span>
+              </div>
             </div>
 
-            <div class="nfRailActions" aria-label="Primary actions">
-              <a class="btn" id="nfRailPrimaryBtn" href="/copilot/readiness/?tier=standard">Open Standard</a>
-              <a class="btn secondary" id="nfRailSecondaryBtn" href="/copilot/readiness/">View Readiness details</a>
+            <div class="nfRailActions" aria-label="Purchase actions">
+              <a class="btn primary" id="nfRailPrimary" href="/gate/sales/" data-rid-link>Start (Sales)</a>
+              <a class="btn" id="nfRailStart" href="#" data-rid-link>Start selected</a>
+              <a class="btn secondary" id="nfRailDetails" href="#">View details</a>
+              <a class="btn secondary" href="#procurement">Invoice / PO</a>
             </div>
 
-            <div class="nfRailKpi" style="margin-top:12px;">
-              <strong>Invoice / PO</strong><br/>
-              Vendor onboarding path available.
-            </div>
-
-            <div class="nfRailActions" aria-label="Procurement actions">
-              <a class="btn secondary" href="/vendor/">Open procurement pack</a>
-              <a class="btn secondary" href="#procurement">Invoice / PO section</a>
-            </div>
-
-            <div class="nfRailKpi" style="margin-top:12px;">
-              <strong>Rapid snapshot</strong><br/>
-              Fast lead-in option when timing is urgent.
-            </div>
-
-            <div class="nfRailActions" aria-label="Rapid snapshot actions">
-              <a class="btn secondary" href="/copilot/quickscan/intake/">Start QuickScan</a>
-              <a class="btn secondary" href="/copilot/quickscan/">View QuickScan details</a>
-            </div>
-
-            <div class="nfRailKpi" style="margin-top:12px;">
-              <strong>Other packages</strong><br/>
-              Direct links for non-Copilot tracks.
-            </div>
-
-            <div class="nfRailActions" aria-label="Other packages">
-              <a class="btn secondary" href="/trust-brief/intake/">Start Trust Brief</a>
-              <a class="btn secondary" href="/trust-ledger/intake/">Start Trust Ledger</a>
-              <a class="btn secondary" href="/playbook/pro/">Playbook Pro (749 CAD)</a>
-            </div>
+            <div class="nfRailDivider" aria-hidden="true"></div>
 
             <div class="nfRailMiniLinks">
-              Receipt/invoice issued after purchase where applicable.<br/>
-              Browse: <a href="/copilot">Copilot</a> · <a href="/trust-ledger/">Trust Ledger</a> · <a href="/trust-brief/">Trust Brief</a>
+              <div><strong>Request ID:</strong> <code data-rid>—</code></div>
+              <div style="margin-top:6px;">
+                Share Gate link internally (RID preserved on Sales/Procurement links).
+              </div>
+              <div style="margin-top:6px;">
+                Samples: <a href="/trust-ledger/sample-report/board-memo.pdf" data-rid-link>Board memo</a> ·
+                <a href="/trust-ledger/ledger-entry.pdf" data-rid-link>Ledger entry</a>
+              </div>
             </div>
           </div>
         </div>
@@ -1484,464 +1520,397 @@
   <footer id="nfFooter"></footer>
 
   <!-- Mobile bottom bar -->
-  <div class="nfBottomBar" aria-label="Bottom call to action">
+  <div class="nfBottomBar" id="nfBottomBar" role="region" aria-label="Quick start bar">
     <div class="nfBottomInner">
-      <div class="nfBottomText" id="nfBottomText"><strong>Start:</strong> Copilot Readiness — Standard</div>
-      <a class="btn" id="nfBottomBtn" href="/copilot/readiness/?tier=standard">Open</a>
-      <a class="btn secondary" href="#router">Wizard</a>
+      <div class="nfBottomText" id="nfBottomText"><strong>Selected:</strong> —</div>
+      <a class="btn primary" id="nfBottomBtn" href="/gate/sales/" data-rid-link>Start</a>
     </div>
   </div>
 
   <script>
     (function () {
-      // ===== Procurement-facing constants (single source of truth) =====
-      var NF_PROC_EMAIL = "procurement@noetfield.com";
-      var NF_GENERAL_EMAIL = "ceo@noetfield.com";
+      "use strict";
 
-      (function(){
-        var a = document.getElementById("nfProcSupportLink");
-        if (!a) return;
-        a.href = "mailto:" + encodeURIComponent(NF_PROC_EMAIL);
-        a.textContent = NF_PROC_EMAIL;
-      })();
+      function $(id){ return document.getElementById(id); }
+      function qsa(sel){ try { return Array.prototype.slice.call(document.querySelectorAll(sel)); } catch(_) { return []; } }
 
-      // Offer model (single source of truth)
-      var offers = {
-        readiness_starter: {
-          key: "readiness_starter",
-          name: "Copilot Readiness — Starter (2 weeks)",
-          kpi: "<strong>Current focus:</strong> Copilot Readiness — Starter<br/>Enterprise SKU · 2 weeks · 9,500 CAD",
-          primaryHref: "/copilot/readiness/?tier=starter",
-          primaryLabel: "Open Starter",
-          detailsHref: "/copilot/readiness/",
-          detailsLabel: "View Readiness details"
-        },
-        readiness_standard: {
-          key: "readiness_standard",
-          name: "Copilot Readiness — Standard (4 weeks)",
-          kpi: "<strong>Current focus:</strong> Copilot Readiness — Standard<br/>Enterprise flagship · 4 weeks · 15,000 CAD",
-          primaryHref: "/copilot/readiness/?tier=standard",
-          primaryLabel: "Open Standard",
-          detailsHref: "/copilot/readiness/",
-          detailsLabel: "View Readiness details"
-        },
-        readiness_extended: {
-          key: "readiness_extended",
-          name: "Copilot Readiness — Extended (6 weeks)",
-          kpi: "<strong>Current focus:</strong> Copilot Readiness — Extended<br/>Expanded scope · 6 weeks · 25,000 CAD",
-          primaryHref: "/copilot/readiness/?tier=extended",
-          primaryLabel: "Open Extended",
-          detailsHref: "/copilot/readiness/",
-          detailsLabel: "View Readiness details"
-        },
-        quickscan: {
-          key: "quickscan",
-          name: "Copilot QuickScan (Rapid Snapshot)",
-          kpi: "<strong>Current focus:</strong> Copilot QuickScan<br/>Rapid snapshot · 5–7 business days",
-          primaryHref: "/copilot/quickscan/intake/",
-          primaryLabel: "Start QuickScan",
-          detailsHref: "/copilot/quickscan/",
-          detailsLabel: "View QuickScan details"
-        },
-        brief: {
-          key: "brief",
-          name: "Trust Brief (6-week)",
-          kpi: "<strong>Current focus:</strong> Trust Brief (6-week)<br/>Governance plan + roadmap · 6 weeks",
-          primaryHref: "/trust-brief/intake/",
-          primaryLabel: "Start Trust Brief",
-          detailsHref: "/trust-brief/",
-          detailsLabel: "View Trust Brief details"
-        },
-        ledger: {
-          key: "ledger",
-          name: "Trust Ledger",
-          kpi: "<strong>Current focus:</strong> Trust Ledger<br/>Ongoing evidence continuity · recurring exports",
-          primaryHref: "/trust-ledger/intake/",
-          primaryLabel: "Start Trust Ledger",
-          detailsHref: "/trust-ledger/",
-          detailsLabel: "View Trust Ledger details"
-        },
-        playbook: {
-          key: "playbook",
-          name: "Playbook Pro (Agency / Pro)",
-          kpi: "<strong>Current focus:</strong> Playbook Pro<br/>Template kit · one-time purchase",
-          primaryHref: "/playbook/pro/",
-          primaryLabel: "Open Playbook Pro",
-          detailsHref: "/playbook/",
-          detailsLabel: "View Playbook"
-        }
-      };
+      var STORAGE_KEY = "nf_gate_offer";
+      var DEFAULT_OFFER = "readiness_standard";
 
-      function qs(name){
-        try { return new URLSearchParams(location.search || "").get(name) || ""; }
-        catch(e){ return ""; }
-      }
+      var offers = qsa(".nfOffer");
+      var railName = $("nfRailName");
+      var railMeta = $("nfRailMeta");
+      var railDesc = $("nfRailDesc");
+      var railStart = $("nfRailStart");
+      var railDetails = $("nfRailDetails");
+      var bottomText = $("nfBottomText");
+      var bottomBtn = $("nfBottomBtn");
 
-      function escapeHtml(s){
-        return String(s || "")
-          .replace(/&/g,"&amp;")
-          .replace(/</g,"&lt;")
-          .replace(/>/g,"&gt;")
-          .replace(/"/g,"&quot;")
-          .replace(/'/g,"&#039;");
-      }
+      var selected = null;
 
-      function clearSelected(){
-        document.querySelectorAll(".nfOfferSelected").forEach(function(el){
-          el.classList.remove("nfOfferSelected");
-        });
-      }
-
-      function syncProcPackage(key){
-        var sel = document.getElementById("nf_package");
-        if (!sel) return;
-        if (sel.value === "other") return;
-        if (key && offers[key]) sel.value = key;
-      }
-
-      function selectOffer(key){
-        var o = offers[key] || offers.readiness_standard;
-
-        clearSelected();
-        var card = document.querySelector('[data-offer="'+ o.key +'"]');
-        if (card) card.classList.add("nfOfferSelected");
-
-        var kpi = document.getElementById("nfRailKpi");
-        var pBtn = document.getElementById("nfRailPrimaryBtn");
-        var sBtn = document.getElementById("nfRailSecondaryBtn");
-
-        if (kpi) kpi.innerHTML = o.kpi;
-        if (pBtn){ pBtn.href = o.primaryHref; pBtn.textContent = o.primaryLabel; }
-        if (sBtn){ sBtn.href = o.detailsHref; sBtn.textContent = o.detailsLabel; }
-
-        var bText = document.getElementById("nfBottomText");
-        var bBtn = document.getElementById("nfBottomBtn");
-        if (bText) bText.innerHTML = "<strong>Start:</strong> " + escapeHtml(o.name);
-        if (bBtn) bBtn.href = o.primaryHref;
-
-        syncProcPackage(o.key);
-
-        try { localStorage.setItem("nf_gate_focus", o.key); } catch(e){}
-      }
-
-      // Select offer when clicking the card (mobile-friendly)
-      document.querySelectorAll("[data-offer]").forEach(function(card){
-        card.addEventListener("click", function(e){
-          if (e.target && (e.target.closest("a") || e.target.closest("button") || e.target.closest("summary"))) return;
-          selectOffer(card.getAttribute("data-offer"));
-        });
-        card.addEventListener("keydown", function(e){
-          if (e.key === "Enter" || e.key === " ") {
-            e.preventDefault();
-            selectOffer(card.getAttribute("data-offer"));
+      function readQueryFocus(){
+        try {
+          var u = new URL(window.location.href);
+          var f = (u.searchParams.get("focus") || "").trim();
+          var tier = (u.searchParams.get("tier") || "").trim();
+          if (tier) {
+            if (tier === "starter") return "readiness_starter";
+            if (tier === "standard") return "readiness_standard";
+            if (tier === "extended") return "readiness_extended";
           }
-        });
-      });
+          return f || "";
+        } catch(_) { return ""; }
+      }
 
-      // Hover/focus on primary CTA keeps rail in sync
-      document.querySelectorAll("[data-primary-cta]").forEach(function(a){
-        function sync(){
-          var wrap = a.closest("[data-offer]");
-          if (wrap) selectOffer(wrap.getAttribute("data-offer"));
-          var focus = (a.getAttribute("data-focus") || "").trim();
-          if (focus && offers[focus]) selectOffer(focus);
+      function writeQueryFocus(val){
+        try {
+          var u = new URL(window.location.href);
+          u.searchParams.set("focus", val);
+          window.history.replaceState({}, "", u.pathname + "?" + u.searchParams.toString() + (u.hash || ""));
+        } catch(_) {}
+      }
+
+      function getOfferByKey(key){
+        for (var i=0;i<offers.length;i++){
+          if ((offers[i].getAttribute("data-offer") || "") === key) return offers[i];
         }
-        a.addEventListener("mouseenter", sync);
-        a.addEventListener("focus", sync);
-      });
-
-      // Initial focus: ?focus= OR ?need= OR last saved OR default
-      var focus = (qs("focus") || "").trim().toLowerCase();
-      var need = (qs("need") || "").trim().toLowerCase();
-
-      if (!focus && need) {
-        if (need === "readiness" || need === "copilot-readiness") focus = "readiness_standard";
-        else if (need === "quickscan" || need === "copilot-quickscan") focus = "quickscan";
-        else if (need === "trust-brief" || need === "brief") focus = "brief";
-        else if (need === "trust-ledger" || need === "ledger") focus = "ledger";
-        else if (need === "playbook" || need === "playbook-pro") focus = "playbook";
+        return null;
       }
 
-      if (!offers[focus]){
-        try { focus = (localStorage.getItem("nf_gate_focus") || "").trim().toLowerCase(); } catch(e){}
-      }
-      if (!offers[focus]) focus = "readiness_standard";
-      selectOffer(focus);
+      function setSelected(el, fromUser){
+        if (!el) return;
 
-      // Router open/close
-      var routerBtn = document.getElementById("nfRouterOpenBtn");
-      var routerCard = document.getElementById("nfRouterCard");
-      function setRouterOpen(open){
-        if (!routerBtn || !routerCard) return;
-        routerCard.hidden = !open;
-        routerBtn.setAttribute("aria-expanded", String(open));
-        if (open) routerCard.scrollIntoView({ behavior: "smooth", block: "start" });
-      }
-      if (routerBtn){
-        routerBtn.addEventListener("click", function(){
-          setRouterOpen(routerCard.hidden);
+        offers.forEach(function (x) {
+          x.classList.remove("nfOfferSelected");
+          x.setAttribute("aria-selected","false");
         });
-      }
 
-      // Wizard logic
-      var step1 = document.getElementById("nfWizardStep1");
-      var step2 = document.getElementById("nfWizardStep2");
-      var step1Pill = document.getElementById("nfStep1Pill");
-      var step2Pill = document.getElementById("nfStep2Pill");
-      var backBtn = document.getElementById("nfWizardBackBtn");
-      var resetBtn = document.getElementById("nfWizardResetBtn");
-      var hint1 = document.getElementById("nfWizardHint1");
-      var hint2 = document.getElementById("nfWizardHint2");
+        el.classList.add("nfOfferSelected");
+        el.setAttribute("aria-selected","true");
+        selected = el;
 
-      var recoCard = document.getElementById("nfRecoCard");
-      var recoTitle = document.getElementById("nfRecoTitle");
-      var recoDesc = document.getElementById("nfRecoDesc");
-      var recoWhy = document.getElementById("nfRecoWhy");
-      var recoPrimary = document.getElementById("nfRecoPrimary");
-      var recoDetails = document.getElementById("nfRecoDetails");
+        var name = el.getAttribute("data-name") || el.querySelector(".nfOfferName")?.textContent || "Selected package";
+        var duration = el.getAttribute("data-duration") || "";
+        var price = el.getAttribute("data-price") || "";
+        var primary = el.getAttribute("data-primary") || "/gate/sales/";
+        var details = el.getAttribute("data-details") || "/gate/";
 
-      function v(name){
-        var el = document.querySelector('input[name="'+name+'"]:checked');
-        return el ? (el.value || "") : "";
-      }
+        if (railName) railName.textContent = name;
+        if (railMeta) railMeta.textContent = (duration ? (duration + " • ") : "") + (price || "");
+        if (railDesc) railDesc.textContent = "Start selected package or route through Sales for invoice/PO and procurement onboarding.";
 
-      function showStep(n){
-        if (!step1 || !step2) return;
-        var s1 = (n === 1);
-        step1.hidden = !s1;
-        step2.hidden = s1;
+        if (railStart) railStart.href = primary;
+        if (railDetails) railDetails.href = details;
 
-        if (step1Pill && step2Pill){
-          step1Pill.classList.toggle("nfStepPillActive", s1);
-          step2Pill.classList.toggle("nfStepPillActive", !s1);
+        if (bottomText) bottomText.innerHTML = "<strong>Selected:</strong> " + name;
+        if (bottomBtn) bottomBtn.href = primary;
+
+        var key = el.getAttribute("data-offer") || DEFAULT_OFFER;
+        try { sessionStorage.setItem(STORAGE_KEY, key); } catch(_) {}
+        writeQueryFocus(key);
+
+        // prefill procurement builder selection label via generated text later
+        if (fromUser) {
+          // no-op for now; keep minimal
         }
-        if (backBtn) backBtn.hidden = s1;
-
-        if (hint1) hint1.classList.toggle("nfRouterHintShow", s1 && !v("nf_situation"));
-        if (hint2) hint2.classList.toggle("nfRouterHintShow", !s1 && !v("nf_timing"));
       }
 
-      function resetWizard(){
-        document.querySelectorAll('input[name="nf_situation"], input[name="nf_timing"]').forEach(function(i){ i.checked = false; });
-        if (recoCard) recoCard.hidden = true;
-        showStep(1);
-      }
+      function initOfferClicks(){
+        offers.forEach(function (el) {
+          el.setAttribute("role","button");
+          el.setAttribute("aria-selected","false");
 
-      function recommend(){
-        var situation = v("nf_situation");
-        var timing = v("nf_timing");
+          el.addEventListener("click", function (e) {
+            var tag = (e.target && e.target.tagName || "").toLowerCase();
+            if (tag === "a" || tag === "summary" || tag === "input" || tag === "button" || tag === "textarea" || tag === "select") return;
+            setSelected(el, true);
+          });
 
-        if (situation === "templates") return { key:"playbook", why:[
-          "Templates-first start for teams and agencies.",
-          "Reusable governance kit and client-ready formats.",
-          "Upgrade path into delivery work when needed."
-        ]};
-
-        if (situation === "ongoing" || timing === "ongoing") return { key:"ledger", why:[
-          "Best fit for continuous readiness and repeatable exports.",
-          "Maintained evidence mindset over time.",
-          "Reduced scramble during audit/client cycles."
-        ]};
-
-        if (situation === "plan") return { key:"brief", why:[
-          "Best fit for governance plan, owners, decisions, and roadmap.",
-          "Operating model and decision gates.",
-          "Continuity into Trust Ledger."
-        ]};
-
-        if (situation === "snapshot" || timing === "fast") return { key:"quickscan", why:[
-          "Rapid snapshot with named outputs.",
-          "Designed for urgent leadership decisions.",
-          "Lead-in to Readiness SKUs."
-        ]};
-
-        if (situation === "copilot" && timing === "extended") return { key:"readiness_extended", why:[
-          "Expanded scope and deeper evidence indexing.",
-          "Structured alignment for complex rollout constraints.",
-          "Enterprise SKU and procurement-ready packaging."
-        ]};
-
-        return { key:"readiness_standard", why:[
-          "Enterprise flagship readiness baseline.",
-          "Governance decisions, control baseline, and evidence packaging.",
-          "Procurement-ready snapshots and scope drivers."
-        ]};
-      }
-
-      function renderRecommendation(){
-        var situation = v("nf_situation");
-        var timing = v("nf_timing");
-        if (!situation || !timing) return;
-
-        var r = recommend();
-        var o = offers[r.key] || offers.readiness_standard;
-
-        if (recoTitle) recoTitle.textContent = o.name;
-        if (recoDesc) recoDesc.textContent = "Recommended based on selections. Start with a direct entry point.";
-        if (recoWhy) recoWhy.innerHTML = (r.why || []).map(function(x){ return "<li>" + escapeHtml(x) + "</li>"; }).join("");
-        if (recoPrimary){ recoPrimary.href = o.primaryHref; recoPrimary.textContent = "Start"; }
-        if (recoDetails){ recoDetails.href = o.detailsHref; recoDetails.textContent = "View details"; }
-
-        if (recoCard) recoCard.hidden = false;
-
-        selectOffer(o.key);
-
-        if (recoCard) recoCard.scrollIntoView({ behavior: "smooth", block: "start" });
-      }
-
-      document.querySelectorAll('input[name="nf_situation"]').forEach(function(i){
-        i.addEventListener("change", function(){
-          if (hint1) hint1.classList.remove("nfRouterHintShow");
-          showStep(2);
-          var first = document.querySelector('#nfWizardStep2 input[name="nf_timing"]');
-          if (first) first.focus({ preventScroll: true });
+          el.addEventListener("keydown", function (e) {
+            if (e.key === "Enter" || e.key === " ") {
+              e.preventDefault();
+              setSelected(el, true);
+            }
+          });
         });
-      });
+      }
 
-      document.querySelectorAll('input[name="nf_timing"]').forEach(function(i){
-        i.addEventListener("change", function(){
-          if (hint2) hint2.classList.remove("nfRouterHintShow");
-          renderRecommendation();
-        });
-      });
+      function initialSelect(){
+        var f = readQueryFocus();
+        var saved = "";
+        try { saved = (sessionStorage.getItem(STORAGE_KEY) || "").trim(); } catch(_) {}
 
-      if (backBtn){
-        backBtn.addEventListener("click", function(){
+        var key = f || saved || DEFAULT_OFFER;
+        var el = getOfferByKey(key) || getOfferByKey(DEFAULT_OFFER) || offers[0];
+        setSelected(el, false);
+      }
+
+      // Wizard
+      function initWizard(){
+        var openBtn = $("nfRouterOpenBtn");
+        var card = $("nfRouterCard");
+        var backBtn = $("nfWizardBackBtn");
+        var resetBtn = $("nfWizardResetBtn");
+
+        var step1Pill = $("nfStep1Pill");
+        var step2Pill = $("nfStep2Pill");
+
+        var step1 = $("nfWizardStep1");
+        var step2 = $("nfWizardStep2");
+
+        var recoCard = $("nfRecoCard");
+        var recoTitle = $("nfRecoTitle");
+        var recoDesc = $("nfRecoDesc");
+        var recoWhy = $("nfRecoWhy");
+        var recoPrimary = $("nfRecoPrimary");
+        var recoApply = $("nfRecoApplyBtn");
+
+        var state = { step: 1, situation: "", timing: "" };
+        var lastRecoKey = "";
+
+        function showStep(n){
+          state.step = n;
+
+          if (step1) step1.hidden = (n !== 1);
+          if (step2) step2.hidden = (n !== 2);
+
+          if (step1Pill) step1Pill.classList.toggle("nfStepPillActive", n === 1);
+          if (step2Pill) step2Pill.classList.toggle("nfStepPillActive", n === 2);
+
+          if (backBtn) backBtn.hidden = (n === 1);
+        }
+
+        function open(){
+          if (!card) return;
+          card.hidden = false;
+          if (openBtn) openBtn.setAttribute("aria-expanded","true");
           showStep(1);
-        });
-      }
-      if (resetBtn){
-        resetBtn.addEventListener("click", resetWizard);
-      }
-
-      if ((qs("router") || "") === "1"){
-        setRouterOpen(true);
-        showStep(v("nf_situation") ? 2 : 1);
-      } else {
-        showStep(1);
-      }
-
-      // Procurement email builder (mailto)
-      (function () {
-        var form = document.getElementById("nfProcEmailForm");
-        if (!form) return;
-
-        function getVal(id){
-          var el = document.getElementById(id);
-          return el ? (el.value || "").trim() : "";
+          if (recoCard) recoCard.hidden = true;
         }
 
-        function labelForPackage(v){
-          if (v === "readiness_standard") return "Microsoft 365 Copilot Readiness Assessment — Standard (4w)";
-          if (v === "readiness_starter") return "Microsoft 365 Copilot Readiness Assessment — Starter (2w)";
-          if (v === "readiness_extended") return "Microsoft 365 Copilot Readiness Assessment — Extended (6w)";
-          if (v === "quickscan") return "Copilot QuickScan (Rapid Snapshot)";
-          if (v === "brief") return "Trust Brief (6-week)";
-          if (v === "ledger") return "Trust Ledger";
-          if (v === "playbook") return "Playbook Pro";
-          return "Other / not sure";
+        function close(){
+          if (!card) return;
+          card.hidden = true;
+          if (openBtn) openBtn.setAttribute("aria-expanded","false");
         }
 
-        function labelForProc(v){
-          if (v === "invoice") return "Invoice";
-          if (v === "po") return "Purchase Order (PO)";
-          if (v === "vendor") return "Vendor onboarding";
-          return "Other";
+        function reset(){
+          state = { step: 1, situation: "", timing: "" };
+          qsa('input[name="nf_situation"]').forEach(function(x){ x.checked = false; });
+          qsa('input[name="nf_timing"]').forEach(function(x){ x.checked = false; });
+          if (recoCard) recoCard.hidden = true;
+          showStep(1);
         }
 
-        function readRid(){
-          try {
-            return (
-              localStorage.getItem("nf_rid") ||
-              localStorage.getItem("nfRid") ||
-              localStorage.getItem("rid") ||
-              ""
-            ).trim();
-          } catch(e){ return ""; }
-        }
+        function computeReco(){
+          // mapping
+          var s = state.situation;
+          var t = state.timing;
+          var key = DEFAULT_OFFER;
+          var why = [];
 
-        form.addEventListener("submit", function (e) {
-          e.preventDefault();
-
-          var org = getVal("nf_org");
-          var contact = getVal("nf_contact");
-          var role = getVal("nf_role");
-          var reply = getVal("nf_reply");
-          var pkg = getVal("nf_package");
-          var proc = getVal("nf_proc");
-          var timeline = getVal("nf_timeline");
-          var note = getVal("nf_note");
-
-          var rid = readRid();
-
-          var pkgLabel = labelForPackage(pkg);
-          var procLabel = labelForProc(proc);
-
-          var subject = "Procurement — " + pkgLabel + (org ? " (" + org + ")" : "");
-
-          var body = [];
-          body.push("Hello Noetfield Procurement,");
-          body.push("");
-          body.push("Request: " + procLabel + " path for " + pkgLabel + ".");
-          body.push("");
-
-          if (org) body.push("Organisation: " + org);
-          if (contact) body.push("Contact: " + contact);
-          if (role) body.push("Role/team: " + role);
-          if (reply) body.push("Reply email: " + reply);
-          if (timeline) body.push("Timing: " + timeline);
-          if (rid) body.push("Request ID (if applicable): " + rid);
-
-          body.push("");
-          body.push("Gate link: " + (location.origin + "/gate/#procurement"));
-          body.push("Procurement pack: " + (location.origin + "/vendor/"));
-          body.push("");
-
-          if (note) {
-            body.push("Note (non-confidential):");
-            body.push(note);
-            body.push("");
+          if (s === "snapshot") key = "quickscan";
+          else if (s === "templates") key = "playbook";
+          else if (s === "plan") key = "brief";
+          else if (s === "ongoing") key = "ledger";
+          else if (s === "copilot") {
+            if (t === "fast") key = "readiness_starter";
+            else if (t === "standard") key = "readiness_standard";
+            else if (t === "extended") key = "readiness_extended";
+            else key = "readiness_standard";
           }
 
-          body.push("Public intake is non-confidential. Secure sharing options are confirmed after kickoff.");
-          body.push("");
+          if (key === "quickscan") {
+            why = ["Fastest decision-ready posture (days).", "Good lead-in when readiness scope is not yet fixed.", "Produces named outputs for internal approval."];
+          } else if (key === "readiness_starter") {
+            why = ["Pilot-friendly enterprise SKU.", "Minimum governance/control set for safe rollout.", "2-week timeline for fast internal momentum."];
+          } else if (key === "readiness_standard") {
+            why = ["Best default for enterprise rollout.", "Baseline + evidence packaging reduces back-and-forth.", "Procurement-ready artifacts with clear scope drivers."];
+          } else if (key === "readiness_extended") {
+            why = ["Best fit for multi-unit scope.", "Deeper evidence indexing and alignment.", "Designed for complex rollout constraints."];
+          } else if (key === "brief") {
+            why = ["Governance decisions + operating model + roadmap.", "Leadership-ready tradeoffs and gate set.", "Clean upgrade path into Ledger for continuity."];
+          } else if (key === "ledger") {
+            why = ["Ongoing evidence continuity for scrutiny cycles.", "Repeatable exports and accountability mapping.", "Reduces audit/client scramble."];
+          } else if (key === "playbook") {
+            why = ["Templates-first start.", "Reusable across teams/clients.", "Good for agencies and internal enablement."];
+          }
 
-          var mailto =
-            "mailto:" + encodeURIComponent(NF_PROC_EMAIL) +
-            "?subject=" + encodeURIComponent(subject) +
-            "&body=" + encodeURIComponent(body.join("\n"));
+          lastRecoKey = key;
+          var el = getOfferByKey(key);
 
-          window.location.href = mailto;
+          if (!el) return;
+
+          var name = el.getAttribute("data-name") || "Recommended";
+          var duration = el.getAttribute("data-duration") || "";
+          var price = el.getAttribute("data-price") || "";
+          var primary = el.getAttribute("data-primary") || "/gate/sales/";
+
+          if (recoTitle) recoTitle.textContent = name;
+          if (recoDesc) recoDesc.textContent = (duration ? (duration + " • ") : "") + (price || "");
+
+          if (recoWhy) {
+            recoWhy.innerHTML = "";
+            why.forEach(function(w){
+              var li = document.createElement("li");
+              li.textContent = w;
+              recoWhy.appendChild(li);
+            });
+          }
+
+          if (recoPrimary) recoPrimary.href = primary;
+
+          if (recoCard) recoCard.hidden = false;
+        }
+
+        if (openBtn) {
+          openBtn.addEventListener("click", function(){
+            if (!card) return;
+            if (card.hidden) open(); else close();
+          });
+        }
+        if (backBtn) backBtn.addEventListener("click", function(){ showStep(1); });
+        if (resetBtn) resetBtn.addEventListener("click", function(){ reset(); });
+
+        qsa('input[name="nf_situation"]').forEach(function (x) {
+          x.addEventListener("change", function(){
+            state.situation = x.value;
+            showStep(2);
+          });
         });
-      })();
+
+        qsa('input[name="nf_timing"]').forEach(function (x) {
+          x.addEventListener("change", function(){
+            state.timing = x.value;
+            computeReco();
+          });
+        });
+
+        if (recoApply) {
+          recoApply.addEventListener("click", function(){
+            var el = getOfferByKey(lastRecoKey);
+            if (!el) return;
+            setSelected(el, true);
+            // scroll selection into view
+            try { el.scrollIntoView({ behavior: "smooth", block: "center" }); } catch(_) {}
+          });
+        }
+      }
+
+      // Procurement builder
+      function initProcurement(){
+        var genBtn = $("nfProcGenerateBtn");
+        var copyBtn = $("nfProcCopyBtn");
+        var out = $("nfProcOut");
+
+        function val(id){
+          var el = $(id);
+          return (el && (el.value || "").trim()) || "";
+        }
+
+        function selectedKey(){
+          return (selected && selected.getAttribute("data-offer")) || DEFAULT_OFFER;
+        }
+
+        function selectedSummary(){
+          if (!selected) return { name:"", duration:"", price:"", primary:"" };
+          return {
+            name: selected.getAttribute("data-name") || "",
+            duration: selected.getAttribute("data-duration") || "",
+            price: selected.getAttribute("data-price") || "",
+            primary: selected.getAttribute("data-primary") || "/gate/sales/"
+          };
+        }
+
+        function buildEmail(){
+          var s = selectedSummary();
+          var org = val("nfOrg");
+          var contact = val("nfContact");
+          var approver = val("nfStakeholder");
+          var start = val("nfStart");
+          var notes = val("nfNotes");
+
+          var startTxt = (start === "asap") ? "ASAP" :
+                         (start === "this_month") ? "this month" :
+                         (start === "next_month") ? "next month" : "TBD";
+
+          var rid = "";
+          try { rid = (window.__nf && window.__nf.rid) ? String(window.__nf.rid) : ""; } catch(_) {}
+
+          var lines = [];
+          lines.push("Subject: Approval request — " + (s.name || "Noetfield package") + " (" + (s.duration || "timeline") + ")");
+          lines.push("");
+          lines.push((approver ? ("Hi " + approver + ",") : "Hi,"));
+          lines.push("");
+          lines.push("Requesting approval to start the following package with Noetfield" + (org ? (" for " + org) : "") + ":");
+          lines.push("");
+          lines.push("• Package: " + (s.name || "—"));
+          lines.push("• Timing: " + (s.duration || "—") + " (start: " + startTxt + ")");
+          lines.push("• Pricing: " + (s.price || "—"));
+          if (rid) lines.push("• Request ID (RID): " + rid);
+          lines.push("");
+          lines.push("Rationale:");
+          lines.push("• Procurement-ready deliverables (named outputs) + scope drivers to reduce back-and-forth");
+          lines.push("• Evidence-first posture designed for leadership review and audit/client scrutiny");
+          lines.push("");
+          if (notes) {
+            lines.push("Constraints / notes:");
+            lines.push(notes);
+            lines.push("");
+          }
+          lines.push("Start link:");
+          lines.push(window.location.origin + (s.primary || "/gate/sales/"));
+          lines.push("");
+          lines.push("Thank you,");
+          lines.push(contact || "—");
+
+          return lines.join("\n");
+        }
+
+        function copyText(text){
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            return navigator.clipboard.writeText(text).then(function(){ return true; }).catch(function(){ return false; });
+          }
+          try{
+            out.focus();
+            out.select();
+            return Promise.resolve(document.execCommand("copy"));
+          }catch(_){
+            return Promise.resolve(false);
+          }
+        }
+
+        if (genBtn && out) {
+          genBtn.addEventListener("click", function(){
+            out.value = buildEmail();
+            if (copyBtn) copyBtn.disabled = false;
+          });
+        }
+
+        if (copyBtn && out) {
+          copyBtn.addEventListener("click", function(){
+            copyText(out.value || "").then(function(ok){
+              if (!ok) return;
+              copyBtn.textContent = "Copied";
+              setTimeout(function(){ copyBtn.textContent = "Copy"; }, 900);
+            });
+          });
+        }
+      }
+
+      function boot(){
+        initOfferClicks();
+        initialSelect();
+        initWizard();
+        initProcurement();
+      }
+
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", boot);
+      } else {
+        boot();
+      }
     })();
   </script>
-
-  <!--
-    CHANGELOG (gate v3.4)
-    - Enterprise-first: Copilot Readiness SKUs added (Starter/Standard/Extended) using market-standard naming
-    - QuickScan repositioned: Rapid Snapshot lead-in (not flagship)
-    - Default focus updated: Readiness Standard (4w, 15,000 CAD)
-    - Wizard updated: returns Readiness/QuickScan/Brief/Ledger/Playbook with timing-aware mapping
-    - Procurement form updated: includes Readiness tiers and secure intake fallback for readiness
-    - Shell locked: header/footer injection preserved
-
-    SMOKE TEST
-    - GET /gate/ returns 200
-    - /assets/noetfield-shell.css returns 200 and styles apply
-    - /assets/noetfield-shell.js returns 200 and header/footer load into #nfHeader/#nfFooter
-    - CTAs route correctly:
-      - /copilot/readiness/
-      - /copilot/readiness/?tier=starter|standard|extended
-      - /copilot/quickscan/intake/
-      - /trust-brief/intake/
-      - /trust-ledger/intake/
-      - /playbook/pro/
-      - /vendor/
-      - /gate/intake/?need=readiness
-    - Wizard: opens, Step 1 advances to Step 2, Step 2 generates recommendation, highlights offer, updates rail + bottom bar
-    - Procurement form: submit opens mail client with subject/body populated; no network submit
-    - Mobile: bottom bar fixed, no overlap (body padding applied)
-  -->
 </body>
 </html>

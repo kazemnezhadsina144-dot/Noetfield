@@ -1,4 +1,4 @@
-<!-- /trust-ledger/index.html — Noetfield Trust Ledger v6.1 (Sales-first • Plans & pricing rail • Subscription + Setup CTAs • Locked samples map) -->
+<!-- /trust-ledger/index.html — Noetfield Trust Ledger v6.2 (Maintain live • Others coming soon • Stripe Buy Button embedded) -->
 <!doctype html>
 <html lang="en">
 <head>
@@ -208,7 +208,30 @@
     .planSub{ margin:8px 0 0; color:var(--muted); line-height:1.6; font-size:13px; }
     .planBullets{ margin:10px 0 0; padding-left:18px; color:var(--muted2); line-height:1.6; font-size:12.8px; }
     .planBullets li{ margin:6px 0; }
-    .planActions{ display:flex; gap:10px; flex-wrap:wrap; margin-top:12px; }
+    .planActions{ display:flex; gap:10px; flex-wrap:wrap; margin-top:12px; align-items:center; }
+
+    /* Disabled buttons (Coming soon) */
+    .btn.disabled{
+      opacity:.55;
+      pointer-events:none;
+      filter:saturate(.75);
+    }
+
+    /* Stripe buy button wrapper */
+    .stripeWrap{
+      width: 100%;
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
+      margin-top:10px;
+    }
+    .stripeNote{
+      margin-top:10px;
+      color: var(--muted2);
+      font-size:12.4px;
+      line-height:1.55;
+    }
 
     .fineprint{
       margin-top:12px;
@@ -402,16 +425,6 @@
                 </ul>
               </article>
 
-              <article class="block" aria-label="Change and exceptions output">
-                <div class="blockTop"><h3>Change + exception discipline</h3><span class="tag">Output</span></div>
-                <p>Maintain a readable trail: what changed, why, who approved, and when exceptions expire.</p>
-                <ul>
-                  <li>Change log with owner and rationale</li>
-                  <li>Exception register with expiry and mitigation</li>
-                  <li>Evidence references that survive audits</li>
-                </ul>
-              </article>
-
               <article class="block" aria-label="Samples output">
                 <div class="blockTop"><h3>Samples (locked URLs)</h3><span class="tag">PDF / Online</span></div>
                 <p>Output style reference (board-safe formatting). These URLs are canonical and should not change.</p>
@@ -424,9 +437,6 @@
                   <a class="btn secondary" href="/trust-ledger/online-report/" target="_blank" rel="nofollow noopener">Online report</a>
                   <a class="btn secondary" href="/trust-ledger/output/" target="_blank" rel="nofollow noopener">Output page</a>
                 </div>
-                <div class="notice" style="margin-top:12px;">
-                  <strong>Note:</strong> Board memo is an output format used across Trust Brief and Trust Ledger board exports (same board-safe style).
-                </div>
               </article>
             </div>
 
@@ -435,42 +445,6 @@
               <br />
               <strong>Trust & governance:</strong> trust@noetfield.com • legal@noetfield.com
             </div>
-          </div>
-        </section>
-
-        <section class="card" aria-label="FAQ" style="margin-top:16px;">
-          <div class="hd">
-            <h2 class="cardTitle">FAQ</h2>
-            <p class="muted">Short answers for purchasing and internal routing.</p>
-          </div>
-          <div class="bd">
-            <details class="block">
-              <summary style="cursor:pointer; font-weight:950;">What is an “active entry”?</summary>
-              <p class="muted" style="margin-top:10px;">
-                One tracked AI system or AI-enabled workflow that has defined owners, controls, evidence hooks, and a change trail.
-              </p>
-            </details>
-
-            <details class="block">
-              <summary style="cursor:pointer; font-weight:950;">What does “setup” include?</summary>
-              <p class="muted" style="margin-top:10px;">
-                Ledger schema baseline, initial inventory alignment, evidence reference conventions, and cadence confirmation.
-              </p>
-            </details>
-
-            <details class="block">
-              <summary style="cursor:pointer; font-weight:950;">Can procurement / invoice be used instead of card?</summary>
-              <p class="muted" style="margin-top:10px;">
-                Yes. Procurement supports invoice/PO and internal approval routing. Scope and cadence can be confirmed after intake.
-              </p>
-            </details>
-
-            <details class="block">
-              <summary style="cursor:pointer; font-weight:950;">Is sensitive data required in public forms?</summary>
-              <p class="muted" style="margin-top:10px;">
-                No. Public intake is for non-confidential details only. Secure sharing protocol is confirmed after kickoff.
-              </p>
-            </details>
           </div>
         </section>
       </div>
@@ -482,17 +456,17 @@
             <h2 class="cardTitle">Plans & pricing</h2>
             <div class="pricingIntro">
               <strong>Monthly subscription</strong> + one-time setup.
-              Fixed plan pricing below. Procurement (Invoice/PO) supported.
-              If a Gate intake is required, final scope is confirmed after intake.
+              Procurement (Invoice/PO) supported.
+              Only TL — Maintain is live for card checkout today. Others will be enabled next.
             </div>
           </div>
 
           <div class="bd">
-            <!-- Plan 1 -->
+            <!-- Plan 1 (LIVE) -->
             <div class="plan" aria-label="TL Maintain">
               <div class="planTop">
                 <div>
-                  <div class="tag">TL — Maintain</div>
+                  <div class="tag">TL — Maintain (Live)</div>
                   <h3 class="planName">Maintain cadence for a small surface</h3>
                 </div>
                 <div class="price">1,500 CAD / mo</div>
@@ -501,25 +475,36 @@
               <p class="planSub">Up to 5 active entries • Monthly or quarterly cadence.</p>
 
               <ul class="planBullets">
-                <li><strong>Setup:</strong> 2,500 CAD (one-time)</li>
+                <li><strong>Setup:</strong> 2,500 CAD (one-time) — coming next</li>
                 <li><strong>SLA target:</strong> 5 business days</li>
                 <li><strong>Evidence tier:</strong> light / standard</li>
                 <li><strong>Change trail:</strong> maintained</li>
               </ul>
 
               <div class="planActions">
-                <!-- Replace with Stripe Payment Links -->
-                <a class="btn primary" href="STRIPE_TL_MAINTAIN_MONTHLY" target="_blank" rel="nofollow noopener">Subscribe (Monthly)</a>
-                <a class="btn secondary" href="STRIPE_TL_MAINTAIN_SETUP" target="_blank" rel="nofollow noopener">Pay setup (One-time)</a>
+                <!-- Fallback direct link (works even if buy-button blocked) -->
+                <a class="btn secondary" href="https://buy.stripe.com/5kQdRa6v64PGg0WfPu1Nu05" target="_blank" rel="nofollow noopener">Open secure checkout</a>
                 <a class="btn secondary" href="/gate/procurement/?focus=tl_maintain" data-rid-link>Invoice / PO</a>
+              </div>
+
+              <!-- Embedded Stripe Buy Button (PRIMARY) -->
+              <div class="stripeWrap" aria-label="Stripe buy button (Maintain)">
+                <stripe-buy-button
+                  buy-button-id="buy_btn_1SgI5ZJ03eJkL57JEYpsEmWi"
+                  publishable-key="pk_live_51SfSseJ03eJkL57JNU4voCGfUjjK4WDew62tPBWesZAejr03HX8uTonznYoWDVcpXwLATZpTvWSDfSU4zJbRIB6900xlpPcGSz">
+                </stripe-buy-button>
+              </div>
+
+              <div class="stripeNote">
+                Card checkout is live for TL — Maintain (Monthly). Setup and additional plans will be enabled next.
               </div>
             </div>
 
-            <!-- Plan 2 -->
+            <!-- Plan 2 (COMING SOON) -->
             <div class="plan" aria-label="TL Govern">
               <div class="planTop">
                 <div>
-                  <div class="tag">TL — Govern</div>
+                  <div class="tag">TL — Govern (Coming soon)</div>
                   <h3 class="planName">Board rhythm + due diligence support</h3>
                 </div>
                 <div class="price">2,750 CAD / mo</div>
@@ -535,17 +520,17 @@
               </ul>
 
               <div class="planActions">
-                <a class="btn primary" href="STRIPE_TL_GOVERN_MONTHLY" target="_blank" rel="nofollow noopener">Subscribe (Monthly)</a>
-                <a class="btn secondary" href="STRIPE_TL_GOVERN_SETUP" target="_blank" rel="nofollow noopener">Pay setup (One-time)</a>
+                <a class="btn primary disabled" href="#" aria-disabled="true">Subscribe (Monthly)</a>
+                <a class="btn secondary disabled" href="#" aria-disabled="true">Pay setup (One-time)</a>
                 <a class="btn secondary" href="/gate/procurement/?focus=tl_govern" data-rid-link>Invoice / PO</a>
               </div>
             </div>
 
-            <!-- Plan 3 -->
+            <!-- Plan 3 (COMING SOON) -->
             <div class="plan" aria-label="TL Assure">
               <div class="planTop">
                 <div>
-                  <div class="tag">TL — Assure</div>
+                  <div class="tag">TL — Assure (Coming soon)</div>
                   <h3 class="planName">Deep evidence discipline for broader surface</h3>
                 </div>
                 <div class="price">4,750 CAD / mo</div>
@@ -561,19 +546,16 @@
               </ul>
 
               <div class="planActions">
-                <a class="btn primary" href="STRIPE_TL_ASSURE_MONTHLY" target="_blank" rel="nofollow noopener">Subscribe (Monthly)</a>
-                <a class="btn secondary" href="STRIPE_TL_ASSURE_SETUP" target="_blank" rel="nofollow noopener">Pay setup (One-time)</a>
+                <a class="btn primary disabled" href="#" aria-disabled="true">Subscribe (Monthly)</a>
+                <a class="btn secondary disabled" href="#" aria-disabled="true">Pay setup (One-time)</a>
                 <a class="btn secondary" href="/gate/procurement/?focus=tl_assure" data-rid-link>Invoice / PO</a>
               </div>
             </div>
 
             <div class="fineprint" role="note">
               <strong>Notes:</strong>
-              Subscription is monthly. Setup is one-time.
               Taxes may apply. Cancellation terms and start date are confirmed in the Stripe receipt / invoice.
               Public intake is non-confidential only.
-              <br /><br />
-              <strong>Implementation:</strong> replace <code>STRIPE_TL_*_MONTHLY</code> and <code>STRIPE_TL_*_SETUP</code> with Stripe Payment Links.
             </div>
 
             <div class="actions" style="margin-top:12px;">
@@ -587,7 +569,7 @@
 
     <section class="stickyCta" aria-label="Sticky CTA">
       <div class="stickyInner">
-        <div class="stickyText"><strong>Trust Ledger plans</strong> are available — card subscription or invoice/PO start.</div>
+        <div class="stickyText"><strong>TL — Maintain (Monthly)</strong> is live for card checkout. Invoice/PO also available.</div>
         <div class="actions" style="margin-top:0">
           <a class="btn primary" href="#pricing">View pricing</a>
           <a class="btn secondary" href="/gate/procurement/?focus=trust_ledger" data-rid-link>Invoice / PO</a>
@@ -597,5 +579,8 @@
   </main>
 
   <footer id="nfFooter"></footer>
+
+  <!-- Stripe Buy Button (load once) -->
+  <script async src="https://js.stripe.com/v3/buy-button.js"></script>
 </body>
 </html>

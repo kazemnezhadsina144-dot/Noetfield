@@ -1,4 +1,4 @@
-<!-- /playbook/index.html — Noetfield Playbook v5.1 (Authority Hub • Copilot-first • Samples • zero-404 library cards) -->
+<!-- /playbook/index.html — Noetfield Playbook v5.2 (Authority Hub • Copilot-first • correct Samples • zero-404 cards • Gate param locked) -->
 <!doctype html>
 <html lang="en">
 <head>
@@ -31,259 +31,8 @@
   <link rel="stylesheet" href="/assets/noetfield-shell.css" />
   <script src="/assets/noetfield-shell.js" defer></script>
 
-  <style>
-    .hero{padding:18px 0 12px}
-    .heroShell{
-      position:relative;
-      border-radius: calc(var(--radius) + 8px);
-      border: 1px solid rgba(255,255,255,.11);
-      background:
-        radial-gradient(1000px 420px at 18% 0%, rgba(200,163,73,.18), transparent 60%),
-        radial-gradient(1000px 420px at 90% 10%, rgba(122,167,255,.10), transparent 62%),
-        linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.022));
-      box-shadow: var(--shadow);
-      overflow:hidden;
-    }
-    .heroShell::before{
-      content:"";
-      position:absolute; inset:-1px;
-      background: linear-gradient(120deg, rgba(200,163,73,.26), transparent 30%, rgba(255,255,255,.08) 68%, transparent);
-      opacity:.44;
-      pointer-events:none;
-      mask-image: linear-gradient(180deg, black 0%, black 58%, transparent 96%);
-    }
-    .heroInner{padding: 22px 18px; position:relative; z-index:1}
-    .eyebrow{
-      display:inline-flex; gap:10px; align-items:center;
-      color:var(--muted);
-      font-size:13px;
-      padding:9px 12px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.13);
-      background: rgba(255,255,255,.035);
-    }
-    .dot{
-      width:8px; height:8px; border-radius:50%;
-      background: rgba(200,163,73,.97);
-      box-shadow: 0 0 0 3px rgba(200,163,73,.18);
-    }
-    h1{margin:12px 0 10px; font-size:34px; line-height:1.07; letter-spacing:-0.75px}
-    .lead{margin:0; color:var(--muted); font-size:16px; max-width: 1040px; line-height:1.75}
-    .lead strong{color:var(--text); font-weight:950}
-    .metaRow{display:flex; flex-wrap:wrap; gap:10px; margin-top:14px}
-    .pill{
-      display:inline-flex; align-items:center; gap:10px;
-      padding:9px 12px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.03);
-      color:var(--muted);
-      font-size:13px;
-      white-space:nowrap;
-    }
-    .pill strong{color:var(--text); font-weight:900}
-    .notice{
-      margin-top:12px;
-      padding:12px 12px;
-      border-radius:14px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.03);
-      color:var(--muted2);
-      font-size:12.8px;
-      line-height:1.6;
-    }
-    .notice strong{ color:var(--text); font-weight:900; }
-
-    .grid{
-      display:grid;
-      grid-template-columns: 1.12fr .88fr;
-      gap:16px;
-      margin: 14px 0 64px;
-      align-items:start;
-    }
-    .card{
-      border-radius:var(--radius);
-      border:1px solid rgba(255,255,255,.11);
-      background: linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.022));
-      box-shadow: var(--shadow2);
-      overflow:hidden;
-      min-width:0;
-    }
-    .hd{ padding:18px 18px 0; }
-    .bd{ padding:18px; }
-    .cardTitle{ margin:0 0 8px; font-size:18px; letter-spacing:-0.2px; }
-    .muted{ color:var(--muted); line-height:1.7; margin:0; }
-
-    .actions{display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-top:12px}
-    .btn.small{ min-height:40px; padding:9px 12px; font-size:13px; }
-
-    .sectionRow{display:flex; flex-wrap:wrap; gap:10px; align-items:center; margin: 2px 0 12px}
-    .chip{
-      display:inline-flex; align-items:center; gap:8px;
-      padding:8px 10px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.03);
-      color:var(--muted2);
-      font-size:12.4px;
-      white-space:nowrap;
-    }
-    .chip strong{ color:var(--text); font-weight:900; }
-
-    .groupTitle{
-      margin:18px 0 8px;
-      font-size:14px;
-      letter-spacing:.22em;
-      text-transform:uppercase;
-      color:var(--muted2);
-    }
-
-    .blocks{ display:grid; gap:12px; margin-top:12px; }
-    .block{
-      border-radius:16px;
-      border:1px solid rgba(255,255,255,.11);
-      background: rgba(255,255,255,.03);
-      padding:14px;
-      overflow:hidden;
-      transition: border-color .15s ease, background .15s ease, transform .06s ease;
-    }
-    .block:hover{border-color:rgba(255,255,255,.22); background:rgba(255,255,255,.05)}
-    .block:active{transform: translateY(1px)}
-    .blockTop{ display:flex; gap:10px; align-items:flex-start; justify-content:space-between; flex-wrap:wrap; }
-    .block h3{ margin:0; font-size:16px; letter-spacing:-.2px; font-weight:950; }
-    .tag{
-      display:inline-flex; align-items:center; gap:8px;
-      padding:7px 10px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.03);
-      color:var(--muted2);
-      font-size:12.4px;
-      white-space:nowrap;
-    }
-    .block p{ margin:10px 0 0; color:var(--muted); line-height:1.7; }
-    .block ul{ margin:10px 0 0; padding-left:18px; color:var(--muted2); line-height:1.6; }
-    .block li{ margin:6px 0; }
-    .kvRow{ display:flex; flex-wrap:wrap; gap:10px; margin-top:10px; }
-    .kv{
-      display:inline-flex; gap:8px; align-items:center;
-      padding:8px 10px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.02);
-      color:var(--muted2);
-      font-size:12.4px;
-      white-space:nowrap;
-    }
-    .kv strong{ color:var(--text); font-weight:900; }
-
-    .disabled{
-      opacity:.86;
-    }
-    .disabled .tag{opacity:.92}
-    .disabled .actions .btn{pointer-events:none; opacity:.72}
-    .disabled .actions .btn.ghost{pointer-events:none}
-    .hint{
-      margin-top:10px;
-      color:var(--muted2);
-      font-size:12.6px;
-      line-height:1.55;
-    }
-
-    details.opt{
-      margin-top:12px;
-      border-radius:14px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.02);
-      padding:10px 12px;
-    }
-    details.opt summary{
-      cursor:pointer;
-      color:var(--text);
-      font-weight:900;
-      list-style:none;
-    }
-    details.opt summary::-webkit-details-marker{display:none}
-    .optBody{
-      margin-top:10px;
-      color:var(--muted2);
-      font-size:12.8px;
-      line-height:1.6;
-    }
-
-    .rail{ position: sticky; top: 14px; }
-    .railBox{
-      border-radius: var(--radius);
-      border:1px solid rgba(255,255,255,.11);
-      background: linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.022));
-      box-shadow: var(--shadow2);
-      overflow:hidden;
-    }
-    .kpi{
-      border-radius:16px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.03);
-      padding:12px;
-      margin-top:12px;
-      color:var(--muted2);
-      font-size:12.8px;
-      line-height:1.6;
-    }
-    .kpi strong{ color:var(--text); font-weight:900; }
-
-    .refBox{
-      margin-top:10px;
-      padding:10px 12px;
-      border-radius:14px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.02);
-      color:var(--muted2);
-      font-size:12.6px;
-      line-height:1.55;
-      word-break:break-word;
-    }
-    .refBox code{
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-      color: var(--text);
-      font-weight: 850;
-      font-size: 12.8px;
-    }
-
-    .stickyCta{
-      position: sticky;
-      bottom: 0;
-      z-index: 20;
-      padding: 10px 0;
-      background: linear-gradient(180deg, rgba(7,7,11,0) 0%, rgba(7,7,11,.78) 22%, rgba(7,7,11,.92) 100%);
-      backdrop-filter: blur(10px);
-      border-top: 1px solid rgba(255,255,255,.08);
-    }
-    .stickyInner{
-      display:flex;
-      gap:12px;
-      align-items:center;
-      justify-content:space-between;
-      padding: 0 16px;
-      max-width: 1120px;
-      margin: 0 auto;
-    }
-    .stickyText{
-      min-width:0;
-      color:var(--muted);
-      font-size:12.6px;
-      line-height:1.4;
-    }
-    .stickyText strong{ color:var(--text); font-weight:950; }
-
-    @media (max-width: 980px){
-      .grid{ grid-template-columns: 1fr; }
-      .rail{ position: relative; top: 0; }
-      h1{ font-size: 30px; }
-    }
-    @media (max-width: 760px){
-      .stickyText{display:none}
-    }
-  </style>
+  <!-- PAGE CSS (moved out of inline for maintainability) -->
+  <link rel="stylesheet" href="/assets/pages/playbook.css?v=5.2" />
 
   <script type="application/ld+json">
   {
@@ -353,9 +102,10 @@
             <div class="pill"><strong>Public intake</strong> = non-confidential</div>
           </div>
 
+          <!-- LOCK: Gate param standard -->
           <div class="actions" aria-label="Hero actions">
-            <a class="btn primary" href="/copilot/" data-rid-link>Copilot starts</a>
-            <a class="btn secondary" href="/gate/" data-rid-link>Start via Gate</a>
+            <a class="btn primary" href="/copilot/quickscan/" data-rid-link>Copilot QuickScan</a>
+            <a class="btn secondary" href="/gate/?need=copilot_quickscan" data-rid-link>Start via Gate</a>
             <a class="btn secondary" href="/trust-ledger/" data-rid-link>Trust Ledger</a>
           </div>
 
@@ -404,7 +154,7 @@
                 </ul>
                 <div class="actions">
                   <a class="btn primary" href="/copilot/quickscan/" data-rid-link>View QuickScan</a>
-                  <a class="btn secondary" href="/gate/sales/?offer=quickscan_base&buyer=card" data-rid-link>Purchase options</a>
+                  <a class="btn secondary" href="/gate/sales/?offer=quickscan_base&buyer=card&need=copilot_quickscan" data-rid-link>Purchase options</a>
                 </div>
               </article>
 
@@ -424,8 +174,8 @@
                   <li>Kickoff confirms secure sharing options</li>
                 </ul>
                 <div class="actions">
-                  <a class="btn primary" href="/gate/procurement/" data-rid-link>Invoice / PO</a>
-                  <a class="btn secondary" href="/gate/" data-rid-link>Start via Gate</a>
+                  <a class="btn primary" href="/gate/procurement/?need=copilot_quickscan" data-rid-link>Invoice / PO</a>
+                  <a class="btn secondary" href="/gate/?need=copilot_quickscan" data-rid-link>Start via Gate</a>
                 </div>
               </article>
             </div>
@@ -435,16 +185,27 @@
               <article class="block" aria-label="Sample outputs">
                 <div class="blockTop">
                   <h3>See the output style</h3>
-                  <span class="tag">Board-ready PDFs</span>
+                  <span class="tag">Board-ready</span>
                 </div>
                 <p>Short, executive-friendly artefacts designed for leadership review and procurement alignment.</p>
+
                 <div class="actions">
-                  <a class="btn secondary" href="/trust-brief/samples/board-memo.pdf" target="_blank" rel="nofollow">View sample board memo</a>
-                  <a class="btn secondary" href="/trust-ledger/samples/ledger-entry.pdf" target="_blank" rel="nofollow">View sample ledger entry</a>
+                  <a class="btn secondary" href="https://www.noetfield.com/trust-ledger/sample-report/board-memo.pdf" target="_blank" rel="noopener nofollow">Board memo (PDF)</a>
+                  <a class="btn secondary" href="https://www.noetfield.com/trust-ledger/ledger-entry.pdf" target="_blank" rel="noopener nofollow">Ledger entry (PDF)</a>
+                  <a class="btn secondary" href="https://www.noetfield.com/trust-ledger/ledger-entry.pdf2" target="_blank" rel="noopener nofollow">Ledger entry (PDF2)</a>
                 </div>
-                <div class="hint">
-                  If either link returns 404, deploy the PDF to the exact path shown (keep the URL stable once published).
-                </div>
+
+                <details class="opt" style="margin-top:12px;">
+                  <summary>Online samples (routes)</summary>
+                  <div class="optBody">
+                    <div class="actions" style="margin-top:10px;">
+                      <a class="btn ghost small" href="https://www.noetfield.com/trust-ledger/sample-report/online/" target="_blank" rel="noopener nofollow">Online sample (route A)</a>
+                      <a class="btn ghost small" href="https://www.noetfield.com/trust-ledger/online-report/" target="_blank" rel="noopener nofollow">Online report (route B)</a>
+                      <a class="btn ghost small" href="https://www.noetfield.com/trust-ledger/output/" target="_blank" rel="noopener nofollow">Output directory</a>
+                    </div>
+                    <div class="hint">Keep sample URLs stable once published (authority hub rule: zero-404).</div>
+                  </div>
+                </details>
               </article>
             </div>
           </div>
@@ -473,7 +234,7 @@
                   <li>Risk flags + acceptance posture</li>
                 </ul>
                 <div class="actions">
-                  <a class="btn ghost" href="#" aria-disabled="true">Open module</a>
+                  <button class="btn ghost small" type="button" disabled>Open module</button>
                 </div>
               </article>
 
@@ -489,7 +250,7 @@
                   <li>Exceptions + red-lines</li>
                 </ul>
                 <div class="actions">
-                  <a class="btn ghost" href="#" aria-disabled="true">Open module</a>
+                  <button class="btn ghost small" type="button" disabled>Open module</button>
                 </div>
               </article>
 
@@ -506,7 +267,7 @@
                 </ul>
                 <div class="actions">
                   <a class="btn primary" href="/trust-ledger/" data-rid-link>View Trust Ledger</a>
-                  <a class="btn secondary" href="/gate/procurement/?focus=ledger" data-rid-link>Invoice / PO</a>
+                  <a class="btn secondary" href="/gate/procurement/?need=copilot_quickscan&focus=ledger" data-rid-link>Invoice / PO</a>
                 </div>
               </article>
 
@@ -523,7 +284,7 @@
                 </ul>
                 <div class="actions">
                   <a class="btn primary" href="/trust-brief/" data-rid-link>View Trust Brief</a>
-                  <a class="btn secondary" href="/gate/procurement/?focus=brief" data-rid-link>Invoice / PO</a>
+                  <a class="btn secondary" href="/gate/procurement/?need=copilot_quickscan&focus=brief" data-rid-link>Invoice / PO</a>
                 </div>
               </article>
             </div>
@@ -542,7 +303,7 @@
                   <li>Security/privacy intake boundaries</li>
                 </ul>
                 <div class="actions">
-                  <a class="btn ghost" href="#" aria-disabled="true">Open module</a>
+                  <button class="btn ghost small" type="button" disabled>Open module</button>
                 </div>
               </article>
 
@@ -572,7 +333,7 @@
                     <p>One-organization kit: templates + checklists + board/procurement brief structure.</p>
                     <div class="actions">
                       <a class="btn secondary" href="/playbook/standard/" data-rid-link>View kit</a>
-                      <a class="btn primary" href="/gate/sales/?offer=playbook_standard&buyer=card" data-rid-link>Purchase</a>
+                      <a class="btn primary" href="/gate/sales/?offer=playbook_standard&buyer=card&need=copilot_quickscan" data-rid-link>Purchase</a>
                     </div>
                   </article>
 
@@ -584,7 +345,7 @@
                     <p>Multi-client license + reusable templates + due diligence kit + client-ready briefing structures.</p>
                     <div class="actions">
                       <a class="btn secondary" href="/playbook/pro/" data-rid-link>View kit</a>
-                      <a class="btn primary" href="/gate/sales/?offer=playbook_pro&buyer=card" data-rid-link>Purchase</a>
+                      <a class="btn primary" href="/gate/sales/?offer=playbook_pro&buyer=card&need=copilot_quickscan" data-rid-link>Purchase</a>
                     </div>
                   </article>
                 </div>
@@ -652,9 +413,9 @@
             </div>
 
             <div class="actions" style="margin-top:12px">
-              <a class="btn primary" href="/copilot/" data-rid-link>Copilot starts</a>
-              <a class="btn secondary" href="/gate/" data-rid-link>Start via Gate</a>
-              <a class="btn secondary" href="/gate/procurement/" data-rid-link>Invoice / PO</a>
+              <a class="btn primary" href="/copilot/quickscan/" data-rid-link>View QuickScan</a>
+              <a class="btn secondary" href="/gate/?need=copilot_quickscan" data-rid-link>Start via Gate</a>
+              <a class="btn secondary" href="/gate/procurement/?need=copilot_quickscan" data-rid-link>Invoice / PO</a>
             </div>
 
             <div class="refBox" aria-label="Reference">
@@ -669,8 +430,8 @@
 
             <div class="kpi">
               <strong>Samples:</strong><br/>
-              <a class="btn ghost small" href="/trust-brief/samples/board-memo.pdf" target="_blank" rel="nofollow">Board memo (PDF)</a>
-              <a class="btn ghost small" href="/trust-ledger/samples/ledger-entry.pdf" target="_blank" rel="nofollow">Ledger entry (PDF)</a>
+              <a class="btn ghost small" href="https://www.noetfield.com/trust-ledger/sample-report/board-memo.pdf" target="_blank" rel="noopener nofollow">Board memo (PDF)</a>
+              <a class="btn ghost small" href="https://www.noetfield.com/trust-ledger/ledger-entry.pdf" target="_blank" rel="noopener nofollow">Ledger entry (PDF)</a>
             </div>
           </div>
         </div>
@@ -682,7 +443,7 @@
         <div class="stickyText"><strong>Copilot-first</strong> start recommended — QuickScan baseline → scoped governance cadence.</div>
         <div class="actions" style="margin-top:0">
           <a class="btn primary" href="/copilot/quickscan/" data-rid-link>View QuickScan</a>
-          <a class="btn secondary" href="/gate/procurement/" data-rid-link>Invoice / PO</a>
+          <a class="btn secondary" href="/gate/procurement/?need=copilot_quickscan" data-rid-link>Invoice / PO</a>
         </div>
       </div>
     </section>

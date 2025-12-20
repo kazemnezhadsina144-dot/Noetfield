@@ -1,4 +1,4 @@
-/* /assets/pages/playbook.css — v5.2 (Playbook Authority Hub page-only styles) */
+/* /assets/pages/playbook.css — v5.3 (Playbook Authority Hub page-only styles) */
 
 .hero{padding:18px 0 12px}
 .heroShell{
@@ -61,6 +61,48 @@ h1{margin:12px 0 10px; font-size:34px; line-height:1.07; letter-spacing:-0.75px}
   line-height:1.6;
 }
 .notice strong{ color:var(--text); font-weight:900; }
+
+/* NEW: subnav anchors */
+.subnav{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top:14px;
+}
+.subnav a{
+  display:inline-flex;
+  align-items:center;
+  padding:8px 10px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.02);
+  color: var(--muted2);
+  font-size:12.6px;
+  text-decoration:none;
+}
+.subnav a:hover{
+  border-color: rgba(255,255,255,.22);
+  background: rgba(255,255,255,.04);
+  color: var(--text);
+}
+
+/* NEW: role grid */
+.roleGrid{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap:10px;
+  margin-top:12px;
+}
+.role{
+  border-radius:16px;
+  border:1px solid rgba(255,255,255,.10);
+  background: rgba(255,255,255,.02);
+  padding:12px;
+  color: var(--muted2);
+  font-size:12.8px;
+  line-height:1.6;
+}
+.role strong{ color: var(--text); font-weight:900; }
 
 .grid{
   display:grid;
@@ -242,6 +284,7 @@ details.opt summary::-webkit-details-marker{display:none}
 @media (max-width: 980px){
   .grid{ grid-template-columns: 1fr; }
   .rail{ position: relative; top: 0; }
+  .roleGrid{ grid-template-columns: 1fr; }
   h1{ font-size: 30px; }
 }
 @media (max-width: 760px){

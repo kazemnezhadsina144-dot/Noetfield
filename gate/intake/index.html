@@ -1,4 +1,4 @@
-<!-- /gate/intake/index.html -->
+<!-- /gate/intake/index.html — Noetfield Start (Packages) v3.0 (Sales-first directory • boundary-first • tracking-safe redirects) -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,6 +30,19 @@
   <!-- LOCKED SHELL -->
   <link rel="stylesheet" href="/assets/noetfield-shell.css" />
   <script src="/assets/noetfield-shell.js" defer></script>
+
+  <!-- Minimal structured data -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"WebPage",
+    "name":"Noetfield — Start (Packages)",
+    "url":"https://www.noetfield.com/gate/intake/",
+    "description":"Start here. Choose a package and go directly to the matching product intake (sales-first). Public intakes are non-confidential by design.",
+    "isPartOf":{"@type":"WebSite","name":"Noetfield","url":"https://www.noetfield.com/"},
+    "publisher":{"@type":"Organization","name":"Noetfield Systems Inc.","url":"https://www.noetfield.com/"}
+  }
+  </script>
 
   <style>
     .hero{padding:22px 0 10px}
@@ -83,11 +96,36 @@
     }
     .note strong{color:var(--text); font-weight:900}
 
+    .grid2{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap:14px;
+      margin: 14px 0 6px;
+    }
+    .panel{
+      border-radius:var(--radius);
+      border:1px solid rgba(255,255,255,.11);
+      background: rgba(255,255,255,.02);
+      padding:16px;
+      overflow:hidden;
+      min-width:0;
+    }
+    .panel h2{margin:0 0 10px; font-size:15px; letter-spacing:-0.2px}
+    .panel p{margin:0; color:var(--muted); line-height:1.7}
+    .steps{
+      margin:0;
+      padding-left:18px;
+      color:var(--muted);
+      line-height:1.8;
+    }
+    .steps strong{color:var(--text); font-weight:900}
+
     .cards{
       display:grid;
       grid-template-columns: repeat(12, 1fr);
       gap:14px;
-      margin: 16px 0 34px;
+      margin: 16px 0 18px;
+      align-items:stretch;
     }
     .card{
       grid-column: span 6;
@@ -97,12 +135,14 @@
       box-shadow: var(--shadow2);
       overflow:hidden;
       min-width:0;
+      display:flex;
+      flex-direction:column;
     }
-    .card .bd{padding:18px}
+    .card .bd{padding:18px; display:flex; flex-direction:column; gap:10px; height:100%}
     .card .k{font-size:11px; letter-spacing:.28em; text-transform:uppercase; color:var(--muted2)}
-    .card .t{margin-top:10px; font-weight:950; letter-spacing:-.2px; font-size:18px}
-    .card .d{margin-top:8px; color:var(--muted); line-height:1.7}
-    .card .pills{display:flex; gap:10px; flex-wrap:wrap; margin-top:12px}
+    .card .t{margin:0; font-weight:950; letter-spacing:-.2px; font-size:18px}
+    .card .d{margin:0; color:var(--muted); line-height:1.7}
+    .card .pills{display:flex; gap:10px; flex-wrap:wrap; margin-top:2px}
     .pill{
       display:inline-flex; align-items:center; gap:8px;
       padding:7px 10px;
@@ -114,16 +154,30 @@
       white-space:nowrap;
     }
     .pill strong{color:var(--text); font-weight:900}
-    .actions{display:flex; gap:12px; flex-wrap:wrap; align-items:center; margin-top:14px}
+
+    .actions{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      align-items:center;
+      margin-top:auto;
+      padding-top:10px;
+    }
     .actions .btn{min-height:44px}
     .links{margin-top:10px; color:var(--muted2); font-size:12.8px}
     .links a{border-bottom:1px solid rgba(255,255,255,.18)}
+    .fine{
+      margin-top:10px;
+      color:var(--muted2);
+      font-size:12.4px;
+      line-height:1.65;
+    }
 
     .miniGrid{
       display:grid;
       grid-template-columns: 1fr 1fr;
       gap:14px;
-      margin-bottom: 34px;
+      margin: 10px 0 34px;
     }
     .mini{
       border-radius:var(--radius);
@@ -134,9 +188,17 @@
     .mini h2{margin:0 0 8px; font-size:16px; letter-spacing:-0.2px}
     .mini p{margin:0; color:var(--muted); line-height:1.7}
 
+    /* a11y focus */
+    a:focus-visible, button:focus-visible{
+      outline:2px solid rgba(200,163,73,.65);
+      outline-offset:3px;
+      border-radius:12px;
+    }
+
     @media (max-width: 980px){
       .card{grid-column: span 12}
       .miniGrid{grid-template-columns:1fr}
+      .grid2{grid-template-columns:1fr}
     }
     @media (max-width: 760px){
       h1{font-size:30px}
@@ -154,14 +216,37 @@
     <section class="hero" aria-label="Start packages hero">
       <div class="heroShell">
         <div class="heroInner">
-          <div class="eyebrow"><span class="dot"></span> Start here • sales-first directory</div>
+          <div class="eyebrow"><span class="dot"></span> Start • packages → direct intake</div>
           <h1>Choose a package. Start immediately.</h1>
           <p class="lead">
             Direct links to product intakes. No extra routing steps.
             <strong>Public intake is non-confidential</strong> by design.
           </p>
+
+          <div class="grid2" aria-label="How it works and boundary">
+            <div class="panel">
+              <h2>How it works</h2>
+              <ol class="steps">
+                <li>Select a package and submit the intake (<strong>non-confidential</strong>).</li>
+                <li>Receive a reference ID for tracking and follow-up.</li>
+                <li>Kickoff confirms scope, delivery window, and owners.</li>
+                <li>Secure transfer options are provided <strong>after kickoff</strong>, if required.</li>
+              </ol>
+            </div>
+            <div class="panel">
+              <h2>Boundary (non-confidential)</h2>
+              <p>
+                No credentials, IDs, customer PII, private contracts, or internal attachments.
+                Use summaries, redacted screenshots, and safe public links only.
+              </p>
+              <div class="fine">
+                For purchasing, invoice/PO, or procurement-first flow, use <a href="/gate/sales/">Purchase</a>.
+              </div>
+            </div>
+          </div>
+
           <div class="note">
-            <strong>Tip:</strong> For Copilot governance + fast buyer evidence, start with <strong>Copilot QuickScan</strong>.
+            <strong>Recommended start:</strong> for Copilot governance + fast buyer evidence, start with <strong>Copilot QuickScan</strong>.
           </div>
         </div>
       </div>
@@ -171,17 +256,17 @@
       <article class="card" aria-label="Copilot QuickScan">
         <div class="bd">
           <div class="k">Fast package</div>
-          <div class="t">Copilot QuickScan</div>
-          <div class="d">Board-ready evidence pack for Microsoft 365 Copilot adoption in <strong>5–7 business days</strong>.</div>
-          <div class="pills">
-            <div class="pill"><strong>D0–D5</strong> Buyer Pack</div>
+          <h2 class="t">Copilot QuickScan</h2>
+          <p class="d">Board-ready evidence pack for Microsoft 365 Copilot adoption in <strong>5–7 business days</strong>.</p>
+          <div class="pills" aria-label="Copilot QuickScan highlights">
+            <div class="pill"><strong>D0–D5</strong> buyer pack</div>
             <div class="pill"><strong>Oversharing</strong> exposure</div>
             <div class="pill"><strong>Boundaries</strong> + evidence</div>
           </div>
-          <div class="actions">
-            <a class="btn" href="/copilot/quickscan/intake/">Start Copilot QuickScan</a>
+          <div class="actions" aria-label="Copilot QuickScan actions">
+            <a class="btn" href="/copilot/quickscan/intake/">Start intake</a>
             <a class="btn secondary" href="/copilot/quickscan/">Details</a>
-            <a class="btn secondary" href="/copilot/">Copilot hub</a>
+            <a class="btn secondary" href="/gate/sales/?need=copilot-quickscan">Purchase</a>
           </div>
         </div>
       </article>
@@ -189,16 +274,17 @@
       <article class="card" aria-label="Trust Brief">
         <div class="bd">
           <div class="k">Diagnostic</div>
-          <div class="t">Trust Brief (6 weeks)</div>
-          <div class="d">A structured diagnostic to turn “AI adoption” into clear controls, owners, and a board-ready path.</div>
-          <div class="pills">
+          <h2 class="t">Trust Brief (6 weeks)</h2>
+          <p class="d">A structured diagnostic that turns “AI adoption” into clear controls, owners, and a board-ready path.</p>
+          <div class="pills" aria-label="Trust Brief highlights">
             <div class="pill"><strong>6 weeks</strong> cadence</div>
             <div class="pill"><strong>Decision</strong> + controls</div>
             <div class="pill"><strong>Board</strong> format</div>
           </div>
-          <div class="actions">
-            <a class="btn" href="/trust-brief/intake/">Start Trust Brief</a>
+          <div class="actions" aria-label="Trust Brief actions">
+            <a class="btn" href="/trust-brief/intake/">Start intake</a>
             <a class="btn secondary" href="/trust-brief/">Details</a>
+            <a class="btn secondary" href="/gate/sales/?need=trust-brief">Purchase</a>
           </div>
         </div>
       </article>
@@ -206,16 +292,17 @@
       <article class="card" aria-label="Trust Ledger">
         <div class="bd">
           <div class="k">Ongoing</div>
-          <div class="t">Trust Ledger</div>
-          <div class="d">Evidence register + controls trail for executives, audit, and regulator-facing readiness.</div>
-          <div class="pills">
+          <h2 class="t">Trust Ledger</h2>
+          <p class="d">Evidence register + controls trail for executives, audit, and regulator-facing readiness.</p>
+          <div class="pills" aria-label="Trust Ledger highlights">
             <div class="pill"><strong>Evidence</strong> trail</div>
             <div class="pill"><strong>Owners</strong> + exports</div>
             <div class="pill"><strong>Governance</strong> core</div>
           </div>
-          <div class="actions">
-            <a class="btn" href="/trust-ledger/intake/">Start Trust Ledger</a>
+          <div class="actions" aria-label="Trust Ledger actions">
+            <a class="btn" href="/trust-ledger/intake/">Start intake</a>
             <a class="btn secondary" href="/trust-ledger/">Details</a>
+            <a class="btn secondary" href="/gate/sales/?need=trust-ledger">Purchase</a>
           </div>
         </div>
       </article>
@@ -223,29 +310,30 @@
       <article class="card" aria-label="Partners">
         <div class="bd">
           <div class="k">Delivery ecosystem</div>
-          <div class="t">Partners</div>
-          <div class="d">Channel, delivery, and integration lanes (for implementation and remediation workstreams).</div>
-          <div class="pills">
+          <h2 class="t">Partners</h2>
+          <p class="d">Channel, delivery, and integration lanes (implementation and remediation workstreams).</p>
+          <div class="pills" aria-label="Partner lanes">
             <div class="pill"><strong>Channel</strong> lane</div>
             <div class="pill"><strong>Delivery</strong> lane</div>
             <div class="pill"><strong>Integration</strong> lane</div>
           </div>
-          <div class="actions">
+          <div class="actions" aria-label="Partner actions">
             <a class="btn" href="/gate/partners/intake/">Partner intake</a>
             <a class="btn secondary" href="/gate/partners/">Partners gate</a>
+            <a class="btn secondary" href="/gate/sales/?need=partner">Procurement</a>
           </div>
         </div>
       </article>
     </section>
 
-    <section class="miniGrid" aria-label="Boundaries and help">
-      <div class="mini">
-        <h2>Boundary</h2>
-        <p>Public intakes are non-confidential. Use summaries and safe links only. No credentials, IDs, or sensitive content samples.</p>
-      </div>
+    <section class="miniGrid" aria-label="Status and help">
       <div class="mini">
         <h2>Already started?</h2>
         <p>Check progress with an existing reference ID on <a href="/status/">Status</a> or confirm submission on <a href="/thanks/">Thanks</a>.</p>
+      </div>
+      <div class="mini">
+        <h2>Not sure which package fits?</h2>
+        <p>Use <a href="/gate/sales/">Purchase</a> for pricing bands, procurement path (invoice/PO), and a short buyer-ready summary for internal approval.</p>
       </div>
     </section>
   </main>
@@ -253,11 +341,29 @@
   <footer id="nfFooter"></footer>
 
   <script>
-    (function(){
-      function qs(name){
-        try{ return new URLSearchParams(window.location.search || "").get(name) || ""; }catch(e){ return ""; }
+    (function () {
+      function qs(name) {
+        try { return new URLSearchParams(window.location.search || "").get(name) || ""; }
+        catch (e) { return ""; }
       }
-      function norm(x){ return (x || "").trim().toLowerCase(); }
+      function norm(x) { return (x || "").trim().toLowerCase(); }
+
+      // Redirect helper: preserve tracking params except `need`
+      function redirectPreserve(dest) {
+        try {
+          var src = new URL(window.location.href);
+          var to = new URL(dest, window.location.origin);
+
+          src.searchParams.forEach(function (v, k) {
+            if (k.toLowerCase() === "need") return;
+            if (!to.searchParams.has(k)) to.searchParams.set(k, v);
+          });
+
+          window.location.replace(to.pathname + (to.search ? to.search : "") + (to.hash ? to.hash : ""));
+        } catch (e) {
+          window.location.replace(dest);
+        }
+      }
 
       var need = norm(qs("need"));
       if (!need) return;
@@ -275,7 +381,7 @@
       };
 
       var dest = map[need];
-      if (dest) window.location.replace(dest);
+      if (dest) redirectPreserve(dest);
     })();
   </script>
 </body>

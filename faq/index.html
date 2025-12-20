@@ -1,3 +1,4 @@
+<!-- /faq/index.html — Noetfield FAQ v4.0 (Responsive • Search • Deep links • Board/Procurement-safe) -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,7 +8,7 @@
 
   <meta
     name="description"
-    content="Noetfield FAQ. Clear answers on Trust Brief, Trust Ledger, Gate routing, Request IDs, evidence discipline, timelines, pricing ranges, and what happens next."
+    content="Noetfield FAQ. Clear answers on Trust Brief, Trust Ledger, Copilot readiness, Gate routing, Request IDs, evidence discipline, timelines, pricing, procurement, and what happens next."
   />
   <meta name="robots" content="index,follow" />
   <meta name="author" content="Noetfield Systems Inc." />
@@ -24,7 +25,7 @@
   <meta property="og:title" content="Noetfield – FAQ" />
   <meta
     property="og:description"
-    content="FAQ for Trust Brief, Trust Ledger, Gate routing, and evidence-ready governance."
+    content="FAQ for Trust Brief, Trust Ledger, Copilot readiness, Gate routing, and evidence-ready governance."
   />
   <meta property="og:url" content="https://www.noetfield.com/faq/" />
   <meta property="og:image" content="https://www.noetfield.com/noetfield-og.png" />
@@ -32,7 +33,7 @@
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Noetfield – FAQ" />
-  <meta name="twitter:description" content="FAQ for Trust Brief, Trust Ledger, Gate routing, and evidence-ready governance." />
+  <meta name="twitter:description" content="FAQ for Trust Brief, Trust Ledger, Copilot readiness, Gate routing, and evidence-ready governance." />
   <meta name="twitter:image" content="https://www.noetfield.com/noetfield-og.png" />
 
   <!-- Fonts -->
@@ -89,7 +90,7 @@
     h1{margin:14px 0 10px; font-size:40px; line-height:1.07; letter-spacing:-0.75px}
     .lead{margin:0; color:var(--muted); font-size:16px; max-width: 980px}
 
-    .wrapNarrow{max-width: 1040px}
+    .wrapNarrow{max-width: 1100px}
 
     .meta{
       display:flex; flex-wrap:wrap; gap:10px;
@@ -108,14 +109,6 @@
     }
     .pill strong{color:var(--text); font-weight:800}
 
-    .grid{
-      display:grid;
-      grid-template-columns: 1fr;
-      gap:18px;
-      margin: 18px 0 34px;
-      align-items:start;
-    }
-
     .card{
       border-radius:var(--radius);
       border:1px solid rgba(255,255,255,.11);
@@ -123,6 +116,7 @@
       box-shadow: var(--shadow2);
       overflow:hidden;
       min-width:0;
+      margin: 14px 0;
     }
     .card .hd{padding:18px 18px 0}
     .card h2{margin:0 0 8px; font-size:18px; letter-spacing:-0.2px}
@@ -148,10 +142,7 @@
     .toc a:hover{border-color:rgba(255,255,255,.20); background: rgba(255,255,255,.05)}
     .toc a:active{transform: translateY(1px)}
 
-    .faq{
-      display:grid;
-      gap:10px;
-    }
+    .faq{display:grid; gap:10px}
 
     details.faqItem{
       border:1px solid rgba(255,255,255,.10);
@@ -171,24 +162,44 @@
       user-select:none;
     }
     summary.faqSum::-webkit-details-marker{display:none}
+
     .q{
       font-weight:900;
       letter-spacing:-.15px;
       color:var(--text);
       line-height:1.35;
+      padding-right:6px;
     }
+
+    .sumActions{
+      display:flex; gap:8px; align-items:center;
+      flex: 0 0 auto;
+      margin-top: 1px;
+    }
+    .miniBtn{
+      width:30px; height:30px;
+      border-radius:10px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.03);
+      display:inline-flex; align-items:center; justify-content:center;
+      color:var(--muted);
+      transition: border-color .15s ease, background .15s ease, transform .06s ease;
+    }
+    .miniBtn:hover{border-color:rgba(255,255,255,.22); background: rgba(255,255,255,.05)}
+    .miniBtn:active{transform: translateY(1px)}
+    .miniBtn svg{display:block}
+
     .chev{
-      flex:0 0 auto;
-      width:26px; height:26px;
+      width:30px; height:30px;
       border-radius:10px;
       border:1px solid rgba(255,255,255,.12);
       background: rgba(255,255,255,.03);
       display:flex; align-items:center; justify-content:center;
       color:var(--muted);
-      margin-top:1px;
       transition: transform .15s ease;
     }
     details[open] .chev{transform: rotate(180deg)}
+
     .ans{
       padding: 0 14px 14px;
       color:var(--muted);
@@ -199,11 +210,6 @@
     .ans a{border-bottom:1px solid rgba(255,255,255,.18)}
     .ans ul{margin:10px 0 0; padding-left:18px}
     .ans li{margin:6px 0}
-
-    .noteRow{
-      display:flex; flex-wrap:wrap; gap:12px; align-items:center;
-      margin-top:12px;
-    }
 
     .box{
       padding:12px 12px;
@@ -240,39 +246,76 @@
     }
     .searchRow input::placeholder{color: rgba(185,187,207,.55)}
     .searchRow .btn{white-space:nowrap}
+
+    .ctrlRow{
+      display:flex; gap:10px; flex-wrap:wrap; align-items:center;
+      margin-top: 10px;
+    }
     .mutedSmall{color:var(--muted2); font-size:12.5px; line-height:1.6}
+
+    .toast{
+      position: fixed;
+      left: 50%;
+      bottom: 18px;
+      transform: translateX(-50%);
+      background: rgba(20,20,28,.92);
+      border: 1px solid rgba(255,255,255,.16);
+      color: var(--text);
+      padding: 10px 12px;
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      font-size: 13px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .18s ease, transform .18s ease;
+      z-index: 9999;
+    }
+    .toast.show{opacity: 1; transform: translateX(-50%) translateY(-2px)}
 
     @media (max-width: 760px){
       h1{font-size:30px}
       summary.faqSum{padding:13px 12px}
       .ans{padding: 0 12px 12px}
+      .sumActions{gap:6px}
+      .miniBtn,.chev{width:28px;height:28px;border-radius:10px}
     }
   </style>
 
+  <!-- JSON-LD (keep lean; do not list every single question) -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "FAQPage",
     "name": "Noetfield – FAQ",
     "url": "https://www.noetfield.com/faq/",
-    "description": "Frequently asked questions about Noetfield Trust Brief, Trust Ledger, and Gate routing.",
+    "description": "Frequently asked questions about Noetfield Trust Brief, Trust Ledger, Copilot readiness, and Gate routing.",
     "isPartOf": {"@type":"WebSite","name":"Noetfield","url":"https://www.noetfield.com/"},
     "publisher": {"@type":"Organization","name":"Noetfield Systems Inc."},
     "mainEntity": [
       {
         "@type":"Question",
         "name":"What is Noetfield?",
-        "acceptedAnswer":{"@type":"Answer","text":"Noetfield is an evidence-first AI governance practice. We turn scattered AI artefacts into board-ready Trust Ledger entries and an executive-grade Trust Brief that decision-makers can actually use."}
+        "acceptedAnswer":{"@type":"Answer","text":"Noetfield is an evidence-first AI governance practice. Delivery is board-ready governance artefacts and procurement-ready packs, including Trust Ledger entries and Trust Brief decision memos."}
       },
       {
         "@type":"Question",
         "name":"What is the difference between Trust Brief and Trust Ledger?",
-        "acceptedAnswer":{"@type":"Answer","text":"Trust Brief is a time-boxed diagnostic and decision memo (typically 6 weeks) that maps material AI use cases and options. Trust Ledger is the durable evidence register: entries, controls, proofs, and governance records that stay readable over time."}
+        "acceptedAnswer":{"@type":"Answer","text":"Trust Brief is a time-boxed diagnostic and decision memo (commonly 6 weeks). Trust Ledger is the durable evidence register: entries, controls, proofs, and governance records that stay readable over time."}
       },
       {
         "@type":"Question",
         "name":"What is Gate?",
-        "acceptedAnswer":{"@type":"Answer","text":"Gate is the controlled entry point for routing requests and applications (clients, partners, offers). It assigns a Request ID so you can track status without email back-and-forth."}
+        "acceptedAnswer":{"@type":"Answer","text":"Gate is the controlled entry point for routing requests (clients, partners, offers). It assigns a Request ID so status and follow-up are deterministic."}
+      },
+      {
+        "@type":"Question",
+        "name":"Do you accept confidential uploads in public forms?",
+        "acceptedAnswer":{"@type":"Answer","text":"No. Public intake is non-confidential by design. Sensitive sharing is handled later under explicit scope and controls."}
+      },
+      {
+        "@type":"Question",
+        "name":"Do you provide legal advice?",
+        "acceptedAnswer":{"@type":"Answer","text":"No. Noetfield provides governance artefacts and operational evidence patterns. Legal interpretation must be handled by client counsel."}
       }
     ]
   }
@@ -293,21 +336,27 @@
           <div class="eyebrow"><span class="dot"></span> Help • frequently asked questions</div>
           <h1>FAQ.</h1>
           <p class="lead">
-            Clear answers on Trust Brief, Trust Ledger, Gate routing, evidence discipline, Request IDs, and next steps.
+            Clear answers on Trust Brief, Trust Ledger, Copilot readiness, Gate routing, evidence discipline, Request IDs, procurement, and next steps.
           </p>
 
           <div class="meta" aria-label="Metadata">
-            <div class="pill"><strong>Last updated</strong> <span>2025-12-13</span></div>
-            <div class="pill"><strong>Support routes</strong> <span>Gate · Status · Feedback</span></div>
+            <div class="pill"><strong>Last updated</strong> <span>2025-12-20</span></div>
+            <div class="pill"><strong>Primary routes</strong> <span>Gate · Status · Feedback</span></div>
+            <div class="pill"><strong>Rule</strong> <span>Public intake is non-confidential</span></div>
           </div>
 
           <div class="searchRow" aria-label="Search FAQ">
-            <input id="faqSearch" type="text" placeholder="Search FAQ (e.g., pricing, Request ID, evidence, timeline)" autocomplete="off" />
+            <input id="faqSearch" type="text" placeholder="Search (e.g., pricing, Request ID, evidence, Copilot, procurement)" autocomplete="off" />
             <button class="btn secondary" type="button" id="clearSearch">Clear</button>
             <a class="btn" href="/gate/">Open Gate</a>
           </div>
-          <div class="mutedSmall" id="searchHint" aria-live="polite" style="margin-top:8px;">
-            Tip: Search filters questions instantly. For tracking, keep your <strong>Request ID</strong>.
+
+          <div class="ctrlRow" aria-label="Search controls">
+            <button class="btn secondary" type="button" id="expandAll">Expand matches</button>
+            <button class="btn secondary" type="button" id="collapseAll">Collapse all</button>
+            <div class="mutedSmall" id="searchHint" aria-live="polite">
+              Tip: Search filters questions instantly. For tracking, keep your <strong>Request ID</strong>.
+            </div>
           </div>
         </div>
       </div>
@@ -319,18 +368,21 @@
         <p>Jump to a category.</p>
         <div class="toc" aria-label="FAQ sections">
           <a href="#about">About</a>
-          <a href="#products">Trust Brief & Ledger</a>
+          <a href="#copilot">Copilot readiness</a>
+          <a href="#trust">Trust Brief & Ledger</a>
+          <a href="#delivery">Delivery model</a>
+          <a href="#evidence">Evidence & security</a>
+          <a href="#procurement">Procurement & pricing</a>
           <a href="#gate">Gate, Request ID, Status</a>
           <a href="#partners">Partners</a>
-          <a href="#security">Security & Evidence</a>
-          <a href="#pricing">Pricing & Payment</a>
           <a href="#legal">Legal</a>
+          <a href="#other">Other</a>
         </div>
       </div>
       <div class="bd">
         <div class="box">
-          If you can’t find an answer, use <a href="/feedback/">Feedback</a> or <a href="/contact/">Contact</a>.
-          If you already submitted a form, open <a href="/status/">Status</a> with your Request ID.
+          If an answer is missing, use <a href="/feedback/">Feedback</a>.
+          If a request was submitted, open <a href="/status/">Status</a> with your Request ID (RID).
         </div>
       </div>
     </section>
@@ -343,88 +395,255 @@
       </div>
       <div class="bd">
         <div class="faq" data-section="about">
-          <details class="faqItem" data-q="what is noetfield ai governance trust stewardship">
+          <details class="faqItem" id="q-what-is-noetfield" data-q="what is noetfield ai governance trust stewardship evidence first board ready">
             <summary class="faqSum">
               <div class="q">What is Noetfield?</div>
-              <div class="chev" aria-hidden="true">
-                <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
-                  <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
+              <div class="sumActions">
+                <button class="miniBtn copyLink" type="button" data-target="q-what-is-noetfield" aria-label="Copy link to this question" title="Copy link">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
+                    <path d="M10 13a5 5 0 0 1 0-7l1-1a5 5 0 0 1 7 7l-1 1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M14 11a5 5 0 0 1 0 7l-1 1a5 5 0 0 1-7-7l1-1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+                </button>
+                <div class="chev" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
+                    <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
               </div>
             </summary>
             <div class="ans">
-              Noetfield is an <strong>evidence-first AI governance</strong> practice. We turn scattered AI artefacts into
-              <strong>board-ready</strong> decision records: a durable <a href="/trust-ledger/">Trust Ledger</a> and an executive-grade
-              <a href="/trust-brief/">Trust Brief</a>.
+              Noetfield is an <strong>evidence-first AI governance</strong> practice. Delivery focuses on converting scattered AI artefacts into
+              <strong>board-ready</strong> and <strong>procurement-ready</strong> records: <a href="/trust-ledger/">Trust Ledger</a> entries and
+              a decision-grade <a href="/trust-brief/">Trust Brief</a>.
             </div>
           </details>
 
-          <details class="faqItem" data-q="who is it for boards executives regulators real economy">
+          <details class="faqItem" id="q-who-is-this-for" data-q="who is this for boards executives operators risk legal security procurement">
             <summary class="faqSum">
               <div class="q">Who is this for?</div>
-              <div class="chev" aria-hidden="true">
-                <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
-                  <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
+              <div class="sumActions">
+                <button class="miniBtn copyLink" type="button" data-target="q-who-is-this-for" aria-label="Copy link to this question" title="Copy link">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
+                    <path d="M10 13a5 5 0 0 1 0-7l1-1a5 5 0 0 1 7 7l-1 1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M14 11a5 5 0 0 1 0 7l-1 1a5 5 0 0 1-7-7l1-1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+                </button>
+                <div class="chev" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
+                    <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
               </div>
             </summary>
             <div class="ans">
               Teams where AI affects <strong>material decisions</strong> (money, safety, access, compliance, operations).
-              Common buyers: executives, operators, risk, legal, security, and boards.
-              See <a href="/for-whom/">For Whom</a>.
+              Common stakeholders: executives, operators, security, privacy, legal, procurement, and boards.
             </div>
           </details>
 
-          <details class="faqItem" data-q="is noetfield a tool saas platform">
+          <details class="faqItem" id="q-not-saas" data-q="is this saas tool platform">
             <summary class="faqSum">
               <div class="q">Is Noetfield a SaaS tool?</div>
-              <div class="chev" aria-hidden="true">
-                <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
-                  <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
+              <div class="sumActions">
+                <button class="miniBtn copyLink" type="button" data-target="q-not-saas" aria-label="Copy link to this question" title="Copy link">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
+                    <path d="M10 13a5 5 0 0 1 0-7l1-1a5 5 0 0 1 7 7l-1 1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M14 11a5 5 0 0 1 0 7l-1 1a5 5 0 0 1-7-7l1-1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+                </button>
+                <div class="chev" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
+                    <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
               </div>
             </summary>
             <div class="ans">
-              Not today. Current delivery is <strong>governance artefacts + evidence patterns</strong>.
-              “Platform/Portal” areas are being staged; you can still route through <a href="/gate/">Gate</a>.
+              Not today. Current delivery is <strong>artefacts + evidence discipline</strong> (reports, ledgers, control mappings, acceptance criteria).
+              Portal-style workflows may be introduced later, but you can route and track via <a href="/gate/">Gate</a> and <a href="/status/">Status</a>.
+            </div>
+          </details>
+
+          <details class="faqItem" id="q-what-we-are-not" data-q="what is not noetfield not dev shop not marketing not general ai build">
+            <summary class="faqSum">
+              <div class="q">What Noetfield is not</div>
+              <div class="sumActions">
+                <button class="miniBtn copyLink" type="button" data-target="q-what-we-are-not" aria-label="Copy link to this question" title="Copy link">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
+                    <path d="M10 13a5 5 0 0 1 0-7l1-1a5 5 0 0 1 7 7l-1 1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M14 11a5 5 0 0 1 0 7l-1 1a5 5 0 0 1-7-7l1-1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+                </button>
+                <div class="chev" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
+                    <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+              </div>
+            </summary>
+            <div class="ans">
+              Noetfield is not a general AI dev shop, not a chatbot agency, and not a marketing automation vendor.
+              Delivery stays <strong>governance-first</strong> and <strong>partner-friendly</strong>: controls, evidence, decision records.
             </div>
           </details>
         </div>
       </div>
     </section>
 
-    <!-- PRODUCTS -->
-    <section class="card" id="products" aria-label="Trust Brief and Trust Ledger">
+    <!-- COPILOT -->
+    <section class="card" id="copilot" aria-label="Copilot readiness FAQ">
+      <div class="hd">
+        <h2>Copilot readiness</h2>
+        <p>Microsoft 365 Copilot governance, controls, and rollouts.</p>
+      </div>
+      <div class="bd">
+        <div class="faq" data-section="copilot">
+          <details class="faqItem" id="q-copilot-what-is" data-q="microsoft 365 copilot readiness assessment governance security privacy dlp">
+            <summary class="faqSum">
+              <div class="q">What is a Copilot Readiness Assessment?</div>
+              <div class="sumActions">
+                <button class="miniBtn copyLink" type="button" data-target="q-copilot-what-is" aria-label="Copy link to this question" title="Copy link">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
+                    <path d="M10 13a5 5 0 0 1 0-7l1-1a5 5 0 0 1 7 7l-1 1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M14 11a5 5 0 0 1 0 7l-1 1a5 5 0 0 1-7-7l1-1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+                </button>
+                <div class="chev" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
+                    <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+              </div>
+            </summary>
+            <div class="ans">
+              A Copilot readiness assessment is a structured review of <strong>data boundaries</strong>, <strong>permissions</strong>, <strong>DLP</strong>,
+              <strong>audit/retention</strong>, and operational controls required for safe rollout. Output is a board/procurement-ready pack, not a slide deck.
+              See <a href="/copilot/readiness/">Copilot Readiness</a>.
+            </div>
+          </details>
+
+          <details class="faqItem" id="q-copilot-quickscan" data-q="copilot quickscan 5 day snapshot rapid readiness">
+            <summary class="faqSum">
+              <div class="q">What is Copilot QuickScan?</div>
+              <div class="sumActions">
+                <button class="miniBtn copyLink" type="button" data-target="q-copilot-quickscan" aria-label="Copy link to this question" title="Copy link">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
+                    <path d="M10 13a5 5 0 0 1 0-7l1-1a5 5 0 0 1 7 7l-1 1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M14 11a5 5 0 0 1 0 7l-1 1a5 5 0 0 1-7-7l1-1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+                </button>
+                <div class="chev" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
+                    <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+              </div>
+            </summary>
+            <div class="ans">
+              <a href="/copilot/quickscan/">Copilot QuickScan</a> is a rapid readiness snapshot (typically <strong>5–7 business days</strong>) that identifies
+              the highest-risk exposure themes and the fastest control moves (permissions, sharing, DLP, audit, retention, connector posture).
+            </div>
+          </details>
+
+          <details class="faqItem" id="q-copilot-data-boundaries" data-q="data boundaries sharepoint onedrive teams permissions hygiene external sharing">
+            <summary class="faqSum">
+              <div class="q">What does “data boundaries” mean for Copilot?</div>
+              <div class="sumActions">
+                <button class="miniBtn copyLink" type="button" data-target="q-copilot-data-boundaries" aria-label="Copy link to this question" title="Copy link">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
+                    <path d="M10 13a5 5 0 0 1 0-7l1-1a5 5 0 0 1 7 7l-1 1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M14 11a5 5 0 0 1 0 7l-1 1a5 5 0 0 1-7-7l1-1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+                </button>
+                <div class="chev" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
+                    <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+              </div>
+            </summary>
+            <div class="ans">
+              “Data boundaries” means ensuring Copilot cannot surface sensitive content to the wrong users.
+              It typically includes SharePoint/OneDrive/Teams <strong>permission hygiene</strong>, external sharing posture, DLP rules, label usage,
+              and auditability of access and changes.
+            </div>
+          </details>
+
+          <details class="faqItem" id="q-copilot-connectors" data-q="copilot connectors extensions third party apps risks controls">
+            <summary class="faqSum">
+              <div class="q">Do connectors and extensions change the risk profile?</div>
+              <div class="sumActions">
+                <button class="miniBtn copyLink" type="button" data-target="q-copilot-connectors" aria-label="Copy link to this question" title="Copy link">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
+                    <path d="M10 13a5 5 0 0 1 0-7l1-1a5 5 0 0 1 7 7l-1 1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M14 11a5 5 0 0 1 0 7l-1 1a5 5 0 0 1-7-7l1-1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+                </button>
+                <div class="chev" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
+                    <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+              </div>
+            </summary>
+            <div class="ans">
+              Yes. Connectors and extensions expand the <strong>data surface area</strong>. Readiness should confirm
+              connector allowlists, admin controls, logging, and least-privilege access patterns before enabling broad access.
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- TRUST -->
+    <section class="card" id="trust" aria-label="Trust Brief and Trust Ledger">
       <div class="hd">
         <h2>Trust Brief & Trust Ledger</h2>
         <p>What you get and how it works.</p>
       </div>
       <div class="bd">
-        <div class="faq" data-section="products">
-          <details class="faqItem" data-q="difference trust brief trust ledger">
+        <div class="faq" data-section="trust">
+          <details class="faqItem" id="q-trust-brief-vs-ledger" data-q="difference trust brief trust ledger">
             <summary class="faqSum">
               <div class="q">What’s the difference between Trust Brief and Trust Ledger?</div>
-              <div class="chev" aria-hidden="true">
-                <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
-                  <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
+              <div class="sumActions">
+                <button class="miniBtn copyLink" type="button" data-target="q-trust-brief-vs-ledger" aria-label="Copy link to this question" title="Copy link">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
+                    <path d="M10 13a5 5 0 0 1 0-7l1-1a5 5 0 0 1 7 7l-1 1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M14 11a5 5 0 0 1 0 7l-1 1a5 5 0 0 1-7-7l1-1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+                </button>
+                <div class="chev" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
+                    <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
               </div>
             </summary>
             <div class="ans">
-              <strong>Trust Brief</strong> is the time-boxed diagnostic and decision memo (commonly 6 weeks): what matters, what risks exist,
-              what controls are missing, and what options the board can approve.
+              <strong>Trust Brief</strong> is a time-boxed diagnostic and decision memo (commonly <strong>6 weeks</strong>):
+              what matters, what risks exist, what controls are missing, and what options the board can approve.
               <br/><br/>
-              <strong>Trust Ledger</strong> is the durable record: ledger entries with controls + proofs (evidence) that remain readable over time.
+              <strong>Trust Ledger</strong> is the durable record: ledger entries with control statements and proofs (evidence) that remain readable over time.
             </div>
           </details>
 
-          <details class="faqItem" data-q="what do i receive deliverables trust brief">
+          <details class="faqItem" id="q-trust-brief-deliverables" data-q="what do i receive trust brief deliverables">
             <summary class="faqSum">
               <div class="q">What do I receive in a Trust Brief?</div>
-              <div class="chev" aria-hidden="true">
-                <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
-                  <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
+              <div class="sumActions">
+                <button class="miniBtn copyLink" type="button" data-target="q-trust-brief-deliverables" aria-label="Copy link to this question" title="Copy link">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
+                    <path d="M10 13a5 5 0 0 1 0-7l1-1a5 5 0 0 1 7 7l-1 1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M14 11a5 5 0 0 1 0 7l-1 1a5 5 0 0 1-7-7l1-1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+                </button>
+                <div class="chev" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
+                    <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
               </div>
             </summary>
             <div class="ans">
@@ -433,42 +652,292 @@
                 <li>Material AI use-case map (what AI is doing, where, and why it matters)</li>
                 <li>Control baseline and gaps (governance, security, privacy, operations)</li>
                 <li>Evidence plan (what proofs are needed, and where they come from)</li>
-                <li>Board-ready options memo (approve / pause / remediate / pilot)</li>
+                <li>Executive decision memo (approve / pause / remediate / pilot)</li>
                 <li>Initial Trust Ledger entries for the highest-risk items</li>
               </ul>
               Start at <a href="/trust-brief/">Trust Brief</a>.
             </div>
           </details>
 
-          <details class="faqItem" data-q="how long does it take timeline 6 weeks">
+          <details class="faqItem" id="q-trust-timeline" data-q="how long does it take 6 weeks timeline">
             <summary class="faqSum">
               <div class="q">How long does it take?</div>
-              <div class="chev" aria-hidden="true">
-                <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
-                  <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
+              <div class="sumActions">
+                <button class="miniBtn copyLink" type="button" data-target="q-trust-timeline" aria-label="Copy link to this question" title="Copy link">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
+                    <path d="M10 13a5 5 0 0 1 0-7l1-1a5 5 0 0 1 7 7l-1 1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M14 11a5 5 0 0 1 0 7l-1 1a5 5 0 0 1-7-7l1-1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+                </button>
+                <div class="chev" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
+                    <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
               </div>
             </summary>
             <div class="ans">
-              Trust Brief is designed around a <strong>6-week</strong> cadence. Trust Ledger is ongoing and can be built in phases.
-              If you need urgent triage, route via <a href="/gate/">Gate</a> and include your deadline.
+              Trust Brief is designed around a <strong>6-week cadence</strong>. Trust Ledger is ongoing and can be built in phases.
+              For urgent triage, route via <a href="/gate/">Gate</a> and include your deadline.
             </div>
           </details>
 
-          <details class="faqItem" data-q="do you need access to data confidential uploads">
+          <details class="faqItem" id="q-confidential-uploads" data-q="confidential uploads data access public forms non confidential">
             <summary class="faqSum">
               <div class="q">Do you need confidential access or data uploads?</div>
-              <div class="chev" aria-hidden="true">
-                <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
-                  <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
+              <div class="sumActions">
+                <button class="miniBtn copyLink" type="button" data-target="q-confidential-uploads" aria-label="Copy link to this question" title="Copy link">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
+                    <path d="M10 13a5 5 0 0 1 0-7l1-1a5 5 0 0 1 7 7l-1 1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M14 11a5 5 0 0 1 0 7l-1 1a5 5 0 0 1-7-7l1-1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+                </button>
+                <div class="chev" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
+                    <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
               </div>
             </summary>
             <div class="ans">
-              No. Gate forms are <strong>non-confidential</strong>. Use links or sanitized descriptions.
-              If deeper access is needed later, it happens under a proper scope and agreement (not in public forms).
+              No. Gate forms are <strong>non-confidential</strong>. Use sanitized descriptions or public links only.
+              If deeper access becomes necessary, it happens later under an explicit scope and agreement (not through public intake).
             </div>
           </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- DELIVERY -->
+    <section class="card" id="delivery" aria-label="Delivery model FAQ">
+      <div class="hd">
+        <h2>Delivery model</h2>
+        <p>How work is executed and accepted.</p>
+      </div>
+      <div class="bd">
+        <div class="faq" data-section="delivery">
+          <details class="faqItem" id="q-delivery-how-works" data-q="delivery model kickoff checkpoints review cycles acceptance criteria">
+            <summary class="faqSum">
+              <div class="q">How does delivery work?</div>
+              <div class="sumActions">
+                <button class="miniBtn copyLink" type="button" data-target="q-delivery-how-works" aria-label="Copy link to this question" title="Copy link">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
+                    <path d="M10 13a5 5 0 0 1 0-7l1-1a5 5 0 0 1 7 7l-1 1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M14 11a5 5 0 0 1 0 7l-1 1a5 5 0 0 1-7-7l1-1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+                </button>
+                <div class="chev" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
+                    <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+              </div>
+            </summary>
+            <div class="ans">
+              A typical engagement is:
+              <ul>
+                <li><strong>Kickoff</strong>: scope, stakeholders, constraints, acceptance criteria</li>
+                <li><strong>Evidence capture plan</strong>: what will be proven, and how</li>
+                <li><strong>Build</strong>: ledger entries, control mapping, decision memo draft</li>
+                <li><strong>Review</strong>: stakeholder review and corrections</li>
+                <li><strong>Delivery</strong>: board/procurement-ready pack + handoff</li>
+              </ul>
+            </div>
+          </details>
+
+          <details class="faqItem" id="q-delivery-acceptance" data-q="acceptance criteria what is done definition of done">
+            <summary class="faqSum">
+              <div class="q">What counts as “done”?</div>
+              <div class="sumActions">
+                <button class="miniBtn copyLink" type="button" data-target="q-delivery-acceptance" aria-label="Copy link to this question" title="Copy link">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
+                    <path d="M10 13a5 5 0 0 1 0-7l1-1a5 5 0 0 1 7 7l-1 1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M14 11a5 5 0 0 1 0 7l-1 1a5 5 0 0 1-7-7l1-1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+                </button>
+                <div class="chev" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
+                    <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+              </div>
+            </summary>
+            <div class="ans">
+              “Done” is defined by <strong>acceptance criteria</strong>: the minimum evidence quality, required artefacts, and the decision outputs expected
+              (e.g., board memo, control mapping, ledger entries, procurement FAQ). This is agreed at kickoff.
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- EVIDENCE -->
+    <section class="card" id="evidence" aria-label="Evidence and security FAQ">
+      <div class="hd">
+        <h2>Evidence & security</h2>
+        <p>Why “proofs” matter and how risk is reduced.</p>
+      </div>
+      <div class="bd">
+        <div class="faq" data-section="evidence">
+          <details class="faqItem" id="q-what-counts-as-evidence" data-q="what counts as evidence proofs logs exports tickets configs screenshots">
+            <summary class="faqSum">
+              <div class="q">What counts as evidence (“proof”)?</div>
+              <div class="sumActions">
+                <button class="miniBtn copyLink" type="button" data-target="q-what-counts-as-evidence" aria-label="Copy link to this question" title="Copy link">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
+                    <path d="M10 13a5 5 0 0 1 0-7l1-1a5 5 0 0 1 7 7l-1 1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M14 11a5 5 0 0 1 0 7l-1 1a5 5 0 0 1-7-7l1-1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+                </button>
+                <div class="chev" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
+                    <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+              </div>
+            </summary>
+            <div class="ans">
+              Evidence is anything that survives scrutiny:
+              configuration exports, control settings, audit logs, policy objects, ticket history, change records, and repeatable SOPs.
+              The point is <strong>defensibility</strong>, not slides.
+            </div>
+          </details>
+
+          <details class="faqItem" id="q-no-confidential-forms" data-q="why prohibit confidential uploads forms non confidential intake">
+            <summary class="faqSum">
+              <div class="q">Why do you prohibit confidential uploads in public forms?</div>
+              <div class="sumActions">
+                <button class="miniBtn copyLink" type="button" data-target="q-no-confidential-forms" aria-label="Copy link to this question" title="Copy link">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
+                    <path d="M10 13a5 5 0 0 1 0-7l1-1a5 5 0 0 1 7 7l-1 1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M14 11a5 5 0 0 1 0 7l-1 1a5 5 0 0 1-7-7l1-1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+                </button>
+                <div class="chev" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
+                    <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+              </div>
+            </summary>
+            <div class="ans">
+              Public intake is for routing, not data transfer. This reduces risk and prevents accidental exposure.
+              Sensitive sharing must happen later under explicit scope, access controls, and an agreed channel.
+            </div>
+          </details>
+
+          <details class="faqItem" id="q-nda" data-q="nda do you sign nda">
+            <summary class="faqSum">
+              <div class="q">Do you sign NDAs?</div>
+              <div class="sumActions">
+                <button class="miniBtn copyLink" type="button" data-target="q-nda" aria-label="Copy link to this question" title="Copy link">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
+                    <path d="M10 13a5 5 0 0 1 0-7l1-1a5 5 0 0 1 7 7l-1 1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M14 11a5 5 0 0 1 0 7l-1 1a5 5 0 0 1-7-7l1-1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+                </button>
+                <div class="chev" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
+                    <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+              </div>
+            </summary>
+            <div class="ans">
+              If needed, NDAs are handled after initial fit is confirmed via <a href="/gate/">Gate</a>.
+              Start with a non-confidential one-paragraph scope.
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROCUREMENT / PRICING -->
+    <section class="card" id="procurement" aria-label="Procurement and pricing FAQ">
+      <div class="hd">
+        <h2>Procurement & pricing</h2>
+        <p>How pricing is set and how buyers approve work.</p>
+      </div>
+      <div class="bd">
+        <div class="faq" data-section="procurement">
+          <details class="faqItem" id="q-what-does-it-cost" data-q="pricing cost trust brief trust ledger copilot readiness assessment quickscan">
+            <summary class="faqSum">
+              <div class="q">What does it cost?</div>
+              <div class="sumActions">
+                <button class="miniBtn copyLink" type="button" data-target="q-what-does-it-cost" aria-label="Copy link to this question" title="Copy link">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
+                    <path d="M10 13a5 5 0 0 1 0-7l1-1a5 5 0 0 1 7 7l-1 1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M14 11a5 5 0 0 1 0 7l-1 1a5 5 0 0 1-7-7l1-1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+                </button>
+                <div class="chev" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
+                    <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+              </div>
+            </summary>
+            <div class="ans">
+              Pricing depends on scope, complexity, urgency, and procurement requirements. Typical anchors:
+              <ul>
+                <li><strong>Copilot Readiness Assessment:</strong> Starter (2 weeks) 9,500 CAD · Standard (4 weeks) 15,000 CAD · Extended (6 weeks) 25,000 CAD</li>
+                <li><strong>Trust Brief:</strong> typically a low five-figure range depending on surface area</li>
+                <li><strong>Trust Ledger:</strong> phased build or retainer, based on number of material AI use-cases and evidence surfaces</li>
+              </ul>
+              For an exact quote, submit one paragraph via <a href="/gate/">Gate</a> (scope + deadline + procurement path).
+            </div>
+          </details>
+
+          <details class="faqItem" id="q-how-payments-work" data-q="payments invoice po procurement card net terms">
+            <summary class="faqSum">
+              <div class="q">How do payments work?</div>
+              <div class="sumActions">
+                <button class="miniBtn copyLink" type="button" data-target="q-how-payments-work" aria-label="Copy link to this question" title="Copy link">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
+                    <path d="M10 13a5 5 0 0 1 0-7l1-1a5 5 0 0 1 7 7l-1 1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M14 11a5 5 0 0 1 0 7l-1 1a5 5 0 0 1-7-7l1-1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+                </button>
+                <div class="chev" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
+                    <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+              </div>
+            </summary>
+            <div class="ans">
+              Payment method follows the buyer’s procurement route (card, invoice, PO, net terms).
+              If procurement needs a specific format, note it in Gate or start at <a href="/gate/sales/">/gate/sales/</a>.
+            </div>
+          </details>
+
+          <details class="faqItem" id="q-refunds" data-q="refund cancellation policy">
+            <summary class="faqSum">
+              <div class="q">Do you offer refunds?</div>
+              <div class="sumActions">
+                <button class="miniBtn copyLink" type="button" data-target="q-refunds" aria-label="Copy link to this question" title="Copy link">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
+                    <path d="M10 13a5 5 0 0 1 0-7l1-1a5 5 0 0 1 7 7l-1 1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M14 11a5 5 0 0 1 0 7l-1 1a5 5 0 0 1-7-7l1-1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+                </button>
+                <div class="chev" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
+                    <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+              </div>
+            </summary>
+            <div class="ans">
+              Refund and cancellation terms depend on the agreed scope and phase.
+              Baseline terms are published at <a href="/terms/">/terms/</a>.
+            </div>
+          </details>
+        </div>
+
+        <div class="box" style="margin-top:14px;">
+          <strong>Procurement note:</strong> If a buyer requires DPA/NDA, data retention, or security posture answers, include it in Gate.
+          Public intake remains non-confidential.
         </div>
       </div>
     </section>
@@ -481,43 +950,66 @@
       </div>
       <div class="bd">
         <div class="faq" data-section="gate">
-          <details class="faqItem" data-q="what is gate selective entry">
+          <details class="faqItem" id="q-what-is-gate" data-q="what is gate controlled entry routing">
             <summary class="faqSum">
               <div class="q">What is Gate?</div>
-              <div class="chev" aria-hidden="true">
-                <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
-                  <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
+              <div class="sumActions">
+                <button class="miniBtn copyLink" type="button" data-target="q-what-is-gate" aria-label="Copy link to this question" title="Copy link">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
+                    <path d="M10 13a5 5 0 0 1 0-7l1-1a5 5 0 0 1 7 7l-1 1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M14 11a5 5 0 0 1 0 7l-1 1a5 5 0 0 1-7-7l1-1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+                </button>
+                <div class="chev" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
+                    <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
               </div>
             </summary>
             <div class="ans">
-              <a href="/gate/">Gate</a> is the controlled entry point for requests (clients, partners, offers).
-              It assigns a <strong>Request ID</strong> so routing and follow-up is deterministic.
+              <a href="/gate/">Gate</a> is the controlled entry point for requests (clients, partners, offers). It assigns a <strong>Request ID</strong>
+              so routing and follow-up are deterministic.
             </div>
           </details>
 
-          <details class="faqItem" data-q="what is request id rid tracking">
+          <details class="faqItem" id="q-what-is-rid" data-q="what is request id rid tracking status">
             <summary class="faqSum">
               <div class="q">What is a Request ID and why does it matter?</div>
-              <div class="chev" aria-hidden="true">
-                <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
-                  <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
+              <div class="sumActions">
+                <button class="miniBtn copyLink" type="button" data-target="q-what-is-rid" aria-label="Copy link to this question" title="Copy link">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
+                    <path d="M10 13a5 5 0 0 1 0-7l1-1a5 5 0 0 1 7 7l-1 1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M14 11a5 5 0 0 1 0 7l-1 1a5 5 0 0 1-7-7l1-1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+                </button>
+                <div class="chev" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
+                    <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
               </div>
             </summary>
             <div class="ans">
-              Request ID (RID) is your tracking key across Gate, Status, and Thanks pages.
-              It reduces ambiguity and keeps evidence trails connected to the right intake.
+              Request ID (RID) is your tracking key across Gate, Status, and Thanks pages. It reduces ambiguity and keeps evidence trails connected to the right intake.
             </div>
           </details>
 
-          <details class="faqItem" data-q="how do i check status rid">
+          <details class="faqItem" id="q-check-status" data-q="how do i check status rid">
             <summary class="faqSum">
               <div class="q">How do I check status?</div>
-              <div class="chev" aria-hidden="true">
-                <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
-                  <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
+              <div class="sumActions">
+                <button class="miniBtn copyLink" type="button" data-target="q-check-status" aria-label="Copy link to this question" title="Copy link">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
+                    <path d="M10 13a5 5 0 0 1 0-7l1-1a5 5 0 0 1 7 7l-1 1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M14 11a5 5 0 0 1 0 7l-1 1a5 5 0 0 1-7-7l1-1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+                </button>
+                <div class="chev" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
+                    <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
               </div>
             </summary>
             <div class="ans">
@@ -526,29 +1018,32 @@
             </div>
           </details>
 
-          <details class="faqItem" data-q="i submitted but no redirect thanks">
+          <details class="faqItem" id="q-thanks-page-missing" data-q="submitted form no thanks redirect did it work">
             <summary class="faqSum">
               <div class="q">I submitted a form but didn’t see the “Thanks” page — did it work?</div>
-              <div class="chev" aria-hidden="true">
-                <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
-                  <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
+              <div class="sumActions">
+                <button class="miniBtn copyLink" type="button" data-target="q-thanks-page-missing" aria-label="Copy link to this question" title="Copy link">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
+                    <path d="M10 13a5 5 0 0 1 0-7l1-1a5 5 0 0 1 7 7l-1 1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M14 11a5 5 0 0 1 0 7l-1 1a5 5 0 0 1-7-7l1-1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+                </button>
+                <div class="chev" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
+                    <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
               </div>
             </summary>
             <div class="ans">
-              Possible causes: network interruption, blocked scripts, or endpoint error.
-              Re-open the page and submit again if needed. If you have the RID, use <a href="/feedback/">Feedback</a> and include it.
+              Possible causes: network interruption, blocked scripts, or endpoint error. Re-open and submit again if needed.
+              If you have the RID, use <a href="/feedback/">Feedback</a> and include it.
             </div>
           </details>
         </div>
 
-        <div class="noteRow">
-          <div class="box" style="flex:1 1 320px;">
-            <strong>Fast path:</strong> If you need routing now, use <a href="/gate/">Gate</a> and include a deadline + scope in one paragraph.
-          </div>
-          <div class="box" style="flex:1 1 320px;">
-            <strong>Non-confidential rule:</strong> No credentials, internal security details, or private documents in any public form.
-          </div>
+        <div class="box" style="margin-top:14px;">
+          <strong>Fast path:</strong> If routing is needed now, use <a href="/gate/">Gate</a> and include a deadline + one-paragraph scope.
         </div>
       </div>
     </section>
@@ -561,44 +1056,67 @@
       </div>
       <div class="bd">
         <div class="faq" data-section="partners">
-          <details class="faqItem" data-q="who should apply partner integration delivery channel">
+          <details class="faqItem" id="q-partner-who" data-q="who should apply partner integration delivery channel">
             <summary class="faqSum">
               <div class="q">Who should apply as a partner?</div>
-              <div class="chev" aria-hidden="true">
-                <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
-                  <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
+              <div class="sumActions">
+                <button class="miniBtn copyLink" type="button" data-target="q-partner-who" aria-label="Copy link to this question" title="Copy link">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
+                    <path d="M10 13a5 5 0 0 1 0-7l1-1a5 5 0 0 1 7 7l-1 1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M14 11a5 5 0 0 1 0 7l-1 1a5 5 0 0 1-7-7l1-1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+                </button>
+                <div class="chev" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
+                    <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
               </div>
             </summary>
             <div class="ans">
               Partners are teams who can ship <strong>repeatable outcomes</strong> with evidence discipline:
-              integration/security controls, governance delivery packs, or channel distribution.
-              Start at <a href="/gate/partners/">Partners</a>.
+              governance delivery packs, integration/security controls, or channel distribution. Start at <a href="/gate/partners/">Partners Gate</a>.
             </div>
           </details>
 
-          <details class="faqItem" data-q="what is delivery lane">
+          <details class="faqItem" id="q-partner-delivery-lane" data-q="delivery lane partner trust brief trust ledger">
             <summary class="faqSum">
               <div class="q">What is the Delivery lane?</div>
-              <div class="chev" aria-hidden="true">
-                <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
-                  <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
+              <div class="sumActions">
+                <button class="miniBtn copyLink" type="button" data-target="q-partner-delivery-lane" aria-label="Copy link to this question" title="Copy link">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
+                    <path d="M10 13a5 5 0 0 1 0-7l1-1a5 5 0 0 1 7 7l-1 1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M14 11a5 5 0 0 1 0 7l-1 1a5 5 0 0 1-7-7l1-1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+                </button>
+                <div class="chev" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
+                    <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
               </div>
             </summary>
             <div class="ans">
               Delivery lane partners can deliver Trust Brief/Ledger artefacts as a clean, repeatable package
-              (with SOPs, templates, acceptance criteria, and evidence capture).
+              (SOPs, templates, acceptance criteria, and evidence capture).
             </div>
           </details>
 
-          <details class="faqItem" data-q="what is integration security lane">
+          <details class="faqItem" id="q-partner-integration-lane" data-q="integration security lane identity logging dlp audit">
             <summary class="faqSum">
               <div class="q">What is the Integration / Security lane?</div>
-              <div class="chev" aria-hidden="true">
-                <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
-                  <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
+              <div class="sumActions">
+                <button class="miniBtn copyLink" type="button" data-target="q-partner-integration-lane" aria-label="Copy link to this question" title="Copy link">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
+                    <path d="M10 13a5 5 0 0 1 0-7l1-1a5 5 0 0 1 7 7l-1 1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M14 11a5 5 0 0 1 0 7l-1 1a5 5 0 0 1-7-7l1-1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+                </button>
+                <div class="chev" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
+                    <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
               </div>
             </summary>
             <div class="ans">
@@ -607,134 +1125,25 @@
             </div>
           </details>
 
-          <details class="faqItem" data-q="do you accept confidential proofs partner">
+          <details class="faqItem" id="q-partner-confidential" data-q="confidential proofs client documents public forms">
             <summary class="faqSum">
               <div class="q">Can I submit confidential proofs or client documents?</div>
-              <div class="chev" aria-hidden="true">
-                <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
-                  <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
+              <div class="sumActions">
+                <button class="miniBtn copyLink" type="button" data-target="q-partner-confidential" aria-label="Copy link to this question" title="Copy link">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
+                    <path d="M10 13a5 5 0 0 1 0-7l1-1a5 5 0 0 1 7 7l-1 1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M14 11a5 5 0 0 1 0 7l-1 1a5 5 0 0 1-7-7l1-1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+                </button>
+                <div class="chev" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
+                    <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
               </div>
             </summary>
             <div class="ans">
-              Not via public forms. Use sanitized/public links only. If deeper verification is needed, it’s handled later under proper scope.
-            </div>
-          </details>
-        </div>
-      </div>
-    </section>
-
-    <!-- SECURITY -->
-    <section class="card" id="security" aria-label="Security and evidence FAQ">
-      <div class="hd">
-        <h2>Security & Evidence</h2>
-        <p>Why “proofs” matter.</p>
-      </div>
-      <div class="bd">
-        <div class="faq" data-section="security">
-          <details class="faqItem" data-q="what counts as evidence proofs logs exports screenshots">
-            <summary class="faqSum">
-              <div class="q">What counts as evidence (“proof”)?</div>
-              <div class="chev" aria-hidden="true">
-                <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
-                  <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </div>
-            </summary>
-            <div class="ans">
-              Evidence is anything that survives scrutiny:
-              configuration exports, control settings, audit logs, policy objects, ticket history, change records, and repeatable SOPs.
-              The point is <strong>defensibility</strong>, not slides.
-            </div>
-          </details>
-
-          <details class="faqItem" data-q="why no confidential uploads">
-            <summary class="faqSum">
-              <div class="q">Why do you prohibit confidential uploads in forms?</div>
-              <div class="chev" aria-hidden="true">
-                <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
-                  <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </div>
-            </summary>
-            <div class="ans">
-              Public intake is for routing, not data transfer. This reduces risk and prevents accidental exposure.
-              Sensitive sharing must happen later under explicit scope and controls.
-            </div>
-          </details>
-
-          <details class="faqItem" data-q="can you sign nda">
-            <summary class="faqSum">
-              <div class="q">Do you sign NDAs?</div>
-              <div class="chev" aria-hidden="true">
-                <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
-                  <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </div>
-            </summary>
-            <div class="ans">
-              If needed, NDAs are handled after initial fit is confirmed via Gate.
-              Start with a non-confidential one-paragraph scope through <a href="/gate/">Gate</a>.
-            </div>
-          </details>
-        </div>
-      </div>
-    </section>
-
-    <!-- PRICING -->
-    <section class="card" id="pricing" aria-label="Pricing and payment FAQ">
-      <div class="hd">
-        <h2>Pricing & Payment</h2>
-        <p>Ranges and how to get an exact quote.</p>
-      </div>
-      <div class="bd">
-        <div class="faq" data-section="pricing">
-          <details class="faqItem" data-q="pricing cost trust brief trust ledger">
-            <summary class="faqSum">
-              <div class="q">What does it cost?</div>
-              <div class="chev" aria-hidden="true">
-                <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
-                  <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </div>
-            </summary>
-            <div class="ans">
-              Pricing depends on scope, complexity, and urgency. Common small-org ranges:
-              <ul>
-                <li><strong>Trust Brief:</strong> board-ready diagnostic and memo (often in the low thousands to low five figures)</li>
-                <li><strong>Trust Ledger build:</strong> phased, depends on number of use-cases and evidence surface area</li>
-              </ul>
-              For an exact quote, route through <a href="/gate/">Gate</a> with one paragraph of scope + your deadline.
-            </div>
-          </details>
-
-          <details class="faqItem" data-q="payment methods invoice">
-            <summary class="faqSum">
-              <div class="q">How do payments work?</div>
-              <div class="chev" aria-hidden="true">
-                <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
-                  <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </div>
-            </summary>
-            <div class="ans">
-              When a scope is accepted, we align on milestones and payment method.
-              If you need procurement-friendly routing, note it in Gate.
-            </div>
-          </details>
-
-          <details class="faqItem" data-q="refund cancellation">
-            <summary class="faqSum">
-              <div class="q">Do you offer refunds?</div>
-              <div class="chev" aria-hidden="true">
-                <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
-                  <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </div>
-            </summary>
-            <div class="ans">
-              Refund and cancellation terms depend on the agreed scope and phase.
-              See <a href="/terms/">Terms</a> for baseline language.
+              Not via public forms. Use sanitized descriptions or public links only. If deeper verification is required, it is handled later under explicit scope and controls.
             </div>
           </details>
         </div>
@@ -745,17 +1154,25 @@
     <section class="card" id="legal" aria-label="Legal FAQ">
       <div class="hd">
         <h2>Legal</h2>
-        <p>Policies, terms, and compliance posture.</p>
+        <p>Policies, terms, and support boundaries.</p>
       </div>
       <div class="bd">
         <div class="faq" data-section="legal">
-          <details class="faqItem" data-q="privacy where is it">
+          <details class="faqItem" id="q-where-privacy-terms" data-q="privacy terms cookies accessibility policies">
             <summary class="faqSum">
               <div class="q">Where can I read Privacy / Terms / Cookies?</div>
-              <div class="chev" aria-hidden="true">
-                <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
-                  <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
+              <div class="sumActions">
+                <button class="miniBtn copyLink" type="button" data-target="q-where-privacy-terms" aria-label="Copy link to this question" title="Copy link">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
+                    <path d="M10 13a5 5 0 0 1 0-7l1-1a5 5 0 0 1 7 7l-1 1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M14 11a5 5 0 0 1 0 7l-1 1a5 5 0 0 1-7-7l1-1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+                </button>
+                <div class="chev" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
+                    <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
               </div>
             </summary>
             <div class="ans">
@@ -767,27 +1184,43 @@
             </div>
           </details>
 
-          <details class="faqItem" data-q="do you provide legal advice">
+          <details class="faqItem" id="q-legal-advice" data-q="legal advice not legal advice">
             <summary class="faqSum">
               <div class="q">Do you provide legal advice?</div>
-              <div class="chev" aria-hidden="true">
-                <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
-                  <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
+              <div class="sumActions">
+                <button class="miniBtn copyLink" type="button" data-target="q-legal-advice" aria-label="Copy link to this question" title="Copy link">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
+                    <path d="M10 13a5 5 0 0 1 0-7l1-1a5 5 0 0 1 7 7l-1 1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M14 11a5 5 0 0 1 0 7l-1 1a5 5 0 0 1-7-7l1-1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+                </button>
+                <div class="chev" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
+                    <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
               </div>
             </summary>
             <div class="ans">
-              No. Noetfield provides governance artefacts and operational evidence patterns. Legal interpretation must be handled by your counsel.
+              No. Noetfield provides governance artefacts and operational evidence patterns. Legal interpretation must be handled by client counsel.
             </div>
           </details>
 
-          <details class="faqItem" data-q="how to contact">
+          <details class="faqItem" id="q-best-contact" data-q="how to contact support feedback gate">
             <summary class="faqSum">
               <div class="q">What’s the best way to reach you?</div>
-              <div class="chev" aria-hidden="true">
-                <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
-                  <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
+              <div class="sumActions">
+                <button class="miniBtn copyLink" type="button" data-target="q-best-contact" aria-label="Copy link to this question" title="Copy link">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
+                    <path d="M10 13a5 5 0 0 1 0-7l1-1a5 5 0 0 1 7 7l-1 1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M14 11a5 5 0 0 1 0 7l-1 1a5 5 0 0 1-7-7l1-1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+                </button>
+                <div class="chev" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
+                    <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
               </div>
             </summary>
             <div class="ans">
@@ -798,8 +1231,64 @@
         </div>
 
         <div class="box" style="margin-top:14px;">
-          <strong>Next:</strong> If you’re ready to proceed, open <a href="/gate/">Gate</a> and submit one paragraph:
+          <strong>Next:</strong> If ready, open <a href="/gate/">Gate</a> and submit one paragraph:
           what you do, where AI is used, what decision is blocked, and your deadline.
+        </div>
+      </div>
+    </section>
+
+    <!-- OTHER -->
+    <section class="card" id="other" aria-label="Other FAQ">
+      <div class="hd">
+        <h2>Other</h2>
+        <p>Common operational clarifications.</p>
+      </div>
+      <div class="bd">
+        <div class="faq" data-section="other">
+          <details class="faqItem" id="q-timezones" data-q="timezones canada vancouver meetings async">
+            <summary class="faqSum">
+              <div class="q">Do you work async or only by meetings?</div>
+              <div class="sumActions">
+                <button class="miniBtn copyLink" type="button" data-target="q-timezones" aria-label="Copy link to this question" title="Copy link">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
+                    <path d="M10 13a5 5 0 0 1 0-7l1-1a5 5 0 0 1 7 7l-1 1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M14 11a5 5 0 0 1 0 7l-1 1a5 5 0 0 1-7-7l1-1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+                </button>
+                <div class="chev" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
+                    <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+              </div>
+            </summary>
+            <div class="ans">
+              Delivery is optimized for <strong>async</strong> progress with structured checkpoints. Meetings are used for kickoff and decision reviews, not for constant back-and-forth.
+            </div>
+          </details>
+
+          <details class="faqItem" id="q-what-if-not-ready" data-q="not ready what if controls missing">
+            <summary class="faqSum">
+              <div class="q">What if we are not ready yet?</div>
+              <div class="sumActions">
+                <button class="miniBtn copyLink" type="button" data-target="q-what-if-not-ready" aria-label="Copy link to this question" title="Copy link">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
+                    <path d="M10 13a5 5 0 0 1 0-7l1-1a5 5 0 0 1 7 7l-1 1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M14 11a5 5 0 0 1 0 7l-1 1a5 5 0 0 1-7-7l1-1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+                </button>
+                <div class="chev" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
+                    <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+              </div>
+            </summary>
+            <div class="ans">
+              That is a valid outcome. The work can end with a <strong>pause/remediate</strong> recommendation and a prioritized control plan,
+              rather than forcing rollout. The goal is decision clarity and defensible posture.
+            </div>
+          </details>
         </div>
       </div>
     </section>
@@ -808,16 +1297,30 @@
   <!-- injected footer -->
   <div id="nfFooter"></div>
 
-  <!-- FAQ search (page-only, no external deps) -->
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <!-- FAQ search + deep link copy + hash open (page-only; no external deps) -->
   <script>
     (function(){
       var input = document.getElementById("faqSearch");
       var clear = document.getElementById("clearSearch");
       var hint = document.getElementById("searchHint");
-      if (!input) return;
+      var expandAll = document.getElementById("expandAll");
+      var collapseAll = document.getElementById("collapseAll");
+      var toast = document.getElementById("toast");
 
       var items = Array.prototype.slice.call(document.querySelectorAll("details.faqItem"));
+      var sections = Array.prototype.slice.call(document.querySelectorAll("section.card[id]"));
+
       function norm(s){ return (s || "").toLowerCase().trim(); }
+
+      function showToast(msg){
+        if (!toast) return;
+        toast.textContent = msg;
+        toast.classList.add("show");
+        window.clearTimeout(showToast._t);
+        showToast._t = window.setTimeout(function(){ toast.classList.remove("show"); }, 1200);
+      }
 
       function applyFilter(q){
         q = norm(q);
@@ -826,22 +1329,83 @@
         items.forEach(function(d){
           var hay = norm(d.getAttribute("data-q")) + " " + norm(d.textContent);
           var ok = !q || hay.indexOf(q) !== -1;
-
           d.style.display = ok ? "" : "none";
           if (ok) visible++;
           if (!q) d.removeAttribute("open");
         });
 
+        // Hide empty sections (only those that contain FAQ items)
+        sections.forEach(function(sec){
+          var faqs = sec.querySelectorAll("details.faqItem");
+          if (!faqs.length) return;
+          var any = false;
+          for (var i=0;i<faqs.length;i++){
+            if (faqs[i].style.display !== "none") { any = true; break; }
+          }
+          sec.style.display = any ? "" : "none";
+        });
+
         if (hint) {
-          if (!q) hint.textContent = "Tip: Search filters questions instantly. For tracking, keep your Request ID.";
+          if (!q) hint.innerHTML = 'Tip: Search filters questions instantly. For tracking, keep your <strong>Request ID</strong>.';
           else hint.textContent = visible + " match(es) for: \"" + q + "\"";
         }
       }
 
-      input.addEventListener("input", function(){ applyFilter(input.value); });
-      if (clear) clear.addEventListener("click", function(){ input.value=""; applyFilter(""); input.focus(); });
+      if (input) input.addEventListener("input", function(){ applyFilter(input.value); });
+      if (clear) clear.addEventListener("click", function(){
+        if (!input) return;
+        input.value = "";
+        applyFilter("");
+        input.focus();
+      });
+
+      if (expandAll) expandAll.addEventListener("click", function(){
+        var q = input ? norm(input.value) : "";
+        items.forEach(function(d){
+          if (d.style.display === "none") return;
+          if (q) d.setAttribute("open","open");
+        });
+      });
+
+      if (collapseAll) collapseAll.addEventListener("click", function(){
+        items.forEach(function(d){ d.removeAttribute("open"); });
+      });
+
+      // Copy deep link buttons
+      Array.prototype.slice.call(document.querySelectorAll(".copyLink")).forEach(function(btn){
+        btn.addEventListener("click", function(ev){
+          ev.preventDefault();
+          ev.stopPropagation();
+          var id = btn.getAttribute("data-target");
+          if (!id) return;
+          var url = window.location.origin + window.location.pathname + "#" + id;
+          function done(){ showToast("Link copied"); }
+          if (navigator.clipboard && navigator.clipboard.writeText){
+            navigator.clipboard.writeText(url).then(done).catch(function(){
+              window.prompt("Copy link:", url);
+            });
+          } else {
+            window.prompt("Copy link:", url);
+          }
+        }, true);
+      });
+
+      // Open item by hash on load
+      function openFromHash(){
+        var h = (window.location.hash || "").replace("#","");
+        if (!h) return;
+        var el = document.getElementById(h);
+        if (el && el.tagName && el.tagName.toLowerCase() === "details"){
+          el.setAttribute("open","open");
+          setTimeout(function(){
+            el.scrollIntoView({behavior:"smooth", block:"start"});
+          }, 50);
+        }
+      }
 
       applyFilter("");
+      openFromHash();
+      window.addEventListener("hashchange", openFromHash);
     })();
   </script>
 </body>

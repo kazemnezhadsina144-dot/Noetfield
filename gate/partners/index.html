@@ -1,4 +1,5 @@
-<!-- /gate/partners/index.html — Noetfield Partners Gate v3.0 (enterprise tune • lane clarity • deal registration • RID continuity • standards • compact + procurement-safe) -->
+<!-- /gate/partners/index.html — Noetfield Partners Gate v3.1
+     (contractable deal reg terms • RID fallback • partner pack • micro-FAQ • enterprise tune • procurement-safe) -->
 <!doctype html>
 <html lang="en">
 <head>
@@ -6,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <title>Noetfield — Partners</title>
-  <meta name="description" content="Partner entry for Channel, Delivery, and Integration teams. Register partner deals (Deal ID + 90-day protection on acceptance), route procurement with RID continuity, and operate evidence-first governance that survives scrutiny." />
+  <meta name="description" content="Partner entry for Channel, Delivery, and Integration teams. Register partner deals (Deal ID + 90-day protection from Noetfield acceptance), route procurement with RID continuity, and operate evidence-first governance that survives scrutiny." />
   <meta name="robots" content="index,follow" />
   <meta name="author" content="Noetfield Systems Inc." />
   <meta name="theme-color" content="#07070b" />
@@ -19,14 +20,14 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Noetfield" />
   <meta property="og:title" content="Noetfield — Partners" />
-  <meta property="og:description" content="Channel, Delivery, Integration, and Partner Deal Registration (Deal ID + 90-day protection on acceptance) with RID continuity and evidence-first standards." />
+  <meta property="og:description" content="Partner lanes + Deal Registration with clear acceptance rules, RID continuity, and evidence-first standards." />
   <meta property="og:url" content="https://www.noetfield.com/gate/partners/" />
   <meta property="og:image" content="https://www.noetfield.com/noetfield-og.png" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Noetfield — Partners" />
-  <meta name="twitter:description" content="Partner lanes + Deal Registration (Deal ID + protection on acceptance). Evidence-first governance, RID routing, procurement-safe motion." />
+  <meta name="twitter:description" content="Partner lanes + contractable Deal Registration terms. Evidence-first governance, RID routing, procurement-safe motion." />
   <meta name="twitter:image" content="https://www.noetfield.com/noetfield-og.png" />
 
   <!-- Shell -->
@@ -87,6 +88,9 @@
     }
     .bar strong{color:var(--text);font-weight:950}
     .bar a{border-bottom:1px solid rgba(255,255,255,.18)}
+    .bar .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:space-between}
+    .bar .left{min-width:240px}
+    .bar .right{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
 
     .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin:18px 0 18px}
     .card{
@@ -114,13 +118,6 @@
     .mini{color:var(--muted2);font-size:12.6px;line-height:1.6}
     .mini strong{color:var(--text);font-weight:950}
 
-    .standards{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}
-    .std{border-radius:16px;border:1px solid rgba(255,255,255,.10);background: rgba(255,255,255,.03);padding:14px}
-    .std h3{margin:0 0 6px;font-size:14px;letter-spacing:-.2px;font-weight:950}
-    .std p{margin:0;color:var(--muted2);font-size:12.9px;line-height:1.6}
-    .std ul{margin:10px 0 0;padding-left:18px;color:var(--muted2);line-height:1.6}
-    .std li{margin:6px 0}
-
     .ctaStrip{
       margin-top:16px;
       border-radius: calc(var(--radius) + 6px);
@@ -142,9 +139,93 @@
     .ctaStrip .left p{margin:0;color:var(--muted2);font-size:12.9px;line-height:1.55;max-width:760px}
     .ctaStrip .right{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
 
+    .terms{
+      margin-top:16px;
+      display:grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap:16px;
+    }
+    .panel{
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      padding:14px;
+      box-shadow: var(--shadow2);
+      min-width:0;
+    }
+    .panel h3{margin:0 0 8px;font-size:14px;font-weight:950;letter-spacing:-.2px}
+    .panel p{margin:0 0 10px;color:var(--muted2);font-size:12.9px;line-height:1.6}
+    .kgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+    .kv{
+      border-radius:14px;border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.02);
+      padding:10px;
+      color:var(--muted2);
+      font-size:12.6px;
+      line-height:1.55;
+    }
+    .kv strong{color:var(--text);font-weight:950}
+    .fine{
+      margin-top:10px;
+      color:var(--muted2);
+      font-size:12.4px;
+      line-height:1.55;
+    }
+    .fine strong{color:var(--text);font-weight:950}
+
+    .pack{
+      margin-top:16px;
+      display:grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap:16px;
+    }
+    .pack .panel p{margin-bottom:12px}
+    .pack .panel .actions{margin-top:6px}
+
+    .standards{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}
+    .std{border-radius:16px;border:1px solid rgba(255,255,255,.10);background: rgba(255,255,255,.03);padding:14px}
+    .std h3{margin:0 0 6px;font-size:14px;letter-spacing:-.2px;font-weight:950}
+    .std p{margin:0;color:var(--muted2);font-size:12.9px;line-height:1.6}
+    .std ul{margin:10px 0 0;padding-left:18px;color:var(--muted2);line-height:1.6}
+    .std li{margin:6px 0}
+
+    details.faq{
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      padding:12px 14px;
+    }
+    details.faq + details.faq{margin-top:10px}
+    details.faq summary{
+      cursor:pointer;
+      list-style:none;
+      font-weight:950;
+      letter-spacing:-.2px;
+      color:var(--text);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      user-select:none;
+    }
+    details.faq summary::-webkit-details-marker{display:none}
+    .chev{
+      width:10px;height:10px;flex:0 0 auto;
+      border-right:2px solid rgba(255,255,255,.55);
+      border-bottom:2px solid rgba(255,255,255,.55);
+      transform: rotate(-45deg);
+      opacity:.75;
+      margin-top:2px;
+      transition: transform .18s ease;
+    }
+    details[open] .chev{transform: rotate(45deg)}
+    .faqBody{margin-top:8px;color:var(--muted2);font-size:12.9px;line-height:1.65}
+    .faqBody a{border-bottom:1px solid rgba(255,255,255,.18)}
+
     @media (max-width: 1200px){ .grid{grid-template-columns:1fr 1fr} }
-    @media (max-width: 760px){ .grid{grid-template-columns:1fr} }
-    @media (max-width: 520px){ .actions .btn, .subActions .btn{width:100%} }
+    @media (max-width: 980px){ .terms{grid-template-columns:1fr} .pack{grid-template-columns:1fr} }
+    @media (max-width: 760px){ .grid{grid-template-columns:1fr} .standards{grid-template-columns:1fr} .kgrid{grid-template-columns:1fr} }
+    @media (max-width: 520px){ .actions .btn, .subActions .btn{width:100%} .bar .row{gap:12px} .bar .right .btn{width:100%} }
   </style>
 
   <script type="application/ld+json">
@@ -153,9 +234,63 @@
     "@type":"WebPage",
     "name":"Noetfield — Partners",
     "url":"https://www.noetfield.com/gate/partners/",
-    "description":"Partner lanes (Channel, Delivery, Integration) plus Partner Deal Registration with Deal ID and RID continuity. Evidence-first standards and procurement-safe routing.",
+    "description":"Partner lanes (Channel, Delivery, Integration) plus Partner Deal Registration with clear acceptance rules, RID continuity, and evidence-first standards.",
     "isPartOf":{"@type":"WebSite","name":"Noetfield","url":"https://www.noetfield.com/"},
     "publisher":{"@type":"Organization","name":"Noetfield Systems Inc."}
+  }
+  </script>
+
+  <!-- Page-local RID fallback (keeps continuity even if shell JS fails). Safe + non-confidential. -->
+  <script>
+    (function(){
+      try{
+        var url = new URL(window.location.href);
+        var rid = (url.searchParams.get("rid") || "").trim();
+        if(!rid){ rid = (sessionStorage.getItem("nf_rid") || "").trim(); }
+        if(!rid){
+          var c = document.cookie.match(/(?:^|;\s*)nf_rid=([^;]+)/);
+          if(c && c[1]) rid = decodeURIComponent(c[1]).trim();
+        }
+        if(!rid){
+          // Lightweight RID generator (public tracking only)
+          var d = new Date();
+          var y = String(d.getUTCFullYear()).slice(2);
+          var m = String(d.getUTCMonth()+1).padStart(2,"0");
+          var day = String(d.getUTCDate()).padStart(2,"0");
+          var rand = Math.random().toString(36).slice(2,8).toUpperCase();
+          rid = "NF-" + y + m + day + "-" + rand;
+          url.searchParams.set("rid", rid);
+          // Do not force navigation; just persist for continuity
+        }
+        sessionStorage.setItem("nf_rid", rid);
+        document.cookie = "nf_rid=" + encodeURIComponent(rid) + "; Path=/; SameSite=Lax";
+        window.__NF_RID = rid;
+      }catch(e){}
+    })();
+  </script>
+
+  <!-- FAQ schema (micro, partner-specific) -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"FAQPage",
+    "mainEntity":[
+      {
+        "@type":"Question",
+        "name":"What counts as Deal Acceptance for protection?",
+        "acceptedAnswer":{"@type":"Answer","text":"Protection starts when Noetfield sends a Deal Accepted email after validating the minimum deal fields (organization, champion, stage, next meeting)."}
+      },
+      {
+        "@type":"Question",
+        "name":"How long is Deal Protection?",
+        "acceptedAnswer":{"@type":"Answer","text":"90 days from Noetfield Deal Acceptance, provided the partner maintains active progression signals and routing discipline."}
+      },
+      {
+        "@type":"Question",
+        "name":"Where should buyers go for Invoice/PO?",
+        "acceptedAnswer":{"@type":"Answer","text":"Use the Procurement lane (Invoice/PO) for vendor onboarding, procurement pack, and purchasing routes, with RID continuity."}
+      }
+    ]
   }
   </script>
 </head>
@@ -172,7 +307,7 @@
     <section class="hero" aria-label="Partners hero">
       <div class="heroShell">
         <div class="heroInner">
-          <div class="eyebrow"><span class="dot"></span> Partners • lane routing • Deal ID • evidence-first</div>
+          <div class="eyebrow"><span class="dot"></span> Partners • lane routing • Deal ID • RID continuity</div>
 
           <h1>Partners who ship governance that survives scrutiny</h1>
 
@@ -201,21 +336,34 @@
             <a class="btn secondary" href="/gate/partners/notes/" data-rid-link>Notes</a>
           </div>
 
-          <div class="bar">
-            Tracking key: <strong><code data-rid>—</code></strong> stays attached across Gate, Procurement, Status, and submissions.
-            Public pages are <strong>non-confidential</strong> by design.
+          <div class="bar" role="note" aria-label="RID tracking note">
+            <div class="row">
+              <div class="left">
+                Tracking key: <strong><code data-rid>—</code></strong> stays attached across Gate, Procurement, Status, and submissions.
+                Public pages are <strong>non-confidential</strong> by design.
+              </div>
+              <div class="right">
+                <a class="btn secondary" href="/gate/partners/deal/" data-rid-link>Use Deal Registration</a>
+                <a class="btn secondary" href="/gate/procurement/" data-rid-link>Use Procurement Lane</a>
+              </div>
+            </div>
+            <noscript>
+              <div style="margin-top:10px">
+                JavaScript is off. RID continuity may not auto-attach to links. Add <strong>?rid=YOUR-RID</strong> to keep tracking consistent.
+              </div>
+            </noscript>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- CTA STRIP (new: deal registration emphasis) -->
+    <!-- CTA STRIP -->
     <section class="ctaStrip" aria-label="Deal registration">
       <div class="left">
         <h3>Partner Deal Registration</h3>
         <p>
-          Generate a <strong>Partner Deal ID</strong>, capture tier signals, and route the buyer cleanly. Deal protection is
-          <strong>90 days after acceptance</strong> (email confirmation), subject to partner terms.
+          Generate a <strong>Partner Deal ID</strong>, capture tier signals, and route the buyer cleanly.
+          Protection is <strong>90 days from Noetfield acceptance</strong> (Deal Accepted email), subject to the terms below.
         </p>
       </div>
       <div class="right">
@@ -224,23 +372,63 @@
       </div>
     </section>
 
-    <!-- LANES (now 4 cards incl Deal lane) -->
+    <!-- TERMS (contractable, compact) -->
+    <section class="terms" aria-label="Deal registration terms">
+      <div class="panel">
+        <h3>Deal protection terms (compact)</h3>
+        <p>
+          These terms are designed to prevent channel conflict and keep co-selling defensible.
+          Noetfield confirms acceptance by email after basic validation.
+        </p>
+
+        <div class="kgrid" aria-label="Deal terms key points">
+          <div class="kv"><strong>Acceptance</strong><br />Protection begins when Noetfield sends a <strong>Deal Accepted</strong> email after validating minimum fields.</div>
+          <div class="kv"><strong>Protection window</strong><br /><strong>90 days from acceptance</strong>, provided the partner maintains active progression signals.</div>
+          <div class="kv"><strong>Minimum fields</strong><br />Org name, champion, stage, next meeting date, lane, and a short non-confidential note.</div>
+          <div class="kv"><strong>Review SLA</strong><br />Noetfield responds to deal registrations within <strong>2 business days</strong> (Accept / Clarify / Decline).</div>
+          <div class="kv"><strong>Conflicts</strong><br />If duplicates occur, Noetfield uses <strong>first complete registration timestamp</strong> plus evidence of progression.</div>
+          <div class="kv"><strong>Scope boundary</strong><br />Protection applies to the <strong>named organization</strong> and the registered opportunity; RFP/public tenders may override.</div>
+        </div>
+
+        <div class="fine">
+          <strong>Important:</strong> Public forms must remain non-confidential. Do not submit credentials, customer data, or regulated personal data.
+          If sensitive context is required, use NDA routing after kickoff via the Procurement lane.
+        </div>
+      </div>
+
+      <div class="panel">
+        <h3>RID vs Deal ID (do not mix)</h3>
+        <p><strong>RID</strong> tracks routing across Gate → Procurement → Status. <strong>Deal ID</strong> tracks partner-originated opportunities.</p>
+        <ul class="list" style="margin-top:8px">
+          <li><strong>Use RID</strong> in: subjects, filenames, status checks, procurement packets.</li>
+          <li><strong>Use Deal ID</strong> in: deal registration, partner commission/protection tracking, co-sell records.</li>
+          <li><strong>Buyer route:</strong> procurement teams should always use <a href="/gate/procurement/" data-rid-link>Invoice/PO lane</a>.</li>
+        </ul>
+
+        <div class="actions" style="margin-top:12px">
+          <a class="btn primary" href="/gate/partners/deal/" data-rid-link>Register deal</a>
+          <a class="btn secondary" href="/gate/partners/intake/" data-rid-link>Partner intake</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- LANES -->
     <section class="grid" aria-label="Partner lanes">
       <!-- Deal lane -->
       <div class="card">
         <div class="hd">
           <div class="badge">Deal</div>
           <h2>Register & protect</h2>
-          <p>Issue a Deal ID, capture tier signals, and create a procurement-safe packet for co-selling.</p>
+          <p>Issue a Deal ID, capture stage signals, and create a procurement-safe packet for co-selling.</p>
         </div>
         <div class="bd">
           <ul class="list">
             <li><strong>Deal ID</strong> + RID continuity (deep-linkable)</li>
-            <li><strong>Tier signals</strong>: sourced + meetings + close support</li>
+            <li><strong>Tier signals</strong>: sourced → meeting → close support</li>
             <li><strong>Email builders</strong>: registration + warm intro</li>
           </ul>
           <p class="mini" style="margin-top:10px">
-            Protection: <strong>90 days after acceptance</strong> (email confirmation).
+            Protection: <strong>90 days from Noetfield acceptance</strong> (Deal Accepted email).
           </p>
           <div class="actions" style="margin-top:12px;">
             <a class="btn primary" href="/gate/partners/deal/" data-rid-link>Register a deal</a>
@@ -259,7 +447,7 @@
         <div class="bd">
           <ul class="list">
             <li>ICP-aligned intros (Microsoft-heavy, procurement pressure)</li>
-            <li>Co-selling play: Gate + Procurement + Status continuity</li>
+            <li>Co-selling motion: Gate + Procurement + Status continuity</li>
             <li>Boundary discipline (public vs post-kickoff)</li>
           </ul>
           <div class="actions" style="margin-top:12px;">
@@ -310,6 +498,39 @@
       </div>
     </section>
 
+    <!-- PARTNER PACK (assets / placeholders; create files later) -->
+    <section class="pack" aria-label="Partner pack">
+      <div class="panel">
+        <h3>Partner Pack (1-page)</h3>
+        <p>A short PDF for partner teams: positioning, lanes, and routing rules (non-confidential).</p>
+        <div class="actions">
+          <a class="btn primary" href="/gate/partners/pack/partner-overview.pdf" data-rid-link>Download overview</a>
+          <a class="btn secondary" href="/gate/partners/intake/" data-rid-link>Apply as partner</a>
+        </div>
+        <p class="fine">If the file is not published yet, link returns 404 until you add the asset.</p>
+      </div>
+
+      <div class="panel">
+        <h3>Co-sell Play (emails)</h3>
+        <p>Warm intro templates + procurement-safe language + routing links that preserve RID continuity.</p>
+        <div class="actions">
+          <a class="btn primary" href="/gate/partners/pack/co-sell-play.pdf" data-rid-link>Download co-sell play</a>
+          <a class="btn secondary" href="/gate/procurement/" data-rid-link>Procurement lane</a>
+        </div>
+        <p class="fine">Keep buyer routing clean: procurement goes to Invoice/PO lane, not partner intake.</p>
+      </div>
+
+      <div class="panel">
+        <h3>Readiness Checklist</h3>
+        <p>A quick readiness check to activate lanes (tools + evidence habits + scope boundaries).</p>
+        <div class="actions">
+          <a class="btn primary" href="/gate/partners/readiness/" data-rid-link>Open readiness</a>
+          <a class="btn secondary" href="/status/" data-rid-link>Open Status</a>
+        </div>
+        <p class="fine">Minimal page is sufficient for now: “Definition of Ready” + next steps.</p>
+      </div>
+    </section>
+
     <!-- STANDARDS -->
     <section class="standards" aria-label="Partner standards">
       <div class="std">
@@ -329,7 +550,7 @@
         <p>Fast validation, then lane activation.</p>
         <ul>
           <li>Step 1: Submit partner intake (high-level, non-confidential).</li>
-          <li>Step 2: Lane fit + scope boundaries confirmed.</li>
+          <li>Step 2: Lane fit + scope boundaries confirmed (readiness check if needed).</li>
           <li>Step 3: Enable routing pages + handoff checklist + evidence patterns.</li>
           <li>Step 4: Operate with RID-based tracking and Status visibility.</li>
         </ul>
@@ -337,6 +558,45 @@
           For buyer procurement (Invoice/PO), use <a href="/gate/procurement/" data-rid-link>Procurement lane</a>.
           For deal registration, use <a href="/gate/partners/deal/" data-rid-link>Partner Deal Registration</a>.
         </p>
+      </div>
+    </section>
+
+    <!-- MICRO FAQ (partner-specific, compact) -->
+    <section style="margin-top:16px" aria-label="Partner FAQ">
+      <div class="panel">
+        <h3>Partner FAQ (compact)</h3>
+
+        <details class="faq">
+          <summary>What counts as acceptance for protection? <span class="chev" aria-hidden="true"></span></summary>
+          <div class="faqBody">
+            Protection starts when Noetfield sends a <strong>Deal Accepted</strong> email after validating minimum deal fields
+            (org, champion, stage, next meeting date, lane). If details are incomplete, Noetfield requests clarification.
+          </div>
+        </details>
+
+        <details class="faq">
+          <summary>What happens if two partners register the same organization? <span class="chev" aria-hidden="true"></span></summary>
+          <div class="faqBody">
+            Noetfield applies <strong>first complete registration timestamp</strong> plus evidence of progression (meeting set/held, buyer-confirmed path).
+            The goal is to prevent channel conflict and keep co-selling defensible.
+          </div>
+        </details>
+
+        <details class="faq">
+          <summary>Where do we route procurement teams (Invoice/PO)? <span class="chev" aria-hidden="true"></span></summary>
+          <div class="faqBody">
+            Route them to <a href="/gate/procurement/" data-rid-link>Procurement (Invoice/PO)</a> for procurement pack, onboarding, and purchasing lanes.
+            Keep public pages <strong>non-confidential</strong>.
+          </div>
+        </details>
+
+        <details class="faq">
+          <summary>Can we deliver as a partner while Noetfield owns the artifacts? <span class="chev" aria-hidden="true"></span></summary>
+          <div class="faqBody">
+            Yes. Delivery partners operate within Noetfield formats (board memo, MAP, evidence index) so outputs remain consistent.
+            Lane activation confirms scope boundaries and evidence capture habits.
+          </div>
+        </details>
       </div>
     </section>
 
@@ -348,8 +608,32 @@
 
   <!-- Injected footer -->
   <footer id="nfFooter"></footer>
+
+  <!-- Minimal RID UI fill if shell doesn’t populate immediately -->
+  <script>
+    (function(){
+      function fill(){
+        try{
+          var rid = (window.__NF_RID || "").trim();
+          if(!rid) return;
+          document.querySelectorAll("[data-rid]").forEach(function(el){ el.textContent = rid; });
+          document.querySelectorAll("[data-rid-link]").forEach(function(a){
+            try{
+              var href = a.getAttribute("href") || "";
+              if(!href || href.indexOf("javascript:")===0 || href.indexOf("#")===0) return;
+              var u = new URL(href, window.location.origin);
+              if(!u.searchParams.get("rid")) u.searchParams.set("rid", rid);
+              a.setAttribute("href", u.pathname + u.search + u.hash);
+            }catch(e){}
+          });
+        }catch(e){}
+      }
+      if(document.readyState === "loading"){
+        document.addEventListener("DOMContentLoaded", fill);
+      } else {
+        fill();
+      }
+    })();
+  </script>
 </body>
 </html>
-
-
-

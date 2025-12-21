@@ -1,34 +1,27 @@
-<!-- /gate/partners/deal/index.html — Noetfield Partner Deal Registration v3.0 (Gate-aligned • /gate/partners/deal • RID + Deal ID • 90-day protection (on acceptance) • tiering • autosave draft • email builders • mobile-safe blockers) -->
+<!-- /gate/partners/deal/index.html — Noetfield Partner Deal Registration v3.0
+     (Board-safe • Gate-aligned • Deal ID + RID • 90-day protection (on acceptance) • tier suggestion • draft save • packet export • email builders) -->
 <!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <title>Noetfield — Partner Deal Registration</title>
-  <meta name="description" content="Register a partner-sourced opportunity to receive a Partner Deal ID, confirm partner tier, and (upon acceptance) lock 90-day deal protection — procurement-safe and non-confidential." />
+  <meta name="description" content="Register a partner-sourced opportunity to receive a Partner Deal ID, confirm tier eligibility, and route procurement safely — without sharing confidential data." />
   <meta name="robots" content="index,follow" />
   <meta name="author" content="Noetfield Systems Inc." />
   <meta name="theme-color" content="#07070b" />
 
-  <!-- Correct canonical -->
   <link rel="canonical" href="https://www.noetfield.com/gate/partners/deal/" />
-
   <link rel="icon" href="/noetfield-favicon-512.png" type="image/png" />
   <link rel="apple-touch-icon" href="/noetfield-favicon-512.png" />
 
   <!-- OG -->
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Noetfield" />
-  <meta property="og:title" content="Noetfield — Partner Deal Registration" />
-  <meta property="og:description" content="Partner Deal ID, tiering, 90-day protection (on acceptance), and procurement routing — non-confidential." />
+  <meta property="og:title" content="Partner Deal Registration" />
+  <meta property="og:description" content="Partner Deal ID, tier suggestion, 90-day protection (on acceptance), and procurement routing — non-confidential." />
   <meta property="og:url" content="https://www.noetfield.com/gate/partners/deal/" />
-  <meta property="og:image" content="https://www.noetfield.com/noetfield-og.png" />
-
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Noetfield — Partner Deal Registration" />
-  <meta name="twitter:description" content="Partner Deal ID, tiering, 90-day protection (on acceptance), and procurement routing — non-confidential." />
-  <meta name="twitter:image" content="https://www.noetfield.com/noetfield-og.png" />
 
   <!-- Optional shared shell (if present) -->
   <!-- <link rel="stylesheet" href="/assets/noetfield-shell.css" /> -->
@@ -40,57 +33,54 @@
     "name":"Noetfield — Partner Deal Registration",
     "url":"https://www.noetfield.com/gate/partners/deal/",
     "isPartOf":{"@type":"WebSite","name":"Noetfield","url":"https://www.noetfield.com/"},
-    "about":{"@type":"Organization","name":"Noetfield Systems Inc."},
-    "description":"Register partner-sourced opportunities to receive a Partner Deal ID, confirm tier, and route procurement safely without sharing confidential data."
+    "about":{"@type":"Organization","name":"Noetfield Systems Inc."}
   }
   </script>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-
   <style>
     :root{
-      --bg:#07070b;
-      --panel:rgba(12,12,18,.72);
-      --panel2:rgba(16,16,26,.56);
-      --text:#ececf1;
-      --muted:#a7a7b3;
-      --faint:#7f8192;
-      --line:rgba(255,255,255,.10);
-      --line2:rgba(255,255,255,.08);
-      --accent:#d7b56d;
-      --accent2:#b89245;
-      --good:#73d39b;
-      --warn:#f0c36a;
-      --bad:#ff7a7a;
+      --bg:#07070b; --panel:#0c0c12; --panel2:#10101a;
+      --text:#e9e9ee; --muted:#a7a7b3; --faint:#808090;
+      --line:rgba(255,255,255,.10); --line2:rgba(255,255,255,.08);
+      --accent:#d7b56d; --accent2:#b89245;
+      --good:#73d39b; --warn:#f0c36a; --bad:#ff7a7a;
       --shadow:0 18px 50px rgba(0,0,0,.45);
       --r:16px;
       --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;
-      --sans: "Inter", ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      --focus: 0 0 0 3px rgba(215,181,109,.14);
     }
     *{box-sizing:border-box}
     html,body{height:100%}
     body{
       margin:0;
-      color:var(--text);
-      font-family:var(--sans);
-      line-height:1.45;
       background:
         radial-gradient(1000px 600px at 25% -10%, rgba(215,181,109,.10), transparent 55%),
         radial-gradient(900px 550px at 90% 10%, rgba(215,181,109,.07), transparent 60%),
         var(--bg);
+      color:var(--text);
+      font-family:var(--sans);
+      line-height:1.45;
     }
     a{color:inherit; text-decoration:none}
+    .skip{
+      position:absolute; left:-999px; top:auto; width:1px; height:1px; overflow:hidden;
+    }
+    .skip:focus{
+      left:14px; top:14px; width:auto; height:auto; padding:10px 12px;
+      border-radius:12px; background:rgba(16,16,26,.92); border:1px solid var(--line2);
+      box-shadow:var(--shadow);
+      z-index:999;
+    }
+
     .wrap{max-width:1180px; margin:0 auto; padding:22px 18px 92px}
 
-    /* Rail */
     .rail{
       display:flex; align-items:center; justify-content:space-between;
       gap:14px; padding:12px 14px;
       border:1px solid var(--line2);
-      background:var(--panel);
-      backdrop-filter: blur(10px);
+      background:rgba(12,12,18,.72);
+      backdrop-filter: blur(8px);
       border-radius:18px;
       box-shadow:var(--shadow);
     }
@@ -99,15 +89,13 @@
       width:34px; height:34px; border-radius:10px;
       background:linear-gradient(135deg, rgba(215,181,109,.22), rgba(215,181,109,.04));
       border:1px solid rgba(215,181,109,.25);
-      display:grid; place-items:center;
-      color:var(--accent);
-      font-weight:800;
+      display:grid; place-items:center; color:var(--accent); font-weight:800;
       letter-spacing:.5px;
     }
-    .brand h1{font-size:14px; margin:0; letter-spacing:.2px}
+    .brand h1{font-size:14px; margin:0; letter-spacing:.3px}
     .brand .sub{font-size:12px; color:var(--muted); margin-top:1px}
-    .nav{display:flex; gap:10px; flex-wrap:wrap; align-items:center; justify-content:flex-end}
 
+    .nav{display:flex; gap:10px; flex-wrap:wrap; align-items:center; justify-content:flex-end}
     .pill{
       display:inline-flex; align-items:center; gap:8px;
       padding:8px 10px; border-radius:999px;
@@ -122,9 +110,7 @@
       gap:8px; padding:10px 12px; border-radius:12px;
       border:1px solid var(--line2);
       background:rgba(16,16,26,.55);
-      color:var(--text);
-      font-size:13px;
-      cursor:pointer;
+      color:var(--text); font-size:13px; cursor:pointer;
       transition:transform .05s ease, border-color .15s ease, background .15s ease;
       user-select:none;
       white-space:nowrap;
@@ -140,7 +126,6 @@
     .btn.danger:hover{border-color:rgba(255,122,122,.45)}
     .btn[disabled]{opacity:.55; cursor:not-allowed}
 
-    /* Hero */
     .hero{padding:18px 6px 6px}
     .hero .kicker{
       display:flex; gap:10px; align-items:center; flex-wrap:wrap;
@@ -164,8 +149,9 @@
     .dot{width:8px; height:8px; border-radius:999px; background:var(--warn)}
     .dot.good{background:var(--good)}
     .dot.bad{background:var(--bad)}
+
     .hero h2{margin:0 0 8px; font-size:26px; letter-spacing:.2px}
-    .hero p{margin:0; color:var(--muted); max-width:980px}
+    .hero p{margin:0; color:var(--muted); max-width:920px}
     .hero .alert{
       margin-top:12px;
       border:1px solid rgba(240,195,106,.25);
@@ -175,7 +161,7 @@
       color:var(--muted);
       font-size:12px;
     }
-    .hero .alert strong{color:var(--text)}
+
     .steps{
       display:grid; grid-template-columns:repeat(3,1fr); gap:10px;
       margin-top:14px;
@@ -200,10 +186,9 @@
     .step .t{font-size:13px; margin:0 0 4px}
     .step .d{font-size:12px; margin:0; color:var(--muted)}
 
-    /* Layout */
     .grid{
       display:grid;
-      grid-template-columns: 1.2fr .8fr;
+      grid-template-columns: 1.15fr .85fr;
       gap:16px;
       margin-top:16px;
       align-items:start;
@@ -214,10 +199,9 @@
       .brand{min-width:auto}
     }
 
-    /* Card */
     .card{
       border:1px solid var(--line2);
-      background:var(--panel);
+      background:rgba(12,12,18,.72);
       border-radius:var(--r);
       box-shadow:var(--shadow);
       overflow:hidden;
@@ -231,15 +215,14 @@
     .card .hd .meta{color:var(--muted); font-size:12px}
     .card .bd{padding:14px}
 
-    /* Form */
     .sectionTitle{
       margin:14px 0 10px;
       font-size:12px; color:var(--faint);
       letter-spacing:.35px; text-transform:uppercase
     }
-    .formgrid{display:grid; grid-template-columns:1fr 1fr; gap:10px}
-    @media (max-width: 720px){ .formgrid{grid-template-columns:1fr} }
+
     label{display:block; font-size:12px; color:var(--muted); margin:0 0 6px}
+    .req{color:var(--accent); font-family:var(--mono)}
     input, select, textarea{
       width:100%;
       padding:11px 12px;
@@ -248,14 +231,14 @@
       background:rgba(16,16,26,.52);
       color:var(--text);
       outline:none;
-      font-family:inherit;
     }
-    textarea{min-height:104px; resize:vertical}
-    input:focus, select:focus, textarea:focus{
-      border-color:rgba(215,181,109,.35);
-      box-shadow:0 0 0 3px rgba(215,181,109,.12);
-    }
+    textarea{min-height:98px; resize:vertical}
+    input:focus, select:focus, textarea:focus{border-color:rgba(215,181,109,.35); box-shadow:var(--focus)}
     input::placeholder, textarea::placeholder{color:rgba(167,167,179,.55)}
+
+    .formgrid{display:grid; grid-template-columns:1fr 1fr; gap:10px}
+    @media (max-width: 720px){ .formgrid{grid-template-columns:1fr} }
+
     .row{display:flex; gap:10px; flex-wrap:wrap; align-items:center}
     .hint{font-size:12px; color:var(--muted)}
     .fine{
@@ -265,27 +248,7 @@
       margin-top:12px;
     }
     .mono{font-family:var(--mono)}
-    .req{color:var(--accent); font-family:var(--mono); font-weight:700}
 
-    /* Blockers: mobile-friendly */
-    .checks{
-      display:grid;
-      grid-template-columns:repeat(2,minmax(0,1fr));
-      gap:8px;
-    }
-    @media (max-width: 520px){ .checks{grid-template-columns:1fr} }
-    .check{
-      display:flex; gap:10px; align-items:flex-start;
-      padding:10px 10px;
-      border-radius:12px;
-      border:1px solid var(--line2);
-      background:rgba(16,16,26,.40);
-    }
-    .check input{width:18px; height:18px; margin-top:1px}
-    .check .t{font-size:12px; color:var(--text); font-weight:600; line-height:1.2}
-    .check .d{font-size:12px; color:var(--muted); margin-top:2px; line-height:1.35}
-
-    /* Right-side summary */
     .kv{display:grid; gap:10px}
     .kv .line{
       border:1px solid var(--line2);
@@ -295,13 +258,38 @@
     .kv .k{font-size:11px; color:var(--muted); letter-spacing:.25px}
     .kv .v{margin-top:4px; font-size:13px}
     .kv .v strong{font-weight:750}
-    .split{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap:10px;
-      margin-top:10px;
-    }
+    .split{display:grid; grid-template-columns: 1fr 1fr; gap:10px; margin-top:10px}
     @media (max-width: 980px){ .split{grid-template-columns:1fr} }
+
+    .checkgrid{
+      display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px;
+    }
+    @media (max-width: 720px){ .checkgrid{grid-template-columns:1fr} }
+
+    .check{
+      display:flex; gap:10px; align-items:flex-start;
+      padding:10px 12px;
+      border-radius:14px;
+      border:1px solid var(--line2);
+      background:rgba(16,16,26,.40);
+    }
+    .check input{width:18px; margin-top:2px}
+    .check .t{font-size:12px; color:var(--text); margin:0 0 2px}
+    .check .d{font-size:12px; color:var(--muted); margin:0}
+
+    .err{
+      display:none;
+      margin-top:10px;
+      border:1px solid rgba(255,122,122,.25);
+      background:rgba(255,122,122,.08);
+      border-radius:14px;
+      padding:10px 12px;
+      color:var(--muted);
+      font-size:12px;
+    }
+    .err strong{color:var(--text)}
+    .err ul{margin:8px 0 0 18px; padding:0}
+    .err li{margin:6px 0}
 
     details{
       border:1px solid var(--line2);
@@ -318,17 +306,12 @@
       gap:10px;
     }
     details summary::-webkit-details-marker{display:none}
-    .chev{opacity:.8; font-family:var(--mono); transform-origin:center}
+    .chev{opacity:.8; font-family:var(--mono)}
     details[open] .chev{transform:rotate(180deg)}
-    .detailsBody{
-      margin-top:10px;
-      color:var(--muted);
-      font-size:12px;
-    }
+    .detailsBody{margin-top:10px; color:var(--muted); font-size:12px}
     .detailsBody ul{margin:8px 0 0 18px; padding:0}
     .detailsBody li{margin:6px 0}
 
-    /* Footer */
     .footer{
       margin-top:18px; padding:14px 2px 0; color:var(--faint); font-size:12px;
       display:flex; flex-wrap:wrap; gap:10px; align-items:center; justify-content:space-between;
@@ -361,21 +344,23 @@
 </head>
 
 <body>
+  <a class="skip" href="#main">Skip to content</a>
+
   <div class="wrap">
     <!-- Rail -->
-    <div class="rail" role="navigation" aria-label="Gate navigation">
-      <a class="brand" href="/gate/">
+    <div class="rail" role="banner">
+      <div class="brand">
         <div class="mark">N</div>
         <div>
           <h1>Noetfield</h1>
-          <div class="sub">Partner deal registration • Deal ID • RID • tiering • protection</div>
+          <div class="sub">Partner deal registration • Deal ID • RID • board-safe</div>
         </div>
-      </a>
+      </div>
 
-      <div class="nav">
+      <div class="nav" aria-label="Quick links">
         <a class="btn small ghost" href="/gate/">Gate</a>
         <a class="btn small ghost" href="/gate/procurement/">Procurement</a>
-        <a class="btn small ghost" href="/gate/partners/">Partners</a>
+        <a class="btn small ghost" href="/partners/">Partners</a>
         <a class="btn small ghost" href="/gate/partners/structure/">Partner structure</a>
         <a class="btn small ghost" href="/gate/notes/">Notes</a>
         <a class="btn small ghost" href="/status/">Status</a>
@@ -388,7 +373,7 @@
     </div>
 
     <!-- Hero -->
-    <div class="hero">
+    <div class="hero" id="main">
       <div class="kicker">
         <span class="tag mono" id="dealIdTag">NF-PD-—</span>
         <span class="badge"><span class="dot" id="tierDot"></span><span id="tierText">Tier: pending</span></span>
@@ -402,30 +387,30 @@
 
       <h2>Partner Deal Registration</h2>
       <p>
-        Register a partner-sourced opportunity to receive a <strong>Partner Deal ID</strong>, confirm partner tier (Referral / Channel / Prime / Delivery),
-        and route procurement cleanly. Keep it <strong>non-confidential</strong> and procurement-safe.
+        Register a partner-sourced opportunity to receive a <strong>Partner Deal ID</strong>, compute a clear <strong>tier suggestion</strong>,
+        and route <strong>procurement safely</strong>. This page is for <strong>routing only</strong> — keep it <strong>non-confidential</strong>.
       </p>
 
       <div class="alert">
-        <strong class="mono">Do not include:</strong> credentials, secrets, customer data, personal IDs, internal documents, or deal-sensitive pricing.
-        Use this page for routing, tiering, and protection signals only.
+        <strong class="mono">Do not include:</strong> credentials, customer data, personal IDs, internal documents, pricing details, or sensitive deal notes.
+        Use this page for high-level signals and routing.
       </div>
 
-      <div class="steps" aria-label="Process steps">
+      <div class="steps" aria-label="Process overview">
         <div class="step">
           <div class="n">1</div>
           <p class="t"><strong>Register</strong> the opportunity</p>
-          <p class="d">Company + buyer roles + procurement lane + constraints. No confidential details.</p>
+          <p class="d">Company + buyer-side roles + constraints + likely procurement lane.</p>
         </div>
         <div class="step">
           <div class="n">2</div>
-          <p class="t"><strong>Tier + accept</strong> (fast)</p>
-          <p class="d">We confirm tier and accept registration; protection activates upon written acceptance.</p>
+          <p class="t"><strong>Tier + protect</strong> (fast)</p>
+          <p class="d">We confirm tier, accept registration, then activate 90-day protection.</p>
         </div>
         <div class="step">
           <div class="n">3</div>
           <p class="t"><strong>Close clean</strong></p>
-          <p class="d">Route via Invoice/PO if needed; deliver board-ready evidence outputs and a procurement pack.</p>
+          <p class="d">Invoice/PO routing + board-ready artefacts. No oversharing required.</p>
         </div>
       </div>
     </div>
@@ -436,39 +421,44 @@
         <div class="hd">
           <div>
             <h3>Deal details (non-confidential)</h3>
-            <div class="meta">Autosave draft • packet copy/export • email builders • deep-linking (RID + Deal ID)</div>
+            <div class="meta">Draft-safe • packet export • email builders • deep-linkable IDs</div>
           </div>
           <div class="row">
             <button class="btn small primary" type="button" id="genDealBtn" title="Creates a new Partner Deal ID and updates the URL.">New Deal ID</button>
-            <button class="btn small" type="button" id="saveDraftBtn" title="Save a local draft for this Deal ID (browser only).">Save</button>
+            <button class="btn small" type="button" id="saveDraftBtn" title="Save a local draft for this Deal ID (browser only).">Save draft</button>
             <button class="btn small danger" type="button" id="clearDraftBtn" title="Clear the saved local draft for this Deal ID.">Clear</button>
           </div>
         </div>
 
         <div class="bd">
+          <div id="errBox" class="err" role="alert" aria-live="polite">
+            <strong>Fix required items</strong>
+            <ul id="errList"></ul>
+          </div>
+
           <form id="dealForm" autocomplete="on" novalidate>
             <div class="sectionTitle">Partner info</div>
             <div class="formgrid">
               <div>
-                <label for="partnerName">Partner legal / brand name <span class="req">*</span></label>
-                <input id="partnerName" name="partnerName" placeholder="e.g., Northshore MSP Ltd." required />
+                <label for="partnerName">Partner legal / brand name</label>
+                <input id="partnerName" name="partnerName" placeholder="e.g., Northshore MSP Ltd." />
               </div>
               <div>
-                <label for="partnerType">Partner type (self-declared) <span class="req">*</span></label>
-                <select id="partnerType" name="partnerType" required>
-                  <option value="Channel">Channel (co-selling / account owner)</option>
+                <label for="partnerType">Partner type (self-declared)</label>
+                <select id="partnerType" name="partnerType">
+                  <option value="Channel">Channel (co-selling / account influence)</option>
                   <option value="Referral">Referral (warm intro only)</option>
-                  <option value="Delivery">Delivery (implementation partner)</option>
+                  <option value="Delivery">Delivery (implementation / delivery partner)</option>
                   <option value="Alliance">Alliance (co-marketing / ecosystem)</option>
                 </select>
               </div>
               <div>
-                <label for="partnerContact">Partner contact name <span class="req">*</span></label>
-                <input id="partnerContact" name="partnerContact" placeholder="Full name" required />
+                <label for="partnerContact">Partner contact name</label>
+                <input id="partnerContact" name="partnerContact" placeholder="Full name" />
               </div>
               <div>
-                <label for="partnerEmail">Partner contact email <span class="req">*</span></label>
-                <input id="partnerEmail" name="partnerEmail" type="email" placeholder="name@partner.com" required />
+                <label for="partnerEmail">Partner contact email</label>
+                <input id="partnerEmail" name="partnerEmail" type="email" placeholder="name@partner.com" />
               </div>
             </div>
 
@@ -522,6 +512,18 @@
                 <input id="championEmail" name="championEmail" type="email" placeholder="optional@company.com" />
               </div>
               <div>
+                <label>Blockers present (board-safe)</label>
+                <div class="checkgrid" role="group" aria-label="Blockers present">
+                  <label class="check"><input type="checkbox" value="Privacy" data-blocker /><div><p class="t">Privacy</p><p class="d">PII, retention, use limitations</p></div></label>
+                  <label class="check"><input type="checkbox" value="Legal" data-blocker /><div><p class="t">Legal</p><p class="d">Contract / liability posture</p></div></label>
+                  <label class="check"><input type="checkbox" value="Procurement" data-blocker /><div><p class="t">Procurement</p><p class="d">Invoice/PO lane, vendor onboarding</p></div></label>
+                  <label class="check"><input type="checkbox" value="Vendor Risk" data-blocker /><div><p class="t">Vendor Risk</p><p class="d">Security/privacy evidence requests</p></div></label>
+                  <label class="check"><input type="checkbox" value="InfoSec" data-blocker /><div><p class="t">InfoSec</p><p class="d">Controls, monitoring, access boundaries</p></div></label>
+                  <label class="check"><input type="checkbox" value="Records / Retention" data-blocker /><div><p class="t">Records / Retention</p><p class="d">eDiscovery, retention schedules</p></div></label>
+                </div>
+                <div class="hint" style="margin-top:8px">Keep this high-level. Do not add internal ticket IDs or sensitive notes.</div>
+              </div>
+              <div>
                 <label for="buyLane">Likely buying lane</label>
                 <select id="buyLane" name="buyLane">
                   <option value="Invoice">Invoice</option>
@@ -530,27 +532,6 @@
                   <option value="Unknown">Unknown</option>
                 </select>
               </div>
-              <div>
-                <label for="decisionOwner">Likely signer / decision owner</label>
-                <select id="decisionOwner" name="decisionOwner">
-                  <option value="CIO">CIO</option>
-                  <option value="CISO">CISO</option>
-                  <option value="CTO">CTO</option>
-                  <option value="VP IT / Director">VP IT / Director</option>
-                  <option value="Procurement">Procurement</option>
-                  <option value="Unknown">Unknown</option>
-                </select>
-              </div>
-            </div>
-
-            <div class="sectionTitle">Blockers present (select all that apply)</div>
-            <div class="checks" role="group" aria-label="Blockers">
-              <label class="check"><input type="checkbox" name="blockers" value="Privacy"><span><div class="t">Privacy</div><div class="d">Data handling, disclosure, DPIA/PIA posture.</div></span></label>
-              <label class="check"><input type="checkbox" name="blockers" value="Legal"><span><div class="t">Legal</div><div class="d">MSA/SOW/DPA review, terms, liability.</div></span></label>
-              <label class="check"><input type="checkbox" name="blockers" value="Procurement"><span><div class="t">Procurement</div><div class="d">Vendor onboarding, PO/invoice lane, pricing steps.</div></span></label>
-              <label class="check"><input type="checkbox" name="blockers" value="Vendor Risk"><span><div class="t">Vendor Risk</div><div class="d">Security posture, evidence, risk questionnaire.</div></span></label>
-              <label class="check"><input type="checkbox" name="blockers" value="InfoSec"><span><div class="t">InfoSec</div><div class="d">Access, controls, logging, data boundary.</div></span></label>
-              <label class="check"><input type="checkbox" name="blockers" value="Records / Retention"><span><div class="t">Records / Retention</div><div class="d">Retention, eDiscovery, audit trail expectations.</div></span></label>
             </div>
 
             <div class="sectionTitle">Need & timing</div>
@@ -596,10 +577,10 @@
               </div>
             </div>
 
-            <div class="sectionTitle">Sourcing signals (tiering)</div>
+            <div class="sectionTitle">Sourcing signals (tier suggestion)</div>
             <div class="formgrid">
               <div>
-                <label for="partnerSourced">Partner-sourced (your account/network)?</label>
+                <label for="partnerSourced">Is this partner-sourced (your account/network)?</label>
                 <select id="partnerSourced" name="partnerSourced">
                   <option value="yes">Yes</option>
                   <option value="no">No</option>
@@ -615,7 +596,7 @@
                 </select>
               </div>
               <div>
-                <label for="canSupportClose">Support close through signature + payment/PO?</label>
+                <label for="canSupportClose">Can you support close through signature + payment/PO?</label>
                 <select id="canSupportClose" name="canSupportClose">
                   <option value="yes">Yes</option>
                   <option value="no">No</option>
@@ -645,13 +626,13 @@
             <div class="row">
               <label class="row" style="gap:10px; align-items:flex-start;">
                 <input type="checkbox" id="attest1" required style="width:18px; margin-top:3px;" />
-                <span class="hint">I confirm this registration is for routing/tiering and does not contain confidential data.</span>
+                <span class="hint">I confirm this registration is for routing/tiering and does not contain confidential data. <span class="req">*</span></span>
               </label>
             </div>
             <div class="row">
               <label class="row" style="gap:10px; align-items:flex-start;">
                 <input type="checkbox" id="attest2" required style="width:18px; margin-top:3px;" />
-                <span class="hint">I understand deal protection is 90 days <strong>after acceptance</strong> (email confirmation), subject to Partner terms.</span>
+                <span class="hint">I understand deal protection is 90 days <strong>after acceptance</strong> (email confirmation), subject to partner terms. <span class="req">*</span></span>
               </label>
             </div>
           </form>
@@ -671,10 +652,10 @@
             </summary>
             <div class="detailsBody">
               <ul>
-                <li><strong>Referral (15%)</strong>: warm intro only; Noetfield runs the sales cycle. Payable on first paid engagement (Net Fee), after client funds received.</li>
-                <li><strong>Channel (20% + bonus, cap 30%)</strong>: co-selling/account influence; bonus for accelerating close, procurement routing, and repeat volume.</li>
+                <li><strong>Referral (15%)</strong>: warm intro only; Noetfield runs the sales cycle. Paid on first paid engagement (Net Fee), after client funds received.</li>
+                <li><strong>Channel (20% + bonus, cap 30%)</strong>: co-selling/account influence; bonus for accelerating close + procurement routing + volume.</li>
                 <li><strong>Prime (30%)</strong>: eligibility requires partner-sourced + 2 meetings + close support through signature + payment/PO.</li>
-                <li><strong>Delivery</strong>: implementation scope split via SOW/RACI; commercials handled per delivery agreement (commission not default).</li>
+                <li><strong>Delivery</strong>: implementation scope split via SOW/RACI; sales commission not default (commercial handled per delivery agreement).</li>
               </ul>
               <div class="hint" style="margin-top:8px">
                 This page is not a contract. Final terms follow the Partner Agreement and written acceptance.
@@ -682,24 +663,9 @@
             </div>
           </details>
 
-          <details style="margin-top:10px">
-            <summary>
-              Deal protection (90 days) — how it works (summary)
-              <span class="chev">˅</span>
-            </summary>
-            <div class="detailsBody">
-              <ul>
-                <li><strong>Protection is not automatic</strong>: it starts only after Noetfield sends written acceptance (email confirmation).</li>
-                <li><strong>Protection window</strong>: 90 days from acceptance date, covering the specific opportunity registered under the Deal ID.</li>
-                <li><strong>Scope</strong>: intended to protect partner-originated introductions from internal channel conflict, subject to Partner terms and good-faith progression.</li>
-                <li><strong>Audit trail</strong>: keep the registration email and the RID + Deal ID for traceability.</li>
-              </ul>
-            </div>
-          </details>
-
           <div class="fine">
             Net Fee excludes taxes and pass-through costs. Commissions/margins are payable after client funds are received.
-            For procurement routing, use <a href="/gate/procurement/">/gate/procurement/</a> and include your RID + Deal ID.
+            For Invoice/PO routing, use <a href="/gate/procurement/">/gate/procurement/</a> and include RID + Deal ID.
           </div>
         </div>
       </div>
@@ -725,7 +691,7 @@
                 <button class="btn small" type="button" id="copyDealBtn">Copy</button>
                 <button class="btn small" type="button" id="copyDeepLinkBtn" title="Copy this page link with RID + Deal ID.">Copy link</button>
               </div>
-              <div class="hint" style="margin-top:8px">Share this link internally to continue the same Deal ID + RID.</div>
+              <div class="hint" style="margin-top:8px">Share this link internally to keep the same Deal ID + RID.</div>
             </div>
 
             <div class="line">
@@ -750,12 +716,12 @@
             <div class="line">
               <div class="k">Procurement lane</div>
               <div class="v">
-                If the buyer needs Invoice/PO routing, send:
+                If the buyer needs Invoice/PO routing, send them:
                 <div class="row" style="margin-top:10px">
                   <a class="btn small primary" href="/gate/procurement/" id="procLink">Open procurement page</a>
                   <button class="btn small" type="button" id="copyProcLinkBtn">Copy link</button>
                 </div>
-                <div class="hint" style="margin-top:8px">Use the subject line with RID + Deal ID.</div>
+                <div class="hint" style="margin-top:8px">Use subject line with RID + Deal ID.</div>
               </div>
             </div>
 
@@ -798,11 +764,7 @@
   </div>
 
   <script>
-    // ---------------- config ----------------
-    // Change routing address if you prefer (e.g., partnerships@noetfield.com)
-    const ROUTE_EMAIL = "sales@noetfield.com";
-
-    // ---------------- helpers ----------------
+    // ---------- helpers ----------
     const $ = (id)=>document.getElementById(id);
 
     function randAlphaNum(n){
@@ -817,12 +779,6 @@
       const m = String(d.getMonth()+1).padStart(2,"0");
       const day = String(d.getDate()).padStart(2,"0");
       return `${y}${m}${day}`;
-    }
-    function normalizeDomain(s){
-      return (s || "").trim().replace(/^https?:\/\//i,"").replace(/\/.*$/,"");
-    }
-    function getCheckedValues(name){
-      return Array.from(document.querySelectorAll(`input[name="${name}"]:checked`)).map(x=>x.value);
     }
     async function copyText(text){
       try{
@@ -854,6 +810,9 @@
       u.searchParams.set("body", body);
       return u.toString();
     }
+    function normalizeDomain(s){
+      return (s || "").trim().replace(/^https?:\/\//i,"").replace(/\/.*$/,"");
+    }
     function setURLParams(params){
       const url = new URL(location.href);
       Object.entries(params).forEach(([k,v])=>{
@@ -863,7 +822,7 @@
       history.replaceState({}, "", url.toString());
     }
 
-    // ---------------- ID management (Gate-aligned) ----------------
+    // ---------- ID management (Gate-aligned) ----------
     function ensureRID(){
       const qs = new URLSearchParams(location.search);
       const urlRid = qs.get("rid");
@@ -875,11 +834,13 @@
       localStorage.setItem(lsKey, rid);
       return rid;
     }
+
     function newDealID(){
       const stamp = todayYYYYMMDD();
       const seq = String(Math.floor(Math.random()*9000)+1000);
       return `NF-PD-${stamp}-${seq}`;
     }
+
     function ensureDealID(forceNew=false){
       const qs = new URLSearchParams(location.search);
       const urlDeal = qs.get("deal");
@@ -898,11 +859,17 @@
       setURLParams({ deal: id });
       return id;
     }
+
     function draftKey(dealId){ return `nf_pd_draft__${dealId}`; }
 
-    // ---------------- packet ----------------
+    function getSelectedBlockers(){
+      return Array.from(document.querySelectorAll("[data-blocker]"))
+        .filter(cb=>cb.checked)
+        .map(cb=>cb.value);
+    }
+
+    // ---------- packet ----------
     function getFormPacket(){
-      const blockers = getCheckedValues("blockers");
       return {
         rid: $("ridText").textContent,
         partner_deal_id: $("dealIdText").textContent,
@@ -922,9 +889,8 @@
         buyer_side: {
           champion_role: $("championRole").value,
           champion_email: $("championEmail").value.trim(),
-          buying_lane: $("buyLane").value,
-          decision_owner: $("decisionOwner").value,
-          blockers_present: blockers
+          blockers_present: getSelectedBlockers(),
+          buying_lane: $("buyLane").value
         },
         need: {
           primary_pain: $("pain").value,
@@ -967,7 +933,6 @@
       lines.push("Buyer-side");
       lines.push(`- Champion role: ${packet.buyer_side.champion_role}`);
       lines.push(`- Champion email: ${packet.buyer_side.champion_email || "—"}`);
-      lines.push(`- Decision owner: ${packet.buyer_side.decision_owner}`);
       lines.push(`- Blockers: ${(packet.buyer_side.blockers_present || []).join(", ") || "—"}`);
       lines.push(`- Buying lane: ${packet.buyer_side.buying_lane}`);
       lines.push("");
@@ -991,27 +956,40 @@
       lines.push(`- Deal protection understood: ${packet.attestations.deal_protection_understood}`);
       lines.push("");
       lines.push("Operational note");
-      lines.push("- Protection is 90 days after written acceptance by Noetfield (email confirmation), subject to Partner terms.");
+      lines.push("- Protection is 90 days after written acceptance by Noetfield (email confirmation).");
       return lines.join("\n");
     }
 
-    function validateRequired(){
-      const requiredOk =
-        !!$("partnerName").value.trim() &&
-        !!$("partnerContact").value.trim() &&
-        !!$("partnerEmail").value.trim() &&
-        !!$("companyName").value.trim() &&
-        $("attest1").checked &&
-        $("attest2").checked;
+    // ---------- validation (inline, procurement-safe) ----------
+    function validateRequired(show=true){
+      const errors = [];
+      if(!$("companyName").value.trim()) errors.push("Company name is required.");
+      if(!$("championRole").value) errors.push("Champion role is required.");
+      if(!$("pain").value) errors.push("Primary pain is required.");
+      if(!$("attest1").checked) errors.push("Confirm non-confidential attestation.");
+      if(!$("attest2").checked) errors.push("Confirm protection/terms attestation.");
 
-      if(!requiredOk){
-        alert("Please complete required fields: Partner name, partner contact, partner email, company name, and both attestations.");
+      const box = $("errBox");
+      const list = $("errList");
+      list.innerHTML = "";
+
+      if(errors.length){
+        if(show){
+          errors.forEach(e=>{
+            const li=document.createElement("li");
+            li.textContent=e;
+            list.appendChild(li);
+          });
+          box.style.display = "block";
+          box.scrollIntoView({behavior:"smooth", block:"nearest"});
+        }
         return false;
       }
+      box.style.display = "none";
       return true;
     }
 
-    // ---------------- tier computation (simple + explainable) ----------------
+    // ---------- tier computation (simple + explainable) ----------
     function computeTier(packet){
       const ps = packet.tiering_signals.partner_sourced === "yes";
       const meet = packet.tiering_signals.can_arrange_two_meetings === "yes";
@@ -1024,13 +1002,13 @@
 
       if(packet.partner.type === "Delivery"){
         suggested = "Delivery (scope split)";
-        explain = "Delivery Partner: implementation scope split via SOW/RACI. Commercials handled per delivery agreement (not default commission).";
+        explain = "Delivery partner: implementation scope split via SOW/RACI. Commercials handled per delivery agreement (not default commission).";
         dot = "good";
       } else if(ps && meet && close){
         suggested = "Prime (30% — eligibility met)";
         explain = "Prime eligible: partner-sourced + 2 buyer-side meetings + close support through signature + payment/PO.";
         dot = "good";
-      } else if(packet.partner.type === "Referral" || packet.tiering_signals?.partner_sourced === "no"){
+      } else if(packet.partner.type === "Referral"){
         suggested = "Referral (15%)";
         explain = "Referral: warm intro only; Noetfield runs the sales cycle. Paid on first paid engagement (Net Fee), after client funds received.";
         dot = "good";
@@ -1048,13 +1026,12 @@
       return { suggested, explain, dot, primeEligible: (ps && meet && close) };
     }
 
-    // ---------------- draft save/restore (+ autosave) ----------------
+    // ---------- draft save/restore ----------
     function saveDraft(){
       const dealId = $("dealIdText").textContent;
       const k = draftKey(dealId);
       const packet = getFormPacket();
       localStorage.setItem(k, JSON.stringify(packet));
-      localStorage.setItem("nf_partner_deal_autosave_last", new Date().toISOString());
       return true;
     }
 
@@ -1063,9 +1040,9 @@
       const k = draftKey(dealId);
       const raw = localStorage.getItem(k);
       if(!raw) return false;
-
       try{
         const p = JSON.parse(raw);
+
         $("partnerName").value = p.partner?.name || "";
         $("partnerType").value = p.partner?.type || "Channel";
         $("partnerContact").value = p.partner?.contact || "";
@@ -1079,10 +1056,9 @@
         $("championRole").value = p.buyer_side?.champion_role || "Modern Workplace / M365 Owner";
         $("championEmail").value = p.buyer_side?.champion_email || "";
         $("buyLane").value = p.buyer_side?.buying_lane || "Unknown";
-        $("decisionOwner").value = p.buyer_side?.decision_owner || "Unknown";
 
         const blockers = p.buyer_side?.blockers_present || [];
-        Array.from(document.querySelectorAll('input[name="blockers"]')).forEach(cb=>{
+        Array.from(document.querySelectorAll("[data-blocker]")).forEach(cb=>{
           cb.checked = blockers.includes(cb.value);
         });
 
@@ -1111,13 +1087,7 @@
       return true;
     }
 
-    let autosaveTimer = null;
-    function autosaveDebounced(){
-      clearTimeout(autosaveTimer);
-      autosaveTimer = setTimeout(()=>{ saveDraft(); }, 650);
-    }
-
-    // ---------------- render ----------------
+    // ---------- render ----------
     function render(){
       $("y").textContent = new Date().getFullYear();
 
@@ -1130,7 +1100,6 @@
       $("dealIdTag").textContent = dealId;
       $("dealIdTag2").textContent = dealId;
 
-      // keep URL synced
       setURLParams({ rid, deal: dealId });
 
       const packet = getFormPacket();
@@ -1147,12 +1116,10 @@
       if(tier.dot === "bad") dot.classList.add("bad");
 
       const lane = packet.buyer_side.buying_lane;
-      const next = (lane === "PO" || lane === "Invoice")
+      $("nextStep").textContent = (lane === "PO" || lane === "Invoice")
         ? "Email the registration packet now. Then route the buyer to Procurement (Invoice/PO) with RID + Deal ID."
         : "Email the registration packet now. If procurement is required, route via Procurement with RID + Deal ID.";
-      $("nextStep").textContent = next;
 
-      // procurement link with RID + Deal ID
       const proc = new URL(location.origin + "/gate/procurement/");
       proc.searchParams.set("rid", rid);
       proc.searchParams.set("deal", dealId);
@@ -1163,14 +1130,14 @@
         `Pending acceptance. Protection starts after written acceptance by Noetfield (email confirmation) and lasts 90 days. Deal: ${company}.`;
     }
 
-    // ---------------- events ----------------
+    // ---------- events ----------
     window.addEventListener("DOMContentLoaded", () => {
       render();
       restoreDraftIfAny();
       render();
 
-      $("dealForm").addEventListener("input", () => { render(); autosaveDebounced(); });
-      $("dealForm").addEventListener("change", () => { render(); autosaveDebounced(); });
+      $("dealForm").addEventListener("input", () => render());
+      $("dealForm").addEventListener("change", () => render());
 
       $("genDealBtn").addEventListener("click", () => {
         const fresh = ensureDealID(true);
@@ -1189,14 +1156,13 @@
       $("saveDraftBtn").addEventListener("click", () => {
         saveDraft();
         $("saveDraftBtn").textContent = "Saved";
-        setTimeout(()=> $("saveDraftBtn").textContent = "Save", 900);
+        setTimeout(()=> $("saveDraftBtn").textContent = "Save draft", 900);
       });
 
       $("clearDraftBtn").addEventListener("click", () => {
         clearDraft();
         $("clearDraftBtn").textContent = "Cleared";
         setTimeout(()=> $("clearDraftBtn").textContent = "Clear", 900);
-        render();
       });
 
       $("refreshBtn").addEventListener("click", () => render());
@@ -1228,7 +1194,7 @@
       });
 
       async function doCopyPacket(buttonEl, resetText){
-        if(!validateRequired()) return;
+        if(!validateRequired(true)) return;
         const packet = getFormPacket();
         packet.rid = $("ridText").textContent;
         packet.partner_deal_id = $("dealIdText").textContent;
@@ -1243,7 +1209,7 @@
       $("copyPacketBarBtn").addEventListener("click", () => doCopyPacket($("copyPacketBarBtn"), "Copy packet"));
 
       $("downloadJsonBtn").addEventListener("click", () => {
-        if(!validateRequired()) return;
+        if(!validateRequired(true)) return;
         const packet = getFormPacket();
         packet.rid = $("ridText").textContent;
         packet.partner_deal_id = $("dealIdText").textContent;
@@ -1251,7 +1217,7 @@
       });
 
       $("downloadTxtBtn").addEventListener("click", () => {
-        if(!validateRequired()) return;
+        if(!validateRequired(true)) return;
         const packet = getFormPacket();
         packet.rid = $("ridText").textContent;
         packet.partner_deal_id = $("dealIdText").textContent;
@@ -1259,7 +1225,7 @@
       });
 
       function emailRegistration(){
-        if(!validateRequired()) return;
+        if(!validateRequired(true)) return;
 
         const packet = getFormPacket();
         packet.rid = $("ridText").textContent;
@@ -1267,6 +1233,7 @@
 
         const tier = computeTier(packet);
         const subject = `[Partner Deal Registration] ${packet.opportunity.company} — ${packet.partner_deal_id} — RID ${packet.rid}`;
+
         const body =
 `Hello Noetfield Partnerships,
 
@@ -1281,7 +1248,7 @@ Thank you,
 ${packet.partner.contact || "—"}
 ${packet.partner.name || "—"}`;
 
-        location.href = buildMailto(ROUTE_EMAIL, subject, body);
+        location.href = buildMailto("partners@noetfield.com", subject, body);
       }
 
       $("emailRegBtn").addEventListener("click", emailRegistration);
@@ -1290,7 +1257,7 @@ ${packet.partner.name || "—"}`;
       $("emailIntroBtn").addEventListener("click", () => {
         const company = $("companyName").value.trim();
         if(!company){
-          alert("Please add at least the company name.");
+          validateRequired(true);
           return;
         }
         const rid = $("ridText").textContent;
@@ -1298,16 +1265,16 @@ ${packet.partner.name || "—"}`;
         const pain = $("pain").value;
         const offer = $("offerHint").value;
 
-        const subject = `Intro — Noetfield (Copilot governance + procurement pack) — ${company}`;
+        const subject = `Intro — Noetfield (governance + procurement pack) — ${company}`;
         const body =
 `Hi [Buyer Name],
 
-Introducing Noetfield (Sina). They help Microsoft-heavy teams unblock Copilot rollout decisions with board-ready evidence and a procurement pack aligned to privacy/procurement.
+Introducing Noetfield (Sina). Noetfield helps Microsoft-heavy teams make Copilot/GenAI decisions with board-ready evidence and a procurement pack (privacy/procurement aligned).
 
 Why this is relevant: ${pain}
 Suggested entry: ${offer}
 
-If helpful, can we do 15 minutes next week? (Invoice/PO supported.)
+If helpful, can we do 15 minutes next week? We can route via Invoice/PO if needed.
 
 Ref: RID ${rid} • Deal ID ${dealId}`;
 
@@ -1323,4 +1290,3 @@ Ref: RID ${rid} • Deal ID ${dealId}`;
   </script>
 </body>
 </html>
-

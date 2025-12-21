@@ -1,4 +1,6 @@
-<!-- /gate/partners/index.html — Noetfield Partners Gate v3.0 (enterprise tune • lane clarity • deal registration • RID continuity • standards • compact + procurement-safe) -->
+<!-- /gate/partners/index.html — Noetfield Partners Gate v3.1
+     (Deal terms clarified • RID fallback • partner pack • micro-FAQ • SEO schema • tracking hooks)
+-->
 <!doctype html>
 <html lang="en">
 <head>
@@ -6,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <title>Noetfield — Partners</title>
-  <meta name="description" content="Partner entry for Channel, Delivery, and Integration teams. Register partner deals (Deal ID + 90-day protection on acceptance), route procurement with RID continuity, and operate evidence-first governance that survives scrutiny." />
+  <meta name="description" content="Partner entry for Channel, Delivery, and Integration teams. Register partner deals (Deal ID + 90-day protection from Noetfield acceptance), keep RID continuity across Gate/Procurement/Status, and operate evidence-first governance that survives scrutiny." />
   <meta name="robots" content="index,follow" />
   <meta name="author" content="Noetfield Systems Inc." />
   <meta name="theme-color" content="#07070b" />
@@ -19,14 +21,14 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Noetfield" />
   <meta property="og:title" content="Noetfield — Partners" />
-  <meta property="og:description" content="Channel, Delivery, Integration, and Partner Deal Registration (Deal ID + 90-day protection on acceptance) with RID continuity and evidence-first standards." />
+  <meta property="og:description" content="Partner lanes + Deal Registration (Deal ID + protection from Noetfield acceptance). Evidence-first standards, RID routing, procurement-safe motion." />
   <meta property="og:url" content="https://www.noetfield.com/gate/partners/" />
   <meta property="og:image" content="https://www.noetfield.com/noetfield-og.png" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Noetfield — Partners" />
-  <meta name="twitter:description" content="Partner lanes + Deal Registration (Deal ID + protection on acceptance). Evidence-first governance, RID routing, procurement-safe motion." />
+  <meta name="twitter:description" content="Partner lanes + Deal Registration (Deal ID + protection). Evidence-first governance, RID routing, procurement-safe motion." />
   <meta name="twitter:image" content="https://www.noetfield.com/noetfield-og.png" />
 
   <!-- Shell -->
@@ -88,6 +90,66 @@
     .bar strong{color:var(--text);font-weight:950}
     .bar a{border-bottom:1px solid rgba(255,255,255,.18)}
 
+    .twoCol{display:grid;grid-template-columns:1.25fr .75fr;gap:16px;margin:16px 0 0}
+    .panel{
+      border-radius: calc(var(--radius) + 6px);
+      border:1px solid rgba(255,255,255,.11);
+      background:
+        radial-gradient(900px 320px at 22% 0%, rgba(200,163,73,.12), transparent 62%),
+        radial-gradient(900px 320px at 92% 12%, rgba(122,167,255,.07), transparent 66%),
+        rgba(255,255,255,.02);
+      box-shadow: var(--shadow2);
+      padding:14px;
+    }
+    .panel h2{margin:0 0 6px;font-size:16px;font-weight:950;letter-spacing:-.2px}
+    .panel p{margin:0;color:var(--muted2);font-size:12.9px;line-height:1.6}
+    .kvs{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+    .kv{
+      border-radius:14px;border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      padding:10px;
+    }
+    .kv .k{font-size:11.5px;color:var(--muted2)}
+    .kv .v{margin-top:4px;color:var(--text);font-size:12.8px;font-weight:850;line-height:1.35}
+    .kv code{font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace}
+
+    .ridBox{
+      border-radius:16px;border:1px solid rgba(255,255,255,.11);
+      background: rgba(255,255,255,.03);
+      padding:14px;
+    }
+    .ridBox h3{margin:0 0 6px;font-size:14px;font-weight:950;letter-spacing:-.2px}
+    .ridRow{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:10px}
+    .ridTag{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:7px 10px;border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.03);
+      color:var(--muted);font-size:12px;
+    }
+    .ridTag code{color:var(--text);font-weight:900}
+
+    .ctaStrip{
+      margin-top:16px;
+      border-radius: calc(var(--radius) + 6px);
+      border:1px solid rgba(255,255,255,.11);
+      background:
+        radial-gradient(900px 320px at 22% 0%, rgba(200,163,73,.16), transparent 62%),
+        radial-gradient(900px 320px at 92% 12%, rgba(122,167,255,.08), transparent 66%),
+        rgba(255,255,255,.02);
+      box-shadow: var(--shadow2);
+      padding:14px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      align-items:center;
+      justify-content:space-between;
+    }
+    .ctaStrip .left{min-width:260px}
+    .ctaStrip .left h3{margin:0 0 4px;font-size:14px;font-weight:950;letter-spacing:-.2px}
+    .ctaStrip .left p{margin:0;color:var(--muted2);font-size:12.9px;line-height:1.55;max-width:860px}
+    .ctaStrip .right{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+
     .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin:18px 0 18px}
     .card{
       border-radius:var(--radius);
@@ -108,7 +170,6 @@
       background: rgba(255,255,255,.03);
       color:var(--muted);font-size:12px;margin-bottom:10px
     }
-    .badge code{font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace}
     .list{margin:10px 0 0; padding-left:18px; color:var(--muted2); line-height:1.65}
     .list li{margin:6px 0}
     .mini{color:var(--muted2);font-size:12.6px;line-height:1.6}
@@ -120,233 +181,3 @@
     .std p{margin:0;color:var(--muted2);font-size:12.9px;line-height:1.6}
     .std ul{margin:10px 0 0;padding-left:18px;color:var(--muted2);line-height:1.6}
     .std li{margin:6px 0}
-
-    .ctaStrip{
-      margin-top:16px;
-      border-radius: calc(var(--radius) + 6px);
-      border:1px solid rgba(255,255,255,.11);
-      background:
-        radial-gradient(900px 320px at 22% 0%, rgba(200,163,73,.16), transparent 62%),
-        radial-gradient(900px 320px at 92% 12%, rgba(122,167,255,.08), transparent 66%),
-        rgba(255,255,255,.02);
-      box-shadow: var(--shadow2);
-      padding:14px;
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-      align-items:center;
-      justify-content:space-between;
-    }
-    .ctaStrip .left{min-width:260px}
-    .ctaStrip .left h3{margin:0 0 4px;font-size:14px;font-weight:950;letter-spacing:-.2px}
-    .ctaStrip .left p{margin:0;color:var(--muted2);font-size:12.9px;line-height:1.55;max-width:760px}
-    .ctaStrip .right{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
-
-    @media (max-width: 1200px){ .grid{grid-template-columns:1fr 1fr} }
-    @media (max-width: 760px){ .grid{grid-template-columns:1fr} }
-    @media (max-width: 520px){ .actions .btn, .subActions .btn{width:100%} }
-  </style>
-
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"WebPage",
-    "name":"Noetfield — Partners",
-    "url":"https://www.noetfield.com/gate/partners/",
-    "description":"Partner lanes (Channel, Delivery, Integration) plus Partner Deal Registration with Deal ID and RID continuity. Evidence-first standards and procurement-safe routing.",
-    "isPartOf":{"@type":"WebSite","name":"Noetfield","url":"https://www.noetfield.com/"},
-    "publisher":{"@type":"Organization","name":"Noetfield Systems Inc."}
-  }
-  </script>
-</head>
-
-<body>
-  <div class="bg" aria-hidden="true"></div>
-  <a class="skip" href="#main">Skip to content</a>
-
-  <!-- Injected header -->
-  <header id="nfHeader"></header>
-
-  <main id="main" class="wrap">
-    <!-- HERO -->
-    <section class="hero" aria-label="Partners hero">
-      <div class="heroShell">
-        <div class="heroInner">
-          <div class="eyebrow"><span class="dot"></span> Partners • lane routing • Deal ID • evidence-first</div>
-
-          <h1>Partners who ship governance that survives scrutiny</h1>
-
-          <p class="lead">
-            Noetfield partners originate opportunities, deliver board-ready artefacts, and implement controls that keep
-            claims <strong>provable</strong>—without oversharing. Routing stays anchored to a <strong>Request ID (RID)</strong>.
-          </p>
-
-          <div class="metaRow" aria-label="Partner principles">
-            <div class="pill"><strong>Evidence discipline</strong></div>
-            <div class="pill"><strong>Board formatting</strong></div>
-            <div class="pill"><strong>Procurement-safe motion</strong></div>
-            <div class="pill"><strong>RID continuity</strong></div>
-          </div>
-
-          <div class="actions">
-            <a class="btn primary" href="/gate/partners/deal/" data-rid-link>Register a partner deal</a>
-            <a class="btn secondary" href="/gate/partners/intake/" data-rid-link>Start partner intake</a>
-            <a class="btn secondary" href="/status/" data-rid-link>Open Status</a>
-            <a class="btn secondary" href="/gate/" data-rid-link>Back to Gate</a>
-          </div>
-
-          <div class="subActions">
-            <a class="btn secondary" href="/gate/procurement/" data-rid-link>Procurement (Invoice/PO)</a>
-            <a class="btn secondary" href="/gate/partners/structure/" data-rid-link>Partner structure</a>
-            <a class="btn secondary" href="/gate/partners/notes/" data-rid-link>Notes</a>
-          </div>
-
-          <div class="bar">
-            Tracking key: <strong><code data-rid>—</code></strong> stays attached across Gate, Procurement, Status, and submissions.
-            Public pages are <strong>non-confidential</strong> by design.
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- CTA STRIP (new: deal registration emphasis) -->
-    <section class="ctaStrip" aria-label="Deal registration">
-      <div class="left">
-        <h3>Partner Deal Registration</h3>
-        <p>
-          Generate a <strong>Partner Deal ID</strong>, capture tier signals, and route the buyer cleanly. Deal protection is
-          <strong>90 days after acceptance</strong> (email confirmation), subject to partner terms.
-        </p>
-      </div>
-      <div class="right">
-        <a class="btn primary" href="/gate/partners/deal/" data-rid-link>Open deal registration</a>
-        <a class="btn secondary" href="/gate/procurement/" data-rid-link>Open procurement lane</a>
-      </div>
-    </section>
-
-    <!-- LANES (now 4 cards incl Deal lane) -->
-    <section class="grid" aria-label="Partner lanes">
-      <!-- Deal lane -->
-      <div class="card">
-        <div class="hd">
-          <div class="badge">Deal</div>
-          <h2>Register & protect</h2>
-          <p>Issue a Deal ID, capture tier signals, and create a procurement-safe packet for co-selling.</p>
-        </div>
-        <div class="bd">
-          <ul class="list">
-            <li><strong>Deal ID</strong> + RID continuity (deep-linkable)</li>
-            <li><strong>Tier signals</strong>: sourced + meetings + close support</li>
-            <li><strong>Email builders</strong>: registration + warm intro</li>
-          </ul>
-          <p class="mini" style="margin-top:10px">
-            Protection: <strong>90 days after acceptance</strong> (email confirmation).
-          </p>
-          <div class="actions" style="margin-top:12px;">
-            <a class="btn primary" href="/gate/partners/deal/" data-rid-link>Register a deal</a>
-            <a class="btn secondary" href="/gate/procurement/" data-rid-link>Procurement lane</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Channel lane -->
-      <div class="card">
-        <div class="hd">
-          <div class="badge">Channel</div>
-          <h2>Originate</h2>
-          <p>Introduce aligned organizations and use clean packaging, routing, and governed delivery motion.</p>
-        </div>
-        <div class="bd">
-          <ul class="list">
-            <li>ICP-aligned intros (Microsoft-heavy, procurement pressure)</li>
-            <li>Co-selling play: Gate + Procurement + Status continuity</li>
-            <li>Boundary discipline (public vs post-kickoff)</li>
-          </ul>
-          <div class="actions" style="margin-top:12px;">
-            <a class="btn primary" href="/gate/partners/channel/" data-rid-link>Open channel lane</a>
-            <a class="btn secondary" href="/gate/partners/intake/" data-rid-link>Start intake</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Delivery lane -->
-      <div class="card">
-        <div class="hd">
-          <div class="badge">Delivery</div>
-          <h2>Deliver</h2>
-          <p>Deliver Trust Brief / Trust Ledger outputs with evidence capture and board-ready writing.</p>
-        </div>
-        <div class="bd">
-          <ul class="list">
-            <li>Board memo + MAP discipline (Owner / Due / Evidence ID / Status)</li>
-            <li>Fixed-scope habits + measurable acceptance checks</li>
-            <li>Red-line escalation for privacy/security/procurement blockers</li>
-          </ul>
-          <div class="actions" style="margin-top:12px;">
-            <a class="btn primary" href="/gate/partners/delivery/" data-rid-link>Open delivery lane</a>
-            <a class="btn secondary" href="/gate/partners/intake/" data-rid-link>Start intake</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Integration lane -->
-      <div class="card">
-        <div class="hd">
-          <div class="badge">Integration</div>
-          <h2>Implement controls</h2>
-          <p>Wire identity, logging, DLP, retention, and enforcement so claims remain provable over time.</p>
-        </div>
-        <div class="bd">
-          <ul class="list">
-            <li>M365/Purview posture hardening (DLP, retention, audit)</li>
-            <li>Connector/extension governance + least-privilege patterns</li>
-            <li>Operational evidence hooks (exports, labels, audit trail)</li>
-          </ul>
-          <div class="actions" style="margin-top:12px;">
-            <a class="btn primary" href="/gate/partners/integration/" data-rid-link>Open integration lane</a>
-            <a class="btn secondary" href="/gate/partners/intake/" data-rid-link>Start intake</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- STANDARDS -->
-    <section class="standards" aria-label="Partner standards">
-      <div class="std">
-        <h3>Partner standards (non-negotiables)</h3>
-        <p>These rules protect delivery quality and keep outputs defensible.</p>
-        <ul>
-          <li><strong>Public = non-confidential:</strong> no secrets/credentials/customer data/regulated personal data in forms.</li>
-          <li><strong>Named artefacts:</strong> memo/control taxonomy/evidence index formats remain consistent.</li>
-          <li><strong>Evidence IDs:</strong> material claims require traceable references (export, screenshot, policy, log).</li>
-          <li><strong>Red-lines:</strong> escalate blockers fast (privacy/security/procurement) and document disposition.</li>
-          <li><strong>RID discipline:</strong> use RID in subjects, filenames, and status checks.</li>
-        </ul>
-      </div>
-
-      <div class="std">
-        <h3>How onboarding works</h3>
-        <p>Fast validation, then lane activation.</p>
-        <ul>
-          <li>Step 1: Submit partner intake (high-level, non-confidential).</li>
-          <li>Step 2: Lane fit + scope boundaries confirmed.</li>
-          <li>Step 3: Enable routing pages + handoff checklist + evidence patterns.</li>
-          <li>Step 4: Operate with RID-based tracking and Status visibility.</li>
-        </ul>
-        <p style="margin-top:10px;">
-          For buyer procurement (Invoice/PO), use <a href="/gate/procurement/" data-rid-link>Procurement lane</a>.
-          For deal registration, use <a href="/gate/partners/deal/" data-rid-link>Partner Deal Registration</a>.
-        </p>
-      </div>
-    </section>
-
-    <div class="bar">
-      Decision rule: repeatable delivery, clean scope boundaries, and evidence capture habits that scale.<br />
-      A strong partner makes a board decision easy and a regulator conversation calm.
-    </div>
-  </main>
-
-  <!-- Injected footer -->
-  <footer id="nfFooter"></footer>
-</body>
-</html>

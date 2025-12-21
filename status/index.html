@@ -1,5 +1,5 @@
-<!-- /status/index.html — Noetfield Status v2.3
-     (Unified Request ID • Shareable link • Stepper+Kickoff • SLA • Preview-safe • Optional remote JSON provider • Sales rail) -->
+<!-- /status/index.html — Noetfield Status v2.4 (MVP polish)
+     (RID lookup • Share link • Stepper • SLA • Non-confidential • Debug hidden) -->
 <!doctype html>
 <html lang="en">
 <head>
@@ -34,8 +34,8 @@
   <link rel="stylesheet" href="/assets/noetfield-shell.css" />
   <script src="/assets/noetfield-shell.js" defer></script>
 
-  <!-- Page-only styles -->
   <style>
+    /* Polish layer only (keeps shell as source of truth) */
     .hero{padding:22px 0 14px}
     .heroShell{
       position:relative;
@@ -57,7 +57,6 @@
       mask-image: linear-gradient(180deg, black 0%, black 58%, transparent 96%);
     }
     .heroInner{padding:24px 22px}
-
     .eyebrow{
       display:inline-flex; gap:10px; align-items:center;
       color:var(--muted);
@@ -97,7 +96,7 @@
     .card h2{margin:0 0 8px; font-size:18px; letter-spacing:-.2px}
     .card p{margin:0 0 12px; color:var(--muted); line-height:1.7}
 
-    /* Request ID bar */
+    /* RID bar */
     .ridBar{
       display:flex; align-items:center; justify-content:space-between; gap:10px;
       margin-top:12px;
@@ -113,6 +112,7 @@
       white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:520px
     }
     .ridActions{display:flex; gap:8px; align-items:center; flex-wrap:wrap}
+
     .miniBtn{
       font-size:13px;
       border:1px solid rgba(255,255,255,.14);
@@ -128,11 +128,9 @@
       white-space:nowrap;
     }
     .miniBtn.primary{border-color: rgba(200,163,73,.38); background: rgba(200,163,73,.10)}
-    .miniBtn.danger{border-color: rgba(255,90,90,.24); background: rgba(255,90,90,.06)}
     .miniBtn:hover{border-color:rgba(255,255,255,.22); background:rgba(255,255,255,.06)}
     .miniBtn:active{transform: translateY(1px)}
 
-    /* Input */
     label{display:block; font-size:12px; color:var(--muted2); margin:0 0 6px}
     input{
       width:100%;
@@ -149,7 +147,6 @@
     input:focus{box-shadow: var(--focus); background: rgba(12,12,18,.62)}
     .actions{display:flex; gap:12px; flex-wrap:wrap; align-items:center; margin-top:12px}
 
-    /* Message */
     .msg{
       display:none;
       margin-top:12px;
@@ -162,7 +159,6 @@
       line-height:1.6;
     }
 
-    /* Status result */
     .resultWrap{margin-top:12px}
     .badge{
       display:inline-flex; align-items:center; gap:8px;
@@ -175,7 +171,6 @@
       white-space:nowrap;
     }
     .badge.ok{border-color: rgba(45,227,138,.22); background: rgba(45,227,138,.06); color:#dfffea}
-    .badge.warn{border-color: rgba(255,216,103,.22); background: rgba(255,216,103,.06); color:#fff3d2}
     .badge.muted{border-color: rgba(255,255,255,.12); background: rgba(255,255,255,.03); color:var(--muted)}
     .bDot{
       width:8px; height:8px; border-radius:50%;
@@ -241,8 +236,6 @@
     .box strong{color:var(--text); font-weight:900}
     .box a{border-bottom:1px solid rgba(255,255,255,.18)}
     .hr{height:1px; background:rgba(255,255,255,.10); margin:14px 0}
-
-    .row2{display:grid; grid-template-columns:1fr 1fr; gap:12px}
     .small{font-size:12.5px; color:var(--muted2); line-height:1.65}
 
     details{
@@ -254,7 +247,6 @@
     summary{cursor:pointer; color:var(--text); font-weight:800}
     details p{margin:10px 0 0; color:var(--muted); line-height:1.7}
 
-    /* A11y focus */
     a:focus-visible, button:focus-visible, input:focus-visible{
       outline:2px solid rgba(200,163,73,.65);
       outline-offset:3px;
@@ -273,7 +265,6 @@
       .ridActions .miniBtn{flex:1 1 auto}
       .kRow{flex-direction:column}
       .kRow .k{min-width:0}
-      .row2{grid-template-columns:1fr}
       .steps{grid-template-columns:1fr 1fr}
     }
   </style>
@@ -311,11 +302,11 @@
     </section>
 
     <section class="grid" aria-label="Status grid">
-      <!-- LEFT: Lookup + Result -->
+      <!-- LEFT -->
       <section class="card" aria-label="Status lookup">
         <div class="hd">
           <h2>Status lookup</h2>
-          <p>Paste a Request ID (example: <span class="mono">NF-G-YYYYMMDD-HHMMSS-1234</span>) or use the saved ID from Gate.</p>
+          <p>Paste a Request ID or use the saved ID from Gate.</p>
 
           <div class="ridBar" aria-label="Current Request ID bar">
             <div style="min-width:0">
@@ -331,15 +322,16 @@
         </div>
 
         <div class="bd">
-          <label for="ridInput">Request ID</label>
-          <input id="ridInput" type="text" inputmode="latin" autocomplete="off" spellcheck="false" placeholder="NF-G-... or NF-P-..." />
-
-          <div class="actions">
-            <button class="btn" id="checkBtn" type="button">Check status</button>
-            <button class="btn secondary" id="useSavedBtn" type="button">Use saved ID</button>
-            <button class="btn secondary" id="resetBtn" type="button">Reset</button>
-            <a class="btn secondary" href="/gate/">Back to Gate</a>
-          </div>
+          <form id="ridForm" novalidate>
+            <label for="ridInput">Request ID</label>
+            <input id="ridInput" type="text" inputmode="latin" autocomplete="off" spellcheck="false" placeholder="NF-G-... or NF-P-..." />
+            <div class="actions">
+              <button class="btn" type="submit">Check status</button>
+              <button class="btn secondary" id="useSavedBtn" type="button">Use saved ID</button>
+              <button class="btn secondary" id="resetBtn" type="button">Reset</button>
+              <a class="btn secondary" href="/gate/">Back to Gate</a>
+            </div>
+          </form>
 
           <div id="msg" class="msg" role="status" aria-live="polite"></div>
 
@@ -364,7 +356,7 @@
                 <div class="step" data-step="ack"><div class="k">Step 2</div><div class="v">Acknowledged</div></div>
                 <div class="step" data-step="routing"><div class="k">Step 3</div><div class="v">Routing review</div></div>
                 <div class="step" data-step="kickoff"><div class="k">Step 4</div><div class="v">Kickoff scheduled</div></div>
-                <div class="step" data-step="secure"><div class="k">Step 5</div><div class="v">Secure exchange (if needed)</div></div>
+                <div class="step" data-step="secure"><div class="k">Step 5</div><div class="v">Secure exchange</div></div>
                 <div class="step" data-step="delivery"><div class="k">Step 6</div><div class="v">Delivery started</div></div>
                 <div class="step" data-step="closed"><div class="k">Step 7</div><div class="v">Delivered / closed</div></div>
               </div>
@@ -392,39 +384,23 @@
             </div>
 
             <div class="box">
-              <strong>Non-confidential posture:</strong> This page shows status only (no documents, no client data, no security details).
-              If fit is confirmed, a safer exchange method can be proposed after kickoff.
+              <strong>Non-confidential posture:</strong> This page shows status only. If fit is confirmed, a safer exchange channel can be proposed after kickoff.
             </div>
 
-            <!-- Optional debug (hidden unless ?debug=1) -->
+            <!-- Hidden debug tools (only ?debug=1) -->
             <div class="box" id="debugBox" hidden>
-              <strong>Debug tools:</strong> simulate step for UI testing only (no backend).
-              <div class="row2" style="margin-top:10px;">
-                <div>
-                  <label for="debugStep">Simulated step</label>
-                  <input id="debugStep" type="text" placeholder="received | ack | routing | kickoff | secure | delivery | closed" />
-                </div>
-                <div style="display:flex; align-items:flex-end; gap:10px;">
-                  <button class="miniBtn primary" type="button" id="applyDebugBtn">Apply</button>
-                  <button class="miniBtn danger" type="button" id="clearDebugBtn">Clear</button>
-                </div>
-              </div>
-              <div class="small" style="margin-top:8px;">Tip: append <span class="mono">?debug=1</span> to the URL.</div>
-
-              <div class="hr"></div>
-              <div class="small">
-                Optional future: set <span class="mono">window.NF_STATUS_ENDPOINT</span> (JSON) to replace preview with live status.
-              </div>
+              <strong>Debug tools:</strong> simulate step (UI only).
+              <div class="small" style="margin-top:8px;">Append <span class="mono">?debug=1</span> to enable.</div>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- RIGHT: How it works + SLA + Links + Sales rail -->
+      <!-- RIGHT -->
       <aside class="card" aria-label="How it works">
         <div class="hd">
           <h2>How Status works</h2>
-          <p>Clear expectations for governance routing.</p>
+          <p>Clear expectations for routing.</p>
         </div>
         <div class="bd">
           <div class="box"><strong>Shows:</strong> Request ID, track/lane hints, next step, SLA windows, and non-sensitive progress.</div>
@@ -433,8 +409,7 @@
           <div class="box" style="margin-top:14px;">
             <strong>Response windows (America/Vancouver):</strong><br />
             Acknowledgement: 1 business day (typical).<br />
-            Routing decision: 1–2 business days (typical).<br />
-            Urgency: handled case-by-case when clearly stated.
+            Routing decision: 1–2 business days (typical).
           </div>
 
           <details style="margin-top:14px;">
@@ -443,7 +418,7 @@
           </details>
 
           <details style="margin-top:12px;">
-            <summary>Need a procurement-ready start?</summary>
+            <summary>Need procurement-ready start?</summary>
             <p>Use <a href="/gate/procurement/">Invoice / PO</a> for vendor onboarding, or <a href="/gate/sales/">Purchase</a> for card-ready starts.</p>
           </details>
 
@@ -456,8 +431,7 @@
           </div>
 
           <div class="box" style="margin-top:14px;">
-            <strong>Security posture (high-level):</strong><br />
-            Do not submit confidential information via public forms. If fit is confirmed, a safer channel may be proposed.
+            <strong>Security posture:</strong> Do not submit confidential information via public forms.
           </div>
         </div>
       </aside>
@@ -466,17 +440,16 @@
 
   <footer id="nfFooter"></footer>
 
-  <!-- Page-only JS -->
   <script>
     (function(){
       var ridText = document.getElementById("ridText");
       var ridInput = document.getElementById("ridInput");
+      var ridForm = document.getElementById("ridForm");
 
       var copyRidBtn = document.getElementById("copyRidBtn");
       var shareRidBtn = document.getElementById("shareRidBtn");
       var openNextBtn = document.getElementById("openNextBtn");
 
-      var checkBtn = document.getElementById("checkBtn");
       var useSavedBtn = document.getElementById("useSavedBtn");
       var resetBtn = document.getElementById("resetBtn");
 
@@ -495,13 +468,9 @@
       var shareUrl = document.getElementById("shareUrl");
 
       var debugBox = document.getElementById("debugBox");
-      var debugStep = document.getElementById("debugStep");
-      var applyDebugBtn = document.getElementById("applyDebugBtn");
-      var clearDebugBtn = document.getElementById("clearDebugBtn");
 
       var STEPS = ["received","ack","routing","kickoff","secure","delivery","closed"];
 
-      // Canonical RID storage key (also keep compatibility keys)
       var RID_CANON = "nf_rid";
       var RID_KEYS = [
         "nf_rid",
@@ -518,20 +487,16 @@
       }
       function norm(x){ return (x || "").trim().toLowerCase(); }
 
-      // Strict-ish RID: allow alnum + dash + underscore; max 80 chars
       function sanitizeRID(x){
         x = (x || "").trim();
         if (!x) return "";
         x = x.replace(/[^a-zA-Z0-9\-_]/g, "").slice(0, 80);
         return x;
       }
-
       function isLikelyRID(x){
         if (!x) return false;
         if (x.length < 12) return false;
-        // If starts with NF-, require at least two more dashes
         if (/^NF[-_]/i.test(x)) return (x.match(/-/g) || []).length >= 3;
-        // Legacy: require at least one dash or underscore (avoid random strings)
         return /[-_]/.test(x);
       }
 
@@ -546,9 +511,6 @@
         } else if (kind === "err") {
           msg.style.borderColor = "rgba(255,90,90,.25)";
           msg.style.background = "rgba(255,90,90,.06)";
-        } else if (kind === "warn") {
-          msg.style.borderColor = "rgba(255,216,103,.22)";
-          msg.style.background = "rgba(255,216,103,.06)";
         } else {
           msg.style.borderColor = "rgba(255,255,255,.12)";
           msg.style.background = "rgba(255,255,255,.03)";
@@ -587,7 +549,6 @@
 
       function saveRID(rid){
         try { localStorage.setItem(RID_CANON, rid); } catch(e){}
-        // also keep old key used by Gate for continuity
         try { localStorage.setItem("nf_gate_rid", rid); } catch(e){}
       }
 
@@ -607,11 +568,8 @@
         try { track = (localStorage.getItem("nf_gate_track") || "").trim(); } catch(e){}
         try { lane = (localStorage.getItem("nf_gate_lane") || "").trim(); } catch(e){}
         if (!lane) { try { lane = (localStorage.getItem("nf_partner_lane") || "").trim(); } catch(e){} }
-
         track = (track || "").trim().toLowerCase();
         lane = (lane || "").trim().toLowerCase();
-
-        // Reasonable defaults
         if (!track) track = "gate";
         return { track: track, lane: lane };
       }
@@ -620,7 +578,6 @@
         var r = (rid || "").toUpperCase();
         if (r.indexOf("NF-P-") !== -1 || r.indexOf("NF-P_") !== -1) return { track: "partners", lane: "" };
         if (r.indexOf("NF-PR-") !== -1) return { track: "procurement", lane: "" };
-
         if (r.indexOf("QS") !== -1 || r.indexOf("QUICKSCAN") !== -1) return { track: "gate", lane: "copilot-quickscan" };
         if (r.indexOf("READINESS") !== -1) return { track: "gate", lane: "copilot-readiness" };
         if (r.indexOf("TB") !== -1 || r.indexOf("TRUSTBRIEF") !== -1) return { track: "gate", lane: "trust-brief" };
@@ -629,13 +586,11 @@
       }
 
       function parseCreatedFromRID(rid){
-        // Expected: NF-?-YYYYMMDD-HHMMSS-####
         var m = (rid || "").match(/(\d{8})-(\d{6})/);
         if (!m) return "";
         var d = m[1], t = m[2];
         var yyyy = d.slice(0,4), mm = d.slice(4,6), dd = d.slice(6,8);
         var HH = t.slice(0,2), MI = t.slice(2,4), SS = t.slice(4,6);
-        // Local display (browser timezone). Keep it simple and transparent.
         try {
           var dt = new Date(yyyy + "-" + mm + "-" + dd + "T" + HH + ":" + MI + ":" + SS);
           if (isNaN(dt.getTime())) return "";
@@ -646,41 +601,23 @@
       }
 
       function nextStepFor(track, lane, rid){
-        // Partners track
-        if (track === "partners") {
-          if (lane === "integration") return { text: "Open Partners • Integration lane.", href: "/gate/partners/integration/?rid=" + encodeURIComponent(rid) };
-          if (lane === "channel") return { text: "Open Partners • Channel lane.", href: "/gate/partners/channel/?rid=" + encodeURIComponent(rid) };
-          if (lane === "delivery") return { text: "Open Partners • Delivery lane.", href: "/gate/partners/delivery/?rid=" + encodeURIComponent(rid) };
-          return { text: "Open Partners Gate and select a lane.", href: "/gate/partners/?rid=" + encodeURIComponent(rid) };
-        }
-
-        // Procurement track
-        if (track === "procurement") {
-          return { text: "Open Procurement path (Invoice / PO).", href: "/gate/procurement/?rid=" + encodeURIComponent(rid) };
-        }
-
-        // Product lanes (gate track)
+        if (track === "partners") return { text: "Open Partners Gate and select a lane.", href: "/gate/partners/?rid=" + encodeURIComponent(rid) };
+        if (track === "procurement") return { text: "Open Procurement path (Invoice / PO).", href: "/gate/procurement/?rid=" + encodeURIComponent(rid) };
         if (lane === "copilot-quickscan") return { text: "Copilot QuickScan — review details and intake.", href: "/copilot/quickscan/?rid=" + encodeURIComponent(rid) };
         if (lane === "copilot-readiness") return { text: "Copilot Readiness — choose tier (2/4/6 weeks).", href: "/copilot/readiness/?rid=" + encodeURIComponent(rid) };
         if (lane === "trust-brief") return { text: "Trust Brief — confirm scope and stakeholders.", href: "/trust-brief/?rid=" + encodeURIComponent(rid) };
         if (lane === "trust-ledger") return { text: "Trust Ledger — confirm evidence and cadence.", href: "/trust-ledger/?rid=" + encodeURIComponent(rid) };
-
-        // Default safe routing
         return { text: "Open Gate Intake to (re)submit and confirm routing.", href: "/gate/intake/?rid=" + encodeURIComponent(rid) };
       }
 
       function setActiveStep(step){
         var s = norm(step);
         if (STEPS.indexOf(s) === -1) s = "received";
-
         var nodes = document.querySelectorAll(".step[data-step]");
         nodes.forEach(function(n){ n.classList.remove("active"); });
-
-        // Activate all up to current (progress feel)
         var idx = STEPS.indexOf(s);
         for (var i=0; i<=idx; i++){
-          var sel = '.step[data-step="'+STEPS[i]+'"]';
-          var el = document.querySelector(sel);
+          var el = document.querySelector('.step[data-step="'+STEPS[i]+'"]');
           if (el) el.classList.add("active");
         }
         return s;
@@ -692,60 +629,19 @@
         return base + "?rid=" + encodeURIComponent(rid);
       }
 
-      function setButtons(rid, ns){
-        if (openNextBtn) openNextBtn.href = ns.href;
-        if (shareUrl) shareUrl.textContent = makeShareUrl(rid);
-      }
-
       function statusLabelFor(step){
         return (step === "closed") ? "Delivered / closed" :
                (step === "delivery") ? "Delivery started" :
-               (step === "secure") ? "Secure exchange (if needed)" :
+               (step === "secure") ? "Secure exchange" :
                (step === "kickoff") ? "Kickoff scheduled" :
                (step === "routing") ? "Routing review" :
                (step === "ack") ? "Acknowledged" :
                "Received";
       }
 
-      function laneLabel(x){
-        x = (x || "").trim();
-        if (!x) return "—";
-        return x;
-      }
+      function labelOrDash(x){ x = (x || "").trim(); return x ? x : "—"; }
 
-      function trackLabel(x){
-        x = (x || "").trim();
-        if (!x) return "gate";
-        return x;
-      }
-
-      async function tryRemoteStatus(rid){
-        // Optional: allow later connection to a JSON status provider without rewriting the page.
-        // Provide one of:
-        // 1) window.NF_STATUS_ENDPOINT = "https://.../status?rid="
-        // 2) ?src=https://.../status.json (expects JSON)
-        var src = (qs("src") || "").trim();
-        var endpoint = (window.NF_STATUS_ENDPOINT || "").trim();
-
-        var url = "";
-        if (src) url = src;
-        else if (endpoint) url = endpoint + encodeURIComponent(rid);
-
-        if (!url) return null;
-
-        try {
-          var res = await fetch(url, { method: "GET", mode: "cors", cache: "no-store" });
-          if (!res.ok) return null;
-          var data = await res.json();
-          // Expected minimal schema (non-confidential):
-          // { step, track, lane, updated_at, notes, sla }
-          return data || null;
-        } catch(e){
-          return null;
-        }
-      }
-
-      async function render(rid){
+      function render(rid){
         rid = sanitizeRID(rid);
 
         if (!rid || !isLikelyRID(rid)){
@@ -757,63 +653,34 @@
         hideMsg();
         saveRID(rid);
 
-        // Determine track/lane: storage first, then RID hints
         var meta = getTrackLane();
         var hinted = inferFromRID(rid);
 
-        var track = meta.track || "";
-        var lane = meta.lane || "";
+        var track = meta.track || hinted.track || "gate";
+        var lane  = meta.lane  || hinted.lane  || "";
 
-        if ((!lane && hinted.lane) || lane === "unknown") lane = hinted.lane;
-        if ((!track && hinted.track) || track === "unknown") track = hinted.track;
-        if (!track) track = "gate";
-
-        // Step: allow remote provider override, otherwise preview from query/storage
-        var remote = await tryRemoteStatus(rid);
-
-        var step = "";
-        var updatedAt = "";
-        var notes = "";
-        var sla = "";
-
-        if (remote && typeof remote === "object"){
-          step = norm(remote.step || "");
-          updatedAt = (remote.updated_at || remote.updatedAt || "").toString();
-          notes = (remote.notes || "").toString();
-          sla = (remote.sla || "").toString();
-
-          if (remote.track) track = norm(remote.track);
-          if (remote.lane) lane = norm(remote.lane);
-        } else {
-          step = norm(qs("step"));
-          if (!step) {
-            try { step = norm(localStorage.getItem("nf_status_step") || ""); } catch(e){}
-          }
-          if (!step) step = "received";
-          updatedAt = new Date().toLocaleString();
-          notes = "Status store not connected. Preview uses saved routing context and Request ID (non-confidential).";
-          sla = "Acknowledgement: 1 business day • Routing: 1–2 business days";
+        // Preview step only (MVP)
+        var step = norm(qs("step"));
+        if (!step) {
+          try { step = norm(localStorage.getItem("nf_status_step") || ""); } catch(e){}
         }
-
+        if (!step) step = "received";
         step = setActiveStep(step);
 
         var ns = nextStepFor(track, lane, rid);
-        setButtons(rid, ns);
+        if (openNextBtn) openNextBtn.href = ns.href;
 
-        if (modeBadge){
-          if (remote) modeBadge.innerHTML = '<span class="bDot" aria-hidden="true"></span><span>Live mode</span>';
-          else modeBadge.innerHTML = '<span class="bDot" aria-hidden="true"></span><span>Preview mode</span>';
-        }
-
-        if (updatedText) updatedText.textContent = "Updated: " + (updatedAt || new Date().toLocaleString());
+        if (modeBadge) modeBadge.innerHTML = '<span class="bDot" aria-hidden="true"></span><span>Preview mode</span>';
+        if (updatedText) updatedText.textContent = "Updated: " + new Date().toLocaleString();
         if (statusBadge) statusBadge.textContent = statusLabelFor(step);
-        if (trackBadge) trackBadge.textContent = "Track: " + trackLabel(track);
-        if (laneBadge) laneBadge.textContent = "Lane: " + laneLabel(lane);
+
+        if (trackBadge) trackBadge.textContent = "Track: " + labelOrDash(track);
+        if (laneBadge)  laneBadge.textContent  = "Lane: " + labelOrDash(lane);
 
         var created = parseCreatedFromRID(rid);
         if (createdBadge) createdBadge.textContent = "Created: " + (created || "—");
 
-        if (slaText && sla) slaText.textContent = sla;
+        if (slaText) slaText.textContent = "Acknowledgement: 1 business day • Routing: 1–2 business days";
 
         if (nextStep){
           nextStep.innerHTML = "";
@@ -822,7 +689,6 @@
           a.textContent = ns.text;
           nextStep.appendChild(a);
 
-          // Add a secondary procurement shortcut (still non-confidential)
           var br = document.createElement("div");
           br.style.marginTop = "6px";
           br.className = "small";
@@ -830,7 +696,8 @@
           nextStep.appendChild(br);
         }
 
-        if (notesText) notesText.textContent = notes || "—";
+        if (notesText) notesText.textContent = "Status store not connected (MVP preview). This page remains non-confidential.";
+        if (shareUrl) shareUrl.textContent = makeShareUrl(rid);
 
         if (ridText) ridText.textContent = rid;
         if (ridInput && ridInput.value !== rid) ridInput.value = rid;
@@ -838,7 +705,7 @@
         if (resultWrap) resultWrap.hidden = false;
       }
 
-      // init: accept rid from ?rid=, then #hash, then localStorage
+      // Init
       var initialRID = sanitizeRID(qs("rid"));
       if (!initialRID) {
         var h = (window.location.hash || "").replace("#","").trim();
@@ -849,14 +716,15 @@
       if (ridText) ridText.textContent = initialRID || "—";
       if (ridInput) ridInput.value = initialRID || "";
 
-      // debug toggle
+      // Debug UI hidden unless ?debug=1
       var debug = norm(qs("debug")) === "1";
       if (debugBox) debugBox.hidden = !debug;
 
       if (initialRID) render(initialRID);
 
-      if (checkBtn){
-        checkBtn.addEventListener("click", function(){
+      if (ridForm){
+        ridForm.addEventListener("submit", function(ev){
+          ev.preventDefault();
           var x = sanitizeRID(ridInput ? ridInput.value : "");
           if (!x || !isLikelyRID(x)){
             if (resultWrap) resultWrap.hidden = true;
@@ -884,27 +752,21 @@
       if (resetBtn){
         resetBtn.addEventListener("click", function(){
           try{
-            var keys = RID_KEYS.concat([
-              "nf_gate_track","nf_gate_lane","nf_partner_lane",
-              "nf_status_step","nf_request_meta"
-            ]);
+            var keys = RID_KEYS.concat(["nf_gate_track","nf_gate_lane","nf_partner_lane","nf_status_step"]);
             keys.forEach(function(k){ try{ localStorage.removeItem(k); }catch(e){} });
           }catch(e){}
           if (ridText) ridText.textContent = "—";
           if (ridInput) ridInput.value = "";
           if (resultWrap) resultWrap.hidden = true;
           setActiveStep("received");
-          setMsg("Reset complete. Paste a Request ID or use Gate Intake.", "warn");
+          setMsg("Reset complete. Paste a Request ID or use Gate Intake.", "ok");
         });
       }
 
       if (copyRidBtn){
         copyRidBtn.addEventListener("click", async function(){
           var x = sanitizeRID((ridInput && ridInput.value) ? ridInput.value : (ridText ? ridText.textContent : ""));
-          if (!x || x === "—"){
-            setMsg("No Request ID to copy.", "err");
-            return;
-          }
+          if (!x || x === "—"){ setMsg("No Request ID to copy.", "err"); return; }
           var ok = await copyText(x);
           copyRidBtn.textContent = ok ? "Copied" : "Copy failed";
           setTimeout(function(){ copyRidBtn.textContent = "Copy"; }, 1200);
@@ -914,53 +776,22 @@
       if (shareRidBtn){
         shareRidBtn.addEventListener("click", async function(){
           var x = sanitizeRID((ridInput && ridInput.value) ? ridInput.value : (ridText ? ridText.textContent : ""));
-          if (!x || x === "—"){
-            setMsg("No Request ID to share.", "err");
-            return;
-          }
+          if (!x || x === "—"){ setMsg("No Request ID to share.", "err"); return; }
 
           var url = makeShareUrl(x);
 
-          // Prefer native share if available
           try{
             if (navigator.share){
               await navigator.share({ title: "Noetfield — Status", text: "Request status (non-confidential):", url: url });
               setMsg("Shared via system share sheet.", "ok");
               return;
             }
-          }catch(e){
-            // fall back to copy
-          }
+          }catch(e){}
 
           var ok = await copyText(url);
           shareRidBtn.textContent = ok ? "Link copied" : "Copy failed";
           setTimeout(function(){ shareRidBtn.textContent = "Share"; }, 1400);
-          if (ok) setMsg("Shareable link copied. This link is non-confidential and shows high-level status only.", "ok");
-        });
-      }
-
-      // Debug: simulate step (UI only)
-      if (applyDebugBtn && debugStep){
-        applyDebugBtn.addEventListener("click", function(){
-          var s = norm(debugStep.value);
-          if (STEPS.indexOf(s) === -1){
-            setMsg("Invalid step. Use: received | ack | routing | kickoff | secure | delivery | closed", "err");
-            return;
-          }
-          try { localStorage.setItem("nf_status_step", s); } catch(e){}
-          setActiveStep(s);
-          var x = sanitizeRID((ridInput && ridInput.value) ? ridInput.value : "");
-          if (x) render(x);
-          setMsg("Simulated step applied (preview only).", "ok");
-        });
-      }
-      if (clearDebugBtn){
-        clearDebugBtn.addEventListener("click", function(){
-          try { localStorage.removeItem("nf_status_step"); } catch(e){}
-          setActiveStep("received");
-          var x = sanitizeRID((ridInput && ridInput.value) ? ridInput.value : "");
-          if (x) render(x);
-          setMsg("Simulated step cleared.", "ok");
+          if (ok) setMsg("Shareable link copied (non-confidential).", "ok");
         });
       }
     })();

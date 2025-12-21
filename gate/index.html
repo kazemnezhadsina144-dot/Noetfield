@@ -1,4 +1,4 @@
-<!-- /gate/index.html — Noetfield Gate v4.1 (Pro polish: explicit procurement page link • quick links • URL deep-linking • safer copy • rail + mobile dual CTA) -->
+<!-- /gate/index.html — Noetfield Gate v4.2 (enterprise polish • safer copy • offer deep-linking • wizard + rail sync • procurement email builder + mailto) -->
 <!doctype html>
 <html lang="en">
 <head>
@@ -34,7 +34,7 @@
   <script src="/assets/noetfield-shell.js" defer></script>
 
   <style>
-    /* Readiness-style hero */
+    /* Hero */
     .hero{padding:18px 0 12px}
     .heroShell{
       position:relative;
@@ -100,14 +100,7 @@
     .notice strong{ color:var(--text); font-weight:950; }
     .notice a{ border-bottom:1px solid rgba(255,255,255,.18); }
 
-    /* Quick links */
-    .quickLinks{
-      margin-top:14px;
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      align-items:center;
-    }
+    .quickLinks{margin-top:14px; display:flex; gap:10px; flex-wrap:wrap; align-items:center;}
 
     /* Layout */
     .grid{
@@ -453,22 +446,19 @@
         <div class="heroInner">
           <div class="eyebrow"><span class="dot"></span> Primary entry • enterprise-first • procurement-aware</div>
 
-          <h1>Start a package. Keep it procurement-ready.</h1>
+          <h1>Choose a start. Keep procurement calm.</h1>
 
           <p class="lead">
             Market-standard packaging for Microsoft 365 Copilot adoption.
             Default enterprise path: <strong>Copilot Readiness (4 weeks — 15,000 CAD)</strong>.
-            Procurement lane (Invoice/PO) and a non-confidential intake path are always available.
+            Invoice/PO is supported, and public intake stays non-confidential by design.
           </p>
 
           <div class="actions" aria-label="Primary actions">
             <a class="btn primary" href="/copilot/readiness/" data-rid-link>Open Copilot Readiness</a>
             <a class="btn secondary" href="/copilot/quickscan/" data-rid-link>Open QuickScan (5–7 days)</a>
 
-            <!-- explicit procurement page link (this solves “no visible procurement link”) -->
             <a class="btn secondary" href="/gate/procurement/" data-rid-link>Open Procurement (Invoice / PO)</a>
-
-            <!-- in-page procurement builder anchor (optional) -->
             <a class="btn secondary" href="#procurement">On-page approval builder</a>
 
             <a class="btn secondary" href="/gate/sales/" data-rid-link>Start (Sales)</a>
@@ -486,6 +476,7 @@
             <a class="btn" href="/trust-brief/" data-rid-link>Trust Brief</a>
             <a class="btn" href="/playbook/" data-rid-link>Playbook</a>
             <a class="btn secondary" href="/status/" data-rid-link>Status</a>
+            <a class="btn secondary" href="/gate/partners/" data-rid-link>Partners</a>
           </div>
 
           <div class="notice" role="note">
@@ -504,7 +495,7 @@
         <section class="card" id="packages" aria-label="Packages">
           <div class="hd">
             <h2 class="cardTitle">Packages</h2>
-            <p class="muted">Select an offer. The right rail updates the best start path and procurement summary.</p>
+            <p class="muted">Select an offer. The rail updates the best start path and procurement summary.</p>
           </div>
 
           <div class="bd">
@@ -873,7 +864,7 @@
                 </div>
               </article>
 
-              <!-- Other offers (compact) -->
+              <!-- Other offers -->
               <div class="section" aria-label="Other packages">
                 <div class="sectionTitle">Other packages</div>
                 <p class="sectionDesc">For broader AI governance beyond Copilot rollout.</p>
@@ -1010,7 +1001,7 @@
           </div>
         </section>
 
-        <!-- ROUTER (unchanged from your v4.0 except small logic improvements in script below) -->
+        <!-- ROUTER -->
         <section class="card" id="router" aria-label="Wizard router" style="margin-top:14px;">
           <div class="hd">
             <h2 class="cardTitle">Need a fast route?</h2>
@@ -1069,7 +1060,7 @@
                     </div>
                   </label>
                 </div>
-                <div class="hint" id="hint1" role="status">Select one option to continue.</div>
+                <div class="hint" id="hint1" role="status" aria-live="polite">Select one option to continue.</div>
               </div>
 
               <div id="wizardStep2" hidden>
@@ -1104,7 +1095,7 @@
                     </div>
                   </label>
                 </div>
-                <div class="hint" id="hint2" role="status">Select one option to generate a recommendation.</div>
+                <div class="hint" id="hint2" role="status" aria-live="polite">Select one option to generate a recommendation.</div>
               </div>
 
               <div class="reco" id="recoCard" hidden aria-label="Recommendation">
@@ -1119,7 +1110,7 @@
                 </div>
 
                 <div class="hint" style="margin-top:10px;">
-                  Applying updates the selected offer and the Purchase panel (right rail).
+                  Applying updates the selected offer and the Purchase rail.
                 </div>
               </div>
 
@@ -1203,6 +1194,7 @@
                 <div class="procActions">
                   <button class="btn primary" type="button" id="genBtn">Generate email</button>
                   <button class="btn secondary" type="button" id="copyBtn" disabled>Copy</button>
+                  <a class="btn secondary" id="mailtoBtn" href="#" hidden>Open in email app</a>
                   <a class="btn secondary" href="/gate/sales/" data-rid-link>Go to Sales</a>
                   <a class="btn" href="/gate/procurement/" data-rid-link>Open Procurement page</a>
                 </div>
@@ -1232,10 +1224,7 @@
               <a class="btn" id="railStartIntake" href="#" data-rid-link>Start intake</a>
               <a class="btn secondary" id="railDetails" href="#" data-rid-link>View details</a>
 
-              <!-- explicit procurement page link -->
               <a class="btn secondary" href="/gate/procurement/" data-rid-link>Procurement (Invoice/PO)</a>
-
-              <!-- anchor builder (optional) -->
               <a class="btn secondary" href="#procurement">On-page builder</a>
             </div>
 
@@ -1243,7 +1232,7 @@
 
             <div class="box">
               <div><strong>Request ID:</strong> <code data-rid>—</code></div>
-              <div style="margin-top:6px;">Share this Gate page internally. RID is preserved on Sales/links.</div>
+              <div style="margin-top:6px;">Share this Gate page internally. RID is preserved on links.</div>
               <div style="margin-top:6px;">
                 Samples:
                 <a href="/trust-ledger/sample-report/board-memo.pdf" data-rid-link>Board memo</a> ·
@@ -1282,13 +1271,25 @@
       function $(id){ return document.getElementById(id); }
       function qsa(sel){ try { return Array.prototype.slice.call(document.querySelectorAll(sel)); } catch(_) { return []; } }
 
-      // Minimal RID helper (non-conflicting). If shell already provides RID, this reads it.
+      /**
+       * RID resolution strategy:
+       * 1) if Shell exposes a RID (window.NoetfieldShell.getRID or window.NF.getRID), use it
+       * 2) else use rid query param
+       * 3) else generate + persist in localStorage (nf_rid)
+       */
       function getRid(){
+        try{
+          if (window.NoetfieldShell && typeof window.NoetfieldShell.getRID === "function") return window.NoetfieldShell.getRID();
+          if (window.NF && typeof window.NF.getRID === "function") return window.NF.getRID();
+        } catch(_) {}
+
         try {
           var u = new URL(window.location.href);
-          var rid = (u.searchParams.get("rid") || "").trim();
-          if (rid) return rid;
+          var ridQ = (u.searchParams.get("rid") || "").trim();
+          if (ridQ) return ridQ;
+        } catch(_) {}
 
+        try{
           var k = "nf_rid";
           var cur = (localStorage.getItem(k) || "").trim();
           if (!cur){
@@ -1296,7 +1297,7 @@
             localStorage.setItem(k, cur);
           }
           return cur;
-        } catch(e){
+        } catch(_){
           return "NF-" + Date.now().toString(36).toUpperCase();
         }
       }
@@ -1320,8 +1321,8 @@
         });
       }
 
-      // Offer selection state
-      var STORAGE_KEY = "nf_gate_offer_v4";
+      // Offer selection
+      var STORAGE_KEY = "nf_gate_offer_v4_2";
       var DEFAULT_OFFER = "readiness_standard";
 
       var offers = qsa(".offer");
@@ -1336,7 +1337,7 @@
       var bottomBtn = $("bottomBtn");
       var bottomProcBtn = $("bottomProcBtn");
 
-      // Router elements
+      // Router
       var routerOpenBtn = $("routerOpenBtn");
       var routerCard = $("routerCard");
       var wizardResetBtn = $("wizardResetBtn");
@@ -1352,9 +1353,10 @@
       var recoPrimary = $("recoPrimary");
       var recoApplyBtn = $("recoApplyBtn");
 
-      // Procurement builder elements
+      // Procurement builder
       var genBtn = $("genBtn");
       var copyBtn = $("copyBtn");
+      var mailtoBtn = $("mailtoBtn");
       var out = $("out");
       var org = $("org");
       var requester = $("requester");
@@ -1372,12 +1374,12 @@
         return null;
       }
 
-      function setUrlOfferParam(id){
+      function replaceQueryParam(key, value){
         try{
           var u = new URL(window.location.href);
-          u.searchParams.set("offer", id);
-          // preserve any existing rid param too
-          history.replaceState({}, "", u.pathname + "?" + u.searchParams.toString() + u.hash);
+          if (value == null || value === "") u.searchParams.delete(key);
+          else u.searchParams.set(key, value);
+          history.replaceState({}, "", u.pathname + (u.searchParams.toString() ? ("?" + u.searchParams.toString()) : "") + u.hash);
         } catch(_) {}
       }
 
@@ -1392,7 +1394,7 @@
         try { localStorage.setItem(STORAGE_KEY, selectedOfferId); } catch(_) {}
 
         // deep-link for internal sharing
-        setUrlOfferParam(selectedOfferId);
+        replaceQueryParam("offer", selectedOfferId);
 
         var name = el.getAttribute("data-name") || "—";
         var dur = el.getAttribute("data-duration") || "—";
@@ -1412,11 +1414,9 @@
         bottomText.innerHTML = "<strong>Selected:</strong> " + name;
         bottomBtn.setAttribute("href", salesHref);
 
-        // keep procurement CTA stable
         if (bottomProcBtn) bottomProcBtn.setAttribute("href", "/gate/procurement/");
 
-        var rid = getRid();
-        applyRidToLinks(rid);
+        applyRidToLinks(getRid());
       }
 
       function readInitialOffer(){
@@ -1539,8 +1539,7 @@
         recoPrimary.setAttribute("href", primary);
         recoCard.hidden = false;
 
-        var rid = getRid();
-        applyRidToLinks(rid);
+        applyRidToLinks(getRid());
       }
 
       function wizardProgress(){
@@ -1558,8 +1557,7 @@
           recoCard.hidden = true;
         }
         if (sit && tim){
-          var rec = computeReco(sit, tim);
-          renderReco(rec);
+          renderReco(computeReco(sit, tim));
         }
       }
 
@@ -1573,6 +1571,7 @@
         var sales = o ? (o.getAttribute("data-sales") || "/gate/sales/") : "/gate/sales/";
 
         var rid = getRid();
+
         function withRid(path){
           try{
             var u = new URL(path, window.location.origin);
@@ -1620,6 +1619,28 @@
         lines.push("- Public intake is non-confidential by design (no secrets/credentials/regulated personal data).");
         lines.push("- Secure sharing options can be confirmed after kickoff if needed.");
         return lines.join("\n");
+      }
+
+      function buildMailtoFromEmailText(emailText){
+        // Expects "Subject: ..." on first line, then body.
+        try{
+          var lines = (emailText || "").split("\n");
+          var subj = "";
+          var bodyLines = [];
+          if (lines.length && lines[0].toLowerCase().indexOf("subject:") === 0){
+            subj = lines[0].slice(8).trim();
+            bodyLines = lines.slice(1);
+          } else {
+            subj = "Approval request — Noetfield";
+            bodyLines = lines;
+          }
+          var body = bodyLines.join("\n").trim();
+          var href = "mailto:?subject=" + encodeURIComponent(subj) + "&body=" + encodeURIComponent(body);
+          // Guard against very long mailto (some clients truncate). Still useful for many cases.
+          return href;
+        } catch(_){
+          return "mailto:";
+        }
       }
 
       async function copyText(text){
@@ -1684,6 +1705,11 @@
         genBtn.addEventListener("click", function(){
           out.value = buildApprovalEmail();
           copyBtn.disabled = !out.value;
+
+          if (mailtoBtn){
+            mailtoBtn.hidden = !out.value;
+            mailtoBtn.setAttribute("href", buildMailtoFromEmailText(out.value));
+          }
         });
       }
       if (copyBtn){
@@ -1694,16 +1720,5 @@
       }
     })();
   </script>
-
-  <!--
-    SETUP NOTES
-    - Deploy as: /gate/index.html
-    - Required pages/paths assumed:
-      - /gate/sales/
-      - /gate/procurement/  (explicit link is now first-class)
-      - /gate/intake/       (or your preferred intake endpoint)
-    - Deep link:
-      - /gate/?offer=readiness_standard&rid=NF-...
-  -->
 </body>
 </html>

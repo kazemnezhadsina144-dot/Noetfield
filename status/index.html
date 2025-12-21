@@ -1,4 +1,5 @@
-<!-- /status/index.html — Noetfield Status v2.2 (Request ID tracker • shareable link • stepper • SLA • debug-safe preview) -->
+<!-- /status/index.html — Noetfield Status v2.3
+     (Unified Request ID • Shareable link • Stepper+Kickoff • SLA • Preview-safe • Optional remote JSON provider • Sales rail) -->
 <!doctype html>
 <html lang="en">
 <head>
@@ -109,7 +110,7 @@
     .ridLabel{font-size:11px; letter-spacing:.28em; text-transform:uppercase; color:var(--muted2)}
     .ridValue{
       font-weight:800; color:var(--text); font-size:13px;
-      white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:560px
+      white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:520px
     }
     .ridActions{display:flex; gap:8px; align-items:center; flex-wrap:wrap}
     .miniBtn{
@@ -191,7 +192,7 @@
     }
     .steps{
       display:grid;
-      grid-template-columns: repeat(6, 1fr);
+      grid-template-columns: repeat(7, 1fr);
       gap:10px;
       margin-top:10px;
     }
@@ -222,7 +223,7 @@
       border-top:1px solid rgba(255,255,255,.08);
     }
     .kRow:first-child{border-top:0; padding-top:0}
-    .kRow .k{color:var(--muted2); font-size:12px; letter-spacing:.12em; text-transform:uppercase; min-width:140px}
+    .kRow .k{color:var(--muted2); font-size:12px; letter-spacing:.12em; text-transform:uppercase; min-width:160px}
     .kRow .v{color:var(--text); font-size:13.5px; line-height:1.55; flex:1}
     .muted{color:var(--muted2)}
     .mono{font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace}
@@ -252,6 +253,13 @@
     }
     summary{cursor:pointer; color:var(--text); font-weight:800}
     details p{margin:10px 0 0; color:var(--muted); line-height:1.7}
+
+    /* A11y focus */
+    a:focus-visible, button:focus-visible, input:focus-visible{
+      outline:2px solid rgba(200,163,73,.65);
+      outline-offset:3px;
+      border-radius:12px;
+    }
 
     @media (max-width: 980px){
       .grid{grid-template-columns:1fr}
@@ -316,7 +324,7 @@
             </div>
             <div class="ridActions">
               <button class="miniBtn" type="button" id="copyRidBtn">Copy</button>
-              <button class="miniBtn" type="button" id="shareRidBtn">Share link</button>
+              <button class="miniBtn" type="button" id="shareRidBtn">Share</button>
               <a class="miniBtn primary" id="openNextBtn" href="/gate/intake/">Open next step</a>
             </div>
           </div>
@@ -348,15 +356,17 @@
                 <span class="badge ok" id="statusBadge">Received</span>
                 <span class="badge muted" id="trackBadge">Track: —</span>
                 <span class="badge muted" id="laneBadge">Lane: —</span>
+                <span class="badge muted" id="createdBadge">Created: —</span>
               </div>
 
               <div class="steps" id="steps">
                 <div class="step" data-step="received"><div class="k">Step 1</div><div class="v">Received</div></div>
                 <div class="step" data-step="ack"><div class="k">Step 2</div><div class="v">Acknowledged</div></div>
                 <div class="step" data-step="routing"><div class="k">Step 3</div><div class="v">Routing review</div></div>
-                <div class="step" data-step="secure"><div class="k">Step 4</div><div class="v">Secure channel (if needed)</div></div>
-                <div class="step" data-step="delivery"><div class="k">Step 5</div><div class="v">Delivery started</div></div>
-                <div class="step" data-step="closed"><div class="k">Step 6</div><div class="v">Delivered / closed</div></div>
+                <div class="step" data-step="kickoff"><div class="k">Step 4</div><div class="v">Kickoff scheduled</div></div>
+                <div class="step" data-step="secure"><div class="k">Step 5</div><div class="v">Secure exchange (if needed)</div></div>
+                <div class="step" data-step="delivery"><div class="k">Step 6</div><div class="v">Delivery started</div></div>
+                <div class="step" data-step="closed"><div class="k">Step 7</div><div class="v">Delivered / closed</div></div>
               </div>
             </div>
 
@@ -366,11 +376,15 @@
                 <div class="v" id="nextStep">—</div>
               </div>
               <div class="kRow">
+                <div class="k">SLA (typical)</div>
+                <div class="v" id="slaText">Acknowledgement: 1 business day • Routing: 1–2 business days</div>
+              </div>
+              <div class="kRow">
                 <div class="k">Notes</div>
                 <div class="v muted" id="notesText">—</div>
               </div>
               <div class="kRow">
-                <div class="k">Share</div>
+                <div class="k">Share link</div>
                 <div class="v">
                   <span class="mono" id="shareUrl" style="word-break:break-all;">—</span>
                 </div>
@@ -379,7 +393,7 @@
 
             <div class="box">
               <strong>Non-confidential posture:</strong> This page shows status only (no documents, no client data, no security details).
-              If fit is confirmed, a safer exchange method can be proposed.
+              If fit is confirmed, a safer exchange method can be proposed after kickoff.
             </div>
 
             <!-- Optional debug (hidden unless ?debug=1) -->
@@ -388,7 +402,7 @@
               <div class="row2" style="margin-top:10px;">
                 <div>
                   <label for="debugStep">Simulated step</label>
-                  <input id="debugStep" type="text" placeholder="received | ack | routing | secure | delivery | closed" />
+                  <input id="debugStep" type="text" placeholder="received | ack | routing | kickoff | secure | delivery | closed" />
                 </div>
                 <div style="display:flex; align-items:flex-end; gap:10px;">
                   <button class="miniBtn primary" type="button" id="applyDebugBtn">Apply</button>
@@ -396,19 +410,24 @@
                 </div>
               </div>
               <div class="small" style="margin-top:8px;">Tip: append <span class="mono">?debug=1</span> to the URL.</div>
+
+              <div class="hr"></div>
+              <div class="small">
+                Optional future: set <span class="mono">window.NF_STATUS_ENDPOINT</span> (JSON) to replace preview with live status.
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- RIGHT: How it works + SLA + Links -->
+      <!-- RIGHT: How it works + SLA + Links + Sales rail -->
       <aside class="card" aria-label="How it works">
         <div class="hd">
           <h2>How Status works</h2>
           <p>Clear expectations for governance routing.</p>
         </div>
         <div class="bd">
-          <div class="box"><strong>Shows:</strong> Request ID, track/lane hints, next step, and non-sensitive progress.</div>
+          <div class="box"><strong>Shows:</strong> Request ID, track/lane hints, next step, SLA windows, and non-sensitive progress.</div>
           <div class="box"><strong>Does not show:</strong> internal assessments, client data, documents, or security details.</div>
 
           <div class="box" style="margin-top:14px;">
@@ -425,16 +444,15 @@
 
           <details style="margin-top:12px;">
             <summary>Need a procurement-ready start?</summary>
-            <p>Use <a href="/gate/sales/">Purchase / Start</a> (invoice/PO path) or go to <a href="/gate/">Gate</a> for routing.</p>
+            <p>Use <a href="/gate/procurement/">Invoice / PO</a> for vendor onboarding, or <a href="/gate/sales/">Purchase</a> for card-ready starts.</p>
           </details>
 
           <div class="box" style="margin-top:14px;">
-            <strong>Useful:</strong><br />
-            <a href="/gate/intake/">Gate Intake</a> ·
-            <a href="/gate/sales/">Purchase</a> ·
-            <a href="/copilot/">Copilot hub</a> ·
-            <a href="/privacy/">Privacy</a> ·
-            <a href="/terms/">Terms</a>
+            <strong>Recommended paths:</strong><br />
+            <a href="/copilot/quickscan/">Copilot QuickScan</a> ·
+            <a href="/copilot/readiness/">Copilot Readiness</a> ·
+            <a href="/trust-brief/">Trust Brief</a> ·
+            <a href="/trust-ledger/">Trust Ledger</a>
           </div>
 
           <div class="box" style="margin-top:14px;">
@@ -470,7 +488,9 @@
       var statusBadge = document.getElementById("statusBadge");
       var trackBadge = document.getElementById("trackBadge");
       var laneBadge = document.getElementById("laneBadge");
+      var createdBadge = document.getElementById("createdBadge");
       var nextStep = document.getElementById("nextStep");
+      var slaText = document.getElementById("slaText");
       var notesText = document.getElementById("notesText");
       var shareUrl = document.getElementById("shareUrl");
 
@@ -479,7 +499,18 @@
       var applyDebugBtn = document.getElementById("applyDebugBtn");
       var clearDebugBtn = document.getElementById("clearDebugBtn");
 
-      var STEPS = ["received","ack","routing","secure","delivery","closed"];
+      var STEPS = ["received","ack","routing","kickoff","secure","delivery","closed"];
+
+      // Canonical RID storage key (also keep compatibility keys)
+      var RID_CANON = "nf_rid";
+      var RID_KEYS = [
+        "nf_rid",
+        "nf_request_id",
+        "nf_gate_rid",
+        "nf_partner_rid",
+        "nf_gate_last_submitted_rid",
+        "nf_partner_last_submitted_rid"
+      ];
 
       function qs(name){
         try { return new URLSearchParams(window.location.search || "").get(name) || ""; }
@@ -487,20 +518,21 @@
       }
       function norm(x){ return (x || "").trim().toLowerCase(); }
 
-      // Strict-ish RID: allow alnum + dash + underscore; require starts with NF-
+      // Strict-ish RID: allow alnum + dash + underscore; max 80 chars
       function sanitizeRID(x){
         x = (x || "").trim();
         if (!x) return "";
-        x = x.replace(/[^a-zA-Z0-9\-_]/g, "").slice(0, 72);
-        if (!/^NF[-_]/i.test(x)) return x; // allow legacy, but we prefer NF-
+        x = x.replace(/[^a-zA-Z0-9\-_]/g, "").slice(0, 80);
         return x;
       }
 
       function isLikelyRID(x){
         if (!x) return false;
-        if (x.length < 10) return false;
-        if (!/^NF[-_]/i.test(x)) return true; // allow legacy
-        return true;
+        if (x.length < 12) return false;
+        // If starts with NF-, require at least two more dashes
+        if (/^NF[-_]/i.test(x)) return (x.match(/-/g) || []).length >= 3;
+        // Legacy: require at least one dash or underscore (avoid random strings)
+        return /[-_]/.test(x);
       }
 
       function setMsg(text, kind){
@@ -522,7 +554,6 @@
           msg.style.background = "rgba(255,255,255,.03)";
         }
       }
-
       function hideMsg(){
         if (!msg) return;
         msg.style.display = "none";
@@ -554,13 +585,20 @@
         }catch(e){ return fallbackCopy(text); }
       }
 
+      function saveRID(rid){
+        try { localStorage.setItem(RID_CANON, rid); } catch(e){}
+        // also keep old key used by Gate for continuity
+        try { localStorage.setItem("nf_gate_rid", rid); } catch(e){}
+      }
+
       function getSavedRID(){
-        var rid = "";
-        try { rid = sanitizeRID(localStorage.getItem("nf_gate_rid") || ""); } catch(e){}
-        if (!rid) { try { rid = sanitizeRID(localStorage.getItem("nf_partner_rid") || ""); } catch(e){} }
-        if (!rid) { try { rid = sanitizeRID(localStorage.getItem("nf_gate_last_submitted_rid") || ""); } catch(e){} }
-        if (!rid) { try { rid = sanitizeRID(localStorage.getItem("nf_partner_last_submitted_rid") || ""); } catch(e){} }
-        return rid;
+        for (var i=0; i<RID_KEYS.length; i++){
+          try {
+            var v = sanitizeRID(localStorage.getItem(RID_KEYS[i]) || "");
+            if (v) return v;
+          } catch(e){}
+        }
+        return "";
       }
 
       function getTrackLane(){
@@ -570,45 +608,65 @@
         try { lane = (localStorage.getItem("nf_gate_lane") || "").trim(); } catch(e){}
         if (!lane) { try { lane = (localStorage.getItem("nf_partner_lane") || "").trim(); } catch(e){} }
 
-        // Normalize defaults
-        track = (track || "").trim();
-        lane = (lane || "").trim();
+        track = (track || "").trim().toLowerCase();
+        lane = (lane || "").trim().toLowerCase();
 
+        // Reasonable defaults
         if (!track) track = "gate";
-        return { track: track.toLowerCase(), lane: lane.toLowerCase() };
+        return { track: track, lane: lane };
       }
 
       function inferFromRID(rid){
-        // Optional heuristic: RID prefix hints can override empty storage
-        // (Keeps backward compatibility; does NOT expose confidential data.)
         var r = (rid || "").toUpperCase();
+        if (r.indexOf("NF-P-") !== -1 || r.indexOf("NF-P_") !== -1) return { track: "partners", lane: "" };
+        if (r.indexOf("NF-PR-") !== -1) return { track: "procurement", lane: "" };
 
-        // Simple patterns (safe guesses only)
-        if (r.includes("NF-P-") || r.includes("NF-P_")) return { track: "partners", lane: "" };
-        if (r.includes("QS") || r.includes("QUICKSCAN")) return { track: "gate", lane: "copilot-quickscan" };
-        if (r.includes("READINESS")) return { track: "gate", lane: "copilot-readiness" };
-        if (r.includes("TB") || r.includes("TRUSTBRIEF")) return { track: "gate", lane: "trust-brief" };
-        if (r.includes("TL") || r.includes("TRUSTLEDGER")) return { track: "gate", lane: "trust-ledger" };
+        if (r.indexOf("QS") !== -1 || r.indexOf("QUICKSCAN") !== -1) return { track: "gate", lane: "copilot-quickscan" };
+        if (r.indexOf("READINESS") !== -1) return { track: "gate", lane: "copilot-readiness" };
+        if (r.indexOf("TB") !== -1 || r.indexOf("TRUSTBRIEF") !== -1) return { track: "gate", lane: "trust-brief" };
+        if (r.indexOf("TL") !== -1 || r.indexOf("TRUSTLEDGER") !== -1) return { track: "gate", lane: "trust-ledger" };
         return { track: "", lane: "" };
       }
 
-      function nextStepFor(track, lane){
+      function parseCreatedFromRID(rid){
+        // Expected: NF-?-YYYYMMDD-HHMMSS-####
+        var m = (rid || "").match(/(\d{8})-(\d{6})/);
+        if (!m) return "";
+        var d = m[1], t = m[2];
+        var yyyy = d.slice(0,4), mm = d.slice(4,6), dd = d.slice(6,8);
+        var HH = t.slice(0,2), MI = t.slice(2,4), SS = t.slice(4,6);
+        // Local display (browser timezone). Keep it simple and transparent.
+        try {
+          var dt = new Date(yyyy + "-" + mm + "-" + dd + "T" + HH + ":" + MI + ":" + SS);
+          if (isNaN(dt.getTime())) return "";
+          return dt.toLocaleString();
+        } catch(e){
+          return "";
+        }
+      }
+
+      function nextStepFor(track, lane, rid){
         // Partners track
         if (track === "partners") {
-          if (lane === "integration") return { text: "Open Partners • Integration lane.", href: "/gate/partners/integration/" };
-          if (lane === "channel") return { text: "Open Partners • Channel lane.", href: "/gate/partners/channel/" };
-          if (lane === "delivery") return { text: "Open Partners • Delivery lane.", href: "/gate/partners/delivery/" };
-          return { text: "Open Partners Gate and select a lane.", href: "/gate/partners/" };
+          if (lane === "integration") return { text: "Open Partners • Integration lane.", href: "/gate/partners/integration/?rid=" + encodeURIComponent(rid) };
+          if (lane === "channel") return { text: "Open Partners • Channel lane.", href: "/gate/partners/channel/?rid=" + encodeURIComponent(rid) };
+          if (lane === "delivery") return { text: "Open Partners • Delivery lane.", href: "/gate/partners/delivery/?rid=" + encodeURIComponent(rid) };
+          return { text: "Open Partners Gate and select a lane.", href: "/gate/partners/?rid=" + encodeURIComponent(rid) };
+        }
+
+        // Procurement track
+        if (track === "procurement") {
+          return { text: "Open Procurement path (Invoice / PO).", href: "/gate/procurement/?rid=" + encodeURIComponent(rid) };
         }
 
         // Product lanes (gate track)
-        if (lane === "copilot-quickscan") return { text: "Review Copilot QuickScan details and intake.", href: "/copilot/quickscan/" };
-        if (lane === "copilot-readiness") return { text: "Review Copilot Readiness Assessment and start path.", href: "/copilot/readiness/" };
-        if (lane === "trust-brief") return { text: "Review Trust Brief and expect follow-up within SLA.", href: "/trust-brief/" };
-        if (lane === "trust-ledger") return { text: "Review Trust Ledger and next-step exports.", href: "/trust-ledger/" };
+        if (lane === "copilot-quickscan") return { text: "Copilot QuickScan — review details and intake.", href: "/copilot/quickscan/?rid=" + encodeURIComponent(rid) };
+        if (lane === "copilot-readiness") return { text: "Copilot Readiness — choose tier (2/4/6 weeks).", href: "/copilot/readiness/?rid=" + encodeURIComponent(rid) };
+        if (lane === "trust-brief") return { text: "Trust Brief — confirm scope and stakeholders.", href: "/trust-brief/?rid=" + encodeURIComponent(rid) };
+        if (lane === "trust-ledger") return { text: "Trust Ledger — confirm evidence and cadence.", href: "/trust-ledger/?rid=" + encodeURIComponent(rid) };
 
         // Default safe routing
-        return { text: "Open Gate Intake to (re)submit and confirm routing.", href: "/gate/intake/" };
+        return { text: "Open Gate Intake to (re)submit and confirm routing.", href: "/gate/intake/?rid=" + encodeURIComponent(rid) };
       }
 
       function setActiveStep(step){
@@ -639,8 +697,57 @@
         if (shareUrl) shareUrl.textContent = makeShareUrl(rid);
       }
 
-      function render(rid){
+      function statusLabelFor(step){
+        return (step === "closed") ? "Delivered / closed" :
+               (step === "delivery") ? "Delivery started" :
+               (step === "secure") ? "Secure exchange (if needed)" :
+               (step === "kickoff") ? "Kickoff scheduled" :
+               (step === "routing") ? "Routing review" :
+               (step === "ack") ? "Acknowledged" :
+               "Received";
+      }
+
+      function laneLabel(x){
+        x = (x || "").trim();
+        if (!x) return "—";
+        return x;
+      }
+
+      function trackLabel(x){
+        x = (x || "").trim();
+        if (!x) return "gate";
+        return x;
+      }
+
+      async function tryRemoteStatus(rid){
+        // Optional: allow later connection to a JSON status provider without rewriting the page.
+        // Provide one of:
+        // 1) window.NF_STATUS_ENDPOINT = "https://.../status?rid="
+        // 2) ?src=https://.../status.json (expects JSON)
+        var src = (qs("src") || "").trim();
+        var endpoint = (window.NF_STATUS_ENDPOINT || "").trim();
+
+        var url = "";
+        if (src) url = src;
+        else if (endpoint) url = endpoint + encodeURIComponent(rid);
+
+        if (!url) return null;
+
+        try {
+          var res = await fetch(url, { method: "GET", mode: "cors", cache: "no-store" });
+          if (!res.ok) return null;
+          var data = await res.json();
+          // Expected minimal schema (non-confidential):
+          // { step, track, lane, updated_at, notes, sla }
+          return data || null;
+        } catch(e){
+          return null;
+        }
+      }
+
+      async function render(rid){
         rid = sanitizeRID(rid);
+
         if (!rid || !isLikelyRID(rid)){
           if (resultWrap) resultWrap.hidden = true;
           setMsg("Enter a valid Request ID (non-confidential).", "err");
@@ -648,6 +755,7 @@
         }
 
         hideMsg();
+        saveRID(rid);
 
         // Determine track/lane: storage first, then RID hints
         var meta = getTrackLane();
@@ -660,29 +768,52 @@
         if ((!track && hinted.track) || track === "unknown") track = hinted.track;
         if (!track) track = "gate";
 
-        var ns = nextStepFor(track, lane);
+        // Step: allow remote provider override, otherwise preview from query/storage
+        var remote = await tryRemoteStatus(rid);
 
-        // Step: from debug param/localStorage (safe preview only)
-        var step = norm(qs("step"));
-        if (!step) {
-          try { step = norm(localStorage.getItem("nf_status_step") || ""); } catch(e){}
+        var step = "";
+        var updatedAt = "";
+        var notes = "";
+        var sla = "";
+
+        if (remote && typeof remote === "object"){
+          step = norm(remote.step || "");
+          updatedAt = (remote.updated_at || remote.updatedAt || "").toString();
+          notes = (remote.notes || "").toString();
+          sla = (remote.sla || "").toString();
+
+          if (remote.track) track = norm(remote.track);
+          if (remote.lane) lane = norm(remote.lane);
+        } else {
+          step = norm(qs("step"));
+          if (!step) {
+            try { step = norm(localStorage.getItem("nf_status_step") || ""); } catch(e){}
+          }
+          if (!step) step = "received";
+          updatedAt = new Date().toLocaleString();
+          notes = "Status store not connected. Preview uses saved routing context and Request ID (non-confidential).";
+          sla = "Acknowledgement: 1 business day • Routing: 1–2 business days";
         }
-        if (!step) step = "received";
+
         step = setActiveStep(step);
 
-        // Mode badge: preview until backend exists
-        if (modeBadge) modeBadge.innerHTML = '<span class="bDot" aria-hidden="true"></span><span>Preview mode</span>';
-        if (updatedText) updatedText.textContent = "Updated: " + new Date().toLocaleString();
+        var ns = nextStepFor(track, lane, rid);
+        setButtons(rid, ns);
 
-        if (statusBadge) statusBadge.textContent = (step === "closed") ? "Delivered / closed" :
-                                                   (step === "delivery") ? "Delivery started" :
-                                                   (step === "secure") ? "Secure exchange (if needed)" :
-                                                   (step === "routing") ? "Routing review" :
-                                                   (step === "ack") ? "Acknowledged" :
-                                                   "Received";
+        if (modeBadge){
+          if (remote) modeBadge.innerHTML = '<span class="bDot" aria-hidden="true"></span><span>Live mode</span>';
+          else modeBadge.innerHTML = '<span class="bDot" aria-hidden="true"></span><span>Preview mode</span>';
+        }
 
-        if (trackBadge) trackBadge.textContent = "Track: " + (track || "gate");
-        if (laneBadge) laneBadge.textContent = "Lane: " + (lane ? lane : "—");
+        if (updatedText) updatedText.textContent = "Updated: " + (updatedAt || new Date().toLocaleString());
+        if (statusBadge) statusBadge.textContent = statusLabelFor(step);
+        if (trackBadge) trackBadge.textContent = "Track: " + trackLabel(track);
+        if (laneBadge) laneBadge.textContent = "Lane: " + laneLabel(lane);
+
+        var created = parseCreatedFromRID(rid);
+        if (createdBadge) createdBadge.textContent = "Created: " + (created || "—");
+
+        if (slaText && sla) slaText.textContent = sla;
 
         if (nextStep){
           nextStep.innerHTML = "";
@@ -690,33 +821,39 @@
           a.href = ns.href;
           a.textContent = ns.text;
           nextStep.appendChild(a);
+
+          // Add a secondary procurement shortcut (still non-confidential)
+          var br = document.createElement("div");
+          br.style.marginTop = "6px";
+          br.className = "small";
+          br.innerHTML = 'If procurement required: <a href="/gate/procurement/?rid=' + encodeURIComponent(rid) + '">Invoice / PO</a> · <a href="/gate/sales/?rid=' + encodeURIComponent(rid) + '">Purchase</a>';
+          nextStep.appendChild(br);
         }
 
-        if (notesText){
-          notesText.textContent = "Status store not yet connected. This is a safe preview based on saved routing context and your Request ID.";
-        }
-
-        setButtons(rid, ns);
+        if (notesText) notesText.textContent = notes || "—";
 
         if (ridText) ridText.textContent = rid;
         if (ridInput && ridInput.value !== rid) ridInput.value = rid;
 
         if (resultWrap) resultWrap.hidden = false;
-
-        // Persist last used rid
-        try { localStorage.setItem("nf_gate_rid", rid); } catch(e){}
       }
 
-      // init
-      var rid = sanitizeRID(qs("rid")) || getSavedRID();
-      if (ridText) ridText.textContent = rid || "—";
-      if (ridInput) ridInput.value = rid || "";
+      // init: accept rid from ?rid=, then #hash, then localStorage
+      var initialRID = sanitizeRID(qs("rid"));
+      if (!initialRID) {
+        var h = (window.location.hash || "").replace("#","").trim();
+        initialRID = sanitizeRID(h);
+      }
+      if (!initialRID) initialRID = getSavedRID();
+
+      if (ridText) ridText.textContent = initialRID || "—";
+      if (ridInput) ridInput.value = initialRID || "";
 
       // debug toggle
       var debug = norm(qs("debug")) === "1";
       if (debugBox) debugBox.hidden = !debug;
 
-      if (rid) render(rid);
+      if (initialRID) render(initialRID);
 
       if (checkBtn){
         checkBtn.addEventListener("click", function(){
@@ -747,12 +884,11 @@
       if (resetBtn){
         resetBtn.addEventListener("click", function(){
           try{
-            [
-              "nf_gate_rid","nf_partner_rid",
-              "nf_gate_last_submitted_rid","nf_partner_last_submitted_rid",
+            var keys = RID_KEYS.concat([
               "nf_gate_track","nf_gate_lane","nf_partner_lane",
-              "nf_status_step"
-            ].forEach(function(k){ try{ localStorage.removeItem(k); }catch(e){} });
+              "nf_status_step","nf_request_meta"
+            ]);
+            keys.forEach(function(k){ try{ localStorage.removeItem(k); }catch(e){} });
           }catch(e){}
           if (ridText) ridText.textContent = "—";
           if (ridInput) ridInput.value = "";
@@ -782,10 +918,23 @@
             setMsg("No Request ID to share.", "err");
             return;
           }
+
           var url = makeShareUrl(x);
+
+          // Prefer native share if available
+          try{
+            if (navigator.share){
+              await navigator.share({ title: "Noetfield — Status", text: "Request status (non-confidential):", url: url });
+              setMsg("Shared via system share sheet.", "ok");
+              return;
+            }
+          }catch(e){
+            // fall back to copy
+          }
+
           var ok = await copyText(url);
           shareRidBtn.textContent = ok ? "Link copied" : "Copy failed";
-          setTimeout(function(){ shareRidBtn.textContent = "Share link"; }, 1400);
+          setTimeout(function(){ shareRidBtn.textContent = "Share"; }, 1400);
           if (ok) setMsg("Shareable link copied. This link is non-confidential and shows high-level status only.", "ok");
         });
       }
@@ -795,7 +944,7 @@
         applyDebugBtn.addEventListener("click", function(){
           var s = norm(debugStep.value);
           if (STEPS.indexOf(s) === -1){
-            setMsg("Invalid step. Use: received | ack | routing | secure | delivery | closed", "err");
+            setMsg("Invalid step. Use: received | ack | routing | kickoff | secure | delivery | closed", "err");
             return;
           }
           try { localStorage.setItem("nf_status_step", s); } catch(e){}

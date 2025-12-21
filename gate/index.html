@@ -1,4 +1,4 @@
-<!-- /gate/index.html — Noetfield Gate v4.2 (enterprise polish • safer copy • offer deep-linking • wizard + rail sync • procurement email builder + mailto) -->
+<!-- /gate/index.html — Noetfield Gate v4.3 (clean + enterprise • safer copy • tighter UX • rail + wizard + procurement builder) -->
 <!doctype html>
 <html lang="en">
 <head>
@@ -145,6 +145,7 @@
       cursor:pointer;
       outline:none;
     }
+    .offer:hover{ filter:brightness(1.06); }
     .offer:focus-visible{ box-shadow: var(--focus); border-color: rgba(200,163,73,.46); }
     .offerSelected{
       border-color: rgba(200,163,73,.34);
@@ -367,6 +368,19 @@
     .textarea{ resize: vertical; min-height: 140px; }
     .procActions{ display:flex; gap:10px; flex-wrap:wrap; margin-top:12px; }
     .procActions .btn{ min-height:46px; }
+    .miniRow{display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-top:10px;}
+    .mono{font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;}
+    .toast{
+      display:none;
+      margin-top:10px;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      padding:10px;
+      color:var(--muted2);
+      font-size:12.6px;
+      line-height:1.55;
+    }
 
     /* Mobile bottom bar */
     .bottomBar{
@@ -500,7 +514,6 @@
 
           <div class="bd">
             <div class="offers" aria-label="Offer cards">
-
               <!-- Readiness Starter -->
               <article class="offer" tabindex="0"
                 data-offer="readiness_starter"
@@ -870,7 +883,6 @@
                 <p class="sectionDesc">For broader AI governance beyond Copilot rollout.</p>
 
                 <div class="offers" style="margin-top:10px">
-
                   <article class="offer" tabindex="0"
                     data-offer="trust_brief"
                     data-group="governance"
@@ -938,7 +950,6 @@
                       <a class="btn secondary" href="/trust-ledger/intake/" data-rid-link>Start intake</a>
                     </div>
                   </article>
-
                 </div>
               </div>
 
@@ -1011,6 +1022,7 @@
             <div class="actions" aria-label="Router actions" style="margin-top:0;">
               <button class="btn primary" type="button" id="routerOpenBtn" aria-controls="routerCard" aria-expanded="false">Start wizard</button>
               <button class="btn secondary" type="button" id="wizardResetBtn" hidden>Reset</button>
+              <button class="btn secondary" type="button" id="wizardCloseBtn" hidden>Close</button>
             </div>
 
             <div class="section" id="routerCard" hidden style="margin-top:12px;">
@@ -1195,11 +1207,16 @@
                   <button class="btn primary" type="button" id="genBtn">Generate email</button>
                   <button class="btn secondary" type="button" id="copyBtn" disabled>Copy</button>
                   <a class="btn secondary" id="mailtoBtn" href="#" hidden>Open in email app</a>
+                  <button class="btn secondary" type="button" id="downloadBtn" disabled>Download .txt</button>
                   <a class="btn secondary" href="/gate/sales/" data-rid-link>Go to Sales</a>
                   <a class="btn" href="/gate/procurement/" data-rid-link>Open Procurement page</a>
                 </div>
 
                 <textarea class="textarea" id="out" readonly style="margin-top:12px;"></textarea>
+
+                <div class="toast" id="mailtoWarn" role="status" aria-live="polite">
+                  If your email client truncates the message (long mailto URLs), use <strong>Copy</strong> and paste into your email.
+                </div>
               </form>
             </div>
           </div>
@@ -1231,8 +1248,14 @@
             <div class="divider" aria-hidden="true"></div>
 
             <div class="box">
-              <div><strong>Request ID:</strong> <code data-rid>—</code></div>
+              <div><strong>Request ID:</strong> <code class="mono" data-rid>—</code></div>
               <div style="margin-top:6px;">Share this Gate page internally. RID is preserved on links.</div>
+
+              <div class="miniRow">
+                <button class="btn secondary" type="button" id="copyGateLinkBtn">Copy Gate link</button>
+                <button class="btn secondary" type="button" id="copyRidBtn">Copy RID</button>
+              </div>
+
               <div style="margin-top:6px;">
                 Samples:
                 <a href="/trust-ledger/sample-report/board-memo.pdf" data-rid-link>Board memo</a> ·
@@ -1321,8 +1344,41 @@
         });
       }
 
+      function copyToClipboard(text){
+        return new Promise(function(resolve){
+          (async function(){
+            try{
+              if (navigator.clipboard && navigator.clipboard.writeText){
+                await navigator.clipboard.writeText(text);
+                return resolve(true);
+              }
+            } catch(_) {}
+            try{
+              var ta = document.createElement("textarea");
+              ta.value = text;
+              ta.style.position = "fixed";
+              ta.style.left = "-9999px";
+              document.body.appendChild(ta);
+              ta.focus(); ta.select();
+              document.execCommand("copy");
+              document.body.removeChild(ta);
+              return resolve(true);
+            } catch(_){ return resolve(false); }
+          })();
+        });
+      }
+
+      function replaceQueryParam(key, value){
+        try{
+          var u = new URL(window.location.href);
+          if (value == null || value === "") u.searchParams.delete(key);
+          else u.searchParams.set(key, value);
+          history.replaceState({}, "", u.pathname + (u.searchParams.toString() ? ("?" + u.searchParams.toString()) : "") + u.hash);
+        } catch(_) {}
+      }
+
       // Offer selection
-      var STORAGE_KEY = "nf_gate_offer_v4_2";
+      var STORAGE_KEY = "nf_gate_offer_v4_3";
       var DEFAULT_OFFER = "readiness_standard";
 
       var offers = qsa(".offer");
@@ -1341,6 +1397,7 @@
       var routerOpenBtn = $("routerOpenBtn");
       var routerCard = $("routerCard");
       var wizardResetBtn = $("wizardResetBtn");
+      var wizardCloseBtn = $("wizardCloseBtn");
       var wizardBackBtn = $("wizardBackBtn");
       var step1Pill = $("step1Pill");
       var step2Pill = $("step2Pill");
@@ -1357,12 +1414,18 @@
       var genBtn = $("genBtn");
       var copyBtn = $("copyBtn");
       var mailtoBtn = $("mailtoBtn");
+      var downloadBtn = $("downloadBtn");
       var out = $("out");
       var org = $("org");
       var requester = $("requester");
       var approver = $("approver");
       var start = $("start");
       var constraints = $("constraints");
+      var mailtoWarn = $("mailtoWarn");
+
+      // Rail copy buttons
+      var copyGateLinkBtn = $("copyGateLinkBtn");
+      var copyRidBtn = $("copyRidBtn");
 
       var selectedOfferId = null;
       var lastRecoId = null;
@@ -1372,15 +1435,6 @@
           if (offers[i].getAttribute("data-offer") === id) return offers[i];
         }
         return null;
-      }
-
-      function replaceQueryParam(key, value){
-        try{
-          var u = new URL(window.location.href);
-          if (value == null || value === "") u.searchParams.delete(key);
-          else u.searchParams.set(key, value);
-          history.replaceState({}, "", u.pathname + (u.searchParams.toString() ? ("?" + u.searchParams.toString()) : "") + u.hash);
-        } catch(_) {}
       }
 
       function setSelected(id){
@@ -1393,7 +1447,6 @@
         selectedOfferId = el.getAttribute("data-offer");
         try { localStorage.setItem(STORAGE_KEY, selectedOfferId); } catch(_) {}
 
-        // deep-link for internal sharing
         replaceQueryParam("offer", selectedOfferId);
 
         var name = el.getAttribute("data-name") || "—";
@@ -1413,7 +1466,6 @@
 
         bottomText.innerHTML = "<strong>Selected:</strong> " + name;
         bottomBtn.setAttribute("href", salesHref);
-
         if (bottomProcBtn) bottomProcBtn.setAttribute("href", "/gate/procurement/");
 
         applyRidToLinks(getRid());
@@ -1465,6 +1517,7 @@
         routerOpenBtn.setAttribute("aria-expanded", "true");
         routerOpenBtn.hidden = true;
         wizardResetBtn.hidden = false;
+        wizardCloseBtn.hidden = false;
         resetWizard();
       }
 
@@ -1473,6 +1526,7 @@
         routerOpenBtn.setAttribute("aria-expanded", "false");
         routerOpenBtn.hidden = false;
         wizardResetBtn.hidden = true;
+        wizardCloseBtn.hidden = true;
       }
 
       function computeReco(situation, timing){
@@ -1622,7 +1676,6 @@
       }
 
       function buildMailtoFromEmailText(emailText){
-        // Expects "Subject: ..." on first line, then body.
         try{
           var lines = (emailText || "").split("\n");
           var subj = "";
@@ -1635,28 +1688,24 @@
             bodyLines = lines;
           }
           var body = bodyLines.join("\n").trim();
-          var href = "mailto:?subject=" + encodeURIComponent(subj) + "&body=" + encodeURIComponent(body);
-          // Guard against very long mailto (some clients truncate). Still useful for many cases.
-          return href;
+          return "mailto:?subject=" + encodeURIComponent(subj) + "&body=" + encodeURIComponent(body);
         } catch(_){
           return "mailto:";
         }
       }
 
-      async function copyText(text){
+      function downloadText(filename, text){
         try{
-          if (navigator.clipboard && navigator.clipboard.writeText){
-            await navigator.clipboard.writeText(text);
-            return true;
-          }
+          var blob = new Blob([text], {type:"text/plain;charset=utf-8"});
+          var url = URL.createObjectURL(blob);
+          var a = document.createElement("a");
+          a.href = url;
+          a.download = filename;
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+          setTimeout(function(){ try{ URL.revokeObjectURL(url); } catch(_){} }, 500);
         } catch(_) {}
-        try{
-          out.focus();
-          out.select();
-          document.execCommand("copy");
-          return true;
-        } catch(_) {}
-        return false;
       }
 
       // Init
@@ -1673,6 +1722,9 @@
       }
       if (wizardResetBtn){
         wizardResetBtn.addEventListener("click", resetWizard);
+      }
+      if (wizardCloseBtn){
+        wizardCloseBtn.addEventListener("click", closeWizard);
       }
       if (wizardBackBtn){
         wizardBackBtn.addEventListener("click", function(){
@@ -1705,17 +1757,50 @@
         genBtn.addEventListener("click", function(){
           out.value = buildApprovalEmail();
           copyBtn.disabled = !out.value;
+          downloadBtn.disabled = !out.value;
 
           if (mailtoBtn){
+            var href = buildMailtoFromEmailText(out.value);
             mailtoBtn.hidden = !out.value;
-            mailtoBtn.setAttribute("href", buildMailtoFromEmailText(out.value));
+            mailtoBtn.setAttribute("href", href);
+
+            // Mailto length warning (many clients truncate long URLs)
+            if (mailtoWarn){
+              mailtoWarn.style.display = (href.length > 1800) ? "block" : "none";
+            }
           }
         });
       }
       if (copyBtn){
         copyBtn.addEventListener("click", async function(){
           if (!out.value) return;
-          await copyText(out.value);
+          await copyToClipboard(out.value);
+        });
+      }
+      if (downloadBtn){
+        downloadBtn.addEventListener("click", function(){
+          if (!out.value) return;
+          var rid = getRid();
+          downloadText("noetfield-approval-email-" + rid + ".txt", out.value);
+        });
+      }
+
+      // Rail copy buttons
+      if (copyRidBtn){
+        copyRidBtn.addEventListener("click", async function(){
+          await copyToClipboard(getRid());
+        });
+      }
+      if (copyGateLinkBtn){
+        copyGateLinkBtn.addEventListener("click", async function(){
+          try{
+            var u = new URL(window.location.href);
+            u.searchParams.set("rid", getRid());
+            if (selectedOfferId) u.searchParams.set("offer", selectedOfferId);
+            await copyToClipboard(u.pathname + "?" + u.searchParams.toString());
+          } catch(_){
+            await copyToClipboard("/gate/?rid=" + encodeURIComponent(getRid()) + (selectedOfferId ? ("&offer=" + encodeURIComponent(selectedOfferId)) : ""));
+          }
         });
       }
     })();

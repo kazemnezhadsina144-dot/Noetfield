@@ -1,4 +1,4 @@
-<!-- /partners/case-bank-1/index.html — Case Bank 1 v3.0 (Enterprise • Board-safe • Illustrative template) -->
+<!-- /partners/case-bank-1/index.html — Case Bank 1 v4.0 (Shell-aligned • enterprise • board-safe • illustrative) -->
 <!doctype html>
 <html lang="en">
 <head>
@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <title>Case Bank 1 — Illustrative Trust Brief & Ledger Pilot | Noetfield</title>
-  <meta name="description" content="Illustrative case pattern: how a 6-week AI Trust Brief and Trust Ledger slice can help a regulated institution create board-ready, supervisor-ready governance for material AI decisions." />
+  <meta name="description" content="Illustrative case pattern: how a 6-week Trust Brief and a thin Trust Ledger slice can help a regulated institution create board-ready governance for material AI decisions. No client endorsement. No confidential data." />
   <meta name="robots" content="index,follow" />
   <meta name="author" content="Noetfield Systems Inc." />
   <meta name="theme-color" content="#07070b" />
@@ -19,7 +19,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Noetfield" />
   <meta property="og:title" content="Case Bank 1 — Illustrative Trust Brief & Ledger Pilot" />
-  <meta property="og:description" content="An anonymised case pattern for board-ready AI governance: mandate, approach, artefacts, and decision options." />
+  <meta property="og:description" content="An anonymised, board-safe case pattern: mandate, approach, artefacts, and decision options." />
   <meta property="og:url" content="https://www.noetfield.com/partners/case-bank-1/" />
   <meta property="og:image" content="https://www.noetfield.com/noetfield-og.png" />
 
@@ -30,452 +30,407 @@
     "@type":"WebPage",
     "name":"Case Bank 1 — Illustrative Trust Brief & Ledger Pilot",
     "url":"https://www.noetfield.com/partners/case-bank-1/",
-    "description":"Illustrative, anonymised case template for a Trust Brief and Trust Ledger pilot with a regulated, real-economy institution.",
+    "description":"Illustrative, anonymised case template for a 6-week Trust Brief and a thin Trust Ledger slice with a regulated institution.",
     "isPartOf":{"@type":"WebSite","name":"Noetfield","url":"https://www.noetfield.com/"}
   }
   </script>
 
+  <!-- LOCKED SHELL -->
+  <link rel="stylesheet" href="/assets/noetfield-shell.css" />
+  <script src="/assets/noetfield-shell.js" defer></script>
+
   <style>
-    :root{
-      --bg:#07070b; --panel:#0c0c12; --panel2:#10101a;
-      --text:#e9e9ee; --muted:#a7a7b3; --faint:#808090;
-      --line:rgba(255,255,255,.10); --line2:rgba(255,255,255,.08);
-      --accent:#d7b56d; --good:#73d39b; --warn:#f0c36a; --bad:#ff7a7a;
-      --shadow:0 18px 50px rgba(0,0,0,.45);
-      --r:16px;
-      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;
-      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
-      --focus: 0 0 0 3px rgba(215,181,109,.14);
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
+    .hero{padding:18px 0 12px}
+    .heroShell{
+      position:relative;
+      border-radius: calc(var(--radius) + 10px);
+      border: 1px solid rgba(255,255,255,.12);
       background:
-        radial-gradient(1000px 600px at 25% -10%, rgba(215,181,109,.09), transparent 55%),
-        radial-gradient(900px 550px at 90% 10%, rgba(215,181,109,.06), transparent 60%),
-        var(--bg);
-      color:var(--text);
-      font-family:var(--sans);
-      line-height:1.55;
+        radial-gradient(1100px 520px at 16% 0%, rgba(200,163,73,.18), transparent 62%),
+        radial-gradient(980px 520px at 92% 10%, rgba(122,167,255,.10), transparent 64%),
+        linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.020));
+      box-shadow: var(--shadow);
+      overflow:hidden;
     }
-    a{color:inherit; text-decoration:none}
-    .wrap{max-width:1120px; margin:0 auto; padding:22px 18px 56px}
-    .skip{
-      position:absolute; left:-999px; top:auto; width:1px; height:1px; overflow:hidden;
+    .heroShell::before{
+      content:"";
+      position:absolute; inset:-1px;
+      background: linear-gradient(120deg, rgba(200,163,73,.22), transparent 32%, rgba(255,255,255,.08) 68%, transparent);
+      opacity:.44;
+      pointer-events:none;
+      mask-image: linear-gradient(180deg, black 0%, black 62%, transparent 96%);
     }
-    .skip:focus{
-      left:14px; top:14px; width:auto; height:auto; padding:10px 12px;
-      border-radius:12px; background:rgba(16,16,26,.92); border:1px solid var(--line2);
-      box-shadow:var(--shadow); z-index:999;
-    }
+    .heroInner{padding: 26px 22px; position:relative; z-index:1}
 
-    /* Gate-style rail */
-    .rail{
-      display:flex; align-items:center; justify-content:space-between;
-      gap:14px; padding:12px 14px;
-      border:1px solid var(--line2);
-      background:rgba(12,12,18,.72);
-      backdrop-filter: blur(8px);
-      border-radius:18px;
-      box-shadow:var(--shadow);
-    }
-    .brand{display:flex; align-items:center; gap:10px; min-width: 240px}
-    .mark{
-      width:34px; height:34px; border-radius:10px;
-      background:linear-gradient(135deg, rgba(215,181,109,.22), rgba(215,181,109,.04));
-      border:1px solid rgba(215,181,109,.25);
-      display:grid; place-items:center; color:var(--accent); font-weight:800;
-      letter-spacing:.5px;
-    }
-    .brand h1{font-size:14px; margin:0; letter-spacing:.3px}
-    .brand .sub{font-size:12px; color:var(--muted); margin-top:1px}
-    .nav{display:flex; gap:10px; flex-wrap:wrap; align-items:center; justify-content:flex-end}
-    .btn{
-      display:inline-flex; align-items:center; justify-content:center;
-      gap:8px; padding:10px 12px; border-radius:12px;
-      border:1px solid var(--line2);
-      background:rgba(16,16,26,.55);
-      color:var(--text); font-size:13px; cursor:pointer;
-      transition:transform .05s ease, border-color .15s ease, background .15s ease;
-      user-select:none; white-space:nowrap;
-    }
-    .btn:hover{border-color:rgba(215,181,109,.35); background:rgba(16,16,26,.72)}
-    .btn:active{transform:translateY(1px)}
-    .btn.primary{
-      border-color:rgba(215,181,109,.35);
-      background:linear-gradient(180deg, rgba(215,181,109,.20), rgba(215,181,109,.08));
-    }
-    .btn.small{padding:7px 10px; font-size:12px; border-radius:10px}
-    .btn.ghost{background:transparent}
-
-    .hero{padding:18px 6px 6px}
-    .kicker{
-      display:flex; gap:10px; align-items:center; flex-wrap:wrap;
-      color:var(--muted); font-size:12px; margin-bottom:10px
-    }
-    .tag{
-      padding:6px 10px; border-radius:999px;
-      border:1px solid rgba(215,181,109,.22);
-      background:rgba(215,181,109,.08);
-      color:var(--accent);
-      font-family:var(--mono);
-      font-size:11px;
-    }
-    .badge{
-      display:inline-flex; align-items:center; gap:8px;
-      padding:6px 10px; border-radius:999px;
-      border:1px solid var(--line2);
-      background:rgba(16,16,26,.52);
-      font-size:12px; color:var(--muted)
-    }
-    .dot{width:8px; height:8px; border-radius:999px; background:var(--warn)}
-    .dot.good{background:var(--good)}
-    .dot.bad{background:var(--bad)}
-
-    h2{margin:0 0 8px; font-size:28px; letter-spacing:.2px}
-    .lead{margin:0; color:var(--muted); max-width:980px}
-
-    .alert{
-      margin-top:12px;
-      border:1px solid rgba(240,195,106,.25);
-      background:rgba(240,195,106,.08);
-      border-radius:14px;
-      padding:10px 12px;
+    .eyebrow{
+      display:inline-flex; gap:10px; align-items:center;
       color:var(--muted);
-      font-size:12px;
+      font-size:13px;
+      padding:9px 12px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.13);
+      background: rgba(255,255,255,.035);
     }
-    .alert strong{color:var(--text)}
-    .mono{font-family:var(--mono)}
+    .dot{
+      width:8px; height:8px; border-radius:50%;
+      background: rgba(200,163,73,.97);
+      box-shadow: 0 0 0 3px rgba(200,163,73,.18);
+    }
+
+    h1{margin:14px 0 10px; font-size: clamp(28px, 3.0vw, 44px); line-height:1.08; letter-spacing:-0.8px}
+    .lead{margin:0; color:var(--muted); font-size:16px; line-height:1.75; max-width: 980px}
+    .lead strong{color:var(--text); font-weight:950}
+
+    .actions{display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-top:14px}
+    .actions .btn{min-height:44px}
+
+    .notice{
+      margin-top:12px;
+      padding:12px 12px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      color:var(--muted2);
+      font-size:12.8px;
+      line-height:1.6;
+    }
+    .notice strong{ color:var(--text); font-weight:950; }
+
+    .metrics{
+      display:grid;
+      grid-template-columns:repeat(4, minmax(0,1fr));
+      gap:10px;
+      margin-top:14px;
+    }
+    .m{
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      padding:12px;
+      min-width:0;
+    }
+    .m .k{font-size:11px; letter-spacing:.28em; text-transform:uppercase; color:var(--muted2)}
+    .m .v{margin-top:8px; font-weight:950; letter-spacing:-.2px; color:var(--text)}
+    .m .d{margin-top:6px; color:var(--muted2); font-size:12.6px; line-height:1.55}
 
     .grid{
       display:grid;
-      grid-template-columns: 1.05fr .95fr;
+      grid-template-columns: 1.08fr .92fr;
       gap:16px;
-      margin-top:16px;
+      margin: 14px 0 34px;
       align-items:start;
     }
-    @media (max-width: 980px){ .grid{grid-template-columns:1fr} .nav{justify-content:flex-start} .brand{min-width:auto} }
-
     .card{
-      border:1px solid var(--line2);
-      background:rgba(12,12,18,.72);
-      border-radius:var(--r);
-      box-shadow:var(--shadow);
+      border-radius:var(--radius);
+      border:1px solid rgba(255,255,255,.11);
+      background: linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.022));
+      box-shadow: var(--shadow2);
       overflow:hidden;
+      min-width:0;
     }
-    .card .hd{
-      padding:14px 14px 10px;
-      border-bottom:1px solid var(--line2);
-      display:flex; align-items:flex-start; justify-content:space-between; gap:10px;
-    }
-    .card .hd h3{margin:0; font-size:14px; letter-spacing:.2px}
-    .card .hd .meta{color:var(--muted); font-size:12px}
-    .card .bd{padding:14px}
+    .hd{ padding:18px 18px 0; }
+    .bd{ padding:18px; }
+    .cardTitle{ margin:0 0 8px; font-size:18px; letter-spacing:-0.2px; }
+    .muted{ color:var(--muted); line-height:1.7; margin:0; }
 
-    .sectionTitle{
-      margin:0 0 10px;
-      font-size:12px; color:var(--faint);
-      letter-spacing:.35px; text-transform:uppercase
+    .section{
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      border-radius:16px;
+      padding:14px;
+      margin-top:12px;
     }
-    .p{margin:0 0 10px; color:var(--text)}
-    .muted{color:var(--muted)}
-    ul{margin:8px 0 0 18px; padding:0}
-    li{margin:6px 0; color:var(--muted)}
-    li strong{color:var(--text)}
+    .sectionTitle{font-weight:950; letter-spacing:-.2px; margin:0 0 6px; font-size:14px; color:var(--text)}
+    .sectionDesc{margin:0 0 10px; color:var(--muted2); font-size:12.7px; line-height:1.6}
+    .bullets{margin:0; padding-left:18px; color:var(--muted); line-height:1.85}
+    .bullets li{margin:6px 0}
 
-    .metrics{
-      display:grid; grid-template-columns:repeat(4, minmax(0,1fr));
-      gap:10px; margin-top:12px;
-    }
-    @media (max-width: 960px){ .metrics{grid-template-columns:repeat(2, minmax(0,1fr))} }
-    @media (max-width: 520px){ .metrics{grid-template-columns:1fr} }
-    .metric{
-      border:1px solid var(--line2);
-      background:rgba(16,16,26,.50);
-      border-radius:14px;
-      padding:12px;
-    }
-    .metric .k{font-size:11px; color:var(--muted); letter-spacing:.25px; text-transform:uppercase}
-    .metric .v{margin-top:4px; font-size:14px}
-    .metric .n{margin-top:4px; font-size:12px; color:var(--muted)}
-
-    .timeline{
-      border-left:1px solid var(--line2);
-      padding-left:14px;
+    .table{
+      width:100%;
+      border-collapse:separate;
+      border-spacing:0;
+      overflow:hidden;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.02);
       margin-top:10px;
     }
-    .tstep{position:relative; margin:0 0 12px}
-    .tstep:before{
-      content:"";
-      position:absolute; left:-20px; top:4px;
-      width:10px; height:10px; border-radius:999px;
-      background:rgba(215,181,109,.85);
-      box-shadow: 0 0 0 3px rgba(215,181,109,.18);
+    .table th, .table td{
+      text-align:left;
+      padding:12px;
+      border-bottom:1px solid rgba(255,255,255,.08);
+      vertical-align:top;
+      font-size:13px;
     }
-    .tstep .k{font-size:11px; color:var(--muted); letter-spacing:.25px; text-transform:uppercase}
-    .tstep .t{margin-top:2px; font-size:13px; color:var(--text)}
-    .tstep .d{margin-top:3px; font-size:12px; color:var(--muted)}
+    .table th{
+      color:var(--muted2);
+      font-size:11px;
+      letter-spacing:.28em;
+      text-transform:uppercase;
+      background: rgba(255,255,255,.03);
+    }
+    .table tr:last-child td{border-bottom:none}
 
-    .cta{
-      display:flex; flex-wrap:wrap; gap:10px; align-items:center; margin-top:10px;
+    .rail{ position: sticky; top: 14px; }
+    .box{
+      margin-top:12px;
+      padding:12px 12px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      color:var(--muted2);
+      font-size:12.8px;
+      line-height:1.6;
     }
+    .box strong{color:var(--text); font-weight:950}
+    .box a{border-bottom:1px solid rgba(255,255,255,.18)}
 
-    .footer{
-      margin-top:18px; padding:14px 2px 0; color:var(--faint); font-size:12px;
-      display:flex; flex-wrap:wrap; gap:10px; align-items:center; justify-content:space-between;
+    .stickyCta{
+      position: sticky;
+      bottom: 0;
+      z-index: 20;
+      padding: 10px 0;
+      background: linear-gradient(180deg, rgba(7,7,11,0) 0%, rgba(7,7,11,.78) 22%, rgba(7,7,11,.92) 100%);
+      backdrop-filter: blur(10px);
+      border-top: 1px solid rgba(255,255,255,.08);
     }
-    .footer a{color:var(--muted); text-decoration:underline; text-underline-offset:2px}
+    .stickyInner{
+      display:flex;
+      gap:12px;
+      align-items:center;
+      justify-content:space-between;
+      padding: 0 16px;
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+    .stickyText{
+      min-width:0;
+      color:var(--muted);
+      font-size:12.6px;
+      line-height:1.4;
+    }
+    .stickyText strong{ color:var(--text); font-weight:950; }
 
-    /* small helper chips */
-    .chip{
-      display:inline-flex; align-items:center; gap:8px;
-      padding:6px 10px; border-radius:999px;
-      border:1px solid var(--line2);
-      background:rgba(16,16,26,.52);
-      font-size:12px; color:var(--muted)
+    @media (max-width: 980px){
+      .grid{ grid-template-columns: 1fr; }
+      .rail{ position: relative; top: 0; }
+      .metrics{grid-template-columns:repeat(2, minmax(0,1fr))}
     }
-    .hr{height:1px; background:var(--line2); margin:12px 0}
+    @media (max-width: 640px){
+      .metrics{grid-template-columns:1fr}
+      .stickyText{display:none}
+      .table th,.table td{padding:10px}
+    }
   </style>
 </head>
 
 <body>
+  <div class="bg" aria-hidden="true"></div>
   <a class="skip" href="#main">Skip to content</a>
 
-  <div class="wrap">
-    <!-- Rail -->
-    <div class="rail" role="banner">
-      <div class="brand">
-        <div class="mark">N</div>
-        <div>
-          <h1>Noetfield</h1>
-          <div class="sub">Case Bank • illustrative pattern • board-safe</div>
-        </div>
-      </div>
-      <div class="nav" aria-label="Quick links">
-        <a class="btn small ghost" href="/partners/">Partners</a>
-        <a class="btn small ghost" href="/trust-brief/">Trust Brief</a>
-        <a class="btn small ghost" href="/trust-ledger/">Trust Ledger</a>
-        <a class="btn small ghost" href="/gate/">Gate</a>
-        <a class="btn small ghost" href="/gate/procurement/">Procurement</a>
-        <a class="btn small primary" href="/contact/">Contact</a>
-      </div>
-    </div>
+  <!-- injected header -->
+  <header id="nfHeader"></header>
 
-    <!-- Hero -->
-    <div class="hero" id="main">
-      <div class="kicker">
-        <span class="tag mono">CASE-BANK-1</span>
-        <span class="badge"><span class="dot good"></span>Illustrative only</span>
-        <span class="badge"><span class="dot"></span>Board-ready artefacts</span>
-        <span class="badge"><span class="dot good"></span>6-week pilot pattern</span>
-      </div>
+  <main id="main" class="wrap">
+    <!-- HERO -->
+    <section class="hero" aria-label="Case Bank hero">
+      <div class="heroShell">
+        <div class="heroInner">
+          <div class="eyebrow"><span class="dot"></span> Case Bank • Illustrative • Board-safe</div>
 
-      <h2>Case Bank 1 — Trust Brief & Ledger Pilot (Illustrative)</h2>
-      <p class="lead">
-        A board-safe template showing how a regulated, real-economy institution can convert scattered AI artefacts into a
-        <strong>short Trust Brief</strong> and a <strong>thin Trust Ledger slice</strong> that supports committees, supervisors, and procurement.
-      </p>
+          <h1>Case Bank 1 — Trust Brief & Ledger Pilot (Illustrative).</h1>
 
-      <div class="alert">
-        <strong>Important:</strong> This is a <span class="mono">pattern</span>, not a client endorsement. No confidential information is included.
-        Any future public case requires written approvals and appropriate anonymisation.
-      </div>
-
-      <div class="metrics" aria-label="Snapshot metrics">
-        <div class="metric">
-          <div class="k">Sector</div>
-          <div class="v">Regulated finance</div>
-          <div class="n">Credit / conduct / customer-facing AI</div>
-        </div>
-        <div class="metric">
-          <div class="k">Time-box</div>
-          <div class="v">6 weeks</div>
-          <div class="n">Aligned to committee/board cycle</div>
-        </div>
-        <div class="metric">
-          <div class="k">Material paths</div>
-          <div class="v">3–10</div>
-          <div class="n">Where AI changes outcomes</div>
-        </div>
-        <div class="metric">
-          <div class="k">Primary outputs</div>
-          <div class="v">Brief + Ledger slice</div>
-          <div class="n">Reusable governance objects</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="grid">
-      <!-- Left column -->
-      <div class="card">
-        <div class="hd">
-          <div>
-            <h3>Board framing</h3>
-            <div class="meta">What this pilot solves (in plain language)</div>
-          </div>
-          <span class="chip">Decision-grade • audit-friendly</span>
-        </div>
-        <div class="bd">
-          <div class="sectionTitle">The problem</div>
-          <p class="p muted">
-            AI initiatives produce “artefacts” (policies, dashboards, validations, minutes, vendor docs) but boards and supervisors need a
-            <strong>single, defensible view</strong> of where AI is <strong>material</strong> and how it is governed.
+          <p class="lead">
+            A board-safe pattern showing how a regulated institution can convert scattered AI artefacts into a
+            <strong>short Trust Brief</strong> and a <strong>thin Trust Ledger slice</strong> that supports committees, supervisors, and procurement.
+            <strong>No client endorsement. No confidential data.</strong>
           </p>
 
-          <div class="sectionTitle">The outcome</div>
-          <ul>
-            <li><strong>Trust Brief</strong> (typical 12–16 pages): the board/committee-ready view of material AI decisions, safeguards, and gaps.</li>
-            <li><strong>Trust Ledger slice</strong>: structured entries for the highest-signal decision paths (thin by design, refreshable).</li>
-            <li><strong>MAP</strong> (Management Action Plan): 3–8 governance moves with owners, due dates, and evidence expectations.</li>
-          </ul>
+          <div class="actions" aria-label="Primary actions">
+            <a class="btn primary" href="/gate/intake/?need=trust-brief-pilot">Explore a 6-week pilot (non-confidential)</a>
+            <a class="btn secondary" href="/gate/procurement/?focus=trust-brief-pilot">Procurement lane</a>
+            <a class="btn secondary" href="/partners/">Partners overview</a>
+            <a class="btn secondary" href="/trust-ledger/">Trust Ledger</a>
+          </div>
 
-          <div class="hr"></div>
+          <div class="notice" role="note">
+            <strong>Important:</strong> This is a reusable template intended for board/procurement understanding.
+            Any future public client case requires written approvals and appropriate anonymisation.
+          </div>
 
-          <div class="sectionTitle">Typical inputs (non-invasive)</div>
-          <ul>
-            <li><strong>6–10</strong> stakeholder interviews (risk, security, privacy, business owners, IT/M365 owners).</li>
-            <li><strong>10–25</strong> existing artefacts reviewed (policies, controls, logs/exports, minutes, vendor docs).</li>
-            <li><strong>2–4</strong> short workshops (materiality, boundary mapping, governance packaging).</li>
-          </ul>
-          <p class="p muted" style="margin-top:10px">
-            Noetfield prioritizes <strong>reuse of existing artefacts</strong> over net-new documentation.
-          </p>
+          <div class="metrics" aria-label="Snapshot metrics">
+            <div class="m">
+              <div class="k">Sector</div>
+              <div class="v">Regulated finance</div>
+              <div class="d">Credit / conduct / customer-facing AI</div>
+            </div>
+            <div class="m">
+              <div class="k">Time-box</div>
+              <div class="v">6 weeks</div>
+              <div class="d">Aligned to committee/board cadence</div>
+            </div>
+            <div class="m">
+              <div class="k">Material paths</div>
+              <div class="v">3–10</div>
+              <div class="d">Where AI changes outcomes</div>
+            </div>
+            <div class="m">
+              <div class="k">Primary outputs</div>
+              <div class="v">Brief + Ledger slice</div>
+              <div class="d">Reusable governance objects</div>
+            </div>
+          </div>
         </div>
       </div>
+    </section>
 
-      <!-- Right column -->
-      <div class="card">
+    <section class="grid" aria-label="Case layout">
+      <!-- MAIN -->
+      <section class="card" aria-label="Case details">
         <div class="hd">
-          <div>
-            <h3>Pilot structure</h3>
-            <div class="meta">6 weeks • three passes • minimal disruption</div>
-          </div>
-          <span class="chip">Time-boxed</span>
+          <h2 class="cardTitle">Board framing</h2>
+          <p class="muted">What the pilot solves, in plain language.</p>
         </div>
+
         <div class="bd">
-          <div class="timeline" aria-label="Timeline">
-            <div class="tstep">
-              <div class="k">Weeks 1–2</div>
-              <div class="t">Scope + artefact sweep</div>
-              <div class="d">Confirm decision paths, collect existing evidence, define boundaries and committee questions.</div>
-            </div>
-            <div class="tstep">
-              <div class="k">Weeks 3–4</div>
-              <div class="t">Mapping + draft Brief</div>
-              <div class="d">Ledger schema mapping, draft Trust Brief, interim review with sponsor group.</div>
-            </div>
-            <div class="tstep">
-              <div class="k">Weeks 5–6</div>
-              <div class="t">Finalize + governance packaging</div>
-              <div class="d">Finalize Brief and Ledger slice, produce MAP and board-ready decision options.</div>
+          <div class="section" id="problem">
+            <div class="sectionTitle">The problem</div>
+            <p class="sectionDesc">
+              AI programs produce artefacts (policies, validations, dashboards, minutes, vendor docs), but boards and supervisors require a
+              single defensible view of where AI is <strong>material</strong> and how it is governed.
+            </p>
+            <ul class="bullets">
+              <li><strong>Fragmentation:</strong> evidence exists, but is not packaged for oversight or procurement.</li>
+              <li><strong>Ambiguity:</strong> unclear boundaries, owners, and exceptions create oversharing risk.</li>
+              <li><strong>Decision delay:</strong> committees cannot approve because “what is true” is not provable.</li>
+            </ul>
+          </div>
+
+          <div class="section" id="outcome">
+            <div class="sectionTitle">Outcome (what gets produced)</div>
+            <p class="sectionDesc">Board-ready objects — thin, defensible, refreshable.</p>
+            <table class="table" aria-label="Outcome table">
+              <thead>
+                <tr>
+                  <th>Artefact</th>
+                  <th>Purpose</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Trust Brief</strong> (typ. 12–16 pages)</td>
+                  <td>Decision-grade view of material AI paths, safeguards, gaps, and options.</td>
+                </tr>
+                <tr>
+                  <td><strong>Trust Ledger slice</strong> (thin by design)</td>
+                  <td>Structured entries for highest-signal decision paths; refreshable cadence object.</td>
+                </tr>
+                <tr>
+                  <td><strong>MAP</strong> (Management Action Plan)</td>
+                  <td>3–8 governance moves with owners, due dates, and evidence expectations.</td>
+                </tr>
+                <tr>
+                  <td><strong>Evidence Snapshot</strong></td>
+                  <td>What exists, what is missing, and what is “current” (freshness notes).</td>
+                </tr>
+                <tr>
+                  <td><strong>Roadmap 30/60/90</strong></td>
+                  <td>Concrete next steps post-pilot, sequenced for committees and teams.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="section" id="inputs">
+            <div class="sectionTitle">Typical inputs (non-invasive)</div>
+            <p class="sectionDesc">Reuse existing artefacts; minimal disruption.</p>
+            <ul class="bullets">
+              <li><strong>6–10</strong> stakeholder interviews (risk, security, privacy, business owners, IT/M365 owners).</li>
+              <li><strong>10–25</strong> existing artefacts reviewed (policies, controls, exports, minutes, vendor docs).</li>
+              <li><strong>2–4</strong> short workshops (materiality, boundary mapping, governance packaging).</li>
+            </ul>
+            <div class="notice" role="note" style="margin-top:12px">
+              <strong>Principle:</strong> build on what already exists. Net-new documentation is minimized.
             </div>
           </div>
 
-          <div class="hr"></div>
+          <div class="section" id="fit">
+            <div class="sectionTitle">When this pattern fits</div>
+            <p class="sectionDesc">High signal conditions that justify a 6-week pilot.</p>
+            <ul class="bullets">
+              <li>Multiple AI initiatives exist without a single board-ready view of materiality.</li>
+              <li>Audit/supervisory scrutiny is expected within the next 12–18 months.</li>
+              <li>Preference for time-boxed outputs and a clear “what next” path.</li>
+            </ul>
+          </div>
 
-          <div class="sectionTitle">Board-ready artefacts (deliverable set)</div>
-          <ul>
-            <li><strong>Trust Brief</strong> (PDF): exec summary, material decisions, safeguards, gaps, options.</li>
-            <li><strong>Ledger slice</strong> (PDF/online): thin set of entries for material decision paths.</li>
-            <li><strong>Evidence Snapshot</strong>: what exists, what’s missing, and what is “current.”</li>
-            <li><strong>Control Taxonomy</strong>: mapping from policy/control areas to the institution’s governance language.</li>
-            <li><strong>Roadmap 30/60/90</strong>: concrete next steps post-pilot.</li>
-          </ul>
-
-          <div class="cta">
-            <a class="btn primary" href="/partners/">Partners overview</a>
-            <a class="btn" href="/gate/">Enter via Gate</a>
-            <a class="btn" href="/gate/procurement/">Procurement lane</a>
+          <div class="section" id="cta">
+            <div class="sectionTitle">Explore a pilot (board-safe start)</div>
+            <p class="sectionDesc">Non-confidential intake → scope lock → procurement lane if needed.</p>
+            <div class="actions">
+              <a class="btn primary" href="/gate/intake/?need=trust-brief-pilot">Start via Gate (non-confidential)</a>
+              <a class="btn secondary" href="/gate/procurement/?focus=trust-brief-pilot">Procurement lane (Invoice/PO)</a>
+              <a class="btn secondary" href="/contact/">Contact</a>
+            </div>
           </div>
         </div>
+      </section>
+
+      <!-- RAIL -->
+      <aside class="rail" aria-label="Case rail">
+        <div class="card">
+          <div class="hd">
+            <h2 class="cardTitle">Pilot structure</h2>
+            <p class="muted">6 weeks • three passes • minimal disruption.</p>
+          </div>
+          <div class="bd">
+            <div class="box">
+              <strong>Weeks 1–2</strong><br/>
+              Scope lock • artefact sweep • boundary assumptions • committee questions.
+            </div>
+            <div class="box">
+              <strong>Weeks 3–4</strong><br/>
+              Mapping • draft Trust Brief • interim sponsor review • ledger slice outline.
+            </div>
+            <div class="box">
+              <strong>Weeks 5–6</strong><br/>
+              Finalize Brief + Ledger slice • MAP • 30/60/90 roadmap • decision options.
+            </div>
+
+            <div class="box">
+              <strong>Quick links</strong><br/>
+              <a href="#problem">Problem</a> ·
+              <a href="#outcome">Outputs</a> ·
+              <a href="#inputs">Inputs</a> ·
+              <a href="#fit">Fit</a>
+            </div>
+
+            <div class="box">
+              <strong>Related</strong><br/>
+              <a href="/trust-brief/">Trust Brief</a> ·
+              <a href="/trust-ledger/">Trust Ledger</a> ·
+              <a href="/gate/">Gate</a>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </section>
+  </main>
+
+  <!-- injected footer -->
+  <footer id="nfFooter"></footer>
+
+  <!-- Sticky CTA -->
+  <div class="stickyCta" aria-label="Sticky call to action">
+    <div class="stickyInner">
+      <div class="stickyText">
+        <strong>Trust Brief Pilot</strong> — 6 weeks. Board-ready artefacts. Non-confidential intake. Procurement lane available.
       </div>
-
-      <!-- Full-width: Governance moves -->
-      <div class="card" style="grid-column:1 / -1;">
-        <div class="hd">
-          <div>
-            <h3>What changes (signals)</h3>
-            <div class="meta">The board conversation shifts from “where is AI?” to “how is this governed?”</div>
-          </div>
-          <span class="chip">Reusable</span>
-        </div>
-        <div class="bd">
-          <div class="sectionTitle">Governance signals (illustrative)</div>
-          <div class="grid" style="grid-template-columns:1fr 1fr; margin-top:0;">
-            <div class="card" style="box-shadow:none; background:rgba(16,16,26,.40);">
-              <div class="bd">
-                <div class="sectionTitle">Board & committees</div>
-                <ul>
-                  <li>Board Risk Committee receives a concise, repeatable view of <strong>material AI decision paths</strong>.</li>
-                  <li>Committees adopt a small set of recurring AI questions anchored to the Ledger (cadence-ready).</li>
-                  <li>Risk appetite discussion becomes <strong>decision-specific</strong>, not theme-based.</li>
-                </ul>
-              </div>
-            </div>
-
-            <div class="card" style="box-shadow:none; background:rgba(16,16,26,.40);">
-              <div class="bd">
-                <div class="sectionTitle">Executives & supervisors</div>
-                <ul>
-                  <li>Executives gain a single artefact that supports supervisor, investor, or funder discussions.</li>
-                  <li>Teams map new AI initiatives to the Ledger rather than restarting from zero.</li>
-                  <li>Supervisory conversations become governance-based: <strong>controls, boundaries, oversight</strong>.</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          <div class="hr"></div>
-
-          <div class="sectionTitle">When this pattern fits</div>
-          <ul>
-            <li>You have multiple AI initiatives but no single board-ready view of what is genuinely <strong>material</strong>.</li>
-            <li>You expect more pointed supervisory or audit questions within the next <strong>12–18 months</strong>.</li>
-            <li>You want to build on what already exists (artefacts, logs, policies) rather than deploy a new platform just to describe governance.</li>
-            <li>You prefer a time-boxed pilot with concrete outputs and a clear “what next” path.</li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- Full-width: CTA / compliance notes -->
-      <div class="card" style="grid-column:1 / -1;">
-        <div class="hd">
-          <div>
-            <h3>Explore a pilot (board-safe intake)</h3>
-            <div class="meta">Non-confidential routing • procurement-ready lane available</div>
-          </div>
-          <span class="chip"><span class="dot good"></span>Low-friction start</span>
-        </div>
-        <div class="bd">
-          <p class="p muted">
-            This case page is a template. A public case study requires written approvals and governance sign-off.
-            If you want to explore a pilot, use Gate for controlled routing (non-confidential), or Procurement for Invoice/PO onboarding.
-          </p>
-          <div class="cta">
-            <a class="btn primary" href="/gate/">Enter via Gate</a>
-            <a class="btn" href="/gate/procurement/">Procurement lane (Invoice/PO)</a>
-            <a class="btn" href="/contact/">Contact</a>
-          </div>
-
-          <div class="alert" style="margin-top:12px;">
-            <strong>Board-safe note:</strong> Noetfield can start with a non-confidential intake and an evidence-first plan.
-            Confidential materials (if needed) should be handled under the appropriate agreement and channel.
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="footer">
-      <div>© <span id="year"></span> Noetfield Systems Inc.</div>
-      <div class="muted">
-        <a href="/partners/">Partners</a> • <a href="/trust-brief/">Trust Brief</a> • <a href="/trust-ledger/">Trust Ledger</a> • <a href="/gate/">Gate</a> • <a href="/gate/procurement/">Procurement</a>
+      <div class="actions" style="margin:0">
+        <a class="btn primary" href="/gate/intake/?need=trust-brief-pilot">Start via Gate</a>
+        <a class="btn secondary" href="/gate/procurement/?focus=trust-brief-pilot">Invoice / PO</a>
       </div>
     </div>
   </div>
-
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-  </script>
 </body>
 </html>

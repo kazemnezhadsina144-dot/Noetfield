@@ -1,5 +1,5 @@
-<!-- /gate/partners/deal/index.html — Noetfield Partner Deal Registration v3.0
-     (Board-safe • Gate-aligned • Deal ID + RID • 90-day protection (on acceptance) • tier suggestion • draft save • packet export • email builders) -->
+<!-- /gate/partners/deal/index.html — Noetfield Partner Deal Registration v3.1
+     (Shell-aligned • enterprise clean • Deal ID + RID • tier suggestion • draft save • packet export • email builders • responsive) -->
 <!doctype html>
 <html lang="en">
 <head>
@@ -19,12 +19,14 @@
   <!-- OG -->
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Noetfield" />
-  <meta property="og:title" content="Partner Deal Registration" />
+  <meta property="og:title" content="Noetfield — Partner Deal Registration" />
   <meta property="og:description" content="Partner Deal ID, tier suggestion, 90-day protection (on acceptance), and procurement routing — non-confidential." />
   <meta property="og:url" content="https://www.noetfield.com/gate/partners/deal/" />
+  <meta property="og:image" content="https://www.noetfield.com/noetfield-og.png" />
 
-  <!-- Optional shared shell (if present) -->
-  <!-- <link rel="stylesheet" href="/assets/noetfield-shell.css" /> -->
+  <!-- LOCKED SHELL -->
+  <link rel="stylesheet" href="/assets/noetfield-shell.css" />
+  <script src="/assets/noetfield-shell.js" defer></script>
 
   <script type="application/ld+json">
   {
@@ -33,400 +35,300 @@
     "name":"Noetfield — Partner Deal Registration",
     "url":"https://www.noetfield.com/gate/partners/deal/",
     "isPartOf":{"@type":"WebSite","name":"Noetfield","url":"https://www.noetfield.com/"},
-    "about":{"@type":"Organization","name":"Noetfield Systems Inc."}
+    "publisher":{"@type":"Organization","name":"Noetfield Systems Inc."}
   }
   </script>
 
   <style>
-    :root{
-      --bg:#07070b; --panel:#0c0c12; --panel2:#10101a;
-      --text:#e9e9ee; --muted:#a7a7b3; --faint:#808090;
-      --line:rgba(255,255,255,.10); --line2:rgba(255,255,255,.08);
-      --accent:#d7b56d; --accent2:#b89245;
-      --good:#73d39b; --warn:#f0c36a; --bad:#ff7a7a;
-      --shadow:0 18px 50px rgba(0,0,0,.45);
-      --r:16px;
-      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;
-      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
-      --focus: 0 0 0 3px rgba(215,181,109,.14);
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
+    /* Page hero */
+    .hero{padding:18px 0 12px}
+    .heroShell{
+      position:relative;
+      border-radius: calc(var(--radius) + 10px);
+      border: 1px solid rgba(255,255,255,.12);
       background:
-        radial-gradient(1000px 600px at 25% -10%, rgba(215,181,109,.10), transparent 55%),
-        radial-gradient(900px 550px at 90% 10%, rgba(215,181,109,.07), transparent 60%),
-        var(--bg);
-      color:var(--text);
-      font-family:var(--sans);
-      line-height:1.45;
-    }
-    a{color:inherit; text-decoration:none}
-    .skip{
-      position:absolute; left:-999px; top:auto; width:1px; height:1px; overflow:hidden;
-    }
-    .skip:focus{
-      left:14px; top:14px; width:auto; height:auto; padding:10px 12px;
-      border-radius:12px; background:rgba(16,16,26,.92); border:1px solid var(--line2);
-      box-shadow:var(--shadow);
-      z-index:999;
-    }
-
-    .wrap{max-width:1180px; margin:0 auto; padding:22px 18px 92px}
-
-    .rail{
-      display:flex; align-items:center; justify-content:space-between;
-      gap:14px; padding:12px 14px;
-      border:1px solid var(--line2);
-      background:rgba(12,12,18,.72);
-      backdrop-filter: blur(8px);
-      border-radius:18px;
-      box-shadow:var(--shadow);
-    }
-    .brand{display:flex; align-items:center; gap:10px; min-width: 240px}
-    .mark{
-      width:34px; height:34px; border-radius:10px;
-      background:linear-gradient(135deg, rgba(215,181,109,.22), rgba(215,181,109,.04));
-      border:1px solid rgba(215,181,109,.25);
-      display:grid; place-items:center; color:var(--accent); font-weight:800;
-      letter-spacing:.5px;
-    }
-    .brand h1{font-size:14px; margin:0; letter-spacing:.3px}
-    .brand .sub{font-size:12px; color:var(--muted); margin-top:1px}
-
-    .nav{display:flex; gap:10px; flex-wrap:wrap; align-items:center; justify-content:flex-end}
-    .pill{
-      display:inline-flex; align-items:center; gap:8px;
-      padding:8px 10px; border-radius:999px;
-      border:1px solid var(--line2);
-      background:rgba(16,16,26,.55);
-      font-size:12px; color:var(--muted);
-    }
-    .pill strong{color:var(--text); font-weight:650}
-
-    .btn{
-      display:inline-flex; align-items:center; justify-content:center;
-      gap:8px; padding:10px 12px; border-radius:12px;
-      border:1px solid var(--line2);
-      background:rgba(16,16,26,.55);
-      color:var(--text); font-size:13px; cursor:pointer;
-      transition:transform .05s ease, border-color .15s ease, background .15s ease;
-      user-select:none;
-      white-space:nowrap;
-    }
-    .btn:hover{border-color:rgba(215,181,109,.35); background:rgba(16,16,26,.72)}
-    .btn:active{transform:translateY(1px)}
-    .btn.primary{
-      border-color:rgba(215,181,109,.35);
-      background:linear-gradient(180deg, rgba(215,181,109,.20), rgba(215,181,109,.08));
-    }
-    .btn.ghost{background:transparent}
-    .btn.small{padding:7px 10px; font-size:12px; border-radius:10px}
-    .btn.danger:hover{border-color:rgba(255,122,122,.45)}
-    .btn[disabled]{opacity:.55; cursor:not-allowed}
-
-    .hero{padding:18px 6px 6px}
-    .hero .kicker{
-      display:flex; gap:10px; align-items:center; flex-wrap:wrap;
-      color:var(--muted); font-size:12px; margin-bottom:10px
-    }
-    .tag{
-      padding:6px 10px; border-radius:999px;
-      border:1px solid rgba(215,181,109,.22);
-      background:rgba(215,181,109,.08);
-      color:var(--accent);
-      font-family:var(--mono);
-      font-size:11px;
-    }
-    .badge{
-      display:inline-flex; align-items:center; gap:8px;
-      padding:6px 10px; border-radius:999px;
-      border:1px solid var(--line2);
-      background:rgba(16,16,26,.52);
-      font-size:12px; color:var(--muted)
-    }
-    .dot{width:8px; height:8px; border-radius:999px; background:var(--warn)}
-    .dot.good{background:var(--good)}
-    .dot.bad{background:var(--bad)}
-
-    .hero h2{margin:0 0 8px; font-size:26px; letter-spacing:.2px}
-    .hero p{margin:0; color:var(--muted); max-width:920px}
-    .hero .alert{
-      margin-top:12px;
-      border:1px solid rgba(240,195,106,.25);
-      background:rgba(240,195,106,.08);
-      border-radius:14px;
-      padding:10px 12px;
-      color:var(--muted);
-      font-size:12px;
-    }
-
-    .steps{
-      display:grid; grid-template-columns:repeat(3,1fr); gap:10px;
-      margin-top:14px;
-    }
-    @media (max-width: 880px){ .steps{grid-template-columns:1fr} }
-    .step{
-      border:1px solid var(--line2);
-      background:rgba(16,16,26,.50);
-      border-radius:14px;
-      padding:12px;
-    }
-    .step .n{
-      width:26px; height:26px; border-radius:9px;
-      display:grid; place-items:center; font-weight:800;
-      color:var(--accent);
-      border:1px solid rgba(215,181,109,.25);
-      background:rgba(215,181,109,.08);
-      margin-bottom:8px;
-      font-family:var(--mono);
-      font-size:12px;
-    }
-    .step .t{font-size:13px; margin:0 0 4px}
-    .step .d{font-size:12px; margin:0; color:var(--muted)}
-
-    .grid{
-      display:grid;
-      grid-template-columns: 1.15fr .85fr;
-      gap:16px;
-      margin-top:16px;
-      align-items:start;
-    }
-    @media (max-width: 980px){
-      .grid{grid-template-columns:1fr}
-      .nav{justify-content:flex-start}
-      .brand{min-width:auto}
-    }
-
-    .card{
-      border:1px solid var(--line2);
-      background:rgba(12,12,18,.72);
-      border-radius:var(--r);
-      box-shadow:var(--shadow);
+        radial-gradient(1100px 520px at 16% 0%, rgba(200,163,73,.18), transparent 62%),
+        radial-gradient(980px 520px at 92% 10%, rgba(122,167,255,.10), transparent 64%),
+        linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.020));
+      box-shadow: var(--shadow);
       overflow:hidden;
     }
-    .card .hd{
-      padding:14px 14px 10px;
-      border-bottom:1px solid var(--line2);
-      display:flex; align-items:flex-start; justify-content:space-between; gap:10px;
+    .heroShell::before{
+      content:"";
+      position:absolute; inset:-1px;
+      background: linear-gradient(120deg, rgba(200,163,73,.26), transparent 32%, rgba(255,255,255,.08) 68%, transparent);
+      opacity:.44;
+      pointer-events:none;
+      mask-image: linear-gradient(180deg, black 0%, black 62%, transparent 96%);
     }
-    .card .hd h3{margin:0; font-size:14px; letter-spacing:.2px}
-    .card .hd .meta{color:var(--muted); font-size:12px}
-    .card .bd{padding:14px}
-
-    .sectionTitle{
-      margin:14px 0 10px;
-      font-size:12px; color:var(--faint);
-      letter-spacing:.35px; text-transform:uppercase
+    .heroInner{padding: 22px 22px; position:relative; z-index:1}
+    .kickerRow{display:flex; gap:10px; flex-wrap:wrap; align-items:center}
+    .badge{
+      display:inline-flex; align-items:center; gap:10px;
+      padding:9px 12px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.03);
+      color:var(--muted);
+      font-size:12.8px;
+      white-space:nowrap;
     }
+    .badge strong{color:var(--text); font-weight:950}
+    .dot{width:8px; height:8px; border-radius:999px; background: rgba(200,163,73,.95); box-shadow: 0 0 0 3px rgba(200,163,73,.16);}
+    .dot.good{background: rgba(115,211,155,.95); box-shadow: 0 0 0 3px rgba(115,211,155,.16);}
+    .dot.warn{background: rgba(240,195,106,.95); box-shadow: 0 0 0 3px rgba(240,195,106,.16);}
+    .dot.bad{background: rgba(255,122,122,.95); box-shadow: 0 0 0 3px rgba(255,122,122,.16);}
 
-    label{display:block; font-size:12px; color:var(--muted); margin:0 0 6px}
-    .req{color:var(--accent); font-family:var(--mono)}
-    input, select, textarea{
-      width:100%;
-      padding:11px 12px;
-      border-radius:12px;
-      border:1px solid var(--line2);
-      background:rgba(16,16,26,.52);
-      color:var(--text);
-      outline:none;
+    h1{margin:12px 0 8px; font-size: clamp(26px, 2.6vw, 40px); line-height:1.08; letter-spacing:-0.7px}
+    .lead{margin:0; color:var(--muted); font-size:15.6px; line-height:1.75; max-width: 980px}
+    .lead strong{color:var(--text); font-weight:950}
+
+    .notice{
+      margin-top:12px;
+      padding:12px 12px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      color:var(--muted2);
+      font-size:12.8px;
+      line-height:1.6;
     }
-    textarea{min-height:98px; resize:vertical}
-    input:focus, select:focus, textarea:focus{border-color:rgba(215,181,109,.35); box-shadow:var(--focus)}
-    input::placeholder, textarea::placeholder{color:rgba(167,167,179,.55)}
+    .notice strong{ color:var(--text); font-weight:950; }
+    .notice a{ border-bottom:1px solid rgba(255,255,255,.18); }
 
-    .formgrid{display:grid; grid-template-columns:1fr 1fr; gap:10px}
-    @media (max-width: 720px){ .formgrid{grid-template-columns:1fr} }
+    .actions{display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-top:12px}
+    .actions .btn{min-height:44px}
 
-    .row{display:flex; gap:10px; flex-wrap:wrap; align-items:center}
-    .hint{font-size:12px; color:var(--muted)}
-    .fine{
-      font-size:11px; color:var(--faint);
-      border-top:1px solid var(--line2);
-      padding-top:10px;
+    /* Layout */
+    .grid{
+      display:grid;
+      grid-template-columns: 1.12fr .88fr;
+      gap:16px;
+      margin: 14px 0 36px;
+      align-items:start;
+    }
+    .card{
+      border-radius:var(--radius);
+      border:1px solid rgba(255,255,255,.11);
+      background: linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.022));
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+      min-width:0;
+    }
+    .hd{ padding:18px 18px 0; display:flex; align-items:flex-start; justify-content:space-between; gap:12px; flex-wrap:wrap;}
+    .bd{ padding:18px; }
+    .cardTitle{ margin:0 0 6px; font-size:18px; letter-spacing:-0.2px; font-weight:950; }
+    .muted{ color:var(--muted); line-height:1.7; margin:0; }
+
+    .toolbar{display:flex; gap:10px; flex-wrap:wrap; align-items:center}
+    .toolbar .btn{min-height:40px}
+
+    /* Form */
+    .section{
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      border-radius:16px;
+      padding:14px;
       margin-top:12px;
     }
-    .mono{font-family:var(--mono)}
+    .sectionTitle{font-weight:950; letter-spacing:-.2px; margin:0 0 6px; font-size:14px; color:var(--text)}
+    .sectionDesc{margin:0 0 10px; color:var(--muted2); font-size:12.7px; line-height:1.6}
 
-    .kv{display:grid; gap:10px}
-    .kv .line{
-      border:1px solid var(--line2);
-      background:rgba(16,16,26,.50);
-      border-radius:14px; padding:12px;
+    .row{ display:grid; gap:10px; grid-template-columns: repeat(12, minmax(0, 1fr)); }
+    .field{ grid-column: span 6; min-width:0; }
+    .field.third{ grid-column: span 4; }
+    .field.full{ grid-column: span 12; }
+
+    .label{
+      display:block;
+      color: var(--muted2);
+      font-size: 11px;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      margin: 0 0 6px;
     }
-    .kv .k{font-size:11px; color:var(--muted); letter-spacing:.25px}
-    .kv .v{margin-top:4px; font-size:13px}
-    .kv .v strong{font-weight:750}
-    .split{display:grid; grid-template-columns: 1fr 1fr; gap:10px; margin-top:10px}
-    @media (max-width: 980px){ .split{grid-template-columns:1fr} }
-
-    .checkgrid{
-      display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px;
+    .input, .select, .textarea{
+      width:100%;
+      padding:10px 11px;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(5,8,20,.72);
+      color: rgba(255,255,255,.92);
+      font-size:13px;
+      outline:none;
     }
-    @media (max-width: 720px){ .checkgrid{grid-template-columns:1fr} }
+    .textarea{ resize: vertical; min-height: 120px; }
 
+    .checkgrid{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; margin-top:10px}
     .check{
       display:flex; gap:10px; align-items:flex-start;
       padding:10px 12px;
       border-radius:14px;
-      border:1px solid var(--line2);
-      background:rgba(16,16,26,.40);
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
     }
     .check input{width:18px; margin-top:2px}
-    .check .t{font-size:12px; color:var(--text); margin:0 0 2px}
-    .check .d{font-size:12px; color:var(--muted); margin:0}
+    .check .t{font-size:12.6px; color:var(--text); margin:0 0 2px; font-weight:900}
+    .check .d{font-size:12.6px; color:var(--muted2); margin:0; line-height:1.55}
 
     .err{
       display:none;
-      margin-top:10px;
+      margin-top:12px;
       border:1px solid rgba(255,122,122,.25);
-      background:rgba(255,122,122,.08);
+      background: rgba(255,122,122,.08);
       border-radius:14px;
       padding:10px 12px;
-      color:var(--muted);
-      font-size:12px;
+      color:var(--muted2);
+      font-size:12.6px;
+      line-height:1.55;
     }
-    .err strong{color:var(--text)}
+    .err strong{color:var(--text); font-weight:950}
     .err ul{margin:8px 0 0 18px; padding:0}
     .err li{margin:6px 0}
 
-    details{
-      border:1px solid var(--line2);
-      background:rgba(16,16,26,.40);
+    .miniRow{display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-top:12px;}
+    .mono{font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;}
+
+    /* Rail */
+    .rail{ position: sticky; top: 14px; }
+    .box{
+      margin-top:12px;
+      padding:12px 12px;
       border-radius:14px;
-      padding:10px 12px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      color:var(--muted2);
+      font-size:12.8px;
+      line-height:1.6;
     }
-    details summary{
-      cursor:pointer;
-      font-size:12px;
-      color:var(--muted);
-      list-style:none;
-      display:flex; align-items:center; justify-content:space-between;
-      gap:10px;
-    }
-    details summary::-webkit-details-marker{display:none}
-    .chev{opacity:.8; font-family:var(--mono)}
-    details[open] .chev{transform:rotate(180deg)}
-    .detailsBody{margin-top:10px; color:var(--muted); font-size:12px}
-    .detailsBody ul{margin:8px 0 0 18px; padding:0}
-    .detailsBody li{margin:6px 0}
+    .box strong{color:var(--text); font-weight:950}
+    .box a{border-bottom:1px solid rgba(255,255,255,.18)}
+    .railActions{ display:grid; gap:10px; margin-top:12px; }
+    .railActions .btn{ min-height:46px; }
+    .divider{ height:1px; background: rgba(255,255,255,.10); margin: 14px 0; }
 
-    .footer{
-      margin-top:18px; padding:14px 2px 0; color:var(--faint); font-size:12px;
-      display:flex; flex-wrap:wrap; gap:10px; align-items:center; justify-content:space-between;
+    .kv{
+      display:grid; gap:10px; margin-top:10px;
     }
-    .footer a{color:var(--muted); text-decoration:underline; text-underline-offset:2px}
+    .kvLine{
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      padding:10px;
+    }
+    .kvLine .k{color:var(--muted2); font-size:11px; letter-spacing:.28em; text-transform:uppercase}
+    .kvLine .v{margin-top:6px; color:var(--muted); font-size:13px; line-height:1.6}
+    .kvLine .v strong{color:var(--text); font-weight:950}
 
-    /* Mobile action bar */
-    .actionbar{
-      position:fixed; left:0; right:0; bottom:0;
-      background:rgba(7,7,11,.72);
+    /* Mobile bottom bar */
+    .bottomBar{
+      z-index: 30;
+      padding: 10px 0 calc(10px + env(safe-area-inset-bottom));
+      background: linear-gradient(180deg, rgba(7,7,11,0) 0%, rgba(7,7,11,.78) 22%, rgba(7,7,11,.92) 100%);
       backdrop-filter: blur(10px);
-      border-top:1px solid var(--line2);
-      padding:10px 12px;
-      z-index:50;
+      border-top: 1px solid rgba(255,255,255,.08);
+      display:none;
     }
-    .actionbar .inner{
-      max-width:1180px; margin:0 auto;
-      display:flex; gap:10px; align-items:center; justify-content:space-between; flex-wrap:wrap;
+    .bottomInner{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      justify-content:space-between;
+      padding: 0 16px;
+      max-width: 1120px;
+      margin: 0 auto;
     }
-    .actionbar .meta{
-      color:var(--muted); font-size:12px;
-      display:flex; gap:10px; align-items:center; flex-wrap:wrap;
+    .bottomText{
+      min-width:0;
+      color:var(--muted);
+      font-size:12.6px;
+      line-height:1.4;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      white-space:nowrap;
     }
-    .actionbar .cta{display:flex; gap:10px; align-items:center; flex-wrap:wrap}
-    @media (min-width: 981px){
-      .actionbar{display:none}
-      .wrap{padding-bottom:40px}
+    .bottomText strong{ color:var(--text); font-weight:950; }
+    .bottomBtns{display:flex; gap:10px; align-items:center}
+    .bottomInner .btn{ min-height:46px; }
+
+    @media (max-width: 980px){
+      .grid{ grid-template-columns: 1fr; }
+      .rail{ position: relative; top: 0; }
+      .field, .field.third{ grid-column: span 12; }
+    }
+    @media (max-width: 760px){
+      .heroInner{ padding: 18px 14px; }
+      .hd, .bd{ padding-left:14px; padding-right:14px; }
+      .bottomBar{
+        display:block;
+        position: fixed;
+        left: 0; right: 0; bottom: 0;
+      }
+      body{ padding-bottom: calc(86px + env(safe-area-inset-bottom)); }
+      .checkgrid{grid-template-columns:1fr}
+    }
+    @media (prefers-reduced-motion: reduce){
+      *{ scroll-behavior:auto !important; }
     }
   </style>
 </head>
 
 <body>
+  <div class="bg" aria-hidden="true"></div>
   <a class="skip" href="#main">Skip to content</a>
 
-  <div class="wrap">
-    <!-- Rail -->
-    <div class="rail" role="banner">
-      <div class="brand">
-        <div class="mark">N</div>
-        <div>
-          <h1>Noetfield</h1>
-          <div class="sub">Partner deal registration • Deal ID • RID • board-safe</div>
+  <!-- injected header -->
+  <header id="nfHeader"></header>
+
+  <main id="main" class="wrap">
+    <section class="hero" aria-label="Partner deal hero">
+      <div class="heroShell">
+        <div class="heroInner">
+          <div class="kickerRow" aria-label="Deal badges">
+            <span class="badge"><span class="dot"></span><strong>Deal ID</strong> <span class="mono" id="dealIdText">NF-PD-—</span></span>
+            <span class="badge"><span class="dot" id="tierDot"></span><strong>Tier</strong> <span id="tierText">Pending</span></span>
+            <span class="badge" title="Protection activates after Noetfield accepts the registration (email confirmation)."><span class="dot good"></span><strong>Protection</strong> 90 days (on acceptance)</span>
+            <span class="badge" title="Target turnaround for tier confirmation and next steps."><span class="dot good"></span><strong>SLA</strong> 1 business day</span>
+            <span class="badge" title="RID is used for routing + status updates. Non-confidential."><strong>RID</strong> <span class="mono" id="ridText">—</span></span>
+          </div>
+
+          <h1>Partner Deal Registration</h1>
+
+          <p class="lead">
+            Register a partner-sourced opportunity to receive a <strong>Partner Deal ID</strong>, compute a clear <strong>tier suggestion</strong>,
+            and route <strong>procurement safely</strong>. This page is for <strong>routing only</strong> — keep it <strong>non-confidential</strong>.
+          </p>
+
+          <div class="notice" role="note">
+            <strong>Do not include:</strong> credentials, customer data, personal IDs, internal documents, pricing details, or sensitive deal notes.
+            Use this page for high-level signals and routing.
+          </div>
+
+          <div class="actions" aria-label="Hero actions">
+            <a class="btn secondary" href="/gate/" data-rid-link>Back to Gate</a>
+            <a class="btn secondary" href="/gate/procurement/" data-rid-link>Procurement lane</a>
+            <a class="btn secondary" href="/gate/partners/structure/" data-rid-link>Partner structure</a>
+            <a class="btn secondary" href="/status/" data-rid-link>Status</a>
+            <button class="btn primary" type="button" id="copyDealLinkBtn">Copy deal link</button>
+          </div>
+
         </div>
       </div>
+    </section>
 
-      <div class="nav" aria-label="Quick links">
-        <a class="btn small ghost" href="/gate/">Gate</a>
-        <a class="btn small ghost" href="/gate/procurement/">Procurement</a>
-        <a class="btn small ghost" href="/partners/">Partners</a>
-        <a class="btn small ghost" href="/gate/partners/structure/">Partner structure</a>
-        <a class="btn small ghost" href="/gate/notes/">Notes</a>
-        <a class="btn small ghost" href="/status/">Status</a>
-
-        <span class="pill mono" title="RID is used for routing + status updates. Non-confidential.">
-          RID: <strong id="ridText">—</strong>
-          <button class="btn small" type="button" id="copyRidBtn">Copy</button>
-        </span>
-      </div>
-    </div>
-
-    <!-- Hero -->
-    <div class="hero" id="main">
-      <div class="kicker">
-        <span class="tag mono" id="dealIdTag">NF-PD-—</span>
-        <span class="badge"><span class="dot" id="tierDot"></span><span id="tierText">Tier: pending</span></span>
-        <span class="badge" title="Protection activates after Noetfield accepts the registration (email confirmation).">
-          <span class="dot good"></span><span id="protectText">Protection: 90 days (on acceptance)</span>
-        </span>
-        <span class="badge" title="Target turnaround for tier confirmation and next steps.">
-          <span class="dot good"></span><span id="slaText">Response SLA: 1 business day</span>
-        </span>
-      </div>
-
-      <h2>Partner Deal Registration</h2>
-      <p>
-        Register a partner-sourced opportunity to receive a <strong>Partner Deal ID</strong>, compute a clear <strong>tier suggestion</strong>,
-        and route <strong>procurement safely</strong>. This page is for <strong>routing only</strong> — keep it <strong>non-confidential</strong>.
-      </p>
-
-      <div class="alert">
-        <strong class="mono">Do not include:</strong> credentials, customer data, personal IDs, internal documents, pricing details, or sensitive deal notes.
-        Use this page for high-level signals and routing.
-      </div>
-
-      <div class="steps" aria-label="Process overview">
-        <div class="step">
-          <div class="n">1</div>
-          <p class="t"><strong>Register</strong> the opportunity</p>
-          <p class="d">Company + buyer-side roles + constraints + likely procurement lane.</p>
-        </div>
-        <div class="step">
-          <div class="n">2</div>
-          <p class="t"><strong>Tier + protect</strong> (fast)</p>
-          <p class="d">We confirm tier, accept registration, then activate 90-day protection.</p>
-        </div>
-        <div class="step">
-          <div class="n">3</div>
-          <p class="t"><strong>Close clean</strong></p>
-          <p class="d">Invoice/PO routing + board-ready artefacts. No oversharing required.</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="grid">
-      <!-- Left: Form -->
-      <div class="card">
+    <section class="grid" aria-label="Deal layout">
+      <!-- Left -->
+      <section class="card" aria-label="Deal form">
         <div class="hd">
           <div>
-            <h3>Deal details (non-confidential)</h3>
-            <div class="meta">Draft-safe • packet export • email builders • deep-linkable IDs</div>
+            <h2 class="cardTitle">Deal details (non-confidential)</h2>
+            <p class="muted">Draft-safe (local) • packet export • email builders • deep-linkable IDs</p>
           </div>
-          <div class="row">
-            <button class="btn small primary" type="button" id="genDealBtn" title="Creates a new Partner Deal ID and updates the URL.">New Deal ID</button>
-            <button class="btn small" type="button" id="saveDraftBtn" title="Save a local draft for this Deal ID (browser only).">Save draft</button>
-            <button class="btn small danger" type="button" id="clearDraftBtn" title="Clear the saved local draft for this Deal ID.">Clear</button>
+          <div class="toolbar" aria-label="Deal tools">
+            <button class="btn secondary" type="button" id="newDealBtn" title="Creates a new Partner Deal ID and updates the URL.">New Deal ID</button>
+            <button class="btn secondary" type="button" id="saveDraftBtn" title="Save a local draft for this Deal ID (browser only).">Save draft</button>
+            <button class="btn secondary" type="button" id="loadDraftBtn" title="Load the saved local draft for this Deal ID.">Load</button>
+            <button class="btn secondary" type="button" id="clearDraftBtn" title="Clear the saved local draft for this Deal ID.">Clear</button>
           </div>
         </div>
 
@@ -437,856 +339,950 @@
           </div>
 
           <form id="dealForm" autocomplete="on" novalidate>
-            <div class="sectionTitle">Partner info</div>
-            <div class="formgrid">
-              <div>
-                <label for="partnerName">Partner legal / brand name</label>
-                <input id="partnerName" name="partnerName" placeholder="e.g., Northshore MSP Ltd." />
-              </div>
-              <div>
-                <label for="partnerType">Partner type (self-declared)</label>
-                <select id="partnerType" name="partnerType">
-                  <option value="Channel">Channel (co-selling / account influence)</option>
-                  <option value="Referral">Referral (warm intro only)</option>
-                  <option value="Delivery">Delivery (implementation / delivery partner)</option>
-                  <option value="Alliance">Alliance (co-marketing / ecosystem)</option>
-                </select>
-              </div>
-              <div>
-                <label for="partnerContact">Partner contact name</label>
-                <input id="partnerContact" name="partnerContact" placeholder="Full name" />
-              </div>
-              <div>
-                <label for="partnerEmail">Partner contact email</label>
-                <input id="partnerEmail" name="partnerEmail" type="email" placeholder="name@partner.com" />
-              </div>
-            </div>
+            <!-- Partner -->
+            <div class="section">
+              <div class="sectionTitle">Partner</div>
+              <p class="sectionDesc">Who is submitting this deal registration.</p>
 
-            <div class="sectionTitle">Opportunity basics</div>
-            <div class="formgrid">
-              <div>
-                <label for="companyName">Company name <span class="req">*</span></label>
-                <input id="companyName" name="companyName" placeholder="e.g., Example Credit Union" required />
-              </div>
-              <div>
-                <label for="companyDomain">Company domain</label>
-                <input id="companyDomain" name="companyDomain" placeholder="example.com" />
-              </div>
-              <div>
-                <label for="industry">Industry</label>
-                <select id="industry" name="industry">
-                  <option value="Financial">Financial / Credit Union / Insurance</option>
-                  <option value="Health">Health</option>
-                  <option value="Public">Public sector / Agency</option>
-                  <option value="Legal">Legal / Professional services</option>
-                  <option value="Tech">Technology</option>
-                  <option value="Other">Other</option>
-                </select>
-              </div>
-              <div>
-                <label for="sizeBand">Employee band</label>
-                <select id="sizeBand" name="sizeBand">
-                  <option value="200-500">200–500</option>
-                  <option value="500-1k">500–1,000</option>
-                  <option value="1k-5k">1,000–5,000</option>
-                  <option value="5k+">5,000+</option>
-                </select>
-              </div>
-            </div>
-
-            <div class="sectionTitle">Buyer-side roles</div>
-            <div class="formgrid">
-              <div>
-                <label for="championRole">Champion role <span class="req">*</span></label>
-                <select id="championRole" name="championRole" required>
-                  <option value="Modern Workplace / M365 Owner">Modern Workplace / M365 Platform Owner</option>
-                  <option value="IT Transformation">IT Transformation</option>
-                  <option value="Security">Security (CISO org)</option>
-                  <option value="Privacy">Privacy / Records</option>
-                  <option value="Procurement">Procurement / Vendor Risk</option>
-                  <option value="Other">Other</option>
-                </select>
-              </div>
-              <div>
-                <label for="championEmail">Champion email (if permitted)</label>
-                <input id="championEmail" name="championEmail" type="email" placeholder="optional@company.com" />
-              </div>
-              <div>
-                <label>Blockers present (board-safe)</label>
-                <div class="checkgrid" role="group" aria-label="Blockers present">
-                  <label class="check"><input type="checkbox" value="Privacy" data-blocker /><div><p class="t">Privacy</p><p class="d">PII, retention, use limitations</p></div></label>
-                  <label class="check"><input type="checkbox" value="Legal" data-blocker /><div><p class="t">Legal</p><p class="d">Contract / liability posture</p></div></label>
-                  <label class="check"><input type="checkbox" value="Procurement" data-blocker /><div><p class="t">Procurement</p><p class="d">Invoice/PO lane, vendor onboarding</p></div></label>
-                  <label class="check"><input type="checkbox" value="Vendor Risk" data-blocker /><div><p class="t">Vendor Risk</p><p class="d">Security/privacy evidence requests</p></div></label>
-                  <label class="check"><input type="checkbox" value="InfoSec" data-blocker /><div><p class="t">InfoSec</p><p class="d">Controls, monitoring, access boundaries</p></div></label>
-                  <label class="check"><input type="checkbox" value="Records / Retention" data-blocker /><div><p class="t">Records / Retention</p><p class="d">eDiscovery, retention schedules</p></div></label>
+              <div class="row">
+                <div class="field">
+                  <label class="label" for="partnerName">Partner name</label>
+                  <input class="input" id="partnerName" name="partnerName" placeholder="e.g., Northshore MSP Ltd." />
                 </div>
-                <div class="hint" style="margin-top:8px">Keep this high-level. Do not add internal ticket IDs or sensitive notes.</div>
-              </div>
-              <div>
-                <label for="buyLane">Likely buying lane</label>
-                <select id="buyLane" name="buyLane">
-                  <option value="Invoice">Invoice</option>
-                  <option value="PO">PO</option>
-                  <option value="Card">Card</option>
-                  <option value="Unknown">Unknown</option>
-                </select>
-              </div>
-            </div>
-
-            <div class="sectionTitle">Need & timing</div>
-            <div class="formgrid">
-              <div>
-                <label for="pain">Primary pain <span class="req">*</span></label>
-                <select id="pain" name="pain" required>
-                  <option value="Copilot rollout blocked by procurement/privacy">Copilot rollout blocked by procurement/privacy</option>
-                  <option value="Oversharing / external sharing risk">Oversharing / external sharing risk</option>
-                  <option value="Purview/DLP readiness gaps">Purview/DLP readiness gaps</option>
-                  <option value="Retention/eDiscovery posture unclear">Retention/eDiscovery posture unclear</option>
-                  <option value="Connector / plugin governance">Connector / plugin governance</option>
-                  <option value="Data boundary / sensitivity mapping">Data boundary / sensitivity mapping</option>
-                </select>
-              </div>
-              <div>
-                <label for="timeline">Timeline</label>
-                <select id="timeline" name="timeline">
-                  <option value="0-30">0–30 days</option>
-                  <option value="31-60">31–60 days</option>
-                  <option value="61-90">61–90 days</option>
-                  <option value="90+">90+ days</option>
-                </select>
-              </div>
-              <div>
-                <label for="budgetBand">Budget band (optional)</label>
-                <select id="budgetBand" name="budgetBand">
-                  <option value="unknown">Unknown</option>
-                  <option value="<10k">&lt; 10k</option>
-                  <option value="10-25k">10–25k</option>
-                  <option value="25-50k">25–50k</option>
-                  <option value="50k+">50k+</option>
-                </select>
-              </div>
-              <div>
-                <label for="offerHint">Suggested entry offer</label>
-                <select id="offerHint" name="offerHint">
-                  <option value="QuickScan (5–7 business days)">QuickScan (5–7 business days)</option>
-                  <option value="Readiness (2 weeks) — Starter (CAD 9,500)">Readiness (2 weeks) — Starter (CAD 9,500)</option>
-                  <option value="Readiness (4 weeks) — Standard (CAD 15,000)">Readiness (4 weeks) — Standard (CAD 15,000)</option>
-                  <option value="Readiness (6 weeks) — Extended (CAD 25,000)">Readiness (6 weeks) — Extended (CAD 25,000)</option>
-                </select>
+                <div class="field">
+                  <label class="label" for="partnerEmail">Partner email</label>
+                  <input class="input" id="partnerEmail" name="partnerEmail" placeholder="name@partner.com" />
+                </div>
+                <div class="field">
+                  <label class="label" for="partnerWebsite">Partner website</label>
+                  <input class="input" id="partnerWebsite" name="partnerWebsite" placeholder="https://partner.com" />
+                </div>
+                <div class="field">
+                  <label class="label" for="partnerRole">Your role</label>
+                  <input class="input" id="partnerRole" name="partnerRole" placeholder="e.g., Account Executive, Consultant, MSP Owner" />
+                </div>
               </div>
             </div>
 
-            <div class="sectionTitle">Sourcing signals (tier suggestion)</div>
-            <div class="formgrid">
-              <div>
-                <label for="partnerSourced">Is this partner-sourced (your account/network)?</label>
-                <select id="partnerSourced" name="partnerSourced">
-                  <option value="yes">Yes</option>
-                  <option value="no">No</option>
-                  <option value="unknown">Unknown</option>
-                </select>
+            <!-- Client -->
+            <div class="section">
+              <div class="sectionTitle">Client (target organization)</div>
+              <p class="sectionDesc">High-level only. No sensitive details.</p>
+
+              <div class="row">
+                <div class="field">
+                  <label class="label" for="clientOrg">Client organization</label>
+                  <input class="input" id="clientOrg" name="clientOrg" placeholder="e.g., Pacific Credit Union" />
+                </div>
+                <div class="field">
+                  <label class="label" for="clientDomain">Client domain</label>
+                  <input class="input" id="clientDomain" name="clientDomain" placeholder="e.g., client.com" />
+                </div>
+                <div class="field third">
+                  <label class="label" for="clientSize">Size (rough)</label>
+                  <select class="select" id="clientSize" name="clientSize">
+                    <option value="">Select…</option>
+                    <option value="200-499">200–499</option>
+                    <option value="500-999">500–999</option>
+                    <option value="1000-4999">1,000–4,999</option>
+                    <option value="5000+">5,000+</option>
+                  </select>
+                </div>
+                <div class="field third">
+                  <label class="label" for="industry">Industry</label>
+                  <select class="select" id="industry" name="industry">
+                    <option value="">Select…</option>
+                    <option value="financial">Financial / Insurance / Credit Union</option>
+                    <option value="health">Health</option>
+                    <option value="public">Public sector / Agency</option>
+                    <option value="legal">Legal / Professional services</option>
+                    <option value="tech">Technology</option>
+                    <option value="other">Other</option>
+                  </select>
+                </div>
+                <div class="field third">
+                  <label class="label" for="geo">Geography</label>
+                  <select class="select" id="geo" name="geo">
+                    <option value="">Select…</option>
+                    <option value="canada">Canada</option>
+                    <option value="usa">USA</option>
+                    <option value="uk-eu">UK/EU</option>
+                    <option value="other">Other</option>
+                  </select>
+                </div>
               </div>
-              <div>
-                <label for="canArrangeMeetings">Can you arrange 2 buyer-side meetings?</label>
-                <select id="canArrangeMeetings" name="canArrangeMeetings">
-                  <option value="yes">Yes</option>
-                  <option value="no">No</option>
-                  <option value="unknown">Unknown</option>
-                </select>
-              </div>
-              <div>
-                <label for="canSupportClose">Can you support close through signature + payment/PO?</label>
-                <select id="canSupportClose" name="canSupportClose">
-                  <option value="yes">Yes</option>
-                  <option value="no">No</option>
-                  <option value="unknown">Unknown</option>
-                </select>
-              </div>
-              <div>
-                <label for="requestedTier">Requested tier</label>
-                <select id="requestedTier" name="requestedTier">
-                  <option value="auto">Auto (system suggestion)</option>
-                  <option value="Referral (15%)">Referral (15%)</option>
-                  <option value="Channel (20% + bonus)">Channel (20% + bonus)</option>
-                  <option value="Prime (30% — eligibility)">Prime (30% — eligibility)</option>
-                  <option value="Delivery (scope split)">Delivery (scope split)</option>
-                </select>
+
+              <div class="row" style="margin-top:10px;">
+                <div class="field">
+                  <label class="label" for="championRole">Operational champion (role)</label>
+                  <input class="input" id="championRole" name="championRole" placeholder="e.g., Director of Modern Workplace / M365 Platform Owner" />
+                </div>
+                <div class="field">
+                  <label class="label" for="buyerRole">Signer / budget owner (role)</label>
+                  <input class="input" id="buyerRole" name="buyerRole" placeholder="e.g., CIO / CISO / VP IT" />
+                </div>
               </div>
             </div>
 
-            <div class="sectionTitle">Notes (non-confidential)</div>
-            <div>
-              <label for="notes">Context / constraints / what you want us to do next</label>
-              <textarea id="notes" name="notes" placeholder="Example: Copilot pilot is live; privacy wants retention proof; procurement needs vendor snapshot; aim to decide in 30 days."></textarea>
-              <div class="hint">No secrets. No customer data. Use high-level constraints and routing needs.</div>
+            <!-- Routing -->
+            <div class="section">
+              <div class="sectionTitle">Routing</div>
+              <p class="sectionDesc">How to move this cleanly through procurement.</p>
+
+              <div class="row">
+                <div class="field">
+                  <label class="label" for="need">Primary need</label>
+                  <select class="select" id="need" name="need">
+                    <option value="">Select…</option>
+                    <option value="copilot-readiness">Copilot readiness (2/4/6 weeks)</option>
+                    <option value="quickscan">QuickScan (5–7 business days)</option>
+                    <option value="trust-brief">Trust Brief (6-week)</option>
+                    <option value="trust-ledger">Trust Ledger (ongoing)</option>
+                    <option value="unknown">Not sure yet</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label class="label" for="timing">Timing</label>
+                  <select class="select" id="timing" name="timing">
+                    <option value="">Select…</option>
+                    <option value="urgent">Urgent (days to 2 weeks)</option>
+                    <option value="standard">Standard (4 weeks)</option>
+                    <option value="extended">Extended (6 weeks)</option>
+                    <option value="tbd">TBD</option>
+                  </select>
+                </div>
+                <div class="field third">
+                  <label class="label" for="procLane">Procurement lane</label>
+                  <select class="select" id="procLane" name="procLane">
+                    <option value="">Select…</option>
+                    <option value="invoice-po">Invoice / PO</option>
+                    <option value="card">Card checkout</option>
+                    <option value="msa">MSA/SOW workflow</option>
+                    <option value="unknown">Unknown</option>
+                  </select>
+                </div>
+                <div class="field third">
+                  <label class="label" for="stage">Stage</label>
+                  <select class="select" id="stage" name="stage">
+                    <option value="">Select…</option>
+                    <option value="intro">Intro / early interest</option>
+                    <option value="active">Active evaluation</option>
+                    <option value="pilot">Pilot decision</option>
+                    <option value="rollout">Rollout decision</option>
+                  </select>
+                </div>
+                <div class="field third">
+                  <label class="label" for="decisionWindow">Decision window</label>
+                  <select class="select" id="decisionWindow" name="decisionWindow">
+                    <option value="">Select…</option>
+                    <option value="0-2w">0–2 weeks</option>
+                    <option value="2-6w">2–6 weeks</option>
+                    <option value="6-12w">6–12 weeks</option>
+                    <option value="unknown">Unknown</option>
+                  </select>
+                </div>
+
+                <div class="field full">
+                  <label class="label" for="constraints">Constraints / notes (high-level)</label>
+                  <textarea class="textarea" id="constraints" name="constraints" placeholder="e.g., audit window, client requirements, sensitive data themes, policy posture, preferred kickoff mode (email-first), stakeholder complexity..."></textarea>
+                </div>
+              </div>
+
+              <div class="checkgrid" aria-label="Signals">
+                <label class="check">
+                  <input type="checkbox" id="sigM365" />
+                  <div>
+                    <div class="t">Microsoft-heavy</div>
+                    <p class="d">M365 E3/E5 + Purview/DLP posture matters.</p>
+                  </div>
+                </label>
+                <label class="check">
+                  <input type="checkbox" id="sigSensitive" />
+                  <div>
+                    <div class="t">Sensitive data</div>
+                    <p class="d">HR, finance, client files, regulated records (high-level only).</p>
+                  </div>
+                </label>
+                <label class="check">
+                  <input type="checkbox" id="sigProc" />
+                  <div>
+                    <div class="t">Procurement pressure</div>
+                    <p class="d">Vendor onboarding, security, privacy, or legal gating expected.</p>
+                  </div>
+                </label>
+                <label class="check">
+                  <input type="checkbox" id="sigUrgent" />
+                  <div>
+                    <div class="t">Urgency</div>
+                    <p class="d">Timeline is driving a fast decision path.</p>
+                  </div>
+                </label>
+              </div>
+
+              <div class="miniRow">
+                <button class="btn primary" type="button" id="computeBtn">Compute tier + packet</button>
+                <button class="btn secondary" type="button" id="exportBtn" disabled>Export packet (.json)</button>
+                <button class="btn secondary" type="button" id="copyPacketBtn" disabled>Copy packet (JSON)</button>
+              </div>
             </div>
 
-            <div class="sectionTitle">Attestations</div>
-            <div class="row">
-              <label class="row" style="gap:10px; align-items:flex-start;">
-                <input type="checkbox" id="attest1" required style="width:18px; margin-top:3px;" />
-                <span class="hint">I confirm this registration is for routing/tiering and does not contain confidential data. <span class="req">*</span></span>
-              </label>
+            <!-- Email builders -->
+            <div class="section">
+              <div class="sectionTitle">Email builders</div>
+              <p class="sectionDesc">Generated locally in your browser. Use non-confidential text only.</p>
+
+              <div class="miniRow">
+                <button class="btn secondary" type="button" id="genEmailToNoetfieldBtn">Generate email to Noetfield</button>
+                <a class="btn secondary" id="mailtoNoetfieldBtn" href="#" hidden>Open in email app</a>
+                <button class="btn secondary" type="button" id="copyEmailToNoetfieldBtn" disabled>Copy</button>
+              </div>
+
+              <textarea class="textarea" id="emailOut" readonly style="margin-top:12px;"></textarea>
+
+              <div class="notice" style="margin-top:12px;">
+                <strong>Recipient:</strong> defaults to <span class="mono">procurement@noetfield.com</span> for routing. Change in your email client if needed.
+              </div>
             </div>
-            <div class="row">
-              <label class="row" style="gap:10px; align-items:flex-start;">
-                <input type="checkbox" id="attest2" required style="width:18px; margin-top:3px;" />
-                <span class="hint">I understand deal protection is 90 days <strong>after acceptance</strong> (email confirmation), subject to partner terms. <span class="req">*</span></span>
-              </label>
+
+            <div class="notice" style="margin-top:12px;">
+              <strong>Status:</strong> Deal protection is activated only after Noetfield accepts registration (email confirmation).
+              Keep this registration link for routing and updates.
             </div>
           </form>
+        </div>
+      </section>
 
-          <div class="row" style="margin-top:12px">
-            <button class="btn primary" type="button" id="copyPacketBtn">Copy deal packet</button>
-            <button class="btn" type="button" id="downloadJsonBtn">Download JSON</button>
-            <button class="btn" type="button" id="downloadTxtBtn">Download TXT</button>
-            <button class="btn" type="button" id="emailRegBtn">Email registration</button>
-            <button class="btn" type="button" id="emailIntroBtn">Build warm intro</button>
+      <!-- Right rail -->
+      <aside class="rail" aria-label="Deal rail">
+        <div class="card">
+          <div class="hd">
+            <div>
+              <h2 class="cardTitle">Deal summary</h2>
+              <p class="muted">Tier suggestion + next best routing.</p>
+            </div>
           </div>
 
-          <details style="margin-top:12px">
-            <summary>
-              Tier definitions & payout baseline (summary)
-              <span class="chev">˅</span>
-            </summary>
-            <div class="detailsBody">
-              <ul>
-                <li><strong>Referral (15%)</strong>: warm intro only; Noetfield runs the sales cycle. Paid on first paid engagement (Net Fee), after client funds received.</li>
-                <li><strong>Channel (20% + bonus, cap 30%)</strong>: co-selling/account influence; bonus for accelerating close + procurement routing + volume.</li>
-                <li><strong>Prime (30%)</strong>: eligibility requires partner-sourced + 2 meetings + close support through signature + payment/PO.</li>
-                <li><strong>Delivery</strong>: implementation scope split via SOW/RACI; sales commission not default (commercial handled per delivery agreement).</li>
-              </ul>
-              <div class="hint" style="margin-top:8px">
-                This page is not a contract. Final terms follow the Partner Agreement and written acceptance.
+          <div class="bd">
+            <div class="box">
+              <div><strong>Deal ID:</strong> <span class="mono" id="railDealId">—</span></div>
+              <div style="margin-top:6px;"><strong>RID:</strong> <span class="mono" id="railRid">—</span></div>
+              <div style="margin-top:6px;"><strong>Tier:</strong> <span id="railTier">Pending</span></div>
+
+              <div class="miniRow" style="margin-top:10px;">
+                <button class="btn secondary" type="button" id="copyRidBtn">Copy RID</button>
+                <button class="btn secondary" type="button" id="copyDealIdBtn">Copy Deal ID</button>
               </div>
             </div>
-          </details>
 
-          <div class="fine">
-            Net Fee excludes taxes and pass-through costs. Commissions/margins are payable after client funds are received.
-            For Invoice/PO routing, use <a href="/gate/procurement/">/gate/procurement/</a> and include RID + Deal ID.
+            <div class="divider" aria-hidden="true"></div>
+
+            <div class="kv" aria-label="Rail key values">
+              <div class="kvLine">
+                <div class="k">Suggested start</div>
+                <div class="v"><strong id="suggestedStart">—</strong><br/><span id="suggestedWhy">—</span></div>
+              </div>
+              <div class="kvLine">
+                <div class="k">Procurement lane</div>
+                <div class="v"><strong id="railLane">—</strong></div>
+              </div>
+              <div class="kvLine">
+                <div class="k">Next actions</div>
+                <div class="v">Use <strong>Gate</strong> for a clean SKU path, then <strong>Procurement</strong> if Invoice/PO is required.</div>
+              </div>
+            </div>
+
+            <div class="railActions" aria-label="Rail actions">
+              <a class="btn primary" id="railGateBtn" href="/gate/" data-rid-link>Open Gate</a>
+              <a class="btn secondary" id="railProcBtn" href="/gate/procurement/" data-rid-link>Procurement (Invoice/PO)</a>
+              <a class="btn secondary" id="railSalesBtn" href="/gate/sales/" data-rid-link>Start (Sales)</a>
+              <a class="btn secondary" id="railPartnersBtn" href="/gate/partners/" data-rid-link>Partners</a>
+            </div>
+
+            <div class="box">
+              <strong>Non-confidential rule</strong><br/>
+              This page is for routing signals only. Do not paste customer data or internal documents.
+            </div>
           </div>
         </div>
-      </div>
+      </aside>
+    </section>
+  </main>
 
-      <!-- Right: Summary -->
-      <div class="card" id="summaryCard">
-        <div class="hd">
-          <div>
-            <h3>Summary (auto)</h3>
-            <div class="meta">Tier suggestion • IDs • next actions • deep links</div>
-          </div>
-          <div class="row">
-            <button class="btn small" type="button" id="refreshBtn">Refresh</button>
-          </div>
-        </div>
+  <!-- injected footer -->
+  <footer id="nfFooter"></footer>
 
-        <div class="bd">
-          <div class="kv">
-            <div class="line">
-              <div class="k">Partner Deal ID</div>
-              <div class="v mono" id="dealIdText">NF-PD-—</div>
-              <div class="row" style="margin-top:10px">
-                <button class="btn small" type="button" id="copyDealBtn">Copy</button>
-                <button class="btn small" type="button" id="copyDeepLinkBtn" title="Copy this page link with RID + Deal ID.">Copy link</button>
-              </div>
-              <div class="hint" style="margin-top:8px">Share this link internally to keep the same Deal ID + RID.</div>
-            </div>
-
-            <div class="line">
-              <div class="k">Tier suggestion</div>
-              <div class="v" id="tierExplain">Complete the sourcing signals to compute tier.</div>
-              <div class="split">
-                <div class="badge"><span class="dot good"></span>Referral: 15%</div>
-                <div class="badge"><span class="dot"></span>Channel: 20% + bonus (cap 30%)</div>
-              </div>
-              <div class="badge" style="margin-top:10px"><span class="dot good"></span>Prime: 30% (eligibility-based)</div>
-            </div>
-
-            <div class="line">
-              <div class="k">Recommended next step</div>
-              <div class="v" id="nextStep">Generate a Deal ID, then email the registration packet to Noetfield.</div>
-              <div class="row" style="margin-top:10px">
-                <button class="btn small primary" type="button" id="copySubjectBtn" title="Copy a procurement-safe subject line.">Copy subject</button>
-                <button class="btn small" type="button" id="copyPacketMiniBtn">Copy packet</button>
-              </div>
-            </div>
-
-            <div class="line">
-              <div class="k">Procurement lane</div>
-              <div class="v">
-                If the buyer needs Invoice/PO routing, send them:
-                <div class="row" style="margin-top:10px">
-                  <a class="btn small primary" href="/gate/procurement/" id="procLink">Open procurement page</a>
-                  <button class="btn small" type="button" id="copyProcLinkBtn">Copy link</button>
-                </div>
-                <div class="hint" style="margin-top:8px">Use subject line with RID + Deal ID.</div>
-              </div>
-            </div>
-
-            <div class="line">
-              <div class="k">Protection status</div>
-              <div class="v" id="protectStatus">
-                Pending acceptance. Protection starts after Noetfield confirms acceptance by email and lasts 90 days.
-              </div>
-              <div class="hint" style="margin-top:8px" id="protectDatesHint">Tip: keep a copy of your registration email for audit trail.</div>
-            </div>
-          </div>
-
-          <div class="fine">
-            Prime eligibility requires: partner-sourced + 2 buyer-side meetings + close support through signature/payment/PO.
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="footer">
-      <div>© <span id="y"></span> Noetfield Systems Inc.</div>
-      <div class="hint">
-        Use: <a href="/gate/">/gate/</a> • <a href="/gate/procurement/">/gate/procurement/</a> • <a href="/status/">/status/</a>
-      </div>
-    </div>
-  </div>
-
-  <!-- Mobile action bar -->
-  <div class="actionbar" role="region" aria-label="Quick actions">
-    <div class="inner">
-      <div class="meta">
-        <span class="tag mono" id="dealIdTag2">NF-PD-—</span>
-        <span class="pill mono">RID: <strong id="ridText2">—</strong></span>
-      </div>
-      <div class="cta">
-        <button class="btn small" type="button" id="copyPacketBarBtn">Copy packet</button>
-        <button class="btn small primary" type="button" id="emailRegBarBtn">Email</button>
+  <!-- Mobile bottom bar -->
+  <div class="bottomBar" id="bottomBar" role="region" aria-label="Deal quick actions">
+    <div class="bottomInner">
+      <div class="bottomText" id="bottomText"><strong>Deal:</strong> —</div>
+      <div class="bottomBtns" aria-label="Mobile quick actions">
+        <a class="btn secondary" href="/gate/" data-rid-link>Gate</a>
+        <a class="btn primary" href="/gate/procurement/" data-rid-link>Procurement</a>
       </div>
     </div>
   </div>
 
   <script>
-    // ---------- helpers ----------
-    const $ = (id)=>document.getElementById(id);
+    (function(){
+      "use strict";
 
-    function randAlphaNum(n){
-      const chars="ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
-      let out="";
-      for(let i=0;i<n;i++) out += chars[Math.floor(Math.random()*chars.length)];
-      return out;
-    }
-    function todayYYYYMMDD(){
-      const d = new Date();
-      const y = d.getFullYear();
-      const m = String(d.getMonth()+1).padStart(2,"0");
-      const day = String(d.getDate()).padStart(2,"0");
-      return `${y}${m}${day}`;
-    }
-    async function copyText(text){
-      try{
-        await navigator.clipboard.writeText(text);
-        return true;
-      }catch(e){
-        const ta = document.createElement("textarea");
-        ta.value = text;
-        document.body.appendChild(ta);
-        ta.select();
-        try{ document.execCommand("copy"); }catch(_){}
-        document.body.removeChild(ta);
-        return false;
+      function $(id){ return document.getElementById(id); }
+      function qsa(sel){ try { return Array.prototype.slice.call(document.querySelectorAll(sel)); } catch(_) { return []; } }
+
+      // RID resolution (same strategy as Gate)
+      function getRid(){
+        try{
+          if (window.NoetfieldShell && typeof window.NoetfieldShell.getRID === "function") return window.NoetfieldShell.getRID();
+          if (window.NF && typeof window.NF.getRID === "function") return window.NF.getRID();
+        } catch(_) {}
+        try {
+          var u = new URL(window.location.href);
+          var ridQ = (u.searchParams.get("rid") || "").trim();
+          if (ridQ) return ridQ;
+        } catch(_) {}
+        try{
+          var k = "nf_rid";
+          var cur = (localStorage.getItem(k) || "").trim();
+          if (!cur){
+            cur = "NF-" + Math.random().toString(36).slice(2, 8).toUpperCase() + "-" + Date.now().toString(36).toUpperCase();
+            localStorage.setItem(k, cur);
+          }
+          return cur;
+        } catch(_){
+          return "NF-" + Date.now().toString(36).toUpperCase();
+        }
       }
-    }
-    function downloadText(filename, content, mime="text/plain"){
-      const blob = new Blob([content], {type:mime});
-      const a = document.createElement("a");
-      a.href = URL.createObjectURL(blob);
-      a.download = filename;
-      document.body.appendChild(a);
-      a.click();
-      URL.revokeObjectURL(a.href);
-      document.body.removeChild(a);
-    }
-    function buildMailto(to, subject, body){
-      const u = new URL("mailto:" + to);
-      u.searchParams.set("subject", subject);
-      u.searchParams.set("body", body);
-      return u.toString();
-    }
-    function normalizeDomain(s){
-      return (s || "").trim().replace(/^https?:\/\//i,"").replace(/\/.*$/,"");
-    }
-    function setURLParams(params){
-      const url = new URL(location.href);
-      Object.entries(params).forEach(([k,v])=>{
-        if(v === null || v === undefined || v === "") url.searchParams.delete(k);
-        else url.searchParams.set(k, v);
-      });
-      history.replaceState({}, "", url.toString());
-    }
 
-    // ---------- ID management (Gate-aligned) ----------
-    function ensureRID(){
-      const qs = new URLSearchParams(location.search);
-      const urlRid = qs.get("rid");
-      const lsKey = "nf_rid";
-      let rid = urlRid || localStorage.getItem(lsKey);
-      if(!rid){
-        rid = `RID-${randAlphaNum(8)}-${randAlphaNum(6)}`;
+      function applyRidToLinks(rid){
+        var links = qsa("a[data-rid-link]");
+        links.forEach(function(a){
+          try{
+            var href = a.getAttribute("href") || "";
+            if (!href || href.indexOf("mailto:") === 0 || href.indexOf("#") === 0) return;
+            var u = new URL(href, window.location.origin);
+            if (!u.searchParams.get("rid")) u.searchParams.set("rid", rid);
+            a.setAttribute("href", u.pathname + u.search + u.hash);
+          } catch(_) {}
+        });
       }
-      localStorage.setItem(lsKey, rid);
-      return rid;
-    }
 
-    function newDealID(){
-      const stamp = todayYYYYMMDD();
-      const seq = String(Math.floor(Math.random()*9000)+1000);
-      return `NF-PD-${stamp}-${seq}`;
-    }
+      function copyToClipboard(text){
+        return new Promise(function(resolve){
+          (async function(){
+            try{
+              if (navigator.clipboard && navigator.clipboard.writeText){
+                await navigator.clipboard.writeText(text);
+                return resolve(true);
+              }
+            } catch(_) {}
+            try{
+              var ta = document.createElement("textarea");
+              ta.value = text;
+              ta.style.position = "fixed";
+              ta.style.left = "-9999px";
+              document.body.appendChild(ta);
+              ta.focus(); ta.select();
+              document.execCommand("copy");
+              document.body.removeChild(ta);
+              return resolve(true);
+            } catch(_){ return resolve(false); }
+          })();
+        });
+      }
 
-    function ensureDealID(forceNew=false){
-      const qs = new URLSearchParams(location.search);
-      const urlDeal = qs.get("deal");
-      const lsKey = "nf_partner_deal_last";
-      if(forceNew){
-        const fresh = newDealID();
-        localStorage.setItem(lsKey, fresh);
-        setURLParams({ deal: fresh });
+      function ymd(){
+        var d = new Date();
+        var mm = String(d.getMonth()+1).padStart(2,"0");
+        var dd = String(d.getDate()).padStart(2,"0");
+        return String(d.getFullYear()) + mm + dd;
+      }
+
+      function genDealId(){
+        var rand = Math.random().toString(36).slice(2, 8).toUpperCase();
+        return "NF-PD-" + rand + "-" + ymd();
+      }
+
+      function getDealId(){
+        try{
+          var u = new URL(window.location.href);
+          var d = (u.searchParams.get("deal") || "").trim();
+          if (d) return d;
+        } catch(_) {}
+        try{
+          var cur = (localStorage.getItem("nf_pd_last_deal") || "").trim();
+          if (cur) return cur;
+        } catch(_) {}
+        var fresh = genDealId();
+        try{ localStorage.setItem("nf_pd_last_deal", fresh); } catch(_) {}
         return fresh;
       }
-      let id = urlDeal || localStorage.getItem(lsKey);
-      if(!id){
-        id = newDealID();
-        localStorage.setItem(lsKey, id);
-      }
-      setURLParams({ deal: id });
-      return id;
-    }
 
-    function draftKey(dealId){ return `nf_pd_draft__${dealId}`; }
-
-    function getSelectedBlockers(){
-      return Array.from(document.querySelectorAll("[data-blocker]"))
-        .filter(cb=>cb.checked)
-        .map(cb=>cb.value);
-    }
-
-    // ---------- packet ----------
-    function getFormPacket(){
-      return {
-        rid: $("ridText").textContent,
-        partner_deal_id: $("dealIdText").textContent,
-        timestamp_iso: new Date().toISOString(),
-        partner: {
-          name: $("partnerName").value.trim(),
-          type: $("partnerType").value,
-          contact: $("partnerContact").value.trim(),
-          email: $("partnerEmail").value.trim()
-        },
-        opportunity: {
-          company: $("companyName").value.trim(),
-          domain: normalizeDomain($("companyDomain").value),
-          industry: $("industry").value,
-          employee_band: $("sizeBand").value
-        },
-        buyer_side: {
-          champion_role: $("championRole").value,
-          champion_email: $("championEmail").value.trim(),
-          blockers_present: getSelectedBlockers(),
-          buying_lane: $("buyLane").value
-        },
-        need: {
-          primary_pain: $("pain").value,
-          timeline: $("timeline").value,
-          budget_band: $("budgetBand").value,
-          suggested_entry_offer: $("offerHint").value
-        },
-        tiering_signals: {
-          partner_sourced: $("partnerSourced").value,
-          can_arrange_two_meetings: $("canArrangeMeetings").value,
-          can_support_close: $("canSupportClose").value,
-          requested_tier: $("requestedTier").value
-        },
-        notes: $("notes").value.trim(),
-        attestations: {
-          non_confidential: $("attest1").checked,
-          deal_protection_understood: $("attest2").checked
-        }
-      };
-    }
-
-    function packetToText(packet){
-      const lines = [];
-      lines.push(`RID: ${packet.rid}`);
-      lines.push(`Partner Deal ID: ${packet.partner_deal_id}`);
-      lines.push(`Timestamp: ${packet.timestamp_iso}`);
-      lines.push("");
-      lines.push("Partner");
-      lines.push(`- Name: ${packet.partner.name || "—"}`);
-      lines.push(`- Type: ${packet.partner.type}`);
-      lines.push(`- Contact: ${packet.partner.contact || "—"}`);
-      lines.push(`- Email: ${packet.partner.email || "—"}`);
-      lines.push("");
-      lines.push("Opportunity");
-      lines.push(`- Company: ${packet.opportunity.company || "—"}`);
-      lines.push(`- Domain: ${packet.opportunity.domain || "—"}`);
-      lines.push(`- Industry: ${packet.opportunity.industry}`);
-      lines.push(`- Employee band: ${packet.opportunity.employee_band}`);
-      lines.push("");
-      lines.push("Buyer-side");
-      lines.push(`- Champion role: ${packet.buyer_side.champion_role}`);
-      lines.push(`- Champion email: ${packet.buyer_side.champion_email || "—"}`);
-      lines.push(`- Blockers: ${(packet.buyer_side.blockers_present || []).join(", ") || "—"}`);
-      lines.push(`- Buying lane: ${packet.buyer_side.buying_lane}`);
-      lines.push("");
-      lines.push("Need & timing");
-      lines.push(`- Primary pain: ${packet.need.primary_pain}`);
-      lines.push(`- Timeline: ${packet.need.timeline}`);
-      lines.push(`- Budget band: ${packet.need.budget_band}`);
-      lines.push(`- Suggested entry offer: ${packet.need.suggested_entry_offer}`);
-      lines.push("");
-      lines.push("Tiering signals");
-      lines.push(`- Partner-sourced: ${packet.tiering_signals.partner_sourced}`);
-      lines.push(`- Can arrange 2 meetings: ${packet.tiering_signals.can_arrange_two_meetings}`);
-      lines.push(`- Can support close: ${packet.tiering_signals.can_support_close}`);
-      lines.push(`- Requested tier: ${packet.tiering_signals.requested_tier}`);
-      lines.push("");
-      lines.push("Notes");
-      lines.push(packet.notes || "—");
-      lines.push("");
-      lines.push("Attestations");
-      lines.push(`- Non-confidential: ${packet.attestations.non_confidential}`);
-      lines.push(`- Deal protection understood: ${packet.attestations.deal_protection_understood}`);
-      lines.push("");
-      lines.push("Operational note");
-      lines.push("- Protection is 90 days after written acceptance by Noetfield (email confirmation).");
-      return lines.join("\n");
-    }
-
-    // ---------- validation (inline, procurement-safe) ----------
-    function validateRequired(show=true){
-      const errors = [];
-      if(!$("companyName").value.trim()) errors.push("Company name is required.");
-      if(!$("championRole").value) errors.push("Champion role is required.");
-      if(!$("pain").value) errors.push("Primary pain is required.");
-      if(!$("attest1").checked) errors.push("Confirm non-confidential attestation.");
-      if(!$("attest2").checked) errors.push("Confirm protection/terms attestation.");
-
-      const box = $("errBox");
-      const list = $("errList");
-      list.innerHTML = "";
-
-      if(errors.length){
-        if(show){
-          errors.forEach(e=>{
-            const li=document.createElement("li");
-            li.textContent=e;
-            list.appendChild(li);
-          });
-          box.style.display = "block";
-          box.scrollIntoView({behavior:"smooth", block:"nearest"});
-        }
-        return false;
-      }
-      box.style.display = "none";
-      return true;
-    }
-
-    // ---------- tier computation (simple + explainable) ----------
-    function computeTier(packet){
-      const ps = packet.tiering_signals.partner_sourced === "yes";
-      const meet = packet.tiering_signals.can_arrange_two_meetings === "yes";
-      const close = packet.tiering_signals.can_support_close === "yes";
-      const requested = packet.tiering_signals.requested_tier;
-
-      let suggested = "Pending";
-      let explain = "Complete the sourcing signals to compute tier.";
-      let dot = "warn";
-
-      if(packet.partner.type === "Delivery"){
-        suggested = "Delivery (scope split)";
-        explain = "Delivery partner: implementation scope split via SOW/RACI. Commercials handled per delivery agreement (not default commission).";
-        dot = "good";
-      } else if(ps && meet && close){
-        suggested = "Prime (30% — eligibility met)";
-        explain = "Prime eligible: partner-sourced + 2 buyer-side meetings + close support through signature + payment/PO.";
-        dot = "good";
-      } else if(packet.partner.type === "Referral"){
-        suggested = "Referral (15%)";
-        explain = "Referral: warm intro only; Noetfield runs the sales cycle. Paid on first paid engagement (Net Fee), after client funds received.";
-        dot = "good";
-      } else {
-        suggested = "Channel (20% + bonus, cap 30%)";
-        explain = "Channel: co-selling/account influence. 20% base; bonus up to 30% for accelerating close + procurement routing + volume.";
-        dot = "warn";
+      function setQueryParam(key, value){
+        try{
+          var u = new URL(window.location.href);
+          if (!value) u.searchParams.delete(key);
+          else u.searchParams.set(key, value);
+          history.replaceState({}, "", u.pathname + (u.searchParams.toString() ? ("?" + u.searchParams.toString()) : "") + u.hash);
+        } catch(_) {}
       }
 
-      if(requested && requested !== "auto"){
-        const eligibility = (ps && meet && close) ? "eligible" : "not eligible yet";
-        explain = `Requested: ${requested}. System: ${suggested}. Prime eligibility: ${eligibility}.`;
+      function setBadges(dealId, rid){
+        $("dealIdText").textContent = dealId;
+        $("ridText").textContent = rid;
+        $("railDealId").textContent = dealId;
+        $("railRid").textContent = rid;
+        $("bottomText").innerHTML = "<strong>Deal:</strong> " + dealId;
       }
 
-      return { suggested, explain, dot, primeEligible: (ps && meet && close) };
-    }
-
-    // ---------- draft save/restore ----------
-    function saveDraft(){
-      const dealId = $("dealIdText").textContent;
-      const k = draftKey(dealId);
-      const packet = getFormPacket();
-      localStorage.setItem(k, JSON.stringify(packet));
-      return true;
-    }
-
-    function restoreDraftIfAny(){
-      const dealId = $("dealIdText").textContent;
-      const k = draftKey(dealId);
-      const raw = localStorage.getItem(k);
-      if(!raw) return false;
-      try{
-        const p = JSON.parse(raw);
-
-        $("partnerName").value = p.partner?.name || "";
-        $("partnerType").value = p.partner?.type || "Channel";
-        $("partnerContact").value = p.partner?.contact || "";
-        $("partnerEmail").value = p.partner?.email || "";
-
-        $("companyName").value = p.opportunity?.company || "";
-        $("companyDomain").value = p.opportunity?.domain || "";
-        $("industry").value = p.opportunity?.industry || "Financial";
-        $("sizeBand").value = p.opportunity?.employee_band || "500-1k";
-
-        $("championRole").value = p.buyer_side?.champion_role || "Modern Workplace / M365 Owner";
-        $("championEmail").value = p.buyer_side?.champion_email || "";
-        $("buyLane").value = p.buyer_side?.buying_lane || "Unknown";
-
-        const blockers = p.buyer_side?.blockers_present || [];
-        Array.from(document.querySelectorAll("[data-blocker]")).forEach(cb=>{
-          cb.checked = blockers.includes(cb.value);
-        });
-
-        $("pain").value = p.need?.primary_pain || "Copilot rollout blocked by procurement/privacy";
-        $("timeline").value = p.need?.timeline || "31-60";
-        $("budgetBand").value = p.need?.budget_band || "unknown";
-        $("offerHint").value = p.need?.suggested_entry_offer || "QuickScan (5–7 business days)";
-
-        $("partnerSourced").value = p.tiering_signals?.partner_sourced || "unknown";
-        $("canArrangeMeetings").value = p.tiering_signals?.can_arrange_two_meetings || "unknown";
-        $("canSupportClose").value = p.tiering_signals?.can_support_close || "unknown";
-        $("requestedTier").value = p.tiering_signals?.requested_tier || "auto";
-
-        $("notes").value = p.notes || "";
-        $("attest1").checked = !!p.attestations?.non_confidential;
-        $("attest2").checked = !!p.attestations?.deal_protection_understood;
-        return true;
-      }catch(_){
-        return false;
-      }
-    }
-
-    function clearDraft(){
-      const dealId = $("dealIdText").textContent;
-      localStorage.removeItem(draftKey(dealId));
-      return true;
-    }
-
-    // ---------- render ----------
-    function render(){
-      $("y").textContent = new Date().getFullYear();
-
-      const rid = ensureRID();
-      $("ridText").textContent = rid;
-      $("ridText2").textContent = rid;
-
-      const dealId = ensureDealID(false);
-      $("dealIdText").textContent = dealId;
-      $("dealIdTag").textContent = dealId;
-      $("dealIdTag2").textContent = dealId;
-
-      setURLParams({ rid, deal: dealId });
-
-      const packet = getFormPacket();
-      packet.rid = rid;
-      packet.partner_deal_id = dealId;
-
-      const tier = computeTier(packet);
-      $("tierText").textContent = `Tier: ${tier.suggested}`;
-      $("tierExplain").textContent = tier.explain;
-
-      const dot = $("tierDot");
-      dot.classList.remove("good","bad");
-      if(tier.dot === "good") dot.classList.add("good");
-      if(tier.dot === "bad") dot.classList.add("bad");
-
-      const lane = packet.buyer_side.buying_lane;
-      $("nextStep").textContent = (lane === "PO" || lane === "Invoice")
-        ? "Email the registration packet now. Then route the buyer to Procurement (Invoice/PO) with RID + Deal ID."
-        : "Email the registration packet now. If procurement is required, route via Procurement with RID + Deal ID.";
-
-      const proc = new URL(location.origin + "/gate/procurement/");
-      proc.searchParams.set("rid", rid);
-      proc.searchParams.set("deal", dealId);
-      $("procLink").href = proc.toString();
-
-      const company = packet.opportunity.company || "—";
-      $("protectStatus").textContent =
-        `Pending acceptance. Protection starts after written acceptance by Noetfield (email confirmation) and lasts 90 days. Deal: ${company}.`;
-    }
-
-    // ---------- events ----------
-    window.addEventListener("DOMContentLoaded", () => {
-      render();
-      restoreDraftIfAny();
-      render();
-
-      $("dealForm").addEventListener("input", () => render());
-      $("dealForm").addEventListener("change", () => render());
-
-      $("genDealBtn").addEventListener("click", () => {
-        const fresh = ensureDealID(true);
-        $("dealIdText").textContent = fresh;
-        $("dealIdTag").textContent = fresh;
-        $("dealIdTag2").textContent = fresh;
-
-        $("attest1").checked = false;
-        $("attest2").checked = false;
-
-        render();
-        restoreDraftIfAny();
-        render();
-      });
-
-      $("saveDraftBtn").addEventListener("click", () => {
-        saveDraft();
-        $("saveDraftBtn").textContent = "Saved";
-        setTimeout(()=> $("saveDraftBtn").textContent = "Save draft", 900);
-      });
-
-      $("clearDraftBtn").addEventListener("click", () => {
-        clearDraft();
-        $("clearDraftBtn").textContent = "Cleared";
-        setTimeout(()=> $("clearDraftBtn").textContent = "Clear", 900);
-      });
-
-      $("refreshBtn").addEventListener("click", () => render());
-
-      $("copyRidBtn").addEventListener("click", async () => {
-        await copyText($("ridText").textContent);
-        $("copyRidBtn").textContent = "Copied";
-        setTimeout(()=> $("copyRidBtn").textContent = "Copy", 900);
-      });
-
-      $("copyDealBtn").addEventListener("click", async () => {
-        await copyText($("dealIdText").textContent);
-        $("copyDealBtn").textContent = "Copied";
-        setTimeout(()=> $("copyDealBtn").textContent = "Copy", 900);
-      });
-
-      $("copyDeepLinkBtn").addEventListener("click", async () => {
-        await copyText(location.href);
-        $("copyDeepLinkBtn").textContent = "Copied";
-        setTimeout(()=> $("copyDeepLinkBtn").textContent = "Copy link", 900);
-      });
-
-      $("copySubjectBtn").addEventListener("click", async () => {
-        const p = getFormPacket();
-        const subject = `[Partner Deal] ${p.opportunity.company || "Company"} — ${$("dealIdText").textContent} — RID ${$("ridText").textContent}`;
-        await copyText(subject);
-        $("copySubjectBtn").textContent = "Copied";
-        setTimeout(()=> $("copySubjectBtn").textContent = "Copy subject", 900);
-      });
-
-      async function doCopyPacket(buttonEl, resetText){
-        if(!validateRequired(true)) return;
-        const packet = getFormPacket();
-        packet.rid = $("ridText").textContent;
-        packet.partner_deal_id = $("dealIdText").textContent;
-        const txt = packetToText(packet);
-        await copyText(txt);
-        buttonEl.textContent = "Copied";
-        setTimeout(()=> buttonEl.textContent = resetText, 1100);
+      function tierDotSet(tier){
+        var dot = $("tierDot");
+        if (!dot) return;
+        dot.classList.remove("good","warn","bad");
+        if (tier === "A") dot.classList.add("good");
+        else if (tier === "B") dot.classList.add("warn");
+        else if (tier === "C") dot.classList.add("bad");
       }
 
-      $("copyPacketBtn").addEventListener("click", () => doCopyPacket($("copyPacketBtn"), "Copy deal packet"));
-      $("copyPacketMiniBtn").addEventListener("click", () => doCopyPacket($("copyPacketMiniBtn"), "Copy packet"));
-      $("copyPacketBarBtn").addEventListener("click", () => doCopyPacket($("copyPacketBarBtn"), "Copy packet"));
-
-      $("downloadJsonBtn").addEventListener("click", () => {
-        if(!validateRequired(true)) return;
-        const packet = getFormPacket();
-        packet.rid = $("ridText").textContent;
-        packet.partner_deal_id = $("dealIdText").textContent;
-        downloadText(`${packet.partner_deal_id}.json`, JSON.stringify(packet, null, 2), "application/json");
-      });
-
-      $("downloadTxtBtn").addEventListener("click", () => {
-        if(!validateRequired(true)) return;
-        const packet = getFormPacket();
-        packet.rid = $("ridText").textContent;
-        packet.partner_deal_id = $("dealIdText").textContent;
-        downloadText(`${packet.partner_deal_id}.txt`, packetToText(packet), "text/plain");
-      });
-
-      function emailRegistration(){
-        if(!validateRequired(true)) return;
-
-        const packet = getFormPacket();
-        packet.rid = $("ridText").textContent;
-        packet.partner_deal_id = $("dealIdText").textContent;
-
-        const tier = computeTier(packet);
-        const subject = `[Partner Deal Registration] ${packet.opportunity.company} — ${packet.partner_deal_id} — RID ${packet.rid}`;
-
-        const body =
-`Hello Noetfield Partnerships,
-
-Please find the partner deal registration packet below.
-
-Tier (system): ${tier.suggested}
-Link (RID+Deal): ${location.href}
-
-${packetToText(packet)}
-
-Thank you,
-${packet.partner.contact || "—"}
-${packet.partner.name || "—"}`;
-
-        location.href = buildMailto("partners@noetfield.com", subject, body);
-      }
-
-      $("emailRegBtn").addEventListener("click", emailRegistration);
-      $("emailRegBarBtn").addEventListener("click", emailRegistration);
-
-      $("emailIntroBtn").addEventListener("click", () => {
-        const company = $("companyName").value.trim();
-        if(!company){
-          validateRequired(true);
+      function showErrors(items){
+        var box = $("errBox");
+        var list = $("errList");
+        if (!box || !list) return;
+        list.innerHTML = "";
+        if (!items || !items.length){
+          box.style.display = "none";
           return;
         }
-        const rid = $("ridText").textContent;
-        const dealId = $("dealIdText").textContent;
-        const pain = $("pain").value;
-        const offer = $("offerHint").value;
+        items.forEach(function(t){
+          var li = document.createElement("li");
+          li.textContent = t;
+          list.appendChild(li);
+        });
+        box.style.display = "block";
+      }
 
-        const subject = `Intro — Noetfield (governance + procurement pack) — ${company}`;
-        const body =
-`Hi [Buyer Name],
+      function readForm(){
+        function v(id){ return (($ (id).value || "")).trim(); }
+        function c(id){ var el = $(id); return !!(el && el.checked); }
 
-Introducing Noetfield (Sina). Noetfield helps Microsoft-heavy teams make Copilot/GenAI decisions with board-ready evidence and a procurement pack (privacy/procurement aligned).
+        return {
+          partnerName: v("partnerName"),
+          partnerEmail: v("partnerEmail"),
+          partnerWebsite: v("partnerWebsite"),
+          partnerRole: v("partnerRole"),
 
-Why this is relevant: ${pain}
-Suggested entry: ${offer}
+          clientOrg: v("clientOrg"),
+          clientDomain: v("clientDomain"),
+          clientSize: v("clientSize"),
+          industry: v("industry"),
+          geo: v("geo"),
 
-If helpful, can we do 15 minutes next week? We can route via Invoice/PO if needed.
+          championRole: v("championRole"),
+          buyerRole: v("buyerRole"),
 
-Ref: RID ${rid} • Deal ID ${dealId}`;
+          need: v("need"),
+          timing: v("timing"),
+          procLane: v("procLane"),
+          stage: v("stage"),
+          decisionWindow: v("decisionWindow"),
 
-        location.href = buildMailto("", subject, body);
-      });
+          constraints: v("constraints"),
 
-      $("copyProcLinkBtn").addEventListener("click", async () => {
-        await copyText($("procLink").href);
-        $("copyProcLinkBtn").textContent = "Copied";
-        setTimeout(()=> $("copyProcLinkBtn").textContent = "Copy link", 900);
-      });
-    });
+          sigM365: c("sigM365"),
+          sigSensitive: c("sigSensitive"),
+          sigProc: c("sigProc"),
+          sigUrgent: c("sigUrgent")
+        };
+      }
+
+      function validate(d){
+        var errs = [];
+        if (!d.partnerName) errs.push("Partner name is required.");
+        if (!d.clientOrg) errs.push("Client organization is required.");
+        if (!d.clientDomain) errs.push("Client domain is required.");
+        if (!d.championRole) errs.push("Operational champion role is required.");
+        return errs;
+      }
+
+      function suggestStart(d){
+        // Normalize to Gate offers/SKUs
+        if (d.need === "quickscan") return {id:"quickscan", label:"Copilot QuickScan", why:"Fastest decision-ready posture; feeds Readiness."};
+        if (d.need === "trust-brief") return {id:"trust_brief", label:"Trust Brief (6-week)", why:"Best for governance plan + roadmap."};
+        if (d.need === "trust-ledger") return {id:"trust_ledger", label:"Trust Ledger (Ongoing)", why:"Best for ongoing evidence continuity."};
+
+        // Copilot readiness path
+        if (d.need === "copilot-readiness"){
+          if (d.timing === "urgent") return {id:"quickscan", label:"Copilot QuickScan", why:"Urgency suggests rapid snapshot before broad rollout."};
+          if (d.timing === "extended") return {id:"readiness_extended", label:"Copilot Readiness — Extended (6 weeks)", why:"Complex scope suggests extended readiness."};
+          if (d.timing === "standard") return {id:"readiness_standard", label:"Copilot Readiness — Standard (4 weeks)", why:"Default enterprise baseline for rollout approval."};
+          return {id:"readiness_standard", label:"Copilot Readiness — Standard (4 weeks)", why:"Default enterprise baseline for rollout approval."};
+        }
+
+        // Unknown: infer from urgency + procurement pressure
+        if (d.sigUrgent || d.timing === "urgent") return {id:"quickscan", label:"Copilot QuickScan", why:"Urgency suggests a rapid, decision-ready snapshot."};
+        if (d.sigProc || d.procLane === "invoice-po") return {id:"readiness_standard", label:"Copilot Readiness — Standard (4 weeks)", why:"Procurement pressure favors a fixed-scope SKU with named outputs."};
+        return {id:"readiness_standard", label:"Copilot Readiness — Standard (4 weeks)", why:"Default enterprise baseline."};
+      }
+
+      function computeTier(d){
+        // Simple scoring: higher score => Tier A
+        var score = 0;
+
+        // Size
+        if (d.clientSize === "5000+") score += 4;
+        else if (d.clientSize === "1000-4999") score += 3;
+        else if (d.clientSize === "500-999") score += 2;
+        else if (d.clientSize === "200-499") score += 1;
+
+        // Industry sensitivity
+        if (d.industry === "financial" || d.industry === "health" || d.industry === "public" || d.industry === "legal") score += 3;
+        else if (d.industry) score += 1;
+
+        // Signals
+        if (d.sigM365) score += 2;
+        if (d.sigSensitive) score += 2;
+        if (d.sigProc) score += 2;
+        if (d.sigUrgent) score += 1;
+
+        // Procurement lane
+        if (d.procLane === "invoice-po" || d.procLane === "msa") score += 2;
+
+        // Stage / decision window
+        if (d.stage === "rollout" || d.stage === "pilot") score += 2;
+        if (d.decisionWindow === "0-2w") score += 2;
+        else if (d.decisionWindow === "2-6w") score += 1;
+
+        // Timing selection
+        if (d.timing === "urgent") score += 1;
+
+        var tier = "B";
+        if (score >= 12) tier = "A";
+        else if (score <= 6) tier = "C";
+
+        return {tier:tier, score:score};
+      }
+
+      function laneLabel(v){
+        if (v === "invoice-po") return "Invoice / PO";
+        if (v === "card") return "Card checkout";
+        if (v === "msa") return "MSA/SOW workflow";
+        if (v === "unknown") return "Unknown";
+        return "—";
+      }
+
+      function buildPacket(dealId, rid, d, tierObj, startObj){
+        return {
+          schema: "noetfield.partner_deal.v1",
+          generated_at: new Date().toISOString(),
+          deal_id: dealId,
+          rid: rid,
+          tier: tierObj.tier,
+          score: tierObj.score,
+          suggested_start: startObj,
+          routing: {
+            procurement_lane: d.procLane || null,
+            timing: d.timing || null,
+            stage: d.stage || null,
+            decision_window: d.decisionWindow || null
+          },
+          partner: {
+            name: d.partnerName || null,
+            email: d.partnerEmail || null,
+            website: d.partnerWebsite || null,
+            role: d.partnerRole || null
+          },
+          client: {
+            org: d.clientOrg || null,
+            domain: d.clientDomain || null,
+            size: d.clientSize || null,
+            industry: d.industry || null,
+            geo: d.geo || null,
+            champion_role: d.championRole || null,
+            buyer_role: d.buyerRole || null
+          },
+          need: d.need || null,
+          signals: {
+            microsoft_heavy: !!d.sigM365,
+            sensitive_data: !!d.sigSensitive,
+            procurement_pressure: !!d.sigProc,
+            urgency: !!d.sigUrgent
+          },
+          constraints_high_level: d.constraints || null,
+          safety: {
+            non_confidential_only: true
+          }
+        };
+      }
+
+      function downloadJson(filename, obj){
+        try{
+          var blob = new Blob([JSON.stringify(obj, null, 2)], {type:"application/json;charset=utf-8"});
+          var url = URL.createObjectURL(blob);
+          var a = document.createElement("a");
+          a.href = url;
+          a.download = filename;
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+          setTimeout(function(){ try{ URL.revokeObjectURL(url); } catch(_){} }, 500);
+        } catch(_) {}
+      }
+
+      function buildMailto(to, subject, body){
+        try{
+          var s = "mailto:" + encodeURIComponent(to || "") + "?subject=" + encodeURIComponent(subject || "") + "&body=" + encodeURIComponent(body || "");
+          return s;
+        } catch(_){
+          return "mailto:";
+        }
+      }
+
+      function withRidAndDeal(path, rid, dealId){
+        try{
+          var u = new URL(path, window.location.origin);
+          if (rid && !u.searchParams.get("rid")) u.searchParams.set("rid", rid);
+          if (dealId && !u.searchParams.get("deal")) u.searchParams.set("deal", dealId);
+          return u.pathname + u.search + u.hash;
+        } catch(_){
+          return path;
+        }
+      }
+
+      // Elements
+      var rid = getRid();
+      var dealId = getDealId();
+
+      // Ensure URL has deal + rid for shareability
+      setQueryParam("rid", rid);
+      setQueryParam("deal", dealId);
+
+      applyRidToLinks(rid);
+      setBadges(dealId, rid);
+
+      // Buttons
+      var newDealBtn = $("newDealBtn");
+      var saveDraftBtn = $("saveDraftBtn");
+      var loadDraftBtn = $("loadDraftBtn");
+      var clearDraftBtn = $("clearDraftBtn");
+      var computeBtn = $("computeBtn");
+      var exportBtn = $("exportBtn");
+      var copyPacketBtn = $("copyPacketBtn");
+
+      var genEmailToNoetfieldBtn = $("genEmailToNoetfieldBtn");
+      var mailtoNoetfieldBtn = $("mailtoNoetfieldBtn");
+      var copyEmailToNoetfieldBtn = $("copyEmailToNoetfieldBtn");
+      var emailOut = $("emailOut");
+
+      var copyRidBtn = $("copyRidBtn");
+      var copyDealIdBtn = $("copyDealIdBtn");
+      var copyDealLinkBtn = $("copyDealLinkBtn");
+
+      var copyDealLinkHeroBtn = $("copyDealLinkBtn");
+
+      var tierText = $("tierText");
+      var railTier = $("railTier");
+      var suggestedStartEl = $("suggestedStart");
+      var suggestedWhyEl = $("suggestedWhy");
+      var railLane = $("railLane");
+
+      // State
+      var lastPacket = null;
+
+      function draftKey(){ return "nf_pd_draft_" + dealId; }
+
+      function saveDraft(){
+        try{
+          var d = readForm();
+          localStorage.setItem(draftKey(), JSON.stringify(d));
+          localStorage.setItem("nf_pd_last_deal", dealId);
+          return true;
+        } catch(_){ return false; }
+      }
+
+      function loadDraft(){
+        try{
+          var raw = localStorage.getItem(draftKey());
+          if (!raw) return false;
+          var d = JSON.parse(raw);
+
+          function setVal(id, val){
+            var el = $(id);
+            if (!el) return;
+            el.value = (val == null) ? "" : String(val);
+          }
+          function setChk(id, val){
+            var el = $(id);
+            if (!el) return;
+            el.checked = !!val;
+          }
+
+          setVal("partnerName", d.partnerName);
+          setVal("partnerEmail", d.partnerEmail);
+          setVal("partnerWebsite", d.partnerWebsite);
+          setVal("partnerRole", d.partnerRole);
+
+          setVal("clientOrg", d.clientOrg);
+          setVal("clientDomain", d.clientDomain);
+          setVal("clientSize", d.clientSize);
+          setVal("industry", d.industry);
+          setVal("geo", d.geo);
+
+          setVal("championRole", d.championRole);
+          setVal("buyerRole", d.buyerRole);
+
+          setVal("need", d.need);
+          setVal("timing", d.timing);
+          setVal("procLane", d.procLane);
+          setVal("stage", d.stage);
+          setVal("decisionWindow", d.decisionWindow);
+
+          setVal("constraints", d.constraints);
+
+          setChk("sigM365", d.sigM365);
+          setChk("sigSensitive", d.sigSensitive);
+          setChk("sigProc", d.sigProc);
+          setChk("sigUrgent", d.sigUrgent);
+
+          return true;
+        } catch(_){ return false; }
+      }
+
+      function clearDraft(){
+        try{
+          localStorage.removeItem(draftKey());
+          return true;
+        } catch(_){ return false; }
+      }
+
+      function refreshRail(d, tierObj, startObj){
+        tierText.textContent = tierObj.tier + " (score " + tierObj.score + ")";
+        railTier.textContent = tierObj.tier + " (score " + tierObj.score + ")";
+        tierDotSet(tierObj.tier);
+
+        suggestedStartEl.textContent = startObj.label;
+        suggestedWhyEl.textContent = startObj.why;
+
+        railLane.textContent = laneLabel(d.procLane);
+
+        // Update Gate & Sales links with offer hint + deal id for continuity
+        var gateBtn = $("railGateBtn");
+        var salesBtn = $("railSalesBtn");
+        var procBtn = $("railProcBtn");
+        if (gateBtn){
+          gateBtn.setAttribute("href", withRidAndDeal("/gate/?offer=" + encodeURIComponent(startObj.id), rid, dealId));
+        }
+        if (salesBtn){
+          salesBtn.setAttribute("href", withRidAndDeal("/gate/sales/?offer=" + encodeURIComponent(startObj.id), rid, dealId));
+        }
+        if (procBtn){
+          procBtn.setAttribute("href", withRidAndDeal("/gate/procurement/?focus=" + encodeURIComponent(startObj.id), rid, dealId));
+        }
+        applyRidToLinks(rid);
+      }
+
+      function computeAll(){
+        var d = readForm();
+        var errs = validate(d);
+        showErrors(errs);
+        if (errs.length) return false;
+
+        var tierObj = computeTier(d);
+        var startObj = suggestStart(d);
+
+        lastPacket = buildPacket(dealId, rid, d, tierObj, startObj);
+
+        exportBtn.disabled = false;
+        copyPacketBtn.disabled = false;
+
+        refreshRail(d, tierObj, startObj);
+        return true;
+      }
+
+      function generateEmailToNoetfield(){
+        if (!lastPacket){
+          var ok = computeAll();
+          if (!ok) return;
+        }
+        var p = lastPacket;
+
+        var subject = "Partner Deal Registration — " + p.deal_id + " — RID " + p.rid + " — Tier " + p.tier;
+
+        var lines = [];
+        lines.push("Partner Deal Registration");
+        lines.push("");
+        lines.push("Deal ID: " + p.deal_id);
+        lines.push("RID: " + p.rid);
+        lines.push("Tier (suggested): " + p.tier + " (score " + p.score + ")");
+        lines.push("Suggested start: " + (p.suggested_start && p.suggested_start.label ? p.suggested_start.label : "—"));
+        lines.push("");
+        lines.push("Partner:");
+        lines.push("- Name: " + (p.partner.name || "—"));
+        lines.push("- Email: " + (p.partner.email || "—"));
+        lines.push("- Website: " + (p.partner.website || "—"));
+        lines.push("- Role: " + (p.partner.role || "—"));
+        lines.push("");
+        lines.push("Client (high-level):");
+        lines.push("- Org: " + (p.client.org || "—"));
+        lines.push("- Domain: " + (p.client.domain || "—"));
+        lines.push("- Size: " + (p.client.size || "—"));
+        lines.push("- Industry: " + (p.client.industry || "—"));
+        lines.push("- Geo: " + (p.client.geo || "—"));
+        lines.push("- Champion role: " + (p.client.champion_role || "—"));
+        lines.push("- Buyer role: " + (p.client.buyer_role || "—"));
+        lines.push("");
+        lines.push("Routing:");
+        lines.push("- Need: " + (p.need || "—"));
+        lines.push("- Timing: " + (p.routing.timing || "—"));
+        lines.push("- Stage: " + (p.routing.stage || "—"));
+        lines.push("- Decision window: " + (p.routing.decision_window || "—"));
+        lines.push("- Procurement lane: " + (p.routing.procurement_lane || "—"));
+        lines.push("");
+        lines.push("Signals:");
+        lines.push("- Microsoft-heavy: " + (p.signals.microsoft_heavy ? "Yes" : "No"));
+        lines.push("- Sensitive data theme: " + (p.signals.sensitive_data ? "Yes" : "No"));
+        lines.push("- Procurement pressure: " + (p.signals.procurement_pressure ? "Yes" : "No"));
+        lines.push("- Urgency: " + (p.signals.urgency ? "Yes" : "No"));
+        lines.push("");
+        if (p.constraints_high_level){
+          lines.push("Constraints (high-level):");
+          lines.push(p.constraints_high_level);
+          lines.push("");
+        }
+        lines.push("Deal link (non-confidential):");
+        lines.push("https://www.noetfield.com" + withRidAndDeal("/gate/partners/deal/", p.rid, p.deal_id));
+        lines.push("");
+        lines.push("Notes:");
+        lines.push("- This message contains non-confidential routing signals only.");
+        lines.push("- Please confirm acceptance to activate 90-day deal protection (per partner policy).");
+
+        var body = lines.join("\n");
+        emailOut.value = "Subject: " + subject + "\n\nTo: procurement@noetfield.com\n\n" + body;
+
+        copyEmailToNoetfieldBtn.disabled = !emailOut.value;
+
+        if (mailtoNoetfieldBtn){
+          mailtoNoetfieldBtn.hidden = false;
+          mailtoNoetfieldBtn.setAttribute("href", buildMailto("procurement@noetfield.com", subject, body));
+        }
+      }
+
+      // Wire up events
+      if (newDealBtn){
+        newDealBtn.addEventListener("click", function(){
+          dealId = genDealId();
+          try{ localStorage.setItem("nf_pd_last_deal", dealId); } catch(_){}
+          setQueryParam("deal", dealId);
+          lastPacket = null;
+          exportBtn.disabled = true;
+          copyPacketBtn.disabled = true;
+          emailOut.value = "";
+          copyEmailToNoetfieldBtn.disabled = true;
+          if (mailtoNoetfieldBtn) mailtoNoetfieldBtn.hidden = true;
+
+          setBadges(dealId, rid);
+          $("railDealId").textContent = dealId;
+          $("dealIdText").textContent = dealId;
+        });
+      }
+
+      if (saveDraftBtn){
+        saveDraftBtn.addEventListener("click", function(){
+          computeAll(); // compute also refreshes tier
+          saveDraft();
+        });
+      }
+
+      if (loadDraftBtn){
+        loadDraftBtn.addEventListener("click", function(){
+          loadDraft();
+        });
+      }
+
+      if (clearDraftBtn){
+        clearDraftBtn.addEventListener("click", function(){
+          clearDraft();
+        });
+      }
+
+      if (computeBtn){
+        computeBtn.addEventListener("click", function(){
+          computeAll();
+        });
+      }
+
+      if (exportBtn){
+        exportBtn.addEventListener("click", function(){
+          if (!lastPacket){
+            var ok = computeAll();
+            if (!ok) return;
+          }
+          downloadJson("noetfield-partner-deal-" + dealId + "-" + rid + ".json", lastPacket);
+        });
+      }
+
+      if (copyPacketBtn){
+        copyPacketBtn.addEventListener("click", async function(){
+          if (!lastPacket){
+            var ok = computeAll();
+            if (!ok) return;
+          }
+          await copyToClipboard(JSON.stringify(lastPacket, null, 2));
+        });
+      }
+
+      if (genEmailToNoetfieldBtn){
+        genEmailToNoetfieldBtn.addEventListener("click", generateEmailToNoetfield);
+      }
+
+      if (copyEmailToNoetfieldBtn){
+        copyEmailToNoetfieldBtn.addEventListener("click", async function(){
+          if (!emailOut.value) return;
+          await copyToClipboard(emailOut.value);
+        });
+      }
+
+      if (copyRidBtn){
+        copyRidBtn.addEventListener("click", async function(){
+          await copyToClipboard(rid);
+        });
+      }
+      if (copyDealIdBtn){
+        copyDealIdBtn.addEventListener("click", async function(){
+          await copyToClipboard(dealId);
+        });
+      }
+
+      function copyDealLink(){
+        try{
+          var u = new URL(window.location.href);
+          u.searchParams.set("rid", rid);
+          u.searchParams.set("deal", dealId);
+          return copyToClipboard(u.pathname + "?" + u.searchParams.toString());
+        } catch(_){
+          return copyToClipboard("/gate/partners/deal/?rid=" + encodeURIComponent(rid) + "&deal=" + encodeURIComponent(dealId));
+        }
+      }
+
+      if (copyDealLinkBtn){ copyDealLinkBtn.addEventListener("click", copyDealLink); }
+      if (copyDealLinkHeroBtn){ copyDealLinkHeroBtn.addEventListener("click", copyDealLink); }
+
+      // Initialize rail defaults
+      $("railDealId").textContent = dealId;
+      $("railRid").textContent = rid;
+      $("tierText").textContent = "Pending";
+      $("railTier").textContent = "Pending";
+      tierDotSet(null);
+      $("suggestedStart").textContent = "—";
+      $("suggestedWhy").textContent = "Compute tier to populate suggested start.";
+      $("railLane").textContent = "—";
+
+      // Auto-load draft if present
+      try{
+        if (localStorage.getItem(draftKey())) loadDraft();
+      } catch(_){}
+
+      // Apply RID to any links
+      applyRidToLinks(rid);
+    })();
   </script>
 </body>
 </html>

@@ -1,5 +1,5 @@
-<!-- /gate/procurement/index.html — Noetfield Procurement v3.0
-     (Adds: SOW page + HTML artifact pages + dual links (HTML + PDF) + cleaner pack hub) -->
+<!-- /gate/procurement/index.html — Noetfield Procurement v3.1
+     (Adds: SOW Summary PDF link everywhere • dual-link pack hub • email builder includes HTML+PDF links • RID propagation for status) -->
 <!doctype html>
 <html lang="en">
 <head>
@@ -21,13 +21,13 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Noetfield" />
   <meta property="og:title" content="Noetfield — Procurement" />
-  <meta property="og:description" content="Invoice/PO purchasing and vendor onboarding. Procurement pack + SOW-lite + request flow with Request ID." />
+  <meta property="og:description" content="Invoice/PO purchasing and vendor onboarding. Procurement pack + SOW + request flow with Request ID." />
   <meta property="og:url" content="https://www.noetfield.com/gate/procurement/" />
   <meta property="og:image" content="https://www.noetfield.com/noetfield-og.png" />
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Noetfield — Procurement" />
-  <meta name="twitter:description" content="Invoice/PO purchasing and vendor onboarding. Procurement pack + SOW-lite + request flow with Request ID." />
+  <meta name="twitter:description" content="Invoice/PO purchasing and vendor onboarding. Procurement pack + SOW + request flow with Request ID." />
   <meta name="twitter:image" content="https://www.noetfield.com/noetfield-og.png" />
 
   <!-- LOCKED SHELL -->
@@ -341,7 +341,8 @@
   <noscript>
     <div class="wrap">
       <div class="nfNotice" style="margin-top:14px;">
-        <strong>JavaScript is required</strong> for Request ID, status linking, and the procurement email builder. You can still email <a href="mailto:procurement@noetfield.com">procurement@noetfield.com</a> directly.
+        <strong>JavaScript is required</strong> for Request ID, status linking, and the procurement email builder. You can still email
+        <a href="mailto:procurement@noetfield.com">procurement@noetfield.com</a> directly.
       </div>
     </div>
   </noscript>
@@ -412,7 +413,7 @@
                 <span class="nfPill"><b>Pack</b> Procurement snapshot</span>
                 <span class="nfPill"><b>Pack</b> Security & privacy summary</span>
                 <span class="nfPill"><b>Pack</b> Contracting notes</span>
-                <span class="nfPill"><b>Pack</b> SOW-lite</span>
+                <span class="nfPill"><b>Pack</b> SOW (HTML + PDF)</span>
               </div>
             </div>
 
@@ -421,7 +422,7 @@
               <p>Use the short request below (or the one-click email builder). Pack links are included automatically.</p>
               <ul>
                 <li>Invoice terms: Net 30/45/60 (as required by buyer policy)</li>
-                <li>PO purchasing: SOW-lite + procurement snapshot available</li>
+                <li>PO purchasing: SOW template available (HTML + PDF summary)</li>
                 <li>Contracting: NDA / MSA / SOW / DPA available on request</li>
               </ul>
             </div>
@@ -476,10 +477,11 @@
               </div>
 
               <div class="nfPack" role="listitem">
-                <h3>SOW-lite (Sample)</h3>
-                <p>Fixed-scope SOW-lite template (scope, deliverables, acceptance).</p>
+                <h3>SOW (template + summary)</h3>
+                <p>SOW-lite template (HTML) + SOW summary sheet (PDF) for attachment workflows.</p>
                 <div class="nfPackLinks">
                   <a href="/gate/procurement/SOW/">HTML</a>
+                  <a href="/gate/procurement/SOW.pdf">PDF</a>
                 </div>
                 <span class="nfTag">Attach to PO</span>
               </div>
@@ -512,7 +514,7 @@
                 <li><strong class="nfBad">Not accepted via public forms:</strong> credentials, private keys, sensitive personal data</li>
               </ul>
               <div class="nfMini" style="margin-top:10px;">
-                Full: <a href="/gate/procurement/security-privacy-summary/">security & privacy summary</a>.
+                Full: <a href="/gate/procurement/security-privacy-summary/">security & privacy summary</a> • <a href="/gate/procurement/security-privacy-summary.pdf">PDF</a>.
               </div>
             </div>
 
@@ -524,7 +526,7 @@
                 <li>Scope boundaries and exclusions are defined per package</li>
               </ul>
               <div class="nfMini" style="margin-top:10px;">
-                Full: <a href="/gate/procurement/contracting-notes/">contracting notes</a>.
+                Full: <a href="/gate/procurement/contracting-notes/">contracting notes</a> • <a href="/gate/procurement/contracting-notes.pdf">PDF</a>.
               </div>
             </div>
 
@@ -676,7 +678,8 @@
             <div class="nfActions">
               <a class="btn" href="/gate/sales/">Open Sales</a>
               <a class="btn secondary" href="/gate/procurement/procurement-pack/">Open pack</a>
-              <a class="btn secondary" href="/gate/procurement/SOW/">SOW-lite</a>
+              <a class="btn secondary" href="/gate/procurement/SOW/">SOW (HTML)</a>
+              <a class="btn secondary" href="/gate/procurement/SOW.pdf">SOW (PDF)</a>
               <a class="btn secondary" id="nfStatusBtn2" href="/status/">Open Status</a>
             </div>
 
@@ -874,7 +877,13 @@
         lines.push("- Procurement Pack: " + (o + "/gate/procurement/procurement-pack/"));
         lines.push("- Security & Privacy: " + (o + "/gate/procurement/security-privacy-summary/"));
         lines.push("- Contracting Notes: " + (o + "/gate/procurement/contracting-notes/"));
-        lines.push("- SOW-lite (sample): " + (o + "/gate/procurement/SOW/"));
+        lines.push("- SOW (template): " + (o + "/gate/procurement/SOW/"));
+        lines.push("");
+        lines.push("Pack links (PDF):");
+        lines.push("- Procurement Pack (PDF): " + (o + "/gate/procurement/procurement-pack.pdf"));
+        lines.push("- Security & Privacy (PDF): " + (o + "/gate/procurement/security-privacy-summary.pdf"));
+        lines.push("- Contracting Notes (PDF): " + (o + "/gate/procurement/contracting-notes.pdf"));
+        lines.push("- SOW Summary (PDF): " + (o + "/gate/procurement/SOW.pdf"));
         lines.push("");
         lines.push("Core links:");
         lines.push("- Sales: " + (o + "/gate/sales/"));
@@ -943,7 +952,12 @@
           }
           if (err) err.style.display = "none";
 
-          var subject = "Procurement — " + payload.offerLabel + " — " + payload.procLabel + " — " + payload.rid + (payload.org ? " (" + payload.org + ")" : "");
+          var subject =
+            "Procurement — " + payload.offerLabel +
+            " — " + payload.procLabel +
+            " — " + payload.rid +
+            (payload.org ? " (" + payload.org + ")" : "");
+
           var body = buildRequestText(payload);
 
           var mailto =
@@ -964,9 +978,13 @@
       /gate/procurement/security-privacy-summary/
       /gate/procurement/contracting-notes/
       /gate/procurement/SOW/
-      PDFs: /gate/procurement/*.pdf
+      PDFs:
+      /gate/procurement/procurement-pack.pdf
+      /gate/procurement/security-privacy-summary.pdf
+      /gate/procurement/contracting-notes.pdf
+      /gate/procurement/SOW.pdf
     - Request ID shows + URL includes ?rid= + status links include ?rid=
-    - Email builder opens client with pack links in body
+    - Email builder opens client with HTML+PDF pack links in body
   -->
 </body>
 </html>

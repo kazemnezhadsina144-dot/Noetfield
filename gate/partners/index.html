@@ -1,5 +1,5 @@
-<!-- /gate/partners/index.html — Noetfield Partners Gate v3.1
-     (contractable deal reg terms • RID fallback • partner pack • micro-FAQ • enterprise tune • procurement-safe) -->
+<!-- /gate/partners/index.html — Noetfield Partners Gate v4.0
+     (adds Programs lane • portfolio routing • tighter terms • cleaner IA • procurement-safe) -->
 <!doctype html>
 <html lang="en">
 <head>
@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <title>Noetfield — Partners</title>
-  <meta name="description" content="Partner entry for Channel, Delivery, and Integration teams. Register partner deals (Deal ID + 90-day protection from Noetfield acceptance), route procurement with RID continuity, and operate evidence-first governance that survives scrutiny." />
+  <meta name="description" content="Partner entry for Channel, Programs, Delivery, and Integration teams. Register partner deals (Deal ID + 90-day protection from Noetfield acceptance), route procurement with RID continuity, and operate evidence-first governance that survives scrutiny." />
   <meta name="robots" content="index,follow" />
   <meta name="author" content="Noetfield Systems Inc." />
   <meta name="theme-color" content="#07070b" />
@@ -35,11 +35,9 @@
   <script src="/assets/noetfield-shell.js" defer></script>
 
   <style>
-    /* Page-only styling (keeps Noetfield shell as the base) */
     .hero{padding:22px 0 10px}
     .heroShell{
-      position:relative;
-      border-radius: calc(var(--radius) + 10px);
+      position:relative;border-radius:calc(var(--radius) + 10px);
       border:1px solid rgba(255,255,255,.11);
       background:
         radial-gradient(1000px 420px at 18% 0%, rgba(200,163,73,.18), transparent 60%),
@@ -49,11 +47,9 @@
       overflow:hidden;
     }
     .heroShell::before{
-      content:"";
-      position:absolute; inset:-1px;
+      content:"";position:absolute;inset:-1px;
       background: linear-gradient(120deg, rgba(200,163,73,.24), transparent 32%, rgba(255,255,255,.07) 68%, transparent);
-      opacity:.44;
-      pointer-events:none;
+      opacity:.44;pointer-events:none;
       mask-image: linear-gradient(180deg, black 0%, black 62%, transparent 96%);
     }
     .heroInner{padding:26px 22px; position:relative; z-index:1}
@@ -77,14 +73,11 @@
     .subActions{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:10px}
 
     .bar{
-      margin-top:14px;
-      padding:12px 12px;
-      border-radius:14px;
+      margin-top:14px;padding:12px 12px;border-radius:14px;
       border:1px solid rgba(255,255,255,.10);
       background: rgba(255,255,255,.03);
       color:var(--muted2);
-      font-size:12.9px;
-      line-height:1.65;
+      font-size:12.9px;line-height:1.65;
     }
     .bar strong{color:var(--text);font-weight:950}
     .bar a{border-bottom:1px solid rgba(255,255,255,.18)}
@@ -92,14 +85,46 @@
     .bar .left{min-width:240px}
     .bar .right{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
 
-    .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin:18px 0 18px}
+    .ctaStrip{
+      margin-top:16px;border-radius: calc(var(--radius) + 6px);
+      border:1px solid rgba(255,255,255,.11);
+      background:
+        radial-gradient(900px 320px at 22% 0%, rgba(200,163,73,.16), transparent 62%),
+        radial-gradient(900px 320px at 92% 12%, rgba(122,167,255,.08), transparent 66%),
+        rgba(255,255,255,.02);
+      box-shadow: var(--shadow2);
+      padding:14px;display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;
+    }
+    .ctaStrip .left{min-width:260px}
+    .ctaStrip .left h3{margin:0 0 4px;font-size:14px;font-weight:950;letter-spacing:-.2px}
+    .ctaStrip .left p{margin:0;color:var(--muted2);font-size:12.9px;line-height:1.55;max-width:760px}
+    .ctaStrip .right{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+
+    .terms{margin-top:16px;display:grid;grid-template-columns: 1.15fr .85fr;gap:16px}
+    .panel{
+      border-radius:16px;border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      padding:14px;box-shadow: var(--shadow2);min-width:0;
+    }
+    .panel h3{margin:0 0 8px;font-size:14px;font-weight:950;letter-spacing:-.2px}
+    .panel p{margin:0 0 10px;color:var(--muted2);font-size:12.9px;line-height:1.6}
+    .kgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+    .kv{
+      border-radius:14px;border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.02);
+      padding:10px;color:var(--muted2);font-size:12.6px;line-height:1.55;
+    }
+    .kv strong{color:var(--text);font-weight:950}
+    .fine{margin-top:10px;color:var(--muted2);font-size:12.4px;line-height:1.55}
+    .fine strong{color:var(--text);font-weight:950}
+
+    .grid{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;margin:18px 0 18px}
     .card{
       border-radius:var(--radius);
       border:1px solid rgba(255,255,255,.11);
       background: linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.022));
       box-shadow: var(--shadow2);
-      overflow:hidden;
-      min-width:0
+      overflow:hidden;min-width:0;
     }
     .card .hd{padding:18px 18px 0}
     .card h2{margin:0 0 8px;font-size:18px;letter-spacing:-.2px;font-weight:950}
@@ -112,76 +137,12 @@
       background: rgba(255,255,255,.03);
       color:var(--muted);font-size:12px;margin-bottom:10px
     }
-    .badge code{font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace}
     .list{margin:10px 0 0; padding-left:18px; color:var(--muted2); line-height:1.65}
     .list li{margin:6px 0}
     .mini{color:var(--muted2);font-size:12.6px;line-height:1.6}
     .mini strong{color:var(--text);font-weight:950}
 
-    .ctaStrip{
-      margin-top:16px;
-      border-radius: calc(var(--radius) + 6px);
-      border:1px solid rgba(255,255,255,.11);
-      background:
-        radial-gradient(900px 320px at 22% 0%, rgba(200,163,73,.16), transparent 62%),
-        radial-gradient(900px 320px at 92% 12%, rgba(122,167,255,.08), transparent 66%),
-        rgba(255,255,255,.02);
-      box-shadow: var(--shadow2);
-      padding:14px;
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-      align-items:center;
-      justify-content:space-between;
-    }
-    .ctaStrip .left{min-width:260px}
-    .ctaStrip .left h3{margin:0 0 4px;font-size:14px;font-weight:950;letter-spacing:-.2px}
-    .ctaStrip .left p{margin:0;color:var(--muted2);font-size:12.9px;line-height:1.55;max-width:760px}
-    .ctaStrip .right{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
-
-    .terms{
-      margin-top:16px;
-      display:grid;
-      grid-template-columns: 1.15fr .85fr;
-      gap:16px;
-    }
-    .panel{
-      border-radius:16px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.03);
-      padding:14px;
-      box-shadow: var(--shadow2);
-      min-width:0;
-    }
-    .panel h3{margin:0 0 8px;font-size:14px;font-weight:950;letter-spacing:-.2px}
-    .panel p{margin:0 0 10px;color:var(--muted2);font-size:12.9px;line-height:1.6}
-    .kgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
-    .kv{
-      border-radius:14px;border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.02);
-      padding:10px;
-      color:var(--muted2);
-      font-size:12.6px;
-      line-height:1.55;
-    }
-    .kv strong{color:var(--text);font-weight:950}
-    .fine{
-      margin-top:10px;
-      color:var(--muted2);
-      font-size:12.4px;
-      line-height:1.55;
-    }
-    .fine strong{color:var(--text);font-weight:950}
-
-    .pack{
-      margin-top:16px;
-      display:grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap:16px;
-    }
-    .pack .panel p{margin-bottom:12px}
-    .pack .panel .actions{margin-top:6px}
-
+    .pack{margin-top:16px;display:grid;grid-template-columns: 1fr 1fr 1fr;gap:16px}
     .standards{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}
     .std{border-radius:16px;border:1px solid rgba(255,255,255,.10);background: rgba(255,255,255,.03);padding:14px}
     .std h3{margin:0 0 6px;font-size:14px;letter-spacing:-.2px;font-weight:950}
@@ -190,42 +151,29 @@
     .std li{margin:6px 0}
 
     details.faq{
-      border-radius:16px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.03);
-      padding:12px 14px;
+      border-radius:16px;border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);padding:12px 14px
     }
     details.faq + details.faq{margin-top:10px}
     details.faq summary{
-      cursor:pointer;
-      list-style:none;
-      font-weight:950;
-      letter-spacing:-.2px;
-      color:var(--text);
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      user-select:none;
+      cursor:pointer;list-style:none;font-weight:950;letter-spacing:-.2px;color:var(--text);
+      display:flex;align-items:center;justify-content:space-between;gap:12px;user-select:none;
     }
     details.faq summary::-webkit-details-marker{display:none}
     .chev{
       width:10px;height:10px;flex:0 0 auto;
       border-right:2px solid rgba(255,255,255,.55);
       border-bottom:2px solid rgba(255,255,255,.55);
-      transform: rotate(-45deg);
-      opacity:.75;
-      margin-top:2px;
-      transition: transform .18s ease;
+      transform: rotate(-45deg);opacity:.75;margin-top:2px;transition: transform .18s ease;
     }
     details[open] .chev{transform: rotate(45deg)}
     .faqBody{margin-top:8px;color:var(--muted2);font-size:12.9px;line-height:1.65}
     .faqBody a{border-bottom:1px solid rgba(255,255,255,.18)}
 
-    @media (max-width: 1200px){ .grid{grid-template-columns:1fr 1fr} }
+    @media (max-width: 1300px){ .grid{grid-template-columns:1fr 1fr} }
     @media (max-width: 980px){ .terms{grid-template-columns:1fr} .pack{grid-template-columns:1fr} }
     @media (max-width: 760px){ .grid{grid-template-columns:1fr} .standards{grid-template-columns:1fr} .kgrid{grid-template-columns:1fr} }
-    @media (max-width: 520px){ .actions .btn, .subActions .btn{width:100%} .bar .row{gap:12px} .bar .right .btn{width:100%} }
+    @media (max-width: 520px){ .actions .btn, .subActions .btn{width:100%} .bar .right .btn{width:100%} }
   </style>
 
   <script type="application/ld+json">
@@ -234,13 +182,13 @@
     "@type":"WebPage",
     "name":"Noetfield — Partners",
     "url":"https://www.noetfield.com/gate/partners/",
-    "description":"Partner lanes (Channel, Delivery, Integration) plus Partner Deal Registration with clear acceptance rules, RID continuity, and evidence-first standards.",
+    "description":"Partner lanes (Channel, Programs, Delivery, Integration) plus Partner Deal Registration with clear acceptance rules, RID continuity, and evidence-first standards.",
     "isPartOf":{"@type":"WebSite","name":"Noetfield","url":"https://www.noetfield.com/"},
     "publisher":{"@type":"Organization","name":"Noetfield Systems Inc."}
   }
   </script>
 
-  <!-- Page-local RID fallback (keeps continuity even if shell JS fails). Safe + non-confidential. -->
+  <!-- Page-local RID fallback -->
   <script>
     (function(){
       try{
@@ -252,7 +200,6 @@
           if(c && c[1]) rid = decodeURIComponent(c[1]).trim();
         }
         if(!rid){
-          // Lightweight RID generator (public tracking only)
           var d = new Date();
           var y = String(d.getUTCFullYear()).slice(2);
           var m = String(d.getUTCMonth()+1).padStart(2,"0");
@@ -260,7 +207,6 @@
           var rand = Math.random().toString(36).slice(2,8).toUpperCase();
           rid = "NF-" + y + m + day + "-" + rand;
           url.searchParams.set("rid", rid);
-          // Do not force navigation; just persist for continuity
         }
         sessionStorage.setItem("nf_rid", rid);
         document.cookie = "nf_rid=" + encodeURIComponent(rid) + "; Path=/; SameSite=Lax";
@@ -269,27 +215,14 @@
     })();
   </script>
 
-  <!-- FAQ schema (micro, partner-specific) -->
   <script type="application/ld+json">
   {
     "@context":"https://schema.org",
     "@type":"FAQPage",
     "mainEntity":[
-      {
-        "@type":"Question",
-        "name":"What counts as Deal Acceptance for protection?",
-        "acceptedAnswer":{"@type":"Answer","text":"Protection starts when Noetfield sends a Deal Accepted email after validating the minimum deal fields (organization, champion, stage, next meeting)."}
-      },
-      {
-        "@type":"Question",
-        "name":"How long is Deal Protection?",
-        "acceptedAnswer":{"@type":"Answer","text":"90 days from Noetfield Deal Acceptance, provided the partner maintains active progression signals and routing discipline."}
-      },
-      {
-        "@type":"Question",
-        "name":"Where should buyers go for Invoice/PO?",
-        "acceptedAnswer":{"@type":"Answer","text":"Use the Procurement lane (Invoice/PO) for vendor onboarding, procurement pack, and purchasing routes, with RID continuity."}
-      }
+      {"@type":"Question","name":"What counts as Deal Acceptance for protection?","acceptedAnswer":{"@type":"Answer","text":"Protection starts when Noetfield sends a Deal Accepted email after validating minimum deal fields (organization, champion, stage, next meeting date, lane)."}},
+      {"@type":"Question","name":"How long is Deal Protection?","acceptedAnswer":{"@type":"Answer","text":"90 days from Noetfield Deal Acceptance, provided the partner maintains active progression signals and routing discipline."}},
+      {"@type":"Question","name":"Where should buyers go for Invoice/PO?","acceptedAnswer":{"@type":"Answer","text":"Use the Procurement lane (Invoice/PO) for vendor onboarding, procurement pack, and purchasing routes, with RID continuity."}}
     ]
   }
   </script>
@@ -299,7 +232,6 @@
   <div class="bg" aria-hidden="true"></div>
   <a class="skip" href="#main">Skip to content</a>
 
-  <!-- Injected header -->
   <header id="nfHeader"></header>
 
   <main id="main" class="wrap">
@@ -307,13 +239,13 @@
     <section class="hero" aria-label="Partners hero">
       <div class="heroShell">
         <div class="heroInner">
-          <div class="eyebrow"><span class="dot"></span> Partners • lane routing • Deal ID • RID continuity</div>
+          <div class="eyebrow"><span class="dot"></span> Partners • lanes • Deal ID • RID continuity</div>
 
-          <h1>Partners who ship governance that survives scrutiny</h1>
+          <h1>Partner motion built for procurement and scrutiny</h1>
 
           <p class="lead">
-            Noetfield partners originate opportunities, deliver board-ready artefacts, and implement controls that keep
-            claims <strong>provable</strong>—without oversharing. Routing stays anchored to a <strong>Request ID (RID)</strong>.
+            Partner routing for opportunities, portfolio programs, delivery, and integrations.
+            Output stays <strong>board-readable</strong> and <strong>evidence-first</strong>, with tracking anchored to a <strong>Request ID (RID)</strong>.
           </p>
 
           <div class="metaRow" aria-label="Partner principles">
@@ -325,9 +257,10 @@
 
           <div class="actions">
             <a class="btn primary" href="/gate/partners/deal/" data-rid-link>Register a partner deal</a>
-            <a class="btn secondary" href="/gate/partners/intake/" data-rid-link>Start partner intake</a>
-            <a class="btn secondary" href="/status/" data-rid-link>Open Status</a>
-            <a class="btn secondary" href="/gate/" data-rid-link>Back to Gate</a>
+            <a class="btn secondary" href="/gate/partners/programs/" data-rid-link>Ecosystem programs</a>
+            <a class="btn secondary" href="/gate/partners/intake/" data-rid-link>Partner intake</a>
+            <a class="btn secondary" href="/status/" data-rid-link>Status</a>
+            <a class="btn secondary" href="/gate/" data-rid-link>Gate</a>
           </div>
 
           <div class="subActions">
@@ -343,13 +276,14 @@
                 Public pages are <strong>non-confidential</strong> by design.
               </div>
               <div class="right">
-                <a class="btn secondary" href="/gate/partners/deal/" data-rid-link>Use Deal Registration</a>
-                <a class="btn secondary" href="/gate/procurement/" data-rid-link>Use Procurement Lane</a>
+                <a class="btn secondary" href="/gate/partners/deal/" data-rid-link>Deal Registration</a>
+                <a class="btn secondary" href="/gate/partners/programs/" data-rid-link>Programs Lane</a>
+                <a class="btn secondary" href="/gate/procurement/" data-rid-link>Procurement Lane</a>
               </div>
             </div>
             <noscript>
               <div style="margin-top:10px">
-                JavaScript is off. RID continuity may not auto-attach to links. Add <strong>?rid=YOUR-RID</strong> to keep tracking consistent.
+                JavaScript is off. Add <strong>?rid=YOUR-RID</strong> to preserve continuity.
               </div>
             </noscript>
           </div>
@@ -362,37 +296,35 @@
       <div class="left">
         <h3>Partner Deal Registration</h3>
         <p>
-          Generate a <strong>Partner Deal ID</strong>, capture tier signals, and route the buyer cleanly.
+          Generate a <strong>Partner Deal ID</strong>, capture stage signals, and route the buyer cleanly.
           Protection is <strong>90 days from Noetfield acceptance</strong> (Deal Accepted email), subject to the terms below.
         </p>
       </div>
       <div class="right">
         <a class="btn primary" href="/gate/partners/deal/" data-rid-link>Open deal registration</a>
-        <a class="btn secondary" href="/gate/procurement/" data-rid-link>Open procurement lane</a>
+        <a class="btn secondary" href="/gate/partners/programs/" data-rid-link>Portfolio / programs</a>
+        <a class="btn secondary" href="/gate/procurement/" data-rid-link>Invoice / PO lane</a>
       </div>
     </section>
 
-    <!-- TERMS (contractable, compact) -->
+    <!-- TERMS -->
     <section class="terms" aria-label="Deal registration terms">
       <div class="panel">
         <h3>Deal protection terms (compact)</h3>
-        <p>
-          These terms are designed to prevent channel conflict and keep co-selling defensible.
-          Noetfield confirms acceptance by email after basic validation.
-        </p>
+        <p>Terms designed to reduce channel conflict and keep co-selling defensible. Acceptance is confirmed by email after basic validation.</p>
 
         <div class="kgrid" aria-label="Deal terms key points">
-          <div class="kv"><strong>Acceptance</strong><br />Protection begins when Noetfield sends a <strong>Deal Accepted</strong> email after validating minimum fields.</div>
-          <div class="kv"><strong>Protection window</strong><br /><strong>90 days from acceptance</strong>, provided the partner maintains active progression signals.</div>
-          <div class="kv"><strong>Minimum fields</strong><br />Org name, champion, stage, next meeting date, lane, and a short non-confidential note.</div>
-          <div class="kv"><strong>Review SLA</strong><br />Noetfield responds to deal registrations within <strong>2 business days</strong> (Accept / Clarify / Decline).</div>
-          <div class="kv"><strong>Conflicts</strong><br />If duplicates occur, Noetfield uses <strong>first complete registration timestamp</strong> plus evidence of progression.</div>
-          <div class="kv"><strong>Scope boundary</strong><br />Protection applies to the <strong>named organization</strong> and the registered opportunity; RFP/public tenders may override.</div>
+          <div class="kv"><strong>Acceptance</strong><br/>Protection begins when Noetfield sends a <strong>Deal Accepted</strong> email after validating minimum fields.</div>
+          <div class="kv"><strong>Protection window</strong><br/><strong>90 days from acceptance</strong>, provided active progression signals remain current.</div>
+          <div class="kv"><strong>Minimum fields</strong><br/>Org name, champion, stage, next meeting date, lane, and a short non-confidential note.</div>
+          <div class="kv"><strong>Review SLA</strong><br/>Response within <strong>2 business days</strong> (Accept / Clarify / Decline).</div>
+          <div class="kv"><strong>Conflicts</strong><br/><strong>First complete registration timestamp</strong> plus evidence of progression (meeting scheduled/held, buyer-confirmed path).</div>
+          <div class="kv"><strong>Scope boundary</strong><br/>Protection applies to the <strong>named organization</strong> and registered opportunity; public tenders may override.</div>
         </div>
 
         <div class="fine">
-          <strong>Important:</strong> Public forms must remain non-confidential. Do not submit credentials, customer data, or regulated personal data.
-          If sensitive context is required, use NDA routing after kickoff via the Procurement lane.
+          <strong>Public boundary:</strong> do not submit credentials, tenant identifiers, customer content, or regulated personal data.
+          Sensitive context begins only after NDA + executed SOW (via Procurement lane).
         </div>
       </div>
 
@@ -401,8 +333,8 @@
         <p><strong>RID</strong> tracks routing across Gate → Procurement → Status. <strong>Deal ID</strong> tracks partner-originated opportunities.</p>
         <ul class="list" style="margin-top:8px">
           <li><strong>Use RID</strong> in: subjects, filenames, status checks, procurement packets.</li>
-          <li><strong>Use Deal ID</strong> in: deal registration, partner commission/protection tracking, co-sell records.</li>
-          <li><strong>Buyer route:</strong> procurement teams should always use <a href="/gate/procurement/" data-rid-link>Invoice/PO lane</a>.</li>
+          <li><strong>Use Deal ID</strong> in: deal registration, co-sell tracking, partner protection records.</li>
+          <li><strong>Buyer procurement:</strong> route procurement teams to <a href="/gate/procurement/" data-rid-link>Invoice / PO lane</a>.</li>
         </ul>
 
         <div class="actions" style="margin-top:12px">
@@ -414,50 +346,64 @@
 
     <!-- LANES -->
     <section class="grid" aria-label="Partner lanes">
-      <!-- Deal lane -->
       <div class="card">
         <div class="hd">
           <div class="badge">Deal</div>
           <h2>Register & protect</h2>
-          <p>Issue a Deal ID, capture stage signals, and create a procurement-safe packet for co-selling.</p>
+          <p>Issue a Deal ID, capture stage signals, and route the buyer with procurement-safe language.</p>
         </div>
         <div class="bd">
           <ul class="list">
-            <li><strong>Deal ID</strong> + RID continuity (deep-linkable)</li>
-            <li><strong>Tier signals</strong>: sourced → meeting → close support</li>
-            <li><strong>Email builders</strong>: registration + warm intro</li>
+            <li><strong>Deal ID</strong> + RID continuity</li>
+            <li><strong>Stage signals</strong>: sourced → meeting → close support</li>
+            <li><strong>Co-sell routing</strong>: Gate + Procurement + Status</li>
           </ul>
-          <p class="mini" style="margin-top:10px">
-            Protection: <strong>90 days from Noetfield acceptance</strong> (Deal Accepted email).
-          </p>
+          <p class="mini" style="margin-top:10px">Protection: <strong>90 days from Noetfield acceptance</strong> (Deal Accepted email).</p>
           <div class="actions" style="margin-top:12px;">
-            <a class="btn primary" href="/gate/partners/deal/" data-rid-link>Register a deal</a>
+            <a class="btn primary" href="/gate/partners/deal/" data-rid-link>Deal registration</a>
             <a class="btn secondary" href="/gate/procurement/" data-rid-link>Procurement lane</a>
           </div>
         </div>
       </div>
 
-      <!-- Channel lane -->
       <div class="card">
         <div class="hd">
           <div class="badge">Channel</div>
           <h2>Originate</h2>
-          <p>Introduce aligned organizations and use clean packaging, routing, and governed delivery motion.</p>
+          <p>Introduce aligned organizations and keep the buyer path clean from first touch to procurement.</p>
         </div>
         <div class="bd">
           <ul class="list">
-            <li>ICP-aligned intros (Microsoft-heavy, procurement pressure)</li>
-            <li>Co-selling motion: Gate + Procurement + Status continuity</li>
+            <li>ICP-aligned intros (Microsoft-heavy, governance + procurement pressure)</li>
+            <li>Clear buyer routing: Gate → Procurement → Status</li>
             <li>Boundary discipline (public vs post-kickoff)</li>
           </ul>
           <div class="actions" style="margin-top:12px;">
-            <a class="btn primary" href="/gate/partners/channel/" data-rid-link>Open channel lane</a>
-            <a class="btn secondary" href="/gate/partners/intake/" data-rid-link>Start intake</a>
+            <a class="btn primary" href="/gate/partners/channel/" data-rid-link>Channel lane</a>
+            <a class="btn secondary" href="/gate/partners/deal/" data-rid-link>Register deal</a>
           </div>
         </div>
       </div>
 
-      <!-- Delivery lane -->
+      <div class="card">
+        <div class="hd">
+          <div class="badge">Programs</div>
+          <h2>Portfolio routing</h2>
+          <p>Accelerators, venture studios, and scale-up programs: cohort-ready governance outputs that reduce procurement friction.</p>
+        </div>
+        <div class="bd">
+          <ul class="list">
+            <li>Two models: program contract or company-by-company</li>
+            <li>Standardized artefacts (snapshot + memo format + evidence index starter)</li>
+            <li>Optional anonymized cohort summary (non-confidential)</li>
+          </ul>
+          <div class="actions" style="margin-top:12px;">
+            <a class="btn primary" href="/gate/partners/programs/" data-rid-link>Programs lane</a>
+            <a class="btn secondary" href="/gate/partners/programs/portfolio-offer/" data-rid-link>Portfolio offer</a>
+          </div>
+        </div>
+      </div>
+
       <div class="card">
         <div class="hd">
           <div class="badge">Delivery</div>
@@ -471,13 +417,12 @@
             <li>Red-line escalation for privacy/security/procurement blockers</li>
           </ul>
           <div class="actions" style="margin-top:12px;">
-            <a class="btn primary" href="/gate/partners/delivery/" data-rid-link>Open delivery lane</a>
-            <a class="btn secondary" href="/gate/partners/intake/" data-rid-link>Start intake</a>
+            <a class="btn primary" href="/gate/partners/delivery/" data-rid-link>Delivery lane</a>
+            <a class="btn secondary" href="/gate/partners/intake/" data-rid-link>Partner intake</a>
           </div>
         </div>
       </div>
 
-      <!-- Integration lane -->
       <div class="card">
         <div class="hd">
           <div class="badge">Integration</div>
@@ -487,55 +432,55 @@
         <div class="bd">
           <ul class="list">
             <li>M365/Purview posture hardening (DLP, retention, audit)</li>
-            <li>Connector/extension governance + least-privilege patterns</li>
+            <li>Connector governance + least-privilege patterns</li>
             <li>Operational evidence hooks (exports, labels, audit trail)</li>
           </ul>
           <div class="actions" style="margin-top:12px;">
-            <a class="btn primary" href="/gate/partners/integration/" data-rid-link>Open integration lane</a>
-            <a class="btn secondary" href="/gate/partners/intake/" data-rid-link>Start intake</a>
+            <a class="btn primary" href="/gate/partners/integration/" data-rid-link>Integration lane</a>
+            <a class="btn secondary" href="/gate/partners/intake/" data-rid-link>Partner intake</a>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- PARTNER PACK (assets / placeholders; create files later) -->
+    <!-- PARTNER PACK -->
     <section class="pack" aria-label="Partner pack">
       <div class="panel">
         <h3>Partner Pack (1-page)</h3>
-        <p>A short PDF for partner teams: positioning, lanes, and routing rules (non-confidential).</p>
+        <p>Positioning, lanes, and routing rules (non-confidential).</p>
         <div class="actions">
           <a class="btn primary" href="/gate/partners/pack/partner-overview.pdf" data-rid-link>Download overview</a>
-          <a class="btn secondary" href="/gate/partners/intake/" data-rid-link>Apply as partner</a>
+          <a class="btn secondary" href="/gate/partners/intake/" data-rid-link>Partner intake</a>
         </div>
-        <p class="fine">If the file is not published yet, link returns 404 until you add the asset.</p>
+        <p class="fine">If not published yet, link returns 404 until the asset exists.</p>
       </div>
 
       <div class="panel">
         <h3>Co-sell Play (emails)</h3>
-        <p>Warm intro templates + procurement-safe language + routing links that preserve RID continuity.</p>
+        <p>Warm intros + procurement-safe language + RID-preserving routing links.</p>
         <div class="actions">
           <a class="btn primary" href="/gate/partners/pack/co-sell-play.pdf" data-rid-link>Download co-sell play</a>
           <a class="btn secondary" href="/gate/procurement/" data-rid-link>Procurement lane</a>
         </div>
-        <p class="fine">Keep buyer routing clean: procurement goes to Invoice/PO lane, not partner intake.</p>
+        <p class="fine">Buyer procurement should use Invoice/PO lane, not partner intake.</p>
       </div>
 
       <div class="panel">
-        <h3>Readiness Checklist</h3>
-        <p>A quick readiness check to activate lanes (tools + evidence habits + scope boundaries).</p>
+        <h3>Programs Pack (optional)</h3>
+        <p>Portfolio offer overview for accelerators, venture studios, and scale-up programs.</p>
         <div class="actions">
-          <a class="btn primary" href="/gate/partners/readiness/" data-rid-link>Open readiness</a>
-          <a class="btn secondary" href="/status/" data-rid-link>Open Status</a>
+          <a class="btn primary" href="/gate/partners/programs/portfolio-offer/" data-rid-link>Open portfolio offer</a>
+          <a class="btn secondary" href="/gate/partners/programs/" data-rid-link>Programs lane</a>
         </div>
-        <p class="fine">Minimal page is sufficient for now: “Definition of Ready” + next steps.</p>
+        <p class="fine">Use non-confidential cohort nomination workflow.</p>
       </div>
     </section>
 
     <!-- STANDARDS -->
     <section class="standards" aria-label="Partner standards">
       <div class="std">
-        <h3>Partner standards (non-negotiables)</h3>
-        <p>These rules protect delivery quality and keep outputs defensible.</p>
+        <h3>Standards (non-negotiables)</h3>
+        <p>Rules that keep delivery quality defensible.</p>
         <ul>
           <li><strong>Public = non-confidential:</strong> no secrets/credentials/customer data/regulated personal data in forms.</li>
           <li><strong>Named artefacts:</strong> memo/control taxonomy/evidence index formats remain consistent.</li>
@@ -546,22 +491,22 @@
       </div>
 
       <div class="std">
-        <h3>How onboarding works</h3>
+        <h3>Onboarding flow</h3>
         <p>Fast validation, then lane activation.</p>
         <ul>
-          <li>Step 1: Submit partner intake (high-level, non-confidential).</li>
-          <li>Step 2: Lane fit + scope boundaries confirmed (readiness check if needed).</li>
+          <li>Step 1: Partner intake (high-level, non-confidential).</li>
+          <li>Step 2: Lane fit + scope boundaries confirmed.</li>
           <li>Step 3: Enable routing pages + handoff checklist + evidence patterns.</li>
-          <li>Step 4: Operate with RID-based tracking and Status visibility.</li>
+          <li>Step 4: Operate with RID tracking and Status visibility.</li>
         </ul>
         <p style="margin-top:10px;">
-          For buyer procurement (Invoice/PO), use <a href="/gate/procurement/" data-rid-link>Procurement lane</a>.
-          For deal registration, use <a href="/gate/partners/deal/" data-rid-link>Partner Deal Registration</a>.
+          For procurement (Invoice/PO): <a href="/gate/procurement/" data-rid-link>Procurement lane</a>.<br/>
+          For portfolio programs: <a href="/gate/partners/programs/" data-rid-link>Programs lane</a>.
         </p>
       </div>
     </section>
 
-    <!-- MICRO FAQ (partner-specific, compact) -->
+    <!-- MICRO FAQ -->
     <section style="margin-top:16px" aria-label="Partner FAQ">
       <div class="panel">
         <h3>Partner FAQ (compact)</h3>
@@ -569,47 +514,43 @@
         <details class="faq">
           <summary>What counts as acceptance for protection? <span class="chev" aria-hidden="true"></span></summary>
           <div class="faqBody">
-            Protection starts when Noetfield sends a <strong>Deal Accepted</strong> email after validating minimum deal fields
-            (org, champion, stage, next meeting date, lane). If details are incomplete, Noetfield requests clarification.
+            Protection starts when a <strong>Deal Accepted</strong> email is issued after minimum fields validate
+            (org, champion, stage, next meeting date, lane). Incomplete registrations return Clarify.
           </div>
         </details>
 
         <details class="faq">
           <summary>What happens if two partners register the same organization? <span class="chev" aria-hidden="true"></span></summary>
           <div class="faqBody">
-            Noetfield applies <strong>first complete registration timestamp</strong> plus evidence of progression (meeting set/held, buyer-confirmed path).
-            The goal is to prevent channel conflict and keep co-selling defensible.
+            Resolution uses <strong>first complete registration timestamp</strong> plus evidence of progression (meeting scheduled/held, buyer-confirmed path).
           </div>
         </details>
 
         <details class="faq">
-          <summary>Where do we route procurement teams (Invoice/PO)? <span class="chev" aria-hidden="true"></span></summary>
+          <summary>Where should procurement teams go (Invoice/PO)? <span class="chev" aria-hidden="true"></span></summary>
           <div class="faqBody">
-            Route them to <a href="/gate/procurement/" data-rid-link>Procurement (Invoice/PO)</a> for procurement pack, onboarding, and purchasing lanes.
-            Keep public pages <strong>non-confidential</strong>.
+            Route to <a href="/gate/procurement/" data-rid-link>Procurement (Invoice/PO)</a> for vendor onboarding, purchasing lanes, and procurement pack.
           </div>
         </details>
 
         <details class="faq">
-          <summary>Can we deliver as a partner while Noetfield owns the artifacts? <span class="chev" aria-hidden="true"></span></summary>
+          <summary>How does the Programs lane work? <span class="chev" aria-hidden="true"></span></summary>
           <div class="faqBody">
-            Yes. Delivery partners operate within Noetfield formats (board memo, MAP, evidence index) so outputs remain consistent.
-            Lane activation confirms scope boundaries and evidence capture habits.
+            Two models: <strong>program contract</strong> (portfolio package) or <strong>company-by-company</strong> routing.
+            See <a href="/gate/partners/programs/" data-rid-link>Programs lane</a> and <a href="/gate/partners/programs/portfolio-offer/" data-rid-link>Portfolio offer</a>.
           </div>
         </details>
       </div>
     </section>
 
     <div class="bar">
-      Decision rule: repeatable delivery, clean scope boundaries, and evidence capture habits that scale.<br />
+      Decision rule: repeatable delivery, clean scope boundaries, and evidence capture habits that scale.<br/>
       A strong partner makes a board decision easy and a regulator conversation calm.
     </div>
   </main>
 
-  <!-- Injected footer -->
   <footer id="nfFooter"></footer>
 
-  <!-- Minimal RID UI fill if shell doesn’t populate immediately -->
   <script>
     (function(){
       function fill(){
@@ -628,11 +569,7 @@
           });
         }catch(e){}
       }
-      if(document.readyState === "loading"){
-        document.addEventListener("DOMContentLoaded", fill);
-      } else {
-        fill();
-      }
+      if(document.readyState === "loading"){ document.addEventListener("DOMContentLoaded", fill); } else { fill(); }
     })();
   </script>
 </body>

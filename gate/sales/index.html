@@ -1,5 +1,5 @@
-<!-- /gate/sales/index.html — Noetfield Sales v3.2
-     (Readiness-style purchase hub • contextual Stripe Buy Buttons • Invoice/PO • intake routing • RID continuity • offer codes)
+<!-- /gate/sales/index.html — Noetfield Sales v3.3
+     (Single Stripe mount slot • multi-QuickScan SKUs • Trust Ledger SKUs • invoice/PO • intake routing • RID continuity • JS-off fallbacks)
 -->
 <!doctype html>
 <html lang="en">
@@ -133,8 +133,6 @@
     }
     .sectionTitle{font-weight:950; letter-spacing:-.2px; margin:0 0 6px; font-size:14px; color:var(--text)}
     .sectionDesc{margin:0 0 10px; color:var(--muted2); font-size:12.7px; line-height:1.6}
-    .steps{margin:0; padding-left:18px; color:var(--muted); line-height:1.85}
-    .steps li{margin:6px 0}
 
     .table{
       width:100%;
@@ -161,21 +159,32 @@
       background: rgba(255,255,255,.03);
     }
     .table tr:last-child td{border-bottom:none}
-    .table a{ border-bottom: 1px solid rgba(255,255,255,.18); }
+    .table .selectLink{
+      border-bottom:1px solid rgba(255,255,255,.18);
+      cursor:pointer;
+      user-select:none;
+      white-space:nowrap;
+    }
 
-    /* Stripe buy button wrapper + contextual placeholder */
-    .payWrap{ display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
-    .payHidden{ display:none !important; }
-    .payPlaceholder{
+    /* Single Stripe mount slot (always visible, avoids hide/show failures) */
+    .paySlotWrap{
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.02);
+      border-radius:16px;
+      padding:12px;
+      margin-top:10px;
+    }
+    #paySlot stripe-buy-button{
+      display:block;
+      max-width: 560px;
+    }
+    .payFallback{
+      margin-top:10px;
       color:var(--muted2);
       font-size:12.7px;
       line-height:1.6;
-      padding:10px 10px;
-      border-radius:12px;
-      border:1px dashed rgba(255,255,255,.18);
-      background: rgba(255,255,255,.02);
-      display:inline-block;
     }
+    .payFallback a{ border-bottom:1px solid rgba(255,255,255,.18); }
 
     .rail{ position: sticky; top: 14px; }
     .box{
@@ -234,9 +243,6 @@
       .stickyCta{ display:block; }
       body{ padding-bottom: calc(74px + env(safe-area-inset-bottom)); }
     }
-    @media (prefers-reduced-motion: reduce){
-      *{ scroll-behavior:auto !important; }
-    }
   </style>
 
   <script type="application/ld+json">
@@ -273,16 +279,16 @@
 
           <div class="actions" aria-label="Primary actions">
             <a class="btn secondary" href="/gate/" data-rid-link>Back to Gate</a>
-            <a class="btn primary" href="#start" data-rid-link>Start selected</a>
+            <a class="btn primary" href="#pay" data-rid-link>Pay by card</a>
             <a class="btn secondary" href="#procurement" data-rid-link>Invoice / PO</a>
             <a class="btn secondary" href="#intake" data-rid-link>Start intake (non-confidential)</a>
           </div>
 
           <div class="metaRow" aria-label="Highlights">
             <div class="pill"><strong>RID</strong> preserved</div>
-            <div class="pill"><strong>CAD</strong> pricing</div>
+            <div class="pill"><strong>Offer</strong> code shown</div>
             <div class="pill"><strong>Procurement</strong> lane</div>
-            <div class="pill"><strong>Intake</strong> non-confidential</div>
+            <div class="pill"><strong>Card pay</strong> optional</div>
           </div>
 
           <div class="notice" role="note">
@@ -297,131 +303,64 @@
       <!-- MAIN -->
       <section class="card" aria-label="Sales main">
         <div class="hd">
-          <h2 class="cardTitle" id="start">Start options</h2>
-          <p class="muted">Use the path that matches procurement posture. Card pay is optional; Invoice/PO is available.</p>
+          <h2 class="cardTitle">Start options</h2>
+          <p class="muted">Select a SKU (if needed), then pay by card or use Invoice/PO. One Stripe widget is mounted below for reliability.</p>
         </div>
 
         <div class="bd">
-          <!-- Card pay -->
-          <div class="section" aria-label="Card payment">
+          <!-- Card pay selection table (no embedded stripe buttons) -->
+          <div class="section" aria-label="Card payment selection">
             <div class="sectionTitle">Option A — Card payment (optional)</div>
-            <p class="sectionDesc">
-              Card pay supports select SKUs. For enterprise onboarding, use <a href="#procurement" data-rid-link>Invoice / PO</a>.
-              For scope confirmation, start <a href="#intake" data-rid-link>intake</a>.
-            </p>
+            <p class="sectionDesc">Use when procurement allows card payment. Select a SKU to load the card payment widget.</p>
 
-            <table class="table" aria-label="Card payment options">
+            <table class="table" aria-label="Card pay SKUs">
               <thead>
                 <tr>
                   <th>Package</th>
                   <th>Offer code</th>
-                  <th>Card pay (Stripe)</th>
+                  <th>Action</th>
                 </tr>
               </thead>
               <tbody>
-                <!-- Readiness -->
-                <tr id="row_readiness_starter">
+                <tr>
                   <td><strong>Copilot Readiness — Starter</strong> (2 weeks)</td>
                   <td><code>NF-CR-2W</code></td>
-                  <td>
-                    <div class="payWrap payHidden" data-pay="readiness_starter">
-                      <stripe-buy-button
-                        buy-button-id="buy_btn_1Sh25JJ03eJkL57JPvKEMuzF"
-                        publishable-key="pk_live_51SfSseJ03eJkL57JNU4voCGfUjjK4WDew62tPBWesZAejr03HX8uTonznYoWDVcpXwLATZpTvWSDfSU4zJbRIB6900xlpPcGSz">
-                      </stripe-buy-button>
-                      <noscript>
-                        <a href="https://buy.stripe.com/dRm14o7za95W5mi0UA1Nu08" rel="nofollow noopener" target="_blank">Pay by card</a>
-                      </noscript>
-                    </div>
-                    <span class="payPlaceholder" data-pay-placeholder="readiness_starter">Select this package to enable card pay.</span>
-                  </td>
+                  <td><span class="selectLink" data-offer="readiness_starter">Select</span></td>
                 </tr>
-
-                <tr id="row_readiness_standard">
+                <tr>
                   <td><strong>Copilot Readiness — Standard</strong> (4 weeks)</td>
                   <td><code>NF-CR-4W</code></td>
-                  <td>
-                    <div class="payWrap payHidden" data-pay="readiness_standard">
-                      <stripe-buy-button
-                        buy-button-id="buy_btn_1Sh27KJ03eJkL57JMwq5iCSg"
-                        publishable-key="pk_live_51SfSseJ03eJkL57JNU4voCGfUjjK4WDew62tPBWesZAejr03HX8uTonznYoWDVcpXwLATZpTvWSDfSU4zJbRIB6900xlpPcGSz">
-                      </stripe-buy-button>
-                      <noscript>
-                        <a href="https://buy.stripe.com/dRm3cw1aMdmc9Cy32I1Nu09" rel="nofollow noopener" target="_blank">Pay by card</a>
-                      </noscript>
-                    </div>
-                    <span class="payPlaceholder" data-pay-placeholder="readiness_standard">Select this package to enable card pay.</span>
-                  </td>
+                  <td><span class="selectLink" data-offer="readiness_standard">Select</span></td>
                 </tr>
-
-                <tr id="row_readiness_extended">
+                <tr>
                   <td><strong>Copilot Readiness — Extended</strong> (6 weeks)</td>
                   <td><code>NF-CR-6W</code></td>
-                  <td>
-                    <div class="payWrap payHidden" data-pay="readiness_extended">
-                      <stripe-buy-button
-                        buy-button-id="buy_btn_1Sh29CJ03eJkL57Jyu54Xu3v"
-                        publishable-key="pk_live_51SfSseJ03eJkL57JNU4voCGfUjjK4WDew62tPBWesZAejr03HX8uTonznYoWDVcpXwLATZpTvWSDfSU4zJbRIB6900xlpPcGSz">
-                      </stripe-buy-button>
-                      <noscript>
-                        <a href="https://buy.stripe.com/28E9AU6v63LC3ea1YE1Nu0a" rel="nofollow noopener" target="_blank">Pay by card</a>
-                      </noscript>
-                    </div>
-                    <span class="payPlaceholder" data-pay-placeholder="readiness_extended">Select this package to enable card pay.</span>
-                  </td>
+                  <td><span class="selectLink" data-offer="readiness_extended">Select</span></td>
                 </tr>
-
-                <!-- QuickScan -->
-                <tr id="row_quickscan">
-                  <td><strong>Copilot QuickScan</strong> (5–7 business days)</td>
-                  <td><code>NF-QS</code></td>
-                  <td>
-                    <div class="payWrap payHidden" data-pay="quickscan">
-                      <stripe-buy-button
-                        buy-button-id="buy_btn_1Sg1q9J03eJkL57J8NIjy5v8"
-                        publishable-key="pk_live_51SfSseJ03eJkL57JNU4voCGfUjjK4WDew62tPBWesZAejr03HX8uTonznYoWDVcpXwLATZpTvWSDfSU4zJbRIB6900xlpPcGSz">
-                      </stripe-buy-button>
-                      <noscript>
-                        <a href="https://buy.stripe.com/7sY4gA6v681S2a6cDi1Nu00" rel="nofollow noopener" target="_blank">Pay by card</a>
-                      </noscript>
-                    </div>
-                    <span class="payPlaceholder" data-pay-placeholder="quickscan">Select this package to enable card pay.</span>
-                  </td>
+                <tr>
+                  <td><strong>Copilot QuickScan — Base</strong> (5–7 business days)</td>
+                  <td><code>NF-QS-BASE</code></td>
+                  <td><span class="selectLink" data-offer="quickscan_base">Select</span></td>
                 </tr>
-
-                <!-- Trust Ledger (NEW) -->
-                <tr id="row_trust_ledger_core">
+                <tr>
+                  <td><strong>Copilot QuickScan — Priority</strong></td>
+                  <td><code>NF-QS-PRIORITY</code></td>
+                  <td><span class="selectLink" data-offer="quickscan_priority">Select</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Copilot QuickScan — Extended</strong></td>
+                  <td><code>NF-QS-EXT</code></td>
+                  <td><span class="selectLink" data-offer="quickscan_ext">Select</span></td>
+                </tr>
+                <tr>
                   <td><strong>Trust Ledger — Core</strong> (ongoing)</td>
                   <td><code>NF-TL-CORE</code></td>
-                  <td>
-                    <div class="payWrap payHidden" data-pay="trust_ledger_core">
-                      <stripe-buy-button
-                        buy-button-id="buy_btn_1SgI5ZJ03eJkL57JEYpsEmWi"
-                        publishable-key="pk_live_51SfSseJ03eJkL57JNU4voCGfUjjK4WDew62tPBWesZAejr03HX8uTonznYoWDVcpXwLATZpTvWSDfSU4zJbRIB6900xlpPcGSz">
-                      </stripe-buy-button>
-                      <noscript>
-                        <a href="https://buy.stripe.com/5kQdRa6v64PGg0WfPu1Nu05" rel="nofollow noopener" target="_blank">Pay by card</a>
-                      </noscript>
-                    </div>
-                    <span class="payPlaceholder" data-pay-placeholder="trust_ledger_core">Select this package to enable card pay.</span>
-                  </td>
+                  <td><span class="selectLink" data-offer="trust_ledger_core">Select</span></td>
                 </tr>
-
-                <tr id="row_trust_ledger_board">
+                <tr>
                   <td><strong>Trust Ledger — Board Reporting Add-On</strong></td>
                   <td><code>NF-TL-BOARD</code></td>
-                  <td>
-                    <div class="payWrap payHidden" data-pay="trust_ledger_board">
-                      <stripe-buy-button
-                        buy-button-id="buy_btn_1SgQtSJ03eJkL57JkNN1aB58"
-                        publishable-key="pk_live_51SfSseJ03eJkL57JNU4voCGfUjjK4WDew62tPBWesZAejr03HX8uTonznYoWDVcpXwLATZpTvWSDfSU4zJbRIB6900xlpPcGSz">
-                      </stripe-buy-button>
-                      <noscript>
-                        <a href="https://buy.stripe.com/6oU4gA8De81S4ie9r61Nu06" rel="nofollow noopener" target="_blank">Pay by card</a>
-                      </noscript>
-                    </div>
-                    <span class="payPlaceholder" data-pay-placeholder="trust_ledger_board">Select this package to enable card pay.</span>
-                  </td>
+                  <td><span class="selectLink" data-offer="trust_ledger_board">Select</span></td>
                 </tr>
               </tbody>
             </table>
@@ -429,6 +368,31 @@
             <div class="notice" style="margin-top:12px;">
               <strong>Billing note:</strong> Prices are in CAD. If tax (GST/HST) applies for invoice-based procurement, it is shown on the invoice.
               Card payment tax handling depends on Stripe configuration.
+            </div>
+          </div>
+
+          <!-- Single reliable Stripe mount slot -->
+          <div class="section" id="pay" aria-label="Card payment widget">
+            <div class="sectionTitle">Card payment (Stripe)</div>
+            <p class="sectionDesc">This widget updates to match the selected package. If it does not load, use the direct payment link below.</p>
+
+            <div class="paySlotWrap">
+              <div id="paySlot" aria-live="polite"></div>
+              <div class="payFallback" id="payFallback"></div>
+
+              <noscript>
+                <div class="payFallback">
+                  Card pay links:
+                  <a href="https://buy.stripe.com/dRm14o7za95W5mi0UA1Nu08" target="_blank" rel="nofollow noopener">Readiness Starter</a> ·
+                  <a href="https://buy.stripe.com/dRm3cw1aMdmc9Cy32I1Nu09" target="_blank" rel="nofollow noopener">Readiness Standard</a> ·
+                  <a href="https://buy.stripe.com/28E9AU6v63LC3ea1YE1Nu0a" target="_blank" rel="nofollow noopener">Readiness Extended</a> ·
+                  <a href="https://buy.stripe.com/7sY4gA6v681S2a6cDi1Nu00" target="_blank" rel="nofollow noopener">QuickScan Base</a> ·
+                  <a href="https://buy.stripe.com/14A4gAg5Gfuk2a646M1Nu01" target="_blank" rel="nofollow noopener">QuickScan Priority</a> ·
+                  <a href="https://buy.stripe.com/fZu5kE7za81SdSO5aQ1Nu02" target="_blank" rel="nofollow noopener">QuickScan Extended</a> ·
+                  <a href="https://buy.stripe.com/5kQdRa6v64PGg0WfPu1Nu05" target="_blank" rel="nofollow noopener">Trust Ledger Core</a> ·
+                  <a href="https://buy.stripe.com/6oU4gA8De81S4ie9r61Nu06" target="_blank" rel="nofollow noopener">Trust Ledger Board Add-on</a>
+                </div>
+              </noscript>
             </div>
           </div>
 
@@ -441,12 +405,6 @@
               <a class="btn primary" id="procLink" href="/gate/procurement/" data-rid-link>Open Procurement lane</a>
               <a class="btn secondary" href="/gate/#procurement" data-rid-link>Approval email builder (Gate)</a>
             </div>
-
-            <ul class="steps" style="margin-top:10px;">
-              <li><strong>Step 1:</strong> submit procurement request (high-level) via Procurement lane.</li>
-              <li><strong>Step 2:</strong> vendor onboarding requirements confirmed (invoice/PO, vendor forms, security/privacy pack as required).</li>
-              <li><strong>Step 3:</strong> kickoff after scope lock; secure sharing options confirmed if needed.</li>
-            </ul>
 
             <div class="notice" style="margin-top:12px;">
               <strong>Contact:</strong> procurement routing via <a href="mailto:ops@noetfield.com">ops@noetfield.com</a>.
@@ -472,7 +430,7 @@
           <div class="section" aria-label="What happens next">
             <div class="sectionTitle">What happens after start</div>
             <p class="sectionDesc">Designed for minimal supervision and limited back-and-forth.</p>
-            <ul class="steps">
+            <ul style="margin:0; padding-left:18px; color:var(--muted); line-height:1.85">
               <li><strong>Scope lock:</strong> confirm tier + boundaries + owners.</li>
               <li><strong>Kickoff:</strong> email-first; short call only if scope confirmation requires it.</li>
               <li><strong>Delivery:</strong> board/procurement-ready artifact pack + decision gates.</li>
@@ -498,7 +456,7 @@
             </div>
 
             <div class="railActions" aria-label="Rail actions">
-              <a class="btn primary" id="railStart" href="#start">Start selected</a>
+              <a class="btn primary" id="railPay" href="#pay">Pay by card</a>
               <a class="btn" id="railProc" href="/gate/procurement/" data-rid-link>Invoice / PO</a>
               <a class="btn secondary" id="railIntake" href="/gate/intake/" data-rid-link>Start intake</a>
               <a class="btn secondary" id="railDetails" href="/gate/" data-rid-link>View details</a>
@@ -534,7 +492,7 @@
     <div class="stickyInner">
       <div class="stickyText" id="stickyText"><strong>Selected:</strong> —</div>
       <div class="actions" style="margin:0">
-        <a class="btn primary" id="stickyStart" href="#start">Start</a>
+        <a class="btn primary" href="#pay">Pay</a>
         <a class="btn secondary" id="stickyProc" href="/gate/procurement/" data-rid-link>Invoice / PO</a>
       </div>
     </div>
@@ -582,20 +540,11 @@
         });
       }
 
+      // Offer selection storage (kept compatible with /gate)
       var STORAGE_KEY = "nf_gate_offer_v4";
       var DEFAULT_OFFER = "readiness_standard";
 
-      var railName = $("railName");
-      var railMeta = $("railMeta");
-      var railCode = $("railCode");
-      var railDetails = $("railDetails");
-      var railIntake = $("railIntake");
-      var railProc = $("railProc");
-
-      var intakeLink = $("intakeLink");
-      var procLink = $("procLink");
-      var detailsLink = $("detailsLink");
-      var stickyText = $("stickyText");
+      var publishableKey = "pk_live_51SfSseJ03eJkL57JNU4voCGfUjjK4WDew62tPBWesZAejr03HX8uTonznYoWDVcpXwLATZpTvWSDfSU4zJbRIB6900xlpPcGSz";
 
       var offers = {
         readiness_starter: {
@@ -605,7 +554,7 @@
           details: "/copilot/readiness/?tier=starter",
           intake: "/gate/intake/?need=copilot-readiness-starter",
           proc: "/gate/procurement/?focus=copilot-readiness-starter",
-          pay: true
+          pay: { link:"https://buy.stripe.com/dRm14o7za95W5mi0UA1Nu08", buyButtonId:"buy_btn_1Sh25JJ03eJkL57JPvKEMuzF" }
         },
         readiness_standard: {
           name: "Microsoft 365 Copilot Readiness Assessment — Standard",
@@ -614,7 +563,7 @@
           details: "/copilot/readiness/?tier=standard",
           intake: "/gate/intake/?need=copilot-readiness-standard",
           proc: "/gate/procurement/?focus=copilot-readiness-standard",
-          pay: true
+          pay: { link:"https://buy.stripe.com/dRm3cw1aMdmc9Cy32I1Nu09", buyButtonId:"buy_btn_1Sh27KJ03eJkL57JMwq5iCSg" }
         },
         readiness_extended: {
           name: "Microsoft 365 Copilot Readiness Assessment — Extended",
@@ -623,37 +572,39 @@
           details: "/copilot/readiness/?tier=extended",
           intake: "/gate/intake/?need=copilot-readiness-extended",
           proc: "/gate/procurement/?focus=copilot-readiness-extended",
-          pay: true
+          pay: { link:"https://buy.stripe.com/28E9AU6v63LC3ea1YE1Nu0a", buyButtonId:"buy_btn_1Sh29CJ03eJkL57Jyu54Xu3v" }
         },
-        quickscan: {
-          name: "Copilot QuickScan (Rapid Snapshot)",
-          meta: "5–7 business days · Decision-ready",
-          code: "NF-QS",
+
+        // QuickScan (3 SKUs from your 3 buy-buttons)
+        quickscan_base: {
+          name: "Copilot QuickScan — Base",
+          meta: "5–7 business days · Rapid snapshot",
+          code: "NF-QS-BASE",
           details: "/copilot/quickscan/",
           intake: "/copilot/quickscan/intake/",
           proc: "/gate/procurement/?focus=quickscan",
-          pay: true
+          pay: { link:"https://buy.stripe.com/7sY4gA6v681S2a6cDi1Nu00", buyButtonId:"buy_btn_1Sg1q9J03eJkL57J8NIjy5v8" }
         },
-        trust_brief: {
-          name: "Trust Brief (6-week)",
-          meta: "6 weeks · Base + add-ons",
-          code: "NF-TB-6W",
-          details: "/trust-brief/",
-          intake: "/trust-brief/intake/",
-          proc: "/gate/procurement/?focus=trust-brief",
-          pay: false
+        quickscan_priority: {
+          name: "Copilot QuickScan — Priority",
+          meta: "Priority handling · Rapid snapshot",
+          code: "NF-QS-PRIORITY",
+          details: "/copilot/quickscan/",
+          intake: "/copilot/quickscan/intake/?priority=1",
+          proc: "/gate/procurement/?focus=quickscan-priority",
+          pay: { link:"https://buy.stripe.com/14A4gAg5Gfuk2a646M1Nu01", buyButtonId:"buy_btn_1Sg0FEJ03eJkL57JsejfI5wu" }
         },
-        trust_ledger: {
-          name: "Trust Ledger (Overview)",
-          meta: "Ongoing · Governance register",
-          code: "NF-TL",
-          details: "/trust-ledger/",
-          intake: "/trust-ledger/intake/",
-          proc: "/gate/procurement/?focus=trust-ledger",
-          pay: false
+        quickscan_ext: {
+          name: "Copilot QuickScan — Extended",
+          meta: "Extended scope · Rapid snapshot",
+          code: "NF-QS-EXT",
+          details: "/copilot/quickscan/",
+          intake: "/copilot/quickscan/intake/?extended=1",
+          proc: "/gate/procurement/?focus=quickscan-extended",
+          pay: { link:"https://buy.stripe.com/fZu5kE7za81SdSO5aQ1Nu02", buyButtonId:"buy_btn_1Sg0ESJ03eJkL57Ju6PFOiwj" }
         },
 
-        /* NEW: Trust Ledger SKUs with Stripe */
+        // Trust Ledger (2 SKUs)
         trust_ledger_core: {
           name: "Trust Ledger — Core (Ongoing)",
           meta: "Ongoing · Core register + updates",
@@ -661,7 +612,7 @@
           details: "/trust-ledger/",
           intake: "/trust-ledger/intake/?need=trust-ledger-core",
           proc: "/gate/procurement/?focus=trust-ledger-core",
-          pay: true
+          pay: { link:"https://buy.stripe.com/5kQdRa6v64PGg0WfPu1Nu05", buyButtonId:"buy_btn_1SgI5ZJ03eJkL57JEYpsEmWi" }
         },
         trust_ledger_board: {
           name: "Trust Ledger — Board Reporting Add-On",
@@ -670,79 +621,142 @@
           details: "/trust-ledger/sample-report/online/",
           intake: "/trust-ledger/intake/?need=trust-ledger-board-reporting",
           proc: "/gate/procurement/?focus=trust-ledger-board",
-          pay: true
+          pay: { link:"https://buy.stripe.com/6oU4gA8De81S4ie9r61Nu06", buyButtonId:"buy_btn_1SgQtSJ03eJkL57JkNN1aB58" }
+        },
+
+        // Non-card default routes (kept for Gate selection compatibility)
+        trust_brief: {
+          name: "Trust Brief (6-week)",
+          meta: "6 weeks · Base + add-ons",
+          code: "NF-TB-6W",
+          details: "/trust-brief/",
+          intake: "/trust-brief/intake/",
+          proc: "/gate/procurement/?focus=trust-brief",
+          pay: null
+        },
+        trust_ledger: {
+          name: "Trust Ledger (Overview)",
+          meta: "Ongoing · Governance register",
+          code: "NF-TL",
+          details: "/trust-ledger/",
+          intake: "/trust-ledger/intake/",
+          proc: "/gate/procurement/?focus=trust-ledger",
+          pay: null
         }
       };
+
+      // Backward-compat aliases (if older flows store "quickscan")
+      function normalizeOffer(id){
+        if (!id) return DEFAULT_OFFER;
+        if (id === "quickscan") return "quickscan_base";
+        return offers[id] ? id : DEFAULT_OFFER;
+      }
 
       function readOffer(){
         try{
           var u = new URL(window.location.href);
           var offer = (u.searchParams.get("offer") || "").trim();
-          if (offer && offers[offer]) return offer;
+          if (offer) return normalizeOffer(offer);
         } catch(_) {}
         try{
           var saved = (localStorage.getItem(STORAGE_KEY) || "").trim();
-          if (saved && offers[saved]) return saved;
+          if (saved) return normalizeOffer(saved);
         } catch(_) {}
         return DEFAULT_OFFER;
       }
 
-      function setOffer(id){
-        var o = offers[id] || offers[DEFAULT_OFFER];
+      function writeOfferToUrl(id){
+        try{
+          var u = new URL(window.location.href);
+          u.searchParams.set("offer", id);
+          history.replaceState({}, "", u.pathname + u.search + u.hash);
+        } catch(_) {}
+      }
 
-        railName.textContent = o.name;
-        railMeta.textContent = o.meta;
-        railCode.textContent = o.code || "—";
+      function mountStripe(o){
+        var slot = $("paySlot");
+        var fb = $("payFallback");
+        if (!slot || !fb) return;
 
-        railDetails.setAttribute("href", o.details);
-        railIntake.setAttribute("href", o.intake);
-        railProc.setAttribute("href", o.proc);
+        // Always replace the element (no hide/show); this prevents Stripe render failures.
+        slot.innerHTML = "";
+        fb.innerHTML = "";
 
-        intakeLink.setAttribute("href", o.intake);
-        procLink.setAttribute("href", o.proc);
-        detailsLink.setAttribute("href", o.details);
+        if (!o.pay || !o.pay.buyButtonId){
+          fb.innerHTML =
+            "Card pay is not enabled for this selection. Use " +
+            '<a href="#procurement">Invoice / PO</a> or <a href="#intake">intake</a>.';
+          return;
+        }
 
-        stickyText.innerHTML = "<strong>Selected:</strong> " + o.name;
+        // Build the buy-button element fresh
+        var el = document.createElement("stripe-buy-button");
+        el.setAttribute("buy-button-id", o.pay.buyButtonId);
+        el.setAttribute("publishable-key", publishableKey);
+        slot.appendChild(el);
 
-        // Contextual Stripe: show only the selected offer's buy button (if enabled)
-        qsa(".payWrap[data-pay]").forEach(function(w){
-          var k = w.getAttribute("data-pay");
-          if (k === id && o.pay) w.classList.remove("payHidden");
-          else w.classList.add("payHidden");
-        });
-        qsa("[data-pay-placeholder]").forEach(function(p){
-          var k = p.getAttribute("data-pay-placeholder");
-          p.style.display = (k === id && o.pay) ? "none" : "inline-block";
-        });
+        // Direct link fallback (works if widget blocked)
+        fb.innerHTML =
+          'If the widget does not load, use the direct link: ' +
+          '<a href="' + o.pay.link + '" target="_blank" rel="nofollow noopener">Pay by card</a>.';
+      }
 
-        // Row highlight
-        Object.keys(offers).forEach(function(k){
-          var row = document.getElementById("row_" + k);
-          if (!row) return;
-          row.style.outline = (id === k) ? "2px solid rgba(200,163,73,.55)" : "none";
-          row.style.outlineOffset = (id === k) ? "-2px" : "0";
-        });
+      function setOffer(id, opts){
+        id = normalizeOffer(id);
+        var o = offers[id];
 
-        // RID append after href changes
+        // Persist selection (same key as /gate)
+        try{ localStorage.setItem(STORAGE_KEY, id); } catch(_) {}
+
+        // Optional: keep URL in sync
+        if (!opts || opts.pushUrl !== false) writeOfferToUrl(id);
+
+        // Rail + main links
+        $("railName").textContent = o.name;
+        $("railMeta").textContent = o.meta;
+        $("railCode").textContent = o.code || "—";
+        $("stickyText").innerHTML = "<strong>Selected:</strong> " + o.name;
+
+        $("railDetails").setAttribute("href", "/gate/?offer=" + encodeURIComponent(id));
+        $("railIntake").setAttribute("href", o.intake);
+        $("railProc").setAttribute("href", o.proc);
+
+        $("detailsLink").setAttribute("href", "/gate/?offer=" + encodeURIComponent(id));
+        $("intakeLink").setAttribute("href", o.intake);
+        $("procLink").setAttribute("href", o.proc);
+
+        // Stripe mount
+        mountStripe(o);
+
+        // RID after href changes
         var rid = getRid();
         applyRidToLinks(rid);
       }
 
+      // Bind selection clicks
+      function bindSelectors(){
+        qsa("[data-offer]").forEach(function(x){
+          x.addEventListener("click", function(){
+            var id = x.getAttribute("data-offer");
+            setOffer(id);
+            // Scroll to pay area for immediate checkout
+            try{ document.getElementById("pay").scrollIntoView({behavior:"smooth", block:"start"}); } catch(_) {}
+          });
+          x.setAttribute("role","button");
+          x.setAttribute("tabindex","0");
+          x.addEventListener("keydown", function(e){
+            if (e.key === "Enter" || e.key === " ") { e.preventDefault(); x.click(); }
+          });
+        });
+      }
+
+      // Init
       var rid = getRid();
       applyRidToLinks(rid);
-      setOffer(readOffer());
+      bindSelectors();
+      setOffer(readOffer(), {pushUrl:false});
+
     })();
   </script>
-
-  <!--
-    Stripe mapping (as embedded above):
-      Trust Ledger — Core:
-        https://buy.stripe.com/5kQdRa6v64PGg0WfPu1Nu05
-        buy_btn_1SgI5ZJ03eJkL57JEYpsEmWi
-
-      Trust Ledger — Board Reporting Add-On:
-        https://buy.stripe.com/6oU4gA8De81S4ie9r61Nu06
-        buy_btn_1SgQtSJ03eJkL57JkNN1aB58
-  -->
 </body>
 </html>

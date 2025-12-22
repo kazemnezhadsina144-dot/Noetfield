@@ -1,5 +1,5 @@
-<!-- /gate/sales/index.html — Noetfield Sales v3.2
-     (Readiness-style purchase hub • Stripe Buy Buttons + Payment Links • invoice/PO • intake routing • RID continuity • JS-off fallbacks) -->
+<!-- /gate/sales/index.html — Noetfield Sales v3.3
+     (Readiness Buy Buttons only • QuickScan + Trust Ledger = payment links + marketing • invoice/PO • intake routing • RID continuity • JS-off fallbacks) -->
 <!doctype html>
 <html lang="en">
 <head>
@@ -34,7 +34,7 @@
   <link rel="stylesheet" href="/assets/noetfield-shell.css" />
   <script src="/assets/noetfield-shell.js" defer></script>
 
-  <!-- Stripe Buy Button (load once) -->
+  <!-- Stripe Buy Button (load once) — ONLY used for Readiness -->
   <script async src="https://js.stripe.com/v3/buy-button.js"></script>
 
   <style>
@@ -162,18 +162,31 @@
     .table tr:last-child td{border-bottom:none}
     .table a{ border-bottom: 1px solid rgba(255,255,255,.18); }
 
-    .payWrap{
-      display:flex;
-      align-items:center;
+    /* Readiness buy button row wrapper */
+    .payWrap{display:flex; align-items:center; gap:12px; flex-wrap:wrap}
+    .payWrap .fallbackLink{font-size:12.6px; color:var(--muted2)}
+    .payWrap .fallbackLink a{border-bottom:1px solid rgba(255,255,255,.18)}
+    .payGroupHidden{display:none !important;}
+
+    /* Marketing tiles (for payment links only) */
+    .tiles{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
       gap:10px;
-      flex-wrap:wrap;
+      margin-top:10px;
     }
-    .payWrap small{
-      color:var(--muted2);
-      font-size:12px;
-      line-height:1.5;
+    .tile{
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.02);
+      border-radius:14px;
+      padding:12px;
+      min-width:0;
     }
-    .payGroupHidden{ display:none !important; }
+    .tile h4{margin:0 0 6px; font-size:13.5px; letter-spacing:-.15px}
+    .tile p{margin:0 0 10px; color:var(--muted2); font-size:12.5px; line-height:1.55}
+    .tile .ctaRow{display:flex; gap:10px; flex-wrap:wrap; align-items:center}
+    .tile .ctaRow a{font-size:12.8px}
+    .tile .ctaRow .btn{min-height:40px}
 
     .rail{ position: sticky; top: 14px; }
     .box{
@@ -225,6 +238,7 @@
     @media (max-width: 980px){
       .grid{ grid-template-columns: 1fr; }
       .rail{ position: relative; top: 0; }
+      .tiles{grid-template-columns:1fr;}
     }
     @media (max-width: 760px){
       .heroInner{ padding: 18px 14px; }
@@ -254,18 +268,14 @@
   <div class="bg" aria-hidden="true"></div>
   <a class="skip" href="#main">Skip to content</a>
 
-  <!-- injected header -->
   <header id="nfHeader"></header>
 
   <main id="main" class="wrap">
-    <!-- HERO -->
     <section class="hero" aria-label="Sales hero">
       <div class="heroShell">
         <div class="heroInner">
           <div class="eyebrow"><span class="dot"></span> Purchase/start • procurement-ready • RID continuity</div>
-
           <h1>Start a package.</h1>
-
           <p class="lead">
             Three start paths: <strong>card payment (optional)</strong>, <strong>Invoice/PO (procurement)</strong>, or <strong>non-confidential intake</strong>.
             The selected package is shown on the right.
@@ -294,7 +304,6 @@
     </section>
 
     <section class="grid" aria-label="Sales layout">
-      <!-- MAIN -->
       <section class="card" aria-label="Sales main">
         <div class="hd">
           <h2 class="cardTitle" id="start">Start options</h2>
@@ -302,16 +311,16 @@
         </div>
 
         <div class="bd">
-          <!-- Card pay -->
           <div class="section" aria-label="Card payment">
             <div class="sectionTitle">Option A — Card payment (optional)</div>
             <p class="sectionDesc">
-              Card payment is available for selected SKUs. If procurement requires onboarding/PO/invoice terms, use the Procurement lane.
+              Buy Button is used <strong>only</strong> for Copilot Readiness SKUs.
+              QuickScan and Trust Ledger show <strong>payment links + tier marketing</strong> (no Buy Button).
             </p>
 
-            <!-- Readiness payments (Buy Buttons) -->
-            <div id="payGroup_readiness" data-pay-group="readiness" class="payGroupHidden" aria-label="Readiness card pay">
-              <div class="sectionTitle" style="margin-top:2px;">Copilot Readiness — card pay</div>
+            <!-- READINESS = Buy Buttons -->
+            <div id="payGroup_readiness" data-pay-group="readiness" class="payGroupHidden">
+              <div class="sectionTitle" style="margin-top:4px;">Copilot Readiness — card pay (Buy Buttons)</div>
               <table class="table" aria-label="Readiness card pay">
                 <thead>
                   <tr>
@@ -330,6 +339,10 @@
                           buy-button-id="buy_btn_1Sh25JJ03eJkL57JPvKEMuzF"
                           publishable-key="pk_live_51SfSseJ03eJkL57JNU4voCGfUjjK4WDew62tPBWesZAejr03HX8uTonznYoWDVcpXwLATZpTvWSDfSU4zJbRIB6900xlpPcGSz">
                         </stripe-buy-button>
+                        <div class="fallbackLink">
+                          <span>Or open checkout:</span>
+                          <a href="https://buy.stripe.com/dRm14o7za95W5mi0UA1Nu08" rel="nofollow noopener" target="_blank">Payment link</a>
+                        </div>
                         <noscript>
                           <a href="https://buy.stripe.com/dRm14o7za95W5mi0UA1Nu08" rel="nofollow noopener" target="_blank">Pay by card</a>
                         </noscript>
@@ -346,6 +359,10 @@
                           buy-button-id="buy_btn_1Sh27KJ03eJkL57JMwq5iCSg"
                           publishable-key="pk_live_51SfSseJ03eJkL57JNU4voCGfUjjK4WDew62tPBWesZAejr03HX8uTonznYoWDVcpXwLATZpTvWSDfSU4zJbRIB6900xlpPcGSz">
                         </stripe-buy-button>
+                        <div class="fallbackLink">
+                          <span>Or open checkout:</span>
+                          <a href="https://buy.stripe.com/dRm3cw1aMdmc9Cy32I1Nu09" rel="nofollow noopener" target="_blank">Payment link</a>
+                        </div>
                         <noscript>
                           <a href="https://buy.stripe.com/dRm3cw1aMdmc9Cy32I1Nu09" rel="nofollow noopener" target="_blank">Pay by card</a>
                         </noscript>
@@ -362,6 +379,10 @@
                           buy-button-id="buy_btn_1Sh29CJ03eJkL57Jyu54Xu3v"
                           publishable-key="pk_live_51SfSseJ03eJkL57JNU4voCGfUjjK4WDew62tPBWesZAejr03HX8uTonznYoWDVcpXwLATZpTvWSDfSU4zJbRIB6900xlpPcGSz">
                         </stripe-buy-button>
+                        <div class="fallbackLink">
+                          <span>Or open checkout:</span>
+                          <a href="https://buy.stripe.com/28E9AU6v63LC3ea1YE1Nu0a" rel="nofollow noopener" target="_blank">Payment link</a>
+                        </div>
                         <noscript>
                           <a href="https://buy.stripe.com/28E9AU6v63LC3ea1YE1Nu0a" rel="nofollow noopener" target="_blank">Pay by card</a>
                         </noscript>
@@ -372,81 +393,83 @@
               </table>
             </div>
 
-            <!-- QuickScan payments (Payment Links) -->
-            <div id="payGroup_quickscan" data-pay-group="quickscan" class="payGroupHidden" aria-label="QuickScan card pay">
-              <div class="sectionTitle" style="margin-top:14px;">Copilot QuickScan — card pay</div>
-              <table class="table" aria-label="QuickScan card pay">
-                <thead>
-                  <tr>
-                    <th>Package</th>
-                    <th>Price</th>
-                    <th>Card pay (Stripe)</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr id="row_quickscan_base">
-                    <td><strong>Copilot QuickScan — Base</strong></td>
-                    <td>Shown at checkout</td>
-                    <td>
-                      <a href="https://buy.stripe.com/7sY4gA6v681S2a6cDi1Nu00" rel="nofollow noopener" target="_blank">Pay by card</a>
-                    </td>
-                  </tr>
-                  <tr id="row_quickscan_pro">
-                    <td><strong>Copilot QuickScan — Pro</strong></td>
-                    <td>Shown at checkout</td>
-                    <td>
-                      <a href="https://buy.stripe.com/14A4gAg5Gfuk2a646M1Nu01" rel="nofollow noopener" target="_blank">Pay by card</a>
-                    </td>
-                  </tr>
-                  <tr id="row_quickscan_enterprise">
-                    <td><strong>Copilot QuickScan — Enterprise</strong></td>
-                    <td>Shown at checkout</td>
-                    <td>
-                      <a href="https://buy.stripe.com/fZu5kE7za81SdSO5aQ1Nu02" rel="nofollow noopener" target="_blank">Pay by card</a>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+            <!-- QUICKSCAN = payment links + marketing (NO Buy Buttons) -->
+            <div id="payGroup_quickscan" data-pay-group="quickscan" class="payGroupHidden">
+              <div class="sectionTitle" style="margin-top:14px;">Copilot QuickScan — payment links (no Buy Button)</div>
+              <p class="sectionDesc">
+                Rapid snapshot for decision posture: evidence-first outputs, minimal disruption, procurement-friendly escalation path.
+              </p>
+              <div class="tiles" aria-label="QuickScan tiers">
+                <div class="tile">
+                  <h4>QuickScan — Base</h4>
+                  <p>Fast baseline snapshot for teams needing a clear starting point and immediate risk flags.</p>
+                  <div class="ctaRow">
+                    <a class="btn primary" href="https://buy.stripe.com/7sY4gA6v681S2a6cDi1Nu00" rel="nofollow noopener" target="_blank">Pay (Stripe)</a>
+                    <a href="/copilot/quickscan/" data-rid-link>See scope</a>
+                  </div>
+                </div>
+                <div class="tile">
+                  <h4>QuickScan — Pro</h4>
+                  <p>Deeper evidence capture + stronger mapping to actions. Best for mid-sized Microsoft-heavy orgs.</p>
+                  <div class="ctaRow">
+                    <a class="btn primary" href="https://buy.stripe.com/14A4gAg5Gfuk2a646M1Nu01" rel="nofollow noopener" target="_blank">Pay (Stripe)</a>
+                    <a href="/copilot/quickscan/" data-rid-link>See scope</a>
+                  </div>
+                </div>
+                <div class="tile">
+                  <h4>QuickScan — Enterprise</h4>
+                  <p>Highest scrutiny path: board/procurement posture, stronger governance surfaces, clean escalation to Trust Brief.</p>
+                  <div class="ctaRow">
+                    <a class="btn primary" href="https://buy.stripe.com/fZu5kE7za81SdSO5aQ1Nu02" rel="nofollow noopener" target="_blank">Pay (Stripe)</a>
+                    <a href="/copilot/quickscan/" data-rid-link>See scope</a>
+                  </div>
+                </div>
+              </div>
+              <div class="notice" style="margin-top:12px;">
+                <strong>Procurement path:</strong> if vendor onboarding/PO is required, use <a href="/gate/procurement/" data-rid-link>Invoice/PO lane</a>.
+              </div>
             </div>
 
-            <!-- Trust Ledger payments (Payment Links) -->
-            <div id="payGroup_trust_ledger" data-pay-group="trust_ledger" class="payGroupHidden" aria-label="Trust Ledger card pay">
-              <div class="sectionTitle" style="margin-top:14px;">Trust Ledger — card pay</div>
-              <table class="table" aria-label="Trust Ledger card pay">
-                <thead>
-                  <tr>
-                    <th>Plan</th>
-                    <th>Price</th>
-                    <th>Card pay (Stripe)</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr id="row_ledger_1">
-                    <td><strong>Trust Ledger — Plan A</strong></td>
-                    <td>Shown at checkout</td>
-                    <td>
-                      <a href="https://buy.stripe.com/5kQdRa6v64PGg0WfPu1Nu05" rel="nofollow noopener" target="_blank">Pay by card</a>
-                    </td>
-                  </tr>
-                  <tr id="row_ledger_2">
-                    <td><strong>Trust Ledger — Plan B</strong></td>
-                    <td>Shown at checkout</td>
-                    <td>
-                      <a href="https://buy.stripe.com/6oU4gA8De81S4ie9r61Nu06" rel="nofollow noopener" target="_blank">Pay by card</a>
-                    </td>
-                  </tr>
-                  <tr id="row_ledger_3">
-                    <td><strong>Trust Ledger — Plan C</strong></td>
-                    <td>Shown at checkout</td>
-                    <td>
-                      <a href="https://buy.stripe.com/6oUdRa8Dedmc8yucDi1Nu07" rel="nofollow noopener" target="_blank">Pay by card</a>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+            <!-- TRUST LEDGER = payment links + marketing (NO Buy Buttons) -->
+            <div id="payGroup_trust_ledger" data-pay-group="trust_ledger" class="payGroupHidden">
+              <div class="sectionTitle" style="margin-top:14px;">Trust Ledger — payment links (no Buy Button)</div>
+              <p class="sectionDesc">
+                Ongoing governance register: tracked decisions, evidence discipline, and board-ready continuity.
+              </p>
+
+              <div class="tiles" aria-label="Trust Ledger plans">
+                <div class="tile">
+                  <h4>Trust Ledger — Plan A</h4>
+                  <p>Entry continuity for governance register maintenance and decision traceability.</p>
+                  <div class="ctaRow">
+                    <a class="btn primary" href="https://buy.stripe.com/5kQdRa6v64PGg0WfPu1Nu05" rel="nofollow noopener" target="_blank">Pay (Stripe)</a>
+                    <a href="/trust-ledger/" data-rid-link>See details</a>
+                  </div>
+                </div>
+                <div class="tile">
+                  <h4>Trust Ledger — Plan B</h4>
+                  <p>Expanded maintenance cadence + stronger procurement-ready packaging.</p>
+                  <div class="ctaRow">
+                    <a class="btn primary" href="https://buy.stripe.com/6oU4gA8De81S4ie9r61Nu06" rel="nofollow noopener" target="_blank">Pay (Stripe)</a>
+                    <a href="/trust-ledger/" data-rid-link>See details</a>
+                  </div>
+                </div>
+                <div class="tile">
+                  <h4>Trust Ledger — Plan C</h4>
+                  <p>Highest continuity posture for organizations with ongoing AI decisions and audit pressure.</p>
+                  <div class="ctaRow">
+                    <a class="btn primary" href="https://buy.stripe.com/6oUdRa8Dedmc8yucDi1Nu07" rel="nofollow noopener" target="_blank">Pay (Stripe)</a>
+                    <a href="/trust-ledger/" data-rid-link>See details</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="notice" style="margin-top:12px;">
+                <strong>Recommended:</strong> start with QuickScan, then continue into Trust Ledger for maintained governance.
+              </div>
             </div>
 
-            <!-- Default helper (shown when selected offer has no card pay mapping) -->
+            <!-- Default: no card pay -->
             <div id="payGroup_none" data-pay-group="none" class="payGroupHidden">
               <div class="notice" style="margin-top:12px;">
                 <strong>Card pay:</strong> not enabled for the selected package. Use Invoice/PO or intake.
@@ -497,7 +520,6 @@
             </div>
           </div>
 
-          <!-- What happens next -->
           <div class="section" aria-label="What happens next">
             <div class="sectionTitle">What happens after start</div>
             <p class="sectionDesc">Designed for minimal supervision and limited back-and-forth.</p>
@@ -556,10 +578,8 @@
     </section>
   </main>
 
-  <!-- injected footer -->
   <footer id="nfFooter"></footer>
 
-  <!-- Mobile sticky CTA -->
   <div class="stickyCta" aria-label="Sticky call to action">
     <div class="stickyInner">
       <div class="stickyText" id="stickyText"><strong>Selected:</strong> —</div>
@@ -577,7 +597,6 @@
       function $(id){ return document.getElementById(id); }
       function qsa(sel){ try { return Array.prototype.slice.call(document.querySelectorAll(sel)); } catch(_) { return []; } }
 
-      // RID helper (same pattern as Gate; avoids conflicts)
       function getRid(){
         try{
           var u = new URL(window.location.href);
@@ -609,6 +628,14 @@
             if (!u.searchParams.get("rid")) u.searchParams.set("rid", rid);
             a.setAttribute("href", u.pathname + u.search + u.hash);
           } catch(_) {}
+        });
+      }
+
+      function showPayGroup(group){
+        qsa("[data-pay-group]").forEach(function(el){
+          var g = el.getAttribute("data-pay-group");
+          if (g === group) el.classList.remove("payGroupHidden");
+          else el.classList.add("payGroupHidden");
         });
       }
 
@@ -652,7 +679,7 @@
         },
         quickscan: {
           name: "Copilot QuickScan (Rapid Snapshot)",
-          meta: "5–7 business days · Base/Pro/Enterprise available",
+          meta: "5–7 business days · Base/Pro/Enterprise",
           details: "/copilot/quickscan/",
           intake: "/copilot/quickscan/intake/",
           proc: "/gate/procurement/?focus=quickscan",
@@ -668,7 +695,7 @@
         },
         trust_ledger: {
           name: "Trust Ledger (Ongoing)",
-          meta: "Ongoing · Plan A/B/C available",
+          meta: "Ongoing · Plan A/B/C",
           details: "/trust-ledger/",
           intake: "/trust-ledger/intake/",
           proc: "/gate/procurement/?focus=trust-ledger",
@@ -691,14 +718,6 @@
         return DEFAULT_OFFER;
       }
 
-      function showPayGroup(group){
-        qsa("[data-pay-group]").forEach(function(el){
-          var g = el.getAttribute("data-pay-group");
-          if (g === group) el.classList.remove("payGroupHidden");
-          else el.classList.add("payGroupHidden");
-        });
-      }
-
       function setOffer(id){
         var o = offers[id] || offers[DEFAULT_OFFER];
 
@@ -714,10 +733,8 @@
 
         stickyText.innerHTML = "<strong>Selected:</strong> " + o.name;
 
-        // Show the correct card-pay group for the selected offer
         showPayGroup(o.payGroup || "none");
 
-        // Visual anchor for Readiness rows (only relevant when readiness selected)
         ["readiness_starter","readiness_standard","readiness_extended"].forEach(function(k){
           var row = document.getElementById("row_" + k);
           if (!row) return;
@@ -725,7 +742,6 @@
           row.style.outlineOffset = (id === k) ? "-2px" : "0";
         });
 
-        // RID append after href changes
         var rid = getRid();
         applyRidToLinks(rid);
       }

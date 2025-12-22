@@ -1,4 +1,4 @@
-<!-- /index.html — Noetfield Home v7.1 (Sales-first • Copilot Readiness emphasized • Product ladder • Sticky CTA • Shell aligned • Root routing emails) -->
+<!-- /index.html — Noetfield Home v7.3.1 (QuickScan-first • single safety bar • proof band • noscript uses .nojs • schema @graph • only active routing emails • reduced repetition) -->
 <!doctype html>
 <html lang="en">
 <head>
@@ -6,11 +6,12 @@
   <title>Noetfield — Trust and Stewardship in AI</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <meta name="description" content="Noetfield produces board-ready AI governance artefacts: Microsoft 365 Copilot Readiness (2/4/6-week SKUs), Copilot QuickScan (rapid snapshot), and Trust Ledger (maintained governance register). Evidence-first. Procurement supported." />
+  <meta name="description" content="Noetfield delivers board-ready AI governance artefacts: Copilot QuickScan (rapid snapshot), Microsoft 365 Copilot Readiness (2/4/6-week SKUs), and Trust Ledger (maintained governance register). Evidence-first. Procurement supported." />
   <meta name="robots" content="index,follow" />
   <meta name="author" content="Noetfield Systems Inc." />
   <meta name="theme-color" content="#07070b" />
 
+  <!-- Canonical (LOCKED: www) -->
   <link rel="canonical" href="https://www.noetfield.com/" />
   <link rel="icon" href="/noetfield-favicon-512.png" type="image/png" />
   <link rel="apple-touch-icon" href="/noetfield-favicon-512.png" />
@@ -18,13 +19,13 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Noetfield" />
   <meta property="og:title" content="Noetfield — Trust and Stewardship in AI" />
-  <meta property="og:description" content="Board-ready AI governance artefacts: Copilot Readiness, QuickScan, Trust Ledger. Evidence-first. Procurement supported." />
+  <meta property="og:description" content="Board-ready AI governance artefacts: QuickScan, Copilot Readiness, Trust Ledger. Evidence-first. Procurement supported." />
   <meta property="og:url" content="https://www.noetfield.com/" />
   <meta property="og:image" content="https://www.noetfield.com/noetfield-og.png" />
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Noetfield — Trust and Stewardship in AI" />
-  <meta name="twitter:description" content="Board-ready AI governance artefacts: Copilot Readiness, QuickScan, Trust Ledger." />
+  <meta name="twitter:description" content="Board-ready AI governance artefacts: QuickScan, Copilot Readiness, Trust Ledger." />
   <meta name="twitter:image" content="https://www.noetfield.com/noetfield-og.png" />
 
   <!-- LOCKED SHELL -->
@@ -107,17 +108,26 @@
     .actions{display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-top:12px}
     .btn.small{ min-height:40px; padding:9px 12px; font-size:13px; }
 
-    .notice{
+    /* Safety bar (one-liner pattern) */
+    .safetyBar{
       margin-top:12px;
-      padding:12px 12px;
+      padding:11px 12px;
       border-radius:14px;
       border:1px solid rgba(255,255,255,.10);
       background: rgba(255,255,255,.03);
       color:var(--muted2);
       font-size:12.8px;
-      line-height:1.6;
+      line-height:1.55;
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
+      justify-content:space-between;
     }
-    .notice strong{ color:var(--text); font-weight:900; }
+    .safetyBar strong{ color:var(--text); font-weight:900; }
+    .safetyLinks{display:flex; gap:10px; flex-wrap:wrap; align-items:center}
+    .safetyLinks a{border-bottom:1px solid rgba(255,255,255,.18)}
+    .safetyLinks code{font-size:12.2px; color:var(--muted)}
 
     .cardTitle{ margin:0 0 8px; font-size:18px; letter-spacing:-0.2px; }
     .muted{ color:var(--muted); line-height:1.7; margin:0; }
@@ -140,6 +150,7 @@
       transition: border-color .15s ease, background .15s ease, transform .06s ease;
     }
     .block:hover{border-color:rgba(255,255,255,.22); background:rgba(255,255,255,.05)}
+    .block:focus-within{outline:2px solid rgba(200,163,73,.32); outline-offset:2px}
     .blockTop{ display:flex; gap:10px; align-items:flex-start; justify-content:space-between; flex-wrap:wrap; }
     .block h3{ margin:0; font-size:16px; letter-spacing:-.2px; font-weight:950; }
     .tag{
@@ -155,6 +166,39 @@
     .block p{ margin:10px 0 0; color:var(--muted); line-height:1.7; }
     .block ul{ margin:10px 0 0; padding-left:18px; color:var(--muted2); line-height:1.6; }
     .block li{ margin:6px 0; }
+
+    /* Proof band (scannable) */
+    .proofBand{
+      margin-top:14px;
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:10px;
+    }
+    .proof{
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      padding:12px;
+      color:var(--muted2);
+      font-size:12.8px;
+      line-height:1.55;
+    }
+    .proof strong{ color:var(--text); font-weight:900; }
+
+    /* JS-off helper (distinct from safety bar) */
+    .nojs{
+      margin-top:12px;
+      padding:12px 12px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      color:var(--muted2);
+      font-size:12.8px;
+      line-height:1.6;
+    }
+    .nojs strong{ color:var(--text); font-weight:900; }
+    .nojs a{border-bottom:1px solid rgba(255,255,255,.18)}
+    .nojs code{font-size:12.2px; color:var(--muted)}
 
     /* Rail */
     .rail{ position: sticky; top: 14px; }
@@ -194,7 +238,7 @@
     .railSub{ margin:8px 0 0; color:var(--muted); line-height:1.6; font-size:13px; }
     .railActions{ display:flex; gap:10px; flex-wrap:wrap; margin-top:12px; }
 
-    /* Sticky bottom CTA */
+    /* Sticky bottom CTA (QuickScan-first) */
     .stickyCta{
       position: sticky;
       bottom: 0;
@@ -225,21 +269,69 @@
       .grid{ grid-template-columns: 1fr; }
       .rail{ position: relative; top: 0; }
       h1{ font-size: 30px; }
+      .proofBand{ grid-template-columns: 1fr; }
     }
     @media (max-width: 760px){
       .stickyText{display:none}
     }
   </style>
 
+  <!-- Structured data (Organization + WebSite + WebPage + Services) -->
   <script type="application/ld+json">
   {
     "@context":"https://schema.org",
-    "@type":"WebPage",
-    "name":"Noetfield — Trust and Stewardship in AI",
-    "url":"https://www.noetfield.com/",
-    "description":"Noetfield produces board-ready AI governance artefacts: Copilot Readiness (2/4/6 weeks), Copilot QuickScan, and Trust Ledger. Evidence-first. Procurement supported.",
-    "isPartOf":{"@type":"WebSite","name":"Noetfield","url":"https://www.noetfield.com/"},
-    "publisher":{"@type":"Organization","name":"Noetfield Systems Inc."}
+    "@graph":[
+      {
+        "@type":"Organization",
+        "@id":"https://www.noetfield.com/#org",
+        "name":"Noetfield Systems Inc.",
+        "url":"https://www.noetfield.com/",
+        "logo":"https://www.noetfield.com/noetfield-favicon-512.png"
+      },
+      {
+        "@type":"WebSite",
+        "@id":"https://www.noetfield.com/#website",
+        "name":"Noetfield",
+        "url":"https://www.noetfield.com/",
+        "publisher":{"@id":"https://www.noetfield.com/#org"}
+      },
+      {
+        "@type":"WebPage",
+        "@id":"https://www.noetfield.com/#webpage",
+        "name":"Noetfield — Trust and Stewardship in AI",
+        "url":"https://www.noetfield.com/",
+        "isPartOf":{"@id":"https://www.noetfield.com/#website"},
+        "about":{"@id":"https://www.noetfield.com/#org"},
+        "description":"Noetfield delivers board-ready AI governance artefacts: Copilot QuickScan (rapid snapshot), Copilot Readiness (2/4/6 weeks), and Trust Ledger (maintained register). Evidence-first. Procurement supported."
+      },
+      {
+        "@type":"Service",
+        "@id":"https://www.noetfield.com/#service-quickscan",
+        "name":"Copilot QuickScan",
+        "provider":{"@id":"https://www.noetfield.com/#org"},
+        "areaServed":["United States","Canada"],
+        "serviceType":"Rapid readiness snapshot",
+        "url":"https://www.noetfield.com/copilot/quickscan/"
+      },
+      {
+        "@type":"Service",
+        "@id":"https://www.noetfield.com/#service-copilot-readiness",
+        "name":"Microsoft 365 Copilot Readiness Assessment",
+        "provider":{"@id":"https://www.noetfield.com/#org"},
+        "areaServed":["United States","Canada"],
+        "serviceType":"AI governance readiness assessment",
+        "url":"https://www.noetfield.com/copilot/readiness/"
+      },
+      {
+        "@type":"Service",
+        "@id":"https://www.noetfield.com/#service-trust-ledger",
+        "name":"Trust Ledger",
+        "provider":{"@id":"https://www.noetfield.com/#org"},
+        "areaServed":["United States","Canada"],
+        "serviceType":"Maintained governance register",
+        "url":"https://www.noetfield.com/trust-ledger/"
+      }
+    ]
   }
   </script>
 </head>
@@ -260,8 +352,8 @@
 
           <p class="lead">
             Noetfield turns scattered AI activity into an <strong>evidence-first</strong> posture:
-            <a href="/copilot/readiness/"><strong>Copilot Readiness</strong></a> (2 / 4 / 6-week SKUs),
             <a href="/copilot/quickscan/"><strong>Copilot QuickScan</strong></a> (rapid snapshot),
+            <a href="/copilot/readiness/"><strong>Copilot Readiness</strong></a> (2 / 4 / 6-week SKUs),
             and <a href="/trust-ledger/"><strong>Trust Ledger</strong></a> (maintained register).
           </p>
 
@@ -270,21 +362,38 @@
             <div class="pill"><strong>Board memo</strong> + options</div>
             <div class="pill"><strong>Control baseline</strong> minimum viable</div>
             <div class="pill"><strong>Procurement-ready</strong> invoice / PO supported</div>
-            <div class="pill"><strong>Answer-ready</strong> recurring scrutiny</div>
+            <div class="pill"><strong>Scrutiny-ready</strong> recurring review cycles</div>
           </div>
 
           <div class="actions" aria-label="Hero actions">
-            <a class="btn primary" href="/copilot/readiness/?tier=standard" data-rid-link>Open Copilot Readiness (Standard)</a>
-            <a class="btn secondary" href="/copilot/quickscan/" data-rid-link>Open QuickScan</a>
-            <a class="btn secondary" href="/trust-ledger/" data-rid-link>Trust Ledger</a>
+            <a class="btn primary" href="/copilot/quickscan/" data-rid-link>Open QuickScan</a>
+            <a class="btn secondary" href="/copilot/readiness/?tier=standard" data-rid-link>Open Copilot Readiness (Standard)</a>
+            <a class="btn secondary" href="/gate/procurement/" data-rid-link>Procurement (Invoice / PO)</a>
             <a class="btn secondary" href="/gate/" data-rid-link>Gate</a>
           </div>
 
-          <div class="notice" role="note">
-            <strong>Public intake:</strong> non-confidential details only. Secure sharing protocol is confirmed after kickoff.
-            <br />
-            <strong>Procurement:</strong> invoice / PO supported via <a href="/gate/procurement/" data-rid-link>Procurement start</a>.
+          <!-- Single safety bar -->
+          <div class="safetyBar" role="note" aria-label="Public intake safety">
+            <div><strong>Public intake:</strong> non-confidential only. Secure sharing is confirmed after kickoff.</div>
+            <div class="safetyLinks">
+              <a href="/gate/procurement/" data-rid-link>Procurement start</a>
+              <span aria-hidden="true">•</span>
+              <a href="/vendor/" data-rid-link>Vendor profile</a>
+            </div>
           </div>
+
+          <div class="proofBand" aria-label="Proof discipline">
+            <div class="proof"><strong>Claim → Evidence → Confidence:</strong> if a claim cannot be supported by evidence, it does not enter outputs.</div>
+            <div class="proof"><strong>RID continuity:</strong> one Request ID threads intake → procurement → delivery → exports (no secrets required).</div>
+          </div>
+
+          <noscript>
+            <div class="nojs" role="note">
+              <strong>JavaScript is disabled.</strong> Request-ID continuity may not attach automatically.
+              Use <a href="/gate/procurement/">Procurement start</a> or email
+              <a href="mailto:procurement@noetfield.com"><code>procurement@noetfield.com</code></a>.
+            </div>
+          </noscript>
         </div>
       </div>
     </section>
@@ -301,6 +410,20 @@
           <div class="bd">
             <div class="groupTitle">Start paths</div>
             <div class="blocks">
+              <article class="block" aria-label="QuickScan">
+                <div class="blockTop"><h3>Copilot QuickScan</h3><span class="tag">5–7 business days</span></div>
+                <p>Urgent clarity before scaling: exposure paths, decision gaps, and a clean next step into Readiness SKUs.</p>
+                <ul>
+                  <li>Executive memo + immediate actions</li>
+                  <li>Boundary + oversharing map</li>
+                  <li>Lead-in path: Readiness → Trust Ledger</li>
+                </ul>
+                <div class="actions">
+                  <a class="btn primary" href="/copilot/quickscan/" data-rid-link>View QuickScan</a>
+                  <a class="btn secondary" href="/copilot/quickscan/intake/" data-rid-link>Start intake</a>
+                </div>
+              </article>
+
               <article class="block" aria-label="Copilot Readiness">
                 <div class="blockTop"><h3>Microsoft 365 Copilot Readiness</h3><span class="tag">2 / 4 / 6 weeks</span></div>
                 <p>Market-standard readiness packaging for safe Copilot rollout: governance decisions, control baseline, evidence packaging, and delivery pack.</p>
@@ -312,20 +435,7 @@
                 <div class="actions">
                   <a class="btn primary" href="/copilot/readiness/" data-rid-link>View Readiness</a>
                   <a class="btn secondary" href="/gate/sales/?offer=readiness_standard" data-rid-link>Start (Sales)</a>
-                </div>
-              </article>
-
-              <article class="block" aria-label="QuickScan">
-                <div class="blockTop"><h3>Copilot QuickScan</h3><span class="tag">Rapid snapshot</span></div>
-                <p>Fast clarity before scaling: exposure paths, decision gaps, and a clean next step into Readiness SKUs.</p>
-                <ul>
-                  <li>Executive memo + immediate actions</li>
-                  <li>Boundary + oversharing map</li>
-                  <li>Lead-in path: Readiness → Trust Ledger</li>
-                </ul>
-                <div class="actions">
-                  <a class="btn primary" href="/copilot/quickscan/" data-rid-link>View QuickScan</a>
-                  <a class="btn secondary" href="/copilot/quickscan/intake/" data-rid-link>Start intake</a>
+                  <a class="btn secondary" href="/gate/procurement/?focus=copilot-readiness-standard" data-rid-link>Invoice / PO</a>
                 </div>
               </article>
 
@@ -346,12 +456,7 @@
 
             <div class="groupTitle">Proof discipline</div>
             <div class="blocks">
-              <article class="block" aria-label="Evidence discipline">
-                <div class="blockTop"><h3>Evidence-first rule</h3><span class="tag">Operating principle</span></div>
-                <p>If a claim cannot be supported by evidence (exports, logs, screenshots, configs), it does not enter the ledger.</p>
-              </article>
-
-              <article class="block" aria-label="Samples">
+              <article class="block" aria-label="Output samples">
                 <div class="blockTop"><h3>Output style reference</h3><span class="tag">Samples</span></div>
                 <p>Board-safe formatting reference (PDF + online). Canonical URLs.</p>
                 <div class="actions">
@@ -360,12 +465,34 @@
                   <a class="btn secondary" href="/trust-ledger/sample-report/online/" target="_blank" rel="nofollow noopener">Sample (Online)</a>
                 </div>
               </article>
+
+              <article class="block" aria-label="Procurement lane">
+                <div class="blockTop"><h3>Procurement lane</h3><span class="tag">Invoice / PO</span></div>
+                <p>Short path for purchasing and onboarding: procurement pack, contracting options, and RID-threaded intake.</p>
+                <div class="actions">
+                  <a class="btn primary" href="/gate/procurement/" data-rid-link>Procurement start</a>
+                  <a class="btn secondary" href="/vendor/" data-rid-link>Vendor profile</a>
+                </div>
+              </article>
             </div>
 
-            <div class="notice" style="margin-top:14px;">
-              <strong>Root routing:</strong> contact@noetfield.com • sales@noetfield.com • ops@noetfield.com
-              <br />
-              <strong>Trust & governance:</strong> trust@noetfield.com • legal@noetfield.com
+            <!-- Only active routing emails -->
+            <div class="safetyBar" style="margin-top:14px;" aria-label="Email routing">
+              <div>
+                <strong>Routing:</strong>
+                <a href="mailto:procurement@noetfield.com"><code>procurement@noetfield.com</code></a>
+                <span aria-hidden="true">•</span>
+                <a href="mailto:billing@noetfield.com"><code>billing@noetfield.com</code></a>
+                <span aria-hidden="true">•</span>
+                <a href="mailto:support@noetfield.com"><code>support@noetfield.com</code></a>
+                <span aria-hidden="true">•</span>
+                <a href="mailto:feedback@noetfield.com"><code>feedback@noetfield.com</code></a>
+              </div>
+              <div class="safetyLinks">
+                <a href="mailto:ceo@noetfield.com"><code>ceo@noetfield.com</code></a>
+                <span aria-hidden="true">•</span>
+                <a href="mailto:founder@noetfield.com"><code>founder@noetfield.com</code></a>
+              </div>
             </div>
           </div>
         </section>
@@ -377,12 +504,26 @@
           <div class="hd">
             <h2 class="cardTitle">Start here</h2>
             <div class="railIntro">
-              <strong>Default enterprise path:</strong> Copilot Readiness (Standard) for board-ready baseline,
-              QuickScan when urgency is higher, then Trust Ledger for cadence.
+              <strong>Default start:</strong> QuickScan for fast clarity, then Readiness (Standard) for board-ready baseline, then Trust Ledger for cadence.
             </div>
           </div>
 
           <div class="bd">
+            <div class="railBox" aria-label="QuickScan pricing signal">
+              <div class="railTop">
+                <div>
+                  <div class="tag">QuickScan</div>
+                  <h3 class="railName">Rapid Readiness Snapshot</h3>
+                </div>
+                <div class="railPrice">5–7 business days</div>
+              </div>
+              <p class="railSub">Best for: urgent clarity + a clean next step into Readiness.</p>
+              <div class="railActions">
+                <a class="btn primary" href="/copilot/quickscan/" data-rid-link>Open QuickScan</a>
+                <a class="btn secondary" href="/copilot/quickscan/intake/" data-rid-link>Start intake</a>
+              </div>
+            </div>
+
             <div class="railBox" aria-label="Readiness pricing signal">
               <div class="railTop">
                 <div>
@@ -395,21 +536,6 @@
               <div class="railActions">
                 <a class="btn primary" href="/copilot/readiness/?tier=standard" data-rid-link>Open Standard</a>
                 <a class="btn secondary" href="/gate/procurement/?focus=copilot-readiness-standard" data-rid-link>Invoice / PO</a>
-              </div>
-            </div>
-
-            <div class="railBox" aria-label="QuickScan pricing signal">
-              <div class="railTop">
-                <div>
-                  <div class="tag">QuickScan</div>
-                  <h3 class="railName">Rapid Readiness Snapshot</h3>
-                </div>
-                <div class="railPrice">5–7 business days</div>
-              </div>
-              <p class="railSub">Best for: urgent clarity and a clean next step into Readiness.</p>
-              <div class="railActions">
-                <a class="btn primary" href="/copilot/quickscan/" data-rid-link>Open QuickScan</a>
-                <a class="btn secondary" href="/copilot/quickscan/intake/" data-rid-link>Start intake</a>
               </div>
             </div>
 
@@ -430,12 +556,10 @@
 
             <div class="actions" style="margin-top:12px;">
               <a class="btn secondary" href="/gate/sales/" data-rid-link>Open Purchase Hub</a>
-              <a class="btn secondary" href="/vendor/" data-rid-link>Vendor profile</a>
+              <a class="btn secondary" href="/gate/" data-rid-link>Gate</a>
             </div>
 
-            <div class="notice" style="margin-top:12px;">
-              <strong>Public intake:</strong> non-confidential only. Secure sharing happens after kickoff under agreed controls.
-            </div>
+            <!-- Removed duplicated RID safety bar here to reduce repetition -->
           </div>
         </section>
       </aside>
@@ -443,9 +567,9 @@
 
     <section class="stickyCta" aria-label="Sticky CTA">
       <div class="stickyInner">
-        <div class="stickyText"><strong>Default enterprise start:</strong> Copilot Readiness (Standard) for a board-ready baseline.</div>
+        <div class="stickyText"><strong>Fastest clean start:</strong> QuickScan → Readiness (Standard) → Trust Ledger cadence.</div>
         <div class="actions" style="margin-top:0">
-          <a class="btn primary" href="/copilot/readiness/?tier=standard" data-rid-link>Open Standard</a>
+          <a class="btn primary" href="/copilot/quickscan/" data-rid-link>Open QuickScan</a>
           <a class="btn secondary" href="/gate/procurement/" data-rid-link>Invoice / PO</a>
         </div>
       </div>
@@ -459,8 +583,10 @@
     - GET / returns 200
     - /assets/noetfield-shell.css and /assets/noetfield-shell.js return 200
     - header/footer injected into #nfHeader/#nfFooter
-    - CTAs route to /copilot/readiness/, /copilot/quickscan/, /trust-ledger/, /gate/
+    - CTAs route to /copilot/quickscan/, /copilot/readiness/, /trust-ledger/, /gate/procurement/
     - Canonical/OG/Twitter URLs use https://www.noetfield.com/
+    - Emails shown are active: procurement@, billing@, support@, feedback@, ceo@, founder@
+    - JS-off fallback visible via <noscript>
   -->
 </body>
 </html>

@@ -1,4 +1,4 @@
-<!-- /index.html — Noetfield Home v7.3.1 (QuickScan-first • single safety bar • proof band • noscript uses .nojs • schema @graph • only active routing emails • reduced repetition) -->
+<!-- /index.html — Noetfield Home v7.3.2 (QuickScan-first • single safety bar • proof band (ledger wording) • noscript .nojs • schema @graph + contactPoint • rail adds Invoice/PO note • optional samples micro-CTA) -->
 <!doctype html>
 <html lang="en">
 <head>
@@ -237,6 +237,8 @@
     }
     .railSub{ margin:8px 0 0; color:var(--muted); line-height:1.6; font-size:13px; }
     .railActions{ display:flex; gap:10px; flex-wrap:wrap; margin-top:12px; }
+    .railNote{ margin:10px 0 0; color:var(--muted2); font-size:12.6px; line-height:1.5; }
+    .railNote a{border-bottom:1px solid rgba(255,255,255,.18)}
 
     /* Sticky bottom CTA (QuickScan-first) */
     .stickyCta{
@@ -276,7 +278,7 @@
     }
   </style>
 
-  <!-- Structured data (Organization + WebSite + WebPage + Services) -->
+  <!-- Structured data (Organization + WebSite + WebPage + Services + contactPoint) -->
   <script type="application/ld+json">
   {
     "@context":"https://schema.org",
@@ -286,7 +288,33 @@
         "@id":"https://www.noetfield.com/#org",
         "name":"Noetfield Systems Inc.",
         "url":"https://www.noetfield.com/",
-        "logo":"https://www.noetfield.com/noetfield-favicon-512.png"
+        "logo":"https://www.noetfield.com/noetfield-favicon-512.png",
+        "contactPoint":[
+          {
+            "@type":"ContactPoint",
+            "contactType":"procurement",
+            "email":"procurement@noetfield.com",
+            "availableLanguage":["en"]
+          },
+          {
+            "@type":"ContactPoint",
+            "contactType":"billing",
+            "email":"billing@noetfield.com",
+            "availableLanguage":["en"]
+          },
+          {
+            "@type":"ContactPoint",
+            "contactType":"customer support",
+            "email":"support@noetfield.com",
+            "availableLanguage":["en"]
+          },
+          {
+            "@type":"ContactPoint",
+            "contactType":"feedback",
+            "email":"feedback@noetfield.com",
+            "availableLanguage":["en"]
+          }
+        ]
       },
       {
         "@type":"WebSite",
@@ -367,6 +395,7 @@
 
           <div class="actions" aria-label="Hero actions">
             <a class="btn primary" href="/copilot/quickscan/" data-rid-link>Open QuickScan</a>
+            <a class="btn secondary" href="/trust-ledger/sample-report/online/" target="_blank" rel="nofollow noopener">View sample</a>
             <a class="btn secondary" href="/copilot/readiness/?tier=standard" data-rid-link>Open Copilot Readiness (Standard)</a>
             <a class="btn secondary" href="/gate/procurement/" data-rid-link>Procurement (Invoice / PO)</a>
             <a class="btn secondary" href="/gate/" data-rid-link>Gate</a>
@@ -383,7 +412,7 @@
           </div>
 
           <div class="proofBand" aria-label="Proof discipline">
-            <div class="proof"><strong>Claim → Evidence → Confidence:</strong> if a claim cannot be supported by evidence, it does not enter outputs.</div>
+            <div class="proof"><strong>Claim → Evidence → Confidence:</strong> if a claim cannot be supported by evidence, it does not enter the ledger.</div>
             <div class="proof"><strong>RID continuity:</strong> one Request ID threads intake → procurement → delivery → exports (no secrets required).</div>
           </div>
 
@@ -522,6 +551,7 @@
                 <a class="btn primary" href="/copilot/quickscan/" data-rid-link>Open QuickScan</a>
                 <a class="btn secondary" href="/copilot/quickscan/intake/" data-rid-link>Start intake</a>
               </div>
+              <p class="railNote"><strong>Invoice / PO supported:</strong> use <a href="/gate/procurement/" data-rid-link>Procurement start</a> for purchasing and onboarding.</p>
             </div>
 
             <div class="railBox" aria-label="Readiness pricing signal">
@@ -558,8 +588,6 @@
               <a class="btn secondary" href="/gate/sales/" data-rid-link>Open Purchase Hub</a>
               <a class="btn secondary" href="/gate/" data-rid-link>Gate</a>
             </div>
-
-            <!-- Removed duplicated RID safety bar here to reduce repetition -->
           </div>
         </section>
       </aside>

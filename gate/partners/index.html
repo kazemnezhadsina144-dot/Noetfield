@@ -1,5 +1,5 @@
-<!-- /gate/partners/index.html — Noetfield Partners Gate v4.0
-     (adds Programs lane • portfolio routing • tighter terms • cleaner IA • procurement-safe) -->
+<!-- /gate/partners/index.html — Noetfield Partners Gate v4.1
+     (SLA aligned • adds public-safe tiers • removes 404 trap • tightens acceptance logic • RID routing polish) -->
 <!doctype html>
 <html lang="en">
 <head>
@@ -191,6 +191,16 @@
   <!-- Page-local RID fallback -->
   <script>
     (function(){
+      function rnd(n){
+        try{
+          if (window.crypto && crypto.getRandomValues){
+            var a = new Uint8Array(n);
+            crypto.getRandomValues(a);
+            return Array.from(a).map(x => (x % 36).toString(36)).join("").toUpperCase().slice(0,n);
+          }
+        }catch(e){}
+        return Math.random().toString(36).slice(2, 2+n).toUpperCase();
+      }
       try{
         var url = new URL(window.location.href);
         var rid = (url.searchParams.get("rid") || "").trim();
@@ -204,8 +214,7 @@
           var y = String(d.getUTCFullYear()).slice(2);
           var m = String(d.getUTCMonth()+1).padStart(2,"0");
           var day = String(d.getUTCDate()).padStart(2,"0");
-          var rand = Math.random().toString(36).slice(2,8).toUpperCase();
-          rid = "NF-" + y + m + day + "-" + rand;
+          rid = "NF-" + y + m + day + "-" + rnd(6);
           url.searchParams.set("rid", rid);
         }
         sessionStorage.setItem("nf_rid", rid);
@@ -220,8 +229,8 @@
     "@context":"https://schema.org",
     "@type":"FAQPage",
     "mainEntity":[
-      {"@type":"Question","name":"What counts as Deal Acceptance for protection?","acceptedAnswer":{"@type":"Answer","text":"Protection starts when Noetfield sends a Deal Accepted email after validating minimum deal fields (organization, champion, stage, next meeting date, lane)."}},
-      {"@type":"Question","name":"How long is Deal Protection?","acceptedAnswer":{"@type":"Answer","text":"90 days from Noetfield Deal Acceptance, provided the partner maintains active progression signals and routing discipline."}},
+      {"@type":"Question","name":"What counts as Deal Acceptance for protection?","acceptedAnswer":{"@type":"Answer","text":"Protection starts when Noetfield sends a Deal Accepted email after validating minimum deal fields (organization, champion role, stage, next-step date, lane and acknowledgements)."}},
+      {"@type":"Question","name":"How long is Deal Protection?","acceptedAnswer":{"@type":"Answer","text":"90 days from Noetfield Deal Acceptance, provided progression signals remain current and routing stays procurement-safe."}},
       {"@type":"Question","name":"Where should buyers go for Invoice/PO?","acceptedAnswer":{"@type":"Answer","text":"Use the Procurement lane (Invoice/PO) for vendor onboarding, procurement pack, and purchasing routes, with RID continuity."}}
     ]
   }
@@ -296,8 +305,9 @@
       <div class="left">
         <h3>Partner Deal Registration</h3>
         <p>
-          Generate a <strong>Partner Deal ID</strong>, capture stage signals, and route the buyer cleanly.
+          Generate a <strong>Partner Deal ID</strong>, capture progression signals, and route the buyer cleanly.
           Protection is <strong>90 days from Noetfield acceptance</strong> (Deal Accepted email), subject to the terms below.
+          <strong>Target:</strong> 1 business day • <strong>SLA:</strong> 2 business days.
         </p>
       </div>
       <div class="right">
@@ -311,14 +321,14 @@
     <section class="terms" aria-label="Deal registration terms">
       <div class="panel">
         <h3>Deal protection terms (compact)</h3>
-        <p>Terms designed to reduce channel conflict and keep co-selling defensible. Acceptance is confirmed by email after basic validation.</p>
+        <p>Designed to reduce channel conflict and keep co-selling defensible. Acceptance is confirmed by email after basic validation.</p>
 
         <div class="kgrid" aria-label="Deal terms key points">
           <div class="kv"><strong>Acceptance</strong><br/>Protection begins when Noetfield sends a <strong>Deal Accepted</strong> email after validating minimum fields.</div>
-          <div class="kv"><strong>Protection window</strong><br/><strong>90 days from acceptance</strong>, provided active progression signals remain current.</div>
-          <div class="kv"><strong>Minimum fields</strong><br/>Org name, champion, stage, next meeting date, lane, and a short non-confidential note.</div>
-          <div class="kv"><strong>Review SLA</strong><br/>Response within <strong>2 business days</strong> (Accept / Clarify / Decline).</div>
-          <div class="kv"><strong>Conflicts</strong><br/><strong>First complete registration timestamp</strong> plus evidence of progression (meeting scheduled/held, buyer-confirmed path).</div>
+          <div class="kv"><strong>Protection window</strong><br/><strong>90 days from acceptance</strong>, provided progression signals remain current.</div>
+          <div class="kv"><strong>Minimum fields</strong><br/>Org name, champion role, stage, next-step date, lane, acknowledgements, and a short non-confidential note.</div>
+          <div class="kv"><strong>Review SLA</strong><br/><strong>Target 1 business day</strong> • <strong>SLA 2 business days</strong> (Accept / Clarify / Decline).</div>
+          <div class="kv"><strong>Conflicts</strong><br/><strong>First complete registration timestamp</strong> plus progression signals (meeting scheduled/held, lane confirmed).</div>
           <div class="kv"><strong>Scope boundary</strong><br/>Protection applies to the <strong>named organization</strong> and registered opportunity; public tenders may override.</div>
         </div>
 
@@ -329,17 +339,17 @@
       </div>
 
       <div class="panel">
-        <h3>RID vs Deal ID (do not mix)</h3>
-        <p><strong>RID</strong> tracks routing across Gate → Procurement → Status. <strong>Deal ID</strong> tracks partner-originated opportunities.</p>
+        <h3>Tiers (public-safe)</h3>
+        <p>Tiers govern partner involvement. Commercial terms (rates/bonuses) are provided under the partner agreement.</p>
         <ul class="list" style="margin-top:8px">
-          <li><strong>Use RID</strong> in: subjects, filenames, status checks, procurement packets.</li>
-          <li><strong>Use Deal ID</strong> in: deal registration, co-sell tracking, partner protection records.</li>
-          <li><strong>Buyer procurement:</strong> route procurement teams to <a href="/gate/procurement/" data-rid-link>Invoice / PO lane</a>.</li>
+          <li><strong>Referral</strong> — warm intro and routing discipline.</li>
+          <li><strong>Channel</strong> — active co-selling support through qualification and buyer routing.</li>
+          <li><strong>Prime Channel</strong> — partner-sourced account + two buyer-side meetings + close support through signature and payment/PO.</li>
+          <li><strong>Delivery</strong> — deliver Noetfield artefacts under evidence discipline (RACI aligned).</li>
+          <li><strong>Integration</strong> — implement controls (M365/Purview posture, connector governance, enforcement + audit hooks).</li>
         </ul>
-
-        <div class="actions" style="margin-top:12px">
-          <a class="btn primary" href="/gate/partners/deal/" data-rid-link>Register deal</a>
-          <a class="btn secondary" href="/gate/partners/intake/" data-rid-link>Partner intake</a>
+        <div class="fine">
+          <strong>Net Fee concept:</strong> partner compensation is computed on fees excluding taxes and pass-through costs (defined in agreement). Payment triggers after client funds clear.
         </div>
       </div>
     </section>
@@ -350,13 +360,13 @@
         <div class="hd">
           <div class="badge">Deal</div>
           <h2>Register & protect</h2>
-          <p>Issue a Deal ID, capture stage signals, and route the buyer with procurement-safe language.</p>
+          <p>Issue a Deal ID, capture progression signals, and route the buyer with procurement-safe language.</p>
         </div>
         <div class="bd">
           <ul class="list">
             <li><strong>Deal ID</strong> + RID continuity</li>
-            <li><strong>Stage signals</strong>: sourced → meeting → close support</li>
-            <li><strong>Co-sell routing</strong>: Gate + Procurement + Status</li>
+            <li><strong>Progression signals</strong>: meeting + lane confirmed + close support</li>
+            <li><strong>Routing</strong>: Gate → Procurement → Status</li>
           </ul>
           <p class="mini" style="margin-top:10px">Protection: <strong>90 days from Noetfield acceptance</strong> (Deal Accepted email).</p>
           <div class="actions" style="margin-top:12px;">
@@ -389,7 +399,7 @@
         <div class="hd">
           <div class="badge">Programs</div>
           <h2>Portfolio routing</h2>
-          <p>Accelerators, venture studios, and scale-up programs: cohort-ready governance outputs that reduce procurement friction.</p>
+          <p>Accelerators and studios: cohort-ready governance outputs that reduce procurement friction.</p>
         </div>
         <div class="bd">
           <ul class="list">
@@ -443,30 +453,30 @@
       </div>
     </section>
 
-    <!-- PARTNER PACK -->
+    <!-- PARTNER PACK (no 404 trap) -->
     <section class="pack" aria-label="Partner pack">
       <div class="panel">
-        <h3>Partner Pack (1-page)</h3>
-        <p>Positioning, lanes, and routing rules (non-confidential).</p>
+        <h3>Partner Pack (request)</h3>
+        <p>Positioning, routing rules, and public-safe tier definitions.</p>
         <div class="actions">
-          <a class="btn primary" href="/gate/partners/pack/partner-overview.pdf" data-rid-link>Download overview</a>
+          <a class="btn primary" href="#" id="requestPartnerPackBtn">Request pack</a>
           <a class="btn secondary" href="/gate/partners/intake/" data-rid-link>Partner intake</a>
         </div>
-        <p class="fine">If not published yet, link returns 404 until the asset exists.</p>
+        <p class="fine">Pack is issued after intake validation. RID is included automatically.</p>
       </div>
 
       <div class="panel">
-        <h3>Co-sell Play (emails)</h3>
-        <p>Warm intros + procurement-safe language + RID-preserving routing links.</p>
+        <h3>Co-sell play (request)</h3>
+        <p>Warm intro templates + procurement-safe language + RID-preserving routing links.</p>
         <div class="actions">
-          <a class="btn primary" href="/gate/partners/pack/co-sell-play.pdf" data-rid-link>Download co-sell play</a>
+          <a class="btn primary" href="#" id="requestCosellBtn">Request co-sell play</a>
           <a class="btn secondary" href="/gate/procurement/" data-rid-link>Procurement lane</a>
         </div>
-        <p class="fine">Buyer procurement should use Invoice/PO lane, not partner intake.</p>
+        <p class="fine">Procurement teams should use Invoice/PO lane, not partner intake.</p>
       </div>
 
       <div class="panel">
-        <h3>Programs Pack (optional)</h3>
+        <h3>Programs Pack</h3>
         <p>Portfolio offer overview for accelerators, venture studios, and scale-up programs.</p>
         <div class="actions">
           <a class="btn primary" href="/gate/partners/programs/portfolio-offer/" data-rid-link>Open portfolio offer</a>
@@ -515,14 +525,14 @@
           <summary>What counts as acceptance for protection? <span class="chev" aria-hidden="true"></span></summary>
           <div class="faqBody">
             Protection starts when a <strong>Deal Accepted</strong> email is issued after minimum fields validate
-            (org, champion, stage, next meeting date, lane). Incomplete registrations return Clarify.
+            (org, champion role, stage, next-step date, lane, acknowledgements).
           </div>
         </details>
 
         <details class="faq">
           <summary>What happens if two partners register the same organization? <span class="chev" aria-hidden="true"></span></summary>
           <div class="faqBody">
-            Resolution uses <strong>first complete registration timestamp</strong> plus evidence of progression (meeting scheduled/held, buyer-confirmed path).
+            Resolution uses <strong>first complete registration timestamp</strong> plus progression signals (meeting scheduled/held, lane confirmed).
           </div>
         </details>
 
@@ -537,7 +547,7 @@
           <summary>How does the Programs lane work? <span class="chev" aria-hidden="true"></span></summary>
           <div class="faqBody">
             Two models: <strong>program contract</strong> (portfolio package) or <strong>company-by-company</strong> routing.
-            See <a href="/gate/partners/programs/" data-rid-link>Programs lane</a> and <a href="/gate/partners/programs/portfolio-offer/" data-rid-link>Portfolio offer</a>.
+            See <a href="/gate/partners/programs/" data-rid-link>Programs lane</a>.
           </div>
         </details>
       </div>
@@ -557,6 +567,7 @@
         try{
           var rid = (window.__NF_RID || "").trim();
           if(!rid) return;
+
           document.querySelectorAll("[data-rid]").forEach(function(el){ el.textContent = rid; });
           document.querySelectorAll("[data-rid-link]").forEach(function(a){
             try{
@@ -567,6 +578,29 @@
               a.setAttribute("href", u.pathname + u.search + u.hash);
             }catch(e){}
           });
+
+          function mail(subject, body){
+            var u = new URL("mailto:sales@noetfield.com");
+            u.searchParams.set("subject", subject);
+            u.searchParams.set("body", body);
+            return u.toString();
+          }
+
+          var packBtn = document.getElementById("requestPartnerPackBtn");
+          if(packBtn){
+            packBtn.setAttribute("href", mail(
+              "Partner Pack request (RID " + rid + ")",
+              "RID: " + rid + "\n\nRequest: Partner Pack (public-safe).\nPartner name:\nPartner website:\nPartner role:\n\nNotes (non-confidential):"
+            ));
+          }
+
+          var cosellBtn = document.getElementById("requestCosellBtn");
+          if(cosellBtn){
+            cosellBtn.setAttribute("href", mail(
+              "Co-sell play request (RID " + rid + ")",
+              "RID: " + rid + "\n\nRequest: Co-sell play (templates + routing).\nPartner name:\nPartner role:\n\nNotes (non-confidential):"
+            ));
+          }
         }catch(e){}
       }
       if(document.readyState === "loading"){ document.addEventListener("DOMContentLoaded", fill); } else { fill(); }

@@ -1,4 +1,4 @@
-<!-- /copilot/readiness/index.html — Microsoft 365 Copilot Readiness Assessment v1.2 (Procurement-ready • scope/acceptance • tier deltas • board-safe) -->
+<!-- /copilot/readiness/index.html — Microsoft 365 Copilot Readiness Assessment v1.3 (Stripe links + optional embedded buy buttons • procurement-safe) -->
 <!doctype html>
 <html lang="en">
 <head>
@@ -33,7 +33,7 @@
   <link rel="stylesheet" href="/assets/noetfield-shell.css" />
   <script src="/assets/noetfield-shell.js" defer></script>
 
-  <!-- Optional Stripe (only if you embed buy buttons; safe to keep) -->
+  <!-- Stripe Buy Button (optional embed). Keep script once. -->
   <script async src="https://js.stripe.com/v3/buy-button.js"></script>
 
   <style>
@@ -232,6 +232,34 @@
     .offerSub a{border-bottom:1px solid rgba(255,255,255,.18)}
     .miniList{margin:10px 0 0; padding-left:18px; color:var(--muted); line-height:1.85; font-size:13px}
     .miniList li{margin:6px 0}
+
+    /* Stripe block (kept subtle + optional) */
+    .payRow{display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-top:12px}
+    .payRow .btn{min-height:40px}
+    .payDetails{margin-top:10px}
+    .payDetails summary{
+      cursor:pointer;
+      user-select:none;
+      list-style:none;
+      display:inline-flex;
+      gap:10px;
+      align-items:center;
+      padding:9px 12px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.03);
+      color:var(--muted2);
+      font-size:12.6px;
+    }
+    .payDetails summary::-webkit-details-marker{display:none}
+    .payPanel{
+      margin-top:10px;
+      padding:12px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.02);
+    }
+    .payHint{margin:0 0 10px; color:var(--muted2); font-size:12.5px; line-height:1.55}
 
     .stickyCta{
       position: sticky;
@@ -692,13 +720,29 @@
                 <li>Exposure themes + boundary notes</li>
                 <li>Decision page + minimal evidence snapshot</li>
               </ul>
+
               <div class="actions" style="margin-top:12px">
                 <a class="btn primary" href="/gate/intake/?need=copilot-readiness-starter">Start Starter</a>
                 <a class="btn secondary" href="/gate/procurement/?focus=copilot-readiness-starter">Invoice / PO</a>
               </div>
-              <div class="offerSub" style="margin-top:10px">
-                Optional card pay: <a href="https://buy.stripe.com/REPLACE_WITH_STARTER_LINK" rel="nofollow noopener" target="_blank">Stripe Payment Link</a>
+
+              <div class="payRow" aria-label="Starter card payment">
+                <a class="btn secondary" href="https://buy.stripe.com/dRm14o7za95W5mi0UA1Nu08" rel="nofollow noopener" target="_blank">
+                  Pay by card (Stripe)
+                </a>
+                <a class="btn secondary" href="/gate/sales/" rel="nofollow">Sales / questions</a>
               </div>
+
+              <details class="payDetails">
+                <summary>Optional embedded checkout</summary>
+                <div class="payPanel">
+                  <p class="payHint">Use card checkout only for approved purchases. Procurement buyers should use Invoice/PO.</p>
+                  <stripe-buy-button
+                    buy-button-id="buy_btn_1Sh25JJ03eJkL57JPvKEMuzF"
+                    publishable-key="pk_live_51SfSseJ03eJkL57JNU4voCGfUjjK4WDew62tPBWesZAejr03HX8uTonznYoWDVcpXwLATZpTvWSDfSU4zJbRIB6900xlpPcGSz">
+                  </stripe-buy-button>
+                </div>
+              </details>
             </div>
 
             <!-- STANDARD -->
@@ -714,13 +758,29 @@
                 <li>Acceptance criteria + procurement-fileable pack</li>
                 <li>30/60/90 plan + decision gates</li>
               </ul>
+
               <div class="actions" style="margin-top:12px">
                 <a class="btn primary" href="/gate/intake/?need=copilot-readiness-standard">Start Standard</a>
                 <a class="btn secondary" href="/gate/procurement/?focus=copilot-readiness-standard">Invoice / PO</a>
               </div>
-              <div class="offerSub" style="margin-top:10px">
-                Optional card pay: <a href="https://buy.stripe.com/REPLACE_WITH_STANDARD_LINK" rel="nofollow noopener" target="_blank">Stripe Payment Link</a>
+
+              <div class="payRow" aria-label="Standard card payment">
+                <a class="btn secondary" href="https://buy.stripe.com/dRm3cw1aMdmc9Cy32I1Nu09" rel="nofollow noopener" target="_blank">
+                  Pay by card (Stripe)
+                </a>
+                <a class="btn secondary" href="/gate/sales/" rel="nofollow">Sales / questions</a>
               </div>
+
+              <details class="payDetails">
+                <summary>Optional embedded checkout</summary>
+                <div class="payPanel">
+                  <p class="payHint">Use card checkout only for approved purchases. Procurement buyers should use Invoice/PO.</p>
+                  <stripe-buy-button
+                    buy-button-id="buy_btn_1Sh27KJ03eJkL57JMwq5iCSg"
+                    publishable-key="pk_live_51SfSseJ03eJkL57JNU4voCGfUjjK4WDew62tPBWesZAejr03HX8uTonznYoWDVcpXwLATZpTvWSDfSU4zJbRIB6900xlpPcGSz">
+                  </stripe-buy-button>
+                </div>
+              </details>
             </div>
 
             <!-- EXTENDED -->
@@ -736,13 +796,29 @@
                 <li>Deeper evidence expectations + traceability</li>
                 <li>Stronger committee/board packaging</li>
               </ul>
+
               <div class="actions" style="margin-top:12px">
                 <a class="btn primary" href="/gate/intake/?need=copilot-readiness-extended">Start Extended</a>
                 <a class="btn secondary" href="/gate/procurement/?focus=copilot-readiness-extended">Invoice / PO</a>
               </div>
-              <div class="offerSub" style="margin-top:10px">
-                Optional card pay: <a href="https://buy.stripe.com/REPLACE_WITH_EXTENDED_LINK" rel="nofollow noopener" target="_blank">Stripe Payment Link</a>
+
+              <div class="payRow" aria-label="Extended card payment">
+                <a class="btn secondary" href="https://buy.stripe.com/28E9AU6v63LC3ea1YE1Nu0a" rel="nofollow noopener" target="_blank">
+                  Pay by card (Stripe)
+                </a>
+                <a class="btn secondary" href="/gate/sales/" rel="nofollow">Sales / questions</a>
               </div>
+
+              <details class="payDetails">
+                <summary>Optional embedded checkout</summary>
+                <div class="payPanel">
+                  <p class="payHint">Use card checkout only for approved purchases. Procurement buyers should use Invoice/PO.</p>
+                  <stripe-buy-button
+                    buy-button-id="buy_btn_1Sh29CJ03eJkL57Jyu54Xu3v"
+                    publishable-key="pk_live_51SfSseJ03eJkL57JNU4voCGfUjjK4WDew62tPBWesZAejr03HX8uTonznYoWDVcpXwLATZpTvWSDfSU4zJbRIB6900xlpPcGSz">
+                  </stripe-buy-button>
+                </div>
+              </details>
             </div>
 
             <div class="box">
@@ -773,7 +849,7 @@
   <!-- injected footer -->
   <footer id="nfFooter"></footer>
 
-  <!-- Sticky CTA -->
+  <!-- Sticky CTA (kept procurement-safe: intake + PO only) -->
   <div class="stickyCta" aria-label="Sticky call to action">
     <div class="stickyInner">
       <div class="stickyText">
@@ -788,9 +864,10 @@
 
   <!--
     SETUP NOTES
-    - Replace Stripe placeholders with your Payment Links when ready.
+    - Stripe Payment Links installed (Starter/Standard/Extended).
+    - Embedded Stripe buy buttons are behind <details> to keep the page procurement-safe and visually clean.
     - Keep #nfHeader and #nfFooter for shell injection.
-    - Intake is non-confidential by design.
+    - Public intake is non-confidential by design.
   -->
 </body>
 </html>

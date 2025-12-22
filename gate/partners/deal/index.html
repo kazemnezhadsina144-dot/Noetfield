@@ -1,5 +1,5 @@
-<!-- /gate/partners/deal/index.html — Noetfield Partner Deal Registration v3.1
-     (Shell-aligned • enterprise clean • Deal ID + RID • tier suggestion • draft save • packet export • email builders • responsive) -->
+<!-- /gate/partners/deal/index.html — Noetfield Partner Deal Registration v4.2
+     (Prime qualifiers • lane confirmation • SLA aligned • partner tier vs deal signal • email routing fixed) -->
 <!doctype html>
 <html lang="en">
 <head>
@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <title>Noetfield — Partner Deal Registration</title>
-  <meta name="description" content="Register a partner-sourced opportunity to receive a Partner Deal ID, confirm tier eligibility, and route procurement safely — without sharing confidential data." />
+  <meta name="description" content="Register a partner-sourced opportunity to receive a Partner Deal ID, compute a partner tier suggestion, and route procurement safely — without sharing confidential data." />
   <meta name="robots" content="index,follow" />
   <meta name="author" content="Noetfield Systems Inc." />
   <meta name="theme-color" content="#07070b" />
@@ -20,11 +20,17 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Noetfield" />
   <meta property="og:title" content="Noetfield — Partner Deal Registration" />
-  <meta property="og:description" content="Partner Deal ID, tier suggestion, 90-day protection (on acceptance), and procurement routing — non-confidential." />
+  <meta property="og:description" content="Partner Deal ID, tier suggestion, protection (on acceptance), and procurement routing — non-confidential." />
   <meta property="og:url" content="https://www.noetfield.com/gate/partners/deal/" />
   <meta property="og:image" content="https://www.noetfield.com/noetfield-og.png" />
 
-  <!-- LOCKED SHELL -->
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Noetfield — Partner Deal Registration" />
+  <meta name="twitter:description" content="Partner Deal ID, tier suggestion, protection (on acceptance), and procurement routing — non-confidential." />
+  <meta name="twitter:image" content="https://www.noetfield.com/noetfield-og.png" />
+
+  <!-- Shell -->
   <link rel="stylesheet" href="/assets/noetfield-shell.css" />
   <script src="/assets/noetfield-shell.js" defer></script>
 
@@ -40,7 +46,6 @@
   </script>
 
   <style>
-    /* Page hero */
     .hero{padding:18px 0 12px}
     .heroShell{
       position:relative;
@@ -62,6 +67,7 @@
       mask-image: linear-gradient(180deg, black 0%, black 62%, transparent 96%);
     }
     .heroInner{padding: 22px 22px; position:relative; z-index:1}
+
     .kickerRow{display:flex; gap:10px; flex-wrap:wrap; align-items:center}
     .badge{
       display:inline-flex; align-items:center; gap:10px;
@@ -74,6 +80,7 @@
       white-space:nowrap;
     }
     .badge strong{color:var(--text); font-weight:950}
+    .mono{font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace}
     .dot{width:8px; height:8px; border-radius:999px; background: rgba(200,163,73,.95); box-shadow: 0 0 0 3px rgba(200,163,73,.16);}
     .dot.good{background: rgba(115,211,155,.95); box-shadow: 0 0 0 3px rgba(115,211,155,.16);}
     .dot.warn{background: rgba(240,195,106,.95); box-shadow: 0 0 0 3px rgba(240,195,106,.16);}
@@ -99,7 +106,6 @@
     .actions{display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-top:12px}
     .actions .btn{min-height:44px}
 
-    /* Layout */
     .grid{
       display:grid;
       grid-template-columns: 1.12fr .88fr;
@@ -123,7 +129,6 @@
     .toolbar{display:flex; gap:10px; flex-wrap:wrap; align-items:center}
     .toolbar .btn{min-height:40px}
 
-    /* Form */
     .section{
       border:1px solid rgba(255,255,255,.10);
       background: rgba(255,255,255,.03);
@@ -168,7 +173,7 @@
       background: rgba(255,255,255,.03);
     }
     .check input{width:18px; margin-top:2px}
-    .check .t{font-size:12.6px; color:var(--text); margin:0 0 2px; font-weight:900}
+    .check .t{font-size:12.6px; color:var(--text); margin:0 0 2px; font-weight:950}
     .check .d{font-size:12.6px; color:var(--muted2); margin:0; line-height:1.55}
 
     .err{
@@ -186,10 +191,6 @@
     .err ul{margin:8px 0 0 18px; padding:0}
     .err li{margin:6px 0}
 
-    .miniRow{display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-top:12px;}
-    .mono{font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;}
-
-    /* Rail */
     .rail{ position: sticky; top: 14px; }
     .box{
       margin-top:12px;
@@ -207,9 +208,7 @@
     .railActions .btn{ min-height:46px; }
     .divider{ height:1px; background: rgba(255,255,255,.10); margin: 14px 0; }
 
-    .kv{
-      display:grid; gap:10px; margin-top:10px;
-    }
+    .kv{display:grid; gap:10px; margin-top:10px}
     .kvLine{
       border-radius:12px;
       border:1px solid rgba(255,255,255,.10);
@@ -220,7 +219,6 @@
     .kvLine .v{margin-top:6px; color:var(--muted); font-size:13px; line-height:1.6}
     .kvLine .v strong{color:var(--text); font-weight:950}
 
-    /* Mobile bottom bar */
     .bottomBar{
       z-index: 30;
       padding: 10px 0 calc(10px + env(safe-area-inset-bottom));
@@ -230,22 +228,12 @@
       display:none;
     }
     .bottomInner{
-      display:flex;
-      gap:10px;
-      align-items:center;
-      justify-content:space-between;
-      padding: 0 16px;
-      max-width: 1120px;
-      margin: 0 auto;
+      display:flex; gap:10px; align-items:center; justify-content:space-between;
+      padding: 0 16px; max-width: 1120px; margin: 0 auto;
     }
     .bottomText{
-      min-width:0;
-      color:var(--muted);
-      font-size:12.6px;
-      line-height:1.4;
-      overflow:hidden;
-      text-overflow:ellipsis;
-      white-space:nowrap;
+      min-width:0; color:var(--muted); font-size:12.6px; line-height:1.4;
+      overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
     }
     .bottomText strong{ color:var(--text); font-weight:950; }
     .bottomBtns{display:flex; gap:10px; align-items:center}
@@ -271,13 +259,94 @@
       *{ scroll-behavior:auto !important; }
     }
   </style>
+
+  <script>
+    (function(){
+      function rnd(n){
+        try{
+          if (window.crypto && crypto.getRandomValues){
+            var a = new Uint8Array(n);
+            crypto.getRandomValues(a);
+            return Array.from(a).map(x => (x % 36).toString(36)).join("").toUpperCase().slice(0,n);
+          }
+        }catch(e){}
+        return Math.random().toString(36).slice(2, 2+n).toUpperCase();
+      }
+
+      function ensureRID(){
+        try{
+          var url = new URL(window.location.href);
+          var rid = (url.searchParams.get("rid") || "").trim();
+          if(!rid) rid = (sessionStorage.getItem("nf_rid") || "").trim();
+          if(!rid){
+            var c = document.cookie.match(/(?:^|;\s*)nf_rid=([^;]+)/);
+            if(c && c[1]) rid = decodeURIComponent(c[1]).trim();
+          }
+          if(!rid){
+            var d = new Date(), y=String(d.getUTCFullYear()).slice(2),
+            m=String(d.getUTCMonth()+1).padStart(2,"0"), day=String(d.getUTCDate()).padStart(2,"0");
+            rid="NF-"+y+m+day+"-"+rnd(6);
+          }
+          sessionStorage.setItem("nf_rid", rid);
+          document.cookie = "nf_rid=" + encodeURIComponent(rid) + "; Path=/; SameSite=Lax";
+          window.__NF_RID = rid;
+          return rid;
+        }catch(e){ return ""; }
+      }
+
+      function ensureDealId(){
+        try{
+          var url = new URL(window.location.href);
+          var deal = (url.searchParams.get("deal") || "").trim();
+          if(!deal){
+            var d = new Date(), y=String(d.getUTCFullYear()).slice(2),
+            m=String(d.getUTCMonth()+1).padStart(2,"0"), day=String(d.getUTCDate()).padStart(2,"0");
+            deal = "NF-PD-" + y + m + day + "-" + rnd(5);
+          }
+          window.__NF_DEAL = deal;
+          return deal;
+        }catch(e){ return "NF-PD-—"; }
+      }
+
+      function stitchIds(){
+        var rid = ensureRID();
+        var deal = ensureDealId();
+
+        var url = new URL(window.location.href);
+        if(!url.searchParams.get("rid")) url.searchParams.set("rid", rid);
+        if(!url.searchParams.get("deal")) url.searchParams.set("deal", deal);
+        window.history.replaceState({}, "", url.pathname + url.search + url.hash);
+
+        var ridText = document.getElementById("ridText"); if(ridText) ridText.textContent = rid;
+        var dealText = document.getElementById("dealIdText"); if(dealText) dealText.textContent = deal;
+
+        var dealRail = document.getElementById("dealIdRail"); if(dealRail) dealRail.textContent = deal;
+        var ridRail = document.getElementById("ridRail"); if(ridRail) ridRail.textContent = rid;
+        var bottomDeal = document.getElementById("bottomDeal"); if(bottomDeal) bottomDeal.textContent = "Deal: " + deal;
+
+        document.querySelectorAll("[data-rid-link]").forEach(function(a){
+          try{
+            var href=a.getAttribute("href")||"";
+            if(!href || href.indexOf("#")===0) return;
+            var u=new URL(href, window.location.origin);
+            if(!u.searchParams.get("rid")) u.searchParams.set("rid", rid);
+            a.setAttribute("href", u.pathname+u.search+u.hash);
+          }catch(e){}
+        });
+
+        var hiddenDeal = document.getElementById("dealIdHidden"); if(hiddenDeal) hiddenDeal.value = deal;
+      }
+
+      if(document.readyState==="loading") document.addEventListener("DOMContentLoaded", stitchIds);
+      else stitchIds();
+    })();
+  </script>
 </head>
 
 <body>
   <div class="bg" aria-hidden="true"></div>
   <a class="skip" href="#main">Skip to content</a>
 
-  <!-- injected header -->
   <header id="nfHeader"></header>
 
   <main id="main" class="wrap">
@@ -286,32 +355,37 @@
         <div class="heroInner">
           <div class="kickerRow" aria-label="Deal badges">
             <span class="badge"><span class="dot"></span><strong>Deal ID</strong> <span class="mono" id="dealIdText">NF-PD-—</span></span>
-            <span class="badge"><span class="dot" id="tierDot"></span><strong>Tier</strong> <span id="tierText">Pending</span></span>
-            <span class="badge" title="Protection activates after Noetfield accepts the registration (email confirmation)."><span class="dot good"></span><strong>Protection</strong> 90 days (on acceptance)</span>
-            <span class="badge" title="Target turnaround for tier confirmation and next steps."><span class="dot good"></span><strong>SLA</strong> 1 business day</span>
+
+            <span class="badge"><span class="dot" id="partnerTierDot"></span><strong>Partner Tier</strong> <span id="partnerTierText">Pending</span></span>
+
+            <span class="badge"><span class="dot" id="dealSignalDot"></span><strong>Deal Signal</strong> <span id="dealSignalText">Pending</span></span>
+
+            <span class="badge" title="Protection activates only after Noetfield accepts the registration (email confirmation)."><span class="dot good"></span><strong>Protection</strong> 90 days (on acceptance)</span>
+
+            <span class="badge" title="Target turnaround for review and next steps."><span class="dot good"></span><strong>Target</strong> 1 business day • <strong>SLA</strong> 2 business days</span>
+
             <span class="badge" title="RID is used for routing + status updates. Non-confidential."><strong>RID</strong> <span class="mono" id="ridText">—</span></span>
           </div>
 
           <h1>Partner Deal Registration</h1>
 
           <p class="lead">
-            Register a partner-sourced opportunity to receive a <strong>Partner Deal ID</strong>, compute a clear <strong>tier suggestion</strong>,
-            and route <strong>procurement safely</strong>. This page is for <strong>routing only</strong> — keep it <strong>non-confidential</strong>.
+            Register a partner-sourced opportunity to receive a <strong>Deal ID</strong>, compute a <strong>partner tier suggestion</strong>,
+            and route <strong>procurement safely</strong>. Submission is <strong>not acceptance</strong>. This page is for <strong>routing only</strong> — keep it <strong>non-confidential</strong>.
           </p>
 
           <div class="notice" role="note">
-            <strong>Do not include:</strong> credentials, customer data, personal IDs, internal documents, pricing details, or sensitive deal notes.
-            Use this page for high-level signals and routing.
+            <strong>Do not include:</strong> credentials, customer data, personal IDs, internal documents, pricing terms, or sensitive deal notes.
+            Use sanitized, high-level signals only. Procurement onboarding routes via <a href="/gate/procurement/" data-rid-link>Invoice/PO lane</a>.
           </div>
 
           <div class="actions" aria-label="Hero actions">
-            <a class="btn secondary" href="/gate/" data-rid-link>Back to Gate</a>
+            <a class="btn secondary" href="/gate/partners/" data-rid-link>Back to Partners</a>
             <a class="btn secondary" href="/gate/procurement/" data-rid-link>Procurement lane</a>
-            <a class="btn secondary" href="/gate/partners/structure/" data-rid-link>Partner structure</a>
             <a class="btn secondary" href="/status/" data-rid-link>Status</a>
-            <button class="btn primary" type="button" id="copyDealLinkBtn">Copy deal link</button>
+            <button class="btn secondary" type="button" id="copyDealLinkBtn">Copy deal link</button>
+            <button class="btn primary" type="button" id="exportPacketBtn">Export packet</button>
           </div>
-
         </div>
       </div>
     </section>
@@ -322,7 +396,7 @@
         <div class="hd">
           <div>
             <h2 class="cardTitle">Deal details (non-confidential)</h2>
-            <p class="muted">Draft-safe (local) • packet export • email builders • deep-linkable IDs</p>
+            <p class="muted">Draft-safe (local) • partner tier suggestion • deal signal • packet export • email builders • deep-linkable IDs</p>
           </div>
           <div class="toolbar" aria-label="Deal tools">
             <button class="btn secondary" type="button" id="newDealBtn" title="Creates a new Partner Deal ID and updates the URL.">New Deal ID</button>
@@ -339,10 +413,12 @@
           </div>
 
           <form id="dealForm" autocomplete="on" novalidate>
+            <input type="hidden" id="dealIdHidden" name="dealId" value="" />
+
             <!-- Partner -->
             <div class="section">
               <div class="sectionTitle">Partner</div>
-              <p class="sectionDesc">Who is submitting this deal registration.</p>
+              <p class="sectionDesc">Submitting entity for the deal registration.</p>
 
               <div class="row">
                 <div class="field">
@@ -351,14 +427,14 @@
                 </div>
                 <div class="field">
                   <label class="label" for="partnerEmail">Partner email</label>
-                  <input class="input" id="partnerEmail" name="partnerEmail" placeholder="name@partner.com" />
+                  <input class="input" id="partnerEmail" name="partnerEmail" placeholder="name@partner.com" inputmode="email" />
                 </div>
                 <div class="field">
                   <label class="label" for="partnerWebsite">Partner website</label>
-                  <input class="input" id="partnerWebsite" name="partnerWebsite" placeholder="https://partner.com" />
+                  <input class="input" id="partnerWebsite" name="partnerWebsite" placeholder="https://partner.com" inputmode="url" />
                 </div>
                 <div class="field">
-                  <label class="label" for="partnerRole">Your role</label>
+                  <label class="label" for="partnerRole">Submitter role</label>
                   <input class="input" id="partnerRole" name="partnerRole" placeholder="e.g., Account Executive, Consultant, MSP Owner" />
                 </div>
               </div>
@@ -424,864 +500,766 @@
               </div>
             </div>
 
-            <!-- Routing -->
+            <!-- Opportunity -->
             <div class="section">
-              <div class="sectionTitle">Routing</div>
-              <p class="sectionDesc">How to move this cleanly through procurement.</p>
+              <div class="sectionTitle">Opportunity</div>
+              <p class="sectionDesc">Stage + next-step timing. Keep wording non-confidential.</p>
 
               <div class="row">
-                <div class="field">
-                  <label class="label" for="need">Primary need</label>
-                  <select class="select" id="need" name="need">
-                    <option value="">Select…</option>
-                    <option value="copilot-readiness">Copilot readiness (2/4/6 weeks)</option>
-                    <option value="quickscan">QuickScan (5–7 business days)</option>
-                    <option value="trust-brief">Trust Brief (6-week)</option>
-                    <option value="trust-ledger">Trust Ledger (ongoing)</option>
-                    <option value="unknown">Not sure yet</option>
-                  </select>
-                </div>
-                <div class="field">
-                  <label class="label" for="timing">Timing</label>
-                  <select class="select" id="timing" name="timing">
-                    <option value="">Select…</option>
-                    <option value="urgent">Urgent (days to 2 weeks)</option>
-                    <option value="standard">Standard (4 weeks)</option>
-                    <option value="extended">Extended (6 weeks)</option>
-                    <option value="tbd">TBD</option>
-                  </select>
-                </div>
-                <div class="field third">
-                  <label class="label" for="procLane">Procurement lane</label>
-                  <select class="select" id="procLane" name="procLane">
-                    <option value="">Select…</option>
-                    <option value="invoice-po">Invoice / PO</option>
-                    <option value="card">Card checkout</option>
-                    <option value="msa">MSA/SOW workflow</option>
-                    <option value="unknown">Unknown</option>
-                  </select>
-                </div>
                 <div class="field third">
                   <label class="label" for="stage">Stage</label>
                   <select class="select" id="stage" name="stage">
                     <option value="">Select…</option>
-                    <option value="intro">Intro / early interest</option>
-                    <option value="active">Active evaluation</option>
-                    <option value="pilot">Pilot decision</option>
-                    <option value="rollout">Rollout decision</option>
+                    <option value="sourced">Sourced (lead identified)</option>
+                    <option value="intro">Warm intro sent</option>
+                    <option value="meeting-set">Meeting set</option>
+                    <option value="meeting-held">Meeting held</option>
+                    <option value="qualified">Qualified (scope + urgency)</option>
+                    <option value="proposal">Proposal / SOW in progress</option>
+                    <option value="procurement">Procurement / onboarding</option>
+                    <option value="commit">Verbal commit / signature pending</option>
                   </select>
                 </div>
+
                 <div class="field third">
-                  <label class="label" for="decisionWindow">Decision window</label>
-                  <select class="select" id="decisionWindow" name="decisionWindow">
+                  <label class="label" for="lane">Primary lane</label>
+                  <select class="select" id="lane" name="lane">
                     <option value="">Select…</option>
-                    <option value="0-2w">0–2 weeks</option>
-                    <option value="2-6w">2–6 weeks</option>
-                    <option value="6-12w">6–12 weeks</option>
-                    <option value="unknown">Unknown</option>
+                    <option value="delivery">Delivery (artefacts)</option>
+                    <option value="integration">Integration (controls)</option>
+                    <option value="both">Both (Delivery + Integration)</option>
+                    <option value="procurement">Procurement-led (Invoice/PO)</option>
                   </select>
+                </div>
+
+                <div class="field third">
+                  <label class="label" for="package">Likely package</label>
+                  <select class="select" id="package" name="package">
+                    <option value="">Select…</option>
+                    <option value="quickscan">Copilot QuickScan (5–7 days)</option>
+                    <option value="readiness-2w">Copilot Readiness — Starter (2 weeks)</option>
+                    <option value="readiness-4w">Copilot Readiness — Standard (4 weeks)</option>
+                    <option value="readiness-6w">Copilot Readiness — Extended (6 weeks)</option>
+                    <option value="trust-brief">Trust Brief (diagnostic)</option>
+                    <option value="trust-ledger">Trust Ledger (retainer)</option>
+                    <option value="unknown">Unknown / TBD</option>
+                  </select>
+                </div>
+
+                <div class="field">
+                  <label class="label" for="nextStep">Next step (what is scheduled)</label>
+                  <input class="input" id="nextStep" name="nextStep" placeholder="e.g., Security review call, procurement intake, scope workshop" />
+                </div>
+
+                <div class="field">
+                  <label class="label" for="nextDate">Next-step date (target)</label>
+                  <input class="input" id="nextDate" name="nextDate" type="date" />
                 </div>
 
                 <div class="field full">
-                  <label class="label" for="constraints">Constraints / notes (high-level)</label>
-                  <textarea class="textarea" id="constraints" name="constraints" placeholder="e.g., audit window, client requirements, sensitive data themes, policy posture, preferred kickoff mode (email-first), stakeholder complexity..."></textarea>
+                  <label class="label" for="notes">Non-confidential notes</label>
+                  <textarea class="textarea" id="notes" name="notes" placeholder="High-level context only. Ex: 'M365-heavy org evaluating Copilot rollout; needs evidence-first readiness pack for procurement.'"></textarea>
                 </div>
               </div>
 
-              <div class="checkgrid" aria-label="Signals">
+              <div class="checkgrid" aria-label="Signals and constraints">
                 <label class="check">
-                  <input type="checkbox" id="sigM365" />
+                  <input type="checkbox" id="sigProc" name="sigProc" />
                   <div>
-                    <div class="t">Microsoft-heavy</div>
-                    <p class="d">M365 E3/E5 + Purview/DLP posture matters.</p>
+                    <p class="t">Procurement pressure exists</p>
+                    <p class="d">Vendor onboarding, privacy/security questions, Invoice/PO path required.</p>
                   </div>
                 </label>
                 <label class="check">
-                  <input type="checkbox" id="sigSensitive" />
+                  <input type="checkbox" id="sigEvidence" name="sigEvidence" />
                   <div>
-                    <div class="t">Sensitive data</div>
-                    <p class="d">HR, finance, client files, regulated records (high-level only).</p>
+                    <p class="t">Evidence is accessible</p>
+                    <p class="d">Exports/logs/policies/configs can be provided post-kickoff (under NDA if needed).</p>
                   </div>
                 </label>
                 <label class="check">
-                  <input type="checkbox" id="sigProc" />
+                  <input type="checkbox" id="sigUrgent" name="sigUrgent" />
                   <div>
-                    <div class="t">Procurement pressure</div>
-                    <p class="d">Vendor onboarding, security, privacy, or legal gating expected.</p>
+                    <p class="t">Timing is urgent</p>
+                    <p class="d">Decision window ≤ 30 days, or active rollout/pilot pressure.</p>
                   </div>
                 </label>
                 <label class="check">
-                  <input type="checkbox" id="sigUrgent" />
+                  <input type="checkbox" id="sigCopilot" name="sigCopilot" />
                   <div>
-                    <div class="t">Urgency</div>
-                    <p class="d">Timeline is driving a fast decision path.</p>
+                    <p class="t">Copilot/GenAI is in scope</p>
+                    <p class="d">Copilot readiness, extension/connector governance, oversharing exposure.</p>
                   </div>
                 </label>
-              </div>
-
-              <div class="miniRow">
-                <button class="btn primary" type="button" id="computeBtn">Compute tier + packet</button>
-                <button class="btn secondary" type="button" id="exportBtn" disabled>Export packet (.json)</button>
-                <button class="btn secondary" type="button" id="copyPacketBtn" disabled>Copy packet (JSON)</button>
+                <label class="check">
+                  <input type="checkbox" id="sigLaneConfirmed" name="sigLaneConfirmed" />
+                  <div>
+                    <p class="t">Lane is confirmed with buyer</p>
+                    <p class="d">Buyer has agreed the primary lane (Delivery / Integration / Procurement-led).</p>
+                  </div>
+                </label>
+                <label class="check">
+                  <input type="checkbox" id="sigMeetingConfirmed" name="sigMeetingConfirmed" />
+                  <div>
+                    <p class="t">Meeting is confirmed</p>
+                    <p class="d">Next-step is confirmed (not tentative).</p>
+                  </div>
+                </label>
               </div>
             </div>
 
-            <!-- Email builders -->
+            <!-- Prime qualifiers -->
             <div class="section">
-              <div class="sectionTitle">Email builders</div>
-              <p class="sectionDesc">Generated locally in your browser. Use non-confidential text only.</p>
+              <div class="sectionTitle">Prime qualifiers (partner involvement)</div>
+              <p class="sectionDesc">Used to suggest partner tier (Referral / Channel / Prime Channel). Commercial terms are provided under the partner agreement.</p>
 
-              <div class="miniRow">
-                <button class="btn secondary" type="button" id="genEmailToNoetfieldBtn">Generate email to Noetfield</button>
-                <a class="btn secondary" id="mailtoNoetfieldBtn" href="#" hidden>Open in email app</a>
-                <button class="btn secondary" type="button" id="copyEmailToNoetfieldBtn" disabled>Copy</button>
-              </div>
+              <div class="checkgrid" aria-label="Prime qualifiers">
+                <label class="check">
+                  <input type="checkbox" id="pqSourced" name="pqSourced" />
+                  <div>
+                    <p class="t">Partner-sourced account</p>
+                    <p class="d">Opportunity originates from partner relationship/network.</p>
+                  </div>
+                </label>
 
-              <textarea class="textarea" id="emailOut" readonly style="margin-top:12px;"></textarea>
+                <label class="check">
+                  <input type="checkbox" id="pqMeetings" name="pqMeetings" />
+                  <div>
+                    <p class="t">Two buyer-side meetings feasible</p>
+                    <p class="d">Champion + one of Procurement/Privacy/Security can be arranged.</p>
+                  </div>
+                </label>
 
-              <div class="notice" style="margin-top:12px;">
-                <strong>Recipient:</strong> defaults to <span class="mono">procurement@noetfield.com</span> for routing. Change in your email client if needed.
+                <label class="check">
+                  <input type="checkbox" id="pqClose" name="pqClose" />
+                  <div>
+                    <p class="t">Close support through signature + payment/PO</p>
+                    <p class="d">Partner supports the close through contracting and payment lane.</p>
+                  </div>
+                </label>
+
+                <label class="check">
+                  <input type="checkbox" id="pqRegisteredFirst" name="pqRegisteredFirst" />
+                  <div>
+                    <p class="t">Registered before external sharing</p>
+                    <p class="d">Deal is registered before buyer contacts are shared outside this form.</p>
+                  </div>
+                </label>
               </div>
             </div>
 
-            <div class="notice" style="margin-top:12px;">
-              <strong>Status:</strong> Deal protection is activated only after Noetfield accepts registration (email confirmation).
-              Keep this registration link for routing and updates.
+            <!-- Acknowledgements -->
+            <div class="section">
+              <div class="sectionTitle">Acknowledgements</div>
+              <p class="sectionDesc">Required for acceptance review. Keeps submissions procurement-safe.</p>
+
+              <div class="checkgrid">
+                <label class="check">
+                  <input type="checkbox" id="ackNonConf" name="ackNonConf" />
+                  <div>
+                    <p class="t">Submission is non-confidential</p>
+                    <p class="d">No customer data, credentials, internal documents, or pricing terms are included.</p>
+                  </div>
+                </label>
+                <label class="check">
+                  <input type="checkbox" id="ackAcceptance" name="ackAcceptance" />
+                  <div>
+                    <p class="t">Submission is not acceptance</p>
+                    <p class="d">Protection starts only after a Deal Accepted email is issued.</p>
+                  </div>
+                </label>
+              </div>
+
+              <div class="actions" style="margin-top:12px;">
+                <button class="btn primary" type="button" id="computeBtn">Compute</button>
+                <button class="btn secondary" type="button" id="copyIntroEmailBtn">Copy warm intro email</button>
+                <button class="btn secondary" type="button" id="copySalesRegEmailBtn">Copy registration email (sales@)</button>
+                <button class="btn secondary" type="button" id="copyOpsEmailBtn">Copy procurement email (ops@)</button>
+              </div>
             </div>
           </form>
         </div>
       </section>
 
       <!-- Right rail -->
-      <aside class="rail" aria-label="Deal rail">
-        <div class="card">
-          <div class="hd">
-            <div>
-              <h2 class="cardTitle">Deal summary</h2>
-              <p class="muted">Tier suggestion + next best routing.</p>
+      <aside class="card rail" aria-label="Deal rail">
+        <div class="hd">
+          <div>
+            <h2 class="cardTitle">Routing summary</h2>
+            <p class="muted">IDs + next actions + procurement links</p>
+          </div>
+        </div>
+
+        <div class="bd">
+          <div class="box">
+            <strong>Deal ID:</strong> <span class="mono" id="dealIdRail">—</span><br />
+            <strong>RID:</strong> <span class="mono" id="ridRail">—</span>
+          </div>
+
+          <div class="kv" aria-label="Key values">
+            <div class="kvLine">
+              <div class="k">Partner tier suggestion</div>
+              <div class="v" id="partnerTierRail"><strong>Pending</strong> — based on prime qualifiers.</div>
+            </div>
+            <div class="kvLine">
+              <div class="k">Deal signal</div>
+              <div class="v" id="dealSignalRail"><strong>Pending</strong> — based on stage + size + signals.</div>
+            </div>
+            <div class="kvLine">
+              <div class="k">Recommended route</div>
+              <div class="v" id="routeText"><strong>Pending</strong> — compute after filling key fields.</div>
             </div>
           </div>
 
-          <div class="bd">
-            <div class="box">
-              <div><strong>Deal ID:</strong> <span class="mono" id="railDealId">—</span></div>
-              <div style="margin-top:6px;"><strong>RID:</strong> <span class="mono" id="railRid">—</span></div>
-              <div style="margin-top:6px;"><strong>Tier:</strong> <span id="railTier">Pending</span></div>
+          <div class="divider" aria-hidden="true"></div>
 
-              <div class="miniRow" style="margin-top:10px;">
-                <button class="btn secondary" type="button" id="copyRidBtn">Copy RID</button>
-                <button class="btn secondary" type="button" id="copyDealIdBtn">Copy Deal ID</button>
-              </div>
-            </div>
+          <div class="railActions" aria-label="Rail actions">
+            <a class="btn primary" href="/gate/procurement/" data-rid-link>Open Procurement lane</a>
+            <a class="btn secondary" href="/status/" data-rid-link>Open Status</a>
+            <a class="btn secondary" href="/gate/" data-rid-link>Back to Gate</a>
+          </div>
 
-            <div class="divider" aria-hidden="true"></div>
+          <div class="box">
+            <strong>Email routing rule:</strong> deal registration is routed to <strong>sales@noetfield.com</strong>.
+            If Invoice/PO is selected (or procurement pressure is checked), also notify <strong>ops@noetfield.com</strong>.
+          </div>
 
-            <div class="kv" aria-label="Rail key values">
-              <div class="kvLine">
-                <div class="k">Suggested start</div>
-                <div class="v"><strong id="suggestedStart">—</strong><br/><span id="suggestedWhy">—</span></div>
-              </div>
-              <div class="kvLine">
-                <div class="k">Procurement lane</div>
-                <div class="v"><strong id="railLane">—</strong></div>
-              </div>
-              <div class="kvLine">
-                <div class="k">Next actions</div>
-                <div class="v">Use <strong>Gate</strong> for a clean SKU path, then <strong>Procurement</strong> if Invoice/PO is required.</div>
-              </div>
-            </div>
-
-            <div class="railActions" aria-label="Rail actions">
-              <a class="btn primary" id="railGateBtn" href="/gate/" data-rid-link>Open Gate</a>
-              <a class="btn secondary" id="railProcBtn" href="/gate/procurement/" data-rid-link>Procurement (Invoice/PO)</a>
-              <a class="btn secondary" id="railSalesBtn" href="/gate/sales/" data-rid-link>Start (Sales)</a>
-              <a class="btn secondary" id="railPartnersBtn" href="/gate/partners/" data-rid-link>Partners</a>
-            </div>
-
-            <div class="box">
-              <strong>Non-confidential rule</strong><br/>
-              This page is for routing signals only. Do not paste customer data or internal documents.
-            </div>
+          <div class="box">
+            <strong>Minimum for acceptance review:</strong><br />
+            Partner name + email, client org, champion role, stage, next-step (and date), lane, acknowledgements.
           </div>
         </div>
       </aside>
     </section>
   </main>
 
-  <!-- injected footer -->
-  <footer id="nfFooter"></footer>
-
   <!-- Mobile bottom bar -->
-  <div class="bottomBar" id="bottomBar" role="region" aria-label="Deal quick actions">
+  <div class="bottomBar" role="region" aria-label="Mobile actions">
     <div class="bottomInner">
-      <div class="bottomText" id="bottomText"><strong>Deal:</strong> —</div>
-      <div class="bottomBtns" aria-label="Mobile quick actions">
-        <a class="btn secondary" href="/gate/" data-rid-link>Gate</a>
-        <a class="btn primary" href="/gate/procurement/" data-rid-link>Procurement</a>
+      <div class="bottomText">
+        <strong id="bottomPartnerTier">Partner Tier: Pending</strong> · <span class="mono" id="bottomDeal">Deal: —</span>
+      </div>
+      <div class="bottomBtns">
+        <button class="btn secondary" type="button" id="bottomCopyLink">Copy link</button>
+        <button class="btn primary" type="button" id="bottomExport">Export</button>
       </div>
     </div>
   </div>
 
+  <footer id="nfFooter"></footer>
+
   <script>
     (function(){
-      "use strict";
-
       function $(id){ return document.getElementById(id); }
-      function qsa(sel){ try { return Array.prototype.slice.call(document.querySelectorAll(sel)); } catch(_) { return []; } }
+      function safe(v){ return (v || "").toString().trim(); }
+      function val(id){ var el=$(id); return el ? safe(el.value) : ""; }
+      function checked(id){ var el=$(id); return !!(el && el.checked); }
 
-      // RID resolution (same strategy as Gate)
-      function getRid(){
-        try{
-          if (window.NoetfieldShell && typeof window.NoetfieldShell.getRID === "function") return window.NoetfieldShell.getRID();
-          if (window.NF && typeof window.NF.getRID === "function") return window.NF.getRID();
-        } catch(_) {}
-        try {
-          var u = new URL(window.location.href);
-          var ridQ = (u.searchParams.get("rid") || "").trim();
-          if (ridQ) return ridQ;
-        } catch(_) {}
-        try{
-          var k = "nf_rid";
-          var cur = (localStorage.getItem(k) || "").trim();
-          if (!cur){
-            cur = "NF-" + Math.random().toString(36).slice(2, 8).toUpperCase() + "-" + Date.now().toString(36).toUpperCase();
-            localStorage.setItem(k, cur);
-          }
-          return cur;
-        } catch(_){
-          return "NF-" + Date.now().toString(36).toUpperCase();
-        }
+      function getRID(){ return (window.__NF_RID || "").trim(); }
+      function getDeal(){ return (window.__NF_DEAL || "").trim(); }
+
+      function setDot(dotEl, level){
+        if(!dotEl) return;
+        dotEl.className = "dot";
+        if(level === "good") dotEl.classList.add("good");
+        else if(level === "warn") dotEl.classList.add("warn");
+        else if(level === "bad") dotEl.classList.add("bad");
       }
 
-      function applyRidToLinks(rid){
-        var links = qsa("a[data-rid-link]");
-        links.forEach(function(a){
-          try{
-            var href = a.getAttribute("href") || "";
-            if (!href || href.indexOf("mailto:") === 0 || href.indexOf("#") === 0) return;
-            var u = new URL(href, window.location.origin);
-            if (!u.searchParams.get("rid")) u.searchParams.set("rid", rid);
-            a.setAttribute("href", u.pathname + u.search + u.hash);
-          } catch(_) {}
-        });
+      function setPartnerTier(label, level){
+        if($("partnerTierText")) $("partnerTierText").textContent = label;
+        if($("partnerTierRail")) $("partnerTierRail").innerHTML = "<strong>"+label+"</strong>";
+        if($("bottomPartnerTier")) $("bottomPartnerTier").textContent = "Partner Tier: " + label;
+        setDot($("partnerTierDot"), level);
       }
 
-      function copyToClipboard(text){
-        return new Promise(function(resolve){
-          (async function(){
-            try{
-              if (navigator.clipboard && navigator.clipboard.writeText){
-                await navigator.clipboard.writeText(text);
-                return resolve(true);
-              }
-            } catch(_) {}
-            try{
-              var ta = document.createElement("textarea");
-              ta.value = text;
-              ta.style.position = "fixed";
-              ta.style.left = "-9999px";
-              document.body.appendChild(ta);
-              ta.focus(); ta.select();
-              document.execCommand("copy");
-              document.body.removeChild(ta);
-              return resolve(true);
-            } catch(_){ return resolve(false); }
-          })();
-        });
+      function setDealSignal(label, level){
+        if($("dealSignalText")) $("dealSignalText").textContent = label;
+        if($("dealSignalRail")) $("dealSignalRail").innerHTML = "<strong>"+label+"</strong>";
+        setDot($("dealSignalDot"), level);
       }
 
-      function ymd(){
-        var d = new Date();
-        var mm = String(d.getMonth()+1).padStart(2,"0");
-        var dd = String(d.getDate()).padStart(2,"0");
-        return String(d.getFullYear()) + mm + dd;
-      }
-
-      function genDealId(){
-        var rand = Math.random().toString(36).slice(2, 8).toUpperCase();
-        return "NF-PD-" + rand + "-" + ymd();
-      }
-
-      function getDealId(){
-        try{
-          var u = new URL(window.location.href);
-          var d = (u.searchParams.get("deal") || "").trim();
-          if (d) return d;
-        } catch(_) {}
-        try{
-          var cur = (localStorage.getItem("nf_pd_last_deal") || "").trim();
-          if (cur) return cur;
-        } catch(_) {}
-        var fresh = genDealId();
-        try{ localStorage.setItem("nf_pd_last_deal", fresh); } catch(_) {}
-        return fresh;
-      }
-
-      function setQueryParam(key, value){
-        try{
-          var u = new URL(window.location.href);
-          if (!value) u.searchParams.delete(key);
-          else u.searchParams.set(key, value);
-          history.replaceState({}, "", u.pathname + (u.searchParams.toString() ? ("?" + u.searchParams.toString()) : "") + u.hash);
-        } catch(_) {}
-      }
-
-      function setBadges(dealId, rid){
-        $("dealIdText").textContent = dealId;
-        $("ridText").textContent = rid;
-        $("railDealId").textContent = dealId;
-        $("railRid").textContent = rid;
-        $("bottomText").innerHTML = "<strong>Deal:</strong> " + dealId;
-      }
-
-      function tierDotSet(tier){
-        var dot = $("tierDot");
-        if (!dot) return;
-        dot.classList.remove("good","warn","bad");
-        if (tier === "A") dot.classList.add("good");
-        else if (tier === "B") dot.classList.add("warn");
-        else if (tier === "C") dot.classList.add("bad");
-      }
-
-      function showErrors(items){
-        var box = $("errBox");
-        var list = $("errList");
-        if (!box || !list) return;
-        list.innerHTML = "";
-        if (!items || !items.length){
-          box.style.display = "none";
-          return;
-        }
-        items.forEach(function(t){
-          var li = document.createElement("li");
-          li.textContent = t;
-          list.appendChild(li);
-        });
-        box.style.display = "block";
-      }
-
-      function readForm(){
-        function v(id){ return (($ (id).value || "")).trim(); }
-        function c(id){ var el = $(id); return !!(el && el.checked); }
-
-        return {
-          partnerName: v("partnerName"),
-          partnerEmail: v("partnerEmail"),
-          partnerWebsite: v("partnerWebsite"),
-          partnerRole: v("partnerRole"),
-
-          clientOrg: v("clientOrg"),
-          clientDomain: v("clientDomain"),
-          clientSize: v("clientSize"),
-          industry: v("industry"),
-          geo: v("geo"),
-
-          championRole: v("championRole"),
-          buyerRole: v("buyerRole"),
-
-          need: v("need"),
-          timing: v("timing"),
-          procLane: v("procLane"),
-          stage: v("stage"),
-          decisionWindow: v("decisionWindow"),
-
-          constraints: v("constraints"),
-
-          sigM365: c("sigM365"),
-          sigSensitive: c("sigSensitive"),
-          sigProc: c("sigProc"),
-          sigUrgent: c("sigUrgent")
-        };
-      }
-
-      function validate(d){
+      function validate(){
         var errs = [];
-        if (!d.partnerName) errs.push("Partner name is required.");
-        if (!d.clientOrg) errs.push("Client organization is required.");
-        if (!d.clientDomain) errs.push("Client domain is required.");
-        if (!d.championRole) errs.push("Operational champion role is required.");
+        function req(cond, msg){ if(!cond) errs.push(msg); }
+
+        req(val("partnerName"), "Partner name is required.");
+        req(val("partnerEmail"), "Partner email is required.");
+        req(val("clientOrg"), "Client organization is required.");
+        req(val("championRole"), "Operational champion role is required.");
+        req(val("stage"), "Stage is required.");
+        req(val("lane"), "Primary lane is required.");
+        req(val("nextStep"), "Next step is required.");
+        req(val("nextDate"), "Next-step date is required.");
+        req(checked("ackNonConf"), "Acknowledgement: submission is non-confidential.");
+        req(checked("ackAcceptance"), "Acknowledgement: submission is not acceptance.");
+
+        var errBox = $("errBox"), errList = $("errList");
+        if(errBox && errList){
+          errList.innerHTML = "";
+          if(errs.length){
+            errs.forEach(function(e){
+              var li=document.createElement("li"); li.textContent=e; errList.appendChild(li);
+            });
+            errBox.style.display = "block";
+          }else{
+            errBox.style.display = "none";
+          }
+        }
         return errs;
       }
 
-      function suggestStart(d){
-        // Normalize to Gate offers/SKUs
-        if (d.need === "quickscan") return {id:"quickscan", label:"Copilot QuickScan", why:"Fastest decision-ready posture; feeds Readiness."};
-        if (d.need === "trust-brief") return {id:"trust_brief", label:"Trust Brief (6-week)", why:"Best for governance plan + roadmap."};
-        if (d.need === "trust-ledger") return {id:"trust_ledger", label:"Trust Ledger (Ongoing)", why:"Best for ongoing evidence continuity."};
+      function computePartnerTier(){
+        // Prime Channel requires: sourced + meetings + close + registered-first
+        var prime =
+          checked("pqSourced") &&
+          checked("pqMeetings") &&
+          checked("pqClose") &&
+          checked("pqRegisteredFirst");
 
-        // Copilot readiness path
-        if (d.need === "copilot-readiness"){
-          if (d.timing === "urgent") return {id:"quickscan", label:"Copilot QuickScan", why:"Urgency suggests rapid snapshot before broad rollout."};
-          if (d.timing === "extended") return {id:"readiness_extended", label:"Copilot Readiness — Extended (6 weeks)", why:"Complex scope suggests extended readiness."};
-          if (d.timing === "standard") return {id:"readiness_standard", label:"Copilot Readiness — Standard (4 weeks)", why:"Default enterprise baseline for rollout approval."};
-          return {id:"readiness_standard", label:"Copilot Readiness — Standard (4 weeks)", why:"Default enterprise baseline for rollout approval."};
-        }
+        // Channel requires at least meaningful involvement
+        var channel =
+          checked("pqMeetings") || checked("pqClose") || val("stage")==="meeting-held" || val("stage")==="qualified" || val("stage")==="proposal" || val("stage")==="procurement" || val("stage")==="commit";
 
-        // Unknown: infer from urgency + procurement pressure
-        if (d.sigUrgent || d.timing === "urgent") return {id:"quickscan", label:"Copilot QuickScan", why:"Urgency suggests a rapid, decision-ready snapshot."};
-        if (d.sigProc || d.procLane === "invoice-po") return {id:"readiness_standard", label:"Copilot Readiness — Standard (4 weeks)", why:"Procurement pressure favors a fixed-scope SKU with named outputs."};
-        return {id:"readiness_standard", label:"Copilot Readiness — Standard (4 weeks)", why:"Default enterprise baseline."};
+        if(prime){ setPartnerTier("Prime Channel (eligible)", "good"); return "Prime Channel (eligible)"; }
+        if(channel){ setPartnerTier("Channel (standard)", "good"); return "Channel (standard)"; }
+        setPartnerTier("Referral (intro + routing)", "warn"); return "Referral (intro + routing)";
       }
 
-      function computeTier(d){
-        // Simple scoring: higher score => Tier A
+      function computeDealSignal(){
+        // Defensible heuristic based on non-confidential signals (not commercial terms)
+        var stage = val("stage");
+        var size = val("clientSize");
+        var lane = val("lane");
+
+        var urgent = checked("sigUrgent");
+        var proc = checked("sigProc");
+        var evidence = checked("sigEvidence");
+        var copilot = checked("sigCopilot");
+        var laneConfirmed = checked("sigLaneConfirmed");
+        var meetingConfirmed = checked("sigMeetingConfirmed");
+
         var score = 0;
 
-        // Size
-        if (d.clientSize === "5000+") score += 4;
-        else if (d.clientSize === "1000-4999") score += 3;
-        else if (d.clientSize === "500-999") score += 2;
-        else if (d.clientSize === "200-499") score += 1;
+        var stageScore = {
+          "sourced": 1,
+          "intro": 2,
+          "meeting-set": 3,
+          "meeting-held": 4,
+          "qualified": 5,
+          "proposal": 6,
+          "procurement": 7,
+          "commit": 8
+        }[stage] || 0;
+        score += stageScore;
 
-        // Industry sensitivity
-        if (d.industry === "financial" || d.industry === "health" || d.industry === "public" || d.industry === "legal") score += 3;
-        else if (d.industry) score += 1;
+        var sizeScore = {
+          "200-499": 1,
+          "500-999": 2,
+          "1000-4999": 3,
+          "5000+": 4
+        }[size] || 0;
+        score += sizeScore;
 
-        // Signals
-        if (d.sigM365) score += 2;
-        if (d.sigSensitive) score += 2;
-        if (d.sigProc) score += 2;
-        if (d.sigUrgent) score += 1;
+        if(urgent) score += 2;
+        if(proc) score += 2;
+        if(evidence) score += 2;
+        if(copilot) score += 1;
+        if(lane === "both") score += 1;
+        if(laneConfirmed) score += 1;
+        if(meetingConfirmed) score += 1;
 
-        // Procurement lane
-        if (d.procLane === "invoice-po" || d.procLane === "msa") score += 2;
+        var label = "Low";
+        var level = "bad";
+        if(score >= 13){ label = "High"; level = "good"; }
+        else if(score >= 9){ label = "Medium"; level = "good"; }
+        else if(score >= 6){ label = "Developing"; level = "warn"; }
+        else { label = "Low"; level = "bad"; }
 
-        // Stage / decision window
-        if (d.stage === "rollout" || d.stage === "pilot") score += 2;
-        if (d.decisionWindow === "0-2w") score += 2;
-        else if (d.decisionWindow === "2-6w") score += 1;
-
-        // Timing selection
-        if (d.timing === "urgent") score += 1;
-
-        var tier = "B";
-        if (score >= 12) tier = "A";
-        else if (score <= 6) tier = "C";
-
-        return {tier:tier, score:score};
+        setDealSignal(label, level);
+        return { label: label, score: score };
       }
 
-      function laneLabel(v){
-        if (v === "invoice-po") return "Invoice / PO";
-        if (v === "card") return "Card checkout";
-        if (v === "msa") return "MSA/SOW workflow";
-        if (v === "unknown") return "Unknown";
-        return "—";
+      function computeRoute(){
+        var lane = val("lane");
+        var proc = checked("sigProc") || lane === "procurement";
+        var route = "Route: Gate → confirm lane → proceed";
+        if(proc) route = "Route: Procurement lane (Invoice/PO) → Status (RID)";
+        else if(lane === "integration") route = "Route: Integration lane → Procurement if PO/Invoice → Status (RID)";
+        else if(lane === "delivery") route = "Route: Delivery lane → Procurement if PO/Invoice → Status (RID)";
+        else if(lane === "both") route = "Route: Delivery + Integration → Procurement if PO/Invoice → Status (RID)";
+        if($("routeText")) $("routeText").innerHTML = "<strong>"+route+"</strong>";
+        return route;
       }
 
-      function buildPacket(dealId, rid, d, tierObj, startObj){
+      function computeAll(){
+        computePartnerTier();
+        computeDealSignal();
+        computeRoute();
+      }
+
+      function formData(){
+        var rid = getRID(), deal = getDeal();
         return {
-          schema: "noetfield.partner_deal.v1",
-          generated_at: new Date().toISOString(),
-          deal_id: dealId,
           rid: rid,
-          tier: tierObj.tier,
-          score: tierObj.score,
-          suggested_start: startObj,
-          routing: {
-            procurement_lane: d.procLane || null,
-            timing: d.timing || null,
-            stage: d.stage || null,
-            decision_window: d.decisionWindow || null
-          },
+          deal_id: deal,
+          submitted_at_utc: (new Date()).toISOString(),
           partner: {
-            name: d.partnerName || null,
-            email: d.partnerEmail || null,
-            website: d.partnerWebsite || null,
-            role: d.partnerRole || null
+            name: val("partnerName"),
+            email: val("partnerEmail"),
+            website: val("partnerWebsite"),
+            role: val("partnerRole")
           },
           client: {
-            org: d.clientOrg || null,
-            domain: d.clientDomain || null,
-            size: d.clientSize || null,
-            industry: d.industry || null,
-            geo: d.geo || null,
-            champion_role: d.championRole || null,
-            buyer_role: d.buyerRole || null
+            organization: val("clientOrg"),
+            domain: val("clientDomain"),
+            size: val("clientSize"),
+            industry: val("industry"),
+            geography: val("geo"),
+            champion_role: val("championRole"),
+            buyer_role: val("buyerRole")
           },
-          need: d.need || null,
-          signals: {
-            microsoft_heavy: !!d.sigM365,
-            sensitive_data: !!d.sigSensitive,
-            procurement_pressure: !!d.sigProc,
-            urgency: !!d.sigUrgent
-          },
-          constraints_high_level: d.constraints || null,
-          safety: {
-            non_confidential_only: true
+          opportunity: {
+            stage: val("stage"),
+            lane: val("lane"),
+            likely_package: val("package"),
+            next_step: val("nextStep"),
+            next_step_date: val("nextDate"),
+            notes: val("notes"),
+            signals: {
+              procurement_pressure: checked("sigProc"),
+              evidence_accessible: checked("sigEvidence"),
+              urgent_window: checked("sigUrgent"),
+              copilot_in_scope: checked("sigCopilot"),
+              lane_confirmed: checked("sigLaneConfirmed"),
+              meeting_confirmed: checked("sigMeetingConfirmed")
+            },
+            prime_qualifiers: {
+              partner_sourced_account: checked("pqSourced"),
+              two_buyer_side_meetings_feasible: checked("pqMeetings"),
+              close_support_signature_and_payment: checked("pqClose"),
+              registered_before_external_sharing: checked("pqRegisteredFirst")
+            },
+            acknowledgements: {
+              non_confidential: checked("ackNonConf"),
+              submission_not_acceptance: checked("ackAcceptance")
+            }
           }
         };
       }
 
-      function downloadJson(filename, obj){
-        try{
-          var blob = new Blob([JSON.stringify(obj, null, 2)], {type:"application/json;charset=utf-8"});
-          var url = URL.createObjectURL(blob);
-          var a = document.createElement("a");
-          a.href = url;
-          a.download = filename;
-          document.body.appendChild(a);
-          a.click();
-          document.body.removeChild(a);
-          setTimeout(function(){ try{ URL.revokeObjectURL(url); } catch(_){} }, 500);
-        } catch(_) {}
+      function download(filename, text){
+        var a = document.createElement("a");
+        a.href = URL.createObjectURL(new Blob([text], {type:"text/plain"}));
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        setTimeout(function(){ URL.revokeObjectURL(a.href); a.remove(); }, 2000);
       }
 
-      function buildMailto(to, subject, body){
+      function exportPacket(){
+        var errs = validate();
+        if(errs.length) return;
+
+        var pt = computePartnerTier();
+        var ds = computeDealSignal();
+        var route = computeRoute();
+        var data = formData();
+
+        var rid = data.rid, deal = data.deal_id;
+
+        var summary =
+`Noetfield — Partner Deal Registration Packet (Non-Confidential)
+RID: ${rid}
+Deal ID: ${deal}
+
+Partner Tier: ${pt}
+Deal Signal: ${ds.label} (score: ${ds.score})
+
+Partner:
+- Name: ${data.partner.name}
+- Email: ${data.partner.email}
+- Website: ${data.partner.website || "-"}
+- Role: ${data.partner.role || "-"}
+
+Client:
+- Organization: ${data.client.organization}
+- Domain: ${data.client.domain || "-"}
+- Size: ${data.client.size || "-"}
+- Industry: ${data.client.industry || "-"}
+- Geography: ${data.client.geography || "-"}
+- Champion Role: ${data.client.champion_role}
+- Buyer Role: ${data.client.buyer_role || "-"}
+
+Opportunity:
+- Stage: ${data.opportunity.stage}
+- Lane: ${data.opportunity.lane}
+- Likely Package: ${data.opportunity.likely_package || "-"}
+- Next Step: ${data.opportunity.next_step}
+- Next Step Date: ${data.opportunity.next_step_date}
+- Signals: Procurement=${data.opportunity.signals.procurement_pressure ? "Yes":"No"}, Evidence=${data.opportunity.signals.evidence_accessible ? "Yes":"No"}, Urgent=${data.opportunity.signals.urgent_window ? "Yes":"No"}, Copilot=${data.opportunity.signals.copilot_in_scope ? "Yes":"No"}, LaneConfirmed=${data.opportunity.signals.lane_confirmed ? "Yes":"No"}, MeetingConfirmed=${data.opportunity.signals.meeting_confirmed ? "Yes":"No"}
+- Prime qualifiers: Sourced=${data.opportunity.prime_qualifiers.partner_sourced_account ? "Yes":"No"}, 2Meetings=${data.opportunity.prime_qualifiers.two_buyer_side_meetings_feasible ? "Yes":"No"}, CloseSupport=${data.opportunity.prime_qualifiers.close_support_signature_and_payment ? "Yes":"No"}, RegisteredFirst=${data.opportunity.prime_qualifiers.registered_before_external_sharing ? "Yes":"No"}
+
+Notes (sanitized):
+${data.opportunity.notes || "-"}
+
+Acknowledgements:
+- Non-confidential submission: ${data.opportunity.acknowledgements.non_confidential ? "Yes":"No"}
+- Submission is not acceptance: ${data.opportunity.acknowledgements.submission_not_acceptance ? "Yes":"No"}
+
+Routing suggestion:
+${route}
+
+Boundary note:
+Public packet is routing-only. If sensitive context is required, route via Procurement lane after NDA/kickoff.
+`;
+
+        var json = JSON.stringify(data, null, 2);
+
+        download(deal + "-packet.txt", summary);
+        download(deal + "-data.json", json);
+      }
+
+      async function copy(text){
         try{
-          var s = "mailto:" + encodeURIComponent(to || "") + "?subject=" + encodeURIComponent(subject || "") + "&body=" + encodeURIComponent(body || "");
-          return s;
-        } catch(_){
-          return "mailto:";
+          await navigator.clipboard.writeText(text);
+          return true;
+        }catch(e){
+          try{
+            var ta=document.createElement("textarea");
+            ta.value=text; document.body.appendChild(ta); ta.select();
+            document.execCommand("copy"); ta.remove();
+            return true;
+          }catch(e2){ return false; }
         }
       }
 
-      function withRidAndDeal(path, rid, dealId){
-        try{
-          var u = new URL(path, window.location.origin);
-          if (rid && !u.searchParams.get("rid")) u.searchParams.set("rid", rid);
-          if (dealId && !u.searchParams.get("deal")) u.searchParams.set("deal", dealId);
-          return u.pathname + u.search + u.hash;
-        } catch(_){
-          return path;
-        }
+      function dealLink(){
+        var rid=getRID(), deal=getDeal();
+        var u = new URL(window.location.origin + "/gate/partners/deal/");
+        u.searchParams.set("rid", rid);
+        u.searchParams.set("deal", deal);
+        return u.toString();
       }
 
-      // Elements
-      var rid = getRid();
-      var dealId = getDealId();
+      function buildWarmIntroEmail(){
+        var rid=getRID(), deal=getDeal();
+        var org=val("clientOrg"), champ=val("championRole");
+        var pkg=val("package") || "TBD";
+        var proc = (checked("sigProc") || val("lane")==="procurement") ? "Procurement/PO path likely" : "Procurement path TBD";
 
-      // Ensure URL has deal + rid for shareability
-      setQueryParam("rid", rid);
-      setQueryParam("deal", dealId);
+        return (
+`Subject: Intro — Noetfield governance artefacts (RID ${rid}, Deal ${deal})
 
-      applyRidToLinks(rid);
-      setBadges(dealId, rid);
+Hello [Name],
 
-      // Buttons
-      var newDealBtn = $("newDealBtn");
-      var saveDraftBtn = $("saveDraftBtn");
-      var loadDraftBtn = $("loadDraftBtn");
-      var clearDraftBtn = $("clearDraftBtn");
-      var computeBtn = $("computeBtn");
-      var exportBtn = $("exportBtn");
-      var copyPacketBtn = $("copyPacketBtn");
+Introduction for ${org || "[Organization]"}.
+Scope: evidence-first governance + board-ready artefacts (package: ${pkg}).
+Champion role: ${champ || "[Champion role]"}.
+Routing: ${proc}. Procurement lane: ${window.location.origin}/gate/procurement/?rid=${encodeURIComponent(rid)}.
 
-      var genEmailToNoetfieldBtn = $("genEmailToNoetfieldBtn");
-      var mailtoNoetfieldBtn = $("mailtoNoetfieldBtn");
-      var copyEmailToNoetfieldBtn = $("copyEmailToNoetfieldBtn");
-      var emailOut = $("emailOut");
+This note is non-confidential. Next step: ${val("nextStep") || "[Next step]"} on ${val("nextDate") || "[Date]"}.
 
-      var copyRidBtn = $("copyRidBtn");
-      var copyDealIdBtn = $("copyDealIdBtn");
-      var copyDealLinkBtn = $("copyDealLinkBtn");
+Regards,
+[Partner Name]`
+        );
+      }
 
-      var copyDealLinkHeroBtn = $("copyDealLinkBtn");
+      function buildSalesRegistrationEmail(){
+        var rid=getRID(), deal=getDeal();
+        var org=val("clientOrg");
+        var pt = $("partnerTierText") ? $("partnerTierText").textContent : "Pending";
+        var ds = $("dealSignalText") ? $("dealSignalText").textContent : "Pending";
 
-      var tierText = $("tierText");
-      var railTier = $("railTier");
-      var suggestedStartEl = $("suggestedStart");
-      var suggestedWhyEl = $("suggestedWhy");
-      var railLane = $("railLane");
+        return (
+`To: sales@noetfield.com
+Subject: Partner Deal Registration — ${org || "[Organization]"} (Deal ${deal}, RID ${rid})
 
-      // State
-      var lastPacket = null;
+Partner Deal Registration submitted (non-confidential).
+Deal link: ${dealLink()}
 
-      function draftKey(){ return "nf_pd_draft_" + dealId; }
+Partner tier suggestion: ${pt}
+Deal signal: ${ds}
 
+Minimum fields included: partner, org, champion role, stage, next-step date, lane, acknowledgements.
+Acceptance required: protection starts only upon Deal Accepted email.
+
+Regards,
+[Partner Name]`
+        );
+      }
+
+      function buildOpsProcurementEmail(){
+        var rid=getRID(), deal=getDeal();
+        var org=val("clientOrg") || "[Organization]";
+        return (
+`To: ops@noetfield.com
+Subject: Procurement lane routing — ${org} (RID ${rid}, Deal ${deal})
+
+Routing note (non-confidential):
+- Buyer likely requires Invoice/PO onboarding.
+- Please expect procurement contact to use: ${window.location.origin}/gate/procurement/?rid=${encodeURIComponent(rid)}
+
+Deal link: ${dealLink()}
+
+Regards,
+[Partner Name]`
+        );
+      }
+
+      function newDeal(){
+        try{
+          var d = new Date(), y=String(d.getUTCFullYear()).slice(2),
+          m=String(d.getUTCMonth()+1).padStart(2,"0"), day=String(d.getUTCDate()).padStart(2,"0");
+          var rand = (window.crypto && crypto.getRandomValues) ? (function(){
+            var a=new Uint8Array(5); crypto.getRandomValues(a);
+            return Array.from(a).map(x => (x%36).toString(36)).join("").toUpperCase();
+          })() : Math.random().toString(36).slice(2,7).toUpperCase();
+
+          var deal="NF-PD-" + y + m + day + "-" + rand;
+          window.__NF_DEAL = deal;
+
+          var url=new URL(window.location.href);
+          url.searchParams.set("deal", deal);
+          window.history.replaceState({}, "", url.pathname + url.search + url.hash);
+
+          if($("dealIdText")) $("dealIdText").textContent = deal;
+          if($("dealIdRail")) $("dealIdRail").textContent = deal;
+          if($("bottomDeal")) $("bottomDeal").textContent = "Deal: " + deal;
+          if($("dealIdHidden")) $("dealIdHidden").value = deal;
+
+          setPartnerTier("Pending", "warn");
+          setDealSignal("Pending", "warn");
+          if($("routeText")) $("routeText").innerHTML = "<strong>Pending</strong> — compute after filling key fields.";
+        }catch(e){}
+      }
+
+      function draftKey(){ return "nf_pd_draft_" + (getDeal() || "unknown"); }
       function saveDraft(){
         try{
-          var d = readForm();
-          localStorage.setItem(draftKey(), JSON.stringify(d));
-          localStorage.setItem("nf_pd_last_deal", dealId);
-          return true;
-        } catch(_){ return false; }
+          var data=formData();
+          localStorage.setItem(draftKey(), JSON.stringify(data));
+        }catch(e){}
       }
-
       function loadDraft(){
         try{
-          var raw = localStorage.getItem(draftKey());
-          if (!raw) return false;
-          var d = JSON.parse(raw);
+          var raw=localStorage.getItem(draftKey());
+          if(!raw) return;
+          var data=JSON.parse(raw);
 
-          function setVal(id, val){
-            var el = $(id);
-            if (!el) return;
-            el.value = (val == null) ? "" : String(val);
-          }
-          function setChk(id, val){
-            var el = $(id);
-            if (!el) return;
-            el.checked = !!val;
-          }
+          function set(id, v){ var el=$(id); if(el) el.value = (v||""); }
+          function setChk(id, v){ var el=$(id); if(el) el.checked = !!v; }
 
-          setVal("partnerName", d.partnerName);
-          setVal("partnerEmail", d.partnerEmail);
-          setVal("partnerWebsite", d.partnerWebsite);
-          setVal("partnerRole", d.partnerRole);
+          set("partnerName", data.partner?.name);
+          set("partnerEmail", data.partner?.email);
+          set("partnerWebsite", data.partner?.website);
+          set("partnerRole", data.partner?.role);
 
-          setVal("clientOrg", d.clientOrg);
-          setVal("clientDomain", d.clientDomain);
-          setVal("clientSize", d.clientSize);
-          setVal("industry", d.industry);
-          setVal("geo", d.geo);
+          set("clientOrg", data.client?.organization);
+          set("clientDomain", data.client?.domain);
+          set("clientSize", data.client?.size);
+          set("industry", data.client?.industry);
+          set("geo", data.client?.geography);
+          set("championRole", data.client?.champion_role);
+          set("buyerRole", data.client?.buyer_role);
 
-          setVal("championRole", d.championRole);
-          setVal("buyerRole", d.buyerRole);
+          set("stage", data.opportunity?.stage);
+          set("lane", data.opportunity?.lane);
+          set("package", data.opportunity?.likely_package);
+          set("nextStep", data.opportunity?.next_step);
+          set("nextDate", data.opportunity?.next_step_date);
+          set("notes", data.opportunity?.notes);
 
-          setVal("need", d.need);
-          setVal("timing", d.timing);
-          setVal("procLane", d.procLane);
-          setVal("stage", d.stage);
-          setVal("decisionWindow", d.decisionWindow);
+          setChk("sigProc", data.opportunity?.signals?.procurement_pressure);
+          setChk("sigEvidence", data.opportunity?.signals?.evidence_accessible);
+          setChk("sigUrgent", data.opportunity?.signals?.urgent_window);
+          setChk("sigCopilot", data.opportunity?.signals?.copilot_in_scope);
+          setChk("sigLaneConfirmed", data.opportunity?.signals?.lane_confirmed);
+          setChk("sigMeetingConfirmed", data.opportunity?.signals?.meeting_confirmed);
 
-          setVal("constraints", d.constraints);
+          setChk("pqSourced", data.opportunity?.prime_qualifiers?.partner_sourced_account);
+          setChk("pqMeetings", data.opportunity?.prime_qualifiers?.two_buyer_side_meetings_feasible);
+          setChk("pqClose", data.opportunity?.prime_qualifiers?.close_support_signature_and_payment);
+          setChk("pqRegisteredFirst", data.opportunity?.prime_qualifiers?.registered_before_external_sharing);
 
-          setChk("sigM365", d.sigM365);
-          setChk("sigSensitive", d.sigSensitive);
-          setChk("sigProc", d.sigProc);
-          setChk("sigUrgent", d.sigUrgent);
+          setChk("ackNonConf", data.opportunity?.acknowledgements?.non_confidential);
+          setChk("ackAcceptance", data.opportunity?.acknowledgements?.submission_not_acceptance);
 
-          return true;
-        } catch(_){ return false; }
+          computeAll();
+        }catch(e){}
       }
-
       function clearDraft(){
-        try{
-          localStorage.removeItem(draftKey());
-          return true;
-        } catch(_){ return false; }
+        try{ localStorage.removeItem(draftKey()); }catch(e){}
       }
 
-      function refreshRail(d, tierObj, startObj){
-        tierText.textContent = tierObj.tier + " (score " + tierObj.score + ")";
-        railTier.textContent = tierObj.tier + " (score " + tierObj.score + ")";
-        tierDotSet(tierObj.tier);
+      function bind(){
+        // initial
+        setPartnerTier("Pending", "warn");
+        setDealSignal("Pending", "warn");
+        computeAll();
 
-        suggestedStartEl.textContent = startObj.label;
-        suggestedWhyEl.textContent = startObj.why;
-
-        railLane.textContent = laneLabel(d.procLane);
-
-        // Update Gate & Sales links with offer hint + deal id for continuity
-        var gateBtn = $("railGateBtn");
-        var salesBtn = $("railSalesBtn");
-        var procBtn = $("railProcBtn");
-        if (gateBtn){
-          gateBtn.setAttribute("href", withRidAndDeal("/gate/?offer=" + encodeURIComponent(startObj.id), rid, dealId));
-        }
-        if (salesBtn){
-          salesBtn.setAttribute("href", withRidAndDeal("/gate/sales/?offer=" + encodeURIComponent(startObj.id), rid, dealId));
-        }
-        if (procBtn){
-          procBtn.setAttribute("href", withRidAndDeal("/gate/procurement/?focus=" + encodeURIComponent(startObj.id), rid, dealId));
-        }
-        applyRidToLinks(rid);
-      }
-
-      function computeAll(){
-        var d = readForm();
-        var errs = validate(d);
-        showErrors(errs);
-        if (errs.length) return false;
-
-        var tierObj = computeTier(d);
-        var startObj = suggestStart(d);
-
-        lastPacket = buildPacket(dealId, rid, d, tierObj, startObj);
-
-        exportBtn.disabled = false;
-        copyPacketBtn.disabled = false;
-
-        refreshRail(d, tierObj, startObj);
-        return true;
-      }
-
-      function generateEmailToNoetfield(){
-        if (!lastPacket){
-          var ok = computeAll();
-          if (!ok) return;
-        }
-        var p = lastPacket;
-
-        var subject = "Partner Deal Registration — " + p.deal_id + " — RID " + p.rid + " — Tier " + p.tier;
-
-        var lines = [];
-        lines.push("Partner Deal Registration");
-        lines.push("");
-        lines.push("Deal ID: " + p.deal_id);
-        lines.push("RID: " + p.rid);
-        lines.push("Tier (suggested): " + p.tier + " (score " + p.score + ")");
-        lines.push("Suggested start: " + (p.suggested_start && p.suggested_start.label ? p.suggested_start.label : "—"));
-        lines.push("");
-        lines.push("Partner:");
-        lines.push("- Name: " + (p.partner.name || "—"));
-        lines.push("- Email: " + (p.partner.email || "—"));
-        lines.push("- Website: " + (p.partner.website || "—"));
-        lines.push("- Role: " + (p.partner.role || "—"));
-        lines.push("");
-        lines.push("Client (high-level):");
-        lines.push("- Org: " + (p.client.org || "—"));
-        lines.push("- Domain: " + (p.client.domain || "—"));
-        lines.push("- Size: " + (p.client.size || "—"));
-        lines.push("- Industry: " + (p.client.industry || "—"));
-        lines.push("- Geo: " + (p.client.geo || "—"));
-        lines.push("- Champion role: " + (p.client.champion_role || "—"));
-        lines.push("- Buyer role: " + (p.client.buyer_role || "—"));
-        lines.push("");
-        lines.push("Routing:");
-        lines.push("- Need: " + (p.need || "—"));
-        lines.push("- Timing: " + (p.routing.timing || "—"));
-        lines.push("- Stage: " + (p.routing.stage || "—"));
-        lines.push("- Decision window: " + (p.routing.decision_window || "—"));
-        lines.push("- Procurement lane: " + (p.routing.procurement_lane || "—"));
-        lines.push("");
-        lines.push("Signals:");
-        lines.push("- Microsoft-heavy: " + (p.signals.microsoft_heavy ? "Yes" : "No"));
-        lines.push("- Sensitive data theme: " + (p.signals.sensitive_data ? "Yes" : "No"));
-        lines.push("- Procurement pressure: " + (p.signals.procurement_pressure ? "Yes" : "No"));
-        lines.push("- Urgency: " + (p.signals.urgency ? "Yes" : "No"));
-        lines.push("");
-        if (p.constraints_high_level){
-          lines.push("Constraints (high-level):");
-          lines.push(p.constraints_high_level);
-          lines.push("");
-        }
-        lines.push("Deal link (non-confidential):");
-        lines.push("https://www.noetfield.com" + withRidAndDeal("/gate/partners/deal/", p.rid, p.deal_id));
-        lines.push("");
-        lines.push("Notes:");
-        lines.push("- This message contains non-confidential routing signals only.");
-        lines.push("- Please confirm acceptance to activate 90-day deal protection (per partner policy).");
-
-        var body = lines.join("\n");
-        emailOut.value = "Subject: " + subject + "\n\nTo: procurement@noetfield.com\n\n" + body;
-
-        copyEmailToNoetfieldBtn.disabled = !emailOut.value;
-
-        if (mailtoNoetfieldBtn){
-          mailtoNoetfieldBtn.hidden = false;
-          mailtoNoetfieldBtn.setAttribute("href", buildMailto("procurement@noetfield.com", subject, body));
-        }
-      }
-
-      // Wire up events
-      if (newDealBtn){
-        newDealBtn.addEventListener("click", function(){
-          dealId = genDealId();
-          try{ localStorage.setItem("nf_pd_last_deal", dealId); } catch(_){}
-          setQueryParam("deal", dealId);
-          lastPacket = null;
-          exportBtn.disabled = true;
-          copyPacketBtn.disabled = true;
-          emailOut.value = "";
-          copyEmailToNoetfieldBtn.disabled = true;
-          if (mailtoNoetfieldBtn) mailtoNoetfieldBtn.hidden = true;
-
-          setBadges(dealId, rid);
-          $("railDealId").textContent = dealId;
-          $("dealIdText").textContent = dealId;
-        });
-      }
-
-      if (saveDraftBtn){
-        saveDraftBtn.addEventListener("click", function(){
-          computeAll(); // compute also refreshes tier
-          saveDraft();
-        });
-      }
-
-      if (loadDraftBtn){
-        loadDraftBtn.addEventListener("click", function(){
-          loadDraft();
-        });
-      }
-
-      if (clearDraftBtn){
-        clearDraftBtn.addEventListener("click", function(){
-          clearDraft();
-        });
-      }
-
-      if (computeBtn){
-        computeBtn.addEventListener("click", function(){
+        var computeBtn=$("computeBtn");
+        if(computeBtn) computeBtn.addEventListener("click", function(){
+          validate();
           computeAll();
         });
-      }
 
-      if (exportBtn){
-        exportBtn.addEventListener("click", function(){
-          if (!lastPacket){
-            var ok = computeAll();
-            if (!ok) return;
-          }
-          downloadJson("noetfield-partner-deal-" + dealId + "-" + rid + ".json", lastPacket);
+        [
+          "stage","clientSize","lane","sigUrgent","sigProc","sigEvidence","sigCopilot","sigLaneConfirmed","sigMeetingConfirmed",
+          "pqSourced","pqMeetings","pqClose","pqRegisteredFirst"
+        ].forEach(function(id){
+          var el=$(id);
+          if(el) el.addEventListener("change", function(){ computeAll(); });
+        });
+
+        var copyLink=$("copyDealLinkBtn");
+        if(copyLink) copyLink.addEventListener("click", function(){ copy(dealLink()); });
+
+        var exportBtn=$("exportPacketBtn");
+        if(exportBtn) exportBtn.addEventListener("click", exportPacket);
+
+        var bottomCopy=$("bottomCopyLink");
+        if(bottomCopy) bottomCopy.addEventListener("click", function(){ copy(dealLink()); });
+
+        var bottomExport=$("bottomExport");
+        if(bottomExport) bottomExport.addEventListener("click", exportPacket);
+
+        var newDealBtn=$("newDealBtn");
+        if(newDealBtn) newDealBtn.addEventListener("click", newDeal);
+
+        var saveBtn=$("saveDraftBtn");
+        if(saveBtn) saveBtn.addEventListener("click", saveDraft);
+
+        var loadBtn=$("loadDraftBtn");
+        if(loadBtn) loadBtn.addEventListener("click", loadDraft);
+
+        var clearBtn=$("clearDraftBtn");
+        if(clearBtn) clearBtn.addEventListener("click", clearDraft);
+
+        var copyIntro=$("copyIntroEmailBtn");
+        if(copyIntro) copyIntro.addEventListener("click", function(){
+          var errs=validate(); if(errs.length) return;
+          computeAll();
+          copy(buildWarmIntroEmail());
+        });
+
+        var copySales=$("copySalesRegEmailBtn");
+        if(copySales) copySales.addEventListener("click", function(){
+          var errs=validate(); if(errs.length) return;
+          computeAll();
+          copy(buildSalesRegistrationEmail());
+        });
+
+        var copyOps=$("copyOpsEmailBtn");
+        if(copyOps) copyOps.addEventListener("click", function(){
+          var errs=validate(); if(errs.length) return;
+          computeAll();
+          copy(buildOpsProcurementEmail());
         });
       }
 
-      if (copyPacketBtn){
-        copyPacketBtn.addEventListener("click", async function(){
-          if (!lastPacket){
-            var ok = computeAll();
-            if (!ok) return;
-          }
-          await copyToClipboard(JSON.stringify(lastPacket, null, 2));
-        });
-      }
-
-      if (genEmailToNoetfieldBtn){
-        genEmailToNoetfieldBtn.addEventListener("click", generateEmailToNoetfield);
-      }
-
-      if (copyEmailToNoetfieldBtn){
-        copyEmailToNoetfieldBtn.addEventListener("click", async function(){
-          if (!emailOut.value) return;
-          await copyToClipboard(emailOut.value);
-        });
-      }
-
-      if (copyRidBtn){
-        copyRidBtn.addEventListener("click", async function(){
-          await copyToClipboard(rid);
-        });
-      }
-      if (copyDealIdBtn){
-        copyDealIdBtn.addEventListener("click", async function(){
-          await copyToClipboard(dealId);
-        });
-      }
-
-      function copyDealLink(){
-        try{
-          var u = new URL(window.location.href);
-          u.searchParams.set("rid", rid);
-          u.searchParams.set("deal", dealId);
-          return copyToClipboard(u.pathname + "?" + u.searchParams.toString());
-        } catch(_){
-          return copyToClipboard("/gate/partners/deal/?rid=" + encodeURIComponent(rid) + "&deal=" + encodeURIComponent(dealId));
-        }
-      }
-
-      if (copyDealLinkBtn){ copyDealLinkBtn.addEventListener("click", copyDealLink); }
-      if (copyDealLinkHeroBtn){ copyDealLinkHeroBtn.addEventListener("click", copyDealLink); }
-
-      // Initialize rail defaults
-      $("railDealId").textContent = dealId;
-      $("railRid").textContent = rid;
-      $("tierText").textContent = "Pending";
-      $("railTier").textContent = "Pending";
-      tierDotSet(null);
-      $("suggestedStart").textContent = "—";
-      $("suggestedWhy").textContent = "Compute tier to populate suggested start.";
-      $("railLane").textContent = "—";
-
-      // Auto-load draft if present
-      try{
-        if (localStorage.getItem(draftKey())) loadDraft();
-      } catch(_){}
-
-      // Apply RID to any links
-      applyRidToLinks(rid);
+      if(document.readyState==="loading") document.addEventListener("DOMContentLoaded", bind);
+      else bind();
     })();
   </script>
 </body>

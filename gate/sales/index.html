@@ -1,5 +1,5 @@
-<!-- /gate/sales/index.html — Noetfield Sales v3.3
-     (Readiness Buy Buttons only • QuickScan + Trust Ledger = payment links + marketing • invoice/PO • intake routing • RID continuity • JS-off fallbacks) -->
+<!-- /gate/sales/index.html — Noetfield Sales v3.4
+     (Full catalog on-page: Readiness → QuickScan → Trust Ledger • Buy Buttons ONLY for Readiness • Payment links for others • Procurement/Intake • RID continuity • JS-off fallbacks) -->
 <!doctype html>
 <html lang="en">
 <head>
@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <title>Noetfield — Sales</title>
-  <meta name="description" content="Start page for Noetfield packages. Card payment (optional), Invoice/PO procurement lane, and non-confidential intake. Selected package summary with RID continuity." />
+  <meta name="description" content="Purchase hub for Noetfield packages: Copilot Readiness (Buy Buttons), Copilot QuickScan (payment links), and Trust Ledger (payment links). Invoice/PO procurement lane and non-confidential intake. RID continuity across flows." />
   <meta name="robots" content="index,follow" />
   <meta name="author" content="Noetfield Systems Inc." />
   <meta name="theme-color" content="#07070b" />
@@ -20,21 +20,21 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Noetfield" />
   <meta property="og:title" content="Noetfield — Sales" />
-  <meta property="og:description" content="Start a package via card pay, invoice/PO, or non-confidential intake. Procurement-ready flow." />
+  <meta property="og:description" content="Readiness (Buy Buttons), QuickScan (payment links), Trust Ledger (payment links). Invoice/PO lane + non-confidential intake. Procurement-ready flow." />
   <meta property="og:url" content="https://www.noetfield.com/gate/sales/" />
   <meta property="og:image" content="https://www.noetfield.com/noetfield-og.png" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Noetfield — Sales" />
-  <meta name="twitter:description" content="Start a package via card pay, invoice/PO, or non-confidential intake." />
+  <meta name="twitter:description" content="Readiness, QuickScan, Trust Ledger. Invoice/PO + intake. Procurement-ready." />
   <meta name="twitter:image" content="https://www.noetfield.com/noetfield-og.png" />
 
   <!-- LOCKED SHELL -->
   <link rel="stylesheet" href="/assets/noetfield-shell.css" />
   <script src="/assets/noetfield-shell.js" defer></script>
 
-  <!-- Stripe Buy Button (load once) — ONLY used for Readiness -->
+  <!-- Stripe Buy Button (load once) — used ONLY for Readiness -->
   <script async src="https://js.stripe.com/v3/buy-button.js"></script>
 
   <style>
@@ -76,9 +76,11 @@
     h1{margin:14px 0 10px; font-size: clamp(30px, 3.1vw, 46px); line-height:1.06; letter-spacing:-0.8px}
     .lead{margin:0; color:var(--muted); font-size:16px; line-height:1.75; max-width: 980px}
     .lead strong{color:var(--text); font-weight:950}
+
     .actions{display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-top:14px}
     .actions .btn{min-height:44px}
     .metaRow{display:flex; flex-wrap:wrap; gap:10px; margin-top:14px}
+
     .pill{
       display:inline-flex; align-items:center; gap:10px;
       padding:9px 12px;
@@ -90,6 +92,7 @@
       white-space:nowrap;
     }
     .pill strong{color:var(--text); font-weight:950}
+
     .notice{
       margin-top:12px;
       padding:12px 12px;
@@ -120,6 +123,7 @@
     }
     .hd{ padding:18px 18px 0; }
     .bd{ padding:18px; }
+
     .cardTitle{ margin:0 0 8px; font-size:18px; letter-spacing:-0.2px; font-weight:950; }
     .muted{ color:var(--muted); line-height:1.7; margin:0; }
 
@@ -130,10 +134,30 @@
       padding:14px;
       margin-top:12px;
     }
-    .sectionTitle{font-weight:950; letter-spacing:-.2px; margin:0 0 6px; font-size:14px; color:var(--text)}
-    .sectionDesc{margin:0 0 10px; color:var(--muted2); font-size:12.7px; line-height:1.6}
-    .steps{margin:0; padding-left:18px; color:var(--muted); line-height:1.85}
-    .steps li{margin:6px 0}
+    .sectionTitle{
+      font-weight:950;
+      letter-spacing:-.2px;
+      margin:0 0 6px;
+      font-size:14px;
+      color:var(--text);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+    .sectionTitle small{
+      color:var(--muted2);
+      font-size:12px;
+      font-weight:800;
+      letter-spacing:.10em;
+      text-transform:uppercase;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.02);
+      padding:6px 10px;
+      border-radius:999px;
+    }
+    .sectionDesc{margin:0 0 10px; color:var(--muted2); font-size:12.8px; line-height:1.65}
 
     .table{
       width:100%;
@@ -160,15 +184,13 @@
       background: rgba(255,255,255,.03);
     }
     .table tr:last-child td{border-bottom:none}
-    .table a{ border-bottom: 1px solid rgba(255,255,255,.18); }
 
-    /* Readiness buy button row wrapper */
+    /* Readiness buy button wrapper */
     .payWrap{display:flex; align-items:center; gap:12px; flex-wrap:wrap}
     .payWrap .fallbackLink{font-size:12.6px; color:var(--muted2)}
     .payWrap .fallbackLink a{border-bottom:1px solid rgba(255,255,255,.18)}
-    .payGroupHidden{display:none !important;}
 
-    /* Marketing tiles (for payment links only) */
+    /* Marketing tiles for payment links */
     .tiles{
       display:grid;
       grid-template-columns: repeat(3, 1fr);
@@ -182,11 +204,19 @@
       padding:12px;
       min-width:0;
     }
-    .tile h4{margin:0 0 6px; font-size:13.5px; letter-spacing:-.15px}
-    .tile p{margin:0 0 10px; color:var(--muted2); font-size:12.5px; line-height:1.55}
+    .tile h4{margin:0 0 6px; font-size:13.6px; letter-spacing:-.15px}
+    .tile p{margin:0 0 10px; color:var(--muted2); font-size:12.6px; line-height:1.55}
     .tile .ctaRow{display:flex; gap:10px; flex-wrap:wrap; align-items:center}
-    .tile .ctaRow a{font-size:12.8px}
+    .tile .ctaRow a{font-size:12.9px}
     .tile .ctaRow .btn{min-height:40px}
+
+    .miniList{
+      margin:10px 0 0;
+      padding-left:18px;
+      color:var(--muted);
+      line-height:1.8;
+      font-size:13px;
+    }
 
     .rail{ position: sticky; top: 14px; }
     .box{
@@ -235,6 +265,9 @@
     }
     .stickyText strong{ color:var(--text); font-weight:950; }
 
+    .anchorRow{display:flex; gap:10px; flex-wrap:wrap; margin-top:10px}
+    .anchorRow .btn{min-height:42px}
+
     @media (max-width: 980px){
       .grid{ grid-template-columns: 1fr; }
       .rail{ position: relative; top: 0; }
@@ -257,7 +290,7 @@
     "@type":"WebPage",
     "name":"Noetfield — Sales",
     "url":"https://www.noetfield.com/gate/sales/",
-    "description":"Start page for Noetfield packages: card payment (optional), invoice/PO procurement lane, and non-confidential intake.",
+    "description":"Purchase hub for Readiness (Buy Buttons), QuickScan (payment links), and Trust Ledger (payment links). Invoice/PO lane and non-confidential intake with RID continuity.",
     "isPartOf":{"@type":"WebSite","name":"Noetfield","url":"https://www.noetfield.com/"},
     "publisher":{"@type":"Organization","name":"Noetfield Systems Inc."}
   }
@@ -271,220 +304,238 @@
   <header id="nfHeader"></header>
 
   <main id="main" class="wrap">
+    <!-- HERO -->
     <section class="hero" aria-label="Sales hero">
       <div class="heroShell">
         <div class="heroInner">
-          <div class="eyebrow"><span class="dot"></span> Purchase/start • procurement-ready • RID continuity</div>
-          <h1>Start a package.</h1>
+          <div class="eyebrow"><span class="dot"></span> Sales hub • procurement-ready • RID continuity</div>
+
+          <h1>Purchase options and start lanes.</h1>
+
           <p class="lead">
-            Three start paths: <strong>card payment (optional)</strong>, <strong>Invoice/PO (procurement)</strong>, or <strong>non-confidential intake</strong>.
-            The selected package is shown on the right.
+            Catalog is presented in order: <strong>Readiness</strong> → <strong>QuickScan</strong> → <strong>Trust Ledger</strong>.
+            Start via <strong>card payment</strong> (where enabled), <strong>Invoice/PO</strong>, or <strong>non-confidential intake</strong>.
           </p>
 
           <div class="actions" aria-label="Primary actions">
             <a class="btn secondary" href="/gate/" data-rid-link>Back to Gate</a>
-            <a class="btn primary" href="#start" data-rid-link>Start selected</a>
+            <a class="btn primary" href="#catalog" data-rid-link>View catalog</a>
             <a class="btn secondary" href="#procurement" data-rid-link>Invoice / PO</a>
             <a class="btn secondary" href="#intake" data-rid-link>Start intake (non-confidential)</a>
           </div>
 
           <div class="metaRow" aria-label="Highlights">
             <div class="pill"><strong>RID</strong> preserved</div>
-            <div class="pill"><strong>CAD</strong> pricing</div>
-            <div class="pill"><strong>Procurement</strong> lane</div>
-            <div class="pill"><strong>Intake</strong> non-confidential</div>
+            <div class="pill"><strong>Buy Buttons</strong> Readiness only</div>
+            <div class="pill"><strong>Links</strong> QuickScan / Ledger</div>
+            <div class="pill"><strong>Invoice/PO</strong> available</div>
           </div>
 
           <div class="notice" role="note">
             <strong>Public intake is non-confidential by design.</strong>
             Avoid secrets, credentials, private keys, customer identifiers, or regulated personal data.
           </div>
+
+          <div class="anchorRow" aria-label="Catalog anchors">
+            <a class="btn secondary" href="#readiness" data-rid-link>Readiness</a>
+            <a class="btn secondary" href="#quickscan" data-rid-link>QuickScan</a>
+            <a class="btn secondary" href="#trustledger" data-rid-link>Trust Ledger</a>
+          </div>
         </div>
       </div>
     </section>
 
     <section class="grid" aria-label="Sales layout">
+      <!-- MAIN -->
       <section class="card" aria-label="Sales main">
         <div class="hd">
-          <h2 class="cardTitle" id="start">Start options</h2>
-          <p class="muted">Use the path that matches your procurement posture. Card pay is optional; Invoice/PO is available.</p>
+          <h2 class="cardTitle" id="catalog">Catalog</h2>
+          <p class="muted">The full catalog is listed below. The right rail reflects the selected offer from Gate (if provided).</p>
         </div>
 
         <div class="bd">
-          <div class="section" aria-label="Card payment">
-            <div class="sectionTitle">Option A — Card payment (optional)</div>
+          <!-- READINESS -->
+          <div class="section" id="readiness" aria-label="Copilot Readiness section">
+            <div class="sectionTitle">
+              Copilot Readiness Assessment
+              <small>Buy Button</small>
+            </div>
             <p class="sectionDesc">
-              Buy Button is used <strong>only</strong> for Copilot Readiness SKUs.
-              QuickScan and Trust Ledger show <strong>payment links + tier marketing</strong> (no Buy Button).
+              Fixed-scope readiness SKUs. Intended for organizations preparing rollout decisions and needing board/procurement-grade evidence.
+              Card payment is available via Stripe Buy Buttons (Invoice/PO remains available).
             </p>
 
-            <!-- READINESS = Buy Buttons -->
-            <div id="payGroup_readiness" data-pay-group="readiness" class="payGroupHidden">
-              <div class="sectionTitle" style="margin-top:4px;">Copilot Readiness — card pay (Buy Buttons)</div>
-              <table class="table" aria-label="Readiness card pay">
-                <thead>
-                  <tr>
-                    <th>Package</th>
-                    <th>Default price</th>
-                    <th>Card pay (Stripe)</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr id="row_readiness_starter">
-                    <td><strong>Copilot Readiness — Starter</strong> (2 weeks)</td>
-                    <td>9,500 CAD</td>
-                    <td>
-                      <div class="payWrap">
-                        <stripe-buy-button
-                          buy-button-id="buy_btn_1Sh25JJ03eJkL57JPvKEMuzF"
-                          publishable-key="pk_live_51SfSseJ03eJkL57JNU4voCGfUjjK4WDew62tPBWesZAejr03HX8uTonznYoWDVcpXwLATZpTvWSDfSU4zJbRIB6900xlpPcGSz">
-                        </stripe-buy-button>
-                        <div class="fallbackLink">
-                          <span>Or open checkout:</span>
-                          <a href="https://buy.stripe.com/dRm14o7za95W5mi0UA1Nu08" rel="nofollow noopener" target="_blank">Payment link</a>
-                        </div>
-                        <noscript>
-                          <a href="https://buy.stripe.com/dRm14o7za95W5mi0UA1Nu08" rel="nofollow noopener" target="_blank">Pay by card</a>
-                        </noscript>
+            <table class="table" aria-label="Readiness purchase options">
+              <thead>
+                <tr>
+                  <th>Package</th>
+                  <th>Default price</th>
+                  <th>Card pay (Stripe)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr id="row_readiness_starter">
+                  <td><strong>Starter</strong> (2 weeks)</td>
+                  <td>9,500 CAD</td>
+                  <td>
+                    <div class="payWrap">
+                      <stripe-buy-button
+                        buy-button-id="buy_btn_1Sh25JJ03eJkL57JPvKEMuzF"
+                        publishable-key="pk_live_51SfSseJ03eJkL57JNU4voCGfUjjK4WDew62tPBWesZAejr03HX8uTonznYoWDVcpXwLATZpTvWSDfSU4zJbRIB6900xlpPcGSz">
+                      </stripe-buy-button>
+                      <div class="fallbackLink">
+                        Or open checkout:
+                        <a href="https://buy.stripe.com/dRm14o7za95W5mi0UA1Nu08" rel="nofollow noopener" target="_blank">Payment link</a>
                       </div>
-                    </td>
-                  </tr>
+                      <noscript>
+                        <a href="https://buy.stripe.com/dRm14o7za95W5mi0UA1Nu08" rel="nofollow noopener" target="_blank">Pay by card</a>
+                      </noscript>
+                    </div>
+                  </td>
+                </tr>
 
-                  <tr id="row_readiness_standard">
-                    <td><strong>Copilot Readiness — Standard</strong> (4 weeks)</td>
-                    <td>15,000 CAD</td>
-                    <td>
-                      <div class="payWrap">
-                        <stripe-buy-button
-                          buy-button-id="buy_btn_1Sh27KJ03eJkL57JMwq5iCSg"
-                          publishable-key="pk_live_51SfSseJ03eJkL57JNU4voCGfUjjK4WDew62tPBWesZAejr03HX8uTonznYoWDVcpXwLATZpTvWSDfSU4zJbRIB6900xlpPcGSz">
-                        </stripe-buy-button>
-                        <div class="fallbackLink">
-                          <span>Or open checkout:</span>
-                          <a href="https://buy.stripe.com/dRm3cw1aMdmc9Cy32I1Nu09" rel="nofollow noopener" target="_blank">Payment link</a>
-                        </div>
-                        <noscript>
-                          <a href="https://buy.stripe.com/dRm3cw1aMdmc9Cy32I1Nu09" rel="nofollow noopener" target="_blank">Pay by card</a>
-                        </noscript>
+                <tr id="row_readiness_standard">
+                  <td><strong>Standard</strong> (4 weeks)</td>
+                  <td>15,000 CAD</td>
+                  <td>
+                    <div class="payWrap">
+                      <stripe-buy-button
+                        buy-button-id="buy_btn_1Sh27KJ03eJkL57JMwq5iCSg"
+                        publishable-key="pk_live_51SfSseJ03eJkL57JNU4voCGfUjjK4WDew62tPBWesZAejr03HX8uTonznYoWDVcpXwLATZpTvWSDfSU4zJbRIB6900xlpPcGSz">
+                      </stripe-buy-button>
+                      <div class="fallbackLink">
+                        Or open checkout:
+                        <a href="https://buy.stripe.com/dRm3cw1aMdmc9Cy32I1Nu09" rel="nofollow noopener" target="_blank">Payment link</a>
                       </div>
-                    </td>
-                  </tr>
+                      <noscript>
+                        <a href="https://buy.stripe.com/dRm3cw1aMdmc9Cy32I1Nu09" rel="nofollow noopener" target="_blank">Pay by card</a>
+                      </noscript>
+                    </div>
+                  </td>
+                </tr>
 
-                  <tr id="row_readiness_extended">
-                    <td><strong>Copilot Readiness — Extended</strong> (6 weeks)</td>
-                    <td>25,000 CAD</td>
-                    <td>
-                      <div class="payWrap">
-                        <stripe-buy-button
-                          buy-button-id="buy_btn_1Sh29CJ03eJkL57Jyu54Xu3v"
-                          publishable-key="pk_live_51SfSseJ03eJkL57JNU4voCGfUjjK4WDew62tPBWesZAejr03HX8uTonznYoWDVcpXwLATZpTvWSDfSU4zJbRIB6900xlpPcGSz">
-                        </stripe-buy-button>
-                        <div class="fallbackLink">
-                          <span>Or open checkout:</span>
-                          <a href="https://buy.stripe.com/28E9AU6v63LC3ea1YE1Nu0a" rel="nofollow noopener" target="_blank">Payment link</a>
-                        </div>
-                        <noscript>
-                          <a href="https://buy.stripe.com/28E9AU6v63LC3ea1YE1Nu0a" rel="nofollow noopener" target="_blank">Pay by card</a>
-                        </noscript>
+                <tr id="row_readiness_extended">
+                  <td><strong>Extended</strong> (6 weeks)</td>
+                  <td>25,000 CAD</td>
+                  <td>
+                    <div class="payWrap">
+                      <stripe-buy-button
+                        buy-button-id="buy_btn_1Sh29CJ03eJkL57Jyu54Xu3v"
+                        publishable-key="pk_live_51SfSseJ03eJkL57JNU4voCGfUjjK4WDew62tPBWesZAejr03HX8uTonznYoWDVcpXwLATZpTvWSDfSU4zJbRIB6900xlpPcGSz">
+                      </stripe-buy-button>
+                      <div class="fallbackLink">
+                        Or open checkout:
+                        <a href="https://buy.stripe.com/28E9AU6v63LC3ea1YE1Nu0a" rel="nofollow noopener" target="_blank">Payment link</a>
                       </div>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+                      <noscript>
+                        <a href="https://buy.stripe.com/28E9AU6v63LC3ea1YE1Nu0a" rel="nofollow noopener" target="_blank">Pay by card</a>
+                      </noscript>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+            <ul class="miniList">
+              <li>Output posture: board decision pack + procurement-ready artefacts (as scoped).</li>
+              <li>Best for: organizations in Copilot pilot or rollout decision stage.</li>
+              <li>Prefer Invoice/PO: use Procurement lane below.</li>
+            </ul>
+          </div>
+
+          <!-- QUICKSCAN -->
+          <div class="section" id="quickscan" aria-label="Copilot QuickScan section">
+            <div class="sectionTitle">
+              Copilot QuickScan
+              <small>Payment links</small>
             </div>
+            <p class="sectionDesc">
+              Rapid snapshot to establish current posture, surface material gaps, and produce a decision-ready summary.
+              Stripe payment is provided via direct links (no Buy Button on this section).
+            </p>
 
-            <!-- QUICKSCAN = payment links + marketing (NO Buy Buttons) -->
-            <div id="payGroup_quickscan" data-pay-group="quickscan" class="payGroupHidden">
-              <div class="sectionTitle" style="margin-top:14px;">Copilot QuickScan — payment links (no Buy Button)</div>
-              <p class="sectionDesc">
-                Rapid snapshot for decision posture: evidence-first outputs, minimal disruption, procurement-friendly escalation path.
-              </p>
-              <div class="tiles" aria-label="QuickScan tiers">
-                <div class="tile">
-                  <h4>QuickScan — Base</h4>
-                  <p>Fast baseline snapshot for teams needing a clear starting point and immediate risk flags.</p>
-                  <div class="ctaRow">
-                    <a class="btn primary" href="https://buy.stripe.com/7sY4gA6v681S2a6cDi1Nu00" rel="nofollow noopener" target="_blank">Pay (Stripe)</a>
-                    <a href="/copilot/quickscan/" data-rid-link>See scope</a>
-                  </div>
-                </div>
-                <div class="tile">
-                  <h4>QuickScan — Pro</h4>
-                  <p>Deeper evidence capture + stronger mapping to actions. Best for mid-sized Microsoft-heavy orgs.</p>
-                  <div class="ctaRow">
-                    <a class="btn primary" href="https://buy.stripe.com/14A4gAg5Gfuk2a646M1Nu01" rel="nofollow noopener" target="_blank">Pay (Stripe)</a>
-                    <a href="/copilot/quickscan/" data-rid-link>See scope</a>
-                  </div>
-                </div>
-                <div class="tile">
-                  <h4>QuickScan — Enterprise</h4>
-                  <p>Highest scrutiny path: board/procurement posture, stronger governance surfaces, clean escalation to Trust Brief.</p>
-                  <div class="ctaRow">
-                    <a class="btn primary" href="https://buy.stripe.com/fZu5kE7za81SdSO5aQ1Nu02" rel="nofollow noopener" target="_blank">Pay (Stripe)</a>
-                    <a href="/copilot/quickscan/" data-rid-link>See scope</a>
-                  </div>
-                </div>
-              </div>
-              <div class="notice" style="margin-top:12px;">
-                <strong>Procurement path:</strong> if vendor onboarding/PO is required, use <a href="/gate/procurement/" data-rid-link>Invoice/PO lane</a>.
-              </div>
-            </div>
-
-            <!-- TRUST LEDGER = payment links + marketing (NO Buy Buttons) -->
-            <div id="payGroup_trust_ledger" data-pay-group="trust_ledger" class="payGroupHidden">
-              <div class="sectionTitle" style="margin-top:14px;">Trust Ledger — payment links (no Buy Button)</div>
-              <p class="sectionDesc">
-                Ongoing governance register: tracked decisions, evidence discipline, and board-ready continuity.
-              </p>
-
-              <div class="tiles" aria-label="Trust Ledger plans">
-                <div class="tile">
-                  <h4>Trust Ledger — Plan A</h4>
-                  <p>Entry continuity for governance register maintenance and decision traceability.</p>
-                  <div class="ctaRow">
-                    <a class="btn primary" href="https://buy.stripe.com/5kQdRa6v64PGg0WfPu1Nu05" rel="nofollow noopener" target="_blank">Pay (Stripe)</a>
-                    <a href="/trust-ledger/" data-rid-link>See details</a>
-                  </div>
-                </div>
-                <div class="tile">
-                  <h4>Trust Ledger — Plan B</h4>
-                  <p>Expanded maintenance cadence + stronger procurement-ready packaging.</p>
-                  <div class="ctaRow">
-                    <a class="btn primary" href="https://buy.stripe.com/6oU4gA8De81S4ie9r61Nu06" rel="nofollow noopener" target="_blank">Pay (Stripe)</a>
-                    <a href="/trust-ledger/" data-rid-link>See details</a>
-                  </div>
-                </div>
-                <div class="tile">
-                  <h4>Trust Ledger — Plan C</h4>
-                  <p>Highest continuity posture for organizations with ongoing AI decisions and audit pressure.</p>
-                  <div class="ctaRow">
-                    <a class="btn primary" href="https://buy.stripe.com/6oUdRa8Dedmc8yucDi1Nu07" rel="nofollow noopener" target="_blank">Pay (Stripe)</a>
-                    <a href="/trust-ledger/" data-rid-link>See details</a>
-                  </div>
+            <div class="tiles" aria-label="QuickScan tiers">
+              <div class="tile">
+                <h4>QuickScan — Base</h4>
+                <p>Baseline posture snapshot for teams needing immediate clarity and an initial action map.</p>
+                <div class="ctaRow">
+                  <a class="btn primary" href="https://buy.stripe.com/7sY4gA6v681S2a6cDi1Nu00" rel="nofollow noopener" target="_blank">Pay (Stripe)</a>
+                  <a href="/copilot/quickscan/" data-rid-link>Scope</a>
                 </div>
               </div>
 
-              <div class="notice" style="margin-top:12px;">
-                <strong>Recommended:</strong> start with QuickScan, then continue into Trust Ledger for maintained governance.
+              <div class="tile">
+                <h4>QuickScan — Pro</h4>
+                <p>Deeper evidence capture and stronger mapping to actions; optimized for Microsoft-heavy environments.</p>
+                <div class="ctaRow">
+                  <a class="btn primary" href="https://buy.stripe.com/14A4gAg5Gfuk2a646M1Nu01" rel="nofollow noopener" target="_blank">Pay (Stripe)</a>
+                  <a href="/copilot/quickscan/" data-rid-link>Scope</a>
+                </div>
               </div>
-            </div>
 
-            <!-- Default: no card pay -->
-            <div id="payGroup_none" data-pay-group="none" class="payGroupHidden">
-              <div class="notice" style="margin-top:12px;">
-                <strong>Card pay:</strong> not enabled for the selected package. Use Invoice/PO or intake.
+              <div class="tile">
+                <h4>QuickScan — Enterprise</h4>
+                <p>Procurement/board posture: tighter boundaries, cleaner artefact pack, and explicit escalation options.</p>
+                <div class="ctaRow">
+                  <a class="btn primary" href="https://buy.stripe.com/fZu5kE7za81SdSO5aQ1Nu02" rel="nofollow noopener" target="_blank">Pay (Stripe)</a>
+                  <a href="/copilot/quickscan/" data-rid-link>Scope</a>
+                </div>
               </div>
             </div>
 
             <div class="notice" style="margin-top:12px;">
-              <strong>Billing note:</strong> Prices are in CAD. If tax (GST/HST) applies for invoice-based procurement, it is shown on the invoice.
-              Card payment tax handling depends on Stripe configuration.
+              <strong>Procurement:</strong> if vendor onboarding, PO, or invoice terms are required, use <a href="/gate/procurement/" data-rid-link>Invoice/PO lane</a>.
             </div>
           </div>
 
-          <!-- Procurement -->
+          <!-- TRUST LEDGER -->
+          <div class="section" id="trustledger" aria-label="Trust Ledger section">
+            <div class="sectionTitle">
+              Trust Ledger
+              <small>Payment links</small>
+            </div>
+            <p class="sectionDesc">
+              Ongoing governance register for maintained AI decision traceability. Payments are direct Stripe links (no Buy Button on this section).
+              Designed to sustain board-ready continuity after Readiness/QuickScan.
+            </p>
+
+            <div class="tiles" aria-label="Trust Ledger plans">
+              <div class="tile">
+                <h4>Trust Ledger — Plan A</h4>
+                <p>Entry-level continuity for governance register maintenance and decision traceability.</p>
+                <div class="ctaRow">
+                  <a class="btn primary" href="https://buy.stripe.com/5kQdRa6v64PGg0WfPu1Nu05" rel="nofollow noopener" target="_blank">Pay (Stripe)</a>
+                  <a href="/trust-ledger/" data-rid-link>Details</a>
+                </div>
+              </div>
+
+              <div class="tile">
+                <h4>Trust Ledger — Plan B</h4>
+                <p>Expanded cadence and packaging for procurement-grade internal reporting and evidence discipline.</p>
+                <div class="ctaRow">
+                  <a class="btn primary" href="https://buy.stripe.com/6oU4gA8De81S4ie9r61Nu06" rel="nofollow noopener" target="_blank">Pay (Stripe)</a>
+                  <a href="/trust-ledger/" data-rid-link>Details</a>
+                </div>
+              </div>
+
+              <div class="tile">
+                <h4>Trust Ledger — Plan C</h4>
+                <p>Highest continuity posture for ongoing AI decisions, audit pressure, and governance readiness.</p>
+                <div class="ctaRow">
+                  <a class="btn primary" href="https://buy.stripe.com/6oUdRa8Dedmc8yucDi1Nu07" rel="nofollow noopener" target="_blank">Pay (Stripe)</a>
+                  <a href="/trust-ledger/" data-rid-link>Details</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="notice" style="margin-top:12px;">
+              <strong>Recommended path:</strong> QuickScan → Trust Ledger continuity. For larger programs, escalate via Trust Brief using procurement lane.
+            </div>
+          </div>
+
+          <!-- PROCUREMENT -->
           <div class="section" id="procurement" aria-label="Procurement">
-            <div class="sectionTitle">Option B — Invoice / PO (Procurement lane)</div>
+            <div class="sectionTitle">Invoice / PO (Procurement lane) <small>Procurement</small></div>
             <p class="sectionDesc">Use when vendor onboarding, PO, or invoice terms are required.</p>
 
             <div class="actions" style="margin-top:10px;">
@@ -492,23 +543,20 @@
               <a class="btn secondary" href="/gate/#procurement" data-rid-link>Approval email builder (Gate)</a>
             </div>
 
-            <ul class="steps" style="margin-top:10px;">
-              <li><strong>Step 1:</strong> submit procurement request (high-level) via Procurement lane.</li>
-              <li><strong>Step 2:</strong> vendor onboarding requirements confirmed (invoice/PO, vendor forms, security/privacy pack as required).</li>
-              <li><strong>Step 3:</strong> kickoff after scope lock; secure sharing options confirmed if needed.</li>
+            <ul class="miniList">
+              <li>Submit a high-level request → confirm onboarding requirements → scope lock → kickoff.</li>
+              <li>Security/privacy pack and vendor forms handled as required by procurement.</li>
             </ul>
 
             <div class="notice" style="margin-top:12px;">
-              <strong>Contact:</strong> procurement inquiries can be routed via
-              <a href="mailto:ops@noetfield.com">ops@noetfield.com</a>.
-              <span style="display:block;margin-top:6px;">If <span style="font-weight:950;color:var(--text)">procurement@noetfield.com</span> exists, keep it as an alias/forwarder to ops@.</span>
+              <strong>Ops contact:</strong> <a href="mailto:ops@noetfield.com">ops@noetfield.com</a>
             </div>
           </div>
 
-          <!-- Intake -->
+          <!-- INTAKE -->
           <div class="section" id="intake" aria-label="Intake">
-            <div class="sectionTitle">Option C — Start intake (non-confidential)</div>
-            <p class="sectionDesc">Use to lock scope and confirm the right tier before payment/procurement.</p>
+            <div class="sectionTitle">Start intake (non-confidential) <small>Intake</small></div>
+            <p class="sectionDesc">Use to confirm the correct tier before payment/procurement.</p>
 
             <div class="actions" style="margin-top:10px;">
               <a class="btn primary" id="intakeLink" href="/gate/intake/" data-rid-link>Start intake</a>
@@ -516,19 +564,24 @@
             </div>
 
             <div class="notice" style="margin-top:12px;">
-              <strong>Reminder:</strong> Public intake is non-confidential. Provide only high-level context (no secrets, credentials, or personal data).
+              <strong>Reminder:</strong> Public intake is non-confidential. Provide only high-level context.
             </div>
           </div>
 
+          <!-- NEXT -->
           <div class="section" aria-label="What happens next">
-            <div class="sectionTitle">What happens after start</div>
+            <div class="sectionTitle">What happens after start <small>Flow</small></div>
             <p class="sectionDesc">Designed for minimal supervision and limited back-and-forth.</p>
-            <ul class="steps">
-              <li><strong>Scope lock:</strong> confirm tier + boundaries + owners.</li>
-              <li><strong>Kickoff:</strong> email-first; short call only if scope confirmation requires it.</li>
-              <li><strong>Delivery:</strong> board/procurement-ready artifact pack + decision gates.</li>
-              <li><strong>Optional:</strong> continuity via Trust Ledger retainer.</li>
+            <ul class="miniList">
+              <li><strong>Scope lock:</strong> confirm tier, boundaries, owners.</li>
+              <li><strong>Kickoff:</strong> email-first; short call only if scope requires it.</li>
+              <li><strong>Delivery:</strong> board/procurement-ready artefacts + decision gates.</li>
+              <li><strong>Continuity:</strong> Trust Ledger optional retainer.</li>
             </ul>
+
+            <div class="notice" style="margin-top:12px;">
+              <strong>Billing note:</strong> CAD pricing. GST/HST is shown on invoice-based procurement where applicable.
+            </div>
           </div>
         </div>
       </section>
@@ -537,8 +590,8 @@
       <aside class="rail" aria-label="Selected package rail">
         <div class="card">
           <div class="hd">
-            <h2 class="cardTitle">Selected package</h2>
-            <p class="muted" id="railDesc">Loaded from Gate selection (or query param).</p>
+            <h2 class="cardTitle">Selected offer</h2>
+            <p class="muted" id="railDesc">Loaded from Gate selection or URL parameter.</p>
           </div>
 
           <div class="bd">
@@ -548,7 +601,7 @@
             </div>
 
             <div class="railActions" aria-label="Rail actions">
-              <a class="btn primary" id="railStart" href="#start">Start selected</a>
+              <a class="btn primary" id="railJump" href="#catalog">Jump to catalog</a>
               <a class="btn" id="railProc" href="/gate/procurement/" data-rid-link>Invoice / PO</a>
               <a class="btn secondary" id="railIntake" href="/gate/intake/" data-rid-link>Start intake</a>
               <a class="btn secondary" id="railDetails" href="/gate/" data-rid-link>View details</a>
@@ -558,7 +611,7 @@
 
             <div class="box">
               <div><strong>Request ID:</strong> <code data-rid>—</code></div>
-              <div style="margin-top:6px;">RID is preserved on Gate/Procurement/Intake links.</div>
+              <div style="margin-top:6px;">RID is preserved across Gate/Procurement/Intake links.</div>
               <div style="margin-top:6px;">
                 Samples:
                 <a href="/trust-ledger/sample-report/board-memo.pdf" data-rid-link>Board memo</a> ·
@@ -580,11 +633,12 @@
 
   <footer id="nfFooter"></footer>
 
+  <!-- Mobile sticky CTA -->
   <div class="stickyCta" aria-label="Sticky call to action">
     <div class="stickyInner">
-      <div class="stickyText" id="stickyText"><strong>Selected:</strong> —</div>
+      <div class="stickyText" id="stickyText"><strong>RID:</strong> <span id="stickyRid">—</span></div>
       <div class="actions" style="margin:0">
-        <a class="btn primary" id="stickyStart" href="#start">Start</a>
+        <a class="btn primary" href="#catalog">Catalog</a>
         <a class="btn secondary" id="stickyProc" href="/gate/procurement/" data-rid-link>Invoice / PO</a>
       </div>
     </div>
@@ -602,10 +656,6 @@
           var u = new URL(window.location.href);
           var rid = (u.searchParams.get("rid") || "").trim();
           if (rid) return rid;
-
-          var ridEl = document.querySelector("[data-rid]");
-          var fromDom = ridEl && (ridEl.textContent || "").trim();
-          if (fromDom && fromDom !== "—") return fromDom;
 
           var k = "nf_rid";
           var cur = (localStorage.getItem(k) || "").trim();
@@ -631,75 +681,46 @@
         });
       }
 
-      function showPayGroup(group){
-        qsa("[data-pay-group]").forEach(function(el){
-          var g = el.getAttribute("data-pay-group");
-          if (g === group) el.classList.remove("payGroupHidden");
-          else el.classList.add("payGroupHidden");
-        });
-      }
-
-      var STORAGE_KEY = "nf_gate_offer_v4";
-      var DEFAULT_OFFER = "readiness_standard";
-
-      var railName = $("railName");
-      var railMeta = $("railMeta");
-      var railDetails = $("railDetails");
-      var railIntake = $("railIntake");
-      var railProc = $("railProc");
-      var intakeLink = $("intakeLink");
-      var procLink = $("procLink");
-      var detailsLink = $("detailsLink");
-      var stickyText = $("stickyText");
-
       var offers = {
         readiness_starter: {
-          name: "Microsoft 365 Copilot Readiness Assessment — Starter",
+          name: "Copilot Readiness — Starter",
           meta: "2 weeks · 9,500 CAD",
           details: "/copilot/readiness/?tier=starter",
           intake: "/gate/intake/?need=copilot-readiness-starter",
           proc: "/gate/procurement/?focus=copilot-readiness-starter",
-          payGroup: "readiness"
+          jump: "#readiness"
         },
         readiness_standard: {
-          name: "Microsoft 365 Copilot Readiness Assessment — Standard",
+          name: "Copilot Readiness — Standard",
           meta: "4 weeks · 15,000 CAD",
           details: "/copilot/readiness/?tier=standard",
           intake: "/gate/intake/?need=copilot-readiness-standard",
           proc: "/gate/procurement/?focus=copilot-readiness-standard",
-          payGroup: "readiness"
+          jump: "#readiness"
         },
         readiness_extended: {
-          name: "Microsoft 365 Copilot Readiness Assessment — Extended",
+          name: "Copilot Readiness — Extended",
           meta: "6 weeks · 25,000 CAD",
           details: "/copilot/readiness/?tier=extended",
           intake: "/gate/intake/?need=copilot-readiness-extended",
           proc: "/gate/procurement/?focus=copilot-readiness-extended",
-          payGroup: "readiness"
+          jump: "#readiness"
         },
         quickscan: {
-          name: "Copilot QuickScan (Rapid Snapshot)",
+          name: "Copilot QuickScan",
           meta: "5–7 business days · Base/Pro/Enterprise",
           details: "/copilot/quickscan/",
           intake: "/copilot/quickscan/intake/",
           proc: "/gate/procurement/?focus=quickscan",
-          payGroup: "quickscan"
-        },
-        trust_brief: {
-          name: "Trust Brief (6-week)",
-          meta: "6 weeks · Base + add-ons",
-          details: "/trust-brief/",
-          intake: "/trust-brief/intake/",
-          proc: "/gate/procurement/?focus=trust-brief",
-          payGroup: "none"
+          jump: "#quickscan"
         },
         trust_ledger: {
-          name: "Trust Ledger (Ongoing)",
+          name: "Trust Ledger",
           meta: "Ongoing · Plan A/B/C",
           details: "/trust-ledger/",
           intake: "/trust-ledger/intake/",
           proc: "/gate/procurement/?focus=trust-ledger",
-          payGroup: "trust_ledger"
+          jump: "#trustledger"
         }
       };
 
@@ -709,46 +730,41 @@
           var offer = (u.searchParams.get("offer") || "").trim();
           if (offer && offers[offer]) return offer;
         } catch(_) {}
-
         try{
-          var saved = (localStorage.getItem(STORAGE_KEY) || "").trim();
+          var saved = (localStorage.getItem("nf_gate_offer_v4") || "").trim();
           if (saved && offers[saved]) return saved;
         } catch(_) {}
-
-        return DEFAULT_OFFER;
+        return "readiness_standard";
       }
 
-      function setOffer(id){
-        var o = offers[id] || offers[DEFAULT_OFFER];
+      function setRail(offerId){
+        var o = offers[offerId] || offers.readiness_standard;
 
-        railName.textContent = o.name;
-        railMeta.textContent = o.meta;
-        railDetails.setAttribute("href", o.details);
-        railIntake.setAttribute("href", o.intake);
-        railProc.setAttribute("href", o.proc);
+        $("railName").textContent = o.name;
+        $("railMeta").textContent = o.meta;
 
-        intakeLink.setAttribute("href", o.intake);
-        procLink.setAttribute("href", o.proc);
-        detailsLink.setAttribute("href", o.details);
+        $("railDetails").setAttribute("href", o.details);
+        $("railIntake").setAttribute("href", o.intake);
+        $("railProc").setAttribute("href", o.proc);
+        $("railJump").setAttribute("href", o.jump || "#catalog");
 
-        stickyText.innerHTML = "<strong>Selected:</strong> " + o.name;
-
-        showPayGroup(o.payGroup || "none");
-
+        // Optional highlight (readiness rows)
         ["readiness_starter","readiness_standard","readiness_extended"].forEach(function(k){
           var row = document.getElementById("row_" + k);
           if (!row) return;
-          row.style.outline = (id === k) ? "2px solid rgba(200,163,73,.55)" : "none";
-          row.style.outlineOffset = (id === k) ? "-2px" : "0";
+          row.style.outline = (offerId === k) ? "2px solid rgba(200,163,73,.55)" : "none";
+          row.style.outlineOffset = (offerId === k) ? "-2px" : "0";
         });
-
-        var rid = getRid();
-        applyRidToLinks(rid);
       }
 
       var rid = getRid();
       applyRidToLinks(rid);
-      setOffer(readOffer());
+
+      // Paint RID on page
+      qsa("[data-rid]").forEach(function(el){ el.textContent = rid; });
+      var stickyRid = $("stickyRid"); if (stickyRid) stickyRid.textContent = rid;
+
+      setRail(readOffer());
     })();
   </script>
 </body>

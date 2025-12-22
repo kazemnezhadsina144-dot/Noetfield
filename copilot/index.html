@@ -1,5 +1,6 @@
-<!-- /copilot/index.html — Noetfield Copilot v4.3
-  (Update: adds direct card pay link for Readiness Standard via Stripe Payment Link • keeps procurement-first • root routing aligned • cleaner IA • A11y • fixed CTA)
+<!-- /copilot/index.html — Noetfield Copilot v4.4
+  Fix: QuickScan “Pay by card” now links DIRECTLY to Stripe Payment Links (no /gate/sales routing)
+  Upgrade: clearer card-pay boxes, QuickScan card-pay in Next Step + Aside, tighter routing copy, minor A11y polish
 -->
 <!doctype html>
 <html lang="en">
@@ -9,7 +10,7 @@
   <meta name="format-detection" content="telephone=no" />
 
   <title>Noetfield — Microsoft 365 Copilot Readiness</title>
-  <meta name="description" content="Microsoft 365 Copilot readiness + governance. Market-standard Readiness Assessment (2/4/6 weeks) and Rapid QuickScan (5–7 business days) with board/procurement-ready evidence packs. Card pay available via direct Stripe payment links (optional)." />
+  <meta name="description" content="Microsoft 365 Copilot readiness + governance. Market-standard Readiness Assessment (2/4/6 weeks) and Rapid QuickScan (5–7 business days) with board/procurement-ready evidence packs. Optional card pay via direct Stripe payment links." />
   <meta name="robots" content="index,follow" />
   <meta name="author" content="Noetfield Systems Inc." />
   <meta name="theme-color" content="#07070b" />
@@ -39,7 +40,7 @@
 
   <style>
     /* Page-scoped only */
-    .cp-mainPad { padding-bottom: 96px; }
+    .cp-mainPad { padding-bottom: 104px; }
 
     .cp-hero{padding:24px 0 12px}
     .cp-heroShell{
@@ -169,6 +170,10 @@
     .cp-mini .name{font-weight:950; letter-spacing:-.2px}
     .cp-mini .meta{margin-top:6px; color:var(--muted2); font-size:12.6px; line-height:1.55}
     .cp-mini .cta{margin-top:10px; display:flex; gap:10px; flex-wrap:wrap}
+    .cp-mini .cta .btn{min-height:42px}
+
+    .cp-payRow{display:flex; gap:10px; flex-wrap:wrap; align-items:center}
+    .cp-payRow .btn{min-height:42px}
 
     .cp-badges{display:flex; gap:8px; flex-wrap:wrap; margin-top:8px}
     .cp-badge{
@@ -281,7 +286,7 @@
       .cp-heroInner{padding: 22px 18px}
       .cp-stickyText{display:none}
       .cp-table th, .cp-table td{padding:10px}
-      .cp-mainPad { padding-bottom: 104px; }
+      .cp-mainPad { padding-bottom: 112px; }
     }
     @media (prefers-reduced-motion: reduce){
       html:focus-within { scroll-behavior: auto; }
@@ -384,7 +389,7 @@
           <h1 class="cp-title">Copilot adoption. Procurement-safe.</h1>
 
           <p class="cp-lead">
-            Market-standard motion: <strong>Readiness Assessment (2/4/6 weeks)</strong>.
+            Default enterprise motion: <strong>Readiness Assessment (2/4/6 weeks)</strong>.
             Fast signal first: <strong>QuickScan (5–7 business days)</strong>.
             Outputs are packaged for routing across <strong>IT, Security, Legal, and Procurement</strong>.
           </p>
@@ -429,7 +434,7 @@
             <div class="cp-cards2" aria-label="Offer cards">
 
               <!-- READINESS -->
-              <div class="cp-mini">
+              <div class="cp-mini" aria-label="Readiness offer">
                 <div class="name">Microsoft 365 Copilot Readiness Assessment</div>
                 <div class="meta">
                   Decision-grade baseline for leadership and procurement: governance, controls, ownership, and evidence.
@@ -442,7 +447,7 @@
                   <span class="cp-badge">Extended • 6w • 25,000 CAD</span>
                 </div>
 
-                <div class="cta">
+                <div class="cta" aria-label="Readiness actions">
                   <a class="btn" href="/copilot/readiness/" data-rid-link>View Readiness</a>
                   <a class="btn secondary" href="/gate/intake/?need=copilot-readiness-standard" data-rid-link>Start Standard intake</a>
                   <a class="btn secondary" href="/gate/procurement/?focus=copilot-readiness-standard" data-rid-link>Invoice / PO</a>
@@ -456,11 +461,12 @@
                   <a href="https://buy.stripe.com/dRm14o7za95W5mi0UA1Nu08" rel="nofollow noopener" target="_blank">Starter</a> ·
                   <a href="https://buy.stripe.com/dRm3cw1aMdmc9Cy32I1Nu09" rel="nofollow noopener" target="_blank">Standard</a> ·
                   <a href="https://buy.stripe.com/28E9AU6v63LC3ea1YE1Nu0a" rel="nofollow noopener" target="_blank">Extended</a>
+                  <div class="cp-small" style="margin-top:8px;">Procurement lane remains primary. Card pay is optional.</div>
                 </div>
               </div>
 
               <!-- QUICKSCAN -->
-              <div class="cp-mini">
+              <div class="cp-mini" aria-label="QuickScan offer">
                 <div class="name">Copilot QuickScan</div>
                 <div class="meta">
                   Rapid snapshot: scope lock + exposure themes + decision options.
@@ -473,10 +479,21 @@
                   <span class="cp-badge">Enterprise • 7,500 CAD</span>
                 </div>
 
-                <div class="cta">
+                <div class="cta" aria-label="QuickScan actions">
                   <a class="btn secondary" href="/copilot/quickscan/" data-rid-link>View QuickScan</a>
-                  <a class="btn secondary" href="/gate/sales/?offer=quickscan_base&buyer=card" data-rid-link>Pay by card</a>
                   <a class="btn secondary" href="/gate/procurement/?focus=quickscan" data-rid-link>Invoice / PO</a>
+                </div>
+
+                <div class="cp-box" style="margin-top:10px;">
+                  <strong>Card pay (optional):</strong>
+                  <div class="cp-payRow" style="margin-top:10px;">
+                    <a class="btn secondary" href="https://buy.stripe.com/7sY4gA6v681S2a6cDi1Nu00" rel="nofollow noopener" target="_blank">Pay Base (card)</a>
+                    <a class="btn secondary" href="https://buy.stripe.com/14A4gAg5Gfuk2a646M1Nu01" rel="nofollow noopener" target="_blank">Pay Pro (card)</a>
+                    <a class="btn secondary" href="https://buy.stripe.com/fZu5kE7za81SdSO5aQ1Nu02" rel="nofollow noopener" target="_blank">Pay Enterprise (card)</a>
+                  </div>
+                  <div class="cp-small" style="margin-top:10px;">
+                    Use procurement if approvals require invoice/PO.
+                  </div>
                 </div>
               </div>
 
@@ -501,7 +518,7 @@
           <div class="cp-bd">
             <div class="cp-cards2" aria-label="Artifacts by motion">
 
-              <div class="cp-mini">
+              <div class="cp-mini" aria-label="Readiness outputs">
                 <div class="name">Readiness outputs (2/4/6 weeks)</div>
                 <div class="meta">Decision-grade baseline with owner map and evidence posture.</div>
                 <ul class="cp-list" style="margin-top:10px;">
@@ -513,7 +530,7 @@
                 </ul>
               </div>
 
-              <div class="cp-mini">
+              <div class="cp-mini" aria-label="QuickScan outputs">
                 <div class="name">QuickScan outputs (5–7 days)</div>
                 <div class="meta">Rapid signal that aligns owners before escalation.</div>
                 <ul class="cp-list" style="margin-top:10px;">
@@ -733,7 +750,14 @@
             <details class="cp-faq">
               <summary>Can card pay be used for Readiness?</summary>
               <div class="cp-faqBody">
-                Yes (optional). Use direct Stripe payment links from the Readiness tier card, or from the Readiness page packages.
+                Yes (optional). Use direct Stripe payment links from the Readiness tier card above, or from the Readiness page.
+              </div>
+            </details>
+            <details class="cp-faq">
+              <summary>Can card pay be used for QuickScan?</summary>
+              <div class="cp-faqBody">
+                Yes (optional). Use the direct Stripe payment links for Base/Pro/Enterprise from the QuickScan card above.
+                Procurement (invoice/PO) remains available at all times.
               </div>
             </details>
           </div>
@@ -753,7 +777,12 @@
               <a class="btn secondary" href="https://buy.stripe.com/dRm3cw1aMdmc9Cy32I1Nu09" rel="nofollow noopener" target="_blank">
                 Pay Standard (card)
               </a>
+
               <a class="btn secondary" href="/copilot/quickscan/" data-rid-link>View QuickScan</a>
+              <a class="btn secondary" href="https://buy.stripe.com/7sY4gA6v681S2a6cDi1Nu00" rel="nofollow noopener" target="_blank">Pay QuickScan Base (card)</a>
+              <a class="btn secondary" href="https://buy.stripe.com/14A4gAg5Gfuk2a646M1Nu01" rel="nofollow noopener" target="_blank">Pay QuickScan Pro (card)</a>
+              <a class="btn secondary" href="https://buy.stripe.com/fZu5kE7za81SdSO5aQ1Nu02" rel="nofollow noopener" target="_blank">Pay QuickScan Enterprise (card)</a>
+
               <a class="btn secondary" href="/gate/procurement/?focus=copilot" data-rid-link>Invoice / PO</a>
             </div>
 
@@ -796,11 +825,17 @@
             </div>
 
             <div class="cp-box">
-              <strong>Card pay (Standard)</strong><br/>
-              <a href="https://buy.stripe.com/dRm3cw1aMdmc9Cy32I1Nu09" rel="nofollow noopener" target="_blank">
-                Stripe payment link
-              </a>
+              <strong>Card pay (Readiness — Standard)</strong><br/>
+              <a href="https://buy.stripe.com/dRm3cw1aMdmc9Cy32I1Nu09" rel="nofollow noopener" target="_blank">Stripe payment link</a>
               <div class="cp-small" style="margin-top:8px;">Optional (procurement lane remains primary).</div>
+            </div>
+
+            <div class="cp-box">
+              <strong>Card pay (QuickScan)</strong><br/>
+              <a href="https://buy.stripe.com/7sY4gA6v681S2a6cDi1Nu00" rel="nofollow noopener" target="_blank">Base</a> ·
+              <a href="https://buy.stripe.com/14A4gAg5Gfuk2a646M1Nu01" rel="nofollow noopener" target="_blank">Pro</a> ·
+              <a href="https://buy.stripe.com/fZu5kE7za81SdSO5aQ1Nu02" rel="nofollow noopener" target="_blank">Enterprise</a>
+              <div class="cp-small" style="margin-top:8px;">Optional (invoice/PO always available).</div>
             </div>
 
             <div class="cp-box">
@@ -830,13 +865,13 @@
   <!-- Injected footer -->
   <footer id="nfFooter"></footer>
 
-  <!-- Fixed CTA -->
+  <!-- Fixed CTA (Readiness Standard as enterprise default) -->
   <div class="cp-stickyCta" aria-label="Persistent call to action">
     <div class="cp-stickyInner">
       <div class="cp-stickyText">
         <strong>Readiness (Standard)</strong> — 4 weeks — 15,000 CAD. Enterprise default.
       </div>
-      <div class="cp-actions" style="margin:0">
+      <div class="cp-actions" style="margin:0" aria-label="Sticky actions">
         <a class="btn" href="/copilot/readiness/" data-rid-link>View Readiness</a>
         <a class="btn secondary" href="/gate/procurement/?focus=copilot-readiness-standard" data-rid-link>Invoice / PO</a>
         <a class="btn secondary" href="https://buy.stripe.com/dRm3cw1aMdmc9Cy32I1Nu09" rel="nofollow noopener" target="_blank">
@@ -855,7 +890,9 @@
 
       const byId = new Map(links.map(a => [a.getAttribute('href').slice(1), a]));
       const io = new IntersectionObserver((entries) => {
-        const visible = entries.filter(e => e.isIntersecting).sort((a,b) => (b.intersectionRatio - a.intersectionRatio))[0];
+        const visible = entries
+          .filter(e => e.isIntersecting)
+          .sort((a,b) => (b.intersectionRatio - a.intersectionRatio))[0];
         if (!visible) return;
         links.forEach(a => a.removeAttribute('aria-current'));
         const a = byId.get(visible.target.id);
@@ -871,8 +908,9 @@
     [ ] /assets/noetfield-shell.css returns 200
     [ ] /assets/noetfield-shell.js returns 200
     [ ] Header renders inside #nfHeader; footer renders inside #nfFooter
-    [ ] CTAs work: /copilot/readiness/, /copilot/quickscan/, /gate/sales/, /gate/procurement/
-    [ ] External card pay: Stripe link opens (Standard)
+    [ ] Internal CTAs work: /copilot/readiness/, /copilot/quickscan/, /gate/sales/, /gate/procurement/
+    [ ] QuickScan card pay goes to Stripe directly (no /gate/sales)
+    [ ] Readiness card pay goes to Stripe directly
     [ ] Anchor nav scrolls; active nav highlights
     [ ] Mobile: single column; table scrolls horizontally
     [ ] Fixed CTA does not cover content (cp-mainPad)

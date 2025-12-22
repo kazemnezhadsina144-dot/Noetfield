@@ -1,5 +1,4 @@
-<!-- /gate/index.html — Noetfield Gate v5.0 (rewrite + upgrade)
-     (QuickScan-forward • procurement-safe • W4 wizard (Persona→Intent→Timeline→Commitment) • RID continuity • cleaner rail • stronger approval builder) -->
+<!-- /gate/index.html — Noetfield Gate v4.3 (clean + enterprise • safer copy • tighter UX • rail + wizard + procurement builder) -->
 <!doctype html>
 <html lang="en">
 <head>
@@ -7,12 +6,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <title>Noetfield — Gate</title>
-  <meta name="description" content="Primary entry to Noetfield packages: Copilot QuickScan (5–7 days), Copilot Readiness (2/4/6 weeks), Procurement lane (Invoice/PO), and non-confidential intake routing with Request ID continuity." />
+  <meta name="description" content="Enterprise-first entry to Noetfield packages. Copilot Readiness (2/4/6 weeks), QuickScan (5–7 days), procurement lane (Invoice/PO), and direct intake (non-confidential)." />
   <meta name="robots" content="index,follow" />
   <meta name="author" content="Noetfield Systems Inc." />
   <meta name="theme-color" content="#07070b" />
 
-  <!-- LOCKED CANONICAL (WWW) -->
   <link rel="canonical" href="https://www.noetfield.com/gate/" />
   <link rel="icon" href="/noetfield-favicon-512.png" type="image/png" />
   <link rel="apple-touch-icon" href="/noetfield-favicon-512.png" />
@@ -21,14 +19,14 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Noetfield" />
   <meta property="og:title" content="Noetfield — Gate" />
-  <meta property="og:description" content="QuickScan (5–7 days) + Readiness SKUs (2/4/6 weeks) + Procurement lane (Invoice/PO) + non-confidential intake with Request ID." />
+  <meta property="og:description" content="Copilot readiness SKUs + rapid snapshot + procurement lane + direct intake." />
   <meta property="og:url" content="https://www.noetfield.com/gate/" />
   <meta property="og:image" content="https://www.noetfield.com/noetfield-og.png" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Noetfield — Gate" />
-  <meta name="twitter:description" content="QuickScan (5–7 days) + Readiness SKUs (2/4/6 weeks) + Procurement lane (Invoice/PO) + non-confidential intake with Request ID." />
+  <meta name="twitter:description" content="Copilot readiness SKUs + rapid snapshot + procurement lane + direct intake." />
   <meta name="twitter:image" content="https://www.noetfield.com/noetfield-og.png" />
 
   <!-- LOCKED SHELL -->
@@ -36,7 +34,7 @@
   <script src="/assets/noetfield-shell.js" defer></script>
 
   <style>
-    /* --------- Layout / tokens (relies on shell vars) --------- */
+    /* Hero */
     .hero{padding:18px 0 12px}
     .heroShell{
       position:relative;
@@ -104,9 +102,10 @@
 
     .quickLinks{margin-top:14px; display:flex; gap:10px; flex-wrap:wrap; align-items:center;}
 
+    /* Layout */
     .grid{
       display:grid;
-      grid-template-columns: 1.1fr .9fr;
+      grid-template-columns: 1.08fr .92fr;
       gap:16px;
       margin: 14px 0 36px;
       align-items:start;
@@ -266,7 +265,7 @@
     .table tr:last-child td{ border-bottom:none; }
     .table a{ border-bottom: 1px solid rgba(255,255,255,.18); }
 
-    /* Rail */
+    /* Right rail */
     .rail{ position: sticky; top: 14px; }
     .box{
       margin-top:12px;
@@ -283,11 +282,9 @@
     .railActions{ display:grid; gap:10px; margin-top:12px; }
     .railActions .btn{ min-height:46px; }
     .divider{ height:1px; background: rgba(255,255,255,.10); margin: 14px 0; }
-    .miniRow{display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-top:10px;}
-    .mono{font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;}
 
-    /* Wizard (W4) */
-    .wizardTop{ display:flex; gap:10px; align-items:center; justify-content:space-between; flex-wrap:wrap; }
+    /* Router */
+    .routerTop{ display:flex; gap:10px; align-items:center; justify-content:space-between; flex-wrap:wrap; }
     .stepsPills{ display:flex; gap:8px; flex-wrap:wrap; align-items:center; }
     .stepPill{
       display:inline-flex; gap:8px; align-items:center;
@@ -304,7 +301,7 @@
       border-color: rgba(200,163,73,.28);
       box-shadow: 0 0 0 1px rgba(200,163,73,.12);
       background: rgba(255,255,255,.035);
-      color:var(--muted);
+      color: var(--muted);
     }
     .qTitle{ margin:12px 0 8px; font-weight:950; letter-spacing:-.2px; }
     .opts{ display:grid; gap:10px; }
@@ -368,9 +365,11 @@
       font-size:13px;
       outline:none;
     }
-    .textarea{ resize: vertical; min-height: 160px; }
+    .textarea{ resize: vertical; min-height: 140px; }
     .procActions{ display:flex; gap:10px; flex-wrap:wrap; margin-top:12px; }
     .procActions .btn{ min-height:46px; }
+    .miniRow{display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-top:10px;}
+    .mono{font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;}
     .toast{
       display:none;
       margin-top:10px;
@@ -437,27 +436,12 @@
   <script type="application/ld+json">
   {
     "@context":"https://schema.org",
-    "@graph":[
-      {
-        "@type":"WebSite",
-        "name":"Noetfield",
-        "url":"https://www.noetfield.com/"
-      },
-      {
-        "@type":"Organization",
-        "name":"Noetfield Systems Inc.",
-        "url":"https://www.noetfield.com/",
-        "logo":"https://www.noetfield.com/noetfield-favicon-512.png"
-      },
-      {
-        "@type":"WebPage",
-        "name":"Noetfield — Gate",
-        "url":"https://www.noetfield.com/gate/",
-        "description":"Primary entry to Noetfield packages: Copilot QuickScan (5–7 days), Copilot Readiness (2/4/6 weeks), Procurement lane (Invoice/PO), and non-confidential intake routing with Request ID continuity.",
-        "isPartOf":{"@type":"WebSite","url":"https://www.noetfield.com/"},
-        "publisher":{"@type":"Organization","name":"Noetfield Systems Inc."}
-      }
-    ]
+    "@type":"WebPage",
+    "name":"Noetfield — Gate",
+    "url":"https://www.noetfield.com/gate/",
+    "description":"Enterprise-first entry to Noetfield packages: Copilot Readiness SKUs, QuickScan, procurement lane, and direct intake.",
+    "isPartOf":{"@type":"WebSite","name":"Noetfield","url":"https://www.noetfield.com/"},
+    "publisher":{"@type":"Organization","name":"Noetfield Systems Inc."}
   }
   </script>
 </head>
@@ -474,31 +458,31 @@
     <section class="hero" aria-label="Gate hero">
       <div class="heroShell">
         <div class="heroInner">
-          <div class="eyebrow"><span class="dot"></span> Primary entry • procurement-aware • RID continuity</div>
+          <div class="eyebrow"><span class="dot"></span> Primary entry • enterprise-first • procurement-aware</div>
 
-          <h1>Start with QuickScan. Upgrade with Readiness.</h1>
+          <h1>Choose a start. Keep procurement calm.</h1>
 
           <p class="lead">
-            Quick entry for Microsoft 365 Copilot governance and rollout decisions:
-            <strong>Copilot QuickScan (5–7 business days)</strong> → upgrade path to
-            <strong>Copilot Readiness (4 weeks — 15,000 CAD)</strong> for enterprise baseline and evidence packaging.
-            Invoice/PO supported. Public intake remains non-confidential by design.
+            Market-standard packaging for Microsoft 365 Copilot adoption.
+            Default enterprise path: <strong>Copilot Readiness (4 weeks — 15,000 CAD)</strong>.
+            Invoice/PO is supported, and public intake stays non-confidential by design.
           </p>
 
           <div class="actions" aria-label="Primary actions">
-            <a class="btn primary" href="/copilot/quickscan/" data-rid-link>Open QuickScan (5–7 days)</a>
-            <a class="btn secondary" href="/copilot/readiness/?tier=standard" data-rid-link>Open Readiness Standard (4 weeks)</a>
-            <a class="btn secondary" href="/gate/procurement/" data-rid-link>Procurement (Invoice / PO)</a>
+            <a class="btn primary" href="/copilot/readiness/" data-rid-link>Open Copilot Readiness</a>
+            <a class="btn secondary" href="/copilot/quickscan/" data-rid-link>Open QuickScan (5–7 days)</a>
+
+            <a class="btn secondary" href="/gate/procurement/" data-rid-link>Open Procurement (Invoice / PO)</a>
             <a class="btn secondary" href="#procurement">On-page approval builder</a>
+
             <a class="btn secondary" href="/gate/sales/" data-rid-link>Start (Sales)</a>
           </div>
 
           <div class="metaRow" aria-label="Highlights">
-            <div class="pill"><strong>QuickScan</strong> 5–7 business days</div>
             <div class="pill"><strong>Readiness</strong> 2 / 4 / 6 weeks</div>
+            <div class="pill"><strong>QuickScan</strong> 5–7 business days</div>
             <div class="pill"><strong>Procurement</strong> Invoice / PO</div>
             <div class="pill"><strong>Intake</strong> Non-confidential</div>
-            <div class="pill"><strong>Request ID</strong> preserved</div>
           </div>
 
           <div class="quickLinks" aria-label="Quick links">
@@ -510,9 +494,9 @@
           </div>
 
           <div class="notice" role="note">
-            <strong>Non-confidential by design.</strong>
+            <strong>Public intake is non-confidential by design.</strong>
             Avoid secrets, credentials, private keys, customer identifiers, or regulated personal data.
-            Secure sharing options (if required) are confirmed after scope lock and kickoff.
+            Secure sharing options (if needed) are confirmed after kickoff.
           </div>
         </div>
       </div>
@@ -525,46 +509,43 @@
         <section class="card" id="packages" aria-label="Packages">
           <div class="hd">
             <h2 class="cardTitle">Packages</h2>
-            <p class="muted">Select a package. The rail updates actions, procurement summary, and approval builder defaults.</p>
+            <p class="muted">Select an offer. The rail updates the best start path and procurement summary.</p>
           </div>
 
           <div class="bd">
             <div class="offers" aria-label="Offer cards">
-
-              <!-- QuickScan (Primary) -->
+              <!-- Readiness Starter -->
               <article class="offer" tabindex="0"
-                data-offer="quickscan"
+                data-offer="readiness_starter"
                 data-group="copilot"
-                data-name="Copilot QuickScan (Rapid Snapshot)"
-                data-duration="5–7 business days"
-                data-price="Card checkout available"
-                data-primary="/copilot/quickscan/"
-                data-intake="/copilot/quickscan/intake/"
-                data-proc="/gate/procurement/?focus=quickscan"
-                data-sales="/gate/sales/?offer=quickscan"
-                data-details="/copilot/quickscan/"
-                data-deliverables="Executive Memo (PDF); Exposure & Boundary Map (PDF); Control Checklist (XLSX/CSV); Connector/Extension Notes (PDF)"
-                aria-label="Copilot QuickScan offer">
+                data-name="Microsoft 365 Copilot Readiness Assessment — Starter"
+                data-duration="2 weeks"
+                data-price="9,500 CAD"
+                data-primary="/copilot/readiness/?tier=starter"
+                data-intake="/gate/intake/?need=copilot-readiness-starter"
+                data-proc="/gate/procurement/?focus=copilot-readiness-starter"
+                data-sales="/gate/sales/?offer=readiness_starter"
+                data-details="/copilot/readiness/"
+                aria-label="Copilot Readiness Starter offer">
                 <span class="offerBadge" aria-hidden="true">Selected</span>
 
                 <div class="offerTop">
                   <div>
-                    <h3 class="offerName">Copilot QuickScan (Rapid Snapshot)</h3>
+                    <h3 class="offerName">Microsoft 365 Copilot Readiness Assessment — Starter</h3>
                     <div class="tags">
-                      <span class="tag">5–7 business days</span>
-                      <span class="tag">Decision-ready</span>
-                      <span class="tag">Lead-in</span>
+                      <span class="tag">2 weeks</span>
+                      <span class="tag">9,500 CAD</span>
+                      <span class="tag">Enterprise SKU</span>
                     </div>
                   </div>
-                  <span class="tag" title="Best fit">Best for: urgent entry</span>
+                  <span class="tag" title="Best fit">Best for: pilot launch</span>
                 </div>
 
-                <p class="offerDesc">Rapid posture and exposure review: boundary decisions, oversharing risk paths, and immediate actions. Designed to feed Readiness for enterprise rollout.</p>
-
+                <p class="offerDesc">Focused readiness for a limited-scope deployment: boundary decisions, minimum controls, and a decision memo for safe pilot approval.</p>
                 <ul class="bullets">
-                  <li>Fast governance posture with named artifacts</li>
-                  <li>Boundary + oversharing map for safe rollout constraints</li>
-                  <li>Clear upgrade path into Readiness Standard</li>
+                  <li>Decision-ready executive memo format</li>
+                  <li>Minimum control baseline + owners</li>
+                  <li>Procurement snapshot for fast internal approval</li>
                 </ul>
 
                 <details class="snap">
@@ -580,51 +561,50 @@
                       <div class="snapItem">
                         <div class="h">Deliverables (named)</div>
                         <ul>
-                          <li><strong>Executive Memo</strong> (PDF)</li>
-                          <li><strong>Exposure & Boundary Map</strong> (PDF)</li>
-                          <li><strong>Control Checklist</strong> (XLSX/CSV)</li>
-                          <li><strong>Connector/Extension Notes</strong> (PDF)</li>
+                          <li><strong>Readiness Executive Memo</strong> (PDF)</li>
+                          <li><strong>Boundary & Oversharing Map</strong> (PDF)</li>
+                          <li><strong>Control Baseline (Starter)</strong> (XLSX/CSV)</li>
                         </ul>
                       </div>
                       <div class="snapItem">
                         <div class="h">Inputs required (non-confidential)</div>
                         <ul>
                           <li>Rollout intent (pilot vs broad)</li>
-                          <li>High-level data categories and repositories</li>
-                          <li>Policy posture summary (baseline)</li>
+                          <li>High-level data types (HR/finance/client files)</li>
+                          <li>Tenant posture summary (basic / partial / mature)</li>
                         </ul>
                       </div>
                       <div class="snapItem">
                         <div class="h">Timeline rule</div>
                         <ul>
                           <li>Clock starts after intake + scope confirmation</li>
-                          <li>Default delivery: <strong>5–7 business days</strong></li>
+                          <li>Default delivery: <strong>2 weeks</strong></li>
                         </ul>
                       </div>
                       <div class="snapItem">
                         <div class="h">Scope drivers</div>
                         <ul>
-                          <li>Single tenant vs multi-entity</li>
-                          <li>Units in scope (high-level)</li>
+                          <li>Units in scope</li>
                           <li>Connector/extension depth</li>
+                          <li>Evidence packaging depth</li>
                         </ul>
                       </div>
                     </div>
                     <div class="snapNote">
                       <strong>Kickoff:</strong> email-first by default. Short call available when scope confirmation is required.
-                      <span style="display:block; margin-top:6px;"><strong>Invoice/PO:</strong> <a href="/gate/procurement/" data-rid-link>Procurement page</a> or <a href="#procurement">on-page builder</a>.</span>
+                      <span style="display:block; margin-top:6px;"><strong>Invoice/PO:</strong> <a href="/gate/procurement/" data-rid-link>Open Procurement page</a> or use <a href="#procurement">on-page builder</a>.</span>
                     </div>
                   </div>
                 </details>
 
                 <div class="actions" style="margin-top:12px">
-                  <a class="btn primary" href="/copilot/quickscan/" data-rid-link>Open QuickScan</a>
-                  <a class="btn secondary" href="/gate/sales/?offer=quickscan" data-rid-link>Start (Sales)</a>
-                  <a class="btn secondary" href="/copilot/quickscan/intake/" data-rid-link>Start intake</a>
+                  <a class="btn primary" href="/copilot/readiness/?tier=starter" data-rid-link>Open Starter</a>
+                  <a class="btn secondary" href="/gate/sales/?offer=readiness_starter" data-rid-link>Start (Sales)</a>
+                  <a class="btn secondary" href="/gate/intake/?need=copilot-readiness-starter" data-rid-link>Start intake</a>
                 </div>
               </article>
 
-              <!-- Readiness Standard (Flagship) -->
+              <!-- Readiness Standard -->
               <article class="offer" tabindex="0"
                 data-offer="readiness_standard"
                 data-group="copilot"
@@ -636,7 +616,6 @@
                 data-proc="/gate/procurement/?focus=copilot-readiness-standard"
                 data-sales="/gate/sales/?offer=readiness_standard"
                 data-details="/copilot/readiness/"
-                data-deliverables="Readiness Executive Memo (PDF); Control Baseline (XLSX/CSV); Evidence Index (initial) (XLSX/CSV); 30/60/90 Plan (PDF)"
                 aria-label="Copilot Readiness Standard offer">
                 <span class="offerBadge" aria-hidden="true">Selected</span>
 
@@ -646,17 +625,17 @@
                     <div class="tags">
                       <span class="tag">4 weeks</span>
                       <span class="tag">15,000 CAD</span>
-                      <span class="tag">Enterprise baseline</span>
+                      <span class="tag">Enterprise flagship</span>
                     </div>
                   </div>
-                  <span class="tag" title="Best fit">Best for: rollout approval</span>
+                  <span class="tag" title="Best fit">Best for: enterprise rollout</span>
                 </div>
 
-                <p class="offerDesc">Enterprise readiness baseline: governance decisions, control baseline, initial evidence indexing, and a practical 30/60/90 rollout plan.</p>
+                <p class="offerDesc">Default enterprise readiness: governance decisions, control baseline, evidence packaging, and a practical 30/60/90 rollout plan.</p>
                 <ul class="bullets">
                   <li>Board/procurement-ready artifact pack</li>
-                  <li>Owners + baseline controls + evidence index (initial)</li>
-                  <li>Designed to reduce avoidable back-and-forth during rollout</li>
+                  <li>Owners + control baseline + evidence index (initial)</li>
+                  <li>Built to reduce avoidable back-and-forth during rollout</li>
                 </ul>
 
                 <details class="snap">
@@ -682,8 +661,8 @@
                         <div class="h">Inputs required (non-confidential)</div>
                         <ul>
                           <li>Target groups and rollout intent</li>
-                          <li>High-level data categories + critical repositories</li>
-                          <li>Constraints (audit/client/regulatory)</li>
+                          <li>High-level data types + critical repositories</li>
+                          <li>Constraints (audit / client / regulatory)</li>
                         </ul>
                       </div>
                       <div class="snapItem">
@@ -696,7 +675,7 @@
                       <div class="snapItem">
                         <div class="h">Scope drivers</div>
                         <ul>
-                          <li>Stakeholders and units in scope</li>
+                          <li>Stakeholder set and units in scope</li>
                           <li>Connector/extension depth</li>
                           <li>Evidence packaging depth</li>
                         </ul>
@@ -704,7 +683,7 @@
                     </div>
                     <div class="snapNote">
                       <strong>Kickoff:</strong> email-first by default. Short call available when scope confirmation is required.
-                      <span style="display:block; margin-top:6px;"><strong>Invoice/PO:</strong> <a href="/gate/procurement/" data-rid-link>Procurement page</a> or <a href="#procurement">on-page builder</a>.</span>
+                      <span style="display:block; margin-top:6px;"><strong>Invoice/PO:</strong> <a href="/gate/procurement/" data-rid-link>Open Procurement page</a> or use <a href="#procurement">on-page builder</a>.</span>
                     </div>
                   </div>
                 </details>
@@ -713,48 +692,6 @@
                   <a class="btn primary" href="/copilot/readiness/?tier=standard" data-rid-link>Open Standard</a>
                   <a class="btn secondary" href="/gate/sales/?offer=readiness_standard" data-rid-link>Start (Sales)</a>
                   <a class="btn secondary" href="/gate/intake/?need=copilot-readiness-standard" data-rid-link>Start intake</a>
-                </div>
-              </article>
-
-              <!-- Readiness Starter -->
-              <article class="offer" tabindex="0"
-                data-offer="readiness_starter"
-                data-group="copilot"
-                data-name="Microsoft 365 Copilot Readiness Assessment — Starter"
-                data-duration="2 weeks"
-                data-price="9,500 CAD"
-                data-primary="/copilot/readiness/?tier=starter"
-                data-intake="/gate/intake/?need=copilot-readiness-starter"
-                data-proc="/gate/procurement/?focus=copilot-readiness-starter"
-                data-sales="/gate/sales/?offer=readiness_starter"
-                data-details="/copilot/readiness/"
-                data-deliverables="Readiness Executive Memo (PDF); Boundary & Oversharing Map (PDF); Control Baseline (Starter) (XLSX/CSV)"
-                aria-label="Copilot Readiness Starter offer">
-                <span class="offerBadge" aria-hidden="true">Selected</span>
-
-                <div class="offerTop">
-                  <div>
-                    <h3 class="offerName">Microsoft 365 Copilot Readiness Assessment — Starter</h3>
-                    <div class="tags">
-                      <span class="tag">2 weeks</span>
-                      <span class="tag">9,500 CAD</span>
-                      <span class="tag">Limited scope</span>
-                    </div>
-                  </div>
-                  <span class="tag" title="Best fit">Best for: pilot approval</span>
-                </div>
-
-                <p class="offerDesc">Focused readiness for limited-scope deployment: boundary decisions, minimum controls, and a decision memo suitable for pilot approval.</p>
-                <ul class="bullets">
-                  <li>Decision memo format</li>
-                  <li>Minimum control baseline + owners</li>
-                  <li>Procurement snapshot for fast internal approval</li>
-                </ul>
-
-                <div class="actions" style="margin-top:12px">
-                  <a class="btn primary" href="/copilot/readiness/?tier=starter" data-rid-link>Open Starter</a>
-                  <a class="btn secondary" href="/gate/sales/?offer=readiness_starter" data-rid-link>Start (Sales)</a>
-                  <a class="btn secondary" href="/gate/intake/?need=copilot-readiness-starter" data-rid-link>Start intake</a>
                 </div>
               </article>
 
@@ -770,7 +707,6 @@
                 data-proc="/gate/procurement/?focus=copilot-readiness-extended"
                 data-sales="/gate/sales/?offer=readiness_extended"
                 data-details="/copilot/readiness/"
-                data-deliverables="Extended Executive Memo (PDF); Control Baseline (expanded) (XLSX/CSV); Evidence Index (expanded) (XLSX/CSV); Operating Cadence Outline (PDF)"
                 aria-label="Copilot Readiness Extended offer">
                 <span class="offerBadge" aria-hidden="true">Selected</span>
 
@@ -786,12 +722,62 @@
                   <span class="tag" title="Best fit">Best for: multi-unit</span>
                 </div>
 
-                <p class="offerDesc">Extended readiness for complex rollouts: deeper evidence posture, broader stakeholder alignment, and clearer exception handling.</p>
+                <p class="offerDesc">Extended readiness for complex rollouts: deeper evidence posture, broader alignment, and clearer exception handling.</p>
                 <ul class="bullets">
                   <li>Expanded scope drivers + deeper evidence indexing</li>
                   <li>Broader stakeholder set and decision alignment</li>
                   <li>Designed for stricter governance expectations</li>
                 </ul>
+
+                <details class="snap">
+                  <summary>
+                    <div>
+                      <div class="k">Procurement snapshot</div>
+                      <div class="m">Deliverables • Inputs • Timeline rule • Scope drivers</div>
+                    </div>
+                    <div class="chev" aria-hidden="true">⌄</div>
+                  </summary>
+                  <div class="snapBd">
+                    <div class="snapGrid">
+                      <div class="snapItem">
+                        <div class="h">Deliverables (named)</div>
+                        <ul>
+                          <li><strong>Extended Executive Memo</strong> (PDF)</li>
+                          <li><strong>Control Baseline (expanded)</strong> (XLSX/CSV)</li>
+                          <li><strong>Evidence Index (expanded)</strong> (XLSX/CSV)</li>
+                          <li><strong>Operating Cadence Outline</strong> (PDF)</li>
+                        </ul>
+                      </div>
+                      <div class="snapItem">
+                        <div class="h">Inputs required (non-confidential)</div>
+                        <ul>
+                          <li>Stakeholder and unit list (high-level)</li>
+                          <li>Primary repositories and data categories</li>
+                          <li>Known constraints (audit/client/regulatory)</li>
+                        </ul>
+                      </div>
+                      <div class="snapItem">
+                        <div class="h">Timeline rule</div>
+                        <ul>
+                          <li>Clock starts after intake + scope confirmation</li>
+                          <li>Default delivery: <strong>6 weeks</strong></li>
+                        </ul>
+                      </div>
+                      <div class="snapItem">
+                        <div class="h">Scope drivers</div>
+                        <ul>
+                          <li>Units and decision-makers</li>
+                          <li>Connector/extension depth</li>
+                          <li>Evidence indexing depth</li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="snapNote">
+                      <strong>Kickoff:</strong> email-first by default. Short call available when scope confirmation is required.
+                      <span style="display:block; margin-top:6px;"><strong>Invoice/PO:</strong> <a href="/gate/procurement/" data-rid-link>Open Procurement page</a> or use <a href="#procurement">on-page builder</a>.</span>
+                    </div>
+                  </div>
+                </details>
 
                 <div class="actions" style="margin-top:12px">
                   <a class="btn primary" href="/copilot/readiness/?tier=extended" data-rid-link>Open Extended</a>
@@ -800,10 +786,101 @@
                 </div>
               </article>
 
-              <!-- Other packages -->
+              <!-- QuickScan -->
+              <article class="offer" tabindex="0"
+                data-offer="quickscan"
+                data-group="copilot"
+                data-name="Copilot QuickScan (Rapid Snapshot)"
+                data-duration="5–7 business days"
+                data-price="Card checkout available"
+                data-primary="/copilot/quickscan/"
+                data-intake="/copilot/quickscan/intake/"
+                data-proc="/gate/procurement/?focus=quickscan"
+                data-sales="/gate/sales/?offer=quickscan"
+                data-details="/copilot/quickscan/"
+                aria-label="Copilot QuickScan offer">
+                <span class="offerBadge" aria-hidden="true">Selected</span>
+
+                <div class="offerTop">
+                  <div>
+                    <h3 class="offerName">Copilot QuickScan (Rapid Snapshot)</h3>
+                    <div class="tags">
+                      <span class="tag">5–7 business days</span>
+                      <span class="tag">Lead-in</span>
+                      <span class="tag">Decision-ready</span>
+                    </div>
+                  </div>
+                  <span class="tag" title="Best fit">Best for: urgent</span>
+                </div>
+
+                <p class="offerDesc">Fast governance and evidence snapshot: exposure paths, boundary decisions, and connector controls. Designed as a lead-in to Readiness SKUs.</p>
+                <ul class="bullets">
+                  <li>Executive summary + immediate actions</li>
+                  <li>Boundary + oversharing map</li>
+                  <li>Clear next best path into Readiness</li>
+                </ul>
+
+                <details class="snap">
+                  <summary>
+                    <div>
+                      <div class="k">Procurement snapshot</div>
+                      <div class="m">Deliverables • Inputs • Timeline rule • Scope drivers</div>
+                    </div>
+                    <div class="chev" aria-hidden="true">⌄</div>
+                  </summary>
+                  <div class="snapBd">
+                    <div class="snapGrid">
+                      <div class="snapItem">
+                        <div class="h">Deliverables (named)</div>
+                        <ul>
+                          <li><strong>Executive Memo</strong> (PDF)</li>
+                          <li><strong>Exposure & Boundary Map</strong> (PDF)</li>
+                          <li><strong>Control Checklist</strong> (XLSX/CSV)</li>
+                          <li><strong>Connector/Extension Notes</strong> (PDF)</li>
+                        </ul>
+                      </div>
+                      <div class="snapItem">
+                        <div class="h">Inputs required (non-confidential)</div>
+                        <ul>
+                          <li>Rollout intent (pilot vs broad)</li>
+                          <li>High-level data types</li>
+                          <li>Policy posture summary</li>
+                        </ul>
+                      </div>
+                      <div class="snapItem">
+                        <div class="h">Timeline rule</div>
+                        <ul>
+                          <li>Clock starts after intake + scope confirmation</li>
+                          <li>Default delivery: <strong>5–7 business days</strong></li>
+                        </ul>
+                      </div>
+                      <div class="snapItem">
+                        <div class="h">Scope drivers</div>
+                        <ul>
+                          <li>Single tenant vs multi-entity</li>
+                          <li>Units in scope</li>
+                          <li>Connector/extension depth</li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="snapNote">
+                      <strong>Kickoff:</strong> email-first by default. Short call available when scope confirmation is required.
+                      <span style="display:block; margin-top:6px;"><strong>Invoice/PO:</strong> <a href="/gate/procurement/" data-rid-link>Open Procurement page</a> or use <a href="#procurement">on-page builder</a>.</span>
+                    </div>
+                  </div>
+                </details>
+
+                <div class="actions" style="margin-top:12px">
+                  <a class="btn primary" href="/copilot/quickscan/" data-rid-link>Open QuickScan</a>
+                  <a class="btn secondary" href="/gate/sales/?offer=quickscan" data-rid-link>Start (Sales)</a>
+                  <a class="btn secondary" href="/copilot/quickscan/intake/" data-rid-link>Start intake</a>
+                </div>
+              </article>
+
+              <!-- Other offers -->
               <div class="section" aria-label="Other packages">
                 <div class="sectionTitle">Other packages</div>
-                <p class="sectionDesc">Broader AI governance beyond Copilot rollout.</p>
+                <p class="sectionDesc">For broader AI governance beyond Copilot rollout.</p>
 
                 <div class="offers" style="margin-top:10px">
                   <article class="offer" tabindex="0"
@@ -817,7 +894,6 @@
                     data-proc="/gate/procurement/?focus=trust-brief"
                     data-sales="/gate/sales/?offer=trust_brief"
                     data-details="/trust-brief/"
-                    data-deliverables="Trust Brief (PDF); Decision Map (PDF); Initial Control Taxonomy (XLSX/CSV); Roadmap (PDF)"
                     aria-label="Trust Brief offer">
                     <span class="offerBadge" aria-hidden="true">Selected</span>
 
@@ -852,7 +928,6 @@
                     data-proc="/gate/procurement/?focus=trust-ledger"
                     data-sales="/gate/sales/?offer=trust_ledger"
                     data-details="/trust-ledger/"
-                    data-deliverables="Ledger Register (maintained); Evidence Index (maintained); Board/Procurement Exports; Operating Cadence"
                     aria-label="Trust Ledger offer">
                     <span class="offerBadge" aria-hidden="true">Selected</span>
 
@@ -886,15 +961,15 @@
         <section class="card" id="compare" aria-label="Compare" style="margin-top:14px;">
           <div class="hd">
             <h2 class="cardTitle">Compare (quick)</h2>
-            <p class="muted">Short comparison for internal alignment and routing.</p>
+            <p class="muted">Short comparison for fast internal alignment.</p>
           </div>
           <div class="bd">
             <table class="table" aria-label="Compare table">
               <thead>
                 <tr>
                   <th>Item</th>
-                  <th>QuickScan</th>
                   <th>Readiness (Standard)</th>
+                  <th>QuickScan</th>
                   <th>Trust Brief</th>
                   <th>Trust Ledger</th>
                 </tr>
@@ -902,29 +977,29 @@
               <tbody>
                 <tr>
                   <td>Best for</td>
-                  <td>Fast entry + decision-ready snapshot</td>
-                  <td>Enterprise rollout approval baseline</td>
+                  <td>Enterprise Copilot rollout</td>
+                  <td>Urgent snapshot</td>
                   <td>Governance roadmap</td>
                   <td>Ongoing evidence continuity</td>
                 </tr>
                 <tr>
                   <td>Timing</td>
-                  <td>5–7 business days</td>
                   <td>4 weeks</td>
+                  <td>5–7 business days</td>
                   <td>6 weeks</td>
                   <td>Ongoing</td>
                 </tr>
                 <tr>
                   <td>Outcome</td>
-                  <td>Exposure + boundaries + immediate actions</td>
-                  <td>Controls + evidence index + 30/60/90 plan</td>
-                  <td>Decisions + owners + operating model</td>
-                  <td>Maintained register + repeatable exports</td>
+                  <td>Baseline + evidence packaging</td>
+                  <td>Decision-ready pack</td>
+                  <td>Operating model + decisions</td>
+                  <td>Maintained register + exports</td>
                 </tr>
                 <tr>
                   <td>Start</td>
-                  <td><a href="/gate/sales/?offer=quickscan" data-rid-link>Sales</a> · <a href="/copilot/quickscan/intake/" data-rid-link>Intake</a></td>
                   <td><a href="/gate/sales/?offer=readiness_standard" data-rid-link>Sales</a> · <a href="/gate/intake/?need=copilot-readiness-standard" data-rid-link>Intake</a></td>
+                  <td><a href="/gate/sales/?offer=quickscan" data-rid-link>Sales</a> · <a href="/copilot/quickscan/intake/" data-rid-link>Intake</a></td>
                   <td><a href="/gate/sales/?offer=trust_brief" data-rid-link>Sales</a> · <a href="/trust-brief/intake/" data-rid-link>Intake</a></td>
                   <td><a href="/gate/sales/?offer=trust_ledger" data-rid-link>Sales</a> · <a href="/trust-ledger/intake/" data-rid-link>Intake</a></td>
                 </tr>
@@ -932,207 +1007,125 @@
             </table>
 
             <div class="notice" style="margin-top:12px;">
-              <strong>Procurement tip:</strong> share this Gate link internally. Use the approval builder to reduce back-and-forth.
+              <strong>Procurement tip:</strong> Share this Gate link internally and use the approval builder below to reduce back-and-forth.
             </div>
           </div>
         </section>
 
-        <!-- WIZARD (W4) -->
+        <!-- ROUTER -->
         <section class="card" id="router" aria-label="Wizard router" style="margin-top:14px;">
           <div class="hd">
             <h2 class="cardTitle">Need a fast route?</h2>
-            <p class="muted">Four steps. One recommendation. Apply to selection and proceed.</p>
+            <p class="muted">Two questions. One recommendation. Apply it immediately.</p>
           </div>
           <div class="bd">
-            <div class="actions" aria-label="Wizard actions" style="margin-top:0;">
-              <button class="btn primary" type="button" id="wizardOpenBtn" aria-controls="wizardCard" aria-expanded="false">Start wizard</button>
+            <div class="actions" aria-label="Router actions" style="margin-top:0;">
+              <button class="btn primary" type="button" id="routerOpenBtn" aria-controls="routerCard" aria-expanded="false">Start wizard</button>
               <button class="btn secondary" type="button" id="wizardResetBtn" hidden>Reset</button>
               <button class="btn secondary" type="button" id="wizardCloseBtn" hidden>Close</button>
-              <button class="btn secondary" type="button" id="wizardBackBtn" hidden>Back</button>
             </div>
 
-            <div class="section" id="wizardCard" hidden style="margin-top:12px;">
+            <div class="section" id="routerCard" hidden style="margin-top:12px;">
               <div class="notice" style="margin-top:0;">
-                <strong>Non-confidential.</strong> Use high-level selections only.
+                <strong>Public intake is non-confidential.</strong> Use high-level selections only.
               </div>
 
-              <div class="wizardTop" style="margin-top:10px;">
+              <div class="routerTop" style="margin-top:10px;">
                 <div class="stepsPills" aria-label="Wizard steps">
-                  <span class="stepPill stepActive" id="wStep1Pill"><strong>Step 1</strong> · Persona</span>
-                  <span class="stepPill" id="wStep2Pill"><strong>Step 2</strong> · Intent</span>
-                  <span class="stepPill" id="wStep3Pill"><strong>Step 3</strong> · Timeline</span>
-                  <span class="stepPill" id="wStep4Pill"><strong>Step 4</strong> · Commitment</span>
+                  <span class="stepPill stepActive" id="step1Pill"><strong>Step 1</strong> · Starting point</span>
+                  <span class="stepPill" id="step2Pill"><strong>Step 2</strong> · Timing</span>
+                </div>
+                <div class="actions" style="margin:0;">
+                  <button class="btn secondary" type="button" id="wizardBackBtn" hidden>Back</button>
                 </div>
               </div>
 
-              <!-- Step 1 -->
-              <div id="wStep1">
-                <div class="qTitle">1) Persona</div>
-                <div class="opts" role="radiogroup" aria-label="Persona">
+              <div id="wizardStep1">
+                <div class="qTitle">1) Starting point</div>
+                <div class="opts" role="radiogroup" aria-label="Start situation">
                   <label class="opt">
-                    <input type="radio" name="w_persona" value="buyer" />
-                    <div>
-                      <div class="t">Budget owner / signer</div>
-                      <div class="d">Needs clear scope, acceptance, and procurement path.</div>
-                    </div>
-                  </label>
-                  <label class="opt">
-                    <input type="radio" name="w_persona" value="champion" />
-                    <div>
-                      <div class="t">Operational champion</div>
-                      <div class="d">Needs fast direction, artifacts, and internal alignment support.</div>
-                    </div>
-                  </label>
-                  <label class="opt">
-                    <input type="radio" name="w_persona" value="procurement" />
-                    <div>
-                      <div class="t">Procurement / vendor onboarding</div>
-                      <div class="d">Needs invoice/PO lane and clean framing for approval.</div>
-                    </div>
-                  </label>
-                  <label class="opt">
-                    <input type="radio" name="w_persona" value="security" />
-                    <div>
-                      <div class="t">Security / privacy / risk</div>
-                      <div class="d">Needs boundaries, evidence posture, and control baseline.</div>
-                    </div>
-                  </label>
-                </div>
-                <div class="hint" id="wHint1" role="status" aria-live="polite">Select one option to continue.</div>
-              </div>
-
-              <!-- Step 2 -->
-              <div id="wStep2" hidden>
-                <div class="qTitle">2) Intent</div>
-                <div class="opts" role="radiogroup" aria-label="Intent">
-                  <label class="opt">
-                    <input type="radio" name="w_intent" value="copilot" />
+                    <input type="radio" name="situation" value="copilot" />
                     <div>
                       <div class="t">Microsoft 365 Copilot rollout</div>
-                      <div class="d">Readiness posture and governance decisions for safe rollout.</div>
+                      <div class="d">Enterprise readiness, governance posture, safe rollout decisions.</div>
                     </div>
                   </label>
                   <label class="opt">
-                    <input type="radio" name="w_intent" value="urgent" />
+                    <input type="radio" name="situation" value="snapshot" />
                     <div>
                       <div class="t">Urgent snapshot</div>
                       <div class="d">Decision-ready posture within days.</div>
                     </div>
                   </label>
                   <label class="opt">
-                    <input type="radio" name="w_intent" value="plan" />
+                    <input type="radio" name="situation" value="plan" />
                     <div>
                       <div class="t">Governance plan</div>
                       <div class="d">Owners, controls, decision gates, roadmap.</div>
                     </div>
                   </label>
                   <label class="opt">
-                    <input type="radio" name="w_intent" value="ongoing" />
+                    <input type="radio" name="situation" value="ongoing" />
                     <div>
                       <div class="t">Ongoing evidence readiness</div>
                       <div class="d">Maintained register + exports for scrutiny cycles.</div>
                     </div>
                   </label>
                 </div>
-                <div class="hint" id="wHint2" role="status" aria-live="polite">Select one option to continue.</div>
+                <div class="hint" id="hint1" role="status" aria-live="polite">Select one option to continue.</div>
               </div>
 
-              <!-- Step 3 -->
-              <div id="wStep3" hidden>
-                <div class="qTitle">3) Timeline</div>
-                <div class="opts" role="radiogroup" aria-label="Timeline">
+              <div id="wizardStep2" hidden>
+                <div class="qTitle">2) Timing</div>
+                <div class="opts" role="radiogroup" aria-label="Timing">
                   <label class="opt">
-                    <input type="radio" name="w_timeline" value="days" />
+                    <input type="radio" name="timing" value="fast" />
                     <div>
-                      <div class="t">Days (5–7 business days)</div>
-                      <div class="d">Rapid entry with named outputs.</div>
+                      <div class="t">Urgent (days to 2 weeks)</div>
+                      <div class="d">Rapid path with named outputs.</div>
                     </div>
                   </label>
                   <label class="opt">
-                    <input type="radio" name="w_timeline" value="2w" />
+                    <input type="radio" name="timing" value="standard" />
                     <div>
-                      <div class="t">2 weeks</div>
-                      <div class="d">Limited-scope readiness for pilot approval.</div>
-                    </div>
-                  </label>
-                  <label class="opt">
-                    <input type="radio" name="w_timeline" value="4w" />
-                    <div>
-                      <div class="t">4 weeks</div>
+                      <div class="t">Standard (4 weeks)</div>
                       <div class="d">Enterprise baseline + evidence packaging.</div>
                     </div>
                   </label>
                   <label class="opt">
-                    <input type="radio" name="w_timeline" value="6w" />
+                    <input type="radio" name="timing" value="extended" />
                     <div>
-                      <div class="t">6 weeks</div>
-                      <div class="d">Expanded scope and deeper evidence indexing.</div>
+                      <div class="t">Extended (6 weeks)</div>
+                      <div class="d">Expanded scope, deeper evidence indexing.</div>
                     </div>
                   </label>
                   <label class="opt">
-                    <input type="radio" name="w_timeline" value="ongoing" />
+                    <input type="radio" name="timing" value="ongoing" />
                     <div>
                       <div class="t">Ongoing</div>
                       <div class="d">Continuity and readiness over time.</div>
                     </div>
                   </label>
                 </div>
-                <div class="hint" id="wHint3" role="status" aria-live="polite">Select one option to continue.</div>
+                <div class="hint" id="hint2" role="status" aria-live="polite">Select one option to generate a recommendation.</div>
               </div>
 
-              <!-- Step 4 -->
-              <div id="wStep4" hidden>
-                <div class="qTitle">4) Commitment</div>
-                <div class="opts" role="radiogroup" aria-label="Commitment">
-                  <label class="opt">
-                    <input type="radio" name="w_commit" value="card" />
-                    <div>
-                      <div class="t">Card checkout</div>
-                      <div class="d">Fastest purchase lane.</div>
-                    </div>
-                  </label>
-                  <label class="opt">
-                    <input type="radio" name="w_commit" value="po" />
-                    <div>
-                      <div class="t">Invoice / PO</div>
-                      <div class="d">Procurement lane with approval email support.</div>
-                    </div>
-                  </label>
-                  <label class="opt">
-                    <input type="radio" name="w_commit" value="nda" />
-                    <div>
-                      <div class="t">Needs NDA / scope lock first</div>
-                      <div class="d">Start with intake and scope confirmation.</div>
-                    </div>
-                  </label>
-                  <label class="opt">
-                    <input type="radio" name="w_commit" value="explore" />
-                    <div>
-                      <div class="t">Exploring</div>
-                      <div class="d">Start with QuickScan or request procurement pack.</div>
-                    </div>
-                  </label>
-                </div>
-                <div class="hint" id="wHint4" role="status" aria-live="polite">Select one option to generate a recommendation.</div>
-              </div>
-
-              <!-- Recommendation -->
-              <div class="reco" id="wRecoCard" hidden aria-label="Recommendation">
+              <div class="reco" id="recoCard" hidden aria-label="Recommendation">
                 <div class="recoBadge"><strong>Recommendation</strong> · next best start</div>
-                <div class="recoTitle" id="wRecoTitle">—</div>
-                <p class="recoDesc" id="wRecoDesc">—</p>
-                <ul class="recoWhy" id="wRecoWhy"></ul>
+                <div class="recoTitle" id="recoTitle">—</div>
+                <p class="recoDesc" id="recoDesc">—</p>
+                <ul class="recoWhy" id="recoWhy"></ul>
 
                 <div class="actions" style="margin-top:12px;">
-                  <a class="btn primary" id="wRecoPrimary" href="#" data-rid-link>Start</a>
-                  <a class="btn secondary" id="wRecoSecondary" href="#" data-rid-link>Procurement</a>
-                  <button class="btn secondary" type="button" id="wRecoApplyBtn">Apply to selection</button>
+                  <a class="btn primary" id="recoPrimary" href="#" data-rid-link>Start</a>
+                  <button class="btn secondary" type="button" id="recoApplyBtn">Apply to selection</button>
                 </div>
 
                 <div class="hint" style="margin-top:10px;">
-                  Apply updates the selected offer and the Purchase rail.
+                  Applying updates the selected offer and the Purchase rail.
                 </div>
               </div>
+
             </div>
           </div>
         </section>
@@ -1168,7 +1161,7 @@
         <section class="card" id="procurement" aria-label="Procurement" style="margin-top:14px;">
           <div class="hd">
             <h2 class="cardTitle">Procurement (Invoice / PO)</h2>
-            <p class="muted">Generate an internal approval email aligned with the selected package.</p>
+            <p class="muted">Generate an internal approval email aligned with your selected package.</p>
           </div>
           <div class="bd">
             <div class="notice" style="margin-top:0;">
@@ -1179,7 +1172,7 @@
 
             <div class="section">
               <div class="sectionTitle">Approval email builder</div>
-              <p class="sectionDesc">Fields are optional. Selected package and RID are used by default.</p>
+              <p class="sectionDesc">Fields are optional. The selected package is used by default.</p>
 
               <form id="procForm" autocomplete="off">
                 <div class="procRow">
@@ -1206,7 +1199,7 @@
                   </div>
                   <div class="procField full">
                     <label class="label" for="constraints">Constraints (optional)</label>
-                    <textarea class="textarea" id="constraints" name="constraints" placeholder="Constraints: audit window, client requirements, sensitive data classes, policy posture, rollout timing, procurement steps..."></textarea>
+                    <textarea class="textarea" id="constraints" name="constraints" placeholder="Constraints: audit window, client requirements, sensitive data, policy posture, rollout timing..."></textarea>
                   </div>
                 </div>
 
@@ -1222,7 +1215,7 @@
                 <textarea class="textarea" id="out" readonly style="margin-top:12px;"></textarea>
 
                 <div class="toast" id="mailtoWarn" role="status" aria-live="polite">
-                  If the email client truncates the message (long mailto URLs), use <strong>Copy</strong> and paste into the email body.
+                  If your email client truncates the message (long mailto URLs), use <strong>Copy</strong> and paste into your email.
                 </div>
               </form>
             </div>
@@ -1235,7 +1228,7 @@
         <div class="card">
           <div class="hd">
             <h2 class="cardTitle">Selected package</h2>
-            <p class="muted" id="railDesc">Select a package to update actions and procurement details.</p>
+            <p class="muted" id="railDesc">Select a package to update this panel.</p>
           </div>
           <div class="bd">
             <div class="box" id="railKpi">
@@ -1248,15 +1241,15 @@
               <a class="btn" id="railStartIntake" href="#" data-rid-link>Start intake</a>
               <a class="btn secondary" id="railDetails" href="#" data-rid-link>View details</a>
 
-              <a class="btn secondary" id="railProc" href="/gate/procurement/" data-rid-link>Procurement (Invoice/PO)</a>
-              <a class="btn secondary" href="#procurement">On-page approval builder</a>
+              <a class="btn secondary" href="/gate/procurement/" data-rid-link>Procurement (Invoice/PO)</a>
+              <a class="btn secondary" href="#procurement">On-page builder</a>
             </div>
 
             <div class="divider" aria-hidden="true"></div>
 
             <div class="box">
               <div><strong>Request ID:</strong> <code class="mono" data-rid>—</code></div>
-              <div style="margin-top:6px;">Share Gate link internally. RID is preserved on links.</div>
+              <div style="margin-top:6px;">Share this Gate page internally. RID is preserved on links.</div>
 
               <div class="miniRow">
                 <button class="btn secondary" type="button" id="copyGateLinkBtn">Copy Gate link</button>
@@ -1271,7 +1264,7 @@
             </div>
 
             <div class="box">
-              <strong>Default motion</strong><br/>
+              <strong>Default enterprise motion</strong><br/>
               Intake → scope lock → kickoff → delivery pack → (optional) Trust Ledger retainer.
             </div>
           </div>
@@ -1301,7 +1294,12 @@
       function $(id){ return document.getElementById(id); }
       function qsa(sel){ try { return Array.prototype.slice.call(document.querySelectorAll(sel)); } catch(_) { return []; } }
 
-      /* -------------------- RID -------------------- */
+      /**
+       * RID resolution strategy:
+       * 1) if Shell exposes a RID (window.NoetfieldShell.getRID or window.NF.getRID), use it
+       * 2) else use rid query param
+       * 3) else generate + persist in localStorage (nf_rid)
+       */
       function getRid(){
         try{
           if (window.NoetfieldShell && typeof window.NoetfieldShell.getRID === "function") return window.NoetfieldShell.getRID();
@@ -1327,12 +1325,6 @@
         }
       }
 
-      function setRidBadges(rid){
-        qsa("[data-rid]").forEach(function(el){
-          try { el.textContent = rid; } catch(_) {}
-        });
-      }
-
       function applyRidToLinks(rid){
         var links = qsa("a[data-rid-link]");
         links.forEach(function(a){
@@ -1346,6 +1338,36 @@
         });
       }
 
+      function setRidBadges(rid){
+        qsa("[data-rid]").forEach(function(el){
+          try { el.textContent = rid; } catch(_) {}
+        });
+      }
+
+      function copyToClipboard(text){
+        return new Promise(function(resolve){
+          (async function(){
+            try{
+              if (navigator.clipboard && navigator.clipboard.writeText){
+                await navigator.clipboard.writeText(text);
+                return resolve(true);
+              }
+            } catch(_) {}
+            try{
+              var ta = document.createElement("textarea");
+              ta.value = text;
+              ta.style.position = "fixed";
+              ta.style.left = "-9999px";
+              document.body.appendChild(ta);
+              ta.focus(); ta.select();
+              document.execCommand("copy");
+              document.body.removeChild(ta);
+              return resolve(true);
+            } catch(_){ return resolve(false); }
+          })();
+        });
+      }
+
       function replaceQueryParam(key, value){
         try{
           var u = new URL(window.location.href);
@@ -1355,51 +1377,58 @@
         } catch(_) {}
       }
 
-      async function copyToClipboard(text){
-        try{
-          if (navigator.clipboard && navigator.clipboard.writeText){
-            await navigator.clipboard.writeText(text);
-            return true;
-          }
-        } catch(_) {}
-        try{
-          var ta = document.createElement("textarea");
-          ta.value = text;
-          ta.style.position = "fixed";
-          ta.style.left = "-9999px";
-          document.body.appendChild(ta);
-          ta.focus(); ta.select();
-          document.execCommand("copy");
-          document.body.removeChild(ta);
-          return true;
-        } catch(_){ return false; }
-      }
+      // Offer selection
+      var STORAGE_KEY = "nf_gate_offer_v4_3";
+      var DEFAULT_OFFER = "readiness_standard";
 
-      function absoluteUrl(pathWithQueryAndHash){
-        try{
-          var u = new URL(pathWithQueryAndHash, "https://www.noetfield.com");
-          return u.toString();
-        } catch(_){
-          return "https://www.noetfield.com" + pathWithQueryAndHash;
-        }
-      }
-
-      /* -------------------- Offer selection -------------------- */
-      var STORAGE_KEY = "nf_gate_offer_v5_0";
-      var DEFAULT_OFFER = "quickscan"; // Gate default: QuickScan forward
       var offers = qsa(".offer");
-
       var railDesc = $("railDesc");
       var railName = $("railName");
       var railMeta = $("railMeta");
       var railStartSales = $("railStartSales");
       var railStartIntake = $("railStartIntake");
       var railDetails = $("railDetails");
+
       var bottomText = $("bottomText");
       var bottomBtn = $("bottomBtn");
       var bottomProcBtn = $("bottomProcBtn");
 
+      // Router
+      var routerOpenBtn = $("routerOpenBtn");
+      var routerCard = $("routerCard");
+      var wizardResetBtn = $("wizardResetBtn");
+      var wizardCloseBtn = $("wizardCloseBtn");
+      var wizardBackBtn = $("wizardBackBtn");
+      var step1Pill = $("step1Pill");
+      var step2Pill = $("step2Pill");
+      var wizardStep1 = $("wizardStep1");
+      var wizardStep2 = $("wizardStep2");
+      var recoCard = $("recoCard");
+      var recoTitle = $("recoTitle");
+      var recoDesc = $("recoDesc");
+      var recoWhy = $("recoWhy");
+      var recoPrimary = $("recoPrimary");
+      var recoApplyBtn = $("recoApplyBtn");
+
+      // Procurement builder
+      var genBtn = $("genBtn");
+      var copyBtn = $("copyBtn");
+      var mailtoBtn = $("mailtoBtn");
+      var downloadBtn = $("downloadBtn");
+      var out = $("out");
+      var org = $("org");
+      var requester = $("requester");
+      var approver = $("approver");
+      var start = $("start");
+      var constraints = $("constraints");
+      var mailtoWarn = $("mailtoWarn");
+
+      // Rail copy buttons
+      var copyGateLinkBtn = $("copyGateLinkBtn");
+      var copyRidBtn = $("copyRidBtn");
+
       var selectedOfferId = null;
+      var lastRecoId = null;
 
       function offerById(id){
         for (var i=0;i<offers.length;i++){
@@ -1429,14 +1458,14 @@
 
         railName.textContent = name;
         railMeta.textContent = dur + " · " + price;
-        railDesc.textContent = "Sales routes purchase lane. Intake routes non-confidential scope and kickoff.";
+        railDesc.textContent = "Use Sales for payment/procurement routing, or start intake directly.";
 
         railStartSales.setAttribute("href", salesHref);
         railStartIntake.setAttribute("href", intakeHref);
         railDetails.setAttribute("href", detailsHref);
 
-        if (bottomText) bottomText.innerHTML = "<strong>Selected:</strong> " + name;
-        if (bottomBtn) bottomBtn.setAttribute("href", salesHref);
+        bottomText.innerHTML = "<strong>Selected:</strong> " + name;
+        bottomBtn.setAttribute("href", salesHref);
         if (bottomProcBtn) bottomProcBtn.setAttribute("href", "/gate/procurement/");
 
         applyRidToLinks(getRid());
@@ -1471,134 +1500,79 @@
         });
       }
 
-      /* -------------------- Wizard (W4) -------------------- */
-      var wizardOpenBtn = $("wizardOpenBtn");
-      var wizardResetBtn = $("wizardResetBtn");
-      var wizardCloseBtn = $("wizardCloseBtn");
-      var wizardBackBtn = $("wizardBackBtn");
-      var wizardCard = $("wizardCard");
-
-      var wStep1Pill = $("wStep1Pill");
-      var wStep2Pill = $("wStep2Pill");
-      var wStep3Pill = $("wStep3Pill");
-      var wStep4Pill = $("wStep4Pill");
-
-      var wStep1 = $("wStep1");
-      var wStep2 = $("wStep2");
-      var wStep3 = $("wStep3");
-      var wStep4 = $("wStep4");
-
-      var wRecoCard = $("wRecoCard");
-      var wRecoTitle = $("wRecoTitle");
-      var wRecoDesc = $("wRecoDesc");
-      var wRecoWhy = $("wRecoWhy");
-      var wRecoPrimary = $("wRecoPrimary");
-      var wRecoSecondary = $("wRecoSecondary");
-      var wRecoApplyBtn = $("wRecoApplyBtn");
-
-      var wizardStepIndex = 1;
-      var lastRecoId = null;
-
-      function setActivePill(idx){
-        [wStep1Pill,wStep2Pill,wStep3Pill,wStep4Pill].forEach(function(p){ p.classList.remove("stepActive"); });
-        if (idx === 1) wStep1Pill.classList.add("stepActive");
-        if (idx === 2) wStep2Pill.classList.add("stepActive");
-        if (idx === 3) wStep3Pill.classList.add("stepActive");
-        if (idx === 4) wStep4Pill.classList.add("stepActive");
-      }
-
-      function showStep(idx){
-        wizardStepIndex = idx;
-        wStep1.hidden = idx !== 1;
-        wStep2.hidden = idx !== 2;
-        wStep3.hidden = idx !== 3;
-        wStep4.hidden = idx !== 4;
-        wRecoCard.hidden = true;
-        setActivePill(idx);
-        wizardBackBtn.hidden = (idx === 1);
-      }
-
       function resetWizard(){
-        qsa("input[name=w_persona]").forEach(function(i){ i.checked = false; });
-        qsa("input[name=w_intent]").forEach(function(i){ i.checked = false; });
-        qsa("input[name=w_timeline]").forEach(function(i){ i.checked = false; });
-        qsa("input[name=w_commit]").forEach(function(i){ i.checked = false; });
+        qsa("input[name=situation]").forEach(function(i){ i.checked = false; });
+        qsa("input[name=timing]").forEach(function(i){ i.checked = false; });
+        wizardStep1.hidden = false;
+        wizardStep2.hidden = true;
+        recoCard.hidden = true;
+        wizardBackBtn.hidden = true;
+        step1Pill.classList.add("stepActive");
+        step2Pill.classList.remove("stepActive");
         lastRecoId = null;
-        showStep(1);
       }
 
       function openWizard(){
-        wizardCard.hidden = false;
-        wizardOpenBtn.hidden = true;
-        wizardOpenBtn.setAttribute("aria-expanded", "true");
+        routerCard.hidden = false;
+        routerOpenBtn.setAttribute("aria-expanded", "true");
+        routerOpenBtn.hidden = true;
         wizardResetBtn.hidden = false;
         wizardCloseBtn.hidden = false;
-        wizardBackBtn.hidden = true;
         resetWizard();
       }
 
       function closeWizard(){
-        wizardCard.hidden = true;
-        wizardOpenBtn.hidden = false;
-        wizardOpenBtn.setAttribute("aria-expanded", "false");
+        routerCard.hidden = true;
+        routerOpenBtn.setAttribute("aria-expanded", "false");
+        routerOpenBtn.hidden = false;
         wizardResetBtn.hidden = true;
         wizardCloseBtn.hidden = true;
-        wizardBackBtn.hidden = true;
       }
 
-      function computeReco(intent, timeline){
-        // intent dominates; timeline refines within Copilot readiness SKUs
-        if (intent === "urgent") return "quickscan";
-        if (intent === "plan") return "trust_brief";
-        if (intent === "ongoing") return "trust_ledger";
-        // Copilot
-        if (timeline === "days") return "quickscan";
-        if (timeline === "2w") return "readiness_starter";
-        if (timeline === "6w") return "readiness_extended";
+      function computeReco(situation, timing){
+        if (situation === "copilot"){
+          if (timing === "fast") return "quickscan";
+          if (timing === "standard") return "readiness_standard";
+          if (timing === "extended") return "readiness_extended";
+          return "readiness_standard";
+        }
+        if (situation === "snapshot") return "quickscan";
+        if (situation === "plan") return "trust_brief";
+        if (situation === "ongoing") return "trust_ledger";
         return "readiness_standard";
       }
 
-      function renderReco(offerId, commit){
+      function renderReco(offerId){
         var el = offerById(offerId) || offerById(DEFAULT_OFFER);
         if (!el) return;
+
         lastRecoId = offerId;
 
         var name = el.getAttribute("data-name") || "—";
         var dur = el.getAttribute("data-duration") || "—";
         var price = el.getAttribute("data-price") || "—";
-        var sales = el.getAttribute("data-sales") || "/gate/sales/";
-        var intake = el.getAttribute("data-intake") || "/gate/intake/";
-        var proc = el.getAttribute("data-proc") || "/gate/procurement/";
+        var primary = el.getAttribute("data-sales") || el.getAttribute("data-intake") || "/gate/sales/";
 
-        // Primary CTA based on commitment
-        var primaryHref = sales;
-        var secondaryHref = proc;
+        recoTitle.textContent = name;
+        recoDesc.textContent = "Recommended start based on your selection. " + dur + " · " + price + ".";
+        recoWhy.innerHTML = "";
 
-        if (commit === "nda" || commit === "explore") primaryHref = intake;
-        if (commit === "po") primaryHref = proc;
-        if (commit === "card") primaryHref = sales;
-
-        wRecoTitle.textContent = name;
-        wRecoDesc.textContent = dur + " · " + price + ". Recommendation based on wizard selections.";
-
-        wRecoWhy.innerHTML = "";
         var why = [];
-
-        if (offerId === "quickscan"){
+        if (offerId.indexOf("readiness_") === 0){
+          why = [
+            "Market-standard packaging (2/4/6 weeks) aligned to procurement workflows.",
+            "Decision memo + control baseline + evidence posture for safe rollout approval.",
+            "Clear scope drivers to reduce avoidable back-and-forth."
+          ];
+        } else if (offerId === "quickscan"){
           why = [
             "Fastest path to a decision-ready posture within days.",
-            "Boundary decisions and oversharing exposure surfaced early.",
-            "Designed to upgrade into Readiness Standard for enterprise baseline."
-          ];
-        } else if (offerId.indexOf("readiness_") === 0){
-          why = [
-            "Market-standard packaging aligned to procurement workflows (2/4/6 weeks).",
-            "Decision memo + control baseline + evidence posture for rollout approval.",
-            "Clear scope drivers to reduce avoidable back-and-forth."
+            "Boundary decisions and oversharing exposure themes surfaced early.",
+            "Designed to feed Readiness Standard for the full enterprise baseline."
           ];
         } else if (offerId === "trust_brief"){
           why = [
-            "Governance roadmap: owners, controls, decision gates, operating model.",
+            "Broader governance plan: owners, controls, decision gates, roadmap.",
             "Structured diagnostic suitable for leadership review.",
             "Continuity into Trust Ledger if ongoing readiness is required."
           ];
@@ -1606,72 +1580,59 @@
           why = [
             "Maintained register + evidence continuity for recurring scrutiny cycles.",
             "Repeatable exports for boards, clients, audits, and regulators.",
-            "Reduced scramble and rework across governance updates."
+            "Reduces scramble and rework across governance updates."
           ];
         }
 
         why.forEach(function(w){
           var li = document.createElement("li");
           li.textContent = w;
-          wRecoWhy.appendChild(li);
+          recoWhy.appendChild(li);
         });
 
-        wRecoPrimary.setAttribute("href", primaryHref);
-        wRecoSecondary.setAttribute("href", secondaryHref);
-        wRecoCard.hidden = false;
+        recoPrimary.setAttribute("href", primary);
+        recoCard.hidden = false;
 
         applyRidToLinks(getRid());
       }
 
       function wizardProgress(){
-        var persona = (document.querySelector("input[name=w_persona]:checked") || {}).value || null;
-        var intent  = (document.querySelector("input[name=w_intent]:checked") || {}).value || null;
-        var timeline= (document.querySelector("input[name=w_timeline]:checked") || {}).value || null;
-        var commit  = (document.querySelector("input[name=w_commit]:checked") || {}).value || null;
+        var sitEl = document.querySelector("input[name=situation]:checked");
+        var timEl = document.querySelector("input[name=timing]:checked");
+        var sit = sitEl ? sitEl.value : null;
+        var tim = timEl ? timEl.value : null;
 
-        // Flow control
-        if (wizardStepIndex === 1 && persona) showStep(2);
-        if (wizardStepIndex === 2 && intent) showStep(3);
-        if (wizardStepIndex === 3 && timeline) showStep(4);
-
-        // Recommendation after step 4 complete
-        if (persona && intent && timeline && commit){
-          renderReco(computeReco(intent, timeline), commit);
+        if (sit && wizardStep2.hidden){
+          wizardStep1.hidden = true;
+          wizardStep2.hidden = false;
+          wizardBackBtn.hidden = false;
+          step1Pill.classList.remove("stepActive");
+          step2Pill.classList.add("stepActive");
+          recoCard.hidden = true;
+        }
+        if (sit && tim){
+          renderReco(computeReco(sit, tim));
         }
       }
 
-      /* -------------------- Procurement builder -------------------- */
-      var genBtn = $("genBtn");
-      var copyBtn = $("copyBtn");
-      var mailtoBtn = $("mailtoBtn");
-      var downloadBtn = $("downloadBtn");
-      var out = $("out");
-      var org = $("org");
-      var requester = $("requester");
-      var approver = $("approver");
-      var start = $("start");
-      var constraints = $("constraints");
-      var mailtoWarn = $("mailtoWarn");
-
       function buildApprovalEmail(){
         var o = offerById(selectedOfferId) || offerById(DEFAULT_OFFER);
-        var rid = getRid();
-
         var name = o ? (o.getAttribute("data-name") || "Selected package") : "Selected package";
-        var dur  = o ? (o.getAttribute("data-duration") || "—") : "—";
-        var price= o ? (o.getAttribute("data-price") || "—") : "—";
-        var del  = o ? (o.getAttribute("data-deliverables") || "") : "";
+        var dur = o ? (o.getAttribute("data-duration") || "—") : "—";
+        var price = o ? (o.getAttribute("data-price") || "—") : "—";
         var proc = o ? (o.getAttribute("data-proc") || "/gate/procurement/") : "/gate/procurement/";
         var intake = o ? (o.getAttribute("data-intake") || "/gate/intake/") : "/gate/intake/";
-        var sales  = o ? (o.getAttribute("data-sales") || "/gate/sales/") : "/gate/sales/";
+        var sales = o ? (o.getAttribute("data-sales") || "/gate/sales/") : "/gate/sales/";
+
+        var rid = getRid();
 
         function withRid(path){
           try{
             var u = new URL(path, window.location.origin);
             if (!u.searchParams.get("rid")) u.searchParams.set("rid", rid);
-            return absoluteUrl(u.pathname + u.search + u.hash);
+            return "https://www.noetfield.com" + u.pathname + u.search + u.hash;
           } catch(_) {
-            return absoluteUrl(path);
+            return "https://www.noetfield.com" + path;
           }
         }
 
@@ -1686,42 +1647,31 @@
         lines.push("");
         lines.push(appVal ? ("To: " + appVal) : "To: Approver / Procurement");
         lines.push("");
-        lines.push("Request:");
-        lines.push("- Approve purchase of \"" + name + "\".");
-        lines.push("- Duration: " + dur + ".");
-        lines.push("- Budget: " + price + " (CAD).");
-        lines.push("- Desired start: " + (startVal || "ASAP") + ".");
-        if (orgVal) lines.push("- Organization: " + orgVal + ".");
-        if (reqVal) lines.push("- Owner: " + reqVal + ".");
+        lines.push("Request: approve purchase of \"" + name + "\".");
+        lines.push("Duration: " + dur + ".");
+        lines.push("Budget: " + price + " (CAD).");
+        lines.push("Start: " + (startVal || "ASAP") + ".");
+        if (orgVal) lines.push("Organization: " + orgVal + ".");
+        if (reqVal) lines.push("Owner: " + reqVal + ".");
         lines.push("");
-        lines.push("Deliverables (named):");
-        if (del){
-          del.split(";").map(function(s){ return s.trim(); }).filter(Boolean).forEach(function(item){
-            lines.push("- " + item);
-          });
-        } else {
-          lines.push("- Named artifact pack (memo + controls + evidence where applicable).");
-        }
-        lines.push("");
-        lines.push("Procurement-safe rationale:");
+        lines.push("Rationale (procurement-safe):");
         lines.push("- Fixed-scope engagement with named deliverables and timeline rule.");
-        lines.push("- Governance posture and evidence packaging to reduce rollout risk and rework.");
-        lines.push("- Boundaries and controls defined before broad access.");
+        lines.push("- Board/procurement-ready artifacts for governance posture and evidence packaging.");
+        lines.push("- Reduced rollout risk by clarifying boundaries, owners, and controls before broad access.");
         lines.push("");
         if (conVal){
           lines.push("Constraints / notes:");
           lines.push(conVal);
           lines.push("");
         }
-        lines.push("Links (RID " + rid + "):");
-        lines.push("- Gate (overview): " + withRid("/gate/?offer=" + encodeURIComponent(selectedOfferId || DEFAULT_OFFER)));
+        lines.push("Links (RID: " + rid + "):");
         lines.push("- Sales / start: " + withRid(sales));
         lines.push("- Intake (non-confidential): " + withRid(intake));
         lines.push("- Procurement lane (Invoice/PO): " + withRid(proc));
         lines.push("");
         lines.push("Notes:");
         lines.push("- Public intake is non-confidential by design (no secrets/credentials/regulated personal data).");
-        lines.push("- Secure sharing options can be confirmed after scope lock and kickoff.");
+        lines.push("- Secure sharing options can be confirmed after kickoff if needed.");
         return lines.join("\n");
       }
 
@@ -1758,11 +1708,7 @@
         } catch(_) {}
       }
 
-      /* -------------------- Copy buttons -------------------- */
-      var copyGateLinkBtn = $("copyGateLinkBtn");
-      var copyRidBtn = $("copyRidBtn");
-
-      /* -------------------- Init -------------------- */
+      // Init
       var rid = getRid();
       setRidBadges(rid);
       applyRidToLinks(rid);
@@ -1770,26 +1716,35 @@
       attachOfferHandlers();
       setSelected(readInitialOffer());
 
-      // Wizard events
-      if (wizardOpenBtn && wizardCard) wizardOpenBtn.addEventListener("click", openWizard);
-      if (wizardResetBtn) wizardResetBtn.addEventListener("click", resetWizard);
-      if (wizardCloseBtn) wizardCloseBtn.addEventListener("click", closeWizard);
+      // Router events
+      if (routerOpenBtn && routerCard){
+        routerOpenBtn.addEventListener("click", openWizard);
+      }
+      if (wizardResetBtn){
+        wizardResetBtn.addEventListener("click", resetWizard);
+      }
+      if (wizardCloseBtn){
+        wizardCloseBtn.addEventListener("click", closeWizard);
+      }
       if (wizardBackBtn){
         wizardBackBtn.addEventListener("click", function(){
-          if (wizardStepIndex > 1) showStep(wizardStepIndex - 1);
+          wizardStep1.hidden = false;
+          wizardStep2.hidden = true;
+          recoCard.hidden = true;
+          wizardBackBtn.hidden = true;
+          step1Pill.classList.add("stepActive");
+          step2Pill.classList.remove("stepActive");
+          qsa("input[name=timing]").forEach(function(i){ i.checked = false; });
         });
       }
-      qsa("input[name=w_persona]").forEach(function(i){ i.addEventListener("change", wizardProgress); });
-      qsa("input[name=w_intent]").forEach(function(i){ i.addEventListener("change", wizardProgress); });
-      qsa("input[name=w_timeline]").forEach(function(i){ i.addEventListener("change", wizardProgress); });
-      qsa("input[name=w_commit]").forEach(function(i){ i.addEventListener("change", wizardProgress); });
+      qsa("input[name=situation]").forEach(function(i){ i.addEventListener("change", wizardProgress); });
+      qsa("input[name=timing]").forEach(function(i){ i.addEventListener("change", wizardProgress); });
 
-      if (wRecoApplyBtn){
-        wRecoApplyBtn.addEventListener("click", function(){
+      if (recoApplyBtn){
+        recoApplyBtn.addEventListener("click", function(){
           if (!lastRecoId) return;
           setSelected(lastRecoId);
           closeWizard();
-          // on small screens, rail is below; scroll to rail for immediate action
           if (window.innerWidth < 981){
             var rail = document.querySelector("aside.rail");
             if (rail) rail.scrollIntoView({behavior:"smooth", block:"start"});
@@ -1797,7 +1752,7 @@
         });
       }
 
-      // Procurement builder events
+      // Procurement builder
       if (genBtn){
         genBtn.addEventListener("click", function(){
           out.value = buildApprovalEmail();
@@ -1808,7 +1763,11 @@
             var href = buildMailtoFromEmailText(out.value);
             mailtoBtn.hidden = !out.value;
             mailtoBtn.setAttribute("href", href);
-            if (mailtoWarn) mailtoWarn.style.display = (href.length > 1800) ? "block" : "none";
+
+            // Mailto length warning (many clients truncate long URLs)
+            if (mailtoWarn){
+              mailtoWarn.style.display = (href.length > 1800) ? "block" : "none";
+            }
           }
         });
       }
@@ -1821,25 +1780,26 @@
       if (downloadBtn){
         downloadBtn.addEventListener("click", function(){
           if (!out.value) return;
-          downloadText("noetfield-approval-email-" + getRid() + ".txt", out.value);
+          var rid = getRid();
+          downloadText("noetfield-approval-email-" + rid + ".txt", out.value);
         });
       }
 
+      // Rail copy buttons
       if (copyRidBtn){
         copyRidBtn.addEventListener("click", async function(){
           await copyToClipboard(getRid());
         });
       }
-
       if (copyGateLinkBtn){
         copyGateLinkBtn.addEventListener("click", async function(){
           try{
-            var u = new URL("https://www.noetfield.com/gate/");
+            var u = new URL(window.location.href);
             u.searchParams.set("rid", getRid());
             if (selectedOfferId) u.searchParams.set("offer", selectedOfferId);
-            await copyToClipboard(u.toString());
+            await copyToClipboard(u.pathname + "?" + u.searchParams.toString());
           } catch(_){
-            await copyToClipboard("https://www.noetfield.com/gate/?rid=" + encodeURIComponent(getRid()) + (selectedOfferId ? ("&offer=" + encodeURIComponent(selectedOfferId)) : ""));
+            await copyToClipboard("/gate/?rid=" + encodeURIComponent(getRid()) + (selectedOfferId ? ("&offer=" + encodeURIComponent(selectedOfferId)) : ""));
           }
         });
       }

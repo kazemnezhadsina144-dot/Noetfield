@@ -1,0 +1,32 @@
+name: Repo Ops
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "ops/commands.yml"
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - run: pip install pyyaml
+
+      - run: python scripts/run_ops.py
+
+      - uses: peter-evans/create-pull-request@v6
+        with:
+          title: "Ops: apply commands.yml"
+          commit-message: "Ops: apply commands.yml"
+          branch: "ops/auto"
+          delete-branch: true

@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <!-- AI CallOps • Umbrella • v2025.12.27.1 -->
+  <!-- AI CallOps • Umbrella • v2025.12.27.2 -->
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
@@ -62,6 +62,12 @@
   <header id="nfHeader"></header>
 
   <main id="main" class="callopsWrap">
+    <noscript>
+      <div style="max-width:1100px;margin:18px auto;padding:12px 16px;border:1px solid rgba(255,255,255,.14);border-radius:12px;">
+        This page works without JavaScript for content. JavaScript is only used for the shared header/footer and small UI helpers.
+      </div>
+    </noscript>
+
     <section class="callopsHero" aria-label="AI CallOps umbrella hero">
       <div class="callopsHeroShell">
         <div class="callopsHeroInner">
@@ -76,9 +82,14 @@
           </p>
 
           <div class="callopsActions" aria-label="Primary actions">
+            <!-- RID allowed on conversion paths only -->
             <a class="btn primary" href="/gate/sales/?offer=ai-callops-quickscan" data-rid-link>Start QuickScan (48 hours)</a>
             <a class="btn secondary" href="/gate/sales/?offer=ai-callops-launch" data-rid-link>Start Launch (5 days)</a>
-            <a class="btn secondary" href="/hvac/">See HVAC landing</a>
+
+            <!-- Clean internal links (NO RID) -->
+            <a class="btn secondary" href="/AI/CallOps/hvac/">See HVAC example</a>
+            <a class="btn secondary" href="/AI/CallOps/home-services/">Open generic template</a>
+
             <a class="btn secondary" href="mailto:support@noetfield.com?subject=AI%20CallOps%20—%20Intake">Email intake</a>
           </div>
 
@@ -103,6 +114,7 @@
             <h2 class="callopsTitle">Choose a vertical template</h2>
             <p class="callopsMuted">Same engine. Different scripts and routing rules.</p>
           </div>
+
           <div class="callopsBd">
             <div class="callopsTiles" aria-label="Vertical options">
               <div class="callopsTile">
@@ -157,6 +169,7 @@
             <h2 class="callopsTitle">Start path</h2>
             <p class="callopsMuted">QuickScan first, then Launch.</p>
           </div>
+
           <div class="callopsBd">
             <div class="callopsBox" id="callopsSummary">
               <strong>Default:</strong> QuickScan (48h) → Launch (5d).<br />
@@ -167,7 +180,10 @@
             <div class="callopsRailActions">
               <a class="btn primary" href="/gate/sales/?offer=ai-callops-quickscan" data-rid-link>Start QuickScan</a>
               <a class="btn secondary" href="/gate/sales/?offer=ai-callops-launch" data-rid-link>Start Launch</a>
+
+              <!-- Clean internal link -->
               <a class="btn secondary" href="/AI/CallOps/hvac/">Open HVAC</a>
+
               <button class="btn secondary" type="button" data-copy-summary="#callopsSummary">Copy summary</button>
             </div>
           </div>

@@ -1,462 +1,375 @@
-<!-- /playbook/index.html — Noetfield Playbook Hub v7.0 (Authority/Directory + Gumroad Kits routing) -->
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+/* /assets/pages/playbook.css — Noetfield Playbook Hub v7.1 */
 
-  <title>Noetfield — Playbook</title>
-  <meta name="description" content="A living governance reference hub for AI oversight: modules, artefact shapes, and evidence discipline. Includes Playbook Kits delivered via Gumroad." />
-  <meta name="robots" content="index,follow" />
-  <meta name="author" content="Noetfield Systems Inc." />
-  <meta name="theme-color" content="#07070b" />
+:root{
+  --pb-bg: var(--bg, #07070b);
+  --pb-panel: var(--panel, rgba(255,255,255,.04));
+  --pb-panel2: var(--panel2, rgba(255,255,255,.06));
+  --pb-line: var(--line, rgba(255,255,255,.12));
+  --pb-text: var(--text, rgba(255,255,255,.92));
+  --pb-muted: var(--muted, rgba(255,255,255,.72));
+  --pb-muted2: var(--muted2, rgba(255,255,255,.60));
+  --pb-radius: 16px;
+  --pb-radius2: 12px;
+  --pb-shadow: 0 14px 44px rgba(0,0,0,.35);
+  --pb-gap: 16px;
+  --pb-gap2: 12px;
+}
 
-  <link rel="canonical" href="https://www.noetfield.com/playbook/" />
-  <link rel="icon" href="/noetfield-favicon-512.png" type="image/png" />
-  <link rel="apple-touch-icon" href="/noetfield-favicon-512.png" />
+html{ scroll-behavior: smooth; }
+#kits, #modules, #methods, #samples, #procurement, #faq{ scroll-margin-top: 96px; }
 
-  <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="Noetfield" />
-  <meta property="og:title" content="Noetfield — Playbook" />
-  <meta property="og:description" content="A living governance reference hub for AI oversight: modules, artefact shapes, and evidence discipline. Includes Playbook Kits delivered via Gumroad." />
-  <meta property="og:url" content="https://www.noetfield.com/playbook/" />
-  <meta property="og:image" content="https://www.noetfield.com/noetfield-og.png" />
+.bg{
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(900px 520px at 12% 10%, rgba(255,255,255,.06), transparent 55%),
+    radial-gradient(880px 520px at 88% 18%, rgba(255,255,255,.05), transparent 52%),
+    radial-gradient(980px 560px at 50% 92%, rgba(255,255,255,.035), transparent 56%);
+  pointer-events: none;
+  z-index: -1;
+}
 
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Noetfield — Playbook" />
-  <meta name="twitter:description" content="Living governance reference hub for AI oversight. Includes Playbook Kits delivered via Gumroad." />
-  <meta name="twitter:image" content="https://www.noetfield.com/noetfield-og.png" />
+.hero{
+  margin-top: 18px;
+  margin-bottom: 16px;
+}
 
-  <!-- LOCKED SHELL -->
-  <link rel="stylesheet" href="/assets/noetfield-shell.css" />
-  <script src="/assets/noetfield-shell.js" defer></script>
+.heroShell{
+  border: 1px solid var(--pb-line);
+  border-radius: var(--pb-radius);
+  background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.03));
+  box-shadow: var(--pb-shadow);
+  overflow: hidden;
+}
 
-  <!-- PAGE CSS -->
-  <link rel="stylesheet" href="/assets/pages/playbook.css?v=7.0" />
+.heroInner{
+  padding: 22px;
+}
 
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"WebPage",
-    "name":"Noetfield — Playbook",
-    "url":"https://www.noetfield.com/playbook/",
-    "description":"A living governance reference hub for AI oversight: modules, artefact shapes, and evidence discipline. Includes Playbook Kits delivered via Gumroad.",
-    "isPartOf":{"@type":"WebSite","name":"Noetfield","url":"https://www.noetfield.com/"},
-    "publisher":{"@type":"Organization","name":"Noetfield Systems Inc."}
-  }
-  </script>
+.eyebrow{
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--pb-muted);
+  margin-bottom: 10px;
+}
 
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"FAQPage",
-    "mainEntity":[
-      {
-        "@type":"Question",
-        "name":"What is the Playbook hub?",
-        "acceptedAnswer":{"@type":"Answer","text":"A living governance reference hub: modules, artefact shapes, and evidence discipline patterns used across Noetfield work. It is designed for non-confidential alignment."}
-      },
-      {
-        "@type":"Question",
-        "name":"What are Playbook Kits?",
-        "acceptedAnswer":{"@type":"Answer","text":"Downloadable templates and checklists packaged for practical execution. Kits are delivered via Gumroad and are separate from service engagements."}
-      },
-      {
-        "@type":"Question",
-        "name":"Is the hub confidential?",
-        "acceptedAnswer":{"@type":"Answer","text":"No. This hub is public and designed for non-sensitive alignment. Secure sharing options are confirmed after kickoff where applicable."}
-      },
-      {
-        "@type":"Question",
-        "name":"Do you support invoice / PO procurement?",
-        "acceptedAnswer":{"@type":"Answer","text":"Yes for services. Use procurement@noetfield.com for invoice/PO. Gumroad is used for direct card purchase of Playbook Kits."}
-      }
-    ]
-  }
-  </script>
-</head>
+.eyebrow .dot{
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  border: 1px solid var(--pb-line);
+  background: rgba(255,255,255,.06);
+}
 
-<body>
-  <div class="bg" aria-hidden="true"></div>
-  <a class="skip" href="#main">Skip to content</a>
+.hero h1{
+  margin: 0 0 10px 0;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  font-size: clamp(26px, 3.2vw, 40px);
+  color: var(--pb-text);
+}
 
-  <header id="nfHeader"></header>
+.lead{
+  margin: 0 0 14px 0;
+  color: var(--pb-muted);
+  max-width: 78ch;
+}
 
-  <main id="main" class="wrap">
-    <section class="hero" aria-label="Playbook hero">
-      <div class="heroShell">
-        <div class="heroInner">
-          <div class="eyebrow"><span class="dot"></span> Playbook • living reference hub • modules & kits</div>
+.metaRow{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 12px 0 12px;
+}
 
-          <h1>Governance delivery, made legible — modules, artefacts, and evidence discipline.</h1>
+.pill{
+  padding: 8px 10px;
+  border: 1px solid var(--pb-line);
+  border-radius: 999px;
+  background: rgba(255,255,255,.03);
+  color: var(--pb-muted);
+  font-size: 13px;
+}
 
-          <p class="lead">
-            The Playbook is a <strong>living directory</strong> of how Noetfield structures governance outputs:
-            reference modules, standard artefact shapes, and evidence patterns.
-            Selected templates are packaged as <strong>Playbook Kits</strong> delivered via Gumroad.
-          </p>
+.actions{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 12px;
+}
 
-          <div class="metaRow" aria-label="Playbook facts">
-            <div class="pill"><strong>Public</strong> reference hub</div>
-            <div class="pill"><strong>Evidence</strong> discipline patterns</div>
-            <div class="pill"><strong>Board/procurement</strong> oriented outputs</div>
-            <div class="pill"><strong>Kits</strong> delivered via Gumroad</div>
-          </div>
+.subnav{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid var(--pb-line);
+}
 
-          <div class="actions" aria-label="Primary actions">
-            <a class="btn primary" href="#kits">Explore Kits</a>
-            <a class="btn secondary" href="#modules">Explore Modules</a>
-            <a class="btn secondary" href="/trust-brief/">Trust Brief</a>
-            <a class="btn secondary" href="/trust-ledger/">Trust Ledger</a>
-          </div>
+.subnav a{
+  font-size: 13px;
+  color: var(--pb-muted);
+  text-decoration: none;
+  padding: 7px 10px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+}
 
-          <div class="subnav" aria-label="On-page navigation">
-            <a href="#kits">Kits</a>
-            <a href="#modules">Modules</a>
-            <a href="#methods">Methods</a>
-            <a href="#samples">Samples</a>
-            <a href="#procurement">Procurement</a>
-            <a href="#faq">FAQ</a>
-          </div>
+.subnav a:hover{
+  border-color: var(--pb-line);
+  background: rgba(255,255,255,.03);
+  color: var(--pb-text);
+}
 
-          <div class="notice" role="note" id="procurement">
-            <strong>Services procurement:</strong> invoice/PO supported via <strong>procurement@noetfield.com</strong>.
-            <br />
-            <strong>Playbook Kits:</strong> card purchase and delivery via Gumroad.
-            <br />
-            <strong>Public content:</strong> non-confidential only. Secure sharing options are confirmed after kickoff where applicable.
-          </div>
-        </div>
-      </div>
-    </section>
+.notice{
+  margin-top: 14px;
+  padding: 12px 12px;
+  border: 1px solid var(--pb-line);
+  border-radius: var(--pb-radius2);
+  background: rgba(255,255,255,.03);
+  color: var(--pb-muted);
+}
 
-    <section class="grid" aria-label="Playbook layout">
-      <div>
+.notice a{
+  color: var(--pb-text);
+  text-decoration: none;
+  border-bottom: 1px dotted rgba(255,255,255,.25);
+}
 
-        <!-- KITS -->
-        <section class="card" aria-label="Playbook kits" id="kits">
-          <div class="hd">
-            <h2 class="cardTitle">Playbook Kits (Gumroad delivery)</h2>
-            <p class="muted">
-              Packaged templates for fast execution. Each kit has a dedicated page with what is included, preview, and a single Gumroad checkout link.
-            </p>
+.notice a:hover{
+  border-bottom-color: rgba(255,255,255,.55);
+}
 
-            <div class="sectionRow" aria-label="Kits chips">
-              <div class="chip"><strong>Format:</strong> PDF + editable templates</div>
-              <div class="chip"><strong>Use:</strong> internal execution</div>
-              <div class="chip"><strong>Delivery:</strong> Gumroad</div>
-            </div>
-          </div>
+.grid{
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 320px;
+  gap: var(--pb-gap);
+  align-items: start;
+}
 
-          <div class="bd">
-            <div class="blocks">
+.card{
+  border: 1px solid var(--pb-line);
+  border-radius: var(--pb-radius);
+  background: rgba(255,255,255,.03);
+  overflow: hidden;
+  box-shadow: 0 10px 32px rgba(0,0,0,.25);
+}
 
-              <article class="block" aria-label="AI Vendor Due Diligence Kit">
-                <div class="blockTop">
-                  <h3>AI Vendor Due Diligence Kit</h3>
-                  <span class="tag">Kit</span>
-                </div>
-                <p>Pass/fail gates, weighted scoring, evidence request list, and a decision memo template for defensible vendor selection.</p>
-                <ul>
-                  <li>Minimum gates + risk posture</li>
-                  <li>Scoring rubric + evidence index</li>
-                  <li>Decision memo template</li>
-                </ul>
-                <div class="actions">
-                  <a class="btn primary" href="/playbook/vendor-due-diligence/">View kit page</a>
-                  <a class="btn secondary" href="#samples">See sample outputs</a>
-                </div>
-              </article>
+.card .hd{
+  padding: 16px 16px 12px;
+  border-bottom: 1px solid var(--pb-line);
+  background: rgba(255,255,255,.02);
+}
 
-              <article class="block" aria-label="Enterprise AI Policy Kit">
-                <div class="blockTop">
-                  <h3>Enterprise AI Policy Kit</h3>
-                  <span class="tag">Kit</span>
-                </div>
-                <p>Responsible AI use policy, role-based guardrails, data handling rules, and lightweight rollout support artefacts.</p>
-                <ul>
-                  <li>Policy + role guardrails</li>
-                  <li>Allowed / restricted / prohibited tooling</li>
-                  <li>Quick reference + sign-off tracker</li>
-                </ul>
-                <div class="actions">
-                  <a class="btn primary" href="/playbook/ai-policy/">View kit page</a>
-                  <a class="btn secondary" href="/trust-brief/">If broader scope → Trust Brief</a>
-                </div>
-              </article>
+.cardTitle{
+  margin: 0 0 8px 0;
+  font-size: 18px;
+  letter-spacing: -0.01em;
+  color: var(--pb-text);
+}
 
-              <article class="block" aria-label="ISO/IEC 42001 Readiness Pack">
-                <div class="blockTop">
-                  <h3>ISO/IEC 42001 Readiness Pack</h3>
-                  <span class="tag">Kit</span>
-                </div>
-                <p>Scope definition, controls-to-evidence mapping, and an executable evidence plan for AIMS readiness.</p>
-                <ul>
-                  <li>Scope + roles + boundaries</li>
-                  <li>Controls-to-evidence map</li>
-                  <li>Evidence plan template</li>
-                </ul>
-                <div class="actions">
-                  <a class="btn primary" href="/playbook/iso-42001/">View kit page</a>
-                  <a class="btn secondary" href="/trust-ledger/">Ongoing evidence → Trust Ledger</a>
-                </div>
-              </article>
+.muted{
+  margin: 0;
+  color: var(--pb-muted);
+}
 
-            </div>
+.sectionRow{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
 
-            <div class="notice" style="margin-top:14px;">
-              <strong>Positioning rule:</strong> kits are practical templates; services remain available for scoped governance delivery and procurement routing.
-            </div>
-          </div>
-        </section>
+.chip{
+  padding: 7px 9px;
+  border: 1px solid var(--pb-line);
+  border-radius: 999px;
+  background: rgba(255,255,255,.03);
+  color: var(--pb-muted);
+  font-size: 12.5px;
+}
 
-        <!-- MODULES -->
-        <section class="card" aria-label="Directory modules" style="margin-top:16px;" id="modules">
-          <div class="hd">
-            <h2 class="cardTitle">Modules (living governance structure)</h2>
-            <p class="muted">
-              Modules reflect the internal structure behind Noetfield delivery. Links are enabled only when pages are live.
-              Disabled modules remain listed for roadmap continuity and stable referencing.
-            </p>
+.card .bd{
+  padding: 14px 16px 16px;
+}
 
-            <div class="sectionRow" aria-label="Module rules">
-              <div class="chip"><strong>Rule:</strong> stable URLs</div>
-              <div class="chip"><strong>Rule:</strong> zero-404</div>
-              <div class="chip"><strong>Rule:</strong> public = non-confidential</div>
-            </div>
-          </div>
+.groupTitle{
+  margin: 8px 0 10px 0;
+  color: var(--pb-text);
+  font-size: 14px;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  opacity: .92;
+}
 
-          <div class="bd">
-            <div class="groupTitle">Core governance modules</div>
-            <div class="blocks">
+.blocks{
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--pb-gap);
+}
 
-              <article class="block disabled" aria-label="Use-case registry (in build)">
-                <div class="blockTop">
-                  <h3>Use-case registry</h3>
-                  <span class="tag">In build</span>
-                </div>
-                <p>Material AI use-cases, owners, decision gates, and deployment constraints.</p>
-                <ul>
-                  <li>Use-case inventory + owners</li>
-                  <li>Materiality & decision gates</li>
-                  <li>Risk flags + acceptance posture</li>
-                </ul>
-                <div class="actions">
-                  <button class="btn ghost small" type="button" disabled>Open module</button>
-                </div>
-              </article>
+.block{
+  border: 1px solid var(--pb-line);
+  border-radius: var(--pb-radius2);
+  background: rgba(0,0,0,.10);
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  min-height: 220px;
+}
 
-              <article class="block disabled" aria-label="Controls baseline (in build)">
-                <div class="blockTop">
-                  <h3>Controls baseline</h3>
-                  <span class="tag">In build</span>
-                </div>
-                <p>Minimum viable control set to operate AI safely under scrutiny.</p>
-                <ul>
-                  <li>Policy → control mapping</li>
-                  <li>Owner mapping + evidence hooks</li>
-                  <li>Exceptions + red-lines</li>
-                </ul>
-                <div class="actions">
-                  <button class="btn ghost small" type="button" disabled>Open module</button>
-                </div>
-              </article>
+.blockTop{
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 8px;
+}
 
-              <article class="block" aria-label="Trust Brief module">
-                <div class="blockTop">
-                  <h3>Trust Brief (structured diagnostic)</h3>
-                  <span class="tag">Live</span>
-                </div>
-                <p>Structured diagnostic for material map, decision points, and an initial operating model—ready for leadership review.</p>
-                <ul>
-                  <li>Material map + owners</li>
-                  <li>Operating model draft</li>
-                  <li>Board-ready roadmap</li>
-                </ul>
-                <div class="actions">
-                  <a class="btn primary" href="/trust-brief/">View Trust Brief</a>
-                  <a class="btn secondary" href="/gate/procurement/?need=copilot&focus=brief">Invoice / PO</a>
-                </div>
-              </article>
+.block h3{
+  margin: 0;
+  font-size: 16px;
+  color: var(--pb-text);
+  letter-spacing: -0.01em;
+}
 
-              <article class="block" aria-label="Trust Ledger module">
-                <div class="blockTop">
-                  <h3>Trust Ledger cadence</h3>
-                  <span class="tag">Live</span>
-                </div>
-                <p>Maintained register for safeguards, sign-offs, and evidence indexing—kept ready for recurring scrutiny.</p>
-                <ul>
-                  <li>Ledger register + evidence index</li>
-                  <li>Board export cadence</li>
-                  <li>Change trail + exceptions</li>
-                </ul>
-                <div class="actions">
-                  <a class="btn primary" href="/trust-ledger/">View Trust Ledger</a>
-                  <a class="btn secondary" href="/gate/procurement/?need=copilot&focus=ledger">Invoice / PO</a>
-                </div>
-              </article>
+.tag{
+  font-size: 12px;
+  color: var(--pb-muted);
+  border: 1px solid var(--pb-line);
+  border-radius: 999px;
+  padding: 5px 8px;
+  background: rgba(255,255,255,.03);
+  white-space: nowrap;
+}
 
-            </div>
+.block p{
+  margin: 0 0 10px 0;
+  color: var(--pb-muted);
+}
 
-            <div class="groupTitle" id="methods">Methods (how Noetfield works)</div>
-            <div class="blocks">
+.block ul{
+  margin: 0 0 10px 18px;
+  padding: 0;
+  color: var(--pb-muted);
+}
 
-              <article class="block disabled" aria-label="Evidence discipline (planned)">
-                <div class="blockTop">
-                  <h3>Evidence discipline</h3>
-                  <span class="tag">Planned</span>
-                </div>
-                <p>How evidence is defined, indexed, and made board/procurement-friendly without oversharing.</p>
-                <ul>
-                  <li>Evidence hooks + minimum proof</li>
-                  <li>Red-lines + exceptions</li>
-                  <li>Board export patterns</li>
-                </ul>
-                <div class="actions">
-                  <button class="btn ghost small" type="button" disabled>Open module</button>
-                </div>
-              </article>
+.block li{
+  margin: 6px 0;
+}
 
-              <article class="block disabled" aria-label="Operating cadence (planned)">
-                <div class="blockTop">
-                  <h3>Operating cadence</h3>
-                  <span class="tag">Planned</span>
-                </div>
-                <p>How governance runs continuously: review rhythm, ownership mapping, and change handling.</p>
-                <ul>
-                  <li>Quarterly/Monthly review rhythm</li>
-                  <li>Owner map + sign-offs</li>
-                  <li>Change control basics</li>
-                </ul>
-                <div class="actions">
-                  <button class="btn ghost small" type="button" disabled>Open module</button>
-                </div>
-              </article>
+.block .actions{
+  margin-top: auto;
+}
 
-            </div>
-          </div>
-        </section>
+.block.disabled{
+  opacity: .58;
+  filter: grayscale(.25);
+}
 
-        <!-- SAMPLES -->
-        <section class="card" aria-label="Samples" style="margin-top:16px;" id="samples">
-          <div class="hd">
-            <h2 class="cardTitle">Samples (reference outputs)</h2>
-            <p class="muted">Executive-friendly artefacts designed for leadership review and procurement alignment.</p>
-          </div>
+.btn.small{
+  padding: 8px 10px;
+  font-size: 13px;
+}
 
-          <div class="bd">
-            <div class="blocks">
-              <article class="block" aria-label="Sample outputs">
-                <div class="blockTop">
-                  <h3>Output style</h3>
-                  <span class="tag">Board-ready</span>
-                </div>
-                <p>Stable sample URLs are maintained as references.</p>
-                <div class="actions">
-                  <a class="btn secondary" href="https://www.noetfield.com/trust-ledger/sample-report/board-memo.pdf" target="_blank" rel="noopener nofollow">Board memo (PDF)</a>
-                  <a class="btn secondary" href="https://www.noetfield.com/trust-ledger/sample-report/ledger-entry.pdf" target="_blank" rel="noopener nofollow">Ledger entry (PDF)</a>
-                  <a class="btn secondary" href="https://www.noetfield.com/trust-ledger/sample-report/ledger-entry.2.pdf" target="_blank" rel="noopener nofollow">Ledger entry (PDF2)</a>
-                </div>
+.btn.ghost.small{
+  border: 1px solid var(--pb-line);
+  background: rgba(255,255,255,.02);
+}
 
-                <details class="opt" style="margin-top:12px;">
-                  <summary>Online samples (routes)</summary>
-                  <div class="optBody">
-                    <div class="actions" style="margin-top:10px;">
-                      <a class="btn ghost small" href="https://www.noetfield.com/trust-ledger/sample-report/online/" target="_blank" rel="noopener nofollow">Online sample (route A)</a>
-                      <a class="btn ghost small" href="https://www.noetfield.com/trust-ledger/online-report/" target="_blank" rel="noopener nofollow">Online report (route B)</a>
-                      <a class="btn ghost small" href="https://www.noetfield.com/trust-ledger/output/" target="_blank" rel="noopener nofollow">Output directory</a>
-                    </div>
-                    <div class="hint">Sample URLs are maintained as stable references.</div>
-                  </div>
-                </details>
-              </article>
-            </div>
-          </div>
-        </section>
+.btn.ghost.small:disabled{
+  opacity: .7;
+  cursor: not-allowed;
+}
 
-        <!-- FAQ -->
-        <section class="card" aria-label="FAQ" style="margin-top:16px;" id="faq">
-          <div class="hd">
-            <h2 class="cardTitle">FAQ</h2>
-            <p class="muted">Short answers for alignment and routing.</p>
-          </div>
-          <div class="bd">
-            <details class="opt">
-              <summary>Are kits the same as services?</summary>
-              <div class="optBody">
-                No. Kits are downloadable templates for internal execution. Services are scoped engagements that produce organization-specific outputs and procurement-ready routing.
-              </div>
-            </details>
+details.opt{
+  border: 1px solid var(--pb-line);
+  border-radius: var(--pb-radius2);
+  background: rgba(255,255,255,.02);
+  padding: 10px 12px;
+}
 
-            <details class="opt">
-              <summary>How are kits delivered?</summary>
-              <div class="optBody">
-                Kits are delivered via Gumroad after purchase (download + receipt email).
-              </div>
-            </details>
+details.opt summary{
+  cursor: pointer;
+  color: var(--pb-text);
+  font-weight: 600;
+}
 
-            <details class="opt">
-              <summary>Is the hub confidential?</summary>
-              <div class="optBody">
-                No. Public pages are designed for non-sensitive alignment. Secure sharing options are confirmed after kickoff where applicable.
-              </div>
-            </details>
+.optBody{
+  margin-top: 10px;
+  color: var(--pb-muted);
+}
 
-            <details class="opt">
-              <summary>Do you support invoice / PO?</summary>
-              <div class="optBody">
-                Yes for services. Email procurement@noetfield.com for invoice/PO routing. Gumroad supports direct card purchase for kits.
-              </div>
-            </details>
-          </div>
-        </section>
+.hint{
+  margin-top: 10px;
+  font-size: 12.5px;
+  color: var(--pb-muted2);
+}
 
-      </div>
+.rail{
+  position: sticky;
+  top: 88px;
+}
 
-      <aside class="rail" aria-label="Playbook shortcuts">
-        <div class="railBox card">
-          <div class="hd">
-            <h2 class="cardTitle">Quick actions</h2>
-            <p class="muted">Common next steps.</p>
-          </div>
+.railBox .kpi{
+  padding: 12px;
+  border: 1px solid var(--pb-line);
+  border-radius: var(--pb-radius2);
+  background: rgba(255,255,255,.02);
+  color: var(--pb-muted);
+  margin-top: 12px;
+}
 
-          <div class="bd">
-            <div class="kpi" role="note">
-              <strong>Recommended sequencing:</strong> use kits for fast execution; use Trust Brief / Trust Ledger when governance posture must be organization-specific and procurement-facing.
-            </div>
+.stickyCta{
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 10px 12px;
+  background: rgba(7,7,11,.82);
+  backdrop-filter: blur(10px);
+  border-top: 1px solid rgba(255,255,255,.10);
+}
 
-            <div class="actions" style="margin-top:12px">
-              <a class="btn primary" href="#kits">Explore Kits</a>
-              <a class="btn secondary" href="/trust-brief/">Trust Brief</a>
-              <a class="btn secondary" href="/trust-ledger/">Trust Ledger</a>
-              <a class="btn secondary" href="/gate/procurement/?need=copilot">Invoice / PO</a>
-            </div>
+.stickyInner{
+  max-width: 1160px;
+  margin: 0 auto;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+}
 
-            <div class="kpi">
-              <strong>Public intake = non-confidential.</strong><br/>
-              Provide non-sensitive details only. Secure sharing is confirmed after kickoff.
-            </div>
+.stickyText{
+  color: var(--pb-muted);
+  font-size: 13.5px;
+  line-height: 1.35;
+}
 
-            <div class="kpi">
-              <strong>Version:</strong> v7.0<br/>
-              <span class="muted">Last updated: 2025-12-27</span>
-            </div>
-          </div>
-        </div>
-      </aside>
-    </section>
+/* Prevent last content from being hidden behind sticky CTA */
+main.wrap{
+  padding-bottom: 84px;
+}
 
-    <section class="stickyCta" aria-label="Sticky CTA">
-      <div class="stickyInner">
-        <div class="stickyText"><strong>Playbook Kits</strong> — fast templates via Gumroad. Services remain available for procurement-grade delivery.</div>
-        <div class="actions" style="margin-top:0">
-          <a class="btn primary" href="#kits">Explore Kits</a>
-          <a class="btn secondary" href="/gate/procurement/?need=copilot">Invoice / PO</a>
-        </div>
-      </div>
-    </section>
-  </main>
+/* Responsive */
+@media (max-width: 1100px){
+  .grid{ grid-template-columns: minmax(0, 1fr) 300px; }
+  .blocks{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
 
-  <footer id="nfFooter"></footer>
-</body>
-</html>
+@media (max-width: 920px){
+  .grid{ grid-template-columns: 1fr; }
+  .rail{ position: static; }
+}
+
+@media (max-width: 640px){
+  .heroInner{ padding: 16px; }
+  .blocks{ grid-template-columns: 1fr; }
+  .stickyInner{ flex-direction: column; align-items: flex-start; }
+  .stickyText{ width: 100%; }
+}

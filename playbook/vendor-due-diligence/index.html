@@ -1,576 +1,214 @@
-<!DOCTYPE html>
+<!-- /playbook/vendor-due-diligence/index.html — v1.0 (Gumroad Kit page) -->
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Noetfield – AI Vendor Due Diligence Kit (Playbook Offer)</title>
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <meta
-    name="description"
-    content="A procurement-ready pack for evaluating AI and GenAI vendors: pass/fail gates, weighted scoring rubric, evidence request list, and governance-oriented contract red-flag guidance for defensible adoption."
-  />
+  <title>AI Vendor Due Diligence Kit | Noetfield Playbook</title>
+  <meta name="description" content="A procurement-ready kit for evaluating AI/GenAI vendors: pass/fail gates, scoring rubric, evidence request list, and decision memo template. Delivered via Gumroad." />
   <meta name="robots" content="index,follow" />
   <meta name="author" content="Noetfield Systems Inc." />
+  <meta name="theme-color" content="#07070b" />
 
   <link rel="canonical" href="https://www.noetfield.com/playbook/vendor-due-diligence/" />
-
   <link rel="icon" href="/noetfield-favicon-512.png" type="image/png" />
   <link rel="apple-touch-icon" href="/noetfield-favicon-512.png" />
-  <meta name="theme-color" content="#05060a" />
 
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Noetfield" />
-  <meta property="og:title" content="AI Vendor Due Diligence Kit — pass/fail gates + scoring + evidence requests" />
-  <meta
-    property="og:description"
-    content="A procurement-ready pack for evaluating AI and GenAI vendors: minimum gates, scoring rubric, evidence request list, and governance-oriented contract red-flag guidance for defensible adoption."
-  />
+  <meta property="og:title" content="AI Vendor Due Diligence Kit — gates + scoring + evidence requests" />
+  <meta property="og:description" content="Procurement-ready vendor evaluation kit: minimum gates, scoring rubric, evidence request list, and a decision memo template. Delivered via Gumroad." />
   <meta property="og:url" content="https://www.noetfield.com/playbook/vendor-due-diligence/" />
   <meta property="og:image" content="https://www.noetfield.com/noetfield-og.png" />
 
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Noetfield – AI Vendor Due Diligence Kit" />
-  <meta
-    name="twitter:description"
-    content="A procurement-ready evaluation kit with gates, scoring, evidence requests, and a decision memo template."
-  />
+  <meta name="twitter:title" content="AI Vendor Due Diligence Kit | Noetfield" />
+  <meta name="twitter:description" content="Procurement-ready vendor evaluation kit delivered via Gumroad." />
   <meta name="twitter:image" content="https://www.noetfield.com/noetfield-og.png" />
 
-  <!-- JSON-LD: Service -->
+  <!-- LOCKED SHELL -->
+  <link rel="stylesheet" href="/assets/noetfield-shell.css" />
+  <script src="/assets/noetfield-shell.js" defer></script>
+
+  <!-- PAGE CSS -->
+  <link rel="stylesheet" href="/assets/pages/playbook-offer.css?v=1.0" />
+
+  <!-- Gumroad (optional overlay support). Keep if you use Gumroad overlays; otherwise safe to remove. -->
+  <script src="https://gumroad.com/js/gumroad.js" defer></script>
+
   <script type="application/ld+json">
   {
-    "@context": "https://schema.org",
-    "@type": "Service",
-    "name": "AI Vendor Due Diligence Kit",
-    "description": "A procurement-ready pack for evaluating AI and GenAI vendors: pass/fail gates, weighted scoring rubric, evidence request list, and governance-oriented contract red-flag guidance for defensible adoption.",
-    "provider": {
-      "@type": "Organization",
-      "name": "Noetfield Systems Inc.",
-      "url": "https://www.noetfield.com/"
-    },
-    "areaServed": "Global",
-    "url": "https://www.noetfield.com/playbook/vendor-due-diligence/"
+    "@context":"https://schema.org",
+    "@type":"Product",
+    "name":"AI Vendor Due Diligence Kit",
+    "description":"A procurement-ready kit for evaluating AI/GenAI vendors: pass/fail gates, scoring rubric, evidence request list, and decision memo template. Delivered via Gumroad.",
+    "brand":{"@type":"Brand","name":"Noetfield"},
+    "isRelatedTo":{"@type":"WebPage","url":"https://www.noetfield.com/playbook/"},
+    "url":"https://www.noetfield.com/playbook/vendor-due-diligence/",
+    "offers":{
+      "@type":"Offer",
+      "priceCurrency":"CAD",
+      "url":"https://GUMROAD_PRODUCT_URL_PLACEHOLDER"
+    }
   }
   </script>
 
-  <!-- JSON-LD: Breadcrumbs -->
   <script type="application/ld+json">
   {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.noetfield.com/" },
-      { "@type": "ListItem", "position": 2, "name": "Playbook", "item": "https://www.noetfield.com/playbook/" },
-      { "@type": "ListItem", "position": 3, "name": "AI Vendor Due Diligence Kit", "item": "https://www.noetfield.com/playbook/vendor-due-diligence/" }
+    "@context":"https://schema.org",
+    "@type":"BreadcrumbList",
+    "itemListElement":[
+      {"@type":"ListItem","position":1,"name":"Home","item":"https://www.noetfield.com/"},
+      {"@type":"ListItem","position":2,"name":"Playbook","item":"https://www.noetfield.com/playbook/"},
+      {"@type":"ListItem","position":3,"name":"AI Vendor Due Diligence Kit","item":"https://www.noetfield.com/playbook/vendor-due-diligence/"}
     ]
   }
   </script>
-
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
-    rel="stylesheet"
-  />
-
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-
-    :root {
-      --bg: #05060a;
-      --bg-soft: #080911;
-      --border-soft: rgba(255,255,255,0.10);
-      --text-main: #f5f5f7;
-      --text-soft: #daddef;
-      --text-mute: #9ca3af;
-      --accent: #ffffff;
-      --accent-soft: #9ca3ff;
-    }
-
-    body {
-      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: radial-gradient(circle at top, #151827 0%, var(--bg) 55%);
-      color: var(--text-main);
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 32px 20px 40px;
-    }
-
-    a { color: inherit; text-decoration: none; }
-
-    .page {
-      width: 100%;
-      max-width: 1040px;
-      display: flex;
-      flex-direction: column;
-      min-height: calc(100vh - 72px);
-    }
-
-    header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 18px;
-      padding-bottom: 14px;
-      border-bottom: 1px solid var(--border-soft);
-      gap: 14px;
-    }
-
-    .brand-wrap { display: flex; align-items: center; gap: 10px; }
-    .brand-logo {
-      width: 32px;
-      height: 32px;
-      border-radius: 999px;
-      background: radial-gradient(circle at 25% 0, #ffffff 0, #d4e0ff 18%, #818cf8 45%, #1f2937 70%, #020617 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 18px;
-      font-weight: 700;
-      color: #ffffff;
-      box-shadow: 0 10px 28px rgba(15,23,42,0.9);
-    }
-
-    .brand-text { display: flex; flex-direction: column; gap: 2px; }
-    .brand-name { font-size: 16px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; }
-    .brand-tagline { font-size: 12px; color: var(--text-mute); }
-
-    nav { display: flex; gap: 18px; font-size: 13px; flex-wrap: wrap; }
-    nav a { opacity: 0.78; padding-bottom: 2px; border-bottom: 1px solid transparent; }
-    nav a:hover { opacity: 1; border-bottom-color: rgba(209,213,219,0.6); }
-    nav a.active { opacity: 1; border-bottom-color: rgba(255,255,255,0.85); font-weight: 500; }
-
-    main { width: 100%; }
-
-    .crumbs {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      align-items: center;
-      margin: 14px 0 18px;
-      color: #b6bad1;
-      font-size: 12px;
-    }
-    .crumbs a { color: #cbd5f5; text-decoration: underline; text-decoration-color: rgba(148,163,253,0.35); text-underline-offset: 3px; }
-    .crumbs .sep { color: #6b7280; }
-
-    .hero { margin-bottom: 18px; }
-
-    .pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 11px;
-      padding: 4px 10px;
-      border-radius: 999px;
-      border: 1px solid rgba(148,163,253,0.35);
-      background: radial-gradient(circle at 0 0, rgba(129,140,248,0.32), transparent 55%);
-      color: #e5e7eb;
-      margin-bottom: 10px;
-    }
-    .pill-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 999px;
-      background: linear-gradient(135deg, #7dd3fc, #a855f7);
-    }
-
-    .hero-kicker {
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      color: var(--text-mute);
-      margin-bottom: 8px;
-    }
-
-    .hero-title {
-      font-size: clamp(26px, 3vw, 30px);
-      line-height: 1.15;
-      font-weight: 600;
-      margin-bottom: 14px;
-      letter-spacing: -0.02em;
-    }
-    .hero-title span {
-      background: linear-gradient(135deg, #ffffff, #a5b4fc);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
-
-    .hero-subtitle {
-      font-size: 15px;
-      line-height: 1.6;
-      color: #d0d3dd;
-      max-width: 760px;
-    }
-
-    .hero-cta-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 18px; }
-
-    .btn-primary, .btn-ghost {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 9px 18px;
-      border-radius: 999px;
-      font-size: 13px;
-      font-weight: 500;
-      cursor: pointer;
-      border: 1px solid transparent;
-      transition: background-color 0.16s ease, border-color 0.16s ease, color 0.16s ease, transform 0.06s ease;
-      white-space: nowrap;
-    }
-    .btn-primary {
-      background: linear-gradient(135deg, #f9fafb, #e5e7eb);
-      color: #050608;
-      box-shadow: 0 12px 32px rgba(15,23,42,0.9);
-    }
-    .btn-primary:hover { background: #ffffff; transform: translateY(-1px); }
-
-    .btn-ghost {
-      background: rgba(15,23,42,0.9);
-      border-color: #4b4f5c;
-      color: #e1e3ea;
-    }
-    .btn-ghost:hover { background: #111827; border-color: #6c7080; }
-
-    .section { margin-bottom: 30px; }
-    .section-kicker { font-size: 11px; text-transform: uppercase; letter-spacing: 0.16em; color: var(--text-mute); margin-bottom: 4px; }
-
-    .section-title-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      margin-bottom: 8px;
-    }
-
-    .section-title { font-size: 18px; font-weight: 600; letter-spacing: -0.02em; }
-    .section-subtitle { font-size: 14px; color: #a0a4ae; margin-bottom: 10px; }
-
-    .grid-2, .grid-3 { display: grid; gap: 16px; }
-    .grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    .grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-
-    .card {
-      border-radius: 16px;
-      border: 1px solid #22252f;
-      background: radial-gradient(circle at top left, #191c2e 0, #0a0b10 52%, #050608 100%);
-      padding: 16px 16px 14px;
-    }
-
-    .card-kicker {
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      color: #b6bad1;
-      margin-bottom: 8px;
-    }
-
-    .card-title { font-size: 14px; font-weight: 600; margin-bottom: 6px; }
-
-    .card p { font-size: 13px; line-height: 1.6; color: #daddef; margin-bottom: 8px; }
-
-    ul { list-style: none; margin-top: 6px; }
-    li {
-      font-size: 13px;
-      line-height: 1.65;
-      color: #e1e3ea;
-      padding-left: 18px;
-      position: relative;
-      margin-bottom: 6px;
-    }
-    li::before { content: "•"; position: absolute; left: 4px; color: var(--accent-soft); }
-
-    .badge-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
-    .badge { font-size: 11px; border-radius: 999px; border: 1px solid #343848; padding: 3px 8px; color: #b6bad1; }
-
-    /* Form */
-    label { display: block; font-size: 12px; color: #cbd0e0; margin: 10px 0 6px; letter-spacing: 0.02em; }
-    input, select, textarea {
-      width: 100%;
-      padding: 10px 10px;
-      border-radius: 10px;
-      border: 1px solid #303445;
-      background: rgba(15,23,42,0.9);
-      color: #e5e7f5;
-      font-size: 13px;
-      outline: none;
-    }
-    textarea { min-height: 110px; resize: vertical; }
-    input:focus, select:focus, textarea:focus {
-      border-color: #6366f1;
-      box-shadow: 0 0 0 1px rgba(99,102,241,0.5);
-    }
-
-    .form-row {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 12px;
-      margin-top: 8px;
-    }
-    .btn-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
-
-    .form-note { margin-top: 10px; font-size: 12px; color: #a0a4ae; line-height: 1.6; }
-    .form-note a { text-decoration: underline; text-underline-offset: 3px; text-decoration-color: rgba(148,163,253,0.35); color: #cbd5f5; }
-
-    footer {
-      margin-top: 32px;
-      font-size: 11px;
-      color: #737889;
-      display: flex;
-      justify-content: space-between;
-      gap: 12px;
-      flex-wrap: wrap;
-      align-items: center;
-    }
-    footer a { color: #b6bad1; text-decoration: none; }
-    footer a:hover { text-decoration: underline; }
-
-    @media (max-width: 900px) {
-      .grid-3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    }
-    @media (max-width: 768px) {
-      body { padding: 24px 16px 32px; }
-      header { align-items: flex-start; flex-direction: column; gap: 6px; }
-      .grid-2, .grid-3 { grid-template-columns: 1fr; }
-      .hero-cta-row { flex-direction: column; }
-      .btn-primary, .btn-ghost { width: 100%; justify-content: center; }
-      .form-row { grid-template-columns: 1fr; }
-      .btn-row { flex-direction: column; }
-      footer { flex-direction: column; align-items: flex-start; }
-    }
-  </style>
 </head>
 
 <body>
-  <div class="page">
-    <header>
-      <a href="/" class="brand-wrap">
-        <div class="brand-logo">N</div>
-        <div class="brand-text">
-          <div class="brand-name">Noetfield</div>
-          <div class="brand-tagline">Trust systems for AI governance</div>
+  <div class="bg" aria-hidden="true"></div>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header id="nfHeader"></header>
+
+  <main id="main" class="wrap pbOffer">
+    <section class="pbHero" aria-label="Kit hero">
+      <div class="pbHeroInner">
+        <div class="pbPillRow" aria-label="Kit badges">
+          <div class="pbPill"><strong>Kit</strong> • procurement</div>
+          <div class="pbPill"><strong>Use</strong> • vendor evaluation</div>
+          <div class="pbPill"><strong>Delivery</strong> • Gumroad</div>
         </div>
-      </a>
 
-      <nav aria-label="Primary navigation">
-        <a href="/">Home</a>
-        <a href="/trust-brief/">Trust Brief</a>
-        <a href="/trust-ledger/">Trust Ledger</a>
-        <a href="/for-whom/">For Whom</a>
-        <a href="/gate/">Gate</a>
-        <a href="/about/">About</a>
-        <a href="/contact/">Contact</a>
-        <a href="/playbook/" class="active" aria-current="page">Playbook</a>
-        <a href="/partners/">Partners</a>
-      </nav>
-    </header>
+        <div class="pbKicker">A defensible vendor “yes/no + conditions” decision</div>
+        <h1 class="pbTitle">AI Vendor Due Diligence Kit — gates, scoring, evidence requests.</h1>
 
-    <main>
-      <div class="crumbs" aria-label="Breadcrumb">
-        <a href="/">Home</a>
-        <span class="sep">›</span>
-        <a href="/playbook/">Playbook</a>
-        <span class="sep">›</span>
-        <span>AI Vendor Due Diligence Kit</span>
-      </div>
-
-      <section class="hero">
-        <div class="pill"><span class="pill-dot"></span> Procurement · Vendor risk</div>
-        <div class="hero-kicker">A defensible “yes/no + conditions” vendor decision</div>
-        <h1 class="hero-title">
-          AI Vendor <span>Due Diligence Kit</span> — pass/fail gates + scoring + evidence requests.
-        </h1>
-        <p class="hero-subtitle">
-          A procurement-ready pack for evaluating AI and GenAI vendors: minimum gates, scoring rubric, evidence request list,
-          and contract red-flag guidance for defensible adoption.
+        <p class="pbLead">
+          A procurement-ready pack for evaluating AI and GenAI vendors:
+          <strong>minimum gates</strong>, <strong>weighted scoring rubric</strong>, <strong>evidence request list</strong>,
+          and a <strong>decision memo template</strong> suitable for leadership review.
         </p>
-        <div class="hero-cta-row">
-          <a href="#intake" class="btn-primary">Request Intake</a>
-          <a href="/trust-brief/" class="btn-ghost">Explore Trust Brief</a>
-          <a href="/playbook/" class="btn-ghost">Back to Playbook</a>
-        </div>
-      </section>
 
-      <section class="section">
-        <div class="section-title-row">
-          <div>
-            <div class="section-kicker">Deliverables</div>
-            <h2 class="section-title">Procurement-ready decision pack</h2>
-          </div>
+        <div class="pbCtaRow" aria-label="Primary CTAs">
+          <a class="btn primary gumroad-button" href="https://GUMROAD_PRODUCT_URL_PLACEHOLDER">Buy on Gumroad</a>
+          <a class="btn secondary" href="/playbook/">Back to Playbook</a>
+          <a class="btn secondary" href="/trust-brief/">If org-specific → Trust Brief</a>
         </div>
 
-        <div class="grid-2">
-          <div class="card">
-            <div class="card-kicker">Core</div>
-            <div class="card-title">Evaluation kit</div>
-            <ul>
-              <li>Pass/fail gates (minimum standards).</li>
-              <li>Weighted scoring rubric (risk-based).</li>
-              <li>Evidence request list (vendor pack).</li>
-              <li>Decision memo template (board/audit-friendly).</li>
-            </ul>
-            <div class="badge-row">
-              <div class="badge">Traceable</div>
-              <div class="badge">Repeatable</div>
-              <div class="badge">Audit-friendly</div>
-            </div>
-          </div>
-
-          <div class="card">
-            <div class="card-kicker">Contract guidance</div>
-            <div class="card-title">Red flags (non-legal)</div>
-            <p>
-              Governance-oriented red flags and clause suggestions for legal counsel review.
-              Final contract terms remain a legal decision.
-            </p>
-            <ul>
-              <li>Data use / retention / training clauses.</li>
-              <li>Security posture and breach duties.</li>
-              <li>Auditability, logs, and incident cooperation.</li>
-            </ul>
-            <div class="badge-row">
-              <div class="badge">Governance-first</div>
-              <div class="badge">Counsel-reviewed</div>
-              <div class="badge">Defensible</div>
-            </div>
-          </div>
+        <div class="pbNote" role="note">
+          <strong>Note:</strong> This kit is a template pack for internal execution. It is not legal advice.
+          For invoice/PO service procurement, use <strong>procurement@noetfield.com</strong>.
         </div>
-      </section>
-
-      <section class="section">
-        <div class="section-title-row">
-          <div>
-            <div class="section-kicker">Timeline</div>
-            <h2 class="section-title">Typical 3–5 day workflow</h2>
-          </div>
-        </div>
-        <div class="grid-3">
-          <div class="card">
-            <div class="card-kicker">Day 1</div>
-            <div class="card-title">Purpose + data</div>
-            <p>Use case, users, data classes, and procurement stage.</p>
-          </div>
-          <div class="card">
-            <div class="card-kicker">Days 2–3</div>
-            <div class="card-title">Questionnaire + evidence</div>
-            <p>Vendor evidence requests and evaluation gates.</p>
-          </div>
-          <div class="card">
-            <div class="card-kicker">Days 4–5</div>
-            <div class="card-title">Score + memo</div>
-            <p>Scoring, red flags, and decision memo handoff.</p>
-          </div>
-        </div>
-      </section>
-
-      <section class="section" id="intake">
-        <div class="section-title-row">
-          <div>
-            <div class="section-kicker">Intake</div>
-            <h2 class="section-title">Request intake</h2>
-          </div>
-        </div>
-
-        <div class="grid-2">
-          <div class="card">
-            <div class="card-kicker">Form</div>
-            <div class="card-title">Submit details</div>
-
-            <form method="POST" action="https://formspree.io/f/YOUR_FORM_ID">
-              <input type="hidden" name="page_source" value="/playbook/vendor-due-diligence/" />
-              <input type="hidden" name="offer" value="AI Vendor Due Diligence Kit" />
-
-              <div class="form-row">
-                <div>
-                  <label for="email">Work email</label>
-                  <input id="email" name="email" type="email" required placeholder="name@company.com" />
-                </div>
-                <div>
-                  <label for="org">Organization</label>
-                  <input id="org" name="organization" type="text" required placeholder="Organization name" />
-                </div>
-              </div>
-
-              <div class="form-row">
-                <div>
-                  <label for="role">Role</label>
-                  <select id="role" name="role" required>
-                    <option value="" selected disabled>Select</option>
-                    <option>Procurement</option>
-                    <option>Security / IT</option>
-                    <option>Legal</option>
-                    <option>Risk / Compliance</option>
-                    <option>Executive</option>
-                    <option>Other</option>
-                  </select>
-                </div>
-                <div>
-                  <label for="stage">Procurement stage</label>
-                  <select id="stage" name="procurement_stage" required>
-                    <option value="" selected disabled>Select</option>
-                    <option>Shortlisting</option>
-                    <option>Contract review</option>
-                    <option>Renewal</option>
-                    <option>Incident-driven review</option>
-                  </select>
-                </div>
-              </div>
-
-              <label for="msg">Context (optional)</label>
-              <textarea id="msg" name="message" placeholder="Vendor name, intended use, data classes, urgency."></textarea>
-
-              <div class="btn-row">
-                <button type="submit" class="btn-primary">Submit</button>
-                <a class="btn-ghost" href="/trust-ledger/">Trust Ledger</a>
-              </div>
-
-              <div class="form-note">
-                Confidentiality-first. NDA available on request.
-              </div>
-            </form>
-          </div>
-
-          <div class="card">
-            <div class="card-kicker">Commercial</div>
-            <div class="card-title">Indicative pricing</div>
-            <ul>
-              <li>Due Diligence Kit: <strong>$2k–$7k</strong> (scope-dependent).</li>
-              <li>Multi-vendor batch: by SOW.</li>
-            </ul>
-            <p class="form-note">
-              For broader governance posture and evidence, use the <a href="/trust-brief/">Trust Brief</a>.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section class="section">
-        <div class="form-note">
-          Back to <a href="/playbook/#offers">Playbook offers</a>.
-        </div>
-      </section>
-    </main>
-
-    <footer>
-      <div>© <span id="year"></span> Noetfield Systems Inc. All rights reserved.</div>
-      <div>
-        <a href="/">Home</a> ·
-        <a href="/trust-brief/">Trust Brief</a> ·
-        <a href="/trust-ledger/">Trust Ledger</a> ·
-        <a href="/for-whom/">For Whom</a> ·
-        <a href="/gate/">Gate</a> ·
-        <a href="/about/">About</a> ·
-        <a href="/contact/">Contact</a> ·
-        <a href="/playbook/">Playbook</a> ·
-        <a href="/partners/">Partners</a>
       </div>
-    </footer>
-  </div>
+    </section>
 
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
+    <section class="pbGrid" aria-label="Kit layout">
+      <div>
+
+        <section class="pbCard" aria-label="What you get">
+          <div class="pbHd">
+            <h2 class="pbH2">What is included</h2>
+            <p class="pbMuted">A practical, repeatable evaluation workflow designed to reduce back-and-forth and improve decision defensibility.</p>
+          </div>
+          <div class="pbBd">
+            <div class="pbBlocks">
+
+              <article class="pbBlock" aria-label="Core kit">
+                <h3>Core templates</h3>
+                <ul>
+                  <li>Pass/fail gates (minimum standards) checklist.</li>
+                  <li>Weighted scoring rubric (risk-based, adjustable weights).</li>
+                  <li>Evidence request list (vendor pack requirements).</li>
+                  <li>Decision memo template (board/audit-friendly).</li>
+                </ul>
+              </article>
+
+              <article class="pbBlock" aria-label="Operating guidance">
+                <h3>Operating guidance</h3>
+                <ul>
+                  <li>How to run the evaluation in shortlisting vs contract review vs renewal.</li>
+                  <li>How to classify data exposure and set conditions for approval.</li>
+                  <li>How to document exceptions without oversharing sensitive details.</li>
+                </ul>
+              </article>
+
+            </div>
+          </div>
+        </section>
+
+        <section class="pbCard" aria-label="Who it is for" style="margin-top:16px;">
+          <div class="pbHd">
+            <h2 class="pbH2">Who this is for</h2>
+            <p class="pbMuted">Teams that need a clean vendor decision record under governance and audit pressure.</p>
+          </div>
+          <div class="pbBd">
+            <div class="pbBlocks">
+              <article class="pbBlock">
+                <h3>Primary users</h3>
+                <ul>
+                  <li>Procurement / Vendor Management</li>
+                  <li>Security / IT / Risk / Compliance</li>
+                  <li>Legal (as an input, not a replacement)</li>
+                </ul>
+              </article>
+              <article class="pbBlock">
+                <h3>Common triggers</h3>
+                <ul>
+                  <li>New AI vendor shortlist, fast cycle, unclear requirements.</li>
+                  <li>Contract review with data-use and training ambiguity.</li>
+                  <li>Renewal where auditability and evidence is now required.</li>
+                </ul>
+              </article>
+            </div>
+          </div>
+        </section>
+
+      </div>
+
+      <aside class="pbRail" aria-label="Kit rail">
+        <div class="pbCard">
+          <div class="pbHd">
+            <h2 class="pbH2">Checkout</h2>
+            <p class="pbMuted">Delivered via Gumroad after purchase.</p>
+          </div>
+          <div class="pbBd">
+            <div class="pbKpi">
+              <strong>Primary CTA:</strong><br/>
+              <a class="btn primary gumroad-button" href="https://GUMROAD_PRODUCT_URL_PLACEHOLDER">Buy on Gumroad</a>
+            </div>
+
+            <div class="pbKpi">
+              <strong>Suggested internal usage:</strong><br/>
+              Run gates first → request evidence → score → issue decision memo.
+            </div>
+
+            <div class="pbKpi">
+              <strong>Need organization-specific outputs?</strong><br/>
+              Use <a class="btn secondary" href="/trust-brief/">Trust Brief</a> to produce leadership-ready posture and a tailored operating model.
+            </div>
+
+            <div class="pbKpi">
+              <strong>Version:</strong> v1.0<br/>
+              <span class="pbMuted">Last updated: 2025-12-27</span>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="pbSticky" aria-label="Sticky checkout">
+      <div class="pbStickyInner">
+        <div class="pbStickyText"><strong>AI Vendor Due Diligence Kit</strong> — templates delivered via Gumroad.</div>
+        <div class="actions" style="margin-top:0">
+          <a class="btn primary gumroad-button" href="https://GUMROAD_PRODUCT_URL_PLACEHOLDER">Buy on Gumroad</a>
+          <a class="btn secondary" href="/playbook/">Back</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="nfFooter"></footer>
 </body>
 </html>

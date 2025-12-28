@@ -1,0 +1,128 @@
+/* /assets/pages/playbook-offer.css — v1.0 (shared styles for /playbook/* product pages) */
+
+.pbOffer{ margin: 12px 0 64px; }
+.pbHero{
+  border-radius: calc(var(--radius) + 8px);
+  border: 1px solid rgba(255,255,255,.11);
+  background:
+    radial-gradient(900px 420px at 18% 0%, rgba(200,163,73,.16), transparent 60%),
+    radial-gradient(900px 420px at 92% 12%, rgba(122,167,255,.10), transparent 62%),
+    linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.022));
+  box-shadow: var(--shadow);
+  overflow:hidden;
+}
+.pbHeroInner{ padding: 22px 18px; }
+.pbPillRow{ display:flex; flex-wrap:wrap; gap:10px; margin-bottom:10px; }
+.pbPill{
+  display:inline-flex; align-items:center; gap:10px;
+  padding:9px 12px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.03);
+  color:var(--muted2);
+  font-size:12.6px;
+  white-space:nowrap;
+}
+.pbPill strong{ color:var(--text); font-weight:900; }
+.pbKicker{ color: var(--muted); font-size: 12.6px; letter-spacing:.22em; text-transform:uppercase; margin-top: 4px; }
+.pbTitle{ margin: 10px 0 10px; font-size: 34px; line-height: 1.08; letter-spacing: -0.75px; }
+.pbLead{ margin:0; color: var(--muted); font-size: 16px; line-height: 1.75; max-width: 980px; }
+.pbLead strong{ color: var(--text); font-weight: 950; }
+.pbCtaRow{ display:flex; flex-wrap:wrap; gap:10px; align-items:center; margin-top: 14px; }
+.pbNote{
+  margin-top: 12px;
+  padding: 12px 12px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,.10);
+  background: rgba(255,255,255,.03);
+  color: var(--muted2);
+  font-size: 12.8px;
+  line-height: 1.6;
+}
+.pbNote strong{ color: var(--text); font-weight: 900; }
+
+.pbGrid{
+  display:grid;
+  grid-template-columns: 1.12fr .88fr;
+  gap: 16px;
+  align-items: start;
+  margin-top: 16px;
+}
+.pbCard{
+  border-radius: var(--radius);
+  border: 1px solid rgba(255,255,255,.11);
+  background: linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.022));
+  box-shadow: var(--shadow2);
+  overflow: hidden;
+  min-width:0;
+}
+.pbHd{ padding: 18px 18px 0; }
+.pbBd{ padding: 18px; }
+.pbH2{ margin:0 0 8px; font-size: 18px; letter-spacing: -0.2px; }
+.pbMuted{ color: var(--muted); margin:0; line-height: 1.7; }
+
+.pbBlocks{ display:grid; gap: 12px; margin-top: 12px; }
+.pbBlock{
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,.11);
+  background: rgba(255,255,255,.03);
+  padding: 14px;
+}
+.pbBlock h3{ margin:0; font-size: 16px; font-weight: 950; letter-spacing: -.2px; }
+.pbBlock p{ margin: 10px 0 0; color: var(--muted); line-height: 1.7; }
+.pbBlock ul{ margin: 10px 0 0; padding-left: 18px; color: var(--muted2); line-height: 1.6; }
+.pbBlock li{ margin: 6px 0; }
+
+.pbRail{ position: sticky; top: 14px; }
+.pbKpi{
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,.10);
+  background: rgba(255,255,255,.03);
+  padding: 12px;
+  margin-top: 12px;
+  color: var(--muted2);
+  font-size: 12.8px;
+  line-height: 1.6;
+}
+.pbKpi strong{ color: var(--text); font-weight: 900; }
+
+.pbDivider{
+  height:1px;
+  background: rgba(255,255,255,.08);
+  margin: 14px 0;
+}
+
+.pbSticky{
+  position: sticky;
+  bottom: 0;
+  z-index: 20;
+  padding: 10px 0;
+  background: linear-gradient(180deg, rgba(7,7,11,0) 0%, rgba(7,7,11,.78) 22%, rgba(7,7,11,.92) 100%);
+  backdrop-filter: blur(10px);
+  border-top: 1px solid rgba(255,255,255,.08);
+}
+.pbStickyInner{
+  display:flex;
+  gap:12px;
+  align-items:center;
+  justify-content:space-between;
+  padding: 0 16px;
+  max-width: 1120px;
+  margin: 0 auto;
+}
+.pbStickyText{
+  min-width:0;
+  color: var(--muted);
+  font-size: 12.6px;
+  line-height: 1.4;
+}
+.pbStickyText strong{ color: var(--text); font-weight: 950; }
+
+@media (max-width: 980px){
+  .pbGrid{ grid-template-columns: 1fr; }
+  .pbRail{ position: relative; top: 0; }
+  .pbTitle{ font-size: 30px; }
+}
+@media (max-width: 760px){
+  .pbStickyText{ display:none; }
+}

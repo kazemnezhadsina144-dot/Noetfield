@@ -12,6 +12,23 @@ Advisor / Architect Minimal Checklist (AUTO-STUB)
 
 # GTM_NEXT — Tier A queue (post–1000-pack)
 
+## Current bounded queue — 2026-07-17
+
+| Field | Value |
+|-------|-------|
+| **Agent tag** | `NF-CLOUD-AGENT` |
+| **Agent id** | `noetfield_cloud` |
+| **Doc trace** | `NF-CLOUD-OPS-2026-07-17` |
+| **Updated** | 2026-07-17 |
+
+1. **`ops-postcss-root-122` — pending review/promotion.** PR #122 repairs GHSA-qx2v-qp2m-jg93 at exact head `2a8dcbdcc60aff632f04d0a8e60ab03a19af66b6`. All PostCSS resolutions are `8.5.16`, the audit is clean, and build/runtime verification passed. Because the root lockfile is a production workflow path, merge plus exact-SHA deployment require a separate promotion decision.
+2. **`ops-postcss-governance-123` — pending review.** PR #123 repairs the same advisory in the governance console at exact head `0a7198e11cc8462905662212bab88fbf709bf508`. Clean audit, production build, API E2E, and live-nerve verification passed.
+3. **`ops-issue-98-revalidation` — done, issue remains open.** The referenced mirror commit has no common ancestor with `noetfeld-os/main`; the proposed semantic-drift target and files are absent from current owner history. Rebuild manually on the correct repository and do not add a PAT/org secret merely to push the stale mirror.
+
+Completed in this execution chain: PR #119 exact-SHA production deployment, P0 incident closeout, partner-audit contract repair, and stale PR #109 closure.
+
+Commercial outreach remains agentic/founder-only. Nothing in this queue authorizes a send.
+
 When the NF-PLAN registry is fully synced (`1000/1000 done`), pick the next **≤3** agent tasks from here or `os/plan.json` `next_tasks`.
 
 **Authority:** [NOETFIELD_GTM_60_DAY_LOCKED_v1.md](../../../strategy/NOETFIELD_GTM_60_DAY_LOCKED_v1.md) · [WWW_V16_PACKAGING_PLAN_LOCKED_v1.md](../../../WWW_V16_PACKAGING_PLAN_LOCKED_v1.md)  
@@ -45,7 +62,7 @@ Founder bounded `implement` — disk queue head from `os/plan.json`:
 1. **ship-portfolio-np1-hub-intake-062** · Copilot-governance intake Hub report template — **done**  
    Plan: [`INTAKE_COPILOT_GOVERNANCE_HUB_REPORT_v1.md`](../../../copilot/INTAKE_COPILOT_GOVERNANCE_HUB_REPORT_v1.md)
 
-## Next GTM Tier A (NF-CLOUD disk) — iter 21 proposals
+## Prior GTM Tier A proposals — iter 21 (superseded 2026-07-17)
 
 Founder pick or bounded `implement`:
 

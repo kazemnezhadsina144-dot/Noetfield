@@ -4,7 +4,14 @@
   "status": "active",
   "ship_mandate": "os/SHIP_NOW.md",
   "ship_rule": "Bounded founder implement order + os/plan.json GTM_NEXT queue + agentic_queue (026 Hub only); ingest after VERIFY (required); do not edit SinaPromptOS; no self-start from plan.json alone (R-007/R-011); local Mac may also pick from os/plan-library/noetfield-1000/",
-  "last_updated": "2026-06-19",
+  "last_updated": "2026-07-17",
+  "planning_refresh": {
+    "agent_tag": "NF-CLOUD-AGENT",
+    "agent_id": "noetfield_cloud",
+    "doc_trace": "NF-CLOUD-OPS-2026-07-17",
+    "baseline_main_sha": "ccfb3424c6c0e3e56e10131a9cd2cdf71f7f2e8a",
+    "policy": "Security candidates require independent review; the root lockfile candidate requires a separately authorized exact-SHA production promotion."
+  },
   "positioning_lock": "docs/strategy/NOETFIELD_TRUST_LEDGER_POSITIONING_LOCKED_v1.2.md",
   "agent_context_lock": "docs/ops/NOETFIELD_AGENT_CONTEXT_AND_READ_ORDER_LOCKED_v1.md",
   "sprint_backlog": "os/sprint-trust-ledger-v1.2.md",
@@ -139,6 +146,26 @@
     }
   ],
   "next_tasks": [
+    {
+      "id": "ops-postcss-root-122",
+      "title": "Review and separately promote the root PostCSS security repair",
+      "plan": "PR #122 · exact candidate 2a8dcbdcc60aff632f04d0a8e60ab03a19af66b6 · GHSA-qx2v-qp2m-jg93",
+      "status": "pending",
+      "gate": "Root package-lock is a Noetfield WWW production trigger; require a new exact-SHA merge and deployment decision."
+    },
+    {
+      "id": "ops-postcss-governance-123",
+      "title": "Review the governance-console PostCSS security repair",
+      "plan": "PR #123 · exact candidate 0a7198e11cc8462905662212bab88fbf709bf508 · GHSA-qx2v-qp2m-jg93",
+      "status": "pending",
+      "gate": "Independent GitHub checks and review before merge."
+    },
+    {
+      "id": "ops-issue-98-revalidation",
+      "title": "Revalidate semantic-drift issue #98 against current owner history",
+      "plan": "Issue #98 · referenced commit has no common ancestor with noetfeld-os/main; rebuild on the correct owner repository without expanding PAT secrets",
+      "status": "done"
+    },
     {
       "id": "ship-anti-staleness-verify-063",
       "title": "Anti-staleness verify needles in verify-doc-ssot + factory spine",
@@ -648,7 +675,7 @@
     "nf-rag-design-010",
     "nf-copilot-pilot-runbook-009"
   ],
-  "updated_at": "2026-06-14",
+  "updated_at": "2026-07-17",
   "agentic_queue": [
     {
       "id": "ship-design-partner-outreach-026",

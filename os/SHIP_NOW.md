@@ -1,5 +1,24 @@
 # SHIP NOW — Noetfield
 
+## Current execution lock — 2026-07-17
+
+| Field | Value |
+|-------|-------|
+| **Agent tag** | `NF-CLOUD-AGENT` |
+| **Agent id** | `noetfield_cloud` |
+| **Doc trace** | `NF-CLOUD-OPS-2026-07-17` |
+| **Updated** | 2026-07-17 |
+
+**Current main:** `ccfb3424c6c0e3e56e10131a9cd2cdf71f7f2e8a` after the verified PR #119 production promotion, P0 incident closeout, and partner-audit repair.
+
+**Queue head:** `ops-postcss-root-122` — review PR #122 at exact candidate `2a8dcbdcc60aff632f04d0a8e60ab03a19af66b6`. Its root lockfile is a Noetfield WWW production trigger, so merge and exact-SHA deployment remain a separate promotion decision.
+
+**Second:** `ops-postcss-governance-123` — review PR #123 at exact candidate `0a7198e11cc8462905662212bab88fbf709bf508`. This repair is isolated to the governance-console dependency tree.
+
+**Issue #98 revalidated:** `ops-issue-98-revalidation` is complete, but the issue remains open. The referenced mirror commit has no common ancestor with current `noetfeld-os/main`, the advertised `nf-semantic-drift` target is absent, and no new PAT or secret expansion is authorized. Rebuild the concept on the actual owner repository before any merge proposal.
+
+**Outbound boundary:** commercial outreach and email sends remain founder/Hub actions; this disk queue does not authorize external messaging.
+
 **Founder cascade sync (2026-06-24T08:37:18Z):** NO HUB REBUILD — cascade proof test — source `validator_proof` · synced by `nf_founder_input_sync_v1.py`
 
 
@@ -28,7 +47,7 @@
 
 ## Active queue (`next_tasks`)
 
-**P0 queue head:** Phase 17 prep (OPS-P1 + XF-P2b + CA-P2b + PL-P2) — see [GTM_NEXT.md](docs/ops/plans/no-asf/GTM_NEXT.md).
+**Prior queue head (superseded 2026-07-17):** Phase 17 prep (OPS-P1 + XF-P2b + CA-P2b + PL-P2) — retained below as historical planning context.
 
 **Phase 16 shipped (2026-06-19):** Portfolio **260/300** · XF-P2 + CA-P2 + PL-P1 **30/30** · ship-063–066 anti-staleness verify + status/registry · `bash …/scripts/verify-portfolio-300-phase16.sh` PASS.
 
